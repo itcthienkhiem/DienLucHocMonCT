@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E96D1D99-4416-4CBA-B3EF-EA3611729C6C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>coInventory.Mini</RootNamespace>
+    <AssemblyName>coInventory.Mini</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmGioiThieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGioiThieu.Designer.cs">
+      <DependentUpon>frmGioiThieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXemBaoCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXemBaoCao.Designer.cs">
+      <DependentUpon>frmXemBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIMain.Designer.cs">
+      <DependentUpon>MDIMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmGioiThieu.resx">
+      <DependentUpon>frmGioiThieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXemBaoCao.resx">
+      <DependentUpon>frmXemBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIMain.resx">
+      <DependentUpon>MDIMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_eHospital.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eHos.ico" />
+    <None Include="Images\button-accept.png" />
+    <None Include="Images\button-add.png" />
+    <None Include="Images\button-close.png" />
+    <None Include="Images\button-delete.png" />
+    <None Include="Images\button-modify.png" />
+    <None Include="Images\button-new.png" />
+    <None Include="Images\button-print.png" />
+    <None Include="Images\button-refresh.png" />
+    <None Include="Images\button-save.png" />
+    <None Include="Images\button-savelock.png" />
+    <None Include="Images\button-search.png" />
+    <None Include="Images\Calendar_16x16.png" />
+    <None Include="Images\CapNhatTaiKhoan_16x16.png" />
+    <None Include="Images\CauHinhHeThong_32x32.png" />
+    <None Include="Images\DangNhap_16x16.png" />
+    <None Include="Images\DangXuat_16x16.png" />
+    <None Include="Images\DanhSachPhieuNhap_32x32.png" />
+    <None Include="Images\DanhSachPhieuXuat_32x32.png" />
+    <None Include="Images\Drafts_16x16.png" />
+    <None Include="Images\HangTonKho_32x32.png" />
+    <None Include="Images\Inbox_16x16.png" />
+    <None Include="Images\KhachHang_128x128.png" />
+    <None Include="Images\KhoVatTu_32x32.png" />
+    <None Include="Images\LapPhieuNhapLai_16x16.png" />
+    <None Include="Images\LapPhieuNhapMoi_16x16.png" />
+    <None Include="Images\LapPhieuXuatMoi_16x16.png" />
+    <None Include="Images\LoaiVatTu_64x64.png" />
+    <None Include="Images\logo.png" />
+    <None Include="Images\Mail_32x32.png" />
+    <None Include="Images\NhaCungCap_32x32.png" />
+    <None Include="Images\NhanVien_32x32.png" />
+    <None Include="Images\NhatKyHeThong_32x32.png" />
+    <None Include="Images\NhomVatTu_64x64.png" />
+    <None Include="Images\Organizer_32x32.png" />
+    <None Include="Images\Outbox_16x16.png" />
+    <None Include="Images\PhucHoi_32x32.png" />
+    <None Include="Images\QuanLyNguoiDung_32x32.png" />
+    <None Include="Images\Ribbon_AlignCenter_16x16.png" />
+    <None Include="Images\Ribbon_AlignLeft_16x16.png" />
+    <None Include="Images\Ribbon_AlignRight_16x16.png" />
+    <None Include="Images\Ribbon_Bold_16x16.png" />
+    <None Include="Images\Ribbon_Close_16x16.png" />
+    <None Include="Images\Ribbon_Close_32x32.png" />
+    <None Include="Images\Ribbon_Content_16x16.png" />
+    <None Include="Images\Ribbon_Content_32x32.png" />
+    <None Include="Images\Ribbon_Exit_16x16.png" />
+    <None Include="Images\Ribbon_Exit_32x32.png" />
+    <None Include="Images\Ribbon_Find_16x16.png" />
+    <None Include="Images\Ribbon_Find_32x32.png" />
+    <None Include="Images\Ribbon_Info_16x16.png" />
+    <None Include="Images\Ribbon_Info_32x32.png" />
+    <None Include="Images\Ribbon_Italic_16x16.png" />
+    <None Include="Images\Ribbon_New_16x16.png" />
+    <None Include="Images\Ribbon_New_32x32.png" />
+    <None Include="Images\Ribbon_Open_16x16.png" />
+    <None Include="Images\Ribbon_Open_32x32.png" />
+    <None Include="Images\Ribbon_Save_16x16.png" />
+    <None Include="Images\Ribbon_Save_32x32.png" />
+    <None Include="Images\Ribbon_SaveAs_16x16.png" />
+    <None Include="Images\Ribbon_SaveAs_32x32.png" />
+    <None Include="Images\Ribbon_Underline_16x16.png" />
+    <None Include="Images\SanPham_32x32.png" />
+    <None Include="Images\SaoLuu_32x32.png" />
+    <None Include="Images\Tasks_16x16.png" />
+    <None Include="Images\ThanhLyVatTu_16x16.png" />
+    <None Include="Images\ThongKeHangTonKho_32x32.png" />
+    <None Include="Images\ThongKeNhap_NhaCungCap_32x32.bmp" />
+    <None Include="Images\ThongTinNhacNho_32x32.png" />
+    <None Include="Images\Trash_16x16.png" />
+    <None Include="Images\VatTu_32x32.png" />
+    <Content Include="Resources\button-accept.png" />
+    <Content Include="Resources\button-add.png" />
+    <Content Include="Resources\button-close.png" />
+    <Content Include="Resources\button-delete.png" />
+    <Content Include="Resources\button-modify.png" />
+    <Content Include="Resources\button-new.png" />
+    <Content Include="Resources\button-print.png" />
+    <Content Include="Resources\button-refresh.png" />
+    <Content Include="Resources\button-save.png" />
+    <Content Include="Resources\button-savelock.png" />
+    <Content Include="Resources\button-search.png" />
+    <Content Include="Resources\Calendar_16x16.png" />
+    <Content Include="Resources\CapNhatTaiKhoan_16x16.png" />
+    <Content Include="Resources\CauHinhHeThong_32x32.png" />
+    <Content Include="Resources\DangNhap_16x16.png" />
+    <Content Include="Resources\DangXuat_16x16.png" />
+    <Content Include="Resources\DanhSachPhieuNhap_32x32.png" />
+    <Content Include="Resources\DanhSachPhieuXuat_32x32.png" />
+    <Content Include="Resources\Drafts_16x16.png" />
+    <Content Include="Resources\HangTonKho_32x32.png" />
+    <Content Include="Resources\Inbox_16x16.png" />
+    <Content Include="Resources\KhachHang_128x128.png" />
+    <Content Include="Resources\KhoVatTu_32x32.png" />
+    <Content Include="Resources\LapPhieuNhapLai_16x16.png" />
+    <Content Include="Resources\LapPhieuNhapMoi_16x16.png" />
+    <Content Include="Resources\LapPhieuXuatMoi_16x16.png" />
+    <Content Include="Resources\LoaiVatTu_64x64.png" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\Mail_32x32.png" />
+    <Content Include="Resources\NhaCungCap_32x32.png" />
+    <Content Include="Resources\NhanVien_32x32.png" />
+    <Content Include="Resources\NhatKyHeThong_32x32.png" />
+    <Content Include="Resources\NhomVatTu_64x64.png" />
+    <Content Include="Resources\Organizer_32x32.png" />
+    <Content Include="Resources\Outbox_16x16.png" />
+    <Content Include="Resources\PhucHoi_32x32.png" />
+    <Content Include="Resources\QuanLyNguoiDung_32x32.png" />
+    <Content Include="Resources\Ribbon_AlignCenter_16x16.png" />
+    <Content Include="Resources\Ribbon_AlignLeft_16x16.png" />
+    <Content Include="Resources\Ribbon_AlignRight_16x16.png" />
+    <Content Include="Resources\Ribbon_Bold_16x16.png" />
+    <Content Include="Resources\Ribbon_Close_16x16.png" />
+    <Content Include="Resources\Ribbon_Close_32x32.png" />
+    <Content Include="Resources\Ribbon_Content_16x16.png" />
+    <Content Include="Resources\Ribbon_Content_32x32.png" />
+    <Content Include="Resources\Ribbon_Exit_16x16.png" />
+    <Content Include="Resources\Ribbon_Exit_32x32.png" />
+    <Content Include="Resources\Ribbon_Find_16x16.png" />
+    <Content Include="Resources\Ribbon_Find_32x32.png" />
+    <Content Include="Resources\Ribbon_Info_16x16.png" />
+    <Content Include="Resources\Ribbon_Info_32x32.png" />
+    <Content Include="Resources\Ribbon_Italic_16x16.png" />
+    <Content Include="Resources\Ribbon_New_16x16.png" />
+    <Content Include="Resources\Ribbon_New_32x32.png" />
+    <Content Include="Resources\Ribbon_Open_16x16.png" />
+    <Content Include="Resources\Ribbon_Open_32x32.png" />
+    <Content Include="Resources\Ribbon_SaveAs_16x16.png" />
+    <Content Include="Resources\Ribbon_SaveAs_32x32.png" />
+    <Content Include="Resources\Ribbon_Save_16x16.png" />
+    <Content Include="Resources\Ribbon_Save_32x32.png" />
+    <Content Include="Resources\Ribbon_Underline_16x16.png" />
+    <Content Include="Resources\SanPham_32x32.png" />
+    <Content Include="Resources\SaoLuu_32x32.png" />
+    <Content Include="Resources\Tasks_16x16.png" />
+    <Content Include="Resources\ThanhLyVatTu_16x16.png" />
+    <Content Include="Resources\ThongKeHangTonKho_32x32.png" />
+    <Content Include="Resources\ThongKeNhap_NhaCungCap_32x32.bmp" />
+    <Content Include="Resources\ThongTinNhacNho_32x32.png" />
+    <Content Include="Resources\Trash_16x16.png" />
+    <Content Include="Resources\VatTu_32x32.png" />
+    <None Include="Resources\Image.bmp" />
+    <None Include="Resources\bg 2.jpg" />
+    <None Include="Resources\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\coInventory.Mini.DanhMuc\coInventory.Mini.DanhMuc.csproj">
+      <Project>{CE23758A-2DE0-4DC6-999E-027F9A97AC12}</Project>
+      <Name>coInventory.Mini.DanhMuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\coInventory.Mini.HoSo\coInventory.Mini.HoSo.csproj">
+      <Project>{88229664-9FFE-453D-AD5F-379268D83D7F}</Project>
+      <Name>coInventory.Mini.HoSo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

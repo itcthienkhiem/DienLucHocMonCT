@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95B5C9A6-3F7B-483F-B2AE-14D2916E5D10}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eHospital.Control</RootNamespace>
+    <AssemblyName>eHospital.Control</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebService.Model">
+      <HintPath>..\bindll\WebService.Model.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsAbLoạiGiaoDien.cs" />
+    <Compile Include="clsGiaoDienCSKCB.cs" />
+    <Compile Include="clsGiaoDienDichVu.cs" />
+    <Compile Include="clsGiaoDienMau.cs" />
+    <Compile Include="UCFuntion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCFuntion.Designer.cs">
+      <DependentUpon>UCFuntion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UCFuntion.resx">
+      <DependentUpon>UCFuntion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\clsDanhMucAbtract\clsAbGiaoDien.csproj">
+      <Project>{54FB9056-B3DC-48E6-BF28-F95CDBD203B0}</Project>
+      <Name>clsAbGiaoDien</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eHospital.Mini.EntityClass\eHospital.Mini.EntityClass.csproj">
+      <Project>{504F104C-DE72-4C97-93A2-D18B135E801B}</Project>
+      <Name>eHospital.Mini.EntityClass</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

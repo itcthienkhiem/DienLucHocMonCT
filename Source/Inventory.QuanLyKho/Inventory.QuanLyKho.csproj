@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40A873AF-A614-440D-B5F2-DD726BE7903A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Inventory.QuanLyKho</RootNamespace>
+    <AssemblyName>Inventory.QuanLyKho</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="frmQLHoanTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLHoanTra.Designer.cs">
+      <DependentUpon>frmQLHoanTra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQLNhapKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLNhapKho.Designer.cs">
+      <DependentUpon>frmQLNhapKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQLXuatKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLXuatKho.Designer.cs">
+      <DependentUpon>frmQLXuatKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQLXuatTamVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLXuatTamVatTu.Designer.cs">
+      <DependentUpon>frmQLXuatTamVatTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmQLHoanTra.resx">
+      <DependentUpon>frmQLHoanTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLNhapKho.resx">
+      <DependentUpon>frmQLNhapKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLXuatKho.resx">
+      <DependentUpon>frmQLXuatKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLXuatTamVatTu.resx">
+      <DependentUpon>frmQLXuatTamVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\addFile_omc.png" />
+    <Content Include="Images\cancel_bmc.png" />
+    <Content Include="Images\cancel_bmc1.png" />
+    <Content Include="Images\cancel_gmc.png" />
+    <Content Include="Images\cancel_omc.png" />
+    <Content Include="Images\close_bmc.png" />
+    <Content Include="Images\close_gmc.png" />
+    <Content Include="Images\down_bmc.png" />
+    <Content Include="Images\down_omc.png" />
+    <Content Include="Images\edit_gmc.png" />
+    <Content Include="Images\printOut_omc.png" />
+    <Content Include="Images\refresh_omc.png" />
+    <Content Include="Images\save_bmc.png" />
+    <Content Include="Images\save_bmc1.png" />
+    <Content Include="Images\search_bmc.png" />
+    <Content Include="Images\up_bmc.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

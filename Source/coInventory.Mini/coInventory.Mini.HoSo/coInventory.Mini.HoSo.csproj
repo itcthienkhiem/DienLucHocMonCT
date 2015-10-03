@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88229664-9FFE-453D-AD5F-379268D83D7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>coInventory.Mini.HoSo</RootNamespace>
+    <AssemblyName>coInventory.Mini.HoSo</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarcodeLib">
+      <HintPath>..\bindll\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebService.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\WebService.Model.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Control\clsPublic.cs" />
+    <Compile Include="Control\CompleteTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\TextBoxDateTime.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmDangKyKhamBenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangKyKhamBenh.Designer.cs">
+      <DependentUpon>frmDangKyKhamBenh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiayChuyenTuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiayChuyenTuyen.Designer.cs">
+      <DependentUpon>frmGiayChuyenTuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiayRaVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiayRaVien.Designer.cs">
+      <DependentUpon>frmGiayRaVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHoSo.Designer.cs">
+      <DependentUpon>frmHoSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimBenhAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimBenhAn.Designer.cs">
+      <DependentUpon>frmTimBenhAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimHoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimHoSo.Designer.cs">
+      <DependentUpon>frmTimHoSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MaskedTextBoxDate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmTraCuuTheBHYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraCuuTheBHYT.Designer.cs">
+      <DependentUpon>frmTraCuuTheBHYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTraCuuChiPhiKBBHYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraCuuChiPhiKBBHYT.Designer.cs">
+      <DependentUpon>frmTraCuuChiPhiKBBHYT.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\coInventory.Mini.EntityClass\coInventory.Mini.EntityClass.csproj">
+      <Project>{504F104C-DE72-4C97-93A2-D18B135E801B}</Project>
+      <Name>coInventory.Mini.EntityClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\coInventory.Mini.Utilities\coInventory .Mini.Utilities.csproj">
+      <Project>{59B6A540-E493-4508-AE03-FE5E01BB8186}</Project>
+      <Name>coInventory .Mini.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Control\CompleteTextBox.resx">
+      <DependentUpon>CompleteTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDangKyKhamBenh.resx">
+      <DependentUpon>frmDangKyKhamBenh.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiayChuyenTuyen.resx">
+      <DependentUpon>frmGiayChuyenTuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiayRaVien.resx">
+      <DependentUpon>frmGiayRaVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHoSo.resx">
+      <DependentUpon>frmHoSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimBenhAn.resx">
+      <DependentUpon>frmTimBenhAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimHoSo.resx">
+      <DependentUpon>frmTimHoSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTraCuuTheBHYT.resx">
+      <DependentUpon>frmTraCuuTheBHYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTraCuuChiPhiKBBHYT.resx">
+      <DependentUpon>frmTraCuuChiPhiKBBHYT.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printOut_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reports_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reports_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BHXH_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_omc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printOut_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reports_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_gmc.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

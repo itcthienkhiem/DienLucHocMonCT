@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE23758A-2DE0-4DC6-999E-027F9A97AC12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>coInventory.Mini.DanhMuc</RootNamespace>
+    <AssemblyName>coInventory.Mini.DanhMuc</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarcodeLib">
+      <HintPath>..\bindll\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebService.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bindll\WebService.Model.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsAbGiaoDien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clsAbGiaoDien.designer.cs">
+      <DependentUpon>clsAbGiaoDien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucPhongBan.Designer.cs">
+      <DependentUpon>frmDanhMucPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBangKeXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBangKeXML.Designer.cs">
+      <DependentUpon>frmBangKeXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCauHinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCauHinh.Designer.cs">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucBangKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucBangKe.Designer.cs">
+      <DependentUpon>frmDanhMucBangKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucChuyenDoiMucHuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucChuyenDoiMucHuong.Designer.cs">
+      <DependentUpon>frmDanhMucChuyenDoiMucHuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucDichVuChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucDichVuChiTiet.Designer.cs">
+      <DependentUpon>frmDanhMucDichVuChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucDichVu.Designer.cs">
+      <DependentUpon>frmDanhMucDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucICD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucICD.Designer.cs">
+      <DependentUpon>frmDanhMucICD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucLuongCoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucLuongCoSo.Designer.cs">
+      <DependentUpon>frmDanhMucLuongCoSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucMau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucMau.Designer.cs">
+      <DependentUpon>frmDanhMucMau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucMauChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucMauChiTiet.Designer.cs">
+      <DependentUpon>frmDanhMucMauChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucMucHuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucMucHuong.Designer.cs">
+      <DependentUpon>frmDanhMucMucHuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucMucHuongDoiTuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucMucHuongDoiTuong.Designer.cs">
+      <DependentUpon>frmDanhMucMucHuongDoiTuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucPhongBanChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucPhongBanChiTiet.Designer.cs">
+      <DependentUpon>frmDanhMucPhongBanChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucThuoc.Designer.cs">
+      <DependentUpon>frmDanhMucThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucThuocChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucThuocChiTiet.Designer.cs">
+      <DependentUpon>frmDanhMucThuocChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucCSKCB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucCSKCB.Designer.cs">
+      <DependentUpon>frmDanhMucCSKCB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucVTYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucVTYT.Designer.cs">
+      <DependentUpon>frmDanhMucVTYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhMucVTYTChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhMucVTYTChiTiet.Designer.cs">
+      <DependentUpon>frmDanhMucVTYTChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="XuLy\clsAbLoạiGiaoDien.cs" />
+    <Compile Include="XuLy\clsXuLyControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\coInventory.Mini.EntityClass\coInventory.Mini.EntityClass.csproj">
+      <Project>{504F104C-DE72-4C97-93A2-D18B135E801B}</Project>
+      <Name>coInventory.Mini.EntityClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\coInventory.Mini.HoSo\coInventory.Mini.HoSo.csproj">
+      <Project>{88229664-9FFE-453D-AD5F-379268D83D7F}</Project>
+      <Name>coInventory.Mini.HoSo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\coInventory.Mini.Utilities\coInventory .Mini.Utilities.csproj">
+      <Project>{59B6A540-E493-4508-AE03-FE5E01BB8186}</Project>
+      <Name>coInventory .Mini.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmDanhMucPhongBan.resx">
+      <DependentUpon>frmDanhMucPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBangKeXML.resx">
+      <DependentUpon>frmBangKeXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCauHinh.resx">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucBangKe.resx">
+      <DependentUpon>frmDanhMucBangKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucChuyenDoiMucHuong.resx">
+      <DependentUpon>frmDanhMucChuyenDoiMucHuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucDichVu.resx">
+      <DependentUpon>frmDanhMucDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucDichVuChiTiet.resx">
+      <DependentUpon>frmDanhMucDichVuChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucICD.resx">
+      <DependentUpon>frmDanhMucICD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucLuongCoSo.resx">
+      <DependentUpon>frmDanhMucLuongCoSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucMau.resx">
+      <DependentUpon>frmDanhMucMau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucMauChiTiet.resx">
+      <DependentUpon>frmDanhMucMauChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucMucHuong.resx">
+      <DependentUpon>frmDanhMucMucHuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucMucHuongDoiTuong.resx">
+      <DependentUpon>frmDanhMucMucHuongDoiTuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucPhongBanChiTiet.resx">
+      <DependentUpon>frmDanhMucPhongBanChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucThuoc.resx">
+      <DependentUpon>frmDanhMucThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucThuocChiTiet.resx">
+      <DependentUpon>frmDanhMucThuocChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucCSKCB.resx">
+      <DependentUpon>frmDanhMucCSKCB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucVTYT.resx">
+      <DependentUpon>frmDanhMucVTYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhMucVTYTChiTiet.resx">
+      <DependentUpon>frmDanhMucVTYTChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printOut_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_bmc.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
