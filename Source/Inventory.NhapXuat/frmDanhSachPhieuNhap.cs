@@ -10,6 +10,11 @@ using Inventory.EntityClass;
 
 namespace Inventory.NhapXuat
 {
+    /// <summary>
+    /// Ẩn sửa xóa save
+    /// Chọn lưới --> Add thêm chi tiết --> link qua nhập kho
+    /// Danh phiếu xuất --> tương tự, tùy theo DB
+    /// </summary>
     public partial class frmDanhSachPhieuNhap : Form
     {
        //
