@@ -18,6 +18,9 @@ namespace Inventory.EntityClass
      public string Ly_do;
      public string So_hoa_don;
      public string Dia_chi;
+     public string Cong_trinh;
+
+
      public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
        SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
        public DataTable GetAll(string maPhieu)
@@ -62,16 +65,19 @@ namespace Inventory.EntityClass
            }
            return false;
        }
-       public int Insert()
+       public int Insert(SQLDAL dal)
        {
-
-           m_dbConnection.Open();
+           dal.BeginTransaction();
+       
+           m_dbConnection = dal.m_conn;
+           if(m_dbConnection.State == ConnectionState.Closed)
+               m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi) ";
-           sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi)";
+           sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi,Cong_trinh) ";
+           sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi,@Cong_trinh)";
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
            command.CommandType = CommandType.Text;
 
            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
@@ -81,54 +87,63 @@ namespace Inventory.EntityClass
            command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
          //  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
            command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
+           command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
 
 
            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
            int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
+           dal.CommitTransaction();
+           
            return result;
        }
 
-       public int Update()
+       public int Update(SQLDAL DAL)
        {
+           DAL.BeginTransaction();
+       
+           m_dbConnection = DAL.m_conn;
+           if (m_dbConnection.State == ConnectionState.Closed)
            m_dbConnection.Open();
 
            string sql = "";
            sql += "UPDATE Phieu_Nhap_Kho ";
-           sql += "Set ma_phieu_nhap=@ma_phieu_nhap,ID_kho=@ID_kho,Ngay_lap=@Ngay_lap,ly_do=@ly_do,so_hoa_don =@so_hoa_don,@dia_chi";
+           sql += "Set ma_phieu_nhap=@ma_phieu_nhap,ID_kho=@ID_kho,Ngay_lap=@Ngay_lap,ly_do=@ly_do,dia_chi = @dia_chi,cong_trinh = @cong_trinh ";
            sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
 
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
            command.CommandType = CommandType.Text;
 
            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
            command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ly_do", Ly_do));
-           command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
+         //  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
            command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));
-           //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-
+           command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
+           
            int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
+           DAL.CommitTransaction();
            return result;
        }
-       public int Delete()
+       public int Delete(SQLDAL DAL)
        {
+           DAL.BeginTransaction();
+       
+           m_dbConnection = DAL.m_conn;
+           if (m_dbConnection.State == ConnectionState.Closed)
            m_dbConnection.Open();
-
            string sql = "Delete from Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
 
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
            command.CommandType = CommandType.Text;
 
            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
            int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
+           DAL.CommitTransaction();
            return result;
        }
 

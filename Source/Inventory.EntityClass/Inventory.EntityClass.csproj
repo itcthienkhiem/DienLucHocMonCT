@@ -49,6 +49,7 @@
     <Compile Include="clsDM_NhanVien.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
     <Compile Include="clsThongTinKetNoi.cs" />
+    <Compile Include="clsTonDauKy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLDAL.cs" />
   </ItemGroup>

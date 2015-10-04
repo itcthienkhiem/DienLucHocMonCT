@@ -179,5 +179,10 @@ namespace coInventory.Mini.DanhMuc
             bs.Filter = search;
             grdMaster.DataSource = bs;
         }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

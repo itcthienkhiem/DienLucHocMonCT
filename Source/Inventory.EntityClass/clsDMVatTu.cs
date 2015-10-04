@@ -38,13 +38,14 @@ namespace Inventory.EntityClass
        {
 
        }
-       public clsDMVatTu(string mavt,string tenvt,string  dvt,string mota,long don_gia)
+       public clsDMVatTu(string mavt,string tenvt,string  dvt,string mota,long don_gia, int id_dvt)
        {
            this.Ma_vat_tu = mavt;
            this.Ten_vat_tu = tenvt;
            this.ten_don_vi_tinh = dvt;
            this.Mo_ta = mota;
            this.Don_gia = don_gia;
+           this.ID_Don_vi_tinh = id_dvt;
        }
        /// <summary>
        /// Giữ kết nối DB từ App.config
@@ -62,7 +63,7 @@ namespace Inventory.EntityClass
            DataTable dt = new DataTable();
            //string sql = "SELECT * FROM DM_Vat_Tu";
            string sql = "";
-           sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_Vat_Tu.Mo_ta,DM_vat_tu.Don_gia ";
+           sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_Vat_Tu.Mo_ta,DM_vat_tu.Don_gia, DM_Vat_Tu.id_don_vi_tinh ";
            sql += "FROM DM_Vat_Tu ";
         //   sql += "INNER ";
            sql +=   "JOIN DM_Don_vi_tinh ";
