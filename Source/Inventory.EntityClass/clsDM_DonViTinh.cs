@@ -10,11 +10,15 @@ namespace Inventory.EntityClass
 {
     /// <summary>
     /// To-Do LIST
-    /// - GET ALL DATA
-    /// - Check Trùng Lập
-    /// - Insert
-    /// - Update
-    /// - Delete
+    /// [x] GET ALL DATA
+    /// [x] Check Trùng Lập
+    /// [x] Insert
+    /// [x] Update
+    /// [x] Delete
+    /// 
+    /// [ ] Tối ưu Data
+    /// [ ] Tối ưu nhập xuất với func
+    /// [ ] Gom các hàm trùng lập về 1 func tổng quát
     /// </summary>
     public class clsDM_DonViTinh
     {
@@ -59,33 +63,35 @@ namespace Inventory.EntityClass
 
        /// <summary>
        /// Kiểm tra trùng lập trước khi ADD
+       /// [Update] Dùng ExecuteScalar để check 1 first cell, đổi tên hàm thân thiện hơn
        /// </summary>
        /// <returns></returns>
-       public bool Checkduplicaterows()
+       public bool hasDuplicateRow()
        {
            //Mở
            m_dbConnection.Open();
-           DataTable dt = new DataTable();
 
            //Chuẩn bị
            string sql = "";
-           sql += "SELECT * FROM DM_Don_vi_tinh ";
-           sql += "WHERE ID_Don_vi_tinh=@ID_Don_vi_tinh";
+           sql += "SELECT Ten_don_vi_tinh FROM DM_Don_vi_tinh ";
+           sql += "WHERE Ten_don_vi_tinh=@Ten_don_vi_tinh";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-           command.Parameters.Add("@ID_Don_vi_tinh", SqlDbType.Int).Value = ID_Don_vi_tinh;
+           command.Parameters.Add("@Ten_don_vi_tinh", SqlDbType.NVarChar, 50).Value = Ten_don_vi_tinh;
            
            command.CommandType = CommandType.Text;
 
            //Run
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
+
+           //Lấy 1 cell về check
+           var firstColumn = command.ExecuteScalar();
 
            //Đóng
            m_dbConnection.Close();
 
-           if (dt.Rows.Count > 0)
+           //Nếu có dữ liệu, thì trùng
+           if (firstColumn != null)
            {
                return true;
            }
@@ -161,7 +167,7 @@ namespace Inventory.EntityClass
 
 
        /// <summary>
-       /// Xoa by ID
+       /// [Bug] Xóa Item có Liên Kết khóa ngoại với bảng Vật Tư
        /// </summary>
        /// <returns>bool</returns>
        public int Delete()

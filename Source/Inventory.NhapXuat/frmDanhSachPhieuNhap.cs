@@ -37,7 +37,7 @@ namespace Inventory.NhapXuat
              Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
 
             clsPhieuNhapKho phieuNhap = new clsPhieuNhapKho();
-            phieuNhap.ID_phieu_nhap =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_phieu_nhap"].Value.ToString());
+            //phieuNhap.ID_phieu_nhap =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_phieu_nhap"].Value.ToString());
             phieuNhap.ID_kho =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
             phieuNhap.Ngay_lap =DateTime.Parse( gridMaster.Rows[selectedRowCount].Cells["Ngay_lap"].Value.ToString());
             phieuNhap.Ly_do =( gridMaster.Rows[selectedRowCount].Cells["Ly_do"].Value.ToString());

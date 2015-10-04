@@ -11,7 +11,7 @@ namespace Inventory.EntityClass
   
  public   class clsPhieuNhapKho
     {
-     public int ID_phieu_nhap;
+//     public int ID_phieu_nhap;
      public string Ma_phieu_nhap;
      public int ID_kho;
      public DateTime Ngay_lap;
@@ -20,11 +20,24 @@ namespace Inventory.EntityClass
      public string Dia_chi;
      public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
        SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+       public DataTable GetAll(string maPhieu)
+       {
+           m_dbConnection.Open();
+           DataTable dt = new DataTable();
+           string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", maPhieu));
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+           m_dbConnection.Close();
+           return dt;
+       }
        public DataTable GetAll()
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();
-           string sql = "SELECT * FROM Phieu_Nhap_Kho";
+           string sql = "SELECT * FROM Phieu_Nhap_Kho ";
+
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            SqlDataAdapter da = new SqlDataAdapter(command);
            da.Fill(dt);
@@ -55,8 +68,8 @@ namespace Inventory.EntityClass
            m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,so_hoa_don,Dia_chi) ";
-           sql += "VALUES(@ma_phieu_nhap,@ID_kho,Ngay_lap,@ly_do,@so_hoa_don,@Dia_chi)";
+           sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi) ";
+           sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            command.CommandType = CommandType.Text;
@@ -64,9 +77,9 @@ namespace Inventory.EntityClass
            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-           command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap));
+           command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
-           command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
+         //  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
            command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
 
 
@@ -92,7 +105,7 @@ namespace Inventory.EntityClass
 
            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-           command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap));
+           command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ly_do", Ly_do));
            command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
            command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));

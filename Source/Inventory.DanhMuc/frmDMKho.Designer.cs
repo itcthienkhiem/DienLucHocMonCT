@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTenKho = new System.Windows.Forms.TextBox();
@@ -41,7 +40,6 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGetDM = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
@@ -61,7 +59,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(653, 56);
+            this.label10.Location = new System.Drawing.Point(673, 56);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 14);
             this.label10.TabIndex = 3;
@@ -69,23 +67,13 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(252, 61);
+            this.label7.Location = new System.Drawing.Point(729, 56);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(699, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tải dữ liệu";
-            this.label1.Visible = false;
             // 
             // label6
             // 
@@ -125,13 +113,11 @@
             // 
             this.pnlMenu.Controls.Add(this.btnHuy);
             this.pnlMenu.Controls.Add(this.label2);
-            this.pnlMenu.Controls.Add(this.btnGetDM);
             this.pnlMenu.Controls.Add(this.btnLuu);
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
             this.pnlMenu.Controls.Add(this.btnThem);
-            this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.label6);
             this.pnlMenu.Controls.Add(this.label5);
             this.pnlMenu.Controls.Add(this.btnSua);
@@ -150,40 +136,29 @@
             // 
             this.btnHuy.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
             this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(298, 12);
+            this.btnHuy.Location = new System.Drawing.Point(242, 12);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(50, 50);
             this.btnHuy.TabIndex = 4;
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.EnabledChanged += new System.EventHandler(this.btnHuy_EnabledChanged);
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 62);
+            this.label2.Location = new System.Drawing.Point(246, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "Hủy bỏ";
-            // 
-            // btnGetDM
-            // 
-            this.btnGetDM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetDM.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.down_omc;
-            this.btnGetDM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGetDM.Location = new System.Drawing.Point(711, 11);
-            this.btnGetDM.Name = "btnGetDM";
-            this.btnGetDM.Size = new System.Drawing.Size(40, 40);
-            this.btnGetDM.TabIndex = 2;
-            this.btnGetDM.UseVisualStyleBackColor = true;
-            this.btnGetDM.Visible = false;
             // 
             // btnLuu
             // 
             this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLuu.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_bmc;
             this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(643, 6);
+            this.btnLuu.Location = new System.Drawing.Point(663, 6);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
@@ -192,9 +167,10 @@
             // 
             // btnDong
             // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
             this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(242, 11);
+            this.btnDong.Location = new System.Drawing.Point(719, 6);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(50, 50);
             this.btnDong.TabIndex = 2;
@@ -210,6 +186,7 @@
             this.btnThem.Size = new System.Drawing.Size(50, 50);
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.EnabledChanged += new System.EventHandler(this.btnThem_EnabledChanged);
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
@@ -221,6 +198,7 @@
             this.btnSua.Size = new System.Drawing.Size(50, 50);
             this.btnSua.TabIndex = 2;
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.EnabledChanged += new System.EventHandler(this.btnSua_EnabledChanged);
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
@@ -232,6 +210,7 @@
             this.btnXoa.Size = new System.Drawing.Size(50, 50);
             this.btnXoa.TabIndex = 2;
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.EnabledChanged += new System.EventHandler(this.btnXoa_EnabledChanged);
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLamMoi
@@ -243,6 +222,7 @@
             this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
             this.btnLamMoi.TabIndex = 2;
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.EnabledChanged += new System.EventHandler(this.btnLamMoi_EnabledChanged);
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // lblSua
@@ -341,13 +321,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnGetDM;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnXoa;

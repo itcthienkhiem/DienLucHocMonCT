@@ -30,6 +30,9 @@ namespace Inventory.DanhMuc
         clsDMVatTu DM_VatTu = new clsDMVatTu();
 
 
+        /// <summary>
+        /// [Bug] Lỗi khi GetDonViTinh == Rỗng
+        /// </summary>
         public frmDMVatTu()
         {
             InitializeComponent();
@@ -38,11 +41,15 @@ namespace Inventory.DanhMuc
             LoadData();
 
             DM_VatTu.GetDonViTinh();
-            cboDonViTinh.DataSource = new BindingSource(DM_VatTu.dicDonViTinh, null);
-            cboDonViTinh.DisplayMember = "Key";
-            cboDonViTinh.ValueMember = "Value";
+            if (DM_VatTu.dicDonViTinh.Count > 0)
+            {
+                cboDonViTinh.DataSource = new BindingSource(DM_VatTu.dicDonViTinh, null);
+                cboDonViTinh.DisplayMember = "Key";
+                cboDonViTinh.ValueMember = "Value";
 
-            DM_VatTu.Selected_DonViTinh = (int)cboDonViTinh.SelectedValue;
+                DM_VatTu.Selected_DonViTinh = (int)cboDonViTinh.SelectedValue;
+            }
+            
 
             if (status == enumStatus.None)
                 btnLuu.Enabled = false;
@@ -228,10 +235,10 @@ namespace Inventory.DanhMuc
             {
                 status = enumStatus.Xoa;
 
-                btnThem.Enabled = true;
-                btnXoa.Enabled = true;
-                btnSua.Enabled = true;
-                btnLamMoi.Enabled = true;
+                btnThem.Enabled = false;
+                btnXoa.Enabled = false;
+                btnSua.Enabled = false;
+                btnLamMoi.Enabled = false;
 
                 btnLuu.Enabled = true;
             }
@@ -265,6 +272,51 @@ namespace Inventory.DanhMuc
         {
             //Maybe remove
             DM_VatTu.Selected_DonViTinh = (int)cboDonViTinh.SelectedValue;
+        }
+
+        private void btnThem_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_omc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_disable;
+        }
+
+        private void btnXoa_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_disable;
+        }
+
+        private void btnSua_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_disable;
+        }
+
+        private void btnLamMoi_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_omc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_disable;
+        }
+
+        private void btnHuyBo_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_disable;
         }
     }
 }

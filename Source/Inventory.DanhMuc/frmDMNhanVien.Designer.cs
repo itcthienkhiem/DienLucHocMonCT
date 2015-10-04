@@ -32,13 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.btnGetDM = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnHuyBo = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSua = new System.Windows.Forms.Button();
@@ -51,13 +51,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.dataSet1 = new System.Data.DataSet();
             this.gridDMNhanVien = new System.Windows.Forms.DataGridView();
-            this.cboTenKho = new System.Windows.Forms.ComboBox();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.ID_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Trang_thai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboTenKho = new System.Windows.Forms.ComboBox();
             this.cbTrangThai = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
@@ -69,13 +67,11 @@
             // 
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label11);
-            this.pnlMenu.Controls.Add(this.btnGetDM);
             this.pnlMenu.Controls.Add(this.btnLuu);
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnHuyBo);
             this.pnlMenu.Controls.Add(this.label7);
             this.pnlMenu.Controls.Add(this.btnThem);
-            this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.label6);
             this.pnlMenu.Controls.Add(this.label5);
             this.pnlMenu.Controls.Add(this.btnSua);
@@ -90,24 +86,34 @@
             this.pnlMenu.Size = new System.Drawing.Size(908, 92);
             this.pnlMenu.TabIndex = 37;
             // 
-            // btnGetDM
+            // btnDong
             // 
-            this.btnGetDM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetDM.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.down_omc;
-            this.btnGetDM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGetDM.Location = new System.Drawing.Point(835, 11);
-            this.btnGetDM.Name = "btnGetDM";
-            this.btnGetDM.Size = new System.Drawing.Size(40, 40);
-            this.btnGetDM.TabIndex = 2;
-            this.btnGetDM.UseVisualStyleBackColor = true;
-            this.btnGetDM.Visible = false;
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(846, 12);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(50, 50);
+            this.btnDong.TabIndex = 6;
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(856, 62);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 14);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Đóng";
             // 
             // btnLuu
             // 
             this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLuu.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_bmc;
             this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(761, 11);
+            this.btnLuu.Location = new System.Drawing.Point(790, 12);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
@@ -118,7 +124,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(771, 61);
+            this.label10.Location = new System.Drawing.Point(800, 62);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 14);
             this.label10.TabIndex = 3;
@@ -154,17 +160,6 @@
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(823, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tải dữ liệu";
-            this.label1.Visible = false;
             // 
             // label6
             // 
@@ -220,11 +215,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 61);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 32F);
+            this.label3.Location = new System.Drawing.Point(396, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 14);
+            this.label3.Size = new System.Drawing.Size(252, 52);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Xóa";
+            this.label3.Text = "Không dùng";
             // 
             // lblSua
             // 
@@ -302,35 +298,6 @@
             this.gridDMNhanVien.Size = new System.Drawing.Size(887, 271);
             this.gridDMNhanVien.TabIndex = 46;
             // 
-            // cboTenKho
-            // 
-            this.cboTenKho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTenKho.FormattingEnabled = true;
-            this.cboTenKho.Location = new System.Drawing.Point(394, 100);
-            this.cboTenKho.Name = "cboTenKho";
-            this.cboTenKho.Size = new System.Drawing.Size(159, 22);
-            this.cboTenKho.TabIndex = 47;
-            // 
-            // btnDong
-            // 
-            this.btnDong.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
-            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(298, 12);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(50, 50);
-            this.btnDong.TabIndex = 6;
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(308, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 14);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Đóng";
-            // 
             // ID_nhan_vien
             // 
             this.ID_nhan_vien.DataPropertyName = "ID_nhan_vien";
@@ -361,6 +328,15 @@
             this.Trang_thai.HeaderText = "Trạng thái";
             this.Trang_thai.Name = "Trang_thai";
             this.Trang_thai.ReadOnly = true;
+            // 
+            // cboTenKho
+            // 
+            this.cboTenKho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTenKho.FormattingEnabled = true;
+            this.cboTenKho.Location = new System.Drawing.Point(394, 100);
+            this.cboTenKho.Name = "cboTenKho";
+            this.cboTenKho.Size = new System.Drawing.Size(159, 22);
+            this.cboTenKho.TabIndex = 47;
             // 
             // cbTrangThai
             // 
@@ -413,13 +389,11 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlMenu;
-        private System.Windows.Forms.Button btnGetDM;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnHuyBo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSua;

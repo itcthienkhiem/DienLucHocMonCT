@@ -55,7 +55,7 @@ namespace Inventory.DanhMuc
                     {
                         DM_DonViTinh.Ten_don_vi_tinh = txtTenDonVi.Text.Trim();
 
-                        if (!DM_DonViTinh.Checkduplicaterows())
+                        if (!DM_DonViTinh.hasDuplicateRow())
                         {
                             if (DM_DonViTinh.Insert() == 1)
                             {
@@ -163,7 +163,6 @@ namespace Inventory.DanhMuc
 
                 txtTenDonVi.Text = SelectedRow.Cells["Ten_don_vi_tinh"].Value.ToString();
 
-
             }
         }
 
@@ -188,10 +187,10 @@ namespace Inventory.DanhMuc
             {
                 status = enumStatus.Xoa;
 
-                btnThem.Enabled = true;
-                btnXoa.Enabled = true;
-                btnSua.Enabled = true;
-                btnLamMoi.Enabled = true;
+                btnThem.Enabled = false;
+                btnXoa.Enabled = false;
+                btnSua.Enabled = false;
+                btnLamMoi.Enabled = false;
 
                 btnLuu.Enabled = true;
             }
@@ -220,6 +219,52 @@ namespace Inventory.DanhMuc
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        private void btnThem_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_omc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_disable;
+        }
+
+        private void btnXoa_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_disable;
+        }
+
+        private void btnSua_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_disable;
+        }
+
+        private void btnLamMoi_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_omc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_disable;
+        }
+
+        private void btnHuy_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_disable;
         }
 
         

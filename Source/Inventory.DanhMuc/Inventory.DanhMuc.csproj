@@ -103,20 +103,26 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\addFile_disable.png" />
     <Content Include="Images\addFile_omc.png" />
     <Content Include="Images\cancel_bmc.png" />
     <Content Include="Images\cancel_bmc1.png" />
+    <Content Include="Images\cancel_disable.png" />
     <Content Include="Images\cancel_gmc.png" />
     <Content Include="Images\cancel_omc.png" />
     <Content Include="Images\close_bmc.png" />
+    <Content Include="Images\close_disable.png" />
     <Content Include="Images\close_gmc.png" />
     <Content Include="Images\down_bmc.png" />
     <Content Include="Images\down_omc.png" />
+    <Content Include="Images\edit_disable.png" />
     <Content Include="Images\edit_gmc.png" />
     <Content Include="Images\printOut_omc.png" />
+    <Content Include="Images\refresh_disable.png" />
     <Content Include="Images\refresh_omc.png" />
     <Content Include="Images\save_bmc.png" />
     <Content Include="Images\save_bmc1.png" />
+    <Content Include="Images\save_disable.png" />
     <Content Include="Images\search_bmc.png" />
     <Content Include="Images\up_bmc.png" />
   </ItemGroup>
