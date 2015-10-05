@@ -21,7 +21,8 @@ namespace Inventory.EntityClass
        //List var dùng trong DM Vat Tu
        public int ID_nhan_vien;
        public string Ten_nhan_vien;
-       public int ID_kho;
+       //public int ID_kho;
+       public string Ma_nhan_vien;
        //public int Ten_kho;
        public bool Trang_thai;
 
@@ -49,11 +50,11 @@ namespace Inventory.EntityClass
            DataTable dt = new DataTable();
            //string sql = "SELECT * FROM DM_Vat_Tu";
            string sql = "";
-           sql += "SELECT DM_Nhan_Vien.ID_nhan_vien, DM_Nhan_Vien.Ten_nhan_vien, DM_Kho.Ten_kho, DM_Nhan_Vien.Trang_thai ";
+           sql += "SELECT DM_Nhan_Vien.ID_nhan_vien, DM_Nhan_Vien.Ten_nhan_vien, DM_Nhan_Vien.Ma_nhan_vien, DM_Nhan_Vien.Trang_thai ";
            sql += "FROM DM_Nhan_Vien ";
-           sql += "INNER ";
-           sql +=   "JOIN DM_Kho ";
-           sql +=   "ON DM_Nhan_Vien.ID_kho=DM_Kho.ID_kho";
+           //sql += "INNER ";
+           //sql +=   "JOIN DM_Kho ";
+           //sql +=   "ON DM_Nhan_Vien.ID_kho=DM_Kho.ID_kho";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            SqlDataAdapter da = new SqlDataAdapter(command);
@@ -143,13 +144,14 @@ namespace Inventory.EntityClass
 
            //Chuẩn bị
            string sql = "";
-           sql += "INSERT INTO DM_Nhan_Vien (Ten_nhan_vien, ID_kho, Trang_thai) ";
-           sql += "VALUES(@Ten_nhan_vien, @ID_kho, @Trang_thai)";
+           sql += "INSERT INTO DM_Nhan_Vien (Ten_nhan_vien, Ma_nhan_vien, Trang_thai) ";
+           sql += "VALUES(@Ten_nhan_vien, @Ma_nhan_vien, @Trang_thai)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
            command.Parameters.Add("@Ten_nhan_vien", SqlDbType.VarChar, 50).Value = Ten_nhan_vien;
-           command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+           //command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+           command.Parameters.Add("@Ma_nhan_vien", SqlDbType.VarChar, 50).Value = Ma_nhan_vien;
            command.Parameters.Add("@Trang_thai", SqlDbType.Bit).Value = Trang_thai;
 
            command.CommandType = CommandType.Text;
@@ -177,7 +179,7 @@ namespace Inventory.EntityClass
            string sql = "";
            sql += "UPDATE DM_Nhan_Vien ";
            sql += "Set Ten_nhan_vien=@Ten_nhan_vien, ";
-           sql += "ID_kho=@ID_kho, ";
+           sql += "Ma_nhan_vien=@Ma_nhan_vien, ";
            sql += "Trang_thai=@Trang_thai ";
            sql += "WHERE ID_nhan_vien=@ID_nhan_vien";
 
@@ -185,7 +187,7 @@ namespace Inventory.EntityClass
 
            command.Parameters.Add("@ID_nhan_vien", SqlDbType.Int).Value = ID_nhan_vien;
            command.Parameters.Add("@Ten_nhan_vien", SqlDbType.NVarChar, 50).Value = Ten_nhan_vien;
-           command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+           command.Parameters.Add("@Ma_nhan_vien", SqlDbType.VarChar, 50).Value = Ma_nhan_vien;
            command.Parameters.Add("@Trang_thai", SqlDbType.Bit).Value = Trang_thai;
 
            command.CommandType = CommandType.Text;

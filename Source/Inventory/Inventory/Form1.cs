@@ -138,7 +138,22 @@ namespace Inventory
 
         private void menuDMNhanVien_Click(object sender, EventArgs e)
         {
+            frmDMNhanVien frm = new frmDMNhanVien();
+            frm.Text = "Danh mục nhân viên";
 
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }

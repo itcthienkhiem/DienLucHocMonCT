@@ -113,6 +113,7 @@
             this.menuDMNhanVien.Name = "menuDMNhanVien";
             this.menuDMNhanVien.Size = new System.Drawing.Size(194, 22);
             this.menuDMNhanVien.Text = "Danh Mục Nhân Viên";
+            this.menuDMNhanVien.Click += new System.EventHandler(this.menuDMNhanVien_Click);
             // 
             // menuDMDonViTinh
             // 
