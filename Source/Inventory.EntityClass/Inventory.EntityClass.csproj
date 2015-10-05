@@ -48,6 +48,7 @@
     <Compile Include="clsDM_Kho.cs" />
     <Compile Include="clsDM_NhanVien.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
+    <Compile Include="clsPhieuXuatTamVatTu4.cs" />
     <Compile Include="clsThongTinKetNoi.cs" />
     <Compile Include="clsTonDauKy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
