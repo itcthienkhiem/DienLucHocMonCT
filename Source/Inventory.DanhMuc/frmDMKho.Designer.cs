@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -140,7 +140,6 @@
             this.btnHuy.Size = new System.Drawing.Size(50, 50);
             this.btnHuy.TabIndex = 4;
             this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.EnabledChanged += new System.EventHandler(this.btnHuy_EnabledChanged);
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // label2
@@ -161,7 +160,6 @@
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
             this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.EnabledChanged += new System.EventHandler(this.btnLuu_EnabledChanged);
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnDong
@@ -185,7 +183,6 @@
             this.btnThem.Size = new System.Drawing.Size(50, 50);
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.EnabledChanged += new System.EventHandler(this.btnThem_EnabledChanged);
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
@@ -197,7 +194,6 @@
             this.btnSua.Size = new System.Drawing.Size(50, 50);
             this.btnSua.TabIndex = 2;
             this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.EnabledChanged += new System.EventHandler(this.btnSua_EnabledChanged);
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
@@ -209,7 +205,6 @@
             this.btnXoa.Size = new System.Drawing.Size(50, 50);
             this.btnXoa.TabIndex = 2;
             this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.EnabledChanged += new System.EventHandler(this.btnXoa_EnabledChanged);
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLamMoi
@@ -221,7 +216,6 @@
             this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
             this.btnLamMoi.TabIndex = 2;
             this.btnLamMoi.UseVisualStyleBackColor = true;
-            this.btnLamMoi.EnabledChanged += new System.EventHandler(this.btnLamMoi_EnabledChanged);
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // lblSua
@@ -247,22 +241,22 @@
             this.gridDMKho.AllowUserToAddRows = false;
             this.gridDMKho.AllowUserToDeleteRows = false;
             this.gridDMKho.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridDMKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDMKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDMKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridDMKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDMKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_kho,
@@ -282,8 +276,8 @@
             // ID_kho
             // 
             this.ID_kho.DataPropertyName = "ID_kho";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID_kho.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID_kho.DefaultCellStyle = dataGridViewCellStyle6;
             this.ID_kho.HeaderText = "ID";
             this.ID_kho.Name = "ID_kho";
             this.ID_kho.ReadOnly = true;

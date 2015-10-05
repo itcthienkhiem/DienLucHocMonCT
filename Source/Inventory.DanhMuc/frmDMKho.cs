@@ -13,46 +13,60 @@ namespace Inventory.DanhMuc
     /// Write by Khiêm
     /// 
     /// Editing...
+    /// To-Do LIST
+    /// [x] Chuyển Status về class, use func thay gì set trực tiếp
+    /// [.] B1: Chuyển phần set button về func tập trung --> B2: Tạo 1 class làm việc này
     /// * Problem
-    /// [ ] Bỏ tính năng xóa trực tiếp, chuyển dùng biến trạng thái.
+    /// [ ] Bỏ tính năng xóa trực tiếp, chuyển dùng biến trạng thái True == Deleted | False.
     /// [ ] ?
     /// </summary>
     public partial class frmDMKho : Form
     {
-        //Dictionary<int, string> dic = new Dictionary<int, string>();
-
-        enumStatus status = enumStatus.None;
+        //Data
         clsDM_Kho DM_Kho = new clsDM_Kho();
+
+        //Quản lý Button
+        clsPanelButton PanelButton;
 
         public frmDMKho()
         {
             InitializeComponent();
 
+            //Init cls Button
+            PanelButton = new clsPanelButton();
+
+            PanelButton.AddButton(enumButton.Them, ref btnThem);
+            PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
+            PanelButton.AddButton(enumButton.Sua, ref btnSua);
+            PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
+            PanelButton.AddButton(enumButton.Luu, ref btnLuu);
+            PanelButton.AddButton(enumButton.Huy, ref btnHuy);
+            PanelButton.AddButton(enumButton.Dong, ref btnDong);
+
             LoadData();
-            ResetButton();
+
+            PanelButton.ResetButton();
         }
 
 
+        /// <summary>
+        /// Loads the data --> Grid.
+        /// </summary>
         public void LoadData()
         {
             gridDMKho.DataSource = DM_Kho.GetAll();
         }
 
-        public void ResetButton()
+        /// <summary>
+        /// Resets the input form.
+        /// </summary>
+        public void ResetInputForm()
         {
-            if (status == enumStatus.None)
+            if (PanelButton.isClickNone())
             {
-                btnThem.Enabled = true;
-                btnXoa.Enabled = true;
-                btnSua.Enabled = true;
-                btnLamMoi.Enabled = true;
-
-                btnLuu.Enabled = false;
-                btnHuy.Enabled = false;
+                txtTenKho.Text = "";
             }
         }
-        
-        
 
 
         /// <summary>
@@ -60,35 +74,38 @@ namespace Inventory.DanhMuc
         /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            switch (status)
+            switch (PanelButton.getClickStatus())
             {
-                case enumStatus.Them:
+                case enumButton.Them:
                     {
-
                         DM_Kho.Ten_kho = txtTenKho.Text.Trim();
                         if (!DM_Kho.CheckTonTaiSoDK()&& DM_Kho.Insert() == 1)
                         {
                             MessageBox.Show("Bạn đã thêm thành công !");
 
                             //Reset status
-                            status = enumStatus.None;
+                            PanelButton.ResetClickStatus();
+
                             LoadData();
-                            ResetButton();
+
+                            PanelButton.ResetButton();
 
                             //Reset input
-                            txtTenKho.Text = "";
+                            ResetInputForm();
                             
                         }
                         else
                             MessageBox.Show("Bạn đã thêm thất bại!");
                         break;
                     }
-                case enumStatus.Xoa:
+                case enumButton.Xoa:
                         {
                             DM_Kho.Ten_kho = txtTenKho.Text;
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+                            
                             DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
                             DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
+                            
                             if (dialogResult == DialogResult.Yes)
                             {
                                 //do something
@@ -98,9 +115,14 @@ namespace Inventory.DanhMuc
                                     MessageBox.Show("Bạn đã xóa thành công !");
 
                                     //Reset
-                                    status = enumStatus.None;
+                                    PanelButton.ResetClickStatus();
+
                                     LoadData();
-                                    ResetButton();
+
+                                    PanelButton.ResetButton();
+
+                                    ResetInputForm();
+                                    
                                 }
                                 else
                                     MessageBox.Show("Bạn đã xóa thất bại!");
@@ -112,7 +134,7 @@ namespace Inventory.DanhMuc
                             }
                             break;
                         }
-                case enumStatus.Sua:
+                case enumButton.Sua:
                         {
                             DM_Kho.Ten_kho = txtTenKho.Text;
                              Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
@@ -123,13 +145,15 @@ namespace Inventory.DanhMuc
                                  {
                                      MessageBox.Show("Bạn đã cập nhật thành công !");
 
-                                     //Reset stt
-                                     status = enumStatus.None;
+                                     //Reset
+                                     PanelButton.ResetClickStatus();
+
                                      LoadData();
-                                     ResetButton();
+
+                                     PanelButton.ResetButton();
                                      
                                      //Reset input
-                                     txtTenKho.Text = "";
+                                     ResetInputForm();
                                  }
                                  else
                                  {
@@ -147,7 +171,7 @@ namespace Inventory.DanhMuc
         private void gridMaster_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-            if (selectedRowCount >= 0 && status == enumStatus.Xoa || status == enumStatus.Sua)
+            if (selectedRowCount >= 0 && PanelButton.isClickXoa() || PanelButton.isClickSua())
             {
                 txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
             }
@@ -156,66 +180,44 @@ namespace Inventory.DanhMuc
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            if (status != enumStatus.None)
+            if (!PanelButton.isClickNone())
             {
-                status = enumStatus.None;
+                PanelButton.ResetClickStatus();
 
-                btnThem.Enabled = true;
-                btnSua.Enabled = true;
-                btnXoa.Enabled = true;
-                btnLamMoi.Enabled = true;
-
-                btnHuy.Enabled = true;
-                btnLuu.Enabled = true;
+                PanelButton.ResetButton();
             }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (status == enumStatus.None)
+            if (PanelButton.isClickNone())
             {
-                status = enumStatus.Them;
+                PanelButton.setClickThem();
 
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-
-                btnHuy.Enabled = true;
-                btnLuu.Enabled = true;
+                PanelButton.Enable_btn_Luu_Huy();
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (status == enumStatus.None)
+            if (PanelButton.isClickNone())
             {
-                status = enumStatus.Xoa;
+                PanelButton.setClickXoa();
 
-                btnThem.Enabled = false;
-                btnXoa.Enabled = false;
-                btnSua.Enabled = false;
-                btnLamMoi.Enabled = false;
-                
-                btnLuu.Enabled = true;
-                btnHuy.Enabled = true;
+                PanelButton.Enable_btn_Luu_Huy();
+
+                Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
             }
         }
 
-        
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (status == enumStatus.None)
+            if (PanelButton.isClickNone())
             {
-                status = enumStatus.Sua;
+                PanelButton.setClickSua();
 
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-                
-                btnLuu.Enabled = true;
-                btnHuy.Enabled = true;
+                PanelButton.Enable_btn_Luu_Huy();
 
                 Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
                 txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
@@ -228,76 +230,15 @@ namespace Inventory.DanhMuc
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnSua.Enabled = false;
-            
 
             LoadData();
 
-            ResetButton();
+            PanelButton.ResetButton();
         }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        /*
-         [x] Add ICON khi Enable & Disable
-         */
-        private void btnThem_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_omc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_disable;
-        }
-
-        private void btnXoa_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_disable;
-        }
-
-        private void btnSua_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_disable;
-        }
-
-        private void btnLamMoi_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_omc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_disable;
-        }
-
-        private void btnHuy_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_disable;
-        }
-
-        private void btnLuu_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_bmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_disable;
-        }
-        /*
-         END. --> Add ICON khi Enable & Disable
-         */
     }
 }

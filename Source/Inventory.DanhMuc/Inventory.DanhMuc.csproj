@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsPanelButton.cs" />
     <Compile Include="enumStatus.cs" />
     <Compile Include="frmDMDonViTinh.cs">
       <SubType>Form</SubType>
