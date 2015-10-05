@@ -22,7 +22,9 @@ namespace Inventory.DanhMuc
     /// 
     /// 
     /// * Problem
-    /// - Button nên có 2 màu, 1 enable, 1 Disable
+    /// [x] Button nên có 2 màu, 1 enable, 1 Disable
+    /// [ ] Chức năng sửa: Chọn nhiều dòng? SỬa 1 lúc nhiều dòng? Sửa trên lưới, cập nhật sau, 1 lúc.
+    /// [ ] Chức năng Xóa, xóa nhiều line 1 lúc? Lúc hỏi, bạn có muốn xóa line a, b?
     /// </summary>
     public partial class frmDMDonViTinh : Form
     {

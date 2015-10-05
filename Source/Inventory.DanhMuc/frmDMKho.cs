@@ -9,63 +9,75 @@ using System.Windows.Forms;
 using Inventory.EntityClass;
 namespace Inventory.DanhMuc
 {
+    /// <summary>
+    /// Write by Khiêm
+    /// 
+    /// Editing...
+    /// * Problem
+    /// [ ] Bỏ tính năng xóa trực tiếp, chuyển dùng biến trạng thái.
+    /// [ ] ?
+    /// </summary>
     public partial class frmDMKho : Form
     {
         //Dictionary<int, string> dic = new Dictionary<int, string>();
 
-        enumStatus staTus = enumStatus.None;
-        clsDM_Kho kho = new clsDM_Kho();
+        enumStatus status = enumStatus.None;
+        clsDM_Kho DM_Kho = new clsDM_Kho();
 
         public frmDMKho()
         {
             InitializeComponent();
 
             LoadData();
-            if (staTus == enumStatus.None)
-                btnLuu.Enabled = false;
-
+            ResetButton();
         }
+
+
         public void LoadData()
         {
-            gridMaster.DataSource = kho.GetAll();
-
+            gridDMKho.DataSource = DM_Kho.GetAll();
         }
-        
-        private void btnThem_Click(object sender, EventArgs e)
+
+        public void ResetButton()
         {
-            if (staTus == enumStatus.None)
+            if (status == enumStatus.None)
             {
-                staTus = enumStatus.Them;
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-                btnLuu.Enabled = true;
+                btnThem.Enabled = true;
+                btnXoa.Enabled = true;
+                btnSua.Enabled = true;
+                btnLamMoi.Enabled = true;
+
+                btnLuu.Enabled = false;
+                btnHuy.Enabled = false;
             }
-
-
         }
-
+        
         
 
+
+        /// <summary>
+        /// ~
+        /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            switch (staTus)
+            switch (status)
             {
-
                 case enumStatus.Them:
                     {
 
-                        kho.Ten_kho = txtTenKho.Text.Trim();
-                        if (!kho.CheckTonTaiSoDK()&& kho.Insert() == 1)
+                        DM_Kho.Ten_kho = txtTenKho.Text.Trim();
+                        if (!DM_Kho.CheckTonTaiSoDK()&& DM_Kho.Insert() == 1)
                         {
                             MessageBox.Show("Bạn đã thêm thành công !");
+
+                            //Reset status
+                            status = enumStatus.None;
                             LoadData();
-                            btnThem.Enabled = true;
-                            btnSua.Enabled = true;
-                            btnXoa.Enabled = true;
-                            btnLamMoi.Enabled = true;
-                            staTus = enumStatus.None;
+                            ResetButton();
+
+                            //Reset input
+                            txtTenKho.Text = "";
+                            
                         }
                         else
                             MessageBox.Show("Bạn đã thêm thất bại!");
@@ -73,23 +85,22 @@ namespace Inventory.DanhMuc
                     }
                 case enumStatus.Xoa:
                         {
-                            kho.Ten_kho =txtTenKho.Text;
-                            Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
-                            kho.ID_kho = int.Parse(gridMaster.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                            DM_Kho.Ten_kho = txtTenKho.Text;
+                            Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+                            DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
                             DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
                             if (dialogResult == DialogResult.Yes)
                             {
                                 //do something
                                 
-                                if (kho.Delete() == 1)
+                                if (DM_Kho.Delete() == 1)
                                 {
                                     MessageBox.Show("Bạn đã xóa thành công !");
+
+                                    //Reset
+                                    status = enumStatus.None;
                                     LoadData();
-                                    btnThem.Enabled = true;
-                                    btnSua.Enabled = true;
-                                    btnXoa.Enabled = true;
-                                    btnLamMoi.Enabled = true;
-                                    staTus = enumStatus.None;
+                                    ResetButton();
                                 }
                                 else
                                     MessageBox.Show("Bạn đã xóa thất bại!");
@@ -100,25 +111,24 @@ namespace Inventory.DanhMuc
                                 //do something else
                             }
                             break;
-                       
-
                         }
                 case enumStatus.Sua:
                         {
-                            kho.Ten_kho = txtTenKho.Text;
-                             Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
+                            DM_Kho.Ten_kho = txtTenKho.Text;
+                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
                              if (selectedRowCount >= 0)
                              {
-                                 kho.ID_kho = int.Parse(gridMaster.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
-                                 if (kho.Update() == 1)
+                                 DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                                 if (DM_Kho.Update() == 1)
                                  {
                                      MessageBox.Show("Bạn đã cập nhật thành công !");
+
+                                     //Reset stt
+                                     status = enumStatus.None;
                                      LoadData();
-                                     btnThem.Enabled = true;
-                                     btnSua.Enabled = true;
-                                     btnXoa.Enabled = true;
-                                     btnLamMoi.Enabled = true;
-                                     staTus = enumStatus.None;
+                                     ResetButton();
+                                     
+                                     //Reset input
                                      txtTenKho.Text = "";
                                  }
                                  else
@@ -128,67 +138,101 @@ namespace Inventory.DanhMuc
                              }
                              break;
                         }
-
             }
+        }
 
-
+        /// <summary>
+        /// Đổi stt --> khi Xóa | Sửa
+        /// </summary>
+        private void gridMaster_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+            if (selectedRowCount >= 0 && status == enumStatus.Xoa || status == enumStatus.Sua)
+            {
+                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
+            }
+            // txtTenKho.Text = cell.Value.ToString();
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            if (staTus != enumStatus.None)
+            if (status != enumStatus.None)
             {
+                status = enumStatus.None;
+
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
                 btnLamMoi.Enabled = true;
-                staTus = enumStatus.None; btnLuu.Enabled = true;
+
+                btnHuy.Enabled = true;
+                btnLuu.Enabled = true;
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (status == enumStatus.None)
+            {
+                status = enumStatus.Them;
+
+                btnThem.Enabled = false;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnLamMoi.Enabled = false;
+
+                btnHuy.Enabled = true;
+                btnLuu.Enabled = true;
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (staTus == enumStatus.None)
+            if (status == enumStatus.None)
             {
-                staTus = enumStatus.Xoa;
+                status = enumStatus.Xoa;
+
+                btnThem.Enabled = false;
+                btnXoa.Enabled = false;
+                btnSua.Enabled = false;
+                btnLamMoi.Enabled = false;
+                
+                btnLuu.Enabled = true;
+                btnHuy.Enabled = true;
+            }
+        }
+
+        
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (status == enumStatus.None)
+            {
+                status = enumStatus.Sua;
+
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
                 btnLamMoi.Enabled = false;
                 
                 btnLuu.Enabled = true;
-            }
-        }
+                btnHuy.Enabled = true;
 
-        private void gridMaster_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
-            if (selectedRowCount >= 0 && staTus == enumStatus.Xoa||staTus==enumStatus.Sua)
-            {
-                txtTenKho.Text = gridMaster.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
-
-            }
-            // txtTenKho.Text = cell.Value.ToString();
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            if (staTus == enumStatus.None)
-            {
-                staTus = enumStatus.Sua;
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false; btnLuu.Enabled = true;
-                Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
-                txtTenKho.Text = gridMaster.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
+                Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
 
             }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            btnThem.Enabled = false;
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+            
+
             LoadData();
+
+            ResetButton();
         }
 
         private void btnDong_Click(object sender, EventArgs e)
@@ -196,6 +240,9 @@ namespace Inventory.DanhMuc
             this.Close();
         }
 
+        /*
+         [x] Add ICON khi Enable & Disable
+         */
         private void btnThem_EnabledChanged(object sender, EventArgs e)
         {
             Button b = sender as Button;
@@ -241,6 +288,16 @@ namespace Inventory.DanhMuc
                 b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_disable;
         }
 
-        
+        private void btnLuu_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_bmc;
+            else
+                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_disable;
+        }
+        /*
+         END. --> Add ICON khi Enable & Disable
+         */
     }
 }

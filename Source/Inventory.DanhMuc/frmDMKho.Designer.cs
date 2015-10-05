@@ -48,18 +48,17 @@
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.lblSua = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.gridMaster = new System.Windows.Forms.DataGridView();
+            this.gridDMKho = new System.Windows.Forms.DataGridView();
             this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDMKho)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(673, 56);
+            this.label10.Location = new System.Drawing.Point(252, 62);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 14);
             this.label10.TabIndex = 3;
@@ -95,7 +94,7 @@
             // 
             // txtTenKho
             // 
-            this.txtTenKho.Location = new System.Drawing.Point(84, 98);
+            this.txtTenKho.Location = new System.Drawing.Point(70, 98);
             this.txtTenKho.Name = "txtTenKho";
             this.txtTenKho.Size = new System.Drawing.Size(171, 22);
             this.txtTenKho.TabIndex = 43;
@@ -136,7 +135,7 @@
             // 
             this.btnHuy.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
             this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(242, 12);
+            this.btnHuy.Location = new System.Drawing.Point(298, 12);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(50, 50);
             this.btnHuy.TabIndex = 4;
@@ -147,7 +146,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(246, 62);
+            this.label2.Location = new System.Drawing.Point(302, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 14);
             this.label2.TabIndex = 5;
@@ -155,14 +154,14 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLuu.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.save_bmc;
             this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(663, 6);
+            this.btnLuu.Location = new System.Drawing.Point(242, 12);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.EnabledChanged += new System.EventHandler(this.btnLuu_EnabledChanged);
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnDong
@@ -243,18 +242,18 @@
             this.label9.TabIndex = 41;
             this.label9.Text = "Tên kho";
             // 
-            // gridMaster
+            // gridDMKho
             // 
-            this.gridMaster.AllowUserToAddRows = false;
-            this.gridMaster.AllowUserToDeleteRows = false;
-            this.gridMaster.AllowUserToResizeRows = false;
+            this.gridDMKho.AllowUserToAddRows = false;
+            this.gridDMKho.AllowUserToDeleteRows = false;
+            this.gridDMKho.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridDMKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridDMKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridDMKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
@@ -263,22 +262,22 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridDMKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDMKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_kho,
             this.Ten_kho});
-            this.gridMaster.Location = new System.Drawing.Point(9, 133);
-            this.gridMaster.MultiSelect = false;
-            this.gridMaster.Name = "gridMaster";
-            this.gridMaster.ReadOnly = true;
-            this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.gridMaster.RowHeadersVisible = false;
-            this.gridMaster.RowTemplate.Height = 30;
-            this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMaster.Size = new System.Drawing.Size(760, 417);
-            this.gridMaster.TabIndex = 47;
-            this.gridMaster.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMaster_CellClick);
+            this.gridDMKho.Location = new System.Drawing.Point(9, 133);
+            this.gridDMKho.MultiSelect = false;
+            this.gridDMKho.Name = "gridDMKho";
+            this.gridDMKho.ReadOnly = true;
+            this.gridDMKho.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridDMKho.RowHeadersVisible = false;
+            this.gridDMKho.RowTemplate.Height = 30;
+            this.gridDMKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridDMKho.Size = new System.Drawing.Size(760, 208);
+            this.gridDMKho.TabIndex = 47;
+            this.gridDMKho.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMaster_CellClick);
             // 
             // ID_kho
             // 
@@ -301,8 +300,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.gridMaster);
+            this.ClientSize = new System.Drawing.Size(784, 353);
+            this.Controls.Add(this.gridDMKho);
             this.Controls.Add(this.txtTenKho);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.label9);
@@ -313,7 +312,7 @@
             this.Text = "Danh Mục Kho";
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDMKho)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,7 +335,7 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Label lblSua;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView gridMaster;
+        private System.Windows.Forms.DataGridView gridDMKho;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_kho;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_kho;
         private System.Windows.Forms.Button btnHuy;
