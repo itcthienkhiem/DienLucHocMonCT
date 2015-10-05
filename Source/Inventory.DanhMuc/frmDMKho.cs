@@ -22,8 +22,10 @@ namespace Inventory.DanhMuc
     /// </summary>
     public partial class frmDMKho : Form
     {
+        FormActionDelegate frmAction;
+
         //Data
-        clsDM_Kho DM_Kho = new clsDM_Kho();
+        clsDM_Kho DM_Kho;
 
         //Quản lý Button
         clsPanelButton PanelButton;
@@ -32,9 +34,16 @@ namespace Inventory.DanhMuc
         {
             InitializeComponent();
 
+            //Init Data
+            DM_Kho = new clsDM_Kho();
+
             //Init cls Button
             PanelButton = new clsPanelButton();
 
+            frmAction = new FormActionDelegate(FormAction);
+            PanelButton.setDelegateFormAction(frmAction);
+
+            //enumButton dùng định danh button
             PanelButton.AddButton(enumButton.Them, ref btnThem);
             PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
             PanelButton.AddButton(enumButton.Sua, ref btnSua);
@@ -48,9 +57,51 @@ namespace Inventory.DanhMuc
             PanelButton.ResetButton();
         }
 
+        public void FormAction(enumFormAction frmAct)
+        {
+            switch (frmAct)
+            {
+                case enumFormAction.None:
+                    break;
+                case enumFormAction.LoadData:
+                    LoadData();
+                    break;
+                case enumFormAction.CloseForm:
+                    CloseForm();
+                    break;
+                case enumFormAction.setFormData:
+                    setFormData();
+                    break;
+                case enumFormAction.ResetInputForm:
+                    ResetInputForm();
+                    break;
+                case enumFormAction.Luu:
+                    break;
+                case enumFormAction.Huy:
+                    break;
+                case enumFormAction.Dong:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
+        }
+
+        public void setFormData()
+        {
+            Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
+
+            DataGridViewRow SelectedRow = gridDMKho.Rows[selectedRowCount];
+
+            txtTenKho.Text = SelectedRow.Cells["Ten_kho"].Value.ToString();
+        }
 
         /// <summary>
-        /// Loads the data --> Grid.
+        /// Data --> Grid.
         /// </summary>
         public void LoadData()
         {
@@ -70,7 +121,7 @@ namespace Inventory.DanhMuc
 
 
         /// <summary>
-        /// ~
+        /// Lưu -> Thêm, Xóa, Sửa | Tùy theo Button nào dc Click
         /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
@@ -79,37 +130,41 @@ namespace Inventory.DanhMuc
                 case enumButton.Them:
                     {
                         DM_Kho.Ten_kho = txtTenKho.Text.Trim();
-                        if (!DM_Kho.CheckTonTaiSoDK()&& DM_Kho.Insert() == 1)
+
+                        if (!DM_Kho.CheckTonTaiSoDK())
                         {
-                            MessageBox.Show("Bạn đã thêm thành công !");
+                            if (DM_Kho.Insert() == 1)
+                            {
+                                MessageBox.Show("Bạn đã thêm thành công !");
 
-                            //Reset status
-                            PanelButton.ResetClickStatus();
+                                //Reset status
+                                PanelButton.ResetClickStatus();
 
-                            LoadData();
+                                LoadData();
 
-                            PanelButton.ResetButton();
+                                PanelButton.ResetButton();
 
-                            //Reset input
-                            ResetInputForm();
-                            
+                                //Reset input
+                                ResetInputForm();
+                            }
+                            else
+                                MessageBox.Show("Bạn đã thêm thất bại!");
                         }
                         else
-                            MessageBox.Show("Bạn đã thêm thất bại!");
+                            MessageBox.Show("Kho đã tồn tại!");
                         break;
                     }
                 case enumButton.Xoa:
                         {
                             DM_Kho.Ten_kho = txtTenKho.Text;
+
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                            
                             DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+
                             DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
                             
                             if (dialogResult == DialogResult.Yes)
                             {
-                                //do something
-                                
                                 if (DM_Kho.Delete() == 1)
                                 {
                                     MessageBox.Show("Bạn đã xóa thành công !");
@@ -122,11 +177,9 @@ namespace Inventory.DanhMuc
                                     PanelButton.ResetButton();
 
                                     ResetInputForm();
-                                    
                                 }
                                 else
                                     MessageBox.Show("Bạn đã xóa thất bại!");
-                                
                             }
                             else if (dialogResult == DialogResult.No)
                             {
@@ -137,30 +190,31 @@ namespace Inventory.DanhMuc
                 case enumButton.Sua:
                         {
                             DM_Kho.Ten_kho = txtTenKho.Text;
-                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                             if (selectedRowCount >= 0)
-                             {
-                                 DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
-                                 if (DM_Kho.Update() == 1)
-                                 {
-                                     MessageBox.Show("Bạn đã cập nhật thành công !");
 
-                                     //Reset
-                                     PanelButton.ResetClickStatus();
+                            Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
 
-                                     LoadData();
+                            if (selectedRowCount >= 0)
+                            {
+                                DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                                if (DM_Kho.Update() == 1)
+                                {
+                                    MessageBox.Show("Bạn đã cập nhật thành công !");
 
-                                     PanelButton.ResetButton();
-                                     
-                                     //Reset input
-                                     ResetInputForm();
-                                 }
-                                 else
-                                 {
-                                     MessageBox.Show("Bạn đã cập nhật thất bại!");
-                                 }
-                             }
-                             break;
+                                    //Reset
+                                    PanelButton.ResetClickStatus();
+
+                                    LoadData();
+
+                                    PanelButton.ResetButton();
+
+                                    ResetInputForm();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Bạn đã cập nhật thất bại!");
+                                }
+                            }
+                            break;
                         }
             }
         }
@@ -168,7 +222,7 @@ namespace Inventory.DanhMuc
         /// <summary>
         /// Đổi stt --> khi Xóa | Sửa
         /// </summary>
-        private void gridMaster_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void gridDMKho_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
             if (selectedRowCount >= 0 && PanelButton.isClickXoa() || PanelButton.isClickSua())
@@ -176,69 +230,6 @@ namespace Inventory.DanhMuc
                 txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
             }
             // txtTenKho.Text = cell.Value.ToString();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            if (!PanelButton.isClickNone())
-            {
-                PanelButton.ResetClickStatus();
-
-                PanelButton.ResetButton();
-            }
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            if (PanelButton.isClickNone())
-            {
-                PanelButton.setClickThem();
-
-                PanelButton.Enable_btn_Luu_Huy();
-            }
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (PanelButton.isClickNone())
-            {
-                PanelButton.setClickXoa();
-
-                PanelButton.Enable_btn_Luu_Huy();
-
-                Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
-            }
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            if (PanelButton.isClickNone())
-            {
-                PanelButton.setClickSua();
-
-                PanelButton.Enable_btn_Luu_Huy();
-
-                Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
-
-            }
-        }
-
-        private void btnLamMoi_Click(object sender, EventArgs e)
-        {
-            btnThem.Enabled = false;
-            btnXoa.Enabled = false;
-            btnSua.Enabled = false;
-
-            LoadData();
-
-            PanelButton.ResetButton();
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

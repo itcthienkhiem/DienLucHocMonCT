@@ -8,9 +8,18 @@ namespace Inventory.DanhMuc
 {
     public enum enumButton : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong };
 
+    public enum enumFormAction : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, Luu, Huy, Dong };
+
+    public delegate void FormActionDelegate(enumFormAction val);
+
     class clsPanelButton
     {
+
+        FormActionDelegate frmAct;
+
         enumButton clickStatus;
+
+        //enumFormAction FormActionStatus;
 
         private Button btnThem = null;
         private Button btnXoa = null;
@@ -25,6 +34,11 @@ namespace Inventory.DanhMuc
             clickStatus = enumButton.None;
         }
 
+        public void setDelegateFormAction(FormActionDelegate frmAct)
+        {
+            this.frmAct = frmAct;
+        }
+
         public void AddButton(enumButton eBtn, ref Button btn)
         {
             switch (eBtn)
@@ -34,18 +48,22 @@ namespace Inventory.DanhMuc
                 case enumButton.Them:
                     btnThem = btn;
                     btnThem.EnabledChanged += new System.EventHandler(btnThem_EnabledChanged);
+                    btnThem.Click += new System.EventHandler(this.btnThem_Click);
                     break;
                 case enumButton.Xoa:
                     btnXoa = btn;
                     btnXoa.EnabledChanged += new System.EventHandler(btnXoa_EnabledChanged);
+                    btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
                     break;
                 case enumButton.Sua:
                     btnSua = btn;
                     btnSua.EnabledChanged += new System.EventHandler(btnSua_EnabledChanged);
+                    btnSua.Click += new System.EventHandler(this.btnSua_Click);
                     break;
                 case enumButton.LamMoi:
                     btnLamMoi = btn;
                     btnLamMoi.EnabledChanged += new System.EventHandler(btnLamMoi_EnabledChanged);
+                    btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
                     break;
                 case enumButton.Luu:
                     btnLuu = btn;
@@ -54,9 +72,11 @@ namespace Inventory.DanhMuc
                 case enumButton.Huy:
                     btnHuy = btn;
                     btnHuy.EnabledChanged += new System.EventHandler(btnHuy_EnabledChanged);
+                    btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
                     break;
                 case enumButton.Dong:
                     btnDong = btn;
+                    btnDong.Click += new System.EventHandler(this.btnDong_Click);
                     break;
                 default:
                     break;
@@ -97,13 +117,15 @@ namespace Inventory.DanhMuc
             }
         }
 
-        //GET
+        ////////////////////
+        //GET Click Status
         public enumButton getClickStatus()
         {
             return clickStatus;
         }
 
-        //BOOL
+        ////////////////////////////
+        //BOOL: Return Click Status
         public bool isClickNone()
         {
             return (clickStatus == enumButton.None) ? true : false;
@@ -124,14 +146,18 @@ namespace Inventory.DanhMuc
             return (clickStatus == enumButton.Sua) ? true : false;
         }
         //END BOOL
+        ///////////
 
-        //RESET
+
+        //RESET Click Status
         public void ResetClickStatus()
         {
             clickStatus = enumButton.None;
         }
 
-        //SET
+
+        ///////
+        //SET Click Status
         public void setClickThem()
         {
             clickStatus = enumButton.Them;
@@ -162,6 +188,74 @@ namespace Inventory.DanhMuc
             clickStatus = enumButton.Dong;
         }
         //END SET
+        /////////
+
+        //Event
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            frmAct.Invoke(enumFormAction.CloseForm);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            if (!isClickNone())
+            {
+                ResetClickStatus();
+
+                ResetButton();
+
+                frmAct.Invoke(enumFormAction.ResetInputForm);
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (isClickNone())
+            {
+                setClickThem();
+
+                Enable_btn_Luu_Huy();
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (isClickNone())
+            {
+                setClickXoa();
+
+                Enable_btn_Luu_Huy();
+
+                frmAct.Invoke(enumFormAction.setFormData);
+
+                /*Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
+                txtTenDonVi.Text = gridDMDonViTinh.Rows[selectedRowCount].Cells["Ten_don_vi_tinh"].Value.ToString();*/
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (isClickNone())
+            {
+                setClickSua();
+
+                Enable_btn_Luu_Huy();
+
+                frmAct.Invoke(enumFormAction.setFormData);
+            }
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            btnThem.Enabled = false;
+            btnXoa.Enabled = false;
+            btnSua.Enabled = false;
+
+            frmAct.Invoke(enumFormAction.LoadData);
+
+            ResetButton();
+        }
 
         /*
          [x] Add ICON khi Enable & Disable
@@ -222,6 +316,5 @@ namespace Inventory.DanhMuc
         /*
          END. --> Add ICON khi Enable & Disable
          */
-
     }
 }

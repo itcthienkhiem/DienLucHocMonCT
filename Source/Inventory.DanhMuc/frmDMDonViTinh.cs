@@ -28,32 +28,110 @@ namespace Inventory.DanhMuc
     /// </summary>
     public partial class frmDMDonViTinh : Form
     {
-        enumStatus status = enumStatus.None;
-        
-        clsDM_DonViTinh DM_DonViTinh = new clsDM_DonViTinh();
+        FormActionDelegate frmAction;
 
+        //Data
+        clsDM_DonViTinh DM_DonViTinh;
+
+        //Quản lý Button
+        clsPanelButton PanelButton;
 
         public frmDMDonViTinh()
         {
             InitializeComponent();
 
-            LoadData();
+            DM_DonViTinh = new clsDM_DonViTinh();
 
-            if (status == enumStatus.None)
-                btnLuu.Enabled = false;
+            //Init cls Button
+            PanelButton = new clsPanelButton();
+
+            frmAction = new FormActionDelegate(FormAction);
+            PanelButton.setDelegateFormAction(frmAction);
+
+            //enumButton dùng định danh button
+            PanelButton.AddButton(enumButton.Them, ref btnThem);
+            PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
+            PanelButton.AddButton(enumButton.Sua, ref btnSua);
+            PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
+            PanelButton.AddButton(enumButton.Luu, ref btnLuu);
+            PanelButton.AddButton(enumButton.Huy, ref btnHuy);
+            PanelButton.AddButton(enumButton.Dong, ref btnDong);
+
+            PanelButton.ResetButton();
+
+            LoadData();
         }
+
+
+        public void FormAction(enumFormAction frmAct)
+        {
+            switch (frmAct)
+            {
+                case enumFormAction.None:
+                    break;
+                case enumFormAction.LoadData:
+                    LoadData();
+                    break;
+                case enumFormAction.CloseForm:
+                    CloseForm();
+                    break;
+                case enumFormAction.setFormData:
+                    setFormData();
+                    break;
+                case enumFormAction.ResetInputForm:
+                    ResetInputForm();
+                    break;
+                case enumFormAction.Luu:
+                    break;
+                case enumFormAction.Huy:
+                    break;
+                case enumFormAction.Dong:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        
 
         public void LoadData()
         {
             gridDMDonViTinh.DataSource = DM_DonViTinh.GetAll();
         }
 
+        public void CloseForm()
+        {
+            this.Close();
+        }
+
+        public void setFormData()
+        {
+            Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
+
+            DataGridViewRow SelectedRow = gridDMDonViTinh.Rows[selectedRowCount];
+
+            txtTenDonVi.Text = SelectedRow.Cells["Ten_don_vi_tinh"].Value.ToString();
+        }
+
+        /// <summary>
+        /// Resets the input form.
+        /// </summary>
+        public void ResetInputForm()
+        {
+            if (PanelButton.isClickNone())
+            {
+                txtTenDonVi.Text = "";
+            }
+        }
+
+        
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            switch (status)
+            switch (PanelButton.getClickStatus())
             {
 
-                case enumStatus.Them:
+                case enumButton.Them:
                     {
                         DM_DonViTinh.Ten_don_vi_tinh = txtTenDonVi.Text.Trim();
 
@@ -63,23 +141,24 @@ namespace Inventory.DanhMuc
                             {
                                 MessageBox.Show("Bạn đã thêm thành công !");
 
+                                //Reset status
+                                PanelButton.ResetClickStatus();
+
                                 LoadData();
 
-                                btnThem.Enabled = true;
-                                btnSua.Enabled = true;
-                                btnXoa.Enabled = true;
-                                btnLamMoi.Enabled = true;
+                                PanelButton.ResetButton();
 
-                                status = enumStatus.None;
+                                //Reset input
+                                ResetInputForm();
                             }
                             else
                                 MessageBox.Show("Bạn đã thêm thất bại!");
                         }
                         else
-                            MessageBox.Show("Bạn đã thêm thất bại!");
+                            MessageBox.Show("Lỗi: Đơn vị đã tồn tại!");
                         break;
                     } // End Them
-                case enumStatus.Xoa:
+                case enumButton.Xoa:
                     {
                         Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
                         DM_DonViTinh.ID_Don_vi_tinh = Int32.Parse(gridDMDonViTinh.Rows[selectedRowCount].Cells["ID_Don_vi_tinh"].Value.ToString());
@@ -93,14 +172,14 @@ namespace Inventory.DanhMuc
                             {
                                 MessageBox.Show("Bạn đã xóa thành công !");
 
+                                //Reset
+                                PanelButton.ResetClickStatus();
+
                                 LoadData();
 
-                                btnThem.Enabled = true;
-                                btnSua.Enabled = true;
-                                btnXoa.Enabled = true;
-                                btnLamMoi.Enabled = true;
+                                PanelButton.ResetButton();
 
-                                status = enumStatus.None;
+                                ResetInputForm();
                             }
                             else
                                 MessageBox.Show("Bạn đã xóa thất bại!");
@@ -114,7 +193,7 @@ namespace Inventory.DanhMuc
 
 
                     }// end Xóa
-                case enumStatus.Sua:
+                case enumButton.Sua:
                     {
                         DM_DonViTinh.Ten_don_vi_tinh = txtTenDonVi.Text.Trim();
 
@@ -126,14 +205,15 @@ namespace Inventory.DanhMuc
                             if (DM_DonViTinh.Update() == 1)
                             {
                                 MessageBox.Show("Bạn đã cập nhật thành công !");
-                                LoadData();
-                                btnThem.Enabled = true;
-                                btnSua.Enabled = true;
-                                btnXoa.Enabled = true;
-                                btnLamMoi.Enabled = true;
-                                status = enumStatus.None;
 
-                                txtTenDonVi.Text = "";
+                                //Reset
+                                PanelButton.ResetClickStatus();
+
+                                LoadData();
+
+                                PanelButton.ResetButton();
+
+                                ResetInputForm();
                             }
                             else
                             {
@@ -146,129 +226,13 @@ namespace Inventory.DanhMuc
             } //End Sw
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
+        private void gridDMDonViTinh_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (status == enumStatus.None)
+            Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
+            if (selectedRowCount >= 0 && PanelButton.isClickXoa() || PanelButton.isClickSua())
             {
-                status = enumStatus.Sua;
-
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-
-                btnLuu.Enabled = true;
-
-                Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
-
-                DataGridViewRow SelectedRow = gridDMDonViTinh.Rows[selectedRowCount];
-
-                txtTenDonVi.Text = SelectedRow.Cells["Ten_don_vi_tinh"].Value.ToString();
-
+                txtTenDonVi.Text = gridDMDonViTinh.Rows[selectedRowCount].Cells["Ten_don_vi_tinh"].Value.ToString();
             }
         }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            if (status == enumStatus.None)
-            {
-                status = enumStatus.Them;
-
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-
-                btnLuu.Enabled = true;
-            }
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (status == enumStatus.None)
-            {
-                status = enumStatus.Xoa;
-
-                btnThem.Enabled = false;
-                btnXoa.Enabled = false;
-                btnSua.Enabled = false;
-                btnLamMoi.Enabled = false;
-
-                btnLuu.Enabled = true;
-            }
-        }
-
-
-        private void btnLamMoi_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void btnHuyBo_Click(object sender, EventArgs e)
-        {
-            if (status != enumStatus.None)
-            {
-                status = enumStatus.None;
-
-                btnThem.Enabled = true;
-                btnXoa.Enabled = true;
-                btnSua.Enabled = true;
-                btnLamMoi.Enabled = true;
-                btnLuu.Enabled = true;
-            }
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-        private void btnThem_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_omc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.addFile_disable;
-        }
-
-        private void btnXoa_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.cancel_disable;
-        }
-
-        private void btnSua_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.edit_disable;
-        }
-
-        private void btnLamMoi_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_omc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.refresh_disable;
-        }
-
-        private void btnHuy_EnabledChanged(object sender, EventArgs e)
-        {
-            Button b = sender as Button;
-            if (b.Enabled)
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
-            else
-                b.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_disable;
-        }
-
-        
     }
 }
