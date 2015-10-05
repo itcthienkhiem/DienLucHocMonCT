@@ -42,13 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="clsChiTietPhieuXuatTam.cs" />
     <Compile Include="clsChi_Tiet_Phieu_Nhap_Vat_Tu.cs" />
     <Compile Include="clsDMVatTu.cs" />
     <Compile Include="clsDM_DonViTinh.cs" />
     <Compile Include="clsDM_Kho.cs" />
     <Compile Include="clsDM_NhanVien.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
-    <Compile Include="clsPhieuXuatTamVatTu4.cs" />
+    <Compile Include="clsPhieuXuatTamVatTu.cs" />
     <Compile Include="clsThongTinKetNoi.cs" />
     <Compile Include="clsTonDauKy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
