@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inventory.csproj", "{20DE6DB8-4C94-4091-AE76-9DB458AC7EFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Launcher", "..\Inventory.Launcher\Inventory.Launcher.csproj", "{8FE7AAFB-E5B0-42C8-BC8F-FCEBA013D738}"
