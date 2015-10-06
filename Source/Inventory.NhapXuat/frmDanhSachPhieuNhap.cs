@@ -15,6 +15,18 @@ namespace Inventory.NhapXuat
     /// Chọn lưới --> Add thêm chi tiết --> link qua nhập kho
     /// Danh phiếu xuất --> tương tự, tùy theo DB
     /// ?
+    /// 
+    /// To-do LIST
+    /// [?] Phần cls Data
+    /// [?] Thêm -> Link qua
+    /// [x] Xóa -> Disable
+    /// [?] Sửa -> Link select
+    /// [x] Refesh -> làm mới
+    /// [x] Đóng -> use lib
+    /// 
+    /// *Problem
+    /// [ ] Cách truyền dữ liệu sang frm Chi Tiết
+    /// [ ] Khi Frm chi tiết -> close() -> refesh.
     /// </summary>
     public partial class frmDanhSachPhieuNhap : Form
     {
@@ -34,14 +46,23 @@ namespace Inventory.NhapXuat
             frmAction = new FormActionDelegate(FormAction);
             PanelButton.setDelegateFormAction(frmAction);
 
+            btnXoa.Enabled = false;
+            btnLuu.Enabled = false;
+            btnHuy.Enabled = false;
+
             //enumButton dùng định danh button
-            //PanelButton.AddButton(enumButton.Them, ref btnThem);
+            
             //PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
-            //PanelButton.AddButton(enumButton.Sua, ref btnSua);
-            //PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
             //PanelButton.AddButton(enumButton.Luu, ref btnLuu);
             //PanelButton.AddButton(enumButton.Huy, ref btnHuy);
-            //PanelButton.AddButton(enumButton.Dong, ref btnDong);
+
+            //PanelButton.AddButton(enumButton.Them, ref btnThem);
+            //PanelButton.AddButton(enumButton.Sua, ref btnSua);
+            
+            
+
+            PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
+            PanelButton.AddButton(enumButton.Dong, ref btnDong);
 
             PanelButton.ResetButton();
 
@@ -88,13 +109,26 @@ namespace Inventory.NhapXuat
             this.Close();
         }
 
+
+        /// <summary>
+        /// * Thêm
+        /// - Gọi frm Chi Tiết
+        /// 
+        /// * Problem
+        /// [ ] 
+        /// </summary>
         private void btnThem_Click(object sender, EventArgs e)
         {
             frmNhapKho nhapkho = new frmNhapKho();
             nhapkho.Show();
-
+            
         }
 
+
+        /// <summary>
+        /// * Sửa
+        /// - Gọi frm Chi Tiết ứng với row đã chọn
+        /// </summary>
         private void btnSua_Click(object sender, EventArgs e)
         {
              Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
@@ -130,6 +164,37 @@ namespace Inventory.NhapXuat
         private void gridgridDanhSachPhieuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        /**
+         * Khu vực event btn EnabledChanged
+         */
+
+        private void btnXoa_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_gmc;
+            else
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_disable;
+        }
+
+        private void btnLuu_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
+            else
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_disable;
+        }
+
+        private void btnHuy_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_gmc;
+            else
+                b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_disable;
         }
 
     }

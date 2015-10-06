@@ -38,6 +38,7 @@ namespace Inventory.EntityClass
        {
 
        }
+
        public clsDMVatTu(string mavt,string tenvt,string  dvt,string mota,long don_gia, int id_dvt)
        {
            this.Ma_vat_tu = mavt;
@@ -47,6 +48,7 @@ namespace Inventory.EntityClass
            this.Don_gia = don_gia;
            this.ID_Don_vi_tinh = id_dvt;
        }
+
        /// <summary>
        /// Giữ kết nối DB từ App.config
        /// </summary>

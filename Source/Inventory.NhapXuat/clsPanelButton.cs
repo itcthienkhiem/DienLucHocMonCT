@@ -248,9 +248,9 @@ namespace Inventory.NhapXuat
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            btnThem.Enabled = false;
-            btnXoa.Enabled = false;
-            btnSua.Enabled = false;
+            if (btnThem != null) btnThem.Enabled = false;
+            if (btnXoa != null) btnXoa.Enabled = false;
+            if (btnSua != null) btnSua.Enabled = false;
 
             frmAct.Invoke(enumFormAction.LoadData);
 
