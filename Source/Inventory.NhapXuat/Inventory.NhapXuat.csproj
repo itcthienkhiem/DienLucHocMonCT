@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsPanelButton.cs" />
     <Compile Include="enumStatus.cs" />
     <Compile Include="frmDanhSachPhieuNhap.cs">
       <SubType>Form</SubType>
@@ -127,6 +128,24 @@
       <Project>{6240D286-DEB0-4A4C-B98E-EEFA5FAFCDD3}</Project>
       <Name>Inventory.EntityClass</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_disable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

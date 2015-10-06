@@ -109,6 +109,12 @@
     <Content Include="Images\save_bmc1.png" />
     <Content Include="Images\search_bmc.png" />
     <Content Include="Images\up_bmc.png" />
+    <None Include="Resources\save_disable.png" />
+    <None Include="Resources\refresh_disable.png" />
+    <None Include="Resources\edit_disable.png" />
+    <None Include="Resources\close_disable.png" />
+    <None Include="Resources\cancel_disable.png" />
+    <None Include="Resources\addfile_disable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

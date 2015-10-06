@@ -63,6 +63,16 @@ namespace Inventory.QuanLyKho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addFile_disable {
+            get {
+                object obj = ResourceManager.GetObject("addFile_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addFile_omc {
             get {
                 object obj = ResourceManager.GetObject("addFile_omc", resourceCulture);
@@ -86,6 +96,16 @@ namespace Inventory.QuanLyKho.Properties {
         internal static System.Drawing.Bitmap cancel_bmc1 {
             get {
                 object obj = ResourceManager.GetObject("cancel_bmc1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancel_disable {
+            get {
+                object obj = ResourceManager.GetObject("cancel_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,6 +143,16 @@ namespace Inventory.QuanLyKho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close_disable {
+            get {
+                object obj = ResourceManager.GetObject("close_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close_gmc {
             get {
                 object obj = ResourceManager.GetObject("close_gmc", resourceCulture);
@@ -153,6 +183,16 @@ namespace Inventory.QuanLyKho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edit_disable {
+            get {
+                object obj = ResourceManager.GetObject("edit_disable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_gmc {
             get {
                 object obj = ResourceManager.GetObject("edit_gmc", resourceCulture);
@@ -166,6 +206,16 @@ namespace Inventory.QuanLyKho.Properties {
         internal static System.Drawing.Bitmap printOut_omc {
             get {
                 object obj = ResourceManager.GetObject("printOut_omc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_disable {
+            get {
+                object obj = ResourceManager.GetObject("refresh_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +246,16 @@ namespace Inventory.QuanLyKho.Properties {
         internal static System.Drawing.Bitmap save_bmc1 {
             get {
                 object obj = ResourceManager.GetObject("save_bmc1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_disable {
+            get {
+                object obj = ResourceManager.GetObject("save_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

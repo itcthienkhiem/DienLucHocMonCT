@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="addFile_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addfile_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="addFile_omc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addFile_omc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -126,6 +129,9 @@
   </data>
   <data name="cancel_bmc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancel_bmc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cancel_gmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancel_gmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,6 +142,9 @@
   <data name="close_bmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_bmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="close_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="close_gmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_gmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,11 +154,17 @@
   <data name="down_omc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down_omc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="edit_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="edit_gmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit_gmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="printOut_omc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printOut_omc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refresh_omc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh_omc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -159,6 +174,9 @@
   </data>
   <data name="save_bmc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_bmc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_bmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_bmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

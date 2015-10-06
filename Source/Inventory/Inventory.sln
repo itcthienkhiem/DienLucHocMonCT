@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.QuanLyKho", "..\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.XuatTamVatTu", "Inventory.XuatTamVatTu\Inventory.XuatTamVatTu.csproj", "{F1EDB54E-6BCA-4689-896A-98A6F99816B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.QuanLyTonDauKy", "..\Inventory.QuanLyTonDauKy\Inventory.QuanLyTonDauKy.csproj", "{2E4FE390-1E18-4479-B07D-0E83D3735C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,16 @@ Global
 		{F1EDB54E-6BCA-4689-896A-98A6F99816B2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F1EDB54E-6BCA-4689-896A-98A6F99816B2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F1EDB54E-6BCA-4689-896A-98A6F99816B2}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Debug|x86.ActiveCfg = Debug|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Debug|x86.Build.0 = Debug|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Release|Any CPU.ActiveCfg = Release|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Release|x86.ActiveCfg = Release|x86
+		{2E4FE390-1E18-4479-B07D-0E83D3735C9A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
