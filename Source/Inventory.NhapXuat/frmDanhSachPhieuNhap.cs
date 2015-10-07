@@ -201,5 +201,10 @@ namespace Inventory.NhapXuat
                 b.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_disable;
         }
 
+        private void gridDanhSachPhieuNhap_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

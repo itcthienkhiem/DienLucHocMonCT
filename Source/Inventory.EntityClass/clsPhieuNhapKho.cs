@@ -49,7 +49,7 @@ namespace Inventory.EntityClass
             sql +=      "Phieu_Nhap_Kho.Ly_do, ";
             sql +=      "Phieu_Nhap_Kho.So_hoa_don, ";
             sql +=      "Phieu_Nhap_Kho.Cong_trinh, ";
-            sql +=      "Phieu_Nhap_Kho.Dia_Chi ";
+            sql += "Phieu_Nhap_Kho.Dia_Chi,DM_Kho.ID_kho ";
             sql += "FROM Phieu_Nhap_Kho ";
             sql += "INNER ";
             sql +=      "JOIN DM_Kho ";
