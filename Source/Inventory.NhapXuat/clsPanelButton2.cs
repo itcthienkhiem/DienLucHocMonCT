@@ -8,7 +8,7 @@ namespace Inventory.NhapXuat
 {
     public enum enumButton2 : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi, XoaLuoi, SuaLuoi };
 
-    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, Luu, Huy, Dong };
+    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, disableInputForm, Huy, Dong };
 
     public delegate void FormActionDelegate2(enumFormAction2 val);
 
@@ -267,6 +267,7 @@ namespace Inventory.NhapXuat
 
                 ResetButton();
 
+                frmAct.Invoke(enumFormAction2.disableInputForm);
                 frmAct.Invoke(enumFormAction2.ResetInputForm);
             }
         }
