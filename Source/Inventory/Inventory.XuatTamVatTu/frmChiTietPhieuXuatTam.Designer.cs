@@ -71,7 +71,6 @@
             this.Don_gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Thanh_tien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_yeu_cau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.So_luong_thuc_xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataSet1 = new System.Data.DataSet();
             this.dataTable1 = new System.Data.DataTable();
@@ -106,6 +105,7 @@
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cbMaPhieuXuatTam = new System.Windows.Forms.ComboBox();
+            this.txtMaPhieuNhap = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -449,7 +449,6 @@
             this.Don_gia,
             this.Chat_luong,
             this.Thanh_tien,
-            this.So_luong_yeu_cau,
             this.So_luong_thuc_xuat});
             this.gridMaster.DataMember = "Table1";
             this.gridMaster.DataSource = this.dataSet1;
@@ -520,14 +519,6 @@
             this.Thanh_tien.ReadOnly = true;
             this.Thanh_tien.Width = 105;
             // 
-            // So_luong_yeu_cau
-            // 
-            this.So_luong_yeu_cau.DataPropertyName = "So_luong_yeu_cau";
-            this.So_luong_yeu_cau.HeaderText = "So_luong_yeu_cau";
-            this.So_luong_yeu_cau.Name = "So_luong_yeu_cau";
-            this.So_luong_yeu_cau.ReadOnly = true;
-            this.So_luong_yeu_cau.Width = 146;
-            // 
             // So_luong_thuc_xuat
             // 
             this.So_luong_thuc_xuat.DataPropertyName = "So_luong_thuc_xuat";
@@ -587,7 +578,7 @@
             // 
             // dataColumn8
             // 
-            this.dataColumn8.ColumnName = "So_luong_yeu_cau";
+            this.dataColumn8.ColumnName = "So_luong_de_nghi";
             // 
             // dataColumn9
             // 
@@ -809,11 +800,20 @@
             this.cbMaPhieuXuatTam.Size = new System.Drawing.Size(170, 21);
             this.cbMaPhieuXuatTam.TabIndex = 92;
             // 
+            // txtMaPhieuNhap
+            // 
+            this.txtMaPhieuNhap.Enabled = false;
+            this.txtMaPhieuNhap.Location = new System.Drawing.Point(264, 94);
+            this.txtMaPhieuNhap.Name = "txtMaPhieuNhap";
+            this.txtMaPhieuNhap.Size = new System.Drawing.Size(171, 20);
+            this.txtMaPhieuNhap.TabIndex = 94;
+            // 
             // frmChiTietPhieuXuatTam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1175, 477);
+            this.Controls.Add(this.txtMaPhieuNhap);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.cbMaPhieuXuatTam);
             this.Controls.Add(this.cbTenNhanVien);
@@ -835,7 +835,6 @@
             this.Controls.Add(this.pnlMenu);
             this.Name = "frmChiTietPhieuXuatTam";
             this.Text = "frmChiTietPhieuXuatTam";
-            this.Load += new System.EventHandler(this.frmChiTietPhieuXuatTam_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).EndInit();
@@ -890,7 +889,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Don_gia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Chat_luong;
         private System.Windows.Forms.DataGridViewTextBoxColumn Thanh_tien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_yeu_cau;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_thuc_xuat;
         private System.Data.DataSet dataSet1;
         private System.Data.DataTable dataTable1;
@@ -925,5 +923,6 @@
         private System.Windows.Forms.ComboBox cbTenNhanVien;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cbMaPhieuXuatTam;
+        private System.Windows.Forms.TextBox txtMaPhieuNhap;
     }
 }
