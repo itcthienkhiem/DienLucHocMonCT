@@ -112,6 +112,26 @@ namespace Inventory.EntityClass
             }
             return false;
         }
+
+        public bool CheckTonTaiSoDK(string Ma_phieu_nhap)
+        {
+
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+            string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public int Insert(SQLDAL dal)
         {
             dal.BeginTransaction();

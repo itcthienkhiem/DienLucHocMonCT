@@ -7,6 +7,6 @@ namespace Inventory.NhapXuat
 {
     
    // {
-        public enum enumStatus : byte { None = 0, Them, Xoa, Sua, LamMoi, Save, Close, ThemLuoi,XoaLuoi,SuaLuoi };
+        public enum enumStatus : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi,XoaLuoi,SuaLuoi };
    // }
 }

@@ -27,6 +27,7 @@ namespace Inventory.NhapXuat
     /// *Problem
     /// [ ] Cách truyền dữ liệu sang frm Chi Tiết
     /// [ ] Khi Frm chi tiết -> close() -> refesh.
+    /// [ ] Sửa -> Gọi DS frm Chi Tiết
     /// </summary>
     public partial class frmDanhSachPhieuNhap : Form
     {
@@ -115,7 +116,7 @@ namespace Inventory.NhapXuat
         /// - Gọi frm Chi Tiết
         /// 
         /// * Problem
-        /// [ ] 
+        /// [ ] Refesh khi frm chi tiết đóng
         /// </summary>
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -128,6 +129,9 @@ namespace Inventory.NhapXuat
         /// <summary>
         /// * Sửa
         /// - Gọi frm Chi Tiết ứng với row đã chọn
+        /// 
+        /// * problem
+        /// [ ] Cách thức để gọi frm, nên dùng delegate, truyền sang mã phiếu, rồi call hàm Get data theo mã phiếu đó.
         /// </summary>
         private void btnSua_Click(object sender, EventArgs e)
         {

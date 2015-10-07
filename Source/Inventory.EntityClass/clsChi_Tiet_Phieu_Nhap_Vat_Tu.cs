@@ -55,20 +55,54 @@ namespace Inventory.EntityClass
 
             return result;
         }
+
+
+        /// <summary>
+        /// Lấy dữ liệu theo "Mã phiếu nhập"
+        /// - Trả về Data để set lên frm
+        /// </summary>
+        /// <param name="ma_Phieunhap">The ma_ phieunhap.</param>
+        /// <returns></returns>
         public DataTable GetAll(string ma_Phieunhap)
         {
             m_dbConnection.Open();
             DataTable dt = new DataTable();
-            string sql = "SELECT Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu,dm_vat_tu.ten_vat_tu,Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong";
-            sql += ", Chi_Tiet_Phieu_Nhap_Vat_Tu. So_luong_yeu_cau, Chi_Tiet_Phieu_Nhap_Vat_Tu. So_luong_thuc_lanh,Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien, dm_vat_tu.Don_gia, dm_don_vi_tinh.ten_don_vi_tinh, Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_don_vi_tinh FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
-            sql += " join dm_vat_tu on dm_vat_tu.ma_vat_tu = Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu";
-            sql += " join dm_don_vi_tinh on dm_don_vi_tinh.ID_Don_vi_tinh =dm_vat_tu.ID_Don_vi_tinh ";
-            sql+= " WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu, ";
+            sql += "" + "dm_vat_tu.ten_vat_tu, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien, ";
+            sql += "" + "dm_vat_tu.Don_gia, ";
+            sql += "" + "dm_don_vi_tinh.ten_don_vi_tinh, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_don_vi_tinh ";
+            sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN dm_vat_tu ";
+            sql += "" + "ON dm_vat_tu.ma_vat_tu = Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN dm_don_vi_tinh ";
+            sql += "" + "ON dm_don_vi_tinh.ID_Don_vi_tinh = dm_vat_tu.ID_Don_vi_tinh ";
+            sql += "WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+
+
+            //string sql = "SELECT Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu,dm_vat_tu.ten_vat_tu,Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong";
+            //sql += ", Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, Chi_Tiet_Phieu_Nhap_Vat_Tu. So_luong_thuc_lanh, Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien, dm_vat_tu.Don_gia, dm_don_vi_tinh.ten_don_vi_tinh, Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_don_vi_tinh FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
+            //sql += " join dm_vat_tu on dm_vat_tu.ma_vat_tu = Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu";
+            //sql += " join dm_don_vi_tinh on dm_don_vi_tinh.ID_Don_vi_tinh =dm_vat_tu.ID_Don_vi_tinh ";
+            //sql+= " WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+
             SqlCommand command = new SqlCommand(sql, m_dbConnection);
             command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", ma_Phieunhap));
             SqlDataAdapter da = new SqlDataAdapter(command);
             da.Fill(dt);
+            
             m_dbConnection.Close();
+
             return dt;
         }
 

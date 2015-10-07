@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
+    <Compile Include="clsPanelButton2.cs" />
     <Compile Include="enumStatus.cs" />
     <Compile Include="frmDanhSachPhieuNhap.cs">
       <SubType>Form</SubType>
