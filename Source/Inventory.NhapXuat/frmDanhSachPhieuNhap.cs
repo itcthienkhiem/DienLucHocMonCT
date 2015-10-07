@@ -120,7 +120,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         private void btnThem_Click(object sender, EventArgs e)
         {
-            frmNhapKho nhapkho = new frmNhapKho();
+            frmNhapKho nhapkho = new frmNhapKho(enumButton2.Them, "");
             nhapkho.Show();
             
         }

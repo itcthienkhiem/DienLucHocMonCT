@@ -43,6 +43,9 @@ namespace Inventory.NhapXuat
 
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
+
+            //btnThem.PerformClick(null, null);
+            
         }
 
         public frmNhapKho(enumButton2 stt, string Ma_Phieu_Nhap)
@@ -62,32 +65,43 @@ namespace Inventory.NhapXuat
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
 
-            txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
-
-            dataTable1.Clear();
-
-            if (txtMaPhieuNhap.Text == "")
+            if (stt == enumButton2.Sua)
             {
-                MessageBox.Show("Bạn chưa nhập mã phiếu nhập!");
-                return;
+                txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+
+                btnSua_Click(this, EventArgs.Empty);
+                /*
+                dataTable1.Clear();
+
+                if (txtMaPhieuNhap.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập mã phiếu nhập!");
+                    return;
+                }
+
+                if (initEdit() == true)
+                {
+                    //btnThem.Enabled = false;
+                    //btnSua.Enabled = false;
+                    //btnXoa.Enabled = false;
+
+                    //staTus = enumStatus.Sua;
+                    PanelButton.setClickSua();
+                    PanelButton.Enable_btn_Luu_Huy();
+
+                    setStatus(true);
+                    txtMaPhieuNhap.Enabled = false;
+                    //  btnEdit_Click(null, null);
+                }
+
+                tbAff = dataTable1.Copy();*/
+            }
+            else if (stt == enumButton2.Them)
+            {
+                btnThem_Click(this, EventArgs.Empty);
             }
 
-            if (initEdit() == true)
-            {
-                //btnThem.Enabled = false;
-                //btnSua.Enabled = false;
-                //btnXoa.Enabled = false;
-
-                //staTus = enumStatus.Sua;
-                PanelButton.setClickSua();
-                PanelButton.Enable_btn_Luu_Huy();
-
-                setStatus(true);
-                txtMaPhieuNhap.Enabled = false;
-                //  btnEdit_Click(null, null);
-            }
-
-            tbAff = dataTable1.Copy();
+            
 
         }
 
@@ -203,6 +217,8 @@ namespace Inventory.NhapXuat
             }
 
         }
+
+
         public void setStatus(bool _status)
         {
             cbKhoNhap.Enabled = _status;
