@@ -49,6 +49,96 @@ namespace Inventory.EntityClass
            this.ID_Don_vi_tinh = id_dvt;
        }
 
+       public string getTenVatTu(string MaVatTu)
+       {
+           //Mở
+           m_dbConnection.Open();
+           DataTable dt = new DataTable();
+
+           //Chuẩn bị
+           string sql = "";
+           sql += "SELECT Ten_vat_tu FROM DM_Vat_Tu ";
+           sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+           command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
+
+           command.CommandType = CommandType.Text;
+
+           //Run
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+
+           //Đóng
+           m_dbConnection.Close();
+
+           return dt.Rows[0]["Ten_vat_tu"].ToString();
+
+       }
+
+       public string getMaVatTu(string TenVatTu)
+       {
+           //Mở
+           m_dbConnection.Open();
+           DataTable dt = new DataTable();
+
+           //Chuẩn bị
+           string sql = "";
+           sql += "SELECT Ma_vat_tu FROM DM_Vat_Tu ";
+           sql += "WHERE Ten_vat_tu=@Ten_vat_tu";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+           command.Parameters.Add("@Ten_vat_tu", SqlDbType.NVarChar, 50).Value = TenVatTu;
+
+           command.CommandType = CommandType.Text;
+
+           //Run
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+
+           //Đóng
+           m_dbConnection.Close();
+
+           return dt.Rows[0]["Ma_vat_tu"].ToString();
+
+       }
+
+       /// <summary>
+       /// Trả về Mã, tên, dvt, don gia
+       /// </summary>
+       /// <param name="MaVatTu">The ma vat tu.</param>
+       /// <returns></returns>
+       public DataTable getData_By_MaVatTu(string MaVatTu)
+       {
+           m_dbConnection.Open();
+
+           DataTable dt = new DataTable();
+
+           string sql = "";
+           sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_vat_tu.Don_gia ";
+           sql += "FROM DM_Vat_Tu ";
+           sql += "INNER ";
+           sql += "JOIN DM_Don_vi_tinh ";
+           sql += "ON DM_Vat_Tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
+           sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+           command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
+
+           command.CommandType = CommandType.Text;
+
+           //Run
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+
+           m_dbConnection.Close();
+
+           return dt;
+       }
+
        /// <summary>
        /// Giữ kết nối DB từ App.config
        /// </summary>

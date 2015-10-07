@@ -556,11 +556,7 @@ namespace Inventory.NhapXuat
             }
         }
 
-        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // cbMaVatTu.DataSource = 
-
-        }
+        
 
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1045,6 +1041,58 @@ namespace Inventory.NhapXuat
         private void btnResetGrid_Click(object sender, EventArgs e)
         {
             dataTable1.Clear();
+        }
+
+        private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+
+
+            //MessageBox.Show("" + c.Items[c.SelectedIndex].ToString());
+
+            string Ma_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+
+            clsDMVatTu vattu = new clsDMVatTu();
+
+            string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
+
+            cbTenVatTu.SelectedIndex = cbTenVatTu.Items.IndexOf(Ten_Vat_Tu);
+
+            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+            txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+
+            //MessageBox.Show("" + tmp);
+        }
+
+        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // cbMaVatTu.DataSource = 
+            //string s = cbMaVatTu.SelectedText;
+
+            //MessageBox.Show(s);
+
+        }
+
+        private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+
+            //MessageBox.Show("" + c.Items[c.SelectedIndex].ToString());
+
+            string Ten_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+
+            clsDMVatTu vattu = new clsDMVatTu();
+
+            string Ma_Vat_Tu = vattu.getMaVatTu(Ten_Vat_Tu);
+
+            cbMaVatTu.SelectedIndex = cbMaVatTu.Items.IndexOf(Ma_Vat_Tu);
+
+            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+            txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
         }
 
     }
