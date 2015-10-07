@@ -45,6 +45,52 @@ namespace Inventory.NhapXuat
             PanelButton.ResetButton();
         }
 
+        public frmNhapKho(enumButton2 stt, string Ma_Phieu_Nhap)
+        {
+            InitializeComponent();
+
+            //Setup một số component
+            InitFormComponent();
+
+            initKhoNhap();
+
+            Dic = GetDict(new clsDMVatTu().GetAll());
+
+            initMaVatTu();
+            initTenVatTu();
+
+            PanelButton.ResetClickStatus();
+            PanelButton.ResetButton();
+
+            txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+
+            dataTable1.Clear();
+
+            if (txtMaPhieuNhap.Text == "")
+            {
+                MessageBox.Show("Bạn chưa nhập mã phiếu nhập!");
+                return;
+            }
+
+            if (initEdit() == true)
+            {
+                //btnThem.Enabled = false;
+                //btnSua.Enabled = false;
+                //btnXoa.Enabled = false;
+
+                //staTus = enumStatus.Sua;
+                PanelButton.setClickSua();
+                PanelButton.Enable_btn_Luu_Huy();
+
+                setStatus(true);
+                txtMaPhieuNhap.Enabled = false;
+                //  btnEdit_Click(null, null);
+            }
+
+            tbAff = dataTable1.Copy();
+
+        }
+
         private void initKhoNhap()
         {
             clsDM_Kho dmKho = new clsDM_Kho();
@@ -138,18 +184,10 @@ namespace Inventory.NhapXuat
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            //if (staTus == enumStatus.None)
             if (PanelButton.isClickNone())
             {
-                //staTus = enumStatus.Them;
                 PanelButton.setClickThem();
                 PanelButton.Enable_btn_Luu_Huy();
-
-                //btnThem.Enabled = false;
-                //btnSua.Enabled = false;
-                //btnXoa.Enabled = false;
-                //btnLamMoi.Enabled = false;
-                //btnLuu.Enabled = true;
 
                 ResetText();
 
@@ -445,6 +483,7 @@ namespace Inventory.NhapXuat
         {
             clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
             clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
+
             if (clsNhap.CheckTonTaiSoDK() == true)
             {
                 DataTable tb = clsNhap.GetAll(txtMaPhieuNhap.Text.Trim());
@@ -455,6 +494,7 @@ namespace Inventory.NhapXuat
                 txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
                 txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
                 txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
+
                 clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                 DataTable vChiTiet = chitiet.GetAll(txtMaPhieuNhap.Text);
                 for (int i = 0; i < vChiTiet.Rows.Count; i++)
@@ -696,11 +736,13 @@ namespace Inventory.NhapXuat
         private void btnSua_Click(object sender, EventArgs e)
         {
             dataTable1.Clear();
+
             if (txtMaPhieuNhap.Text == "")
             {
                 MessageBox.Show("Bạn chưa nhập mã phiếu nhập!");
                 return;
             }
+
             if (initEdit() == true)
             {
                 //btnThem.Enabled = false;
@@ -757,24 +799,27 @@ namespace Inventory.NhapXuat
             new frmNhapKho();
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            setStatus(false);
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            btnLamMoi.Enabled = true;
-            ResetText();
+        //private void btnHuy_Click(object sender, EventArgs e)
+        //{
+            
+        //    btnThem.Enabled = true;
+        //    btnSua.Enabled = true;
+        //    btnXoa.Enabled = true;
+        //    btnLamMoi.Enabled = true;
+            
 
-            txtMaPhieuNhap.Text = "";
-            txtDiaChi.Text = "";
-            txtCongTrinh.Text = "";
-            txtLyDo.Text = "";
-            txtXuatTaiKho.Text = "";
-            txtMaPhieuNhap.Enabled = true;
-            dataTable1.Clear();
+        //    setStatus(false);
+        //    ResetText();
 
-        }
+        //    txtMaPhieuNhap.Text = "";
+        //    txtDiaChi.Text = "";
+        //    txtCongTrinh.Text = "";
+        //    txtLyDo.Text = "";
+        //    txtXuatTaiKho.Text = "";
+        //    txtMaPhieuNhap.Enabled = true;
+        //    dataTable1.Clear();
+
+        //}
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -809,7 +854,7 @@ namespace Inventory.NhapXuat
         /// [ ] 
         /// </summary>
         /// <param name="Ma_Phieu_Nhap">The ma_ phieu_ nhap.</param>
-        private void setFormData_By_MaPhieuNhap(string Ma_Phieu_Nhap)
+        private bool setFormData_By_MaPhieuNhap(string Ma_Phieu_Nhap)
         {
             clsPhieuNhapKho PhieuNhap = new clsPhieuNhapKho();
 
@@ -827,10 +872,36 @@ namespace Inventory.NhapXuat
                 txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
 
                 //Fill vào grid
-                DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+                //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
 
-                gridMaster.DataSource = chiTietPhieuNhap;
+                //dataTable1 = chiTietPhieuNhap;
+                //gridMaster.DataSource = dataTable1;
+
+
+                //clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+
+                DataTable vChiTiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+
+                for (int i = 0; i < vChiTiet.Rows.Count; i++)
+                {
+                    DataRow dr = dataTable1.NewRow();
+
+                    dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
+                    dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
+                    dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
+                    dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
+                    dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
+                    dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
+                    dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
+                    dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
+                    dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
+
+                    dataTable1.Rows.Add(dr);
+                }
+                return true;
             }
+            else
+                return false;
         }
 
 
@@ -897,19 +968,15 @@ namespace Inventory.NhapXuat
             //PanelButton.setButtonClickEvent(enumButton2.Sua);
             //PanelButton.setButtonClickEvent(enumButton2.LamMoi);
             //PanelButton.setButtonClickEvent(enumButton2.Luu);
+
             PanelButton.setButtonClickEvent(enumButton2.Huy);
             PanelButton.setButtonClickEvent(enumButton2.Dong);
 
             PanelButton.AddButton(enumButton2.Dong, ref btnDong);
 
+            //Ko dùng nút xóa
             PanelButton.setButtonStatus(enumButton2.Xoa, false);
-
-            //PanelButton.setButtonStatus(enumButton2.Huy, false);
-            //PanelButton.setButtonStatus(enumButton2.Luu, false);
-
             btnXoa.Enabled = false;
-            btnHuy.Enabled = false;
-            btnLuu.Enabled = false;
         }
 
         public void FormAction(enumFormAction2 frmAct)
@@ -926,6 +993,7 @@ namespace Inventory.NhapXuat
                 case enumFormAction2.setFormData:
                     break;
                 case enumFormAction2.ResetInputForm:
+                    ResetInputForm();
                     break;
                 case enumFormAction2.Luu:
                     break;
@@ -941,6 +1009,26 @@ namespace Inventory.NhapXuat
         public void CloseForm()
         {
             this.Close();
+        }
+
+        public void ResetInputForm()
+        {
+            setStatus(false);
+            ResetText();
+
+            txtMaPhieuNhap.Text = "";
+            txtDiaChi.Text = "";
+            txtCongTrinh.Text = "";
+            txtLyDo.Text = "";
+            txtXuatTaiKho.Text = "";
+            txtMaPhieuNhap.Enabled = true;
+
+            dataTable1.Clear();
+        }
+
+        private void btnResetGrid_Click(object sender, EventArgs e)
+        {
+            dataTable1.Clear();
         }
 
     }

@@ -135,7 +135,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         private void btnSua_Click(object sender, EventArgs e)
         {
-             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+            /*Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
 
             clsPhieuNhapKho phieuNhap = new clsPhieuNhapKho();
             //phieuNhap.ID_phieu_nhap =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_phieu_nhap"].Value.ToString());
@@ -143,7 +143,8 @@ namespace Inventory.NhapXuat
             phieuNhap.Ngay_lap =DateTime.Parse( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ngay_lap"].Value.ToString());
             phieuNhap.Ly_do =( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ly_do"].Value.ToString());
             phieuNhap.So_hoa_don =( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["So_hoa_don"].Value.ToString());
-            
+            */
+
             //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieuNhap.ID_phieu_nhap);
             //for(int i =0;i<chiTietPhieuNhap.Rows.Count;i++)
             //{
@@ -161,7 +162,14 @@ namespace Inventory.NhapXuat
             
           //  DataTable tbChiTiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(id_PhieuNhap);
 
-            frmNhapKho nhapkho = new frmNhapKho(enumStatus.Sua,phieuNhap);
+            Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
+            string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_nhap"].Value.ToString();
+
+            //frmNhapKho nhapkho = new frmNhapKho(enumStatus.Sua,phieuNhap);
+            //nhapkho.Show();
+
+            frmNhapKho nhapkho = new frmNhapKho(enumButton2.Sua, strMaPhieuNhap);
             nhapkho.Show();
         }
 
