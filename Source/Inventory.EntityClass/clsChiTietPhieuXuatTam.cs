@@ -62,7 +62,7 @@ namespace Inventory.EntityClass
        }
        public int Insert(SQLDAL dal)
        {
-           dal.BeginTransaction();
+          
 
            m_dbConnection = dal.m_conn;
            if (m_dbConnection.State == ConnectionState.Closed)
@@ -84,7 +84,7 @@ namespace Inventory.EntityClass
            command.Parameters.Add(new SqlParameter("@So_luong_thuc_xuat", So_luong_thuc_xuat));
 
            int result = command.ExecuteNonQuery();
-           dal.CommitTransaction();
+         
 
            return result;
        }
