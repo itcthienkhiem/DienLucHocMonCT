@@ -12,30 +12,56 @@ namespace Inventory.EntityClass
         public int? ID_kho;
         public string Ma_vat_tu;
         public int? So_luong;
-
         public clsTonDauKy()
         { }
-        
+
         SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
 
         public DataTable GetAll()
         {
             m_dbConnection.Open();
             DataTable dt = new DataTable();
-            string sql = " SELECT Ton_dau_ky.Ma_vat_tu,Ton_dau_ky.So_luong ,DM_Kho.Ten_kho,DM_Vat_tu.ten_vat_tu,DM_vat_tu.ID_Don_vi_tinh";
-
-            sql += " FROM Ton_dau_ky ";
-            sql += "JOIN DM_Kho ";
-            sql += "ON DM_Kho.ID_Kho = Ton_dau_ky.ID_kho";
+            string sql = "";
+            sql += "SELECT DM_Kho.Ten_kho, Ton_dau_ky.Ma_vat_tu, DM_vat_tu.Ten_vat_tu, Ton_dau_ky.So_luong ";
+            sql += "FROM Ton_dau_ky";
+            sql += " JOIN DM_Kho";
+            sql += " ON DM_Kho.ID_Kho = Ton_dau_ky.ID_kho";
             sql += " Join DM_Vat_tu";
-
-            sql += "ON DM_vat_tu.ma_vat_tu=Ton_Dau_Ky.ma_vat_tu";
+            sql += " ON DM_vat_tu.ma_vat_tu=Ton_Dau_Ky.ma_vat_tu";
 
 
             SqlCommand command = new SqlCommand(sql, m_dbConnection);
             SqlDataAdapter da = new SqlDataAdapter(command);
             da.Fill(dt);
             m_dbConnection.Close();
+            return dt;
+        }
+
+        public DataTable GetAll_By_IDKho(int ID_kho)
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT DM_Kho.Ten_kho, Ton_dau_ky.Ma_vat_tu, DM_vat_tu.Ten_vat_tu, Ton_dau_ky.So_luong ";
+            sql += "FROM Ton_dau_ky";
+            sql += " JOIN DM_Kho";
+            sql += " ON DM_Kho.ID_Kho = Ton_dau_ky.ID_kho";
+            sql += " Join DM_Vat_tu";
+            sql += " ON DM_vat_tu.ma_vat_tu=Ton_Dau_Ky.ma_vat_tu ";
+            sql += "WHERE Ton_dau_ky.ID_kho=@ID_kho";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+            command.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            m_dbConnection.Close();
+
             return dt;
         }
 
@@ -55,6 +81,7 @@ namespace Inventory.EntityClass
             m_dbConnection.Close();
             return dt;
         }
+
         public bool CheckTonTaiSoDK()
         {
 
@@ -73,6 +100,7 @@ namespace Inventory.EntityClass
             }
             return false;
         }
+
         public int Insert(SQLDAL DAL)
         {
             DAL.BeginTransaction();
@@ -124,6 +152,7 @@ namespace Inventory.EntityClass
             DAL.CommitTransaction();
             return result;
         }
+
         public int Delete(SQLDAL DAL)
         {
             DAL.BeginTransaction();

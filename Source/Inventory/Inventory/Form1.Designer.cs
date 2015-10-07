@@ -46,6 +46,7 @@
             this.danhSáchPhiếuNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lậpPhieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýTồnĐầuKỳToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,9 +186,18 @@
             // 
             // quảnLýTồnĐầuKỳToolStripMenuItem
             // 
+            this.quảnLýTồnĐầuKỳToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemTonDauKy});
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Name = "quảnLýTồnĐầuKỳToolStripMenuItem";
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Size = new System.Drawing.Size(127, 20);
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Text = "Quản Lý Tồn Đầu Kỳ";
+            // 
+            // MenuItemTonDauKy
+            // 
+            this.MenuItemTonDauKy.Name = "MenuItemTonDauKy";
+            this.MenuItemTonDauKy.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemTonDauKy.Text = "Tồn Đầu Kỳ";
+            this.MenuItemTonDauKy.Click += new System.EventHandler(this.MenuItemTonDauKy_Click);
             // 
             // MDIMain
             // 
@@ -232,6 +242,7 @@
         private System.Windows.Forms.ToolStripMenuItem mappingĐVTVậtTưToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýTồnĐầuKỳToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem danhSáchPhiếuNhậpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemTonDauKy;
     }
 }
 

@@ -89,6 +89,10 @@
       <Project>{9C6D98B7-04CC-4867-8FD4-EA72C1EF1C29}</Project>
       <Name>Inventory.NhapXuat</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Inventory.QuanLyTonDauKy\Inventory.QuanLyTonDauKy.csproj">
+      <Project>{2E4FE390-1E18-4479-B07D-0E83D3735C9A}</Project>
+      <Name>Inventory.QuanLyTonDauKy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.XuatTamVatTu\Inventory.XuatTamVatTu.csproj">
       <Project>{f1edb54e-6bca-4689-896a-98a6f99816b2}</Project>
       <Name>Inventory.XuatTamVatTu</Name>

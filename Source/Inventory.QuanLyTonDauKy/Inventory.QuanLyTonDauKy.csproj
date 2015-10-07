@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsPanelButton.cs" />
     <Compile Include="frmTonDauKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +77,84 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printOut_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory.EntityClass\Inventory.EntityClass.csproj">
+      <Project>{6240D286-DEB0-4A4C-B98E-EEFA5FAFCDD3}</Project>
+      <Name>Inventory.EntityClass</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_disable1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

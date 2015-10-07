@@ -89,6 +89,7 @@ namespace Inventory.EntityClass
            m_dbConnection.Close();
            return result;
        }
+
        public int Delete()
        {
            m_dbConnection.Open();

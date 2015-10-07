@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using Inventory.DanhMuc;
 using Inventory.NhapXuat;
 using Inventory.XuatTamVatTu;
+using Inventory.QuanLyTonDauKy;
+
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -161,6 +163,26 @@ namespace Inventory
         {
             frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
             frm.Text = "Xuất vật tư cho nhân viên";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void MenuItemTonDauKy_Click(object sender, EventArgs e)
+        {
+            frmTonDauKy frm = new frmTonDauKy();
+            frm.Text = "Quản lý tồn đầu kỳ";
 
             foreach (Form f in this.MdiChildren)
             {
