@@ -79,7 +79,7 @@ namespace Inventory.EntityClass
            command.CommandType = CommandType.Text;
 
            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-           command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_xuat_tam));
+           command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
            command.Parameters.Add(new SqlParameter("@ngay_xuat", Ngay_xuat.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ID_nhan_vien", ID_Nhan_vien));

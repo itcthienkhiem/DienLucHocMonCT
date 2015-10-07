@@ -174,7 +174,7 @@ namespace Inventory.XuatTamVatTu
             txtDiaChi.Enabled = _status;
             cbMaVatTu.Enabled = _status;
             cbTenVatTu.Enabled = _status;
-            txtSLYC.Enabled = _status;
+            txtSLHN.Enabled = _status;
             txtSLTX.Enabled = _status;
             //txtChatLuong.Enabled = _status;
             btnAdd.Enabled = _status;
@@ -196,7 +196,7 @@ namespace Inventory.XuatTamVatTu
                 clsChiTietPhieuXuatTam chitiet = new clsChiTietPhieuXuatTam();
                 chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                 chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+               // chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
                 chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
                 chitiet.So_luong_hoan_nhap = int.Parse(dataTable1.Rows[i]["So_luong_hoan_nhap"].ToString());
                 chitiet.So_luong_giu_lai = int.Parse(dataTable1.Rows[i]["So_luong_giu_lai"].ToString());
@@ -214,7 +214,7 @@ namespace Inventory.XuatTamVatTu
                             MessageBox.Show("Vật tư này chưa có trong đầu kỳ! vui lòng nhập tồn đầu kỳ cho vật tư này!");
                             return false;
                         }
-                        int? so_luong_kho = tdk.So_luong - int.Parse(tb.Rows[0]["so_luong_thuc_xuat"].ToString());
+                        int? so_luong_kho = int.Parse(tb.Rows[0]["so_luong"].ToString()) - chitiet.So_luong_thuc_xuat;
                         if (so_luong_kho < 0)
                         {
                             MessageBox.Show("Vật tư này không đủ để xuất!");
@@ -254,6 +254,7 @@ namespace Inventory.XuatTamVatTu
                       try
                       {
                         //con hang trong kho 
+
                           if (KiemTraVatTuGridVaTrongKho() == true)
                           {
                               clsPhieuXuatTamVatTu phieuxuat = new clsPhieuXuatTamVatTu();
@@ -275,7 +276,7 @@ namespace Inventory.XuatTamVatTu
                                               clsChiTietPhieuXuatTam chitiet = new clsChiTietPhieuXuatTam();
                                               chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                                               chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                                              chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                          //    chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
                                               chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
                                               chitiet.So_luong_hoan_nhap = int.Parse(dataTable1.Rows[i]["So_luong_hoan_nhap"].ToString());
                                               chitiet.So_luong_giu_lai = int.Parse(dataTable1.Rows[i]["So_luong_giu_lai"].ToString());
@@ -513,7 +514,7 @@ namespace Inventory.XuatTamVatTu
         }
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
-            if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi || e.KeyCode == Keys.Enter)
+            if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi || (e!=null && e.KeyCode == Keys.Enter))
             {
                 var val = Dic[cbMaVatTu.Text.Trim()];
                 cbTenVatTu.Text = val.Ten_vat_tu.ToString();
@@ -564,7 +565,7 @@ namespace Inventory.XuatTamVatTu
         private void btnAdd_Click(object sender, EventArgs e)
         {
             sttaf = staTus;
-            if ((int.Parse(txtSLYC.Text)) < 0 || (int.Parse(txtSLTX.Text)) < 0)
+            if ((int.Parse(txtSLHN.Text)) < 0 || (int.Parse(txtSLTX.Text)) < 0)
             {
                 MessageBox.Show("Số lượng vật tư không được phép giá trị âm !");
                 return;
@@ -584,9 +585,10 @@ namespace Inventory.XuatTamVatTu
                 dr["ten_vat_tu"] = cbTenVatTu.Text;
                 dr["Ten_don_vi_tinh"] = txtDVT.Text;
               //  dr["chat_luong"] = txtChatLuong.Text;
-                dr["so_luong_yeu_cau"] = txtSLYC.Text;
+                dr["so_luong_hoan_nhap"] = txtSLHN.Text;
+
                 dr["so_luong_thuc_xuat"] = txtSLTX.Text;
-               // dr["don_gia"] = txtDonGia.Text;
+                dr["so_luong_giu_lai"] = txtSLGL.Text;
                 dr["ID_don_vi_tinh"] = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
 
                // dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
@@ -606,7 +608,7 @@ namespace Inventory.XuatTamVatTu
             txtDVT.Text = "";
             //txtChatLuong.Text = "";
             txtSLTX.Text = "0";
-            txtSLYC.Text = "0";
+            txtSLHN.Text = "0";
           //  txtDonGia.Text = "0";
 
             //            txtChatLuong.Text = "";
@@ -621,6 +623,7 @@ namespace Inventory.XuatTamVatTu
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            staTus = enumStatus.SuaLuoi;
             try
             {
                 sttaf = staTus;
@@ -633,8 +636,12 @@ namespace Inventory.XuatTamVatTu
                 btnDel.Enabled = false;
                 Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
+                txtSLHN.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
                 txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
+
+                txtSLGL.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
+
+//                txtSL.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
                 //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
@@ -673,8 +680,9 @@ namespace Inventory.XuatTamVatTu
                     gridMaster.Rows[selectedRowCount].Cells["ten_vat_tu"].Value = cbTenVatTu.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value = txtDVT.Text;
                   //  gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = txtChatLuong.Text;
-                    gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLYC.Text;
+                    gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLHN.Text;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_xuat"].Value = txtSLTX.Text;
+                    gridMaster.Rows[selectedRowCount].Cells["so_luong_giu_lai"].Value = txtSLGL.Text;
               //      gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
 
@@ -683,6 +691,12 @@ namespace Inventory.XuatTamVatTu
                 if (staTus == enumStatus.XoaLuoi)
                 {
                     dataTable1.Rows.RemoveAt(selectedRowCount);
+                    cbMaVatTu.Text = "";
+                    cbTenVatTu.Text = "";
+                    txtDVT.Text = "";
+                    txtSLGL.Text = "0";
+                    txtSLHN.Text = "0";
+                    txtSLTX.Text = "0";
                     staTus = sttaf;
                 }
                 setStatus(true);
@@ -747,7 +761,7 @@ namespace Inventory.XuatTamVatTu
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
+                txtSLHN.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
                 txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
                 //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
@@ -764,6 +778,37 @@ namespace Inventory.XuatTamVatTu
         private void frmChiTietPhieuXuatTam_Load()
         {
 
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            staTus = enumStatus.XoaLuoi;
+
+            try
+            {
+                Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
+
+                //string ma_vat_tu = dataTable1.Rows[
+                if (dataTable1.Rows.Count == 0 || selectedRowCount >= dataTable1.Rows.Count)
+                    return;
+                //staTus = enumStatus.XoaLuoi;
+              //  PanelButton.setClickStatus(enumButton2.XoaLuoi);
+                btnDel.Enabled = false;
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
+                txtSLGL.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
+                txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
+                txtSLHN.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_hoan_nhap"].Value.ToString();
+                txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
+                cbTenVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ten_vat_tu"].Value.ToString());
+
+                cbMaVatTu_KeyDown(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

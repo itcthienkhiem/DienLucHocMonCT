@@ -12,16 +12,17 @@ namespace Inventory.EntityClass
         public int? ID_kho;
         public string Ma_vat_tu;
         public int? So_luong;
+
         public clsTonDauKy()
         { }
-
+        
         SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
 
         public DataTable GetAll()
         {
             m_dbConnection.Open();
             DataTable dt = new DataTable();
-            string sql = " SELECT Ton_dau_ky.Ma_vat_tu,Ton_dau_ky.So_luong ,DM_Kho.Ten_kho";
+            string sql = " SELECT Ton_dau_ky.Ma_vat_tu,Ton_dau_ky.So_luong ,DM_Kho.Ten_kho,DM_Vat_tu.ten_vat_tu,DM_vat_tu.ID_Don_vi_tinh";
 
             sql += " FROM Ton_dau_ky ";
             sql += "JOIN DM_Kho ";
