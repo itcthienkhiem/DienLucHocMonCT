@@ -61,10 +61,17 @@
       <Project>{6240d286-deb0-4a4c-b98e-eefa5fafcdd3}</Project>
       <Name>Inventory.EntityClass</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Inventory.NhapXuat\Inventory.NhapXuat.csproj">
+      <Project>{9c6d98b7-04cc-4867-8fd4-ea72c1ef1c29}</Project>
+      <Name>Inventory.NhapXuat</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmChiTietPhieuXuatTam.resx">
       <DependentUpon>frmChiTietPhieuXuatTam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhSachPhieuXuatTamVatTu.resx">
+      <DependentUpon>frmDanhSachPhieuXuatTamVatTu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

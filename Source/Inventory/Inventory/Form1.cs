@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.DanhMuc;
 using Inventory.NhapXuat;
+using Inventory.XuatTamVatTu;
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -140,6 +141,26 @@ namespace Inventory
         {
             frmDMNhanVien frm = new frmDMNhanVien();
             frm.Text = "Danh mục nhân viên";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void lậpPhieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
+            frm.Text = "Xuất vật tư cho nhân viên";
 
             foreach (Form f in this.MdiChildren)
             {

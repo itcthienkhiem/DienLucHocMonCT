@@ -181,6 +181,7 @@
             this.lậpPhieToolStripMenuItem.Name = "lậpPhieToolStripMenuItem";
             this.lậpPhieToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
             this.lậpPhieToolStripMenuItem.Text = "Lập Phiếu Xuất Tạm Ứng";
+            this.lậpPhieToolStripMenuItem.Click += new System.EventHandler(this.lậpPhieToolStripMenuItem_Click);
             // 
             // quảnLýTồnĐầuKỳToolStripMenuItem
             // 

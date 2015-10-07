@@ -15,6 +15,7 @@ namespace Inventory.EntityClass
        public int? ID_kho;
        public string Ma_phieu_xuat_tam;
        public DateTime Ngay_xuat;
+       public string Ly_do;
        public clsPhieuXuatTamVatTu()
        { 
        }
@@ -71,8 +72,8 @@ namespace Inventory.EntityClass
                m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Phieu_xuat_tam_vat_tu (ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,ngay_xuat) ";
-           sql += "VALUES(@ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@ngay_xuat)";
+           sql += "INSERT INTO Phieu_xuat_tam_vat_tu (ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,ngay_xuat,Ly_do) ";
+           sql += "VALUES(@ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@ngay_xuat,@Ly_do)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
            command.CommandType = CommandType.Text;
@@ -82,6 +83,9 @@ namespace Inventory.EntityClass
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
            command.Parameters.Add(new SqlParameter("@ngay_xuat", Ngay_xuat.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ID_nhan_vien", ID_Nhan_vien));
+
+           command.Parameters.Add(new SqlParameter("@Ly_do", ID_Nhan_vien));
+
            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
            int result = command.ExecuteNonQuery();
@@ -100,7 +104,7 @@ namespace Inventory.EntityClass
 
            string sql = "";
            sql += "UPDATE Phieu_xuat_tam_vat_tu ";
-           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,ID_kho=@ID_kho,ID_nhan_vien=@ID_nhan_vien,ngay_xuat=@ngay_xuat";
+           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,ID_kho=@ID_kho,ID_nhan_vien=@ID_nhan_vien,ngay_xuat=@ngay_xuat,Ly_do = @Ly_do";
            sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
 
 
@@ -112,6 +116,7 @@ namespace Inventory.EntityClass
            command.Parameters.Add(new SqlParameter("@ngay_xuat", Ngay_xuat.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ID_nhan_vien", ID_Nhan_vien));
          //  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
+           command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
            
            int result = command.ExecuteNonQuery();
            DAL.CommitTransaction();
