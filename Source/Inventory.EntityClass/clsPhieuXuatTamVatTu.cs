@@ -84,7 +84,7 @@ namespace Inventory.EntityClass
            command.Parameters.Add(new SqlParameter("@ngay_xuat", Ngay_xuat.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ID_nhan_vien", ID_Nhan_vien));
 
-           command.Parameters.Add(new SqlParameter("@Ly_do", ID_Nhan_vien));
+           command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
 
            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
