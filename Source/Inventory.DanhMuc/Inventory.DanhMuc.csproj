@@ -132,6 +132,10 @@
       <Project>{6240d286-deb0-4a4c-b98e-eefa5fafcdd3}</Project>
       <Name>Inventory.EntityClass</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Inventory.Utilities\Inventory.Utilities.csproj">
+      <Project>{bde21978-8fdb-4215-96b6-58a6a6863459}</Project>
+      <Name>Inventory.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

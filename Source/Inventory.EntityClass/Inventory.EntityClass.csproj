@@ -57,6 +57,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLDAL.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory.Utilities\Inventory.Utilities.csproj">
+      <Project>{bde21978-8fdb-4215-96b6-58a6a6863459}</Project>
+      <Name>Inventory.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

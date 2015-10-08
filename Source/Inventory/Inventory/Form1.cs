@@ -198,5 +198,11 @@ namespace Inventory
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void giớiThiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGioiThieu gioithieu = new frmGioiThieu();
+            gioithieu.Show();
+        }
     }
 }

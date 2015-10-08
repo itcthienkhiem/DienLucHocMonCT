@@ -23,6 +23,12 @@ namespace Inventory.EntityClass
         //public int? ID_Don_vi_tinh;
 
         SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+        public clsChi_Tiet_Phieu_Nhap_Vat_Tu()
+        {
+          //  var str = config.AppSettings.Settings["ConnectionString"].Value;
+          //  m_dbConnection=new SqlConnection(
+            
+        }
         public DataTable GetAll()
         {
             m_dbConnection.Open();
