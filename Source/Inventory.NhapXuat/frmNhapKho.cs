@@ -333,48 +333,55 @@ namespace Inventory.NhapXuat
 
         private bool initEdit()
         {
-            clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
-            clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
-
-            if (clsNhap.CheckTonTaiSoDK() == true)
+            try
             {
-                DataTable tb = clsNhap.GetAll(txtMaPhieuNhap.Text.Trim());
-                // dtNgayNhap.Text = tb.Rows[0]["Ngay_nhap"].ToString();
-                dtNgayNhap.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_lap"]);
+                clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
+                clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
 
-                txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
-                txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
-                txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
-                txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
-
-                clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-                DataTable vChiTiet = chitiet.GetAll(txtMaPhieuNhap.Text);
-                for (int i = 0; i < vChiTiet.Rows.Count; i++)
+                if (clsNhap.CheckTonTaiSoDK() == true)
                 {
-                    //  dataTable1.Rows[i]["Ma_phieu_nhap"] = vChiTiet.Rows[i]["ma_phieu_nhap"].ToString();
+                    DataTable tb = clsNhap.GetAll(txtMaPhieuNhap.Text.Trim());
+                    // dtNgayNhap.Text = tb.Rows[0]["Ngay_nhap"].ToString();
+                    dtNgayNhap.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_lap"]);
 
-                    DataRow dr = dataTable1.NewRow();
-                    //dr["Ma_vat_tu"] = vChiTiet.Rows[i]["ma_phieu_nhap"].ToString();
-                    dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
-                    dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
-                    //  dr["don_vi_tinh"] = vChiTiet.Rows[i]["don_vi_tinh"].ToString() ;
-                    dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
-                    dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
-                    dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
-                    dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
-                    dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
-                    dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
-                    dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
+                    txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
+                    txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
+                    txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
+                    txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
 
-                    dataTable1.Rows.Add(dr);
+                    clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+                    DataTable vChiTiet = chitiet.GetAll(txtMaPhieuNhap.Text);
+                    for (int i = 0; i < vChiTiet.Rows.Count; i++)
+                    {
+                        //  dataTable1.Rows[i]["Ma_phieu_nhap"] = vChiTiet.Rows[i]["ma_phieu_nhap"].ToString();
+
+                        DataRow dr = dataTable1.NewRow();
+                        //dr["Ma_vat_tu"] = vChiTiet.Rows[i]["ma_phieu_nhap"].ToString();
+                        dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
+                        dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
+                        //  dr["don_vi_tinh"] = vChiTiet.Rows[i]["don_vi_tinh"].ToString() ;
+                        dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
+                        dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
+                        dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
+                        dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
+                        dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
+                        dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
+                        dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
+
+                        dataTable1.Rows.Add(dr);
+                    }
+                    //MessageBox.Show("Tồn tại mã phiếu nhập trong csdl");
+                    return true;
                 }
-                //MessageBox.Show("Tồn tại mã phiếu nhập trong csdl");
-                return true;
-            }
-            else
-            {
-                //MessageBox.Show("Chưa Tồn tại mã phiếu nhập trong csdl");
+                else
+                {
+                    //MessageBox.Show("Chưa Tồn tại mã phiếu nhập trong csdl");
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             return false;
         }
@@ -1063,6 +1070,22 @@ namespace Inventory.NhapXuat
 
             txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
             txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+        }
+
+        private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSLTX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
     }
