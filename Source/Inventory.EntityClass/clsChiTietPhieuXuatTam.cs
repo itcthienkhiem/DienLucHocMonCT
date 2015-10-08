@@ -22,7 +22,10 @@ namespace Inventory.EntityClass
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();
-           string sql = "SELECT * FROM Chi_Tiet_Phieu_xuat_tam WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+           string sql = "SELECT * FROM Phieu_Xuat_Tam_Vat_Tu ";
+           sql += "join DM_Nhan_vien on DM_Nhan_vien.ID_nhan_vien =Phieu_Xuat_Tam_Vat_Tu.ID_Nhan_vien  ";
+           sql += " WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", maPhieu));
            SqlDataAdapter da = new SqlDataAdapter(command);
@@ -30,6 +33,7 @@ namespace Inventory.EntityClass
            m_dbConnection.Close();
            return dt;
        }
+
        public DataTable GetAll()
        {
            m_dbConnection.Open();
@@ -69,8 +73,8 @@ namespace Inventory.EntityClass
                m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_de_nghi,So_luong_hoan_nhap,So_luong_giu_lai,So_luong_thuc_xuat) ";
-           sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_de_nghi,@So_luong_hoan_nhap,@So_luong_giu_lai,@So_luong_thuc_xuat)";
+           sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,So_luong_thuc_xuat) ";
+           sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@So_luong_thuc_xuat)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection, dal.m_trans);
            command.CommandType = CommandType.Text;
@@ -78,7 +82,7 @@ namespace Inventory.EntityClass
            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
            command.Parameters.Add(new SqlParameter("@ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
            command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
-           command.Parameters.Add(new SqlParameter("@So_luong_de_nghi", So_luong_de_nghi));
+           //command.Parameters.Add(new SqlParameter("@So_luong_de_nghi", So_luong_de_nghi));
            command.Parameters.Add(new SqlParameter("@So_luong_hoan_nhap", So_luong_hoan_nhap));
            command.Parameters.Add(new SqlParameter("@So_luong_giu_lai", So_luong_giu_lai));
            command.Parameters.Add(new SqlParameter("@So_luong_thuc_xuat", So_luong_thuc_xuat));

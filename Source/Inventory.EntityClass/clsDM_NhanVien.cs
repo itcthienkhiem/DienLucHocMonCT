@@ -33,8 +33,9 @@ namespace Inventory.EntityClass
        {
 
        }
-       public clsDM_NhanVien(string ma_nhan_vien, string ten_nhan_vien, bool trang_thai)
+       public clsDM_NhanVien(int ID,string ma_nhan_vien, string ten_nhan_vien, bool trang_thai)
        {
+           this.ID_nhan_vien = ID;
            this.Ma_nhan_vien = ma_nhan_vien;
            this.Ten_nhan_vien = ten_nhan_vien;
            this.Trang_thai = trang_thai;

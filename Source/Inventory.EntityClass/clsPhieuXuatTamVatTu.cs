@@ -16,6 +16,9 @@ namespace Inventory.EntityClass
        public string Ma_phieu_xuat_tam;
        public DateTime Ngay_xuat;
        public string Ly_do;
+       public string Cong_trinh;
+       public string Dia_chi;
+       public DateTime Ngay_lap;
        public clsPhieuXuatTamVatTu()
        { 
        }
@@ -72,8 +75,8 @@ namespace Inventory.EntityClass
                m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Phieu_xuat_tam_vat_tu (ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,ngay_xuat,Ly_do) ";
-           sql += "VALUES(@ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@ngay_xuat,@Ly_do)";
+           sql += "INSERT INTO Phieu_xuat_tam_vat_tu (ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,ngay_xuat,Ly_do,Cong_trinh,Dia_chi) ";
+           sql += "VALUES(@ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@ngay_xuat,@Ly_do,@Cong_trinh,@Dia_chi)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
            command.CommandType = CommandType.Text;
@@ -81,10 +84,17 @@ namespace Inventory.EntityClass
            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
            command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+
            command.Parameters.Add(new SqlParameter("@ngay_xuat", Ngay_xuat.ToString("yyyy-MM-dd")));
            command.Parameters.Add(new SqlParameter("@ID_nhan_vien", ID_Nhan_vien));
 
            command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
+
+           command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
+
+           command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
+
+          // command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
 
            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
