@@ -280,6 +280,7 @@
             this.ID_Kho.HeaderText = "ID_Kho";
             this.ID_Kho.Name = "ID_Kho";
             this.ID_Kho.ReadOnly = true;
+            this.ID_Kho.Visible = false;
             // 
             // Ten_kho
             // 
