@@ -144,7 +144,8 @@ namespace Inventory.DanhMuc
                         {
                             if (DM_NhanVien.Insert() == 1)
                             {
-                                MessageBox.Show("Bạn đã thêm thành công !");
+                                //MessageBox.Show("Bạn đã thêm thành công !");
+                                AutoClosingMessageBox.Show("Bạn đã thêm thành công !", "Thông báo", 1000);
 
                                 //Reset status
                                 PanelButton.ResetClickStatus();
@@ -157,10 +158,12 @@ namespace Inventory.DanhMuc
                                 ResetInputForm();
                             }
                             else
-                                MessageBox.Show("Bạn đã thêm thất bại!");
+                                //AutoClosingMessageBox.Show("Lỗi: Bạn đã thêm thất bại!", "Thông báo", 1000);
+                                MessageBox.Show("Lỗi: Bạn đã thêm thất bại!");
                         }
                         else
-                            MessageBox.Show("Lỗi: Đơn vị đã tồn tại!");
+                            //AutoClosingMessageBox.Show("Lỗi: Nhân viên đã tồn tại!", "Thông báo", 1000);
+                            MessageBox.Show("Lỗi: Nhân viên đã tồn tại!");
                         break;
                     } // End Them
                 case enumButton.Xoa:
@@ -177,7 +180,7 @@ namespace Inventory.DanhMuc
 
                             if (DM_NhanVien.Delete() == 1)
                             {
-                                MessageBox.Show("Bạn đã xóa thành công !");
+                                //MessageBox.Show("Bạn đã xóa thành công !");
 
                                 //Reset
                                 PanelButton.ResetClickStatus();
@@ -189,7 +192,8 @@ namespace Inventory.DanhMuc
                                 ResetInputForm();
                             }
                             else
-                                MessageBox.Show("Bạn đã xóa thất bại!");
+                                //AutoClosingMessageBox.Show("Lỗi: Bạn đã xóa thất bại!", "Thông báo", 1000);
+                                MessageBox.Show("Lỗi: Bạn đã xóa thất bại!");
 
                         }
                         else if (dialogResult == DialogResult.No)
@@ -214,7 +218,8 @@ namespace Inventory.DanhMuc
 
                             if (DM_NhanVien.Update() == 1)
                             {
-                                MessageBox.Show("Bạn đã cập nhật thành công !");
+                                //MessageBox.Show("Bạn đã cập nhật thành công !");
+                                AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);
 
                                 //Reset
                                 PanelButton.ResetClickStatus();
@@ -228,7 +233,8 @@ namespace Inventory.DanhMuc
                             }
                             else
                             {
-                                MessageBox.Show("Bạn đã cập nhật thất bại!");
+                                MessageBox.Show("Lỗi: Bạn đã cập nhật thất bại!");
+                                //AutoClosingMessageBox.Show("Bạn đã cập nhật thất bại!", "Thông báo", 1000);
                             }
                         }
                         break;

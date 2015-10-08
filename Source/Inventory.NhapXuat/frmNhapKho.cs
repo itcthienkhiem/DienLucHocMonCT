@@ -323,11 +323,11 @@ namespace Inventory.NhapXuat
 
             if (initEdit() == true)
             {
-                MessageBox.Show("Tồn tại mã phiếu nhập trong csdl");
+                //MessageBox.Show("Tồn tại mã phiếu nhập trong csdl");
             }
             else
             {
-                MessageBox.Show("Chưa Tồn tại mã phiếu nhập trong csdl");
+                MessageBox.Show("Mã phiếu nhập không tồn tại trong csdl!");
             }
         }
 
