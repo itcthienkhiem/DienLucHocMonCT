@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCheckMaPhieuXuat = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -145,7 +145,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 182);
+            this.label8.Location = new System.Drawing.Point(13, 201);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 13);
             this.label8.TabIndex = 78;
@@ -154,7 +154,7 @@
             // txtXuatTaiKho
             // 
             this.txtXuatTaiKho.Enabled = false;
-            this.txtXuatTaiKho.Location = new System.Drawing.Point(86, 178);
+            this.txtXuatTaiKho.Location = new System.Drawing.Point(86, 197);
             this.txtXuatTaiKho.Name = "txtXuatTaiKho";
             this.txtXuatTaiKho.Size = new System.Drawing.Size(171, 20);
             this.txtXuatTaiKho.TabIndex = 79;
@@ -162,7 +162,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 156);
+            this.label4.Location = new System.Drawing.Point(13, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 77;
@@ -242,7 +242,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(552, 11);
+            this.label19.Location = new System.Drawing.Point(443, 10);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(96, 13);
             this.label19.TabIndex = 74;
@@ -250,9 +250,9 @@
             // 
             // txtSLTX
             // 
-            this.txtSLTX.Enabled = false;
-            this.txtSLTX.Location = new System.Drawing.Point(552, 24);
+            this.txtSLTX.Location = new System.Drawing.Point(443, 23);
             this.txtSLTX.Name = "txtSLTX";
+            this.txtSLTX.ReadOnly = true;
             this.txtSLTX.Size = new System.Drawing.Size(109, 20);
             this.txtSLTX.TabIndex = 75;
             this.txtSLTX.Text = "0";
@@ -260,7 +260,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(443, 10);
+            this.label18.Location = new System.Drawing.Point(673, 10);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(103, 13);
             this.label18.TabIndex = 72;
@@ -269,7 +269,7 @@
             // txtSLHN
             // 
             this.txtSLHN.Enabled = false;
-            this.txtSLHN.Location = new System.Drawing.Point(443, 23);
+            this.txtSLHN.Location = new System.Drawing.Point(673, 23);
             this.txtSLHN.Name = "txtSLHN";
             this.txtSLHN.Size = new System.Drawing.Size(103, 20);
             this.txtSLHN.TabIndex = 73;
@@ -303,14 +303,15 @@
             this.cbMaNhanVien.TabIndex = 87;
             this.cbMaNhanVien.Visible = false;
             // 
-            // button2
+            // btnCheckMaPhieuXuat
             // 
-            this.button2.Location = new System.Drawing.Point(226, 96);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(31, 23);
-            this.button2.TabIndex = 86;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCheckMaPhieuXuat.Location = new System.Drawing.Point(226, 115);
+            this.btnCheckMaPhieuXuat.Name = "btnCheckMaPhieuXuat";
+            this.btnCheckMaPhieuXuat.Size = new System.Drawing.Size(31, 23);
+            this.btnCheckMaPhieuXuat.TabIndex = 86;
+            this.btnCheckMaPhieuXuat.Text = "...";
+            this.btnCheckMaPhieuXuat.UseVisualStyleBackColor = true;
+            this.btnCheckMaPhieuXuat.Click += new System.EventHandler(this.button2_Click);
             // 
             // label15
             // 
@@ -333,7 +334,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 130);
+            this.label9.Location = new System.Drawing.Point(13, 149);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 13);
             this.label9.TabIndex = 74;
@@ -351,7 +352,7 @@
             // 
             this.dtNgayNhap.CustomFormat = "dd/MM/yyyy";
             this.dtNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtNgayNhap.Location = new System.Drawing.Point(87, 152);
+            this.dtNgayNhap.Location = new System.Drawing.Point(87, 171);
             this.dtNgayNhap.Name = "dtNgayNhap";
             this.dtNgayNhap.Size = new System.Drawing.Size(170, 20);
             this.dtNgayNhap.TabIndex = 90;
@@ -384,7 +385,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(667, 11);
+            this.label20.Location = new System.Drawing.Point(558, 10);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(79, 13);
             this.label20.TabIndex = 87;
@@ -393,7 +394,7 @@
             // txtSLGL
             // 
             this.txtSLGL.Enabled = false;
-            this.txtSLGL.Location = new System.Drawing.Point(667, 24);
+            this.txtSLGL.Location = new System.Drawing.Point(558, 23);
             this.txtSLGL.Name = "txtSLGL";
             this.txtSLGL.Size = new System.Drawing.Size(109, 20);
             this.txtSLGL.TabIndex = 88;
@@ -403,8 +404,8 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -412,15 +413,15 @@
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -436,8 +437,8 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMaster.Size = new System.Drawing.Size(1176, 268);
@@ -568,6 +569,7 @@
             this.button1.Size = new System.Drawing.Size(50, 50);
             this.button1.TabIndex = 4;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -625,6 +627,7 @@
             this.btnDong.Size = new System.Drawing.Size(50, 50);
             this.btnDong.TabIndex = 2;
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // label7
             // 
@@ -682,6 +685,7 @@
             this.btnSua.Size = new System.Drawing.Size(50, 52);
             this.btnSua.TabIndex = 2;
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -740,7 +744,7 @@
             // cbTenNhanVien
             // 
             this.cbTenNhanVien.FormattingEnabled = true;
-            this.cbTenNhanVien.Location = new System.Drawing.Point(87, 125);
+            this.cbTenNhanVien.Location = new System.Drawing.Point(87, 144);
             this.cbTenNhanVien.Name = "cbTenNhanVien";
             this.cbTenNhanVien.Size = new System.Drawing.Size(170, 21);
             this.cbTenNhanVien.TabIndex = 91;
@@ -749,7 +753,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(14, 101);
+            this.label22.Location = new System.Drawing.Point(14, 120);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(74, 13);
             this.label22.TabIndex = 93;
@@ -758,7 +762,7 @@
             // cbMaPhieuXuatTam
             // 
             this.cbMaPhieuXuatTam.FormattingEnabled = true;
-            this.cbMaPhieuXuatTam.Location = new System.Drawing.Point(88, 98);
+            this.cbMaPhieuXuatTam.Location = new System.Drawing.Point(88, 117);
             this.cbMaPhieuXuatTam.Name = "cbMaPhieuXuatTam";
             this.cbMaPhieuXuatTam.Size = new System.Drawing.Size(132, 21);
             this.cbMaPhieuXuatTam.TabIndex = 92;
@@ -782,7 +786,7 @@
             this.Controls.Add(this.txtCongTrinh);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.cbMaNhanVien);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCheckMaPhieuXuat);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dtNgayNhap);
             this.Controls.Add(this.panel1);
@@ -790,6 +794,7 @@
             this.Controls.Add(this.pnlMenu);
             this.Name = "frmChiTietPhieuXuatTam";
             this.Text = "frmChiTietPhieuXuatTam";
+            this.Load += new System.EventHandler(this.frmChiTietPhieuXuatTam_Load_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).EndInit();
@@ -825,7 +830,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbMaNhanVien;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCheckMaPhieuXuat;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label9;

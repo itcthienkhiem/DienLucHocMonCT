@@ -22,9 +22,12 @@ namespace Inventory.EntityClass
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();
-           string sql = "SELECT * FROM Phieu_Xuat_Tam_Vat_Tu ";
-           sql += "join DM_Nhan_vien on DM_Nhan_vien.ID_nhan_vien =Phieu_Xuat_Tam_Vat_Tu.ID_Nhan_vien  ";
-           sql += " WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+           string sql = "SELECT * FROM Chi_tiet_Phieu_Xuat_Tam ";
+           sql += "join Phieu_xuat_tam_vat_tu on Phieu_xuat_tam_vat_tu.ma_phieu_xuat_tam =Chi_tiet_Phieu_Xuat_Tam.ma_phieu_xuat_tam  ";
+           sql += "join DM_vat_tu on DM_vat_tu.ma_vat_tu =Chi_tiet_Phieu_Xuat_Tam.ma_vat_tu ";
+           sql += "join DM_Don_vi_tinh on DM_vat_tu.ID_don_vi_tinh =DM_Don_vi_tinh.ID_don_vi_tinh ";
+
+           sql += " WHERE Chi_tiet_Phieu_Xuat_Tam.Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", maPhieu));

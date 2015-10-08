@@ -28,7 +28,9 @@ namespace Inventory.EntityClass
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();
-           string sql = "SELECT * FROM Phieu_xuat_tam_vat_tu WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+           string sql = "SELECT * FROM Phieu_xuat_tam_vat_tu ";
+           sql += "join Dm_nhan_vien on Dm_nhan_vien.ID_Nhan_vien  = Phieu_xuat_tam_vat_tu.ID_nhan_vien";
+             sql +=" WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
            command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", maPhieu));
            SqlDataAdapter da = new SqlDataAdapter(command);
@@ -114,8 +116,8 @@ namespace Inventory.EntityClass
 
            string sql = "";
            sql += "UPDATE Phieu_xuat_tam_vat_tu ";
-           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,ID_kho=@ID_kho,ID_nhan_vien=@ID_nhan_vien,ngay_xuat=@ngay_xuat,Ly_do = @Ly_do";
-           sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
+           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,ID_kho=@ID_kho,ID_nhan_vien=@ID_nhan_vien,ngay_xuat=@ngay_xuat,Ly_do = @Ly_do ";
+           sql += "WHERE ma_phieu_xuat_tam=@ma_phieu_xuat_tam";
 
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
