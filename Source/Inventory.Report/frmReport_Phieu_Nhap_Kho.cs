@@ -95,12 +95,13 @@ namespace Inventory.Report
             //pg.RawKind = (int)PaperKind.A4;
             pg.Landscape = true;
 
-            //pg.Margins = new Margins(0, 0, 0, 0);
             // Update report and refresh
             this.reportViewerPhieuNhapKho.SetPageSettings(pg);
             //this.reportViewer1.RefreshReport();
 
             this.reportViewerPhieuNhapKho.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            //this.reportViewerPhieuNhapKho.AutoScaleDimensions = new System.Drawing.SizeF(500F, 500F);
+            this.reportViewerPhieuNhapKho.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 
 
             //refresh viewer with above settings

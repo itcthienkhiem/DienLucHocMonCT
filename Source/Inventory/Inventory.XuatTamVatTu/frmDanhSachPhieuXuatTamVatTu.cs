@@ -7,14 +7,105 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inventory.EntityClass;
 
 namespace Inventory.XuatTamVatTu
 {
     public partial class frmDanhSachPhieuXuatTamVatTu : Form
     {
+        FormActionDelegate2 frmAction;
+        clsPanelButton2 PanelButton;
+
+        clsPhieuXuatTamVatTu PhieuXuatTam;
+
         public frmDanhSachPhieuXuatTamVatTu()
         {
             InitializeComponent();
+
+            PhieuXuatTam = new clsPhieuXuatTamVatTu();
+
+            //Init cls Button
+            PanelButton = new clsPanelButton2();
+
+            frmAction = new FormActionDelegate2(FormAction);
+            PanelButton.setDelegateFormAction(frmAction);
+
+            PanelButton.AddButton(enumButton2.Them, ref btnThem);
+            PanelButton.AddButton(enumButton2.Xoa, ref btnXoa);
+            PanelButton.AddButton(enumButton2.Sua, ref btnSua);
+            PanelButton.AddButton(enumButton2.LamMoi, ref btnLamMoi);
+            PanelButton.AddButton(enumButton2.Luu, ref btnLuu);
+            PanelButton.AddButton(enumButton2.Huy, ref btnHuy);
+
+            PanelButton.AddButton(enumButton2.Dong, ref btnDong);
+
+            PanelButton.setButtonClickEvent(enumButton2.Dong);
+            PanelButton.setButtonClickEvent(enumButton2.LamMoi);
+
+            PanelButton.setButtonStatus(enumButton2.Xoa, false);
+            PanelButton.setButtonStatus(enumButton2.Luu, false);
+            PanelButton.setButtonStatus(enumButton2.Huy, false);
+            btnXoa.Enabled = false;
+            btnLuu.Enabled = false;
+            btnHuy.Enabled = false;
+
+            PanelButton.ResetButton();
+
+            LoadData();
+        }
+
+        public void FormAction(enumFormAction2 frmAct)
+        {
+            switch (frmAct)
+            {
+                case enumFormAction2.None:
+                    break;
+                case enumFormAction2.LoadData:
+                    LoadData();
+                    break;
+                case enumFormAction2.CloseForm:
+                    CloseForm();
+                    break;
+                case enumFormAction2.setFormData:
+                    break;
+                case enumFormAction2.ResetInputForm:
+                    break;
+                case enumFormAction2.Huy:
+                    break;
+                case enumFormAction2.Dong:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Re-Load ALL DATA to Grid
+        /// </summary>
+        public void LoadData()
+        {
+            gridDanhSachPhieuXuatTam.DataSource = PhieuXuatTam.GetAll_DSPhieuXuat();
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+            string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+
+            frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
+            ChiTietPhieuXuatTam.Show();
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Them, "");
+            ChiTietPhieuXuatTam.Show();
         }
     }
 }

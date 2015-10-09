@@ -83,6 +83,81 @@ namespace Inventory.XuatTamVatTu
             cbTenNhanVien.SelectedIndex = -1;
             // gridMaster.DataSource = data;
         }
+
+        public frmChiTietPhieuXuatTam(enumButton2 stt, string MaPhieuXuatTam)
+        {
+            InitializeComponent();
+            staTus = enumStatus.None;
+
+
+            this.cbMaNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.cbMaNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            this.cbTenNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.cbTenNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            this.cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            this.cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            clsDM_Kho dmKho = new clsDM_Kho();
+            //  cbKhoNhap.DisplayMember = "Ten_kho";
+            //  cbKhoNhap.ValueMember = "ID_kho";
+            Dic = GetDict(new clsDMVatTu().GetAll());
+            //    DicTen = GetDictTen(new clsDMVatTu().GetAll());
+
+            // cbKhoNhap.DataSource = dmKho.GetAll();
+
+            AutoCompleteStringCollection combData1 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection combData2 = new AutoCompleteStringCollection();
+            foreach (string key in Dic.Keys)
+            {
+                combData1.Add(Dic[key].Ma_vat_tu);
+                combData2.Add(Dic[key].Ten_vat_tu);
+
+            }
+
+
+            cbMaVatTu.AutoCompleteCustomSource = combData1;
+            cbMaVatTu.DataSource = combData1;
+            cbTenVatTu.AutoCompleteCustomSource = combData2;
+            cbTenVatTu.DataSource = combData2;
+            cbMaVatTu.SelectedIndex = -1;
+            cbTenVatTu.SelectedIndex = -1;
+            clsDM_NhanVien dmnv = new clsDM_NhanVien();
+            DataTable temp = dmnv.GetAll();
+            DicNhanVien = GetDictMaNhanVien(temp);
+            //     AutoCompleteStringCollection combDataMa = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection combDataTen = new AutoCompleteStringCollection();
+            foreach (string key in DicNhanVien.Keys)
+            {
+                //   combDataMa.Add(DicNhanVien[key].Ma_nhan_vien);
+                combDataTen.Add(DicNhanVien[key].Ten_nhan_vien);
+
+            }
+
+
+
+            cbTenNhanVien.AutoCompleteCustomSource = combDataTen;
+            cbTenNhanVien.DataSource = temp;
+            cbTenNhanVien.DisplayMember = "Ten_nhan_vien";
+            cbTenNhanVien.ValueMember = "ID_nhan_vien";
+
+            // cbMaNhanVien.SelectedIndex = -1;
+            cbTenNhanVien.SelectedIndex = -1;
+            // gridMaster.DataSource = data;
+            //----------
+            if (stt == enumButton2.Sua)
+            {
+                cbMaPhieuXuatTam.Text = MaPhieuXuatTam;
+
+                btnSua_Click(this, EventArgs.Empty);
+            }
+            else if (stt == enumButton2.Them)
+            {
+                btnThem_Click(this, EventArgs.Empty);
+            }
+        }
+
         public void frmChiTietPhieuXuatTam_Load(object sender, EventArgs e)
         { }
         internal Dictionary<string, clsDM_NhanVien> GetDictMaNhanVien(DataTable dt)

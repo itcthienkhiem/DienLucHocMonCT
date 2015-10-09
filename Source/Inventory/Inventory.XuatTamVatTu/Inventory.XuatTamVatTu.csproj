@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsPanelButton2.cs" />
     <Compile Include="frmChiTietPhieuXuatTam.cs">
       <SubType>Form</SubType>
     </Compile>

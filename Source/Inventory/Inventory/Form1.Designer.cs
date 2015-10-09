@@ -49,6 +49,7 @@
             this.quảnLýTồnĐầuKỳToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemDSPhieuXuatTamUng = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,17 +185,18 @@
             // lậpPhieToolStripMenuItem
             // 
             this.lậpPhieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lapToolStripMenuItem});
+            this.lapToolStripMenuItem,
+            this.MenuItemDSPhieuXuatTamUng});
             this.lậpPhieToolStripMenuItem.Name = "lậpPhieToolStripMenuItem";
             this.lậpPhieToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.lậpPhieToolStripMenuItem.Text = "Xuất Tạm Ứng";
-            this.lậpPhieToolStripMenuItem.Click += new System.EventHandler(this.lậpPhieToolStripMenuItem_Click);
             // 
             // lapToolStripMenuItem
             // 
             this.lapToolStripMenuItem.Name = "lapToolStripMenuItem";
             this.lapToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.lapToolStripMenuItem.Text = "Lập Phiếu Xuất Tạm Ứng Cho Nhân Viên";
+            this.lapToolStripMenuItem.Click += new System.EventHandler(this.lapToolStripMenuItem_Click);
             // 
             // quảnLýTồnĐầuKỳToolStripMenuItem
             // 
@@ -217,6 +219,13 @@
             this.giớiThiệuToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
+            // 
+            // MenuItemDSPhieuXuatTamUng
+            // 
+            this.MenuItemDSPhieuXuatTamUng.Name = "MenuItemDSPhieuXuatTamUng";
+            this.MenuItemDSPhieuXuatTamUng.Size = new System.Drawing.Size(288, 22);
+            this.MenuItemDSPhieuXuatTamUng.Text = "Danh Sách Phiếu Xuất Tạm Ứng";
+            this.MenuItemDSPhieuXuatTamUng.Click += new System.EventHandler(this.MenuItemDSPhieuXuatTamUng_Click);
             // 
             // MDIMain
             // 
@@ -266,6 +275,7 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemTonDauKy;
         private System.Windows.Forms.ToolStripMenuItem lapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem giớiThiệuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemDSPhieuXuatTamUng;
     }
 }
 

@@ -162,22 +162,7 @@ namespace Inventory
 
         private void lậpPhieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
-            frm.Text = "Xuất vật tư cho nhân viên";
-
-            foreach (Form f in this.MdiChildren)
-            {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-
-            }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
+            
         }
 
         private void MenuItemTonDauKy_Click(object sender, EventArgs e)
@@ -225,6 +210,46 @@ namespace Inventory
             catch (Exception ex) {
                 MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");
             }
+        }
+
+        private void lapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
+            frm.Text = "Xuất vật tư cho nhân viên";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void MenuItemDSPhieuXuatTamUng_Click(object sender, EventArgs e)
+        {
+            frmDanhSachPhieuXuatTamVatTu frm = new frmDanhSachPhieuXuatTamVatTu();
+            frm.Text = "Danh sách phiếu xuất vật tư cho nhân viên";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }

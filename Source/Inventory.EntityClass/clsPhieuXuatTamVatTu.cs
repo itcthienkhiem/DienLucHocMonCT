@@ -38,6 +38,7 @@ namespace Inventory.EntityClass
            m_dbConnection.Close();
            return dt;
        }
+
        public DataTable GetAll()
        {
            m_dbConnection.Open();
@@ -50,6 +51,39 @@ namespace Inventory.EntityClass
            m_dbConnection.Close();
            return dt;
        }
+
+       public DataTable GetAll_DSPhieuXuat()
+       {
+           m_dbConnection.Open();
+
+           DataTable dt = new DataTable();
+           //string sql = "SELECT * FROM DM_Vat_Tu";
+           string sql = "";
+           sql += "SELECT ";
+           sql += "Phieu_Xuat_Tam_Vat_Tu.Ma_phieu_xuat_tam, ";
+           sql += "DM_Nhan_Vien.Ten_nhan_vien, ";
+           sql += "DM_Kho.Ten_kho, ";
+           sql += "Phieu_Xuat_Tam_Vat_Tu.Ngay_xuat, ";
+           sql += "Phieu_Xuat_Tam_Vat_Tu.Ly_do, ";
+           sql += "Phieu_Xuat_Tam_Vat_Tu.Cong_trinh, ";
+           sql += "Phieu_Xuat_Tam_Vat_Tu.Dia_chi ";
+           sql += "FROM Phieu_Xuat_Tam_Vat_Tu ";
+           sql += "INNER ";
+           sql += "JOIN DM_Kho ";
+           sql += "ON Phieu_Xuat_Tam_Vat_Tu.ID_kho=DM_Kho.ID_kho ";
+           sql += "INNER ";
+           sql += "JOIN DM_Nhan_Vien ";
+           sql += "ON Phieu_Xuat_Tam_Vat_Tu.ID_nhan_vien=DM_Nhan_Vien.ID_nhan_vien";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+           m_dbConnection.Close();
+
+           return dt;
+       }
+
+
        public bool CheckTonTaiSoDK()
        {
 
