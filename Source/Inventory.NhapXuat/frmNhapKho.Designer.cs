@@ -56,7 +56,7 @@
             this.dataColumn9 = new System.Data.DataColumn();
             this.dataColumn10 = new System.Data.DataColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.btnResetGrid = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -109,6 +109,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtSLYC = new System.Windows.Forms.TextBox();
             this.dtNgayNhap = new System.Windows.Forms.DateTimePicker();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -323,10 +324,11 @@
             // 
             this.pnlMenu.Controls.Add(this.btnHuy);
             this.pnlMenu.Controls.Add(this.label2);
-            this.pnlMenu.Controls.Add(this.btnResetGrid);
+            this.pnlMenu.Controls.Add(this.btnPrint);
             this.pnlMenu.Controls.Add(this.btnTest);
             this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.btnLuu);
+            this.pnlMenu.Controls.Add(this.label26);
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
@@ -345,16 +347,16 @@
             this.pnlMenu.Size = new System.Drawing.Size(1034, 99);
             this.pnlMenu.TabIndex = 50;
             // 
-            // btnResetGrid
+            // btnPrint
             // 
-            this.btnResetGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.search_bmc;
-            this.btnResetGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnResetGrid.Location = new System.Drawing.Point(684, 13);
-            this.btnResetGrid.Name = "btnResetGrid";
-            this.btnResetGrid.Size = new System.Drawing.Size(58, 54);
-            this.btnResetGrid.TabIndex = 2;
-            this.btnResetGrid.UseVisualStyleBackColor = true;
-            this.btnResetGrid.Click += new System.EventHandler(this.btnResetGrid_Click);
+            this.btnPrint.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.printOut_omc;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.Location = new System.Drawing.Point(684, 13);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(58, 54);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnTest
             // 
@@ -879,6 +881,15 @@
             this.dtNgayNhap.Size = new System.Drawing.Size(198, 22);
             this.dtNgayNhap.TabIndex = 73;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(695, 70);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(32, 14);
+            this.label26.TabIndex = 3;
+            this.label26.Text = "Print";
+            // 
             // frmNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -983,7 +994,7 @@
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnResetGrid;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Don_vi_tinh;
@@ -997,5 +1008,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label26;
     }
 }

@@ -1034,7 +1034,7 @@ namespace Inventory.NhapXuat
         }
 
 
-        private void btnResetGrid_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
             //dataTable1.Clear();
             clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
@@ -1052,14 +1052,12 @@ namespace Inventory.NhapXuat
                         f.Activate();
                         return;
                     }
-
                 }
 
                 frm.MdiParent = this.ParentForm;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
             }
-            
         }
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
