@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -80,26 +80,28 @@
             this.dataColumn4 = new System.Data.DataColumn();
             this.dataColumn5 = new System.Data.DataColumn();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGetDM = new System.Windows.Forms.Button();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cbMaPhieuXuatTam = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -110,16 +112,16 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(460, 169);
+            this.label13.Location = new System.Drawing.Point(403, 171);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(86, 13);
+            this.label13.Size = new System.Drawing.Size(89, 13);
             this.label13.TabIndex = 84;
-            this.label13.Text = "Địa chỉ(Bộ phận)";
+            this.label13.Text = "Địa chỉ (Bộ phận)";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(477, 140);
+            this.label12.Location = new System.Drawing.Point(403, 145);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 13);
             this.label12.TabIndex = 82;
@@ -128,7 +130,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(477, 110);
+            this.label11.Location = new System.Drawing.Point(403, 115);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 13);
             this.label11.TabIndex = 80;
@@ -137,7 +139,7 @@
             // txtLyDo
             // 
             this.txtLyDo.Enabled = false;
-            this.txtLyDo.Location = new System.Drawing.Point(550, 110);
+            this.txtLyDo.Location = new System.Drawing.Point(495, 112);
             this.txtLyDo.Name = "txtLyDo";
             this.txtLyDo.Size = new System.Drawing.Size(171, 20);
             this.txtLyDo.TabIndex = 81;
@@ -154,7 +156,7 @@
             // txtXuatTaiKho
             // 
             this.txtXuatTaiKho.Enabled = false;
-            this.txtXuatTaiKho.Location = new System.Drawing.Point(86, 197);
+            this.txtXuatTaiKho.Location = new System.Drawing.Point(91, 197);
             this.txtXuatTaiKho.Name = "txtXuatTaiKho";
             this.txtXuatTaiKho.Size = new System.Drawing.Size(171, 20);
             this.txtXuatTaiKho.TabIndex = 79;
@@ -170,53 +172,57 @@
             // 
             // btnDel
             // 
+            this.btnDel.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_delete;
+            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnDel.Enabled = false;
-            this.btnDel.Location = new System.Drawing.Point(857, 17);
+            this.btnDel.Location = new System.Drawing.Point(724, 19);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(39, 27);
             this.btnDel.TabIndex = 86;
-            this.btnDel.Text = "Del";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnSaveGrid
             // 
+            this.btnSaveGrid.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_save;
+            this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSaveGrid.Enabled = false;
-            this.btnSaveGrid.Location = new System.Drawing.Point(947, 17);
+            this.btnSaveGrid.Location = new System.Drawing.Point(814, 19);
             this.btnSaveGrid.Name = "btnSaveGrid";
             this.btnSaveGrid.Size = new System.Drawing.Size(47, 27);
             this.btnSaveGrid.TabIndex = 84;
-            this.btnSaveGrid.Text = "Save";
             this.btnSaveGrid.UseVisualStyleBackColor = true;
             this.btnSaveGrid.Click += new System.EventHandler(this.btnSaveGrid_Click);
             // 
             // txtCongTrinh
             // 
             this.txtCongTrinh.Enabled = false;
-            this.txtCongTrinh.Location = new System.Drawing.Point(550, 140);
+            this.txtCongTrinh.Location = new System.Drawing.Point(495, 142);
             this.txtCongTrinh.Name = "txtCongTrinh";
             this.txtCongTrinh.Size = new System.Drawing.Size(171, 20);
             this.txtCongTrinh.TabIndex = 83;
             // 
             // btnEdit
             // 
+            this.btnEdit.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_modify;
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(902, 17);
+            this.btnEdit.Location = new System.Drawing.Point(769, 19);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(39, 27);
             this.btnEdit.TabIndex = 83;
-            this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_new;
+            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(812, 17);
+            this.btnAdd.Location = new System.Drawing.Point(679, 19);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(39, 27);
             this.btnAdd.TabIndex = 80;
-            this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -224,9 +230,9 @@
             // 
             this.cbTenVatTu.Enabled = false;
             this.cbTenVatTu.FormattingEnabled = true;
-            this.cbTenVatTu.Location = new System.Drawing.Point(143, 23);
+            this.cbTenVatTu.Location = new System.Drawing.Point(128, 23);
             this.cbTenVatTu.Name = "cbTenVatTu";
-            this.cbTenVatTu.Size = new System.Drawing.Size(176, 21);
+            this.cbTenVatTu.Size = new System.Drawing.Size(155, 21);
             this.cbTenVatTu.TabIndex = 79;
             // 
             // cbMaVatTu
@@ -235,14 +241,14 @@
             this.cbMaVatTu.FormattingEnabled = true;
             this.cbMaVatTu.Location = new System.Drawing.Point(12, 23);
             this.cbMaVatTu.Name = "cbMaVatTu";
-            this.cbMaVatTu.Size = new System.Drawing.Size(121, 21);
+            this.cbMaVatTu.Size = new System.Drawing.Size(106, 21);
             this.cbMaVatTu.TabIndex = 78;
             this.cbMaVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbMaVatTu_KeyDown);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(443, 10);
+            this.label19.Location = new System.Drawing.Point(374, 9);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(96, 13);
             this.label19.TabIndex = 74;
@@ -251,17 +257,17 @@
             // txtSLTX
             // 
             this.txtSLTX.Enabled = false;
-            this.txtSLTX.Location = new System.Drawing.Point(443, 23);
+            this.txtSLTX.Location = new System.Drawing.Point(374, 24);
             this.txtSLTX.Name = "txtSLTX";
             this.txtSLTX.ReadOnly = true;
-            this.txtSLTX.Size = new System.Drawing.Size(109, 20);
+            this.txtSLTX.Size = new System.Drawing.Size(96, 20);
             this.txtSLTX.TabIndex = 75;
             this.txtSLTX.Text = "0";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(673, 10);
+            this.label18.Location = new System.Drawing.Point(561, 8);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(103, 13);
             this.label18.TabIndex = 72;
@@ -270,7 +276,7 @@
             // txtSLHN
             // 
             this.txtSLHN.Enabled = false;
-            this.txtSLHN.Location = new System.Drawing.Point(673, 23);
+            this.txtSLHN.Location = new System.Drawing.Point(561, 23);
             this.txtSLHN.Name = "txtSLHN";
             this.txtSLHN.Size = new System.Drawing.Size(103, 20);
             this.txtSLHN.TabIndex = 73;
@@ -279,7 +285,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(322, 10);
+            this.label17.Location = new System.Drawing.Point(286, 9);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 70;
@@ -288,7 +294,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(476, 206);
+            this.label14.Location = new System.Drawing.Point(403, 200);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(72, 13);
             this.label14.TabIndex = 88;
@@ -298,7 +304,7 @@
             // cbMaNhanVien
             // 
             this.cbMaNhanVien.FormattingEnabled = true;
-            this.cbMaNhanVien.Location = new System.Drawing.Point(550, 203);
+            this.cbMaNhanVien.Location = new System.Drawing.Point(495, 198);
             this.cbMaNhanVien.Name = "cbMaNhanVien";
             this.cbMaNhanVien.Size = new System.Drawing.Size(170, 21);
             this.cbMaNhanVien.TabIndex = 87;
@@ -306,7 +312,7 @@
             // 
             // btnCheckMaPhieuXuat
             // 
-            this.btnCheckMaPhieuXuat.Location = new System.Drawing.Point(226, 115);
+            this.btnCheckMaPhieuXuat.Location = new System.Drawing.Point(231, 115);
             this.btnCheckMaPhieuXuat.Name = "btnCheckMaPhieuXuat";
             this.btnCheckMaPhieuXuat.Size = new System.Drawing.Size(31, 23);
             this.btnCheckMaPhieuXuat.TabIndex = 86;
@@ -317,7 +323,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(21, 10);
+            this.label15.Location = new System.Drawing.Point(21, 8);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(52, 13);
             this.label15.TabIndex = 66;
@@ -326,7 +332,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(151, 10);
+            this.label16.Location = new System.Drawing.Point(136, 8);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(56, 13);
             this.label16.TabIndex = 68;
@@ -343,17 +349,17 @@
             // 
             // txtDVT
             // 
-            this.txtDVT.Location = new System.Drawing.Point(325, 23);
+            this.txtDVT.Location = new System.Drawing.Point(289, 24);
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.ReadOnly = true;
-            this.txtDVT.Size = new System.Drawing.Size(112, 20);
+            this.txtDVT.Size = new System.Drawing.Size(79, 20);
             this.txtDVT.TabIndex = 71;
             // 
             // dtNgayNhap
             // 
             this.dtNgayNhap.CustomFormat = "dd/MM/yyyy";
             this.dtNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtNgayNhap.Location = new System.Drawing.Point(87, 171);
+            this.dtNgayNhap.Location = new System.Drawing.Point(92, 171);
             this.dtNgayNhap.Name = "dtNgayNhap";
             this.dtNgayNhap.Size = new System.Drawing.Size(170, 20);
             this.dtNgayNhap.TabIndex = 90;
@@ -361,6 +367,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.txtSLGL);
             this.panel1.Controls.Add(this.btnDel);
@@ -386,7 +396,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(558, 10);
+            this.label20.Location = new System.Drawing.Point(476, 8);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(79, 13);
             this.label20.TabIndex = 87;
@@ -395,9 +405,9 @@
             // txtSLGL
             // 
             this.txtSLGL.Enabled = false;
-            this.txtSLGL.Location = new System.Drawing.Point(558, 23);
+            this.txtSLGL.Location = new System.Drawing.Point(476, 23);
             this.txtSLGL.Name = "txtSLGL";
-            this.txtSLGL.Size = new System.Drawing.Size(109, 20);
+            this.txtSLGL.Size = new System.Drawing.Size(79, 20);
             this.txtSLGL.TabIndex = 88;
             this.txtSLGL.Text = "0";
             // 
@@ -405,24 +415,24 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gridMaster.AutoGenerateColumns = false;
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -438,11 +448,11 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMaster.Size = new System.Drawing.Size(1176, 268);
+            this.gridMaster.Size = new System.Drawing.Size(884, 268);
             this.gridMaster.TabIndex = 51;
             this.gridMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridMaster_MouseClick);
             // 
@@ -557,113 +567,42 @@
             // txtDiaChi
             // 
             this.txtDiaChi.Enabled = false;
-            this.txtDiaChi.Location = new System.Drawing.Point(550, 166);
+            this.txtDiaChi.Location = new System.Drawing.Point(495, 168);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(171, 20);
             this.txtDiaChi.TabIndex = 85;
             // 
-            // button1
-            // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(238, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 50);
-            this.button1.TabIndex = 4;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 62);
+            this.label2.Location = new System.Drawing.Point(273, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "Hủy bỏ";
             // 
-            // btnGetDM
-            // 
-            this.btnGetDM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGetDM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGetDM.Location = new System.Drawing.Point(1102, 11);
-            this.btnGetDM.Name = "btnGetDM";
-            this.btnGetDM.Size = new System.Drawing.Size(40, 40);
-            this.btnGetDM.TabIndex = 2;
-            this.btnGetDM.UseVisualStyleBackColor = true;
-            this.btnGetDM.Visible = false;
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLamMoi.Location = new System.Drawing.Point(125, 10);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
-            this.btnLamMoi.TabIndex = 2;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSave.Location = new System.Drawing.Point(294, 12);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(50, 50);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(304, 62);
+            this.label10.Location = new System.Drawing.Point(223, 62);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 14);
             this.label10.TabIndex = 3;
             this.label10.Text = "Lưu";
             // 
-            // btnDong
-            // 
-            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(182, 11);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(50, 50);
-            this.btnDong.TabIndex = 2;
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(192, 61);
+            this.label7.Location = new System.Drawing.Point(1123, 60);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
             // 
-            // btnThem
-            // 
-            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThem.Location = new System.Drawing.Point(9, 10);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(50, 50);
-            this.btnThem.TabIndex = 2;
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1090, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tải dữ liệu";
-            this.label1.Visible = false;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(124, 61);
+            this.label6.Location = new System.Drawing.Point(123, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 14);
             this.label6.TabIndex = 3;
@@ -677,26 +616,6 @@
             this.label5.Size = new System.Drawing.Size(39, 14);
             this.label5.TabIndex = 3;
             this.label5.Text = "Thêm";
-            // 
-            // btnSua
-            // 
-            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSua.Location = new System.Drawing.Point(68, 10);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(50, 52);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXoa.Location = new System.Drawing.Point(713, 15);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(50, 50);
-            this.btnXoa.TabIndex = 2;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Visible = false;
             // 
             // label3
             // 
@@ -721,13 +640,11 @@
             // 
             this.pnlMenu.Controls.Add(this.button1);
             this.pnlMenu.Controls.Add(this.label2);
-            this.pnlMenu.Controls.Add(this.btnGetDM);
             this.pnlMenu.Controls.Add(this.btnSave);
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
             this.pnlMenu.Controls.Add(this.btnThem);
-            this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.label6);
             this.pnlMenu.Controls.Add(this.label5);
             this.pnlMenu.Controls.Add(this.btnSua);
@@ -739,13 +656,13 @@
             this.pnlMenu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(1175, 92);
+            this.pnlMenu.Size = new System.Drawing.Size(916, 92);
             this.pnlMenu.TabIndex = 76;
             // 
             // cbTenNhanVien
             // 
             this.cbTenNhanVien.FormattingEnabled = true;
-            this.cbTenNhanVien.Location = new System.Drawing.Point(87, 144);
+            this.cbTenNhanVien.Location = new System.Drawing.Point(92, 144);
             this.cbTenNhanVien.Name = "cbTenNhanVien";
             this.cbTenNhanVien.Size = new System.Drawing.Size(170, 21);
             this.cbTenNhanVien.TabIndex = 91;
@@ -763,17 +680,130 @@
             // cbMaPhieuXuatTam
             // 
             this.cbMaPhieuXuatTam.FormattingEnabled = true;
-            this.cbMaPhieuXuatTam.Location = new System.Drawing.Point(88, 117);
+            this.cbMaPhieuXuatTam.Location = new System.Drawing.Point(93, 117);
             this.cbMaPhieuXuatTam.Name = "cbMaPhieuXuatTam";
             this.cbMaPhieuXuatTam.Size = new System.Drawing.Size(132, 21);
             this.cbMaPhieuXuatTam.TabIndex = 92;
             this.cbMaPhieuXuatTam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbMaPhieuXuatTam_KeyPress);
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.cancel_bmc1;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(269, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 50);
+            this.button1.TabIndex = 4;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.save_bmc;
+            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSave.Location = new System.Drawing.Point(213, 12);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(50, 50);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.close_bmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(854, 10);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(50, 50);
+            this.btnDong.TabIndex = 2;
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.addFile_omc;
+            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThem.Location = new System.Drawing.Point(9, 10);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(50, 50);
+            this.btnThem.TabIndex = 2;
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.edit_gmc;
+            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSua.Location = new System.Drawing.Point(68, 10);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(50, 52);
+            this.btnSua.TabIndex = 2;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.cancel_bmc;
+            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXoa.Location = new System.Drawing.Point(713, 15);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(50, 50);
+            this.btnXoa.TabIndex = 2;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Visible = false;
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.refresh_omc;
+            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLamMoi.Location = new System.Drawing.Point(124, 12);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
+            this.btnLamMoi.TabIndex = 2;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(825, 5);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(25, 13);
+            this.label25.TabIndex = 91;
+            this.label25.Text = "Lưu";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(776, 5);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(26, 13);
+            this.label24.TabIndex = 92;
+            this.label24.Text = "Sửa";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(730, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(26, 13);
+            this.label23.TabIndex = 89;
+            this.label23.Text = "Xóa";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(680, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 90;
+            this.label1.Text = "Thêm";
+            // 
             // frmChiTietPhieuXuatTam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1175, 477);
+            this.ClientSize = new System.Drawing.Size(916, 477);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.cbMaPhieuXuatTam);
             this.Controls.Add(this.cbTenNhanVien);
@@ -850,14 +880,12 @@
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGetDM;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSua;
@@ -879,5 +907,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_thuc_xuat;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_hoan_nhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_giu_lai;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label1;
     }
 }

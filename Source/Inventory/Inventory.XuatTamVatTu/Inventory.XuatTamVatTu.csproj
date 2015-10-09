@@ -55,6 +55,11 @@
       <DependentUpon>frmDanhSachPhieuXuatTamVatTu.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Inventory.EntityClass\Inventory.EntityClass.csproj">
@@ -73,6 +78,88 @@
     <EmbeddedResource Include="frmDanhSachPhieuXuatTamVatTu.resx">
       <DependentUpon>frmDanhSachPhieuXuatTamVatTu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFile_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_gmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printOut_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_omc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_bmc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_bmc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
