@@ -128,6 +128,33 @@ namespace Inventory.EntityClass
             return result;
         }
 
+        public int Insert()
+        {
+            //DAL.BeginTransaction();
+
+            //m_dbConnection = DAL.m_conn;
+            if (m_dbConnection.State == ConnectionState.Closed)
+                m_dbConnection.Open();
+            string sql = "";
+            sql += "INSERT INTO Ton_dau_ky (Ma_vat_tu,id_kho,so_luong) ";
+            sql += "VALUES(@Ma_vat_tu,@id_kho,@so_luong)";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);//, DAL.m_trans);
+            command.CommandType = CommandType.Text;
+
+            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
+            command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
+            command.Parameters.Add(new SqlParameter("@id_kho", ID_kho));
+            command.Parameters.Add(new SqlParameter("@so_luong", So_luong));
+
+
+            int result = command.ExecuteNonQuery();
+
+            //DAL.CommitTransaction();
+            m_dbConnection.Close();
+            return result;
+        }
+
         public int Update(SQLDAL DAL)
         {
             DAL.BeginTransaction();
@@ -151,6 +178,34 @@ namespace Inventory.EntityClass
             int result = command.ExecuteNonQuery();
 
             DAL.CommitTransaction();
+            return result;
+        }
+
+        public int Update()
+        {
+            //DAL.BeginTransaction();
+
+            //m_dbConnection = DAL.m_conn;
+            if (m_dbConnection.State == ConnectionState.Closed)
+                m_dbConnection.Open();
+            string sql = "";
+            sql += "UPDATE Ton_dau_ky ";
+            sql += "Set Ma_vat_tu=@Ma_vat_tu, id_kho =@id_kho ,so_luong=@so_luong ";
+            sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            command.CommandType = CommandType.Text;
+
+            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+            command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
+            command.Parameters.Add(new SqlParameter("@so_luong", So_luong));
+
+            int result = command.ExecuteNonQuery();
+
+            //DAL.CommitTransaction();
+            m_dbConnection.Close();
             return result;
         }
 

@@ -252,7 +252,7 @@ namespace Inventory
             frm.Show();
         }
 
-        private void nhậpTồnĐầuKỳToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MenuItemNhapTonDauKy_Click(object sender, EventArgs e)
         {
             frmNhapTonDauKy frm = new frmNhapTonDauKy();
             frm.Text = "Nhập tồn đầu kỳ";
@@ -264,17 +264,11 @@ namespace Inventory
                     f.Activate();
                     return;
                 }
-
             }
 
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-        }
-
-        private void quảnLýXuấtKhoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

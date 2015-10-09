@@ -95,11 +95,6 @@
             // 
             this.cboDonViTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDonViTinh.FormattingEnabled = true;
-            this.cboDonViTinh.Items.AddRange(new object[] {
-            "",
-            "Cái",
-            "Bộ",
-            "Mét"});
             this.cboDonViTinh.Location = new System.Drawing.Point(595, 99);
             this.cboDonViTinh.Name = "cboDonViTinh";
             this.cboDonViTinh.Size = new System.Drawing.Size(159, 22);

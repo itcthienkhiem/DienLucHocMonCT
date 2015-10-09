@@ -172,9 +172,7 @@ namespace Inventory.XuatTamVatTu
                  bool.Parse (dt.Rows[i]["Trang_thai"].ToString())
                        
                     ));
-
                 //   dt.Rows[i]["ten_vat_tu"];
-
             }
             return areas;
         }

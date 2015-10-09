@@ -60,7 +60,7 @@ namespace Inventory.DanhMuc
 
             PanelButton.ResetButton();
 
-            DM_VatTu.GetDonViTinh();
+            /*DM_VatTu.GetDonViTinh();
             if (DM_VatTu.dicDonViTinh.Count > 0)
             {
                 cboDonViTinh.DataSource = new BindingSource(DM_VatTu.dicDonViTinh, null);
@@ -68,10 +68,22 @@ namespace Inventory.DanhMuc
                 cboDonViTinh.ValueMember = "Value";
 
                 DM_VatTu.Selected_DonViTinh = (int)cboDonViTinh.SelectedValue;
-            }
+            }*/
+            initDonViTinh();
 
             LoadData();
 
+        }
+
+        private void initDonViTinh()
+        {
+            clsDM_DonViTinh dmKho = new clsDM_DonViTinh();
+            cboDonViTinh.DisplayMember = "Ten_don_vi_tinh";
+            cboDonViTinh.ValueMember = "ID_Don_vi_tinh";
+
+            cboDonViTinh.DataSource = dmKho.GetAll();
+
+            cboDonViTinh.SelectedIndex = -1;
         }
 
         public void FormAction(enumFormAction frmAct)
@@ -139,7 +151,7 @@ namespace Inventory.DanhMuc
                 txtMaVatTu.Text = "";
                 txtTenVatTu.Text = "";
                 txtMoTa.Text = "";
-                cboDonViTinh.SelectedIndex = 1;
+                cboDonViTinh.SelectedIndex = -1;
             }
         }
 

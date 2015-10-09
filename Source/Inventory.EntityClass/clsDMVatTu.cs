@@ -171,6 +171,29 @@ namespace Inventory.EntityClass
        // End GetAll
 
        /// <summary>
+       /// Get tất cả dữ liệu từ CSDL, dùng cho Grid
+       /// </summary>
+       /// <returns>DataTable</returns>
+       public DataTable GetAll_for_cb()
+       {
+           m_dbConnection.Open();
+
+           DataTable dt = new DataTable();
+           //string sql = "SELECT * FROM DM_Vat_Tu";
+           string sql = "";
+           sql += "SELECT ROW_NUMBER() OVER (ORDER BY DM_Vat_Tu.Ma_vat_tu) AS id, DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu ";
+           sql += "FROM DM_Vat_Tu ";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+           m_dbConnection.Close();
+
+           return dt;
+       }
+       // End GetAll
+
+       /// <summary>
        /// Get tất cả DonViTInh
        /// </summary>
        /// <returns>DataTable</returns>
