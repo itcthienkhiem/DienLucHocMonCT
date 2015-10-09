@@ -251,5 +251,25 @@ namespace Inventory
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void nhậpTồnĐầuKỳToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNhapTonDauKy frm = new frmNhapTonDauKy();
+            frm.Text = "Nhập tồn đầu kỳ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }

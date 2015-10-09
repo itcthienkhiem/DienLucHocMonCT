@@ -58,6 +58,7 @@
             this.cbTrangThai = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMaNhanVien = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDMNhanVien)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.linkLabel1);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label11);
             this.pnlMenu.Controls.Add(this.btnLuu);
@@ -233,6 +235,7 @@
             // 
             // txtTenNhanVien
             // 
+            this.txtTenNhanVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtTenNhanVien.Location = new System.Drawing.Point(109, 99);
             this.txtTenNhanVien.Name = "txtTenNhanVien";
             this.txtTenNhanVien.Size = new System.Drawing.Size(171, 22);
@@ -258,9 +261,9 @@
             this.gridDMNhanVien.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
             this.gridDMNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridDMNhanVien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridDMNhanVien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDMNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDMNhanVien.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -342,10 +345,21 @@
             // 
             // txtMaNhanVien
             // 
+            this.txtMaNhanVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtMaNhanVien.Location = new System.Drawing.Point(419, 100);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
             this.txtMaNhanVien.Size = new System.Drawing.Size(171, 22);
             this.txtMaNhanVien.TabIndex = 43;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(416, 30);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // frmDMNhanVien
             // 
@@ -405,6 +419,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_nhan_vien;
         private System.Windows.Forms.DataGridViewTextBoxColumn Trang_thai;
         private System.Windows.Forms.TextBox txtMaNhanVien;
+        private System.Windows.Forms.LinkLabel linkLabel1;
 
 
     }

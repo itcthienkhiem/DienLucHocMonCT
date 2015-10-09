@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -92,6 +92,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
@@ -102,7 +103,7 @@
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cbMaPhieuXuatTam = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -229,6 +230,7 @@
             // 
             // cbTenVatTu
             // 
+            this.cbTenVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbTenVatTu.Enabled = false;
             this.cbTenVatTu.FormattingEnabled = true;
             this.cbTenVatTu.Location = new System.Drawing.Point(128, 23);
@@ -238,6 +240,7 @@
             // 
             // cbMaVatTu
             // 
+            this.cbMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbMaVatTu.Enabled = false;
             this.cbMaVatTu.FormattingEnabled = true;
             this.cbMaVatTu.Location = new System.Drawing.Point(12, 23);
@@ -257,6 +260,7 @@
             // 
             // txtSLTX
             // 
+            this.txtSLTX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtSLTX.Enabled = false;
             this.txtSLTX.Location = new System.Drawing.Point(374, 24);
             this.txtSLTX.Name = "txtSLTX";
@@ -276,6 +280,7 @@
             // 
             // txtSLHN
             // 
+            this.txtSLHN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtSLHN.Enabled = false;
             this.txtSLHN.Location = new System.Drawing.Point(561, 23);
             this.txtSLHN.Name = "txtSLHN";
@@ -441,6 +446,7 @@
             // 
             // txtSLGL
             // 
+            this.txtSLGL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtSLGL.Enabled = false;
             this.txtSLGL.Location = new System.Drawing.Point(476, 23);
             this.txtSLGL.Name = "txtSLGL";
@@ -452,8 +458,8 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -461,15 +467,15 @@
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -485,8 +491,8 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMaster.Size = new System.Drawing.Size(884, 268);
@@ -675,6 +681,7 @@
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.linkLabel1);
             this.pnlMenu.Controls.Add(this.label21);
             this.pnlMenu.Controls.Add(this.button1);
             this.pnlMenu.Controls.Add(this.label2);
@@ -696,6 +703,16 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(916, 92);
             this.pnlMenu.TabIndex = 76;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(862, 63);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(36, 14);
+            this.label21.TabIndex = 6;
+            this.label21.Text = "Đóng";
+            this.label21.Visible = false;
             // 
             // button1
             // 
@@ -776,6 +793,7 @@
             // 
             // cbTenNhanVien
             // 
+            this.cbTenNhanVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbTenNhanVien.FormattingEnabled = true;
             this.cbTenNhanVien.Location = new System.Drawing.Point(92, 144);
             this.cbTenNhanVien.Name = "cbTenNhanVien";
@@ -794,6 +812,7 @@
             // 
             // cbMaPhieuXuatTam
             // 
+            this.cbMaPhieuXuatTam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbMaPhieuXuatTam.FormattingEnabled = true;
             this.cbMaPhieuXuatTam.Location = new System.Drawing.Point(93, 117);
             this.cbMaPhieuXuatTam.Name = "cbMaPhieuXuatTam";
@@ -801,15 +820,15 @@
             this.cbMaPhieuXuatTam.TabIndex = 92;
             this.cbMaPhieuXuatTam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbMaPhieuXuatTam_KeyPress);
             // 
-            // label21
+            // linkLabel1
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(862, 63);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(36, 14);
-            this.label21.TabIndex = 6;
-            this.label21.Text = "Đóng";
-            this.label21.Visible = false;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(324, 34);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 94;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // frmChiTietPhieuXuatTam
             // 
@@ -924,5 +943,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

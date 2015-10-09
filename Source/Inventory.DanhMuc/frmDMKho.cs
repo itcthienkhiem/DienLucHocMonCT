@@ -125,6 +125,11 @@ namespace Inventory.DanhMuc
         /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (txtTenKho.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Tên kho không được phép rỗng!");
+                return;
+            }
             switch (PanelButton.getClickStatus())
             {
                 case enumButton.Them:

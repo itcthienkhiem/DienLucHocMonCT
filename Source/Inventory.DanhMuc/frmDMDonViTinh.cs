@@ -128,6 +128,11 @@ namespace Inventory.DanhMuc
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (txtTenDonVi.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Tên kho không được phép rỗng!");
+                return;
+            }
             switch (PanelButton.getClickStatus())
             {
 

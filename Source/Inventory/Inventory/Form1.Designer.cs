@@ -46,10 +46,11 @@
             this.danhSáchPhiếuNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lậpPhieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemDSPhieuXuatTamUng = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýTồnĐầuKỳToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemDSPhieuXuatTamUng = new System.Windows.Forms.ToolStripMenuItem();
+            this.nhậpTồnĐầuKỳToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -198,10 +199,18 @@
             this.lapToolStripMenuItem.Text = "Lập Phiếu Xuất Tạm Ứng Cho Nhân Viên";
             this.lapToolStripMenuItem.Click += new System.EventHandler(this.lapToolStripMenuItem_Click);
             // 
+            // MenuItemDSPhieuXuatTamUng
+            // 
+            this.MenuItemDSPhieuXuatTamUng.Name = "MenuItemDSPhieuXuatTamUng";
+            this.MenuItemDSPhieuXuatTamUng.Size = new System.Drawing.Size(288, 22);
+            this.MenuItemDSPhieuXuatTamUng.Text = "Danh Sách Phiếu Xuất Tạm Ứng";
+            this.MenuItemDSPhieuXuatTamUng.Click += new System.EventHandler(this.MenuItemDSPhieuXuatTamUng_Click);
+            // 
             // quảnLýTồnĐầuKỳToolStripMenuItem
             // 
             this.quảnLýTồnĐầuKỳToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemTonDauKy});
+            this.MenuItemTonDauKy,
+            this.nhậpTồnĐầuKỳToolStripMenuItem});
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Name = "quảnLýTồnĐầuKỳToolStripMenuItem";
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Size = new System.Drawing.Size(127, 20);
             this.quảnLýTồnĐầuKỳToolStripMenuItem.Text = "Quản Lý Tồn Đầu Kỳ";
@@ -209,7 +218,7 @@
             // MenuItemTonDauKy
             // 
             this.MenuItemTonDauKy.Name = "MenuItemTonDauKy";
-            this.MenuItemTonDauKy.Size = new System.Drawing.Size(135, 22);
+            this.MenuItemTonDauKy.Size = new System.Drawing.Size(167, 22);
             this.MenuItemTonDauKy.Text = "Tồn Đầu Kỳ";
             this.MenuItemTonDauKy.Click += new System.EventHandler(this.MenuItemTonDauKy_Click);
             // 
@@ -220,12 +229,12 @@
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
             // 
-            // MenuItemDSPhieuXuatTamUng
+            // nhậpTồnĐầuKỳToolStripMenuItem
             // 
-            this.MenuItemDSPhieuXuatTamUng.Name = "MenuItemDSPhieuXuatTamUng";
-            this.MenuItemDSPhieuXuatTamUng.Size = new System.Drawing.Size(288, 22);
-            this.MenuItemDSPhieuXuatTamUng.Text = "Danh Sách Phiếu Xuất Tạm Ứng";
-            this.MenuItemDSPhieuXuatTamUng.Click += new System.EventHandler(this.MenuItemDSPhieuXuatTamUng_Click);
+            this.nhậpTồnĐầuKỳToolStripMenuItem.Name = "nhậpTồnĐầuKỳToolStripMenuItem";
+            this.nhậpTồnĐầuKỳToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.nhậpTồnĐầuKỳToolStripMenuItem.Text = "Nhập Tồn Đầu Kỳ";
+            this.nhậpTồnĐầuKỳToolStripMenuItem.Click += new System.EventHandler(this.nhậpTồnĐầuKỳToolStripMenuItem_Click);
             // 
             // MDIMain
             // 
@@ -276,6 +285,7 @@
         private System.Windows.Forms.ToolStripMenuItem lapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem giớiThiệuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuItemDSPhieuXuatTamUng;
+        private System.Windows.Forms.ToolStripMenuItem nhậpTồnĐầuKỳToolStripMenuItem;
     }
 }
 

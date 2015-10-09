@@ -129,6 +129,11 @@ namespace Inventory.DanhMuc
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (txtMaNhanVien.Text.Trim().Length == 0 || txtTenNhanVien.Text.Trim().Length==0)
+            {
+                MessageBox.Show("Kiểm tra lại thuộc tính không được phép rỗng !");
+                return;
+            }
             switch (PanelButton.getClickStatus())
             {
 

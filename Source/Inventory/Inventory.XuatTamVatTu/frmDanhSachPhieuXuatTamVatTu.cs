@@ -94,12 +94,19 @@ namespace Inventory.XuatTamVatTu
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
-            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
-            string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+            try
+            {
+                Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+                DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+                string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
 
-            frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
-            ChiTietPhieuXuatTam.Show();
+                frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
+                ChiTietPhieuXuatTam.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnThem_Click(object sender, EventArgs e)

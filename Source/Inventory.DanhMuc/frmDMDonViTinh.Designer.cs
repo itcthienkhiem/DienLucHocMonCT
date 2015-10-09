@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnDong = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.gridDMDonViTinh = new System.Windows.Forms.DataGridView();
             this.ID_Don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDMDonViTinh)).BeginInit();
@@ -59,6 +60,7 @@
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.linkLabel1);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label11);
             this.pnlMenu.Controls.Add(this.btnLuu);
@@ -218,6 +220,7 @@
             // 
             // txtTenDonVi
             // 
+            this.txtTenDonVi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtTenDonVi.Location = new System.Drawing.Point(84, 98);
             this.txtTenDonVi.Name = "txtTenDonVi";
             this.txtTenDonVi.Size = new System.Drawing.Size(171, 22);
@@ -241,23 +244,23 @@
             this.gridDMDonViTinh.AllowUserToAddRows = false;
             this.gridDMDonViTinh.AllowUserToDeleteRows = false;
             this.gridDMDonViTinh.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDMDonViTinh.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            this.gridDMDonViTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDMDonViTinh.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridDMDonViTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDMDonViTinh.AutoGenerateColumns = false;
             this.gridDMDonViTinh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDMDonViTinh.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDMDonViTinh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDMDonViTinh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDMDonViTinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDMDonViTinh.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_Don_vi_tinh,
@@ -278,8 +281,8 @@
             // ID_Don_vi_tinh
             // 
             this.ID_Don_vi_tinh.DataPropertyName = "ID_Don_vi_tinh";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID_Don_vi_tinh.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID_Don_vi_tinh.DefaultCellStyle = dataGridViewCellStyle3;
             this.ID_Don_vi_tinh.HeaderText = "ID Đơn Vị Tính";
             this.ID_Don_vi_tinh.Name = "ID_Don_vi_tinh";
             this.ID_Don_vi_tinh.ReadOnly = true;
@@ -291,6 +294,16 @@
             this.Ten_don_vi_tinh.Name = "Ten_don_vi_tinh";
             this.Ten_don_vi_tinh.ReadOnly = true;
             this.Ten_don_vi_tinh.Width = 160;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(365, 30);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // frmDMDonViTinh
             // 
@@ -340,5 +353,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_don_vi_tinh;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
