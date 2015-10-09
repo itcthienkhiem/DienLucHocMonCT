@@ -156,7 +156,7 @@ namespace Inventory.EntityClass
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-           command.Parameters.Add("@Ten_nhan_vien", SqlDbType.VarChar, 50).Value = Ten_nhan_vien;
+           command.Parameters.Add("@Ten_nhan_vien", SqlDbType.NVarChar, 50).Value = Ten_nhan_vien;
            //command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
            command.Parameters.Add("@Ma_nhan_vien", SqlDbType.VarChar, 50).Value = Ma_nhan_vien;
            command.Parameters.Add("@Trang_thai", SqlDbType.Bit).Value = Trang_thai;
