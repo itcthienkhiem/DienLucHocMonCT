@@ -92,6 +92,7 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
+                //txtXuatTaiKho.Enabled = true;
             }
 
         }
