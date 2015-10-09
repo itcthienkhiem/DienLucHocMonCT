@@ -93,6 +93,73 @@ namespace Inventory.EntityClass
             return dt;
         }
 
+        public DataTable GetChiTietPhieuNhap(string Ma_phieu_nhap)
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM DM_Vat_Tu";
+            //SELECT ROW_NUMBER() OVER (ORDER BY Ma_phieu_nhap) AS rn, * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu
+            string sql = "";
+            sql += "SELECT ";
+            sql += "" + "ROW_NUMBER() OVER (ORDER BY Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap) AS Stt, ";
+            sql += "" + "DM_Vat_Tu.Ma_vat_tu, ";
+            sql += "" + "DM_Vat_Tu.Ten_vat_tu, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
+            sql += "" + "DM_Don_vi_tinh.Ten_don_vi_tinh, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Don_gia, ";
+            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien ";
+            sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Vat_Tu ";
+            sql += "" + "ON DM_Vat_Tu.Ma_vat_tu=Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Don_vi_tinh ";
+            sql += "" + "ON DM_Don_vi_tinh.ID_Don_vi_tinh=Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_Don_vi_tinh ";
+            sql += "WHERE Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap=@Ma_phieu_nhap";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
+        public DataTable GetThongTinPhieuNhap(string Ma_phieu_nhap)
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "" + "DM_Kho.Ten_kho, ";
+            sql += "" + "CONVERT(VARCHAR(10), Phieu_Nhap_Kho.Ngay_lap, 102) as Ngay_lap, ";
+            sql += "" + "Phieu_Nhap_Kho.Ly_do, ";
+            sql += "" + "Phieu_Nhap_Kho.So_hoa_don, ";
+            sql += "" + "Phieu_Nhap_Kho.Cong_trinh, ";
+            sql += "" + "Phieu_Nhap_Kho.Dia_Chi ";
+            sql += "FROM Phieu_Nhap_Kho ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Kho ";
+            sql += "" + "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho ";
+            sql += "WHERE Phieu_Nhap_Kho.Ma_phieu_nhap=@Ma_phieu_nhap";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
         
         public bool CheckTonTaiSoDK()
         {
