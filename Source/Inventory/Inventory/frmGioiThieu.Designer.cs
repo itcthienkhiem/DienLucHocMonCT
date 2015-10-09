@@ -33,9 +33,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,13 +51,13 @@
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "\tPhần mềm được phát triển dựa trên nhu cầu quản lý nhập xuất kho vật tư của công " +
-                "ty Điện Lực Hóc Môn";
+    "ty Điện Lực Hóc Môn";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(384, 140);
+            this.label4.Location = new System.Drawing.Point(408, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(154, 16);
             this.label4.TabIndex = 12;
@@ -67,7 +67,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(215, 140);
+            this.label3.Location = new System.Drawing.Point(239, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 10;
@@ -79,9 +79,9 @@
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(384, 114);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 16);
+            this.label9.Size = new System.Drawing.Size(250, 16);
             this.label9.TabIndex = 13;
-            this.label9.Text = "01649308380";
+            this.label9.Text = "01649308380(Khiêm) - 01684830649 (Trí)";
             // 
             // label10
             // 
@@ -93,21 +93,12 @@
             this.label10.TabIndex = 11;
             this.label10.Text = "Số điện thoại hỗ trợ :";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(80, 18);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(119, 101);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 8;
-            this.pictureBox2.TabStop = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(129, 173);
+            this.label2.Location = new System.Drawing.Point(213, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(379, 16);
             this.label2.TabIndex = 7;
@@ -120,9 +111,19 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(250, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(275, 18);
+            this.label1.Size = new System.Drawing.Size(284, 18);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Co.Inventory Desktop – Version 1.0";
+            this.label1.Text = "Co.Inventory Desktop – Version Beta";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Inventory.Properties.Resources.logo;
+            this.pictureBox2.Location = new System.Drawing.Point(71, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(119, 118);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
             // 
             // frmGioiThieu
             // 
@@ -143,6 +144,7 @@
             this.MinimizeBox = false;
             this.Name = "frmGioiThieu";
             this.Text = "Giới thiệu";
+            this.Load += new System.EventHandler(this.frmGioiThieu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -15,5 +15,10 @@ namespace Inventory
         {
             InitializeComponent();
         }
+
+        private void frmGioiThieu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

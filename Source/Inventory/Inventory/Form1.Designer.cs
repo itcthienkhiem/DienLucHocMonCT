@@ -169,6 +169,7 @@
             this.quảnLýXuấtKhoToolStripMenuItem.Name = "quảnLýXuấtKhoToolStripMenuItem";
             this.quảnLýXuấtKhoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.quảnLýXuấtKhoToolStripMenuItem.Text = "Quản Lý Xuất Kho";
+            this.quảnLýXuấtKhoToolStripMenuItem.Click += new System.EventHandler(this.quảnLýXuấtKhoToolStripMenuItem_Click);
             // 
             // quảnLýHoànTrảToolStripMenuItem
             // 

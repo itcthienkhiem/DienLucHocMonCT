@@ -271,5 +271,10 @@ namespace Inventory
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void quảnLýXuấtKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
