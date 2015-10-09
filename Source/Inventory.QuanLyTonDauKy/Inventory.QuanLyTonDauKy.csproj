@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
+    <Compile Include="frmNhapTonDauKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhapTonDauKy.Designer.cs">
+      <DependentUpon>frmNhapTonDauKy.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTonDauKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmNhapTonDauKy.resx">
+      <DependentUpon>frmNhapTonDauKy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTonDauKy.resx">
       <DependentUpon>frmTonDauKy.cs</DependentUpon>
     </EmbeddedResource>
