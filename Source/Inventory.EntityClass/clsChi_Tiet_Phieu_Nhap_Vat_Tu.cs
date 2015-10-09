@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-
+using Inventory.Utilities;
 namespace Inventory.EntityClass
 {
    public class clsChi_Tiet_Phieu_Nhap_Vat_Tu
@@ -22,7 +22,7 @@ namespace Inventory.EntityClass
         public int? ID_Don_vi_tinh;
         //public int? ID_Don_vi_tinh;
 
-        SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
         public clsChi_Tiet_Phieu_Nhap_Vat_Tu()
         {
           //  var str = config.AppSettings.Settings["ConnectionString"].Value;

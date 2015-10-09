@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-
+using Inventory.Utilities;
 namespace Inventory.EntityClass
 {
    public  class clsChiTietPhieuXuatTam
@@ -16,7 +16,7 @@ namespace Inventory.EntityClass
        public int So_luong_hoan_nhap;
        public int So_luong_giu_lai;
        public int So_luong_thuc_xuat;
-       SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+       SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
        public DataTable GetAll(string maPhieu)
        {

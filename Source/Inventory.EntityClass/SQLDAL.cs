@@ -5,12 +5,13 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using Inventory.Utilities;
 
 namespace Inventory.EntityClass
 {
     public class SQLDAL
     {
-        public string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+        public string connectionString = clsThamSoUtilities.connectionString;
         public SqlConnection m_conn = null;
         public SqlTransaction m_trans = null;
 

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-
+using Inventory.Utilities;
 namespace Inventory.EntityClass
 {
    public class clsDM_Kho
@@ -17,7 +17,7 @@ namespace Inventory.EntityClass
        
        }
 
-       SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+       SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
        public DataTable GetAll()
        {

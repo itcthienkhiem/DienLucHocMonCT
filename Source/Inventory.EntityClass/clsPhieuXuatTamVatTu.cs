@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-
+using Inventory.Utilities;
 namespace Inventory.EntityClass
 {
    public  class clsPhieuXuatTamVatTu
@@ -22,7 +22,7 @@ namespace Inventory.EntityClass
        public clsPhieuXuatTamVatTu()
        { 
        }
-              SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+              SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
          public DataTable GetAll(string maPhieu)
        {

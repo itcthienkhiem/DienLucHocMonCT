@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-
+using Inventory.Utilities;
 namespace Inventory.EntityClass
 {
     /// <summary>
@@ -142,7 +142,7 @@ namespace Inventory.EntityClass
        /// <summary>
        /// Giữ kết nối DB từ App.config
        /// </summary>
-       SqlConnection m_dbConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+       SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
        /// <summary>
        /// Get tất cả dữ liệu từ CSDL, dùng cho Grid
