@@ -204,5 +204,11 @@ namespace Inventory
             frmGioiThieu gioithieu = new frmGioiThieu();
             gioithieu.Show();
         }
+
+        private void MDIMain_Load(object sender, EventArgs e)
+        {
+            frmKetNoi kn = new frmKetNoi();
+          
+        }
     }
 }

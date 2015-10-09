@@ -45,10 +45,10 @@
             this.quảnLýHoànTrảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhSáchPhiếuNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lậpPhieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýTồnĐầuKỳToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,6 +190,12 @@
             this.lậpPhieToolStripMenuItem.Text = "Xuất Tạm Ứng";
             this.lậpPhieToolStripMenuItem.Click += new System.EventHandler(this.lậpPhieToolStripMenuItem_Click);
             // 
+            // lapToolStripMenuItem
+            // 
+            this.lapToolStripMenuItem.Name = "lapToolStripMenuItem";
+            this.lapToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.lapToolStripMenuItem.Text = "Lập Phiếu Xuất Tạm Ứng Cho Nhân Viên";
+            // 
             // quảnLýTồnĐầuKỳToolStripMenuItem
             // 
             this.quảnLýTồnĐầuKỳToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -212,12 +218,6 @@
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
             // 
-            // lapToolStripMenuItem
-            // 
-            this.lapToolStripMenuItem.Name = "lapToolStripMenuItem";
-            this.lapToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
-            this.lapToolStripMenuItem.Text = "Lập Phiếu Xuất Tạm Ứng Cho Nhân Viên";
-            // 
             // MDIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -235,6 +235,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "MDIMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MDIMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
