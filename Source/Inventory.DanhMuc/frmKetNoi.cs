@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Inventory.EntityClass;
 using System.Configuration;
 using Inventory.Utilities;
+using System.IO;
 namespace Inventory.DanhMuc
 {
     public partial class frmKetNoi : Form
@@ -22,8 +23,11 @@ namespace Inventory.DanhMuc
 
                 string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string configFile = System.IO.Path.Combine(appPath, "App.config");
+                
                 ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
                 configFileMap.ExeConfigFilename = configFile;
+              
+
                 System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
 
                 var settings = config.AppSettings.Settings;
@@ -33,6 +37,7 @@ namespace Inventory.DanhMuc
                 txtTenCSDL.Text = settings["ten_CSDL"].Value;
                 cbKhoLamViec.SelectedIndex =int.Parse( settings["IDKho"].Value.ToString() )-1;
                 clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
+                clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
 
             }
             catch (Exception ex) { }
@@ -74,6 +79,7 @@ namespace Inventory.DanhMuc
 
                         config.Save();
                         clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
+                        clsThamSoUtilities.ID_Kho =int.Parse    ( config.AppSettings.Settings["IDkho"].Value.ToString());
 
                     }
                     catch (Exception ex)
