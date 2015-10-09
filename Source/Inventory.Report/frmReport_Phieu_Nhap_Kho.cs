@@ -100,8 +100,8 @@ namespace Inventory.Report
             //this.reportViewer1.RefreshReport();
 
             this.reportViewerPhieuNhapKho.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
-            //this.reportViewerPhieuNhapKho.AutoScaleDimensions = new System.Drawing.SizeF(500F, 500F);
-            this.reportViewerPhieuNhapKho.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.reportViewerPhieuNhapKho.AutoScaleDimensions = new System.Drawing.SizeF(500F, 500F);
+            this.reportViewerPhieuNhapKho.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 
 
             //refresh viewer with above settings
