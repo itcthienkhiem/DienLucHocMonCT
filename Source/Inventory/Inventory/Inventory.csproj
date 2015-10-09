@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,6 +79,7 @@
     </Compile>
     <None Include="App.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -101,6 +103,10 @@
     <ProjectReference Include="..\..\Inventory.QuanLyTonDauKy\Inventory.QuanLyTonDauKy.csproj">
       <Project>{2E4FE390-1E18-4479-B07D-0E83D3735C9A}</Project>
       <Name>Inventory.QuanLyTonDauKy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Inventory.Utilities\Inventory.Utilities.csproj">
+      <Project>{BDE21978-8FDB-4215-96B6-58A6A6863459}</Project>
+      <Name>Inventory.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Inventory.XuatTamVatTu\Inventory.XuatTamVatTu.csproj">
       <Project>{f1edb54e-6bca-4689-896a-98a6f99816b2}</Project>

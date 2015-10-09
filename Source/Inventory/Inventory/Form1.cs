@@ -10,7 +10,8 @@ using Inventory.DanhMuc;
 using Inventory.NhapXuat;
 using Inventory.XuatTamVatTu;
 using Inventory.QuanLyTonDauKy;
-
+using Inventory.Utilities;
+using System.Configuration;
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -207,8 +208,23 @@ namespace Inventory
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
-            frmKetNoi kn = new frmKetNoi();
-          
+            //frmKetNoi kn = new frmKetNoi();
+            try
+            {
+                string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string configFile = System.IO.Path.Combine(appPath, "App.config");
+                ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
+                configFileMap.ExeConfigFilename = configFile;
+                System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+
+
+
+                clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
+                clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");
+            }
         }
     }
 }
