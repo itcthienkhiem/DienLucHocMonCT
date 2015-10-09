@@ -83,7 +83,9 @@
     <EmbeddedResource Include="frmReport_Phieu_Nhap_Kho.resx">
       <DependentUpon>frmReport_Phieu_Nhap_Kho.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_Nhap_Kho.rdlc" />
+    <EmbeddedResource Include="Report_Nhap_Kho.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inventory.EntityClass\Inventory.EntityClass.csproj">

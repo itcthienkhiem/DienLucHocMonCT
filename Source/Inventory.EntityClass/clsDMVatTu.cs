@@ -39,13 +39,13 @@ namespace Inventory.EntityClass
 
        }
 
-       public clsDMVatTu(string mavt,string tenvt,string  dvt,string mota,long don_gia, int id_dvt)
+       public clsDMVatTu(string mavt,string tenvt,string  dvt,string mota, int id_dvt)
        {
            this.Ma_vat_tu = mavt;
            this.Ten_vat_tu = tenvt;
            this.ten_don_vi_tinh = dvt;
            this.Mo_ta = mota;
-           this.Don_gia = don_gia;
+         //  this.Don_gia = don_gia;
            this.ID_Don_vi_tinh = id_dvt;
        }
 

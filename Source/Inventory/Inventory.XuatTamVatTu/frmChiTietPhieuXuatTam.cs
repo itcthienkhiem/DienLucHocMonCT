@@ -191,8 +191,8 @@ namespace Inventory.XuatTamVatTu
                   (dt.Rows[i]["ten_don_vi_tinh"].ToString()),
                         dt.Rows[i]["Mo_ta"].ToString()
                         ,
-                       long.Parse(dt.Rows[i]["Don_gia"].ToString())
-                       ,
+                       //long.Parse(dt.Rows[i]["Don_gia"].ToString())
+                      // ,
                        int.Parse(dt.Rows[i]["ID_Don_vi_tinh"].ToString())
                     ));
 

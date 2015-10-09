@@ -851,8 +851,8 @@ namespace Inventory.NhapXuat
                   (dt.Rows[i]["ten_don_vi_tinh"].ToString()),
                         dt.Rows[i]["Mo_ta"].ToString()
                         ,
-                       long.Parse(dt.Rows[i]["Don_gia"].ToString())
-                       ,
+                     //  long.Parse(dt.Rows[i]["Don_gia"].ToString())
+                     //  ,
                        int.Parse(dt.Rows[i]["ID_Don_vi_tinh"].ToString())
                     ));
 
@@ -971,7 +971,8 @@ namespace Inventory.NhapXuat
             btnEdit.Enabled = _status;
             btnSaveGrid.Enabled = _status;
             btnDel.Enabled = _status;
-
+            txtDonGia.Enabled = _status;
+          //  txtSLYC.Enabled = _status;
             //txtMaPhieuNhap.Enabled = _status;
 
         }
