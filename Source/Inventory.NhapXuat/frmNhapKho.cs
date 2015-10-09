@@ -546,7 +546,7 @@ namespace Inventory.NhapXuat
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_xuat"].Value = txtSLTX.Text;
                     gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
-                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtDonGia.Text);
+                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
                   
                     PanelButton.setClickStatus( sttaf);
                 }
