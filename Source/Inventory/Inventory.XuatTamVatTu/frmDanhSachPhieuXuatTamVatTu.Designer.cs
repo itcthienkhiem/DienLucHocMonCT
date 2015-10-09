@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,7 +85,7 @@
             // 
             this.btnHuy.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.cancel_bmc;
             this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(337, 13);
+            this.btnHuy.Location = new System.Drawing.Point(290, 13);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(50, 50);
             this.btnHuy.TabIndex = 4;
@@ -94,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 67);
+            this.label2.Location = new System.Drawing.Point(292, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 14);
             this.label2.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             this.btnLuu.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.save_bmc;
             this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(281, 13);
+            this.btnLuu.Location = new System.Drawing.Point(234, 13);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
@@ -113,7 +113,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(290, 67);
+            this.label10.Location = new System.Drawing.Point(243, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 14);
             this.label10.TabIndex = 3;
@@ -223,19 +223,19 @@
             this.gridDanhSachPhieuXuatTam.AllowUserToAddRows = false;
             this.gridDanhSachPhieuXuatTam.AllowUserToDeleteRows = false;
             this.gridDanhSachPhieuXuatTam.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDanhSachPhieuXuatTam.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDanhSachPhieuXuatTam.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridDanhSachPhieuXuatTam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuXuatTam.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDanhSachPhieuXuatTam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDanhSachPhieuXuatTam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDanhSachPhieuXuatTam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuXuatTam.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_phieu_xuat_tam,
@@ -260,8 +260,8 @@
             // Ma_phieu_xuat_tam
             // 
             this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ma_phieu_xuat_tam.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ma_phieu_xuat_tam.DefaultCellStyle = dataGridViewCellStyle3;
             this.Ma_phieu_xuat_tam.HeaderText = "Mã phiếu xuất tạm";
             this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
             this.Ma_phieu_xuat_tam.ReadOnly = true;
