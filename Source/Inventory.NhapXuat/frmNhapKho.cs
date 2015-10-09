@@ -1112,5 +1112,53 @@ namespace Inventory.NhapXuat
             }
         }
 
+        private bool IsNumeric(string s)
+        {
+            Int32 output;
+            return Int32.TryParse(s, out output);
+        }
+
+        private System.Windows.Forms.ErrorProvider errorProvider1 = new ErrorProvider();
+
+        private void txtSLYC_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg = "Số lượng yêu cầu ko đúng. Xin hãy nhập số!";
+            if (!IsNumeric(txtSLYC.Text) || txtSLYC.Text.Equals(String.Empty))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                txtSLYC.Select(0, txtSLYC.Text.Length);
+
+                // Set the ErrorProvider error with the text to display. 
+                this.errorProvider1.SetError(txtSLYC, errorMsg);
+            }
+        }
+
+        private void txtSLYC_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtSLYC, "");
+        }
+
+        private void txtSLTX_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtSLYC, "");
+        }
+
+        private void txtSLTX_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg = "Số lượng thực xuất ko đúng. Xin hãy nhập số!";
+            if (!IsNumeric(txtSLTX.Text) || txtSLTX.Text.Equals(String.Empty))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                txtSLYC.Select(0, txtSLTX.Text.Length);
+
+                // Set the ErrorProvider error with the text to display. 
+                this.errorProvider1.SetError(txtSLTX, errorMsg);
+            }
+        }
+
+
+
     }
 }
