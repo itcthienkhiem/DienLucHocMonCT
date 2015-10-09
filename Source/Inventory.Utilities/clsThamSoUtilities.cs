@@ -8,6 +8,8 @@ namespace Inventory.Utilities
     public class clsThamSoUtilities
     {
         public static string connectionString;
+        public static int ID_Kho;
+
 
     }
 }
