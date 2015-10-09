@@ -51,7 +51,7 @@
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "\tPhần mềm được phát triển dựa trên nhu cầu quản lý nhập xuất kho vật tư của công " +
-    "ty Điện Lực Hóc Môn";
+                "ty Điện Lực Hóc Môn";
             // 
             // label4
             // 
@@ -79,9 +79,9 @@
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(384, 114);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(250, 16);
+            this.label9.Size = new System.Drawing.Size(254, 16);
             this.label9.TabIndex = 13;
-            this.label9.Text = "01649308380(Khiêm) - 01684830649 (Trí)";
+            this.label9.Text = "01649308380 (Khiêm) - 01684830649 (Trí)";
             // 
             // label10
             // 

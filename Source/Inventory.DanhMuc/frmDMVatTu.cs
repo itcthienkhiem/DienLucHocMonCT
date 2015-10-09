@@ -138,7 +138,7 @@ namespace Inventory.DanhMuc
             txtMaVatTu.Text = SelectedRow.Cells["Ma_vat_tu"].Value.ToString();
             txtMoTa.Text = SelectedRow.Cells["Mo_ta"].Value.ToString();
 
-            cboDonViTinh.SelectedValue = (int)DM_VatTu.dicDonViTinh[SelectedRow.Cells["Ten_don_vi_tinh"].Value.ToString()];
+            cboDonViTinh.Text = SelectedRow.Cells["Ten_don_vi_tinh"].Value.ToString();//cboDonViTinh.Items.IndexOf("Mét"); //(int)DM_VatTu.dicDonViTinh[SelectedRow.Cells["ID_Don_vi_tinh"].Value.ToString()];
         }
 
         /// <summary>

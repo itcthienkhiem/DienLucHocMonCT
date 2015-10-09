@@ -1,0 +1,5 @@
+﻿Vật tư nhập ngoài -> Mã phiếu nhập -> Có cái mã phiếu nhập
+
+Ngày --> tồn
+
+Mã phiếu xuất tự phát sinh hay lấy ở đâu?
