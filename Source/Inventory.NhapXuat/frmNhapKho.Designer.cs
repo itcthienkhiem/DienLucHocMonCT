@@ -510,6 +510,7 @@
             // 
             // txtMaPhieuNhap
             // 
+            this.txtMaPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtMaPhieuNhap.Location = new System.Drawing.Point(98, 137);
             this.txtMaPhieuNhap.Name = "txtMaPhieuNhap";
             this.txtMaPhieuNhap.Size = new System.Drawing.Size(156, 22);
@@ -606,6 +607,7 @@
             // 
             // cbKhoNhap
             // 
+            this.cbKhoNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbKhoNhap.Enabled = false;
             this.cbKhoNhap.FormattingEnabled = true;
             this.cbKhoNhap.Location = new System.Drawing.Point(99, 106);
@@ -869,6 +871,7 @@
             // 
             // dtNgayNhap
             // 
+            this.dtNgayNhap.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dtNgayNhap.CustomFormat = "dd/MM/yyyy";
             this.dtNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtNgayNhap.Location = new System.Drawing.Point(99, 165);
