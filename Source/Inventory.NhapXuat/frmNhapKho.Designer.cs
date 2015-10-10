@@ -55,12 +55,22 @@
             this.dataColumn9 = new System.Data.DataColumn();
             this.dataColumn10 = new System.Data.DataColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnThem = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -82,12 +92,16 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtDVT = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnSaveGrid = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtChatLuong = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -97,20 +111,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtSLYC = new System.Windows.Forms.TextBox();
             this.dtNgayNhap = new System.Windows.Forms.DateTimePicker();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.btnSaveGrid = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -133,9 +133,9 @@
             this.gridMaster.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
             this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gridMaster.AutoGenerateColumns = false;
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -339,6 +339,49 @@
             this.pnlMenu.Size = new System.Drawing.Size(1034, 99);
             this.pnlMenu.TabIndex = 50;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(367, 36);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 87;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_bmc1;
+            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHuy.Location = new System.Drawing.Point(212, 13);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(58, 54);
+            this.btnHuy.TabIndex = 4;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.printOut_omc;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.Location = new System.Drawing.Point(684, 13);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(58, 54);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnTest
+            // 
+            this.btnTest.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.search_bmc;
+            this.btnTest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTest.Location = new System.Drawing.Point(607, 13);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(58, 54);
+            this.btnTest.TabIndex = 2;
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -348,6 +391,17 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Testing...";
             this.label1.Visible = false;
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
+            this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLuu.Location = new System.Drawing.Point(276, 13);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(58, 54);
+            this.btnLuu.TabIndex = 2;
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // label26
             // 
@@ -367,6 +421,17 @@
             this.label10.TabIndex = 3;
             this.label10.Text = "Lưu";
             // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(904, 13);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(58, 54);
+            this.btnDong.TabIndex = 2;
+            this.btnDong.UseVisualStyleBackColor = true;
+            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -376,6 +441,17 @@
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
+            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThem.Location = new System.Drawing.Point(10, 11);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(58, 54);
+            this.btnThem.TabIndex = 2;
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label6
             // 
@@ -394,6 +470,39 @@
             this.label5.Size = new System.Drawing.Size(39, 14);
             this.label5.TabIndex = 3;
             this.label5.Text = "Thêm";
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
+            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSua.Location = new System.Drawing.Point(79, 11);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(58, 56);
+            this.btnSua.TabIndex = 2;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_gmc;
+            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXoa.Location = new System.Drawing.Point(832, 16);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(58, 54);
+            this.btnXoa.TabIndex = 2;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Visible = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
+            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLamMoi.Location = new System.Drawing.Point(146, 11);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(58, 54);
+            this.btnLamMoi.TabIndex = 2;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -604,6 +713,42 @@
             this.panel1.Size = new System.Drawing.Size(1598, 386);
             this.panel1.TabIndex = 72;
             // 
+            // btnDel
+            // 
+            this.btnDel.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_delete;
+            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDel.Enabled = false;
+            this.btnDel.Location = new System.Drawing.Point(857, 21);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(45, 29);
+            this.btnDel.TabIndex = 86;
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnGridDel_Click);
+            // 
+            // btnSaveGrid
+            // 
+            this.btnSaveGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_save;
+            this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSaveGrid.Enabled = false;
+            this.btnSaveGrid.Location = new System.Drawing.Point(962, 21);
+            this.btnSaveGrid.Name = "btnSaveGrid";
+            this.btnSaveGrid.Size = new System.Drawing.Size(55, 29);
+            this.btnSaveGrid.TabIndex = 84;
+            this.btnSaveGrid.UseVisualStyleBackColor = true;
+            this.btnSaveGrid.Click += new System.EventHandler(this.btnGridSave_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_modify;
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(910, 21);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(45, 29);
+            this.btnEdit.TabIndex = 83;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnGridEdit_Click);
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -657,6 +802,18 @@
             this.txtChatLuong.Size = new System.Drawing.Size(91, 22);
             this.txtChatLuong.TabIndex = 82;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_new;
+            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAdd.Enabled = false;
+            this.btnAdd.Location = new System.Drawing.Point(805, 21);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(45, 29);
+            this.btnAdd.TabIndex = 80;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnGridAdd_Click);
+            // 
             // cbTenVatTu
             // 
             this.cbTenVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -696,7 +853,6 @@
             this.txtDonGia.Enabled = false;
             this.txtDonGia.Location = new System.Drawing.Point(595, 25);
             this.txtDonGia.Name = "txtDonGia";
-            this.txtDonGia.ReadOnly = true;
             this.txtDonGia.Size = new System.Drawing.Size(97, 22);
             this.txtDonGia.TabIndex = 77;
             this.txtDonGia.Text = "0";
@@ -754,163 +910,6 @@
             this.dtNgayNhap.Name = "dtNgayNhap";
             this.dtNgayNhap.Size = new System.Drawing.Size(198, 22);
             this.dtNgayNhap.TabIndex = 73;
-            // 
-            // btnDel
-            // 
-            this.btnDel.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_delete;
-            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnDel.Enabled = false;
-            this.btnDel.Location = new System.Drawing.Point(857, 21);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(45, 29);
-            this.btnDel.TabIndex = 86;
-            this.btnDel.UseVisualStyleBackColor = true;
-            this.btnDel.Click += new System.EventHandler(this.btnGridDel_Click);
-            // 
-            // btnSaveGrid
-            // 
-            this.btnSaveGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_save;
-            this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSaveGrid.Enabled = false;
-            this.btnSaveGrid.Location = new System.Drawing.Point(962, 21);
-            this.btnSaveGrid.Name = "btnSaveGrid";
-            this.btnSaveGrid.Size = new System.Drawing.Size(55, 29);
-            this.btnSaveGrid.TabIndex = 84;
-            this.btnSaveGrid.UseVisualStyleBackColor = true;
-            this.btnSaveGrid.Click += new System.EventHandler(this.btnGridSave_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_modify;
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(910, 21);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(45, 29);
-            this.btnEdit.TabIndex = 83;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnGridEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_new;
-            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(805, 21);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(45, 29);
-            this.btnAdd.TabIndex = 80;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnGridAdd_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_bmc1;
-            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(212, 13);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(58, 54);
-            this.btnHuy.TabIndex = 4;
-            this.btnHuy.UseVisualStyleBackColor = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.printOut_omc;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint.Location = new System.Drawing.Point(684, 13);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(58, 54);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnTest
-            // 
-            this.btnTest.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.search_bmc;
-            this.btnTest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTest.Location = new System.Drawing.Point(607, 13);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(58, 54);
-            this.btnTest.TabIndex = 2;
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Visible = false;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
-            this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(276, 13);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(58, 54);
-            this.btnLuu.TabIndex = 2;
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
-            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(904, 13);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(58, 54);
-            this.btnDong.TabIndex = 2;
-            this.btnDong.UseVisualStyleBackColor = true;
-            // 
-            // btnThem
-            // 
-            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
-            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThem.Location = new System.Drawing.Point(10, 11);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(58, 54);
-            this.btnThem.TabIndex = 2;
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // btnSua
-            // 
-            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
-            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSua.Location = new System.Drawing.Point(79, 11);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(58, 56);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_gmc;
-            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXoa.Location = new System.Drawing.Point(832, 16);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(58, 54);
-            this.btnXoa.TabIndex = 2;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Visible = false;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
-            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLamMoi.Location = new System.Drawing.Point(146, 11);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(58, 54);
-            this.btnLamMoi.TabIndex = 2;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(367, 36);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
-            this.linkLabel1.TabIndex = 87;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // frmNhapKho
             // 

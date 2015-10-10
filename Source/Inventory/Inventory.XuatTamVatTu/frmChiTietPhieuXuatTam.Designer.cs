@@ -66,13 +66,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtSLGL = new System.Windows.Forms.TextBox();
             this.gridMaster = new System.Windows.Forms.DataGridView();
-            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_Don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_Don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_thuc_xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_hoan_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataSet1 = new System.Data.DataSet();
             this.dataTable1 = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -92,6 +85,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -103,7 +97,13 @@
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cbMaPhieuXuatTam = new System.Windows.Forms.ComboBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_Don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_thuc_xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_hoan_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -460,9 +460,9 @@
             this.gridMaster.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
             this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gridMaster.AutoGenerateColumns = false;
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -498,62 +498,6 @@
             this.gridMaster.Size = new System.Drawing.Size(884, 268);
             this.gridMaster.TabIndex = 51;
             this.gridMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridMaster_MouseClick);
-            // 
-            // Ma_vat_tu
-            // 
-            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
-            this.Ma_vat_tu.Name = "Ma_vat_tu";
-            this.Ma_vat_tu.ReadOnly = true;
-            // 
-            // Ten_Don_vi_tinh
-            // 
-            this.Ten_Don_vi_tinh.DataPropertyName = "Ten_Don_vi_tinh";
-            this.Ten_Don_vi_tinh.HeaderText = "Ten_Don_vi_tinh";
-            this.Ten_Don_vi_tinh.Name = "Ten_Don_vi_tinh";
-            this.Ten_Don_vi_tinh.ReadOnly = true;
-            this.Ten_Don_vi_tinh.Width = 136;
-            // 
-            // ID_Don_vi_tinh
-            // 
-            this.ID_Don_vi_tinh.DataPropertyName = "ID_Don_vi_tinh";
-            this.ID_Don_vi_tinh.HeaderText = "ID_Don_vi_tinh";
-            this.ID_Don_vi_tinh.Name = "ID_Don_vi_tinh";
-            this.ID_Don_vi_tinh.ReadOnly = true;
-            this.ID_Don_vi_tinh.Visible = false;
-            this.ID_Don_vi_tinh.Width = 126;
-            // 
-            // Ten_vat_tu
-            // 
-            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
-            this.Ten_vat_tu.HeaderText = "Ten_vat_tu";
-            this.Ten_vat_tu.Name = "Ten_vat_tu";
-            this.Ten_vat_tu.ReadOnly = true;
-            this.Ten_vat_tu.Width = 107;
-            // 
-            // So_luong_thuc_xuat
-            // 
-            this.So_luong_thuc_xuat.DataPropertyName = "So_luong_thuc_xuat";
-            this.So_luong_thuc_xuat.HeaderText = "So_luong_thuc_xuat";
-            this.So_luong_thuc_xuat.Name = "So_luong_thuc_xuat";
-            this.So_luong_thuc_xuat.ReadOnly = true;
-            this.So_luong_thuc_xuat.Width = 156;
-            // 
-            // So_luong_hoan_nhap
-            // 
-            this.So_luong_hoan_nhap.DataPropertyName = "So_luong_hoan_nhap";
-            this.So_luong_hoan_nhap.HeaderText = "So_luong_hoan_nhap";
-            this.So_luong_hoan_nhap.Name = "So_luong_hoan_nhap";
-            this.So_luong_hoan_nhap.ReadOnly = true;
-            this.So_luong_hoan_nhap.Width = 161;
-            // 
-            // So_luong_giu_lai
-            // 
-            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
-            this.So_luong_giu_lai.HeaderText = "So_luong_giu_lai";
-            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
-            this.So_luong_giu_lai.ReadOnly = true;
-            this.So_luong_giu_lai.Width = 133;
             // 
             // dataSet1
             // 
@@ -704,6 +648,16 @@
             this.pnlMenu.Size = new System.Drawing.Size(916, 92);
             this.pnlMenu.TabIndex = 76;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(324, 34);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 94;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -820,15 +774,63 @@
             this.cbMaPhieuXuatTam.TabIndex = 92;
             this.cbMaPhieuXuatTam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbMaPhieuXuatTam_KeyPress);
             // 
-            // linkLabel1
+            // Ma_vat_tu
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(324, 34);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
-            this.linkLabel1.TabIndex = 94;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
+            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Mã vật tư";
+            this.Ma_vat_tu.Name = "Ma_vat_tu";
+            this.Ma_vat_tu.ReadOnly = true;
+            this.Ma_vat_tu.Width = 95;
+            // 
+            // Ten_Don_vi_tinh
+            // 
+            this.Ten_Don_vi_tinh.DataPropertyName = "Ten_Don_vi_tinh";
+            this.Ten_Don_vi_tinh.HeaderText = "Đvt";
+            this.Ten_Don_vi_tinh.Name = "Ten_Don_vi_tinh";
+            this.Ten_Don_vi_tinh.ReadOnly = true;
+            this.Ten_Don_vi_tinh.Width = 61;
+            // 
+            // ID_Don_vi_tinh
+            // 
+            this.ID_Don_vi_tinh.DataPropertyName = "ID_Don_vi_tinh";
+            this.ID_Don_vi_tinh.HeaderText = "ID_Don_vi_tinh";
+            this.ID_Don_vi_tinh.Name = "ID_Don_vi_tinh";
+            this.ID_Don_vi_tinh.ReadOnly = true;
+            this.ID_Don_vi_tinh.Visible = false;
+            this.ID_Don_vi_tinh.Width = 126;
+            // 
+            // Ten_vat_tu
+            // 
+            this.Ten_vat_tu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
+            this.Ten_vat_tu.HeaderText = "Tên Vật Tư";
+            this.Ten_vat_tu.Name = "Ten_vat_tu";
+            this.Ten_vat_tu.ReadOnly = true;
+            this.Ten_vat_tu.Width = 150;
+            // 
+            // So_luong_thuc_xuat
+            // 
+            this.So_luong_thuc_xuat.DataPropertyName = "So_luong_thuc_xuat";
+            this.So_luong_thuc_xuat.HeaderText = "SL Thực Xuất";
+            this.So_luong_thuc_xuat.Name = "So_luong_thuc_xuat";
+            this.So_luong_thuc_xuat.ReadOnly = true;
+            this.So_luong_thuc_xuat.Width = 117;
+            // 
+            // So_luong_hoan_nhap
+            // 
+            this.So_luong_hoan_nhap.DataPropertyName = "So_luong_hoan_nhap";
+            this.So_luong_hoan_nhap.HeaderText = "SL Hoàn Nhập";
+            this.So_luong_hoan_nhap.Name = "So_luong_hoan_nhap";
+            this.So_luong_hoan_nhap.ReadOnly = true;
+            this.So_luong_hoan_nhap.Width = 110;
+            // 
+            // So_luong_giu_lai
+            // 
+            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
+            this.So_luong_giu_lai.HeaderText = "SL Giữ Lại";
+            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
+            this.So_luong_giu_lai.ReadOnly = true;
+            this.So_luong_giu_lai.Width = 88;
             // 
             // frmChiTietPhieuXuatTam
             // 
@@ -931,6 +933,12 @@
         private System.Data.DataColumn dataColumn5;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtSLGL;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_Don_vi_tinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Don_vi_tinh;
@@ -938,11 +946,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_thuc_xuat;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_hoan_nhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_giu_lai;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

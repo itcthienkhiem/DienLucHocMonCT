@@ -125,7 +125,7 @@ namespace Inventory.NhapXuat
                         if (!phieunhap.CheckTonTaiSoDK())
                         {
                             // phieunhap.
-                            phieunhap.ID_kho = 1;
+                            phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             phieunhap.Dia_chi = txtDiaChi.Text;
                             phieunhap.Ly_do = txtLyDo.Text;
@@ -212,7 +212,7 @@ namespace Inventory.NhapXuat
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             {
                                 // phieunhap.
-                                phieunhap.ID_kho = 1;
+                                phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
                                 phieunhap.Ly_do = txtLyDo.Text;
