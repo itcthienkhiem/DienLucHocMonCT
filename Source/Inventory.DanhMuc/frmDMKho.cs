@@ -234,7 +234,7 @@ namespace Inventory.DanhMuc
                             if (selectedRowCount >= 0)
                             {
                                 DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
-                                if (DM_Kho.Update() == 1)
+                                if (DM_Kho.Update(DM_Kho) == 1)
                                 {
                                     //MessageBox.Show("Bạn đã cập nhật thành công !");
                                     AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);

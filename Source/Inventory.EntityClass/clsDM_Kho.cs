@@ -48,60 +48,100 @@ namespace Inventory.EntityClass
        public bool CheckTonTaiSoDK()
        {
 
-           m_dbConnection.Open();
-           DataTable dt = new DataTable();
-           string sql = "SELECT * FROM DM_kho WHERE ten_kho=@ten_kho";
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           command.Parameters.Add(new SqlParameter("@ten_kho", Ten_kho));
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
-           m_dbConnection.Close();
 
-           if (dt.Rows.Count > 0)
-           {
-               return true;
-           }
-           return false;
+           bool has = Entities.ent.DM_Kho.Any(cus => cus.Ten_kho == Ten_kho);
+           return has;
+
+           //m_dbConnection.Open();
+           //DataTable dt = new DataTable();
+           //string sql = "SELECT * FROM DM_kho WHERE ten_kho=@ten_kho";
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //command.Parameters.Add(new SqlParameter("@ten_kho", Ten_kho));
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(dt);
+           //m_dbConnection.Close();
+
+           //if (dt.Rows.Count > 0)
+           //{
+           //    return true;
+           //}
+           //return false;
        }
        public int Insert()
        {
 
-           m_dbConnection.Open();
+          // var id = Guid.NewGuid();
 
-           string sql = "";
-           sql += "INSERT INTO DM_Kho (Ten_kho) ";
-           sql += "VALUES(@Ten_kho)";
+           // insert
+         //  var context = new DatabaseEntities();
+           try
+           {
+               var t = new DM_Kho //Make sure you have a table called test in DB
+               {
+                   ID_kho = this.ID_kho,
+                   Ten_kho = this.Ten_kho,
+                   // ID = Guid.NewGuid(),
+               };
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           command.CommandType = CommandType.Text;
+               Entities.ent.DM_Kho.Add(t);
+               Entities.ent.SaveChanges();
+               return 1;
+           }
+           catch (Exception ex)
+           {
+               return 0;
 
-           //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-           command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
+           }
+           
 
-           int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
-           return result;
+
+           //m_dbConnection.Open();
+
+           //string sql = "";
+           //sql += "INSERT INTO DM_Kho (Ten_kho) ";
+           //sql += "VALUES(@Ten_kho)";
+
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //command.CommandType = CommandType.Text;
+
+           ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
+           //command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
+
+           //int result = command.ExecuteNonQuery();
+           //m_dbConnection.Close();
+           //return result;
        }
 
-       public int Update()
+       public int Update(clsDM_Kho dm_kho)
        {
-           m_dbConnection.Open();
-
-           string sql = "";
-           sql += "UPDATE DM_Kho ";
-           sql += "Set Ten_Kho=@Ten_Kho ";
-           sql += "WHERE ID_kho=@ID_kho";
 
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           command.CommandType = CommandType.Text;
+           var original = Entities.ent.DM_Kho.Find(this.ID_kho);
 
-           command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-           command.Parameters.Add(new SqlParameter("@Ten_Kho", Ten_kho));
+           if (original != null)
+           {
+               Entities.ent.Entry(original).CurrentValues.SetValues(dm_kho);
+               Entities.ent.SaveChanges();
+               return 1;
+           }
 
-           int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
-           return result;
+           //m_dbConnection.Open();
+
+           //string sql = "";
+           //sql += "UPDATE DM_Kho ";
+           //sql += "Set Ten_Kho=@Ten_Kho ";
+           //sql += "WHERE ID_kho=@ID_kho";
+
+
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //command.CommandType = CommandType.Text;
+
+           //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+           //command.Parameters.Add(new SqlParameter("@Ten_Kho", Ten_kho));
+
+           //int result = command.ExecuteNonQuery();
+           //m_dbConnection.Close();
+           return 0;
        }
 
        public int Delete()
