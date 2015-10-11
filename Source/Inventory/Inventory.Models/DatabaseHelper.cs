@@ -97,8 +97,8 @@ namespace Inventory.Models
         public  QLKhoDienLucEntities ent = new QLKhoDienLucEntities();
         public void CloseDatabase()
         {
-            if (ent.Database.Connection.State == System.Data.ConnectionState.Open)
-                ent.Database.Connection.Close();
+          //  if (ent.Database.Connection.State == System.Data.ConnectionState.Open)
+          //      ent.Database.Connection.Close();
         }
         public  int  ConnectDatabase()
         {

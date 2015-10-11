@@ -27,7 +27,7 @@ namespace Inventory.DanhMuc
         FormActionDelegate frmAction;
 
         //Data
-        clsDM_Kho DM_Kho;
+        clsDM_Kho DM_Kho1;
 
         //Quản lý Button
         clsPanelButton PanelButton;
@@ -37,7 +37,7 @@ namespace Inventory.DanhMuc
             InitializeComponent();
 
             //Init Data
-            DM_Kho = new clsDM_Kho();
+          //  DM_Kho DM_Kho1= new clsDM_Kho();
 
             //Init cls Button
             PanelButton = new clsPanelButton();
@@ -153,6 +153,7 @@ namespace Inventory.DanhMuc
         /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            DM_Kho1 = new clsDM_Kho();
             if (txtTenKho.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Tên kho không được phép rỗng!");
@@ -162,18 +163,18 @@ namespace Inventory.DanhMuc
             {
                 case enumButton.Them:
                     {
-                        DM_Kho.Ten_kho = txtTenKho.Text.Trim();
+                        DM_Kho1.Ten_kho = txtTenKho.Text.Trim();
 
-                        if (!DM_Kho.CheckTonTaiSoDK())
+                        if (!DM_Kho1.CheckTonTaiSoDK())
                         {
-                            if (DM_Kho.Insert() == 1)
+                            if (DM_Kho1.Insert() == 1)
                             {
                                 //MessageBox.Show("Bạn đã thêm thành công !");
                                 AutoClosingMessageBox.Show("Bạn đã thêm thành công !", "Thông báo", 1000);
 
                                 //Reset status
                                 PanelButton.ResetClickStatus();
-
+                                gridDMKho.Refresh();
                                 LoadData();
 
                                 PanelButton.ResetButton();
@@ -193,16 +194,19 @@ namespace Inventory.DanhMuc
                     }
                 case enumButton.Xoa:
                         {
-                            DM_Kho.Ten_kho = txtTenKho.Text;
+                            DM_Kho1.Ten_kho = txtTenKho.Text;
 
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                            DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                            DM_Kho1.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
 
                             DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
                             
                             if (dialogResult == DialogResult.Yes)
                             {
-                                if (DM_Kho.Delete() == 1)
+                                DM_Kho kho = new DM_Kho();
+                                kho.ID_kho = DM_Kho1.ID_kho;
+                                kho.Ten_kho = DM_Kho1.Ten_kho;
+                                if (DM_Kho1.Delete(kho) == 1)
                                 {
                                     //MessageBox.Show("Bạn đã xóa thành công !");
 
@@ -227,25 +231,29 @@ namespace Inventory.DanhMuc
                         }
                 case enumButton.Sua:
                         {
-                            DM_Kho.Ten_kho = txtTenKho.Text;
+                            DM_Kho1 = new clsDM_Kho();
+                            DM_Kho1.Ten_kho = txtTenKho.Text;
 
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
 
                             if (selectedRowCount >= 0)
                             {
-                                DM_Kho.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
-                                if (DM_Kho.Update(DM_Kho) == 1)
+                                DM_Kho1.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                                DM_Kho kho = new DM_Kho();
+                                kho.ID_kho = DM_Kho1.ID_kho;
+                                kho.Ten_kho = DM_Kho1.Ten_kho;
+                                if (DM_Kho1.Update(kho) == 1)
                                 {
                                     //MessageBox.Show("Bạn đã cập nhật thành công !");
                                     AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);
 
                                     //Reset
                                     PanelButton.ResetClickStatus();
-
-                                    LoadData();
+                                 //   gridDMKho.Refresh();
+                                   
 
                                     PanelButton.ResetButton();
-
+                                    LoadData();
                                     ResetInputForm();
                                 }
                                 else
