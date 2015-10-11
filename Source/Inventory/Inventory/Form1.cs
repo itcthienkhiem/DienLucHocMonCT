@@ -12,6 +12,8 @@ using Inventory.XuatTamVatTu;
 using Inventory.QuanLyTonDauKy;
 using Inventory.Utilities;
 using System.Configuration;
+using Inventory.Models;
+
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -19,6 +21,8 @@ namespace Inventory
         public MDIMain()
         {
             InitializeComponent();
+            Entities.ent  = DatabaseHelper.ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
+            
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

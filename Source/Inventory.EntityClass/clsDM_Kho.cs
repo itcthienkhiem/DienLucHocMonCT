@@ -6,30 +6,33 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using Inventory.Utilities;
+using Inventory.Models;
+using System.Linq;
 namespace Inventory.EntityClass
 {
    public class clsDM_Kho
     {
-       public int? ID_kho ;
-       public string Ten_kho;
+        public int? ID_kho;
+        public string Ten_kho;
        public clsDM_Kho()
        { 
        
        }
 
        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
-       ////public static object getAll()
-       ////{
+
+       public static object getAll()
+       {
 
 
-       ////    var dm = from d in Entities.ent.DM_Kho
-       ////             select new
-       ////             {
-       ////                 d.ID_kho,
-       ////                 d.Ten_kho
-       ////             };
-       ////    return dm.ToList();
-       ////}
+           var dm = from d in Entities.ent.DM_Kho
+                    select new
+                    {
+                        d.ID_kho,
+                        d.Ten_kho
+                    };
+           return dm.ToList();
+       }
        //public DataTable GetAll()
        //{
        //    m_dbConnection.Open();

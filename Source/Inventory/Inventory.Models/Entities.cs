@@ -10,7 +10,7 @@ namespace Inventory.Models
 {
      public class Entities 
     {
-         public static  QLKhoDienLucEntities ent  = DatabaseHelper.ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc") ;
+         public static  QLKhoDienLucEntities ent  =null ;
        
        
     }

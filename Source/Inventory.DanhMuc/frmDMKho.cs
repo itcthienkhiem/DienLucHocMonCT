@@ -131,7 +131,7 @@ namespace Inventory.DanhMuc
         public void LoadData()
         {
 
-           gridDMKho.DataSource = frm_DM_Kho.getAll();
+            gridDMKho.DataSource = clsDM_Kho.getAll();
    
             gridDMKho.Refresh();
         }

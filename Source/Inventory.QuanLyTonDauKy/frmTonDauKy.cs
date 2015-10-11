@@ -70,7 +70,7 @@ namespace Inventory.QuanLyTonDauKy
             cbKhoNhap.DisplayMember = "Ten_kho";
             cbKhoNhap.ValueMember = "ID_kho";
 
-            cbKhoNhap.DataSource =frm_DM_Kho.getAll();
+            cbKhoNhap.DataSource =clsDM_Kho .getAll();
 
             cbKhoNhap.SelectedIndex = -1;
         }
