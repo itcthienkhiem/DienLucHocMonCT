@@ -8,6 +8,7 @@ using System.Data.Common;
 using Inventory.Utilities;
 using Inventory.Models;
 using System.Linq;
+using System.Data.Entity;
 namespace Inventory.EntityClass
 {
    public class clsDM_Kho
@@ -23,15 +24,27 @@ namespace Inventory.EntityClass
 
        public static object getAll()
        {
+           //using (var context = Entities.ent)
+           //{
+           //    return context.DM_Kho.ToList();
+           //}
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction =help.ent.Database.BeginTransaction())
+           {
+               var dm = from d in help.ent.DM_Kho
+                        select new
+                        {
+                            d.ID_kho,
+                            d.Ten_kho
+                        };
+               dbcxtransaction.Commit();
+             //  help.CloseDatabase();
+               return (object)dm.ToList();
+           }
+              
+          
 
-
-           var dm = from d in Entities.ent.DM_Kho
-                    select new
-                    {
-                        d.ID_kho,
-                        d.Ten_kho
-                    };
-           return dm.ToList();
        }
        //public DataTable GetAll()
        //{
@@ -47,10 +60,10 @@ namespace Inventory.EntityClass
 
        public bool CheckTonTaiSoDK()
        {
+           return false;
 
-
-           bool has = Entities.ent.DM_Kho.Any(cus => cus.Ten_kho == Ten_kho);
-           return has;
+         //  bool has = DM_Kho.Any(cus => cus.Ten_kho == Ten_kho);
+         //  return has;
 
            //m_dbConnection.Open();
            //DataTable dt = new DataTable();
@@ -71,7 +84,8 @@ namespace Inventory.EntityClass
        {
 
           // var id = Guid.NewGuid();
-
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
            // insert
          //  var context = new DatabaseEntities();
            try
@@ -83,8 +97,9 @@ namespace Inventory.EntityClass
                    // ID = Guid.NewGuid(),
                };
 
-               Entities.ent.DM_Kho.Add(t);
-               Entities.ent.SaveChanges();
+               help.ent.DM_Kho.Add(t);
+               help.ent.SaveChanges();
+             //  help.CloseDatabase();
                return 1;
            }
            catch (Exception ex)
@@ -112,18 +127,51 @@ namespace Inventory.EntityClass
            //return result;
        }
 
-       public int Update(clsDM_Kho dm_kho)
+       public int Update(DM_Kho kho)
        {
+           //var temp = Entities.ent;
 
+           //var original = Entities.ent.DM_Kho.Find(this.ID_kho);
+           //var dbCtx = Entities.ent.DM_Kho;
+             
+           //    3. Mark entity as modified
+           //    Entities.ent.Entry(original).State = System.Data.Entity.EntityState.Modified;
 
-           var original = Entities.ent.DM_Kho.Find(this.ID_kho);
+           //    4. call SaveChanges
+           //    Entities.ent.SaveChanges();
 
-           if (original != null)
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           int temp = 0;
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
-               Entities.ent.Entry(original).CurrentValues.SetValues(dm_kho);
-               Entities.ent.SaveChanges();
-               return 1;
+               using (var context = help.ent)
+               {
+                   context.DM_Kho.Attach(kho);
+                   context.Entry(kho).State = EntityState.Modified;
+                   temp = help.ent.SaveChanges();
+                   dbcxtransaction.Commit();
+                  
+               }
+
+              
            }
+       //    help.CloseDatabase();
+           return temp;
+               //using (var db = Entities.ent)
+               //{
+               //    var result = db.DM_Kho.SingleOrDefault(b => b.ID_kho == ID_kho);
+               //    if (result != null)
+               //    {
+               //        result.Ten_kho = Ten_kho;
+               //        db.SaveChanges();
+                       
+                      
+               //        return 1;
+               //    }
+               //}
+               //return 0;
+           
 
            //m_dbConnection.Open();
 
@@ -141,25 +189,32 @@ namespace Inventory.EntityClass
 
            //int result = command.ExecuteNonQuery();
            //m_dbConnection.Close();
-           return 0;
+       
        }
 
-       public int Delete()
+       public int Delete(DM_Kho dm)
        {
-           m_dbConnection.Open();
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+         //  var employer = new Employ { Id = 1 };
+           help.ent.DM_Kho.Attach(dm);
+           help.ent.DM_Kho.Remove(dm);
+          return help.ent.SaveChanges();
 
-           //string sql = "Delete from DM_Kho WHERE Ten_kho=@Ten_kho";
-           string sql = "Delete from DM_Kho WHERE ID_kho=@ID_kho";
+           //m_dbConnection.Open();
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           command.CommandType = CommandType.Text;
+           ////string sql = "Delete from DM_Kho WHERE Ten_kho=@Ten_kho";
+           //string sql = "Delete from DM_Kho WHERE ID_kho=@ID_kho";
 
-           //command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
-           command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //command.CommandType = CommandType.Text;
 
-           int result = command.ExecuteNonQuery();
-           m_dbConnection.Close();
-           return result;
+           ////command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
+           //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+
+           //int result = command.ExecuteNonQuery();
+           //m_dbConnection.Close();
+           //return result;
        }
 
        //Dictionary<int, string> usernameDict;
