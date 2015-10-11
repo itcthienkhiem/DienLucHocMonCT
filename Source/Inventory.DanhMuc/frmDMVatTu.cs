@@ -220,8 +220,17 @@ namespace Inventory.DanhMuc
                         if (dialogResult == DialogResult.Yes)
                         {
                             //do something
+                            Models.DM_Vat_Tu vt = new Models.DM_Vat_Tu();
+                            vt.Ma_vat_tu = DM_VatTu.Ma_vat_tu;
+                            vt.Ten_vat_tu = DM_VatTu.Ten_vat_tu;
+                            vt.ID_Don_vi_tinh = DM_VatTu.ID_Don_vi_tinh;
+                            vt.Mo_ta = DM_VatTu.Mo_ta;
+                           // vt.Trang_thai = DM_VatTu.Trang_thai;
+                            vt.Don_gia = DM_VatTu.Don_gia;
+                           // vt.Da_xuat = DM_VatTu.Da_xuat;
+                            //vt.Ma_vat_tu = DM_VatTu.Ma_vat_tu;
 
-                            if (DM_VatTu.Delete() == 1)
+                            if (DM_VatTu.Delete(vt) == 1)
                             {
                                 //MessageBox.Show("Bạn đã xóa thành công !");
 
@@ -258,8 +267,16 @@ namespace Inventory.DanhMuc
                         if (selectedRowCount >= 0)
                         {
                             DM_VatTu.old_Ma_vat_tu = gridDMVatTu.Rows[selectedRowCount].Cells["Ma_vat_tu"].Value.ToString();
+                            Models.DM_Vat_Tu vt = new Models.DM_Vat_Tu();
 
-                            if (DM_VatTu.Update() == 1)
+                            vt.Ma_vat_tu = DM_VatTu.Ma_vat_tu;
+                            vt.Ten_vat_tu = DM_VatTu.Ten_vat_tu;
+                            vt.ID_Don_vi_tinh = DM_VatTu.ID_Don_vi_tinh;
+                            vt.Mo_ta = DM_VatTu.Mo_ta;
+                            // vt.Trang_thai = DM_VatTu.Trang_thai;
+                            vt.Don_gia = DM_VatTu.Don_gia;
+
+                            if (DM_VatTu.Update(vt) == 1)
                             {
                                 //MessageBox.Show("Bạn đã cập nhật thành công !");
                                 AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);

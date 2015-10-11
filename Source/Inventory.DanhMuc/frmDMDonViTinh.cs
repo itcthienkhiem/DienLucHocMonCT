@@ -172,7 +172,7 @@ namespace Inventory.DanhMuc
                     {
                         Int32 selectedRowCount = gridDMDonViTinh.CurrentCell.RowIndex;
                         DM_DonViTinh.ID_Don_vi_tinh = Int32.Parse(gridDMDonViTinh.Rows[selectedRowCount].Cells["ID_Don_vi_tinh"].Value.ToString());
-
+                        DM_DonViTinh.Ten_don_vi_tinh = gridDMDonViTinh.Rows[selectedRowCount].Cells["Ten_don_vi_tinh"].Value.ToString();
                         DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {

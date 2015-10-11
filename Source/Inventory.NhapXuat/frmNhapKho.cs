@@ -829,7 +829,7 @@ namespace Inventory.NhapXuat
             initKhoNhap();
 
             //Init cho combobox Ma vat tu, Ten vat tu
-            Dic = GetDict(new clsDMVatTu().GetAll());
+            Dic = GetDict((DataTable)new clsDMVatTu().GetAll());
 
             initMaVatTu();
             initTenVatTu();

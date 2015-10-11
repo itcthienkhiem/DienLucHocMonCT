@@ -39,7 +39,7 @@ namespace Inventory.XuatTamVatTu
             clsDM_Kho dmKho = new clsDM_Kho();
           //  cbKhoNhap.DisplayMember = "Ten_kho";
           //  cbKhoNhap.ValueMember = "ID_kho";
-            Dic = GetDict(new clsDMVatTu().GetAll());
+            Dic = GetDict((DataTable)new clsDMVatTu().GetAll());
             //    DicTen = GetDictTen(new clsDMVatTu().GetAll());
 
            // cbKhoNhap.DataSource = dmKho.GetAll();
@@ -102,7 +102,7 @@ namespace Inventory.XuatTamVatTu
             clsDM_Kho dmKho = new clsDM_Kho();
             //  cbKhoNhap.DisplayMember = "Ten_kho";
             //  cbKhoNhap.ValueMember = "ID_kho";
-            Dic = GetDict(new clsDMVatTu().GetAll());
+            Dic = GetDict((DataTable)new clsDMVatTu().GetAll());
             //    DicTen = GetDictTen(new clsDMVatTu().GetAll());
 
             // cbKhoNhap.DataSource = dmKho.GetAll();
