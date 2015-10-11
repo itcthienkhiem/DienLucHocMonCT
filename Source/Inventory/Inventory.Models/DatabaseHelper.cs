@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Inventory.Utilities;
 namespace Inventory.Models
 {
-    public static class DatabaseHelper
+    public  class DatabaseHelper
     {
         //public static DateTime GetDatabaseDate()
         //{
@@ -94,20 +94,22 @@ namespace Inventory.Models
         {
             return "Data Source=" + Datasource + ";initial catalog=" + Database + ";persist security info=True;user id=" + UserId + ";password=" + Pass + ";MultipleActiveResultSets=True;";
         }
+        public  QLKhoDienLucEntities db = new QLKhoDienLucEntities();
 
-        public static QLKhoDienLucEntities ConnectDatabase(string Datasource, string UserId, string Pass, string Database)
+        public  int  ConnectDatabase()
         {
-            QLKhoDienLucEntities db = new QLKhoDienLucEntities();
-            db.Database.Connection.ConnectionString = "data source=" + Datasource + ";initial catalog=" + Database + ";persist security info=True;user id=" + UserId + ";password=" + Pass + ";MultipleActiveResultSets=True;";
+           
+            db.Database.Connection.ConnectionString = clsThamSoUtilities.connectionString;
 
             try
             {
                 db.Database.Connection.Open();
-                return db;
+                //db.Database.Connection.Close();
+                return 1;
             }
             catch (Exception)
             {
-                return null;
+                return 0;
             }
         }
     }

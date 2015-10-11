@@ -21,8 +21,9 @@ namespace Inventory
         public MDIMain()
         {
             InitializeComponent();
-            Entities.ent  = DatabaseHelper.ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
-            
+         //   DatabaseHelper help = new DatabaseHelper();
+         //   help. ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
+            //Entities.ent = help.db;
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
