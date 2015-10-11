@@ -1,0 +1,1349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLKhoDienLucModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+          <Key>
+            <PropertyRef Name="ID_chi_tiet_phieu_nhap_vat_tu" />
+          </Key>
+          <Property Name="ID_chi_tiet_phieu_nhap_vat_tu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_phieu_nhap" Type="varchar" MaxLength="50" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" />
+          <Property Name="Chat_luong" Type="nvarchar" MaxLength="50" />
+          <Property Name="So_luong_yeu_cau" Type="int" />
+          <Property Name="So_luong_thuc_lanh" Type="int" />
+          <Property Name="Don_gia" Type="int" />
+          <Property Name="Thanh_tien" Type="int" />
+          <Property Name="ID_Don_vi_tinh" Type="int" />
+        </EntityType>
+        <EntityType Name="Chi_Tiet_Phieu_Xuat_Tam">
+          <Key>
+            <PropertyRef Name="ID_chi_tiet_phieu_xuat_tam" />
+          </Key>
+          <Property Name="Ma_phieu_xuat_tam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="So_luong_thuc_xuat" Type="int" />
+          <Property Name="So_luong_hoan_nhap" Type="int" />
+          <Property Name="So_luong_giu_lai" Type="int" />
+          <Property Name="ID_chi_tiet_phieu_xuat_tam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="So_luong_de_nghi" Type="int" />
+          <Property Name="So_luong_su_dung" Type="int" />
+        </EntityType>
+        <EntityType Name="Chi_Tiet_Ton_Kho">
+          <Key>
+            <PropertyRef Name="ID_Chi_tiet_ton_kho" />
+          </Key>
+          <Property Name="ID_Chi_tiet_ton_kho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Ton_kho" Type="int" />
+          <Property Name="Ma_phieu" Type="varchar" MaxLength="50" />
+          <Property Name="So_luong" Type="int" />
+          <Property Name="Ngay_thay_doi" Type="datetime" />
+          <Property Name="Tang_Giam" Type="bit" />
+        </EntityType>
+        <EntityType Name="DM_Don_vi_tinh">
+          <Key>
+            <PropertyRef Name="ID_Don_vi_tinh" />
+          </Key>
+          <Property Name="ID_Don_vi_tinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_don_vi_tinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trang_thai" Type="bit" />
+        </EntityType>
+        <EntityType Name="DM_Kho">
+          <Key>
+            <PropertyRef Name="ID_kho" />
+          </Key>
+          <Property Name="ID_kho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_kho" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trang_thai" Type="bit" />
+        </EntityType>
+        <EntityType Name="DM_Nhan_Vien">
+          <Key>
+            <PropertyRef Name="ID_nhan_vien" />
+          </Key>
+          <Property Name="ID_nhan_vien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_nhan_vien" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ma_nhan_vien" Type="varchar" MaxLength="50" />
+          <Property Name="Trang_thai" Type="bit" />
+        </EntityType>
+        <EntityType Name="DM_Vat_Tu">
+          <Key>
+            <PropertyRef Name="Ma_vat_tu" />
+          </Key>
+          <Property Name="Ten_vat_tu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Don_vi_tinh" Type="int" />
+          <Property Name="Mo_ta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trang_thai" Type="bit" />
+          <Property Name="Don_gia" Type="bigint" />
+          <Property Name="Da_xuat" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kho_muon_vat_tu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Kho" Type="int" />
+          <Property Name="ID_Kho_muon" Type="int" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" />
+          <Property Name="So_luong" Type="int" />
+          <Property Name="Ma_phieu_xuat_tam" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ky">
+          <Key>
+            <PropertyRef Name="ID_ky" />
+          </Key>
+          <Property Name="ID_ky" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_ky" Type="nvarchar" MaxLength="50" />
+          <Property Name="Thoi_gian_bat_dau" Type="datetime" />
+          <Property Name="Thoi_gian_ket_thuc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Loai_Phieu_Nhap">
+          <Key>
+            <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+          </Key>
+          <Property Name="ID_Loai_Phieu_Nhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_loai_phieu_nhap" Type="varchar" MaxLength="50" />
+          <Property Name="Ten_loai_phieu_nhap" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="No_vat_tu">
+          <Key>
+            <PropertyRef Name="ID_No_vat_tu" />
+          </Key>
+          <Property Name="ID_No_vat_tu" Type="int" Nullable="false" />
+          <Property Name="ID_nhan_vien" Type="int" />
+          <Property Name="Ma_phieu_xuat_tam" Type="varchar" MaxLength="50" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" />
+          <Property Name="So_luong_giu_lai" Type="int" />
+          <Property Name="Da_tra" Type="bit" />
+        </EntityType>
+        <EntityType Name="Phieu_Nhap_Kho">
+          <Key>
+            <PropertyRef Name="Ma_phieu_nhap" />
+          </Key>
+          <Property Name="Ma_phieu_nhap" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kho_nhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngay_lap" Type="datetime" />
+          <Property Name="Ly_do" Type="nvarchar" MaxLength="50" />
+          <Property Name="So_hoa_don" Type="nchar" MaxLength="10" />
+          <Property Name="Cong_trinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dia_Chi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Loai_Phieu_Nhap" Type="int" />
+          <Property Name="Kho_xuat_ra" Type="nvarchar" MaxLength="50" />
+          <Property Name="Da_phan_kho" Type="bit" />
+        </EntityType>
+        <EntityType Name="Phieu_Xuat_Tam_Vat_Tu">
+          <Key>
+            <PropertyRef Name="Ma_phieu_xuat_tam" />
+          </Key>
+          <Property Name="Ngay_xuat" Type="datetime" />
+          <Property Name="ID_nhan_vien" Type="int" />
+          <Property Name="ID_kho" Type="int" />
+          <Property Name="Ma_phieu_xuat_tam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ly_do" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cong_trinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dia_chi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ton_kho">
+          <Key>
+            <PropertyRef Name="ID_ton_kho" />
+          </Key>
+          <Property Name="ID_ton_kho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_kho" Type="int" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" />
+          <Property Name="So_luong" Type="int" />
+        </EntityType>
+        <EntityType Name="Vat_Tu_Goi_Dau_Ky">
+          <Key>
+            <PropertyRef Name="ID_VT_Goi_Dau" />
+          </Key>
+          <Property Name="ID_VT_Goi_Dau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_vat_tu" Type="varchar" MaxLength="50" />
+          <Property Name="So_Luong" Type="int" />
+          <Property Name="ID_ky" Type="int" />
+        </EntityType>
+        <Association Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" Type="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho">
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" Type="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="1" />
+          <End Role="Chi_Tiet_Phieu_Xuat_Tam" Type="Self.Chi_Tiet_Phieu_Xuat_Tam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Xuat_Tam">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="1" />
+          <End Role="Chi_Tiet_Phieu_Xuat_Tam" Type="Self.Chi_Tiet_Phieu_Xuat_Tam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Xuat_Tam">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho">
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="Ma_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="Ma_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Ton_kho">
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ton_kho">
+              <PropertyRef Name="ID_ton_kho" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="ID_Ton_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DM_Vat_Tu_DM_Don_vi_tinh">
+          <End Role="DM_Don_vi_tinh" Type="Self.DM_Don_vi_tinh" Multiplicity="0..1" />
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Don_vi_tinh">
+              <PropertyRef Name="ID_Don_vi_tinh" />
+            </Principal>
+            <Dependent Role="DM_Vat_Tu">
+              <PropertyRef Name="ID_Don_vi_tinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="ID_Kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Kho1">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="ID_Kho_muon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_DM_Nhan_Vien">
+          <End Role="DM_Nhan_Vien" Type="Self.DM_Nhan_Vien" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Nhan_Vien">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap">
+          <End Role="Loai_Phieu_Nhap" Type="Self.Loai_Phieu_Nhap" Multiplicity="0..1" />
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loai_Phieu_Nhap">
+              <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+            </Principal>
+            <Dependent Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="ID_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien">
+          <End Role="DM_Nhan_Vien" Type="Self.DM_Nhan_Vien" Multiplicity="0..1" />
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Nhan_Vien">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Principal>
+            <Dependent Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ton_Dau_Ky_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Ton_kho">
+              <PropertyRef Name="ID_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ton_Dau_Ky_DM_Vat_Tu1">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Ton_kho">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Vat_Tu_Goi_Dau_Ky" Type="Self.Vat_Tu_Goi_Dau_Ky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Vat_Tu_Goi_Dau_Ky">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vat_Tu_Goi_Dau_Ky_Ky">
+          <End Role="Ky" Type="Self.Ky" Multiplicity="0..1" />
+          <End Role="Vat_Tu_Goi_Dau_Ky" Type="Self.Vat_Tu_Goi_Dau_Ky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ky">
+              <PropertyRef Name="ID_ky" />
+            </Principal>
+            <Dependent Role="Vat_Tu_Goi_Dau_Ky">
+              <PropertyRef Name="ID_ky" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKhoDienLucModelStoreContainer">
+          <EntitySet Name="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntityType="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chi_Tiet_Phieu_Xuat_Tam" EntityType="Self.Chi_Tiet_Phieu_Xuat_Tam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chi_Tiet_Ton_Kho" EntityType="Self.Chi_Tiet_Ton_Kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Don_vi_tinh" EntityType="Self.DM_Don_vi_tinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Kho" EntityType="Self.DM_Kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Nhan_Vien" EntityType="Self.DM_Nhan_Vien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Vat_Tu" EntityType="Self.DM_Vat_Tu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kho_muon_vat_tu" EntityType="Self.Kho_muon_vat_tu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ky" EntityType="Self.Ky" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loai_Phieu_Nhap" EntityType="Self.Loai_Phieu_Nhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="No_vat_tu" EntityType="Self.No_vat_tu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phieu_Nhap_Kho" EntityType="Self.Phieu_Nhap_Kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phieu_Xuat_Tam_Vat_Tu" EntityType="Self.Phieu_Xuat_Tam_Vat_Tu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ton_kho" EntityType="Self.Ton_kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vat_Tu_Goi_Dau_Ky" EntityType="Self.Vat_Tu_Goi_Dau_Ky" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntitySet="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho" Association="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho">
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+            <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntitySet="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Xuat_Tam" EntitySet="Chi_Tiet_Phieu_Xuat_Tam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Xuat_Tam" EntitySet="Chi_Tiet_Phieu_Xuat_Tam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho" Association="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho">
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1" Association="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Ton_kho" Association="Self.FK_Chi_Tiet_Ton_Kho_Ton_kho">
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DM_Vat_Tu_DM_Don_vi_tinh" Association="Self.FK_DM_Vat_Tu_DM_Don_vi_tinh">
+            <End Role="DM_Don_vi_tinh" EntitySet="DM_Don_vi_tinh" />
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Kho" Association="Self.FK_Kho_muon_vat_tu_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Kho1" Association="Self.FK_Kho_muon_vat_tu_DM_Kho1">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Vat_Tu" Association="Self.FK_Kho_muon_vat_tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_DM_Nhan_Vien" Association="Self.FK_No_vat_tu_DM_Nhan_Vien">
+            <End Role="DM_Nhan_Vien" EntitySet="DM_Nhan_Vien" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_DM_Vat_Tu" Association="Self.FK_No_vat_tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap" Association="Self.FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap">
+            <End Role="Loai_Phieu_Nhap" EntitySet="Loai_Phieu_Nhap" />
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho" Association="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien" Association="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien">
+            <End Role="DM_Nhan_Vien" EntitySet="DM_Nhan_Vien" />
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ton_Dau_Ky_DM_Kho" Association="Self.FK_Ton_Dau_Ky_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ton_Dau_Ky_DM_Vat_Tu1" Association="Self.FK_Ton_Dau_Ky_DM_Vat_Tu1">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu" Association="Self.FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Vat_Tu_Goi_Dau_Ky" EntitySet="Vat_Tu_Goi_Dau_Ky" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vat_Tu_Goi_Dau_Ky_Ky" Association="Self.FK_Vat_Tu_Goi_Dau_Ky_Ky">
+            <End Role="Ky" EntitySet="Ky" />
+            <End Role="Vat_Tu_Goi_Dau_Ky" EntitySet="Vat_Tu_Goi_Dau_Ky" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKhoDienLucModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+          <Key>
+            <PropertyRef Name="ID_chi_tiet_phieu_nhap_vat_tu" />
+          </Key>
+          <Property Name="ID_chi_tiet_phieu_nhap_vat_tu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_phieu_nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chat_luong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="So_luong_yeu_cau" Type="Int32" />
+          <Property Name="So_luong_thuc_lanh" Type="Int32" />
+          <Property Name="Don_gia" Type="Int32" />
+          <Property Name="Thanh_tien" Type="Int32" />
+          <Property Name="ID_Don_vi_tinh" Type="Int32" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu" FromRole="Chi_Tiet_Phieu_Nhap_Vat_Tu" ToRole="DM_Vat_Tu" />
+          <NavigationProperty Name="Phieu_Nhap_Kho" Relationship="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho" FromRole="Chi_Tiet_Phieu_Nhap_Vat_Tu" ToRole="Phieu_Nhap_Kho" />
+        </EntityType>
+        <EntityType Name="Chi_Tiet_Phieu_Xuat_Tam">
+          <Key>
+            <PropertyRef Name="ID_chi_tiet_phieu_xuat_tam" />
+          </Key>
+          <Property Name="Ma_phieu_xuat_tam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="So_luong_thuc_xuat" Type="Int32" />
+          <Property Name="So_luong_hoan_nhap" Type="Int32" />
+          <Property Name="So_luong_giu_lai" Type="Int32" />
+          <Property Name="ID_chi_tiet_phieu_xuat_tam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="So_luong_de_nghi" Type="Int32" />
+          <Property Name="So_luong_su_dung" Type="Int32" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu" FromRole="Chi_Tiet_Phieu_Xuat_Tam" ToRole="DM_Vat_Tu" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu" FromRole="Chi_Tiet_Phieu_Xuat_Tam" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="Chi_Tiet_Ton_Kho">
+          <Key>
+            <PropertyRef Name="ID_Chi_tiet_ton_kho" />
+          </Key>
+          <Property Name="ID_Chi_tiet_ton_kho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Ton_kho" Type="Int32" />
+          <Property Name="Ma_phieu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="So_luong" Type="Int32" />
+          <Property Name="Ngay_thay_doi" Type="DateTime" Precision="3" />
+          <Property Name="Tang_Giam" Type="Boolean" />
+          <NavigationProperty Name="Phieu_Nhap_Kho" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho" FromRole="Chi_Tiet_Ton_Kho" ToRole="Phieu_Nhap_Kho" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1" FromRole="Chi_Tiet_Ton_Kho" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+          <NavigationProperty Name="Ton_kho" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Ton_kho" FromRole="Chi_Tiet_Ton_Kho" ToRole="Ton_kho" />
+        </EntityType>
+        <EntityType Name="DM_Don_vi_tinh">
+          <Key>
+            <PropertyRef Name="ID_Don_vi_tinh" />
+          </Key>
+          <Property Name="ID_Don_vi_tinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_don_vi_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trang_thai" Type="Boolean" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_DM_Vat_Tu_DM_Don_vi_tinh" FromRole="DM_Don_vi_tinh" ToRole="DM_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="DM_Kho">
+          <Key>
+            <PropertyRef Name="ID_kho" />
+          </Key>
+          <Property Name="ID_kho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_kho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trang_thai" Type="Boolean" />
+          <NavigationProperty Name="Kho_muon_vat_tu" Relationship="Self.FK_Kho_muon_vat_tu_DM_Kho" FromRole="DM_Kho" ToRole="Kho_muon_vat_tu" />
+          <NavigationProperty Name="Kho_muon_vat_tu1" Relationship="Self.FK_Kho_muon_vat_tu_DM_Kho1" FromRole="DM_Kho" ToRole="Kho_muon_vat_tu" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho" FromRole="DM_Kho" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+          <NavigationProperty Name="Ton_kho" Relationship="Self.FK_Ton_Dau_Ky_DM_Kho" FromRole="DM_Kho" ToRole="Ton_kho" />
+        </EntityType>
+        <EntityType Name="DM_Nhan_Vien">
+          <Key>
+            <PropertyRef Name="ID_nhan_vien" />
+          </Key>
+          <Property Name="ID_nhan_vien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_nhan_vien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ma_nhan_vien" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Trang_thai" Type="Boolean" />
+          <NavigationProperty Name="No_vat_tu" Relationship="Self.FK_No_vat_tu_DM_Nhan_Vien" FromRole="DM_Nhan_Vien" ToRole="No_vat_tu" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien" FromRole="DM_Nhan_Vien" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="DM_Vat_Tu">
+          <Key>
+            <PropertyRef Name="Ma_vat_tu" />
+          </Key>
+          <Property Name="Ten_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Don_vi_tinh" Type="Int32" />
+          <Property Name="Mo_ta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trang_thai" Type="Boolean" />
+          <Property Name="Don_gia" Type="Int64" />
+          <Property Name="Da_xuat" Type="Boolean" />
+          <NavigationProperty Name="Chi_Tiet_Phieu_Nhap_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu" FromRole="DM_Vat_Tu" ToRole="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          <NavigationProperty Name="Chi_Tiet_Phieu_Xuat_Tam" Relationship="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu" FromRole="DM_Vat_Tu" ToRole="Chi_Tiet_Phieu_Xuat_Tam" />
+          <NavigationProperty Name="DM_Don_vi_tinh" Relationship="Self.FK_DM_Vat_Tu_DM_Don_vi_tinh" FromRole="DM_Vat_Tu" ToRole="DM_Don_vi_tinh" />
+          <NavigationProperty Name="Kho_muon_vat_tu" Relationship="Self.FK_Kho_muon_vat_tu_DM_Vat_Tu" FromRole="DM_Vat_Tu" ToRole="Kho_muon_vat_tu" />
+          <NavigationProperty Name="No_vat_tu" Relationship="Self.FK_No_vat_tu_DM_Vat_Tu" FromRole="DM_Vat_Tu" ToRole="No_vat_tu" />
+          <NavigationProperty Name="Ton_kho" Relationship="Self.FK_Ton_Dau_Ky_DM_Vat_Tu1" FromRole="DM_Vat_Tu" ToRole="Ton_kho" />
+          <NavigationProperty Name="Vat_Tu_Goi_Dau_Ky" Relationship="Self.FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu" FromRole="DM_Vat_Tu" ToRole="Vat_Tu_Goi_Dau_Ky" />
+        </EntityType>
+        <EntityType Name="Kho_muon_vat_tu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Kho" Type="Int32" />
+          <Property Name="ID_Kho_muon" Type="Int32" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="So_luong" Type="Int32" />
+          <Property Name="Ma_phieu_xuat_tam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DM_Kho" Relationship="Self.FK_Kho_muon_vat_tu_DM_Kho" FromRole="Kho_muon_vat_tu" ToRole="DM_Kho" />
+          <NavigationProperty Name="DM_Kho1" Relationship="Self.FK_Kho_muon_vat_tu_DM_Kho1" FromRole="Kho_muon_vat_tu" ToRole="DM_Kho" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_Kho_muon_vat_tu_DM_Vat_Tu" FromRole="Kho_muon_vat_tu" ToRole="DM_Vat_Tu" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu" FromRole="Kho_muon_vat_tu" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="Ky">
+          <Key>
+            <PropertyRef Name="ID_ky" />
+          </Key>
+          <Property Name="ID_ky" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_ky" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Thoi_gian_bat_dau" Type="DateTime" Precision="3" />
+          <Property Name="Thoi_gian_ket_thuc" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Vat_Tu_Goi_Dau_Ky" Relationship="Self.FK_Vat_Tu_Goi_Dau_Ky_Ky" FromRole="Ky" ToRole="Vat_Tu_Goi_Dau_Ky" />
+        </EntityType>
+        <EntityType Name="Loai_Phieu_Nhap">
+          <Key>
+            <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+          </Key>
+          <Property Name="ID_Loai_Phieu_Nhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_loai_phieu_nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ten_loai_phieu_nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Phieu_Nhap_Kho" Relationship="Self.FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap" FromRole="Loai_Phieu_Nhap" ToRole="Phieu_Nhap_Kho" />
+        </EntityType>
+        <EntityType Name="No_vat_tu">
+          <Key>
+            <PropertyRef Name="ID_No_vat_tu" />
+          </Key>
+          <Property Name="ID_No_vat_tu" Type="Int32" Nullable="false" />
+          <Property Name="ID_nhan_vien" Type="Int32" />
+          <Property Name="Ma_phieu_xuat_tam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="So_luong_giu_lai" Type="Int32" />
+          <Property Name="Da_tra" Type="Boolean" />
+          <NavigationProperty Name="DM_Nhan_Vien" Relationship="Self.FK_No_vat_tu_DM_Nhan_Vien" FromRole="No_vat_tu" ToRole="DM_Nhan_Vien" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_No_vat_tu_DM_Vat_Tu" FromRole="No_vat_tu" ToRole="DM_Vat_Tu" />
+          <NavigationProperty Name="Phieu_Xuat_Tam_Vat_Tu" Relationship="Self.FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu" FromRole="No_vat_tu" ToRole="Phieu_Xuat_Tam_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="Phieu_Nhap_Kho">
+          <Key>
+            <PropertyRef Name="Ma_phieu_nhap" />
+          </Key>
+          <Property Name="Ma_phieu_nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Kho_nhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngay_lap" Type="DateTime" Precision="3" />
+          <Property Name="Ly_do" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="So_hoa_don" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Cong_trinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dia_Chi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Loai_Phieu_Nhap" Type="Int32" />
+          <Property Name="Kho_xuat_ra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Da_phan_kho" Type="Boolean" />
+          <NavigationProperty Name="Chi_Tiet_Phieu_Nhap_Vat_Tu" Relationship="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho" FromRole="Phieu_Nhap_Kho" ToRole="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          <NavigationProperty Name="Chi_Tiet_Ton_Kho" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho" FromRole="Phieu_Nhap_Kho" ToRole="Chi_Tiet_Ton_Kho" />
+          <NavigationProperty Name="Loai_Phieu_Nhap" Relationship="Self.FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap" FromRole="Phieu_Nhap_Kho" ToRole="Loai_Phieu_Nhap" />
+        </EntityType>
+        <EntityType Name="Phieu_Xuat_Tam_Vat_Tu">
+          <Key>
+            <PropertyRef Name="Ma_phieu_xuat_tam" />
+          </Key>
+          <Property Name="Ngay_xuat" Type="DateTime" Precision="3" />
+          <Property Name="ID_nhan_vien" Type="Int32" />
+          <Property Name="ID_kho" Type="Int32" />
+          <Property Name="Ma_phieu_xuat_tam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ly_do" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cong_trinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dia_chi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chi_Tiet_Phieu_Xuat_Tam" Relationship="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="Chi_Tiet_Phieu_Xuat_Tam" />
+          <NavigationProperty Name="Chi_Tiet_Ton_Kho" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="Chi_Tiet_Ton_Kho" />
+          <NavigationProperty Name="DM_Kho" Relationship="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="DM_Kho" />
+          <NavigationProperty Name="DM_Nhan_Vien" Relationship="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="DM_Nhan_Vien" />
+          <NavigationProperty Name="Kho_muon_vat_tu" Relationship="Self.FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="Kho_muon_vat_tu" />
+          <NavigationProperty Name="No_vat_tu" Relationship="Self.FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu" FromRole="Phieu_Xuat_Tam_Vat_Tu" ToRole="No_vat_tu" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ton_kho">
+          <Key>
+            <PropertyRef Name="ID_ton_kho" />
+          </Key>
+          <Property Name="ID_ton_kho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_kho" Type="Int32" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="So_luong" Type="Int32" />
+          <NavigationProperty Name="Chi_Tiet_Ton_Kho" Relationship="Self.FK_Chi_Tiet_Ton_Kho_Ton_kho" FromRole="Ton_kho" ToRole="Chi_Tiet_Ton_Kho" />
+          <NavigationProperty Name="DM_Kho" Relationship="Self.FK_Ton_Dau_Ky_DM_Kho" FromRole="Ton_kho" ToRole="DM_Kho" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_Ton_Dau_Ky_DM_Vat_Tu1" FromRole="Ton_kho" ToRole="DM_Vat_Tu" />
+        </EntityType>
+        <EntityType Name="Vat_Tu_Goi_Dau_Ky">
+          <Key>
+            <PropertyRef Name="ID_VT_Goi_Dau" />
+          </Key>
+          <Property Name="ID_VT_Goi_Dau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_vat_tu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="So_Luong" Type="Int32" />
+          <Property Name="ID_ky" Type="Int32" />
+          <NavigationProperty Name="DM_Vat_Tu" Relationship="Self.FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu" FromRole="Vat_Tu_Goi_Dau_Ky" ToRole="DM_Vat_Tu" />
+          <NavigationProperty Name="Ky" Relationship="Self.FK_Vat_Tu_Goi_Dau_Ky_Ky" FromRole="Vat_Tu_Goi_Dau_Ky" ToRole="Ky" />
+        </EntityType>
+        <Association Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" Type="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho">
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" Type="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="1" />
+          <End Role="Chi_Tiet_Phieu_Xuat_Tam" Type="Self.Chi_Tiet_Phieu_Xuat_Tam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Xuat_Tam">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="1" />
+          <End Role="Chi_Tiet_Phieu_Xuat_Tam" Type="Self.Chi_Tiet_Phieu_Xuat_Tam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Phieu_Xuat_Tam">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho">
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="Ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="Ma_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="Ma_phieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_Ton_Kho_Ton_kho">
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_Ton_Kho" Type="Self.Chi_Tiet_Ton_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ton_kho">
+              <PropertyRef Name="ID_ton_kho" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_Ton_Kho">
+              <PropertyRef Name="ID_Ton_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DM_Vat_Tu_DM_Don_vi_tinh">
+          <End Role="DM_Don_vi_tinh" Type="Self.DM_Don_vi_tinh" Multiplicity="0..1" />
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Don_vi_tinh">
+              <PropertyRef Name="ID_Don_vi_tinh" />
+            </Principal>
+            <Dependent Role="DM_Vat_Tu">
+              <PropertyRef Name="ID_Don_vi_tinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="ID_Kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Kho1">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="ID_Kho_muon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="ID_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ton_Dau_Ky_DM_Kho">
+          <End Role="DM_Kho" Type="Self.DM_Kho" Multiplicity="0..1" />
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Kho">
+              <PropertyRef Name="ID_kho" />
+            </Principal>
+            <Dependent Role="Ton_kho">
+              <PropertyRef Name="ID_kho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_DM_Nhan_Vien">
+          <End Role="DM_Nhan_Vien" Type="Self.DM_Nhan_Vien" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Nhan_Vien">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien">
+          <End Role="DM_Nhan_Vien" Type="Self.DM_Nhan_Vien" Multiplicity="0..1" />
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Nhan_Vien">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Principal>
+            <Dependent Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="ID_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ton_Dau_Ky_DM_Vat_Tu1">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Ton_kho" Type="Self.Ton_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Ton_kho">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu">
+          <End Role="DM_Vat_Tu" Type="Self.DM_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Vat_Tu_Goi_Dau_Ky" Type="Self.Vat_Tu_Goi_Dau_Ky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Vat_Tu">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Principal>
+            <Dependent Role="Vat_Tu_Goi_Dau_Ky">
+              <PropertyRef Name="Ma_vat_tu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="Kho_muon_vat_tu" Type="Self.Kho_muon_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="Kho_muon_vat_tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vat_Tu_Goi_Dau_Ky_Ky">
+          <End Role="Ky" Type="Self.Ky" Multiplicity="0..1" />
+          <End Role="Vat_Tu_Goi_Dau_Ky" Type="Self.Vat_Tu_Goi_Dau_Ky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ky">
+              <PropertyRef Name="ID_ky" />
+            </Principal>
+            <Dependent Role="Vat_Tu_Goi_Dau_Ky">
+              <PropertyRef Name="ID_ky" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap">
+          <End Role="Loai_Phieu_Nhap" Type="Self.Loai_Phieu_Nhap" Multiplicity="0..1" />
+          <End Role="Phieu_Nhap_Kho" Type="Self.Phieu_Nhap_Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loai_Phieu_Nhap">
+              <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+            </Principal>
+            <Dependent Role="Phieu_Nhap_Kho">
+              <PropertyRef Name="ID_Loai_Phieu_Nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+          <End Role="Phieu_Xuat_Tam_Vat_Tu" Type="Self.Phieu_Xuat_Tam_Vat_Tu" Multiplicity="0..1" />
+          <End Role="No_vat_tu" Type="Self.No_vat_tu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phieu_Xuat_Tam_Vat_Tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Principal>
+            <Dependent Role="No_vat_tu">
+              <PropertyRef Name="Ma_phieu_xuat_tam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKhoDienLucEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntityType="Self.Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          <EntitySet Name="Chi_Tiet_Phieu_Xuat_Tam" EntityType="Self.Chi_Tiet_Phieu_Xuat_Tam" />
+          <EntitySet Name="Chi_Tiet_Ton_Kho" EntityType="Self.Chi_Tiet_Ton_Kho" />
+          <EntitySet Name="DM_Don_vi_tinh" EntityType="Self.DM_Don_vi_tinh" />
+          <EntitySet Name="DM_Kho" EntityType="Self.DM_Kho" />
+          <EntitySet Name="DM_Nhan_Vien" EntityType="Self.DM_Nhan_Vien" />
+          <EntitySet Name="DM_Vat_Tu" EntityType="Self.DM_Vat_Tu" />
+          <EntitySet Name="Kho_muon_vat_tu" EntityType="Self.Kho_muon_vat_tu" />
+          <EntitySet Name="Kies" EntityType="Self.Ky" />
+          <EntitySet Name="Loai_Phieu_Nhap" EntityType="Self.Loai_Phieu_Nhap" />
+          <EntitySet Name="No_vat_tu" EntityType="Self.No_vat_tu" />
+          <EntitySet Name="Phieu_Nhap_Kho" EntityType="Self.Phieu_Nhap_Kho" />
+          <EntitySet Name="Phieu_Xuat_Tam_Vat_Tu" EntityType="Self.Phieu_Xuat_Tam_Vat_Tu" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Ton_kho" EntityType="Self.Ton_kho" />
+          <EntitySet Name="Vat_Tu_Goi_Dau_Ky" EntityType="Self.Vat_Tu_Goi_Dau_Ky" />
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntitySet="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho" Association="Self.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho">
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+            <End Role="Chi_Tiet_Phieu_Nhap_Vat_Tu" EntitySet="Chi_Tiet_Phieu_Nhap_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Xuat_Tam" EntitySet="Chi_Tiet_Phieu_Xuat_Tam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Chi_Tiet_Phieu_Xuat_Tam" EntitySet="Chi_Tiet_Phieu_Xuat_Tam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho" Association="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho">
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1" Association="Self.FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_Ton_Kho_Ton_kho" Association="Self.FK_Chi_Tiet_Ton_Kho_Ton_kho">
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+            <End Role="Chi_Tiet_Ton_Kho" EntitySet="Chi_Tiet_Ton_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DM_Vat_Tu_DM_Don_vi_tinh" Association="Self.FK_DM_Vat_Tu_DM_Don_vi_tinh">
+            <End Role="DM_Don_vi_tinh" EntitySet="DM_Don_vi_tinh" />
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Kho" Association="Self.FK_Kho_muon_vat_tu_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Kho1" Association="Self.FK_Kho_muon_vat_tu_DM_Kho1">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho" Association="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ton_Dau_Ky_DM_Kho" Association="Self.FK_Ton_Dau_Ky_DM_Kho">
+            <End Role="DM_Kho" EntitySet="DM_Kho" />
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_DM_Nhan_Vien" Association="Self.FK_No_vat_tu_DM_Nhan_Vien">
+            <End Role="DM_Nhan_Vien" EntitySet="DM_Nhan_Vien" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien" Association="Self.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien">
+            <End Role="DM_Nhan_Vien" EntitySet="DM_Nhan_Vien" />
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_DM_Vat_Tu" Association="Self.FK_Kho_muon_vat_tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_DM_Vat_Tu" Association="Self.FK_No_vat_tu_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ton_Dau_Ky_DM_Vat_Tu1" Association="Self.FK_Ton_Dau_Ky_DM_Vat_Tu1">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Ton_kho" EntitySet="Ton_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu" Association="Self.FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu">
+            <End Role="DM_Vat_Tu" EntitySet="DM_Vat_Tu" />
+            <End Role="Vat_Tu_Goi_Dau_Ky" EntitySet="Vat_Tu_Goi_Dau_Ky" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="Kho_muon_vat_tu" EntitySet="Kho_muon_vat_tu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vat_Tu_Goi_Dau_Ky_Ky" Association="Self.FK_Vat_Tu_Goi_Dau_Ky_Ky">
+            <End Role="Ky" EntitySet="Kies" />
+            <End Role="Vat_Tu_Goi_Dau_Ky" EntitySet="Vat_Tu_Goi_Dau_Ky" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap" Association="Self.FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap">
+            <End Role="Loai_Phieu_Nhap" EntitySet="Loai_Phieu_Nhap" />
+            <End Role="Phieu_Nhap_Kho" EntitySet="Phieu_Nhap_Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu" Association="Self.FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu">
+            <End Role="Phieu_Xuat_Tam_Vat_Tu" EntitySet="Phieu_Xuat_Tam_Vat_Tu" />
+            <End Role="No_vat_tu" EntitySet="No_vat_tu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKhoDienLucModelStoreContainer" CdmEntityContainer="QLKhoDienLucEntities">
+          <EntitySetMapping Name="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Chi_Tiet_Phieu_Nhap_Vat_Tu">
+              <MappingFragment StoreEntitySet="Chi_Tiet_Phieu_Nhap_Vat_Tu">
+                <ScalarProperty Name="ID_chi_tiet_phieu_nhap_vat_tu" ColumnName="ID_chi_tiet_phieu_nhap_vat_tu" />
+                <ScalarProperty Name="Ma_phieu_nhap" ColumnName="Ma_phieu_nhap" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="Chat_luong" ColumnName="Chat_luong" />
+                <ScalarProperty Name="So_luong_yeu_cau" ColumnName="So_luong_yeu_cau" />
+                <ScalarProperty Name="So_luong_thuc_lanh" ColumnName="So_luong_thuc_lanh" />
+                <ScalarProperty Name="Don_gia" ColumnName="Don_gia" />
+                <ScalarProperty Name="Thanh_tien" ColumnName="Thanh_tien" />
+                <ScalarProperty Name="ID_Don_vi_tinh" ColumnName="ID_Don_vi_tinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chi_Tiet_Phieu_Xuat_Tam">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Chi_Tiet_Phieu_Xuat_Tam">
+              <MappingFragment StoreEntitySet="Chi_Tiet_Phieu_Xuat_Tam">
+                <ScalarProperty Name="Ma_phieu_xuat_tam" ColumnName="Ma_phieu_xuat_tam" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="So_luong_thuc_xuat" ColumnName="So_luong_thuc_xuat" />
+                <ScalarProperty Name="So_luong_hoan_nhap" ColumnName="So_luong_hoan_nhap" />
+                <ScalarProperty Name="So_luong_giu_lai" ColumnName="So_luong_giu_lai" />
+                <ScalarProperty Name="ID_chi_tiet_phieu_xuat_tam" ColumnName="ID_chi_tiet_phieu_xuat_tam" />
+                <ScalarProperty Name="So_luong_de_nghi" ColumnName="So_luong_de_nghi" />
+                <ScalarProperty Name="So_luong_su_dung" ColumnName="So_luong_su_dung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chi_Tiet_Ton_Kho">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Chi_Tiet_Ton_Kho">
+              <MappingFragment StoreEntitySet="Chi_Tiet_Ton_Kho">
+                <ScalarProperty Name="ID_Chi_tiet_ton_kho" ColumnName="ID_Chi_tiet_ton_kho" />
+                <ScalarProperty Name="ID_Ton_kho" ColumnName="ID_Ton_kho" />
+                <ScalarProperty Name="Ma_phieu" ColumnName="Ma_phieu" />
+                <ScalarProperty Name="So_luong" ColumnName="So_luong" />
+                <ScalarProperty Name="Ngay_thay_doi" ColumnName="Ngay_thay_doi" />
+                <ScalarProperty Name="Tang_Giam" ColumnName="Tang_Giam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Don_vi_tinh">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.DM_Don_vi_tinh">
+              <MappingFragment StoreEntitySet="DM_Don_vi_tinh">
+                <ScalarProperty Name="ID_Don_vi_tinh" ColumnName="ID_Don_vi_tinh" />
+                <ScalarProperty Name="Ten_don_vi_tinh" ColumnName="Ten_don_vi_tinh" />
+                <ScalarProperty Name="Trang_thai" ColumnName="Trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Kho">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.DM_Kho">
+              <MappingFragment StoreEntitySet="DM_Kho">
+                <ScalarProperty Name="ID_kho" ColumnName="ID_kho" />
+                <ScalarProperty Name="Ten_kho" ColumnName="Ten_kho" />
+                <ScalarProperty Name="Trang_thai" ColumnName="Trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Nhan_Vien">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.DM_Nhan_Vien">
+              <MappingFragment StoreEntitySet="DM_Nhan_Vien">
+                <ScalarProperty Name="ID_nhan_vien" ColumnName="ID_nhan_vien" />
+                <ScalarProperty Name="Ten_nhan_vien" ColumnName="Ten_nhan_vien" />
+                <ScalarProperty Name="Ma_nhan_vien" ColumnName="Ma_nhan_vien" />
+                <ScalarProperty Name="Trang_thai" ColumnName="Trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Vat_Tu">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.DM_Vat_Tu">
+              <MappingFragment StoreEntitySet="DM_Vat_Tu">
+                <ScalarProperty Name="Ten_vat_tu" ColumnName="Ten_vat_tu" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="ID_Don_vi_tinh" ColumnName="ID_Don_vi_tinh" />
+                <ScalarProperty Name="Mo_ta" ColumnName="Mo_ta" />
+                <ScalarProperty Name="Trang_thai" ColumnName="Trang_thai" />
+                <ScalarProperty Name="Don_gia" ColumnName="Don_gia" />
+                <ScalarProperty Name="Da_xuat" ColumnName="Da_xuat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kho_muon_vat_tu">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Kho_muon_vat_tu">
+              <MappingFragment StoreEntitySet="Kho_muon_vat_tu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Kho" ColumnName="ID_Kho" />
+                <ScalarProperty Name="ID_Kho_muon" ColumnName="ID_Kho_muon" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="So_luong" ColumnName="So_luong" />
+                <ScalarProperty Name="Ma_phieu_xuat_tam" ColumnName="Ma_phieu_xuat_tam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kies">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Ky">
+              <MappingFragment StoreEntitySet="Ky">
+                <ScalarProperty Name="ID_ky" ColumnName="ID_ky" />
+                <ScalarProperty Name="Ten_ky" ColumnName="Ten_ky" />
+                <ScalarProperty Name="Thoi_gian_bat_dau" ColumnName="Thoi_gian_bat_dau" />
+                <ScalarProperty Name="Thoi_gian_ket_thuc" ColumnName="Thoi_gian_ket_thuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loai_Phieu_Nhap">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Loai_Phieu_Nhap">
+              <MappingFragment StoreEntitySet="Loai_Phieu_Nhap">
+                <ScalarProperty Name="ID_Loai_Phieu_Nhap" ColumnName="ID_Loai_Phieu_Nhap" />
+                <ScalarProperty Name="Ma_loai_phieu_nhap" ColumnName="Ma_loai_phieu_nhap" />
+                <ScalarProperty Name="Ten_loai_phieu_nhap" ColumnName="Ten_loai_phieu_nhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="No_vat_tu">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.No_vat_tu">
+              <MappingFragment StoreEntitySet="No_vat_tu">
+                <ScalarProperty Name="ID_No_vat_tu" ColumnName="ID_No_vat_tu" />
+                <ScalarProperty Name="ID_nhan_vien" ColumnName="ID_nhan_vien" />
+                <ScalarProperty Name="Ma_phieu_xuat_tam" ColumnName="Ma_phieu_xuat_tam" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="So_luong_giu_lai" ColumnName="So_luong_giu_lai" />
+                <ScalarProperty Name="Da_tra" ColumnName="Da_tra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phieu_Nhap_Kho">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Phieu_Nhap_Kho">
+              <MappingFragment StoreEntitySet="Phieu_Nhap_Kho">
+                <ScalarProperty Name="Ma_phieu_nhap" ColumnName="Ma_phieu_nhap" />
+                <ScalarProperty Name="Kho_nhan" ColumnName="Kho_nhan" />
+                <ScalarProperty Name="Ngay_lap" ColumnName="Ngay_lap" />
+                <ScalarProperty Name="Ly_do" ColumnName="Ly_do" />
+                <ScalarProperty Name="So_hoa_don" ColumnName="So_hoa_don" />
+                <ScalarProperty Name="Cong_trinh" ColumnName="Cong_trinh" />
+                <ScalarProperty Name="Dia_Chi" ColumnName="Dia_Chi" />
+                <ScalarProperty Name="ID_Loai_Phieu_Nhap" ColumnName="ID_Loai_Phieu_Nhap" />
+                <ScalarProperty Name="Kho_xuat_ra" ColumnName="Kho_xuat_ra" />
+                <ScalarProperty Name="Da_phan_kho" ColumnName="Da_phan_kho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phieu_Xuat_Tam_Vat_Tu">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Phieu_Xuat_Tam_Vat_Tu">
+              <MappingFragment StoreEntitySet="Phieu_Xuat_Tam_Vat_Tu">
+                <ScalarProperty Name="Ngay_xuat" ColumnName="Ngay_xuat" />
+                <ScalarProperty Name="ID_nhan_vien" ColumnName="ID_nhan_vien" />
+                <ScalarProperty Name="ID_kho" ColumnName="ID_kho" />
+                <ScalarProperty Name="Ma_phieu_xuat_tam" ColumnName="Ma_phieu_xuat_tam" />
+                <ScalarProperty Name="Ly_do" ColumnName="Ly_do" />
+                <ScalarProperty Name="Cong_trinh" ColumnName="Cong_trinh" />
+                <ScalarProperty Name="Dia_chi" ColumnName="Dia_chi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ton_kho">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Ton_kho">
+              <MappingFragment StoreEntitySet="Ton_kho">
+                <ScalarProperty Name="ID_ton_kho" ColumnName="ID_ton_kho" />
+                <ScalarProperty Name="ID_kho" ColumnName="ID_kho" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="So_luong" ColumnName="So_luong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vat_Tu_Goi_Dau_Ky">
+            <EntityTypeMapping TypeName="QLKhoDienLucModel.Vat_Tu_Goi_Dau_Ky">
+              <MappingFragment StoreEntitySet="Vat_Tu_Goi_Dau_Ky">
+                <ScalarProperty Name="ID_VT_Goi_Dau" ColumnName="ID_VT_Goi_Dau" />
+                <ScalarProperty Name="Ma_vat_tu" ColumnName="Ma_vat_tu" />
+                <ScalarProperty Name="So_Luong" ColumnName="So_Luong" />
+                <ScalarProperty Name="ID_ky" ColumnName="ID_ky" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
