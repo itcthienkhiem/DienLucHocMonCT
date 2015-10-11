@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
-
+using Inventory.Models;
 namespace Inventory.QuanLyTonDauKy
 {
     public partial class frmTonDauKy : Form
@@ -70,7 +70,7 @@ namespace Inventory.QuanLyTonDauKy
             cbKhoNhap.DisplayMember = "Ten_kho";
             cbKhoNhap.ValueMember = "ID_kho";
 
-            cbKhoNhap.DataSource = dmKho.GetAll();
+            cbKhoNhap.DataSource =frm_DM_Kho.getAll();
 
             cbKhoNhap.SelectedIndex = -1;
         }

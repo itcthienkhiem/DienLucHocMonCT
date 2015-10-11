@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.Report;
+using Inventory.Models;
 namespace Inventory.NhapXuat
 {
     /// <summary>
@@ -871,7 +872,7 @@ namespace Inventory.NhapXuat
             cbKhoNhap.DisplayMember = "Ten_kho";
             cbKhoNhap.ValueMember = "ID_kho";
 
-            cbKhoNhap.DataSource = dmKho.GetAll();
+            cbKhoNhap.DataSource = frm_DM_Kho.getAll();
         }
 
 

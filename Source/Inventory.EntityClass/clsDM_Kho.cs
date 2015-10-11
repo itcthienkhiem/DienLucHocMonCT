@@ -18,18 +18,29 @@ namespace Inventory.EntityClass
        }
 
        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+       ////public static object getAll()
+       ////{
 
-       public DataTable GetAll()
-       {
-           m_dbConnection.Open();
-           DataTable dt = new DataTable();
-           string sql = "SELECT * FROM DM_kho";
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
-           m_dbConnection.Close();
-           return dt;
-       }
+
+       ////    var dm = from d in Entities.ent.DM_Kho
+       ////             select new
+       ////             {
+       ////                 d.ID_kho,
+       ////                 d.Ten_kho
+       ////             };
+       ////    return dm.ToList();
+       ////}
+       //public DataTable GetAll()
+       //{
+       //    m_dbConnection.Open();
+       //    DataTable dt = new DataTable();
+       //    string sql = "SELECT * FROM DM_kho";
+       //    SqlCommand command = new SqlCommand(sql, m_dbConnection);
+       //    SqlDataAdapter da = new SqlDataAdapter(command);
+       //    da.Fill(dt);
+       //    m_dbConnection.Close();
+       //    return dt;
+       //}
 
        public bool CheckTonTaiSoDK()
        {

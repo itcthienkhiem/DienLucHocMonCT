@@ -77,6 +77,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -160,6 +161,10 @@
     <ProjectReference Include="..\Inventory.EntityClass\Inventory.EntityClass.csproj">
       <Project>{6240D286-DEB0-4A4C-B98E-EEFA5FAFCDD3}</Project>
       <Name>Inventory.EntityClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inventory\Inventory.Models\Inventory.Models.csproj">
+      <Project>{af07e61b-f4a5-4b74-b131-4ec8add3aa72}</Project>
+      <Name>Inventory.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
