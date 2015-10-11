@@ -14,13 +14,6 @@ namespace Inventory.Models
     
     public partial class Phieu_Nhap_Kho
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Phieu_Nhap_Kho()
-        {
-            this.Chi_Tiet_Phieu_Nhap_Vat_Tu = new HashSet<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
-            this.Chi_Tiet_Ton_Kho = new HashSet<Chi_Tiet_Ton_Kho>();
-        }
-    
         public string Ma_phieu_nhap { get; set; }
         public string Kho_nhan { get; set; }
         public Nullable<System.DateTime> Ngay_lap { get; set; }
@@ -31,11 +24,8 @@ namespace Inventory.Models
         public Nullable<int> ID_Loai_Phieu_Nhap { get; set; }
         public string Kho_xuat_ra { get; set; }
         public Nullable<bool> Da_phan_kho { get; set; }
+        public int ID_phieu_nhap { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Phieu_Nhap_Vat_Tu> Chi_Tiet_Phieu_Nhap_Vat_Tu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Ton_Kho> Chi_Tiet_Ton_Kho { get; set; }
         public virtual Loai_Phieu_Nhap Loai_Phieu_Nhap { get; set; }
     }
 }

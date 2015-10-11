@@ -14,32 +14,16 @@ namespace Inventory.Models
     
     public partial class Phieu_Xuat_Tam_Vat_Tu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Phieu_Xuat_Tam_Vat_Tu()
-        {
-            this.Chi_Tiet_Phieu_Xuat_Tam = new HashSet<Chi_Tiet_Phieu_Xuat_Tam>();
-            this.Chi_Tiet_Ton_Kho = new HashSet<Chi_Tiet_Ton_Kho>();
-            this.Kho_muon_vat_tu = new HashSet<Kho_muon_vat_tu>();
-            this.No_vat_tu = new HashSet<No_vat_tu>();
-        }
-    
-        public Nullable<System.DateTime> Ngay_xuat { get; set; }
-        public Nullable<int> ID_nhan_vien { get; set; }
-        public Nullable<int> ID_kho { get; set; }
         public string Ma_phieu_xuat_tam { get; set; }
+        public Nullable<int> ID_nhan_vien { get; set; }
+        public Nullable<System.DateTime> Ngay_xuat { get; set; }
+        public Nullable<int> ID_kho { get; set; }
         public string Ly_do { get; set; }
         public string Cong_trinh { get; set; }
         public string Dia_chi { get; set; }
+        public int ID_phieu_xuat_tam { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Phieu_Xuat_Tam> Chi_Tiet_Phieu_Xuat_Tam { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Ton_Kho> Chi_Tiet_Ton_Kho { get; set; }
         public virtual DM_Kho DM_Kho { get; set; }
         public virtual DM_Nhan_Vien DM_Nhan_Vien { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kho_muon_vat_tu> Kho_muon_vat_tu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<No_vat_tu> No_vat_tu { get; set; }
     }
 }

@@ -23,7 +23,5 @@ namespace Inventory.Models
     
         public virtual DM_Kho DM_Kho { get; set; }
         public virtual DM_Kho DM_Kho1 { get; set; }
-        public virtual DM_Vat_Tu DM_Vat_Tu { get; set; }
-        public virtual Phieu_Xuat_Tam_Vat_Tu Phieu_Xuat_Tam_Vat_Tu { get; set; }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
-using System.Data.Common;
+using System.Configuration;
 using Inventory.Utilities;
+using Inventory.Models;
+using System.Data.Entity;
+
 namespace Inventory.EntityClass
 {
 
@@ -37,6 +40,26 @@ namespace Inventory.EntityClass
         /// <returns>DataTable</returns>
         public DataTable GetAll()
         {
+
+            //DatabaseHelper help = new DatabaseHelper();
+            //help.ConnectDatabase();
+
+            //var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+            //                  join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+
+            //                  select new
+            //                  {
+            //                      Ma_vat_tu = ep.Ma_vat_tu,
+            //                      Ten_vat_tu = ep.Ten_vat_tu,
+            //                      Ten_don_vi_tinh = e.Ten_don_vi_tinh,
+            //                      Mo_ta = ep.Mo_ta,
+            //                      Don_gia = ep.Don_gia,
+            //                      id_don_vi_tinh = ep.ID_Don_vi_tinh,
+
+            //                  }).ToList();
+            //return entryPoint;
+
+
             m_dbConnection.Open();
 
             DataTable dt = new DataTable();

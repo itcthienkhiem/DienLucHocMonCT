@@ -22,7 +22,5 @@ namespace Inventory.Models
         public Nullable<bool> Da_tra { get; set; }
     
         public virtual DM_Nhan_Vien DM_Nhan_Vien { get; set; }
-        public virtual DM_Vat_Tu DM_Vat_Tu { get; set; }
-        public virtual Phieu_Xuat_Tam_Vat_Tu Phieu_Xuat_Tam_Vat_Tu { get; set; }
     }
 }

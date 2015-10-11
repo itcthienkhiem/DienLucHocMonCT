@@ -28,6 +28,5 @@ namespace Inventory.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chi_Tiet_Ton_Kho> Chi_Tiet_Ton_Kho { get; set; }
         public virtual DM_Kho DM_Kho { get; set; }
-        public virtual DM_Vat_Tu DM_Vat_Tu { get; set; }
     }
 }

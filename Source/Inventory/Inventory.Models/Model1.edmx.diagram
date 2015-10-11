@@ -4,29 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c1580f057f2d445fba4bed5838511f8f" Name="Diagram1">
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Phieu_Nhap_Vat_Tu" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Phieu_Xuat_Tam" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Ton_Kho" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Don_vi_tinh" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Kho" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Nhan_Vien" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Vat_Tu" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Kho_muon_vat_tu" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Ky" Width="1.5" PointX="6" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Loai_Phieu_Nhap" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.No_vat_tu" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Phieu_Nhap_Kho" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Phieu_Xuat_Tam_Vat_Tu" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Ton_kho" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKhoDienLucModel.Vat_Tu_Goi_Dau_Ky" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_DM_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Phieu_Nhap_Vat_Tu_Phieu_Nhap_Kho" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Phieu_Xuat_Tam_DM_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Phieu_Xuat_Tam_Phieu_Xuat_Tam_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Ton_Kho_Phieu_Nhap_Kho" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Ton_Kho_Phieu_Xuat_Tam_Vat_Tu1" ManuallyRouted="false" />
+      <Diagram DiagramId="d357ea6c3e4646b9a53dd712b3fef973" Name="Diagram1">
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Phieu_Nhap_Vat_Tu" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Phieu_Xuat_Tam" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Chi_Tiet_Ton_Kho" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Don_vi_tinh" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Kho" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Nhan_Vien" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.DM_Vat_Tu" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Kho_muon_vat_tu" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Ky" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Loai_Phieu_Nhap" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.No_vat_tu" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Phieu_Nhap_Kho" Width="1.5" PointX="8" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Phieu_Xuat_Tam_Vat_Tu" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.sysdiagram" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Ton_kho" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKhoDienLucModel.Vat_Tu_Goi_Dau_Ky" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_Chi_Tiet_Ton_Kho_Ton_kho" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_DM_Vat_Tu_DM_Don_vi_tinh" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_Kho_muon_vat_tu_DM_Kho" ManuallyRouted="false" />
@@ -35,14 +29,8 @@
         <AssociationConnector Association="QLKhoDienLucModel.FK_Ton_Dau_Ky_DM_Kho" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_No_vat_tu_DM_Nhan_Vien" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_Phieu_Xuat_Tam_Vat_Tu_DM_Nhan_Vien" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Kho_muon_vat_tu_DM_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_No_vat_tu_DM_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Ton_Dau_Ky_DM_Vat_Tu1" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Vat_Tu_Goi_Dau_Ky_DM_Vat_Tu" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_Kho_muon_vat_tu_Phieu_Xuat_Tam_Vat_Tu" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_Vat_Tu_Goi_Dau_Ky_Ky" ManuallyRouted="false" />
         <AssociationConnector Association="QLKhoDienLucModel.FK_Phieu_Nhap_Kho_Loai_Phieu_Nhap" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKhoDienLucModel.FK_No_vat_tu_Phieu_Xuat_Tam_Vat_Tu" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

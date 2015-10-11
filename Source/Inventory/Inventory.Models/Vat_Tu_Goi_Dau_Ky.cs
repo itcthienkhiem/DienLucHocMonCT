@@ -19,7 +19,6 @@ namespace Inventory.Models
         public Nullable<int> So_Luong { get; set; }
         public Nullable<int> ID_ky { get; set; }
     
-        public virtual DM_Vat_Tu DM_Vat_Tu { get; set; }
         public virtual Ky Ky { get; set; }
     }
 }

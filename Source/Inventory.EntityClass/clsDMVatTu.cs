@@ -22,6 +22,7 @@ namespace Inventory.EntityClass
     {
        //List var dùng trong DM Vat Tu
        //public int ID_vat_tu; //Bị Remove @.@
+       public int ID_vat_tu;
        public string Ten_vat_tu;
        public string Ma_vat_tu;
        public string old_Ma_vat_tu;
@@ -171,6 +172,7 @@ namespace Inventory.EntityClass
                            
                              select new
                              {
+                                ID_vat_tu = ep.ID_Vat_tu,
                                  Ma_vat_tu = ep.Ma_vat_tu,
                                  Ten_vat_tu = ep.Ten_vat_tu,
                                  Ten_don_vi_tinh = e.Ten_don_vi_tinh,

@@ -21,8 +21,6 @@ namespace Inventory.Models
         public Nullable<System.DateTime> Ngay_thay_doi { get; set; }
         public Nullable<bool> Tang_Giam { get; set; }
     
-        public virtual Phieu_Nhap_Kho Phieu_Nhap_Kho { get; set; }
-        public virtual Phieu_Xuat_Tam_Vat_Tu Phieu_Xuat_Tam_Vat_Tu { get; set; }
         public virtual Ton_kho Ton_kho { get; set; }
     }
 }

@@ -14,16 +14,15 @@ namespace Inventory.Models
     
     public partial class Chi_Tiet_Phieu_Xuat_Tam
     {
+        public int ID_chi_tiet_phieu_xuat_tam { get; set; }
         public string Ma_phieu_xuat_tam { get; set; }
         public string Ma_vat_tu { get; set; }
+        public Nullable<int> So_luong_de_nghi { get; set; }
         public Nullable<int> So_luong_thuc_xuat { get; set; }
+        public Nullable<bool> Da_duyen_xuat_vat_tu { get; set; }
         public Nullable<int> So_luong_hoan_nhap { get; set; }
         public Nullable<int> So_luong_giu_lai { get; set; }
-        public int ID_chi_tiet_phieu_xuat_tam { get; set; }
-        public Nullable<int> So_luong_de_nghi { get; set; }
+        public Nullable<bool> Da_duyet_hoan_nhap_giu_lai { get; set; }
         public Nullable<int> So_luong_su_dung { get; set; }
-    
-        public virtual DM_Vat_Tu DM_Vat_Tu { get; set; }
-        public virtual Phieu_Xuat_Tam_Vat_Tu Phieu_Xuat_Tam_Vat_Tu { get; set; }
     }
 }

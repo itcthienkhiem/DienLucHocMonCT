@@ -14,17 +14,6 @@ namespace Inventory.Models
     
     public partial class DM_Vat_Tu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DM_Vat_Tu()
-        {
-            this.Chi_Tiet_Phieu_Nhap_Vat_Tu = new HashSet<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
-            this.Chi_Tiet_Phieu_Xuat_Tam = new HashSet<Chi_Tiet_Phieu_Xuat_Tam>();
-            this.Kho_muon_vat_tu = new HashSet<Kho_muon_vat_tu>();
-            this.No_vat_tu = new HashSet<No_vat_tu>();
-            this.Ton_kho = new HashSet<Ton_kho>();
-            this.Vat_Tu_Goi_Dau_Ky = new HashSet<Vat_Tu_Goi_Dau_Ky>();
-        }
-    
         public string Ten_vat_tu { get; set; }
         public string Ma_vat_tu { get; set; }
         public Nullable<int> ID_Don_vi_tinh { get; set; }
@@ -32,19 +21,8 @@ namespace Inventory.Models
         public Nullable<bool> Trang_thai { get; set; }
         public Nullable<long> Don_gia { get; set; }
         public Nullable<bool> Da_xuat { get; set; }
+        public int ID_Vat_tu { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Phieu_Nhap_Vat_Tu> Chi_Tiet_Phieu_Nhap_Vat_Tu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chi_Tiet_Phieu_Xuat_Tam> Chi_Tiet_Phieu_Xuat_Tam { get; set; }
         public virtual DM_Don_vi_tinh DM_Don_vi_tinh { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kho_muon_vat_tu> Kho_muon_vat_tu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<No_vat_tu> No_vat_tu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ton_kho> Ton_kho { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vat_Tu_Goi_Dau_Ky> Vat_Tu_Goi_Dau_Ky { get; set; }
     }
 }

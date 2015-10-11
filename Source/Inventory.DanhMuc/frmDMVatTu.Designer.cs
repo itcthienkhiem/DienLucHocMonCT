@@ -35,6 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboDonViTinh = new System.Windows.Forms.ComboBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnDong = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -53,13 +54,13 @@
             this.txtMoTa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.gridDMVatTu = new System.Windows.Forms.DataGridView();
+            this.dataSet1 = new System.Data.DataSet();
+            this.txtMaVatTu = new System.Windows.Forms.TextBox();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mo_ta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataSet1 = new System.Data.DataSet();
-            this.txtMaVatTu = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDMVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -124,6 +125,16 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(780, 92);
             this.pnlMenu.TabIndex = 36;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(371, 31);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // btnDong
             // 
@@ -222,6 +233,7 @@
             this.btnSua.Size = new System.Drawing.Size(50, 50);
             this.btnSua.TabIndex = 2;
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click_1);
             // 
             // btnXoa
             // 
@@ -311,6 +323,7 @@
             this.gridDMVatTu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDMVatTu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
+            this.ID_vat_tu,
             this.Ten_vat_tu,
             this.Ten_don_vi_tinh,
             this.Mo_ta});
@@ -326,12 +339,32 @@
             this.gridDMVatTu.TabIndex = 42;
             this.gridDMVatTu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDMVatTu_CellClick);
             // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "NewDataSet";
+            // 
+            // txtMaVatTu
+            // 
+            this.txtMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtMaVatTu.Location = new System.Drawing.Point(72, 98);
+            this.txtMaVatTu.Name = "txtMaVatTu";
+            this.txtMaVatTu.Size = new System.Drawing.Size(171, 22);
+            this.txtMaVatTu.TabIndex = 35;
+            // 
             // Ma_vat_tu
             // 
             this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
             this.Ma_vat_tu.HeaderText = "Mã vật tư";
             this.Ma_vat_tu.Name = "Ma_vat_tu";
             this.Ma_vat_tu.ReadOnly = true;
+            // 
+            // ID_vat_tu
+            // 
+            this.ID_vat_tu.DataPropertyName = "ID_vat_tu";
+            this.ID_vat_tu.HeaderText = "ID_vat_tu";
+            this.ID_vat_tu.Name = "ID_vat_tu";
+            this.ID_vat_tu.ReadOnly = true;
+            this.ID_vat_tu.Visible = false;
             // 
             // Ten_vat_tu
             // 
@@ -354,28 +387,6 @@
             this.Mo_ta.HeaderText = "Mô tả";
             this.Mo_ta.Name = "Mo_ta";
             this.Mo_ta.ReadOnly = true;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "NewDataSet";
-            // 
-            // txtMaVatTu
-            // 
-            this.txtMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtMaVatTu.Location = new System.Drawing.Point(72, 98);
-            this.txtMaVatTu.Name = "txtMaVatTu";
-            this.txtMaVatTu.Size = new System.Drawing.Size(171, 22);
-            this.txtMaVatTu.TabIndex = 35;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(371, 31);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(222, 14);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
             // frmDMVatTu
             // 
@@ -434,12 +445,13 @@
         private System.Data.DataSet dataSet1;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtMaVatTu;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_don_vi_tinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mo_ta;
-        private System.Windows.Forms.TextBox txtMaVatTu;
-        private System.Windows.Forms.LinkLabel linkLabel1;
 
     }
 }

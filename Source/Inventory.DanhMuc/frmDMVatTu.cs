@@ -221,6 +221,7 @@ namespace Inventory.DanhMuc
                         {
                             //do something
                             Models.DM_Vat_Tu vt = new Models.DM_Vat_Tu();
+                            vt.ID_Vat_tu =int.Parse( gridDMVatTu.Rows[selectedRowCount].Cells["ID_vat_tu"].Value.ToString());
                             vt.Ma_vat_tu = DM_VatTu.Ma_vat_tu;
                             vt.Ten_vat_tu = DM_VatTu.Ten_vat_tu;
                             vt.ID_Don_vi_tinh = DM_VatTu.ID_Don_vi_tinh;
@@ -275,7 +276,7 @@ namespace Inventory.DanhMuc
                             vt.Mo_ta = DM_VatTu.Mo_ta;
                             // vt.Trang_thai = DM_VatTu.Trang_thai;
                             vt.Don_gia = DM_VatTu.Don_gia;
-
+                            vt.ID_Vat_tu =int.Parse( gridDMVatTu.Rows[selectedRowCount].Cells["ID_vat_tu"].Value.ToString());
                             if (DM_VatTu.Update(vt) == 1)
                             {
                                 //MessageBox.Show("Bạn đã cập nhật thành công !");
@@ -323,6 +324,11 @@ namespace Inventory.DanhMuc
         {
             //Maybe remove
             DM_VatTu.Selected_DonViTinh = (int)cboDonViTinh.SelectedValue;
+        }
+
+        private void btnSua_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         
