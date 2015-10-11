@@ -94,16 +94,20 @@ namespace Inventory.Models
         {
             return "Data Source=" + Datasource + ";initial catalog=" + Database + ";persist security info=True;user id=" + UserId + ";password=" + Pass + ";MultipleActiveResultSets=True;";
         }
-        public  QLKhoDienLucEntities db = new QLKhoDienLucEntities();
-
+        public  QLKhoDienLucEntities ent = new QLKhoDienLucEntities();
+        public void CloseDatabase()
+        {
+            if (ent.Database.Connection.State == System.Data.ConnectionState.Open)
+                ent.Database.Connection.Close();
+        }
         public  int  ConnectDatabase()
         {
-           
-            db.Database.Connection.ConnectionString = clsThamSoUtilities.connectionString;
+
+            ent.Database.Connection.ConnectionString = clsThamSoUtilities.connectionString;
 
             try
             {
-                db.Database.Connection.Open();
+                ent.Database.Connection.Open();
                 //db.Database.Connection.Close();
                 return 1;
             }
