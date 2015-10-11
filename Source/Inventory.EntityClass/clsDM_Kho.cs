@@ -20,7 +20,7 @@ namespace Inventory.EntityClass
        
        }
 
-       SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+      // SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
        public static object getAll()
        {
@@ -74,6 +74,28 @@ namespace Inventory.EntityClass
                return 0;
 
            }
+
+
+           //DatabaseHelper help = new DatabaseHelper();
+           //help.ConnectDatabase();
+           //// insert
+           //try
+           //{
+           //    var t = new DM_Kho //Make sure you have a table called test in DB
+           //    {
+           //        ID_kho = this.ID_kho,
+           //        Ten_kho = this.Ten_kho,                   // ID = Guid.NewGuid(),
+           //    };
+
+           //    help.ent.DM_Kho.Add(t);
+           //    help.ent.SaveChanges();
+           //    return 1;
+           //}
+           //catch (Exception ex)
+           //{
+           //    return 0;
+
+           //}
            
 
        }

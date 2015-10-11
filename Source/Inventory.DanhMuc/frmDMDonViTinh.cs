@@ -177,8 +177,10 @@ namespace Inventory.DanhMuc
                         if (dialogResult == DialogResult.Yes)
                         {
                             //do something
-
-                            if (DM_DonViTinh.Delete() == 1)
+                            Models.DM_Don_vi_tinh dvt = new Models.DM_Don_vi_tinh();
+                            dvt.ID_Don_vi_tinh = DM_DonViTinh.ID_Don_vi_tinh;
+                            dvt.Ten_don_vi_tinh = DM_DonViTinh.Ten_don_vi_tinh;
+                            if (DM_DonViTinh.Delete(dvt) == 1)
                             {
                                 //MessageBox.Show("Bạn đã xóa thành công !");
 
@@ -212,8 +214,11 @@ namespace Inventory.DanhMuc
                         if (selectedRowCount >= 0)
                         {
                             DM_DonViTinh.ID_Don_vi_tinh = Int32.Parse(gridDMDonViTinh.Rows[selectedRowCount].Cells["ID_Don_vi_tinh"].Value.ToString());
+                            Models.DM_Don_vi_tinh dvt = new Models.DM_Don_vi_tinh();
+                            dvt.ID_Don_vi_tinh = DM_DonViTinh.ID_Don_vi_tinh;
+                            dvt.Ten_don_vi_tinh = DM_DonViTinh.Ten_don_vi_tinh;
 
-                            if (DM_DonViTinh.Update() == 1)
+                            if (DM_DonViTinh.Update(dvt) == 1)
                             {
                                 //MessageBox.Show("Bạn đã cập nhật thành công !");
                                 AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);
