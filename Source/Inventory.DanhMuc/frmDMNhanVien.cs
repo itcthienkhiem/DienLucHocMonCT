@@ -182,8 +182,12 @@ namespace Inventory.DanhMuc
                         if (dialogResult == DialogResult.Yes)
                         {
                             //do something
-
-                            if (DM_NhanVien.Delete() == 1)
+                            Models.DM_Nhan_Vien nv = new Models.DM_Nhan_Vien();
+                            nv.ID_nhan_vien = DM_NhanVien.ID_nhan_vien;
+                            nv.Ma_nhan_vien = DM_NhanVien.Ma_nhan_vien;
+                            nv.Ten_nhan_vien = DM_NhanVien.Ten_nhan_vien;
+                            nv.Trang_thai = DM_NhanVien.Trang_thai;
+                            if (DM_NhanVien.Delete(nv) == 1)
                             {
                                 //MessageBox.Show("Bạn đã xóa thành công !");
 
@@ -220,8 +224,12 @@ namespace Inventory.DanhMuc
                         if (selectedRowCount >= 0)
                         {
                             DM_NhanVien.ID_nhan_vien = Int32.Parse(gridDMNhanVien.Rows[selectedRowCount].Cells["ID_nhan_vien"].Value.ToString());
-
-                            if (DM_NhanVien.Update() == 1)
+                            Models.DM_Nhan_Vien nv = new Models.DM_Nhan_Vien();
+                            nv.ID_nhan_vien = DM_NhanVien.ID_nhan_vien;
+                            nv.Ma_nhan_vien = DM_NhanVien.Ma_nhan_vien;
+                            nv.Ten_nhan_vien = DM_NhanVien.Ten_nhan_vien;
+                            nv.Trang_thai = DM_NhanVien.Trang_thai;
+                            if (DM_NhanVien.Update(nv) == 1)
                             {
                                 //MessageBox.Show("Bạn đã cập nhật thành công !");
                                 AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);

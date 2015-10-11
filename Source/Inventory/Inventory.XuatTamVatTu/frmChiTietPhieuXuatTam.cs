@@ -61,7 +61,7 @@ namespace Inventory.XuatTamVatTu
             cbMaVatTu.SelectedIndex = -1;
             cbTenVatTu.SelectedIndex = -1;
             clsDM_NhanVien dmnv = new clsDM_NhanVien();
-           DataTable temp =  dmnv.GetAll();
+           DataTable temp =(DataTable)  dmnv.GetAll();
            DicNhanVien = GetDictMaNhanVien(temp);
           //     AutoCompleteStringCollection combDataMa = new AutoCompleteStringCollection();
             AutoCompleteStringCollection combDataTen = new AutoCompleteStringCollection();
@@ -124,7 +124,7 @@ namespace Inventory.XuatTamVatTu
             cbMaVatTu.SelectedIndex = -1;
             cbTenVatTu.SelectedIndex = -1;
             clsDM_NhanVien dmnv = new clsDM_NhanVien();
-            DataTable temp = dmnv.GetAll();
+            DataTable temp =(DataTable) dmnv.GetAll();
             DicNhanVien = GetDictMaNhanVien(temp);
             //     AutoCompleteStringCollection combDataMa = new AutoCompleteStringCollection();
             AutoCompleteStringCollection combDataTen = new AutoCompleteStringCollection();
