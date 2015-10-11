@@ -23,7 +23,7 @@ namespace Inventory.Models
             this.Ton_kho = new HashSet<Ton_kho>();
         }
     
-        public int ID_kho { get; set; }
+        public int? ID_kho { get; set; }
         public string Ten_kho { get; set; }
         public Nullable<bool> Trang_thai { get; set; }
     
