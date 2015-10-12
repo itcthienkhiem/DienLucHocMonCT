@@ -23,5 +23,6 @@ namespace Inventory.Models
         public Nullable<int> Don_gia { get; set; }
         public Nullable<int> Thanh_tien { get; set; }
         public Nullable<int> ID_Don_vi_tinh { get; set; }
+        public Nullable<bool> Da_duyet { get; set; }
     }
 }

@@ -19,13 +19,17 @@ namespace Inventory.EntityClass
     public class clsPhieuNhapKho
     {
         public string Ma_phieu_nhap;
-        public int ID_kho;
+      //  public int ID_kho;
         public DateTime Ngay_lap;
         public string Ly_do;
         public string So_hoa_don;
         public string Dia_chi;
         public string Cong_trinh;
-
+        public int ID_Loai_Phieu_Nhap;
+        public int ID_phieu_nhap;
+        public string Kho_nhan;
+        public string Kho_xuat_ra;
+        public bool Da_phan_kho;
 
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
@@ -41,49 +45,91 @@ namespace Inventory.EntityClass
         public DataTable GetAll()
         {
 
-            //DatabaseHelper help = new DatabaseHelper();
-            //help.ConnectDatabase();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
 
-            //var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
-            //                  join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                             // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
 
-            //                  select new
-            //                  {
-            //                      Ma_vat_tu = ep.Ma_vat_tu,
-            //                      Ten_vat_tu = ep.Ten_vat_tu,
-            //                      Ten_don_vi_tinh = e.Ten_don_vi_tinh,
-            //                      Mo_ta = ep.Mo_ta,
-            //                      Don_gia = ep.Don_gia,
-            //                      id_don_vi_tinh = ep.ID_Don_vi_tinh,
+                              select new
+                              {
+                                  Ma_phieu_nhap = this.Ma_phieu_nhap,
+                                  Kho_nhan = this.Kho_nhan,
+                                  Ngay_lap = this.Ngay_lap,
+                                  Ly_do = this.Ly_do,
+                                  So_hoa_don = this.So_hoa_don,
+                                  Cong_trinh = this.Cong_trinh,
+                                  Dia_Chi = this.Dia_chi,
+                                  ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
+                                  Kho_xuat_ra = this.Kho_xuat_ra,
+                                  Da_phan_kho = this.Da_phan_kho,
+                                  ID_phieu_nhap = this.ID_phieu_nhap,
 
-            //                  }).ToList();
-            //return entryPoint;
+
+                              }).ToList();
+           // return entryPoint;
+
+            DataTable table = new DataTable();
+            table.Columns.Add("Ma_phieu_nhap", typeof(int));
+            table.Columns.Add("Ten_vat_tu", typeof(string));
+            table.Columns.Add("Ngay_lap", typeof(string));
+            table.Columns.Add("Ly_do", typeof(string));
+            table.Columns.Add("So_hoa_don", typeof(string));
+            table.Columns.Add("Cong_trinh", typeof(long));
+            table.Columns.Add("Dia_Chi", typeof(int));
+            table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
+            table.Columns.Add("Kho_xuat_ra", typeof(string));
+            table.Columns.Add("Da_phan_kho", typeof(bool));
+            table.Columns.Add("ID_phieu_nhap", typeof(int));
+            entryPoint.ToList().ForEach((n) =>
+            {
+                DataRow row = table.NewRow();
+                row.SetField<string>("Ma_phieu_nhap",n.Ma_phieu_nhap);
+                row.SetField<string>("Kho_nhan", n.Kho_nhan);
+                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                row.SetField<string>("Ly_do", n.Ly_do);
+                row.SetField<string>("So_hoa_don", n.So_hoa_don);
+                row.SetField<string>("Cong_trinh", n.Cong_trinh);
+                row.SetField<string>("Dia_Chi", n.Dia_Chi);
+                row.SetField<int?>("ID_Loai_Phieu_Nhap",n.ID_Loai_Phieu_Nhap);
+                row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
+                row.SetField<string>("Da_phan_kho", n.Kho_xuat_ra);
+                row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
+
+            
 
 
-            m_dbConnection.Open();
 
-            DataTable dt = new DataTable();
-            //string sql = "SELECT * FROM DM_Vat_Tu";
-            string sql = "";
-            sql += "SELECT ";
-            sql +=      "Phieu_Nhap_Kho.Ma_phieu_nhap, ";
-            sql +=      "DM_Kho.Ten_kho, ";
-            sql +=      "Phieu_Nhap_Kho.Ngay_lap, ";
-            sql +=      "Phieu_Nhap_Kho.Ly_do, ";
-            sql +=      "Phieu_Nhap_Kho.So_hoa_don, ";
-            sql +=      "Phieu_Nhap_Kho.Cong_trinh, ";
-            sql += "Phieu_Nhap_Kho.Dia_Chi,DM_Kho.ID_kho ";
-            sql += "FROM Phieu_Nhap_Kho ";
-            sql += "INNER ";
-            sql +=      "JOIN DM_Kho ";
-            sql +=      "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho";
+                table.Rows.Add(row);
+            });
+            return table;
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
 
-            return dt;
+
+            //m_dbConnection.Open();
+
+            //DataTable dt = new DataTable();
+            ////string sql = "SELECT * FROM DM_Vat_Tu";
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql +=      "Phieu_Nhap_Kho.Ma_phieu_nhap, ";
+            //sql +=      "DM_Kho.Ten_kho, ";
+            //sql +=      "Phieu_Nhap_Kho.Ngay_lap, ";
+            //sql +=      "Phieu_Nhap_Kho.Ly_do, ";
+            //sql +=      "Phieu_Nhap_Kho.So_hoa_don, ";
+            //sql +=      "Phieu_Nhap_Kho.Cong_trinh, ";
+            //sql += "Phieu_Nhap_Kho.Dia_Chi,DM_Kho.ID_kho ";
+            //sql += "FROM Phieu_Nhap_Kho ";
+            //sql += "INNER ";
+            //sql +=      "JOIN DM_Kho ";
+            //sql +=      "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho";
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //return dt;
         }
         // End GetAll
 
@@ -103,205 +149,327 @@ namespace Inventory.EntityClass
 
         public DataTable GetAll(string maPhieu)
         {
-            m_dbConnection.Open();
-            DataTable dt = new DataTable();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var entryPoint = help.ent.Phieu_Nhap_Kho.Where(
+        i => i.Ma_phieu_nhap == maPhieu
 
-            string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", maPhieu));
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
+        ).ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add("Ma_phieu_nhap", typeof(int));
+            table.Columns.Add("Kho_nhan", typeof(string));
+            table.Columns.Add("Ngay_lap", typeof(string));
+            table.Columns.Add("Ly_do", typeof(string));
+            table.Columns.Add("So_hoa_don", typeof(string));
+            table.Columns.Add("Cong_trinh", typeof(long));
+            table.Columns.Add("Dia_Chi", typeof(int));
+            table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
+            table.Columns.Add("Kho_xuat_ra", typeof(string));
+            table.Columns.Add("Da_phan_kho", typeof(bool));
+            table.Columns.Add("ID_phieu_nhap", typeof(int));
+            entryPoint.ToList().ForEach((n) =>
+            {
+                DataRow row = table.NewRow();
+                row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
+                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                row.SetField<string>("Ly_do", n.Ly_do);
+                row.SetField<string>("So_hoa_don", n.So_hoa_don);
+                row.SetField<string>("Cong_trinh", n.Cong_trinh);
+                row.SetField<string>("Dia_Chi", n.Dia_Chi);
+                row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
+                row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
+                row.SetField<string>("Da_phan_kho", n.Kho_xuat_ra);
+                row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
 
-            m_dbConnection.Close();
-            return dt;
+                row.SetField<string>("Kho_nhan", n.Kho_nhan);
+
+
+
+                table.Rows.Add(row);
+            });
+            return table;
+           
+
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+
+            //string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", maPhieu));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+
+            //m_dbConnection.Close();
+            //return dt;
         }
 
         public DataTable GetChiTietPhieuNhap(string Ma_phieu_nhap)
         {
-            m_dbConnection.Open();
 
-            DataTable dt = new DataTable();
-            //string sql = "SELECT * FROM DM_Vat_Tu";
-            //SELECT ROW_NUMBER() OVER (ORDER BY Ma_phieu_nhap) AS rn, * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu
-            string sql = "";
-            sql += "SELECT ";
-            sql += "" + "ROW_NUMBER() OVER (ORDER BY Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap) AS Stt, ";
-            sql += "" + "DM_Vat_Tu.Ma_vat_tu, ";
-            sql += "" + "DM_Vat_Tu.Ten_vat_tu, ";
-            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
-            sql += "" + "DM_Don_vi_tinh.Ten_don_vi_tinh, ";
-            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
-            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
-            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Don_gia, ";
-            sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien ";
-            sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
-            sql += "INNER ";
-            sql += "" + "JOIN DM_Vat_Tu ";
-            sql += "" + "ON DM_Vat_Tu.Ma_vat_tu=Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu ";
-            sql += "INNER ";
-            sql += "" + "JOIN DM_Don_vi_tinh ";
-            sql += "" + "ON DM_Don_vi_tinh.ID_Don_vi_tinh=Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_Don_vi_tinh ";
-            sql += "WHERE Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap=@Ma_phieu_nhap";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
 
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
+          return   GetAll(Ma_phieu_nhap);
+            //return table;
 
-            return dt;
+            //m_dbConnection.Open();
+
+            //DataTable dt = new DataTable();
+            ////string sql = "SELECT * FROM DM_Vat_Tu";
+            ////SELECT ROW_NUMBER() OVER (ORDER BY Ma_phieu_nhap) AS rn, * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "" + "ROW_NUMBER() OVER (ORDER BY Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap) AS Stt, ";
+            //sql += "" + "DM_Vat_Tu.Ma_vat_tu, ";
+            //sql += "" + "DM_Vat_Tu.Ten_vat_tu, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
+            //sql += "" + "DM_Don_vi_tinh.Ten_don_vi_tinh, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Don_gia, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien ";
+            //sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
+            //sql += "INNER ";
+            //sql += "" + "JOIN DM_Vat_Tu ";
+            //sql += "" + "ON DM_Vat_Tu.Ma_vat_tu=Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu ";
+            //sql += "INNER ";
+            //sql += "" + "JOIN DM_Don_vi_tinh ";
+            //sql += "" + "ON DM_Don_vi_tinh.ID_Don_vi_tinh=Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_Don_vi_tinh ";
+            //sql += "WHERE Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap=@Ma_phieu_nhap";
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //return dt;
         }
 
         public DataTable GetThongTinPhieuNhap(string Ma_phieu_nhap)
+        
         {
-            m_dbConnection.Open();
 
-            DataTable dt = new DataTable();
+            return GetAll(Ma_phieu_nhap);
 
-            string sql = "";
-            sql += "SELECT ";
-            sql += "" + "DM_Kho.Ten_kho, ";
-            sql += "" + "CONVERT(VARCHAR(10), Phieu_Nhap_Kho.Ngay_lap, 102) as Ngay_lap, ";
-            sql += "" + "Phieu_Nhap_Kho.Ly_do, ";
-            sql += "" + "Phieu_Nhap_Kho.So_hoa_don, ";
-            sql += "" + "Phieu_Nhap_Kho.Cong_trinh, ";
-            sql += "" + "Phieu_Nhap_Kho.Dia_Chi ";
-            sql += "FROM Phieu_Nhap_Kho ";
-            sql += "INNER ";
-            sql += "" + "JOIN DM_Kho ";
-            sql += "" + "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho ";
-            sql += "WHERE Phieu_Nhap_Kho.Ma_phieu_nhap=@Ma_phieu_nhap";
+            //m_dbConnection.Open();
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+            //DataTable dt = new DataTable();
 
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "" + "DM_Kho.Ten_kho, ";
+            //sql += "" + "CONVERT(VARCHAR(10), Phieu_Nhap_Kho.Ngay_lap, 102) as Ngay_lap, ";
+            //sql += "" + "Phieu_Nhap_Kho.Ly_do, ";
+            //sql += "" + "Phieu_Nhap_Kho.So_hoa_don, ";
+            //sql += "" + "Phieu_Nhap_Kho.Cong_trinh, ";
+            //sql += "" + "Phieu_Nhap_Kho.Dia_Chi ";
+            //sql += "FROM Phieu_Nhap_Kho ";
+            //sql += "INNER ";
+            //sql += "" + "JOIN DM_Kho ";
+            //sql += "" + "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho ";
+            //sql += "WHERE Phieu_Nhap_Kho.Ma_phieu_nhap=@Ma_phieu_nhap";
 
-            return dt;
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //return dt;
         }
 
         
-        public bool CheckTonTaiSoDK()
-        {
+        //public bool CheckTonTaiSoDK()
+        //{
+        //    DatabaseHelper help = new DatabaseHelper();
+        //    help.ConnectDatabase();
+        //    bool has = help.ent.Phieu_Nhap_Kho.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap);
+        //    return has;
 
-            m_dbConnection.Open();
-            DataTable dt = new DataTable();
-            string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
 
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
+
+        //    //m_dbConnection.Open();
+        //    //DataTable dt = new DataTable();
+        //    //string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
+        //    //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+        //    //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+        //    //SqlDataAdapter da = new SqlDataAdapter(command);
+        //    //da.Fill(dt);
+        //    //m_dbConnection.Close();
+
+        //    //if (dt.Rows.Count > 0)
+        //    //{
+        //    //    return true;
+        //    //}
+        //    //return false;
+        //}
 
         public bool CheckTonTaiSoDK(string Ma_phieu_nhap)
         {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.Phieu_Nhap_Kho.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap);
+            return has;
 
-            m_dbConnection.Open();
-            DataTable dt = new DataTable();
-            string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
 
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
         }
 
         public int Insert(SQLDAL dal)
         {
-            dal.BeginTransaction();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            // insert
+            try
+            {
+                var t = new Phieu_Nhap_Kho //Make sure you have a table called test in DB
+                {
+                    Ma_phieu_nhap = this.Ma_phieu_nhap,
+                    Kho_nhan = this.Kho_nhan,
+                    Ngay_lap = this.Ngay_lap,
+                    Ly_do = this.Ly_do,
+                    So_hoa_don = this.So_hoa_don,
+                    Cong_trinh = this.Cong_trinh,
+                    Dia_Chi = this.Dia_chi,
+                    ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
+                    Kho_xuat_ra = this.Kho_xuat_ra,
+                    Da_phan_kho = this.Da_phan_kho,
+                    ID_phieu_nhap = this.ID_phieu_nhap,
+                };
+
+                help.ent.Phieu_Nhap_Kho.Add(t);
+                help.ent.SaveChanges();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+
+            }
+
+
+
+
+            //dal.BeginTransaction();
        
-            m_dbConnection = dal.m_conn;
-            if(m_dbConnection.State == ConnectionState.Closed)
-                m_dbConnection.Open();
+            //m_dbConnection = dal.m_conn;
+            //if(m_dbConnection.State == ConnectionState.Closed)
+            //    m_dbConnection.Open();
 
-            string sql = "";
-            sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi,Cong_trinh) ";
-            sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi,@Cong_trinh)";
+            //string sql = "";
+            //sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi,Cong_trinh) ";
+            //sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi,@Cong_trinh)";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
-            command.CommandType = CommandType.Text;
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
+            //command.CommandType = CommandType.Text;
 
-            //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-            command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
-            command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
-            //  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
-            command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
-            command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
+            ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
+            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+            //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+            //command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
+            //command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
+            ////  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
+            //command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
+            //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
 
+
+            ////command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+
+            //int result = command.ExecuteNonQuery();
+            //dal.CommitTransaction();
+           
+            //return result;
+        }
+
+        public int Update(Phieu_Nhap_Kho nk)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            int temp = 0;
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                using (var context = help.ent)
+                {
+                    context.Phieu_Nhap_Kho.Attach(nk);
+                    context.Entry(nk).State = EntityState.Modified;
+                    temp = help.ent.SaveChanges();
+                    dbcxtransaction.Commit();
+
+                }
+
+
+            }
+            return temp;
+
+
+            //DAL.BeginTransaction();
+       
+            //m_dbConnection = DAL.m_conn;
+            //if (m_dbConnection.State == ConnectionState.Closed)
+            //m_dbConnection.Open();
+
+            //string sql = "";
+            //sql += "UPDATE Phieu_Nhap_Kho ";
+            //sql += "Set ma_phieu_nhap=@ma_phieu_nhap,ID_kho=@ID_kho,Ngay_lap=@Ngay_lap,ly_do=@ly_do,dia_chi = @dia_chi,cong_trinh = @cong_trinh ";
+            //sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
+
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
+            //command.CommandType = CommandType.Text;
+
+            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+            //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+            //command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
+            //command.Parameters.Add(new SqlParameter("@ly_do", Ly_do));
+            ////  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
+            //command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));
+            //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
+           
+            //int result = command.ExecuteNonQuery();
+            //DAL.CommitTransaction();
+            //return result;
+        }
+        public int Delete(Phieu_Nhap_Kho nk)
+        {
+
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            help.ent.Phieu_Nhap_Kho.Attach(nk);
+            help.ent.Phieu_Nhap_Kho.Remove(nk);
+            return help.ent.SaveChanges();
+            //DAL.BeginTransaction();
+       
+            //m_dbConnection = DAL.m_conn;
+            //if (m_dbConnection.State == ConnectionState.Closed)
+            //m_dbConnection.Open();
+            //string sql = "Delete from Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
+
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
+            //command.CommandType = CommandType.Text;
 
             //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
 
-            int result = command.ExecuteNonQuery();
-            dal.CommitTransaction();
-           
-            return result;
-        }
-
-        public int Update(SQLDAL DAL)
-        {
-            DAL.BeginTransaction();
-       
-            m_dbConnection = DAL.m_conn;
-            if (m_dbConnection.State == ConnectionState.Closed)
-            m_dbConnection.Open();
-
-            string sql = "";
-            sql += "UPDATE Phieu_Nhap_Kho ";
-            sql += "Set ma_phieu_nhap=@ma_phieu_nhap,ID_kho=@ID_kho,Ngay_lap=@Ngay_lap,ly_do=@ly_do,dia_chi = @dia_chi,cong_trinh = @cong_trinh ";
-            sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
-
-
-            SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
-            command.CommandType = CommandType.Text;
-
-            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-            command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
-            command.Parameters.Add(new SqlParameter("@ly_do", Ly_do));
-            //  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
-            command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));
-            command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
-           
-            int result = command.ExecuteNonQuery();
-            DAL.CommitTransaction();
-            return result;
-        }
-        public int Delete(SQLDAL DAL)
-        {
-            DAL.BeginTransaction();
-       
-            m_dbConnection = DAL.m_conn;
-            if (m_dbConnection.State == ConnectionState.Closed)
-            m_dbConnection.Open();
-            string sql = "Delete from Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
-
-
-            SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
-            command.CommandType = CommandType.Text;
-
-            command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-
-            int result = command.ExecuteNonQuery();
-            DAL.CommitTransaction();
-            return result;
+            //int result = command.ExecuteNonQuery();
+            //DAL.CommitTransaction();
+            //return result;
         }
 
     }

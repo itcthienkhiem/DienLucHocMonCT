@@ -207,7 +207,7 @@ namespace Inventory.XuatTamVatTu
             if (status == enumStatus.Sua || status == enumStatus.Xoa)
             {
                 this.phieuNhapKho = phieunhap;
-                DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
+                DataTable chiTietPhieuNhap = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
                 gridMaster.DataSource = chiTietPhieuNhap;
                 //chitiet.get
             }
@@ -959,7 +959,7 @@ namespace Inventory.XuatTamVatTu
 
                 //clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
 
-                DataTable vChiTiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+                DataTable vChiTiet = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
 
                 for (int i = 0; i < vChiTiet.Rows.Count; i++)
                 {

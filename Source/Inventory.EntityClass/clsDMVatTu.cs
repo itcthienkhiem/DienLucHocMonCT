@@ -60,62 +60,84 @@ namespace Inventory.EntityClass
        i => i.Ma_vat_tu == Ma_vat_tu
           
        ).ToList();
-           return "";
+           string name = "";
+              temp.ToList().ForEach((n) =>
+           {
+                 name = n.Ten_vat_tu;
+                
+           });
+           return name;
 
 
 
 
-           //Mở
-           m_dbConnection.Open();
-           DataTable dt = new DataTable();
+           ////Mở
+           //m_dbConnection.Open();
+           //DataTable dt = new DataTable();
 
-           //Chuẩn bị
-           string sql = "";
-           sql += "SELECT Ten_vat_tu FROM DM_Vat_Tu ";
-           sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+           ////Chuẩn bị
+           //string sql = "";
+           //sql += "SELECT Ten_vat_tu FROM DM_Vat_Tu ";
+           //sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-           command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
+           //command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
 
-           command.CommandType = CommandType.Text;
+           //command.CommandType = CommandType.Text;
 
-           //Run
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
+           ////Run
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(dt);
 
-           //Đóng
-           m_dbConnection.Close();
+           ////Đóng
+           //m_dbConnection.Close();
 
-           return dt.Rows[0]["Ten_vat_tu"].ToString();
+           //return dt.Rows[0]["Ten_vat_tu"].ToString();
 
        }
 
        public string getMaVatTu(string TenVatTu)
        {
-           //Mở
-           m_dbConnection.Open();
-           DataTable dt = new DataTable();
 
-           //Chuẩn bị
-           string sql = "";
-           sql += "SELECT Ma_vat_tu FROM DM_Vat_Tu ";
-           sql += "WHERE Ten_vat_tu=@Ten_vat_tu";
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           var temp = help.ent.DM_Vat_Tu.Where(
+       i => i.Ten_vat_tu == Ten_vat_tu
 
-           command.Parameters.Add("@Ten_vat_tu", SqlDbType.NVarChar, 50).Value = TenVatTu;
+       ).ToList();
+           string name = "";
+           temp.ToList().ForEach((n) =>
+           {
+               name = n.Ma_vat_tu;
 
-           command.CommandType = CommandType.Text;
+           });
+           return name;
 
-           //Run
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
+           ////Mở
+           //m_dbConnection.Open();
+           //DataTable dt = new DataTable();
 
-           //Đóng
-           m_dbConnection.Close();
+           ////Chuẩn bị
+           //string sql = "";
+           //sql += "SELECT Ma_vat_tu FROM DM_Vat_Tu ";
+           //sql += "WHERE Ten_vat_tu=@Ten_vat_tu";
 
-           return dt.Rows[0]["Ma_vat_tu"].ToString();
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+           //command.Parameters.Add("@Ten_vat_tu", SqlDbType.NVarChar, 50).Value = TenVatTu;
+
+           //command.CommandType = CommandType.Text;
+
+           ////Run
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(dt);
+
+           ////Đóng
+           //m_dbConnection.Close();
+
+           //return dt.Rows[0]["Ma_vat_tu"].ToString();
 
        }
 
@@ -126,31 +148,81 @@ namespace Inventory.EntityClass
        /// <returns></returns>
        public DataTable getData_By_MaVatTu(string MaVatTu)
        {
-           m_dbConnection.Open();
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
 
-           DataTable dt = new DataTable();
+           var entryPoint = (from ep in help.ent.DM_Vat_Tu
+                             join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
+                                    where ep.Ma_vat_tu .Contains(Ma_vat_tu)//cau lenh where
+                             select new
+                             {
+                                 ID_vat_tu = ep.ID_Vat_tu,
+                                 Ma_vat_tu = ep.Ma_vat_tu,
+                                 Ten_vat_tu = ep.Ten_vat_tu,
+                                 Ten_don_vi_tinh = e.Ten_don_vi_tinh,
+                                 Mo_ta = ep.Mo_ta,
+                                 Don_gia = ep.Don_gia,
+                                 id_don_vi_tinh = ep.ID_Don_vi_tinh,
 
-           string sql = "";
-           sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_vat_tu.Don_gia ";
-           sql += "FROM DM_Vat_Tu ";
-           sql += "INNER ";
-           sql += "JOIN DM_Don_vi_tinh ";
-           sql += "ON DM_Vat_Tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
-           sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+                             }).ToList();
+           DataTable table = new DataTable();
+           table.Columns.Add("ID_vat_tu", typeof(int));
+           table.Columns.Add("Ma_vat_tu", typeof(string));
+           table.Columns.Add("Ten_vat_tu", typeof(string));
+           table.Columns.Add("Ten_don_vi_tinh", typeof(string));
+           table.Columns.Add("Mo_ta", typeof(string));
+           table.Columns.Add("Don_gia", typeof(long));
+           table.Columns.Add("ID_Don_vi_tinh", typeof(int));
+           entryPoint.ToList().ForEach((n) =>
+           {
+               DataRow row = table.NewRow();
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+               row.SetField<double>("ID_vat_tu", n.ID_vat_tu);
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+               row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+               row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
 
-           command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
+               row.SetField<string>("Mo_ta", n.Mo_ta);
 
-           command.CommandType = CommandType.Text;
+               row.SetField<long?>("Don_gia", n.Don_gia);
 
-           //Run
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
+               row.SetField<int?>("ID_Don_vi_tinh", n.id_don_vi_tinh);
 
-           m_dbConnection.Close();
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
 
-           return dt;
+
+
+               table.Rows.Add(row);
+           });
+           return table;
+
+
+
+           //m_dbConnection.Open();
+
+           //DataTable dt = new DataTable();
+
+           //string sql = "";
+           //sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_vat_tu.Don_gia ";
+           //sql += "FROM DM_Vat_Tu ";
+           //sql += "INNER ";
+           //sql += "JOIN DM_Don_vi_tinh ";
+           //sql += "ON DM_Vat_Tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
+           //sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+           //command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
+
+           //command.CommandType = CommandType.Text;
+
+           ////Run
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(dt);
+
+           //m_dbConnection.Close();
+
+           //return dt;
        }
 
        /// <summary>
@@ -158,12 +230,30 @@ namespace Inventory.EntityClass
        /// </summary>
        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
+       //public  void FillDataTable(DataTable table)
+       //{
+       //    DataRow row = table.NewRow();
+
+       //    row.SetField<int>("ID_vat_tu", this.ID_vat_tu);
+       //    row.SetField<string>("Ma_vat_tu", this.Ma_vat_tu);
+
+       //    row.SetField<string>("Ten_vat_tu", this.Ten_vat_tu);
+       //    row.SetField<string>("Ten_don_vi_tinh", this.ten_don_vi_tinh);
+       //    row.SetField<string>("Mo_ta", this.Mo_ta);
+       //    row.SetField<long>("Don_gia", this.Don_gia);
+       //    row.SetField<int>("ID_Don_vi_tinh", this.ID_Don_vi_tinh);
+           
+
+       //    table.Rows.Add(row);
+       //}
        /// <summary>
        /// Get tất cả dữ liệu từ CSDL, dùng cho Grid
        /// </summary>
        /// <returns>DataTable</returns>
-       public object GetAll()
+       public DataTable GetAll()
        {
+         
+
            DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
 
@@ -180,8 +270,37 @@ namespace Inventory.EntityClass
                                  Don_gia = ep.Don_gia,
                                  id_don_vi_tinh = ep.ID_Don_vi_tinh,
 
-                             }).ToList();
-           return entryPoint;
+                             }).ToList() ;
+           DataTable table = new DataTable();
+           table.Columns.Add("ID_vat_tu", typeof(int));
+           table.Columns.Add("Ma_vat_tu", typeof(string));
+           table.Columns.Add("Ten_vat_tu", typeof(string));
+           table.Columns.Add("Ten_don_vi_tinh", typeof(string));
+           table.Columns.Add("Mo_ta", typeof(string));
+           table.Columns.Add("Don_gia", typeof(long));
+           table.Columns.Add("ID_Don_vi_tinh", typeof(int));
+           entryPoint.ToList().ForEach((n) =>
+           {
+               DataRow row = table.NewRow();
+
+               row.SetField<double>("ID_vat_tu", n.ID_vat_tu);
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+               row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+               row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
+
+               row.SetField<string>("Mo_ta", n.Mo_ta);
+
+               row.SetField<long?>("Don_gia", n.Don_gia);
+
+               row.SetField<int?>("ID_Don_vi_tinh", n.id_don_vi_tinh);
+
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+
+
+
+               table.Rows.Add(row);
+           });
+           return table;
 
            //DatabaseHelper help = new DatabaseHelper();
            //help.ConnectDatabase();
