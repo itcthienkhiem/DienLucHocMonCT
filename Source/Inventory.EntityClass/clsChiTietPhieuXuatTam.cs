@@ -15,7 +15,7 @@ namespace Inventory.EntityClass
        public int So_luong_de_nghi;
        public int So_luong_hoan_nhap;
        public int So_luong_giu_lai;
-       public int So_luong_thuc_xuat;
+       public int so_luong_thuc_lanh;
        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
        public DataTable GetAll(string maPhieu)
@@ -76,8 +76,8 @@ namespace Inventory.EntityClass
                m_dbConnection.Open();
 
            string sql = "";
-           sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,So_luong_thuc_xuat) ";
-           sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@So_luong_thuc_xuat)";
+           sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,so_luong_thuc_lanh) ";
+           sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@so_luong_thuc_lanh)";
 
            SqlCommand command = new SqlCommand(sql, m_dbConnection, dal.m_trans);
            command.CommandType = CommandType.Text;
@@ -88,7 +88,7 @@ namespace Inventory.EntityClass
            //command.Parameters.Add(new SqlParameter("@So_luong_de_nghi", So_luong_de_nghi));
            command.Parameters.Add(new SqlParameter("@So_luong_hoan_nhap", So_luong_hoan_nhap));
            command.Parameters.Add(new SqlParameter("@So_luong_giu_lai", So_luong_giu_lai));
-           command.Parameters.Add(new SqlParameter("@So_luong_thuc_xuat", So_luong_thuc_xuat));
+           command.Parameters.Add(new SqlParameter("@so_luong_thuc_lanh", so_luong_thuc_lanh));
 
            int result = command.ExecuteNonQuery();
          
@@ -106,7 +106,7 @@ namespace Inventory.EntityClass
 
            string sql = "";
            sql += "UPDATE Chi_Tiet_Phieu_xuat_tam ";
-           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,Ma_vat_tu=@Ma_vat_tu,So_luong_de_nghi=@So_luong_de_nghi,So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai = @So_luong_giu_lai ,So_luong_thuc_xuat = @So_luong_thuc_xuat";
+           sql += "Set ma_phieu_xuat_tam=@ma_phieu_xuat_tam,Ma_vat_tu=@Ma_vat_tu,So_luong_de_nghi=@So_luong_de_nghi,So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai = @So_luong_giu_lai ,so_luong_thuc_lanh = @so_luong_thuc_lanh";
            sql += "WHERE ma_phieu_xuat_tam=@ma_phieu_xuat_tam and ID_vat_tu = @ID_vat_tu";
 
 

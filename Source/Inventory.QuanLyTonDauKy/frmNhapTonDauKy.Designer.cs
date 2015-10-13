@@ -94,7 +94,7 @@
             // 
             // dataColumn9
             // 
-            this.dataColumn9.ColumnName = "So_luong_thuc_xuat";
+            this.dataColumn9.ColumnName = "so_luong_thuc_lanh";
             // 
             // dataColumn6
             // 

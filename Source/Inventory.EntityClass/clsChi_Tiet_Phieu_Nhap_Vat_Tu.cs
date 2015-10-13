@@ -73,29 +73,27 @@ namespace Inventory.EntityClass
             //m_dbConnection.Close();
             //return dt;
         }
-        public int remove(string ma_phieu)
+
+        public int remove1(string ma_phieu)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-             help.ent.Database.BeginTransaction();
-            using (var ctx =  help.ent)
+            help.ent.Database.BeginTransaction();
+
+            var recordsToDelete = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == ma_phieu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
+            if (recordsToDelete.Count > 0)
             {
-                //var stud = (from s in ctx.Chi_Tiet_Phieu_Nhap_Vat_Tu
-                //            where s.Ma_vat_tu == "Student1"
-                //            select s).FirstOrDefault();
-                var users = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Where(u => u.Ma_vat_tu == ma_phieu);
-
-                foreach (var u in users)
+                foreach (var record in recordsToDelete)
                 {
-                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(u);
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(record);
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(record);
                 }
-
-            return  help.ent.SaveChanges();
-              //  ctx.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteObject(stud);
-
-              //  int num = ctx.SaveChanges();
             }
+            help.ent.SaveChanges();
+            return 1;
         }
+
+     
         public int removebyKey(SQLDAL DAL, string ma_Phieunhap,string ma_vat_tu)
         {
               DatabaseHelper help = new DatabaseHelper();
@@ -141,15 +139,16 @@ namespace Inventory.EntityClass
 
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
+            
 
             var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
                               join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                              where ep.Ma_phieu_nhap .Contains( ma_Phieunhap)
+                              where ep.Ma_phieu_nhap .Equals ( ma_Phieunhap)
 
                               select new
                               {
-                                  ID_vat_tu = ep.ID_chi_tiet_phieu_nhap_vat_tu,
+                                  ID_chi_tiet_phieu_nhap_vat_tu = ep.ID_chi_tiet_phieu_nhap_vat_tu,
                                   Ma_vat_tu = ep.Ma_vat_tu,
                                   Ten_vat_tu = u.Ten_vat_tu,
                                   Ten_don_vi_tinh = e.Ten_don_vi_tinh,
@@ -169,22 +168,22 @@ namespace Inventory.EntityClass
             table.Columns.Add("Ten_vat_tu", typeof(string));
             table.Columns.Add("Ten_don_vi_tinh", typeof(string));
             table.Columns.Add("Chat_luong", typeof(string));
-            table.Columns.Add("So_luong_yeu_cau", typeof(int?));
-            table.Columns.Add("So_luong_thuc_nhap", typeof(int?));
-            table.Columns.Add("Thanh_tien", typeof(int?));
-            table.Columns.Add("id_don_vi_tinh", typeof(int?));
+            table.Columns.Add("So_luong_yeu_cau", typeof(int));
+            table.Columns.Add("So_luong_thuc_lanh", typeof(int));
+            table.Columns.Add("Thanh_tien", typeof(int));
+            table.Columns.Add("id_don_vi_tinh", typeof(int));
             table.Columns.Add("Ten_DVT", typeof(string));
             table.Columns.Add("Don_gia", typeof(string));
             entryPoint.ToList().ForEach((n) =>
             {
                 DataRow row = table.NewRow();
-                row.SetField<int>("ID_vat_tu", n.ID_vat_tu);
+                row.SetField<int>("ID_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
                 row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
                 row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
                 row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
                 row.SetField<string>("Chat_luong", n.Chat_luong);
                 row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
-                row.SetField<int?>("So_luong_thuc_nhap", n.So_luong_thuc_nhap);
+                row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
                 row.SetField<int?>("Thanh_tien", n.Thanh_tien);
                 row.SetField<int?>("id_don_vi_tinh", n.id_don_vi_tinh);
                 row.SetField<string>("Ten_DVT", n.Ten_DVT);

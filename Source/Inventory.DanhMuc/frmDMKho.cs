@@ -279,5 +279,10 @@ namespace Inventory.DanhMuc
             }
             // txtTenKho.Text = cell.Value.ToString();
         }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

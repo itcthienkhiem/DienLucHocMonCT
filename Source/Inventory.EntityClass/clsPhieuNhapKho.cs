@@ -75,8 +75,8 @@ namespace Inventory.EntityClass
             table.Columns.Add("Ngay_lap", typeof(string));
             table.Columns.Add("Ly_do", typeof(string));
             table.Columns.Add("So_hoa_don", typeof(string));
-            table.Columns.Add("Cong_trinh", typeof(long));
-            table.Columns.Add("Dia_Chi", typeof(int));
+            table.Columns.Add("Cong_trinh", typeof(string));
+            table.Columns.Add("Dia_Chi", typeof(string));
             table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
             table.Columns.Add("Kho_xuat_ra", typeof(string));
             table.Columns.Add("Da_phan_kho", typeof(bool));
@@ -93,7 +93,7 @@ namespace Inventory.EntityClass
                 row.SetField<string>("Dia_Chi", n.Dia_Chi);
                 row.SetField<int?>("ID_Loai_Phieu_Nhap",n.ID_Loai_Phieu_Nhap);
                 row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                row.SetField<string>("Da_phan_kho", n.Kho_xuat_ra);
+                row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
                 row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
 
             
@@ -161,8 +161,8 @@ namespace Inventory.EntityClass
             table.Columns.Add("Ngay_lap", typeof(string));
             table.Columns.Add("Ly_do", typeof(string));
             table.Columns.Add("So_hoa_don", typeof(string));
-            table.Columns.Add("Cong_trinh", typeof(long));
-            table.Columns.Add("Dia_Chi", typeof(int));
+            table.Columns.Add("Cong_trinh", typeof(string));
+            table.Columns.Add("Dia_Chi", typeof(string));
             table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
             table.Columns.Add("Kho_xuat_ra", typeof(string));
             table.Columns.Add("Da_phan_kho", typeof(bool));
@@ -178,7 +178,7 @@ namespace Inventory.EntityClass
                 row.SetField<string>("Dia_Chi", n.Dia_Chi);
                 row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
                 row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                row.SetField<string>("Da_phan_kho", n.Kho_xuat_ra);
+                row.SetField<bool?>("Da_phan_kho", n.Da_phan_kho);
                 row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
 
                 row.SetField<string>("Kho_nhan", n.Kho_nhan);

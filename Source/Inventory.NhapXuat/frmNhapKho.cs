@@ -90,7 +90,7 @@ namespace Inventory.NhapXuat
                 PanelButton.setClickThem();
 
                 PanelButton.Enable_btn_Luu_Huy();
-
+                
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
@@ -147,7 +147,7 @@ namespace Inventory.NhapXuat
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                     chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
                                     chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
+                                    chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                     chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
 
@@ -224,30 +224,31 @@ namespace Inventory.NhapXuat
 
                                     clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                                     pn.Ma_phieu_nhap = phieunhap.Ma_phieu_nhap;
-                                    pn.remove(pn.Ma_phieu_nhap);
-                                    for (int i = 0; i < dataTable1.Rows.Count; i++)
-                                    {
 
-                                        clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-                                      
-                                        //chitiet.removebyKey(txtMaPhieuNhap.Text);
-                                        //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(gridMaster.Rows[i].Cells["ID_chi_tiet_phieu_nhap"].ToString());
-                                        chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
-                                        chitiet.ID_chi_tiet_phieu_nhap =int.Parse (dataTable1.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString());
+                                    pn.remove1(pn.Ma_phieu_nhap);
+                                    //for (int i = 0; i < dataTable1.Rows.Count; i++)
+                                    //{
 
-                                        chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
-                                        chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                                        chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
-                                        chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                        chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
-                                        chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                        chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
-                                          
-                                        if (chitiet.Insert(DAL) == 1)
-                                        {
-                                            MessageBox.Show("Chỉnh sữa thông tin thành công !");
-                                        }
-                                    }
+                                    //    clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+
+                                    //    chitiet.removebyKey(txtMaPhieuNhap.Text);
+                                    //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(gridMaster.Rows[i].Cells["ID_chi_tiet_phieu_nhap"].ToString());
+                                    //    chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
+                                    //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(dataTable1.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString());
+
+                                    //    chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
+                                    //    chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
+                                    //    chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
+                                    //    chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                    //    chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                    //    chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                    //    chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+
+                                    //    if (chitiet.Insert(DAL) == 1)
+                                    //    {
+                                    //        MessageBox.Show("Chỉnh sữa thông tin thành công !");
+                                    //    }
+                                    //}
                                   
 
                                     PanelButton.ResetClickStatus();
@@ -301,7 +302,7 @@ namespace Inventory.NhapXuat
                     dtNgayNhap.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_lap"]);
 
                     txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
-                    txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
+                 //   txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
                     txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
                     txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
 
@@ -318,9 +319,9 @@ namespace Inventory.NhapXuat
                         //  dr["don_vi_tinh"] = vChiTiet.Rows[i]["don_vi_tinh"].ToString() ;
                         dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
                         dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
-                        dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
+                        dr["so_luong_thuc_lanh"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
                         dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
-                        dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
+                        dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
                         dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
                         dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
 
@@ -415,7 +416,7 @@ namespace Inventory.NhapXuat
                 dr["Ten_don_vi_tinh"] = txtDVT.Text;
                 dr["chat_luong"] = txtChatLuong.Text;
                 dr["so_luong_yeu_cau"] = txtSLYC.Text;
-                dr["so_luong_thuc_xuat"] = txtSLTX.Text;
+                dr["so_luong_thuc_lanh"] = txtSLTX.Text;
                 dr["don_gia"] = txtDonGia.Text;
                 dr["ID_don_vi_tinh"] = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
 
@@ -424,6 +425,7 @@ namespace Inventory.NhapXuat
                 dataTable1.Rows.Add(dr);
 
                 ResetGridInputForm();
+                PanelButton.setClickStatus(sttaf);
             }
             else
                 MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
@@ -445,6 +447,7 @@ namespace Inventory.NhapXuat
         {
             try
             {
+
                 sttaf = PanelButton.getClickStatus();
 
                 if (dataTable1.Rows.Count == 0)
@@ -457,7 +460,7 @@ namespace Inventory.NhapXuat
                 Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                 txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
-                txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
+                txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value.ToString();
                 txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
@@ -499,7 +502,7 @@ namespace Inventory.NhapXuat
                     gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value = txtDVT.Text;
                     gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = txtChatLuong.Text;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLYC.Text;
-                    gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_xuat"].Value = txtSLTX.Text;
+                    gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value = txtSLTX.Text;
                     gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
                     gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
@@ -551,7 +554,7 @@ namespace Inventory.NhapXuat
             {
                 PanelButton.setClickSua();
                 PanelButton.Enable_btn_Luu_Huy();
-
+               
                 enableInputForm();
 
                 txtMaPhieuNhap.Enabled = false;
@@ -563,7 +566,8 @@ namespace Inventory.NhapXuat
         private void btnGridDel_Click(object sender, EventArgs e)
         {
             //sttaf = staTus;
-            PanelButton.setClickStatus(sttaf);
+            sttaf = PanelButton.getClickStatus();
+            //PanelButton.setClickStatus(sttaf);
 
             try
             {
@@ -579,11 +583,11 @@ namespace Inventory.NhapXuat
                 btnEdit.Enabled = false;
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                 txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
-                txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
+                txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_lanh"].Value.ToString();
                 txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
-
+                //PanelButton.setClickStatus(sttaf);
                 cbMaVatTu_KeyDown(null, null);
             }
             catch (Exception ex)
@@ -699,9 +703,9 @@ namespace Inventory.NhapXuat
                     dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
                     dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
                     dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
-                    dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
+                    dr["so_luong_thuc_lanh"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
                     dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
-                    dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
+                    dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
 
                     dataTable1.Rows.Add(dr);
                 }
