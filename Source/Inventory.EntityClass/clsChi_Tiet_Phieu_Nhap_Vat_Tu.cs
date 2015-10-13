@@ -19,11 +19,15 @@ namespace Inventory.EntityClass
         public string Chat_luong;
         public string Don_vi;
         public int? So_luong_yeu_cau;
-        public int? So_luong_thuc_nhap;
+        public int? So_luong_thuc_lanh;
         public int? Don_gia;
         public int? Thanh_tien;
         public int? ID_Don_vi_tinh;
         public string Ten_DVT;
+        public bool Da_duyet;
+       
+
+
         //public int? ID_Don_vi_tinh;
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
@@ -74,22 +78,26 @@ namespace Inventory.EntityClass
             //return dt;
         }
 
-        public int remove1(string ma_phieu)
+        public int remove(string ma_phieu)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            help.ent.Database.BeginTransaction();
-
-            var recordsToDelete = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == ma_phieu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
-            if (recordsToDelete.Count > 0)
+         //   help.ent.Database.BeginTransaction();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                foreach (var record in recordsToDelete)
+                var recordsToDelete = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == ma_phieu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
+                if (recordsToDelete.Count > 0)
                 {
-                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(record);
-                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(record);
+                    foreach (var record in recordsToDelete)
+                    {
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(record);
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(record);
+                    }
                 }
+                help.ent.SaveChanges();
+                dbcxtransaction.Commit();
             }
-            help.ent.SaveChanges();
+            
             return 1;
         }
 
@@ -103,6 +111,7 @@ namespace Inventory.EntityClass
                 Chi_Tiet_Phieu_Nhap_Vat_Tu deptBook = new Chi_Tiet_Phieu_Nhap_Vat_Tu { Ma_vat_tu = ma_vat_tu,Ma_phieu_nhap = ma_Phieunhap };
                 help.ent.Entry(deptBook).State = EntityState.Deleted;
                 help.ent.SaveChanges();
+                dbcxtransaction.Commit();
                 return 1;
             }
             return 0;
@@ -261,31 +270,37 @@ namespace Inventory.EntityClass
         }
         public int Insert(SQLDAL DAL)
         {
-            DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
+        
             // insert
-            try
+              DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var t = new Chi_Tiet_Phieu_Nhap_Vat_Tu //Make sure you have a table called test in DB
+                try
                 {
-                    Ma_phieu_nhap = this.Ma_phieu_nhap,
-                    Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                    Chat_luong = this.Chat_luong,
-                    So_luong_yeu_cau = this.So_luong_yeu_cau,
-                    So_luong_thuc_lanh = this.So_luong_thuc_nhap,
-                    Don_gia = this.Don_gia,
-                    Thanh_tien = this.Thanh_tien,
-                    ID_Don_vi_tinh = this.ID_Don_vi_tinh,
-                };
+                    var t = new Chi_Tiet_Phieu_Nhap_Vat_Tu //Make sure you have a table called test in DB
+                    {
+                        Ma_phieu_nhap = this.Ma_phieu_nhap,
+                        Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
+                        Chat_luong = this.Chat_luong,
+                        So_luong_yeu_cau = this.So_luong_yeu_cau,
+                        So_luong_thuc_lanh = this.So_luong_thuc_lanh,
+                        Don_gia = this.Don_gia,
+                        Thanh_tien = this.Thanh_tien,
+                        ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                    };
 
-                help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Add(t);
-                help.ent.SaveChanges();
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                return 0;
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Add(t);
+                    help.ent.SaveChanges(); dbcxtransaction.Commit();
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    dbcxtransaction.Rollback();
+                    return 0;
 
+                }
+               
             }
 
 

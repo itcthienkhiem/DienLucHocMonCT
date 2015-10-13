@@ -147,16 +147,13 @@ namespace Inventory.NhapXuat
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                     chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
                                     chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                    chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                     chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
 
-                                
-                                    if (chitiet.Insert(DAL) == 1)
-                                    {
-                                        MessageBox.Show("Thêm thành công");
-                                  
-                                    }
+
+                                    chitiet.Insert(DAL);
+                                 
                                 }
                             
                                
@@ -225,30 +222,30 @@ namespace Inventory.NhapXuat
                                     clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                                     pn.Ma_phieu_nhap = phieunhap.Ma_phieu_nhap;
 
-                                    pn.remove1(pn.Ma_phieu_nhap);
-                                    //for (int i = 0; i < dataTable1.Rows.Count; i++)
-                                    //{
+                                    pn.remove(pn.Ma_phieu_nhap);
+                                    for (int i = 0; i < dataTable1.Rows.Count; i++)
+                                    {
 
-                                    //    clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+                                        clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
 
-                                    //    chitiet.removebyKey(txtMaPhieuNhap.Text);
-                                    //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(gridMaster.Rows[i].Cells["ID_chi_tiet_phieu_nhap"].ToString());
-                                    //    chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
-                                    //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(dataTable1.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString());
+                                       
+                                     
+                                        chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
+                                       
 
-                                    //    chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
-                                    //    chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                                    //    chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
-                                    //    chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    //    chitiet.So_luong_thuc_nhap = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
-                                    //    chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                    //    chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
-
-                                    //    if (chitiet.Insert(DAL) == 1)
-                                    //    {
-                                    //        MessageBox.Show("Chỉnh sữa thông tin thành công !");
-                                    //    }
-                                    //}
+                                        chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
+                                        chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
+                                        chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
+                                        chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                        chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                        chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                        chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+                                        chitiet.Da_duyet = false;
+                                        if (chitiet.Insert(DAL) == 1)
+                                        {
+                                            MessageBox.Show("Chỉnh sữa thông tin thành công !");
+                                        }
+                                    }
                                   
 
                                     PanelButton.ResetClickStatus();

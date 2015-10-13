@@ -303,14 +303,14 @@ namespace Inventory.XuatTamVatTu
                 chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                 chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                // chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
+           //     chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
                 chitiet.So_luong_hoan_nhap = int.Parse(dataTable1.Rows[i]["So_luong_hoan_nhap"].ToString());
                 chitiet.So_luong_giu_lai = int.Parse(dataTable1.Rows[i]["So_luong_giu_lai"].ToString());
 
                 clsTonDauKy tdk = new clsTonDauKy();
                 tdk.ID_kho = int.Parse(txtXuatTaiKho.Text);
                 tdk.Ma_vat_tu = chitiet.Ma_vat_tu;
-                tdk.So_luong = chitiet.So_luong_thuc_xuat;
+//tdk.So_luong = chitiet.So_luong_thuc_xuat;
 
                     if (tdk.CheckTonTaiSoDK())
                     {
@@ -320,12 +320,12 @@ namespace Inventory.XuatTamVatTu
                             MessageBox.Show("Vật tư này chưa có trong đầu kỳ! vui lòng nhập tồn đầu kỳ cho vật tư này!");
                             return false;
                         }
-                        int? so_luong_kho = int.Parse(tb.Rows[0]["so_luong"].ToString()) - chitiet.So_luong_thuc_xuat;
-                        if (so_luong_kho < 0)
-                        {
-                            MessageBox.Show("Vật tư này không đủ để xuất!");
-                            return false;
-                        }
+                     //   int? so_luong_kho = int.Parse(tb.Rows[0]["so_luong"].ToString()) - chitiet.So_luong_thuc_xuat;
+                        //if (so_luong_kho < 0)
+                        //{
+                        //    MessageBox.Show("Vật tư này không đủ để xuất!");
+                        //    return false;
+                        //}
                         //tdk.So_luong = so_luong_kho;
                         //if (tdk.Update(DAL) == 0)
                         //{  
@@ -394,7 +394,7 @@ namespace Inventory.XuatTamVatTu
                                               chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                                               chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                           //    chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                              chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
+                                         //     chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
                                               chitiet.So_luong_hoan_nhap = int.Parse(dataTable1.Rows[i]["So_luong_hoan_nhap"].ToString());
                                               chitiet.So_luong_giu_lai = int.Parse(dataTable1.Rows[i]["So_luong_giu_lai"].ToString());
                                            //   chitiet = txtCongTrinh
@@ -410,7 +410,7 @@ namespace Inventory.XuatTamVatTu
                                               tdk.Ma_vat_tu = chitiet.Ma_vat_tu;
                                               tdk.ID_kho = phieuxuat.ID_kho;
                                               //cap nhat lai so luong sau khi xuat
-                                              tdk.So_luong = int.Parse( temp.Rows[0]["So_luong"].ToString()) - chitiet.So_luong_thuc_xuat;
+                                          //    tdk.So_luong = int.Parse( temp.Rows[0]["So_luong"].ToString()) - chitiet.So_luong_thuc_xuat;
                                               tdk.Update(DAL);
 
                                           }
@@ -475,13 +475,13 @@ namespace Inventory.XuatTamVatTu
                                                 clsChiTietPhieuXuatTam chitiet = new clsChiTietPhieuXuatTam();
                                                 chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                                                 chitiet.Ma_vat_tu = (tbAff.Rows[i]["ma_vat_tu"].ToString());
-                                                chitiet.So_luong_thuc_xuat = int.Parse(tbAff.Rows[i]["So_luong_thuc_xuat"].ToString());
+                                        //        chitiet.So_luong_thuc_xuat = int.Parse(tbAff.Rows[i]["So_luong_thuc_xuat"].ToString());
 
                                                 clsTonDauKy tdk = new clsTonDauKy();
                                                 DataTable temp = tdk.GetAllByKey(chitiet.Ma_vat_tu);
                                                 tdk.Ma_vat_tu = chitiet.Ma_vat_tu;
                                                 tdk.ID_kho = phieuxuat.ID_kho;
-                                                tdk.So_luong =int.Parse( temp.Rows[0]["So_luong"].ToString())+chitiet.So_luong_thuc_xuat;
+                                            //    tdk.So_luong =int.Parse( temp.Rows[0]["So_luong"].ToString())+chitiet.So_luong_thuc_xuat;
 
                                                 tdk.Update(DAL);
                                                 if (chitiet.Delete(DAL) == 0)
@@ -494,7 +494,7 @@ namespace Inventory.XuatTamVatTu
                                                     chitiet.Ma_phieu_xuat_tam = (cbMaPhieuXuatTam.Text);
                                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                                     //    chitiet.So_luong_de_nghi = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                                    chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
+                                                 //   chitiet.So_luong_thuc_xuat = int.Parse(dataTable1.Rows[i]["So_luong_thuc_xuat"].ToString());
                                                     chitiet.So_luong_hoan_nhap = int.Parse(dataTable1.Rows[i]["So_luong_hoan_nhap"].ToString());
                                                     chitiet.So_luong_giu_lai = int.Parse(dataTable1.Rows[i]["So_luong_giu_lai"].ToString());
                                                     //   chitiet = txtCongTrinh
@@ -510,7 +510,7 @@ namespace Inventory.XuatTamVatTu
                                                     tdk.Ma_vat_tu = chitiet.Ma_vat_tu;
                                                     tdk.ID_kho = phieuxuat.ID_kho;
                                                     //cap nhat lai so luong sau khi xuat
-                                                    tdk.So_luong = int.Parse(temp.Rows[0]["So_luong"].ToString()) - chitiet.So_luong_thuc_xuat+chitiet.So_luong_hoan_nhap;
+                                            //        tdk.So_luong = int.Parse(temp.Rows[0]["So_luong"].ToString()) - chitiet.So_luong_thuc_xuat+chitiet.So_luong_hoan_nhap;
                                                     tdk.Update(DAL);
 
                                                 }

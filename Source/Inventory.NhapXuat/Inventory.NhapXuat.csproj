@@ -77,6 +77,9 @@
     <EmbeddedResource Include="frmNhapKho.resx">
       <DependentUpon>frmNhapKho.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVatTuPhanKho.resx">
+      <DependentUpon>frmVatTuPhanKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

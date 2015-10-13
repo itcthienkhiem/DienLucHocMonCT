@@ -486,20 +486,26 @@ namespace Inventory.EntityClass
            // insert
            try
            {
-               var t = new DM_Vat_Tu //Make sure you have a table called test in DB
+               using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                {
-                   Ma_vat_tu = this.Ma_vat_tu,
-                   Ten_vat_tu = this.Ten_vat_tu,                   // ID = Guid.NewGuid(),
-                   ID_Don_vi_tinh = this.ID_Don_vi_tinh,
-                   Mo_ta = this.Mo_ta,
-               };
 
-               help.ent.DM_Vat_Tu.Add(t);
-               help.ent.SaveChanges();
-               return 1;
+                   var t = new DM_Vat_Tu //Make sure you have a table called test in DB
+                   {
+                       Ma_vat_tu = this.Ma_vat_tu,
+                       Ten_vat_tu = this.Ten_vat_tu,                   // ID = Guid.NewGuid(),
+                       ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                       Mo_ta = this.Mo_ta,
+                   };
+
+                   help.ent.DM_Vat_Tu.Add(t);
+                   help.ent.SaveChanges();
+                   dbcxtransaction.Commit();
+                   return 1;
+               }
            }
            catch (Exception ex)
            {
+               
                return 0;
 
            }
@@ -600,9 +606,15 @@ namespace Inventory.EntityClass
 
            DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
-           help.ent.DM_Vat_Tu.Attach(vt);
-           help.ent.DM_Vat_Tu.Remove(vt);
-           return help.ent.SaveChanges();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+
+               help.ent.DM_Vat_Tu.Attach(vt);
+               help.ent.DM_Vat_Tu.Remove(vt);
+                help.ent.SaveChanges();
+                dbcxtransaction.Commit();
+                return 1;
+           }
            ////Mở
            //m_dbConnection.Open();
 

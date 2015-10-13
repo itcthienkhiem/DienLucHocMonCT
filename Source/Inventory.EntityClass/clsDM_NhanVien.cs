@@ -182,51 +182,57 @@ namespace Inventory.EntityClass
            DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
            // insert
-           try
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
-               var t = new DM_Nhan_Vien //Make sure you have a table called test in DB
+
+               try
                {
-                   Ten_nhan_vien = this.Ten_nhan_vien,
-                   Ma_nhan_vien = this.Ma_nhan_vien,
-                   Trang_thai = this.Trang_thai,// ID = Guid.NewGuid(),
-               };
+                   var t = new DM_Nhan_Vien //Make sure you have a table called test in DB
+                   {
+                       Ten_nhan_vien = this.Ten_nhan_vien,
+                       Ma_nhan_vien = this.Ma_nhan_vien,
+                       Trang_thai = this.Trang_thai,// ID = Guid.NewGuid(),
+                   };
 
-               help.ent.DM_Nhan_Vien.Add(t);
-               help.ent.SaveChanges();
-               return 1;
-           }
-           catch (Exception ex)
-           {
-               return 0;
+                   help.ent.DM_Nhan_Vien.Add(t);
+                   help.ent.SaveChanges();
+                   dbcxtransaction.Commit();
+                   return 1;
+               }
+               catch (Exception ex)
+               {
+                   dbcxtransaction.Rollback();
+                   return 0;
 
-               //}
+                   //}
 
-               ////command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
+                   ////command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
 
-               ////Mở
-               //m_dbConnection.Open();
+                   ////Mở
+                   //m_dbConnection.Open();
 
-               ////Chuẩn bị
-               //string sql = "";
-               //sql += "INSERT INTO DM_Nhan_Vien (Ten_nhan_vien, Ma_nhan_vien, Trang_thai) ";
-               //sql += "VALUES(@Ten_nhan_vien, @Ma_nhan_vien, @Trang_thai)";
+                   ////Chuẩn bị
+                   //string sql = "";
+                   //sql += "INSERT INTO DM_Nhan_Vien (Ten_nhan_vien, Ma_nhan_vien, Trang_thai) ";
+                   //sql += "VALUES(@Ten_nhan_vien, @Ma_nhan_vien, @Trang_thai)";
 
-               //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+                   //SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-               //command.Parameters.Add("@Ten_nhan_vien", SqlDbType.NVarChar, 50).Value = Ten_nhan_vien;
-               ////command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
-               //command.Parameters.Add("@Ma_nhan_vien", SqlDbType.VarChar, 50).Value = Ma_nhan_vien;
-               //command.Parameters.Add("@Trang_thai", SqlDbType.Bit).Value = Trang_thai;
+                   //command.Parameters.Add("@Ten_nhan_vien", SqlDbType.NVarChar, 50).Value = Ten_nhan_vien;
+                   ////command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+                   //command.Parameters.Add("@Ma_nhan_vien", SqlDbType.VarChar, 50).Value = Ma_nhan_vien;
+                   //command.Parameters.Add("@Trang_thai", SqlDbType.Bit).Value = Trang_thai;
 
-               //command.CommandType = CommandType.Text;
+                   //command.CommandType = CommandType.Text;
 
-               ////Run
-               //int result = command.ExecuteNonQuery();
+                   ////Run
+                   //int result = command.ExecuteNonQuery();
 
-               ////Đóng
-               //m_dbConnection.Close();
+                   ////Đóng
+                   //m_dbConnection.Close();
 
-               //return result;
+                   //return result;
+               }
            }
        }//End Insert
 
@@ -299,9 +305,17 @@ namespace Inventory.EntityClass
 
             DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
-           help.ent.DM_Nhan_Vien.Attach(nv);
-           help.ent.DM_Nhan_Vien.Remove(nv);
-          return help.ent.SaveChanges();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+
+               help.ent.DM_Nhan_Vien.Attach(nv);
+               help.ent.DM_Nhan_Vien.Remove(nv);
+               help.ent.SaveChanges();
+               dbcxtransaction.Commit();
+               return 1;
+           }
+           return 0;
+           
 
        //{
        //    //Mở

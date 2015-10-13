@@ -47,7 +47,7 @@ namespace Inventory.NhapXuat
             frmAction = new FormActionDelegate(FormAction);
             PanelButton.setDelegateFormAction(frmAction);
 
-            btnXoa.Enabled = false;
+           // btnXoa.Enabled = false;
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
 
@@ -210,6 +210,41 @@ namespace Inventory.NhapXuat
         }
 
         private void gridDanhSachPhieuNhap_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            Xoa();
+            LoadData();
+
+        }
+
+        private void Xoa()
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập này không", "Cảnh báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+                string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString());
+                clsChi_Tiet_Phieu_Nhap_Vat_Tu ct = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+                ct.remove(maphieu);
+                phieuNhap.Delete(maphieu);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
         {
 
         }

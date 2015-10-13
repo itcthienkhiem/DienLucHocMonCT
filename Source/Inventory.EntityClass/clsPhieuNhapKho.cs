@@ -19,7 +19,7 @@ namespace Inventory.EntityClass
     public class clsPhieuNhapKho
     {
         public string Ma_phieu_nhap;
-      //  public int ID_kho;
+        //  public int ID_kho;
         public DateTime Ngay_lap;
         public string Ly_do;
         public string So_hoa_don;
@@ -49,30 +49,30 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
-                             // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
+                              // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
 
                               select new
                               {
-                                  Ma_phieu_nhap = this.Ma_phieu_nhap,
-                                  Kho_nhan = this.Kho_nhan,
-                                  Ngay_lap = this.Ngay_lap,
-                                  Ly_do = this.Ly_do,
-                                  So_hoa_don = this.So_hoa_don,
-                                  Cong_trinh = this.Cong_trinh,
-                                  Dia_Chi = this.Dia_chi,
-                                  ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
-                                  Kho_xuat_ra = this.Kho_xuat_ra,
-                                  Da_phan_kho = this.Da_phan_kho,
-                                  ID_phieu_nhap = this.ID_phieu_nhap,
+                                ep.  Ma_phieu_nhap ,
+                               ep.   Kho_nhan ,
+                                ep.Ngay_lap,
+                                ep.Ly_do,
+                                ep.So_hoa_don,
+                                ep.Cong_trinh,
+                                ep.Dia_Chi,
+                                ep.ID_Loai_Phieu_Nhap,
+                                ep.Kho_xuat_ra,
+                               // ep.Da_phan_kho,
+                                ep.ID_phieu_nhap,
 
 
                               }).ToList();
-           // return entryPoint;
+            // return entryPoint;
 
             DataTable table = new DataTable();
-            table.Columns.Add("Ma_phieu_nhap", typeof(int));
-            table.Columns.Add("Ten_vat_tu", typeof(string));
-            table.Columns.Add("Ngay_lap", typeof(string));
+            table.Columns.Add("Ma_phieu_nhap", typeof(string));
+            table.Columns.Add("kho_nhan", typeof(string));
+            table.Columns.Add("Ngay_lap", typeof(DateTime));
             table.Columns.Add("Ly_do", typeof(string));
             table.Columns.Add("So_hoa_don", typeof(string));
             table.Columns.Add("Cong_trinh", typeof(string));
@@ -84,19 +84,19 @@ namespace Inventory.EntityClass
             entryPoint.ToList().ForEach((n) =>
             {
                 DataRow row = table.NewRow();
-                row.SetField<string>("Ma_phieu_nhap",n.Ma_phieu_nhap);
+                row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
                 row.SetField<string>("Kho_nhan", n.Kho_nhan);
-                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap.Value);
                 row.SetField<string>("Ly_do", n.Ly_do);
                 row.SetField<string>("So_hoa_don", n.So_hoa_don);
                 row.SetField<string>("Cong_trinh", n.Cong_trinh);
                 row.SetField<string>("Dia_Chi", n.Dia_Chi);
-                row.SetField<int?>("ID_Loai_Phieu_Nhap",n.ID_Loai_Phieu_Nhap);
+                row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
                 row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
+                //row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
                 row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
 
-            
+
 
 
 
@@ -156,9 +156,9 @@ namespace Inventory.EntityClass
 
         ).ToList();
             DataTable table = new DataTable();
-            table.Columns.Add("Ma_phieu_nhap", typeof(int));
-            table.Columns.Add("Kho_nhan", typeof(string));
-            table.Columns.Add("Ngay_lap", typeof(string));
+            table.Columns.Add("Ma_phieu_nhap", typeof(string));
+            table.Columns.Add("kho_nhan", typeof(string));
+            table.Columns.Add("Ngay_lap", typeof(DateTime));
             table.Columns.Add("Ly_do", typeof(string));
             table.Columns.Add("So_hoa_don", typeof(string));
             table.Columns.Add("Cong_trinh", typeof(string));
@@ -171,24 +171,25 @@ namespace Inventory.EntityClass
             {
                 DataRow row = table.NewRow();
                 row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
-                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                row.SetField<string>("Kho_nhan", n.Kho_nhan);
+                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap.Value);
                 row.SetField<string>("Ly_do", n.Ly_do);
                 row.SetField<string>("So_hoa_don", n.So_hoa_don);
                 row.SetField<string>("Cong_trinh", n.Cong_trinh);
                 row.SetField<string>("Dia_Chi", n.Dia_Chi);
                 row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
                 row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                row.SetField<bool?>("Da_phan_kho", n.Da_phan_kho);
+                //row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
                 row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
 
-                row.SetField<string>("Kho_nhan", n.Kho_nhan);
+
 
 
 
                 table.Rows.Add(row);
             });
             return table;
-           
+
 
             //m_dbConnection.Open();
             //DataTable dt = new DataTable();
@@ -208,7 +209,7 @@ namespace Inventory.EntityClass
 
 
 
-          return   GetAll(Ma_phieu_nhap);
+            return GetAll(Ma_phieu_nhap);
             //return table;
 
             //m_dbConnection.Open();
@@ -247,7 +248,6 @@ namespace Inventory.EntityClass
         }
 
         public DataTable GetThongTinPhieuNhap(string Ma_phieu_nhap)
-        
         {
 
             return GetAll(Ma_phieu_nhap);
@@ -280,7 +280,7 @@ namespace Inventory.EntityClass
             //return dt;
         }
 
-        
+
         //public bool CheckTonTaiSoDK()
         //{
         //    DatabaseHelper help = new DatabaseHelper();
@@ -335,38 +335,43 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             // insert
-            try
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var t = new Phieu_Nhap_Kho //Make sure you have a table called test in DB
+                try
                 {
-                    Ma_phieu_nhap = this.Ma_phieu_nhap,
-                    Kho_nhan = this.Kho_nhan,
-                    Ngay_lap = this.Ngay_lap,
-                    Ly_do = this.Ly_do,
-                    So_hoa_don = this.So_hoa_don,
-                    Cong_trinh = this.Cong_trinh,
-                    Dia_Chi = this.Dia_chi,
-                    ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
-                    Kho_xuat_ra = this.Kho_xuat_ra,
-                    Da_phan_kho = this.Da_phan_kho,
-                    ID_phieu_nhap = this.ID_phieu_nhap,
-                };
+                    var t = new Phieu_Nhap_Kho //Make sure you have a table called test in DB
+                    {
+                        Ma_phieu_nhap = this.Ma_phieu_nhap,
+                        Kho_nhan = this.Kho_nhan,
+                        Ngay_lap = this.Ngay_lap,
+                        Ly_do = this.Ly_do,
+                        So_hoa_don = this.So_hoa_don,
+                        Cong_trinh = this.Cong_trinh,
+                        Dia_Chi = this.Dia_chi,
+                        ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
+                        Kho_xuat_ra = this.Kho_xuat_ra,
+                        Da_phan_kho = this.Da_phan_kho,
+                        ID_phieu_nhap = this.ID_phieu_nhap,
+                    };
 
-                help.ent.Phieu_Nhap_Kho.Add(t);
-                help.ent.SaveChanges();
-                return 1;
-            }
-            catch (Exception ex)
-            {
-                return 0;
+                    help.ent.Phieu_Nhap_Kho.Add(t);
+                    help.ent.SaveChanges();
+                    dbcxtransaction.Commit();
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    dbcxtransaction.Rollback();
 
+                    return 0;
+                }
             }
 
 
 
 
             //dal.BeginTransaction();
-       
+
             //m_dbConnection = dal.m_conn;
             //if(m_dbConnection.State == ConnectionState.Closed)
             //    m_dbConnection.Open();
@@ -392,7 +397,7 @@ namespace Inventory.EntityClass
 
             //int result = command.ExecuteNonQuery();
             //dal.CommitTransaction();
-           
+
             //return result;
         }
 
@@ -413,13 +418,13 @@ namespace Inventory.EntityClass
 
                 }
 
-
+                // dbcxtransaction.Commit();
             }
             return temp;
 
 
             //DAL.BeginTransaction();
-       
+
             //m_dbConnection = DAL.m_conn;
             //if (m_dbConnection.State == ConnectionState.Closed)
             //m_dbConnection.Open();
@@ -440,22 +445,51 @@ namespace Inventory.EntityClass
             ////  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
             //command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));
             //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
-           
+
             //int result = command.ExecuteNonQuery();
             //DAL.CommitTransaction();
             //return result;
         }
-        public int Delete(Phieu_Nhap_Kho nk)
+        public int Delete(string ma_phieu)
         {
-
-
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            help.ent.Phieu_Nhap_Kho.Attach(nk);
-            help.ent.Phieu_Nhap_Kho.Remove(nk);
-            return help.ent.SaveChanges();
+            //   help.ent.Database.BeginTransaction();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var recordsToDelete = (from c in help.ent.Phieu_Nhap_Kho where c.Ma_phieu_nhap == ma_phieu select c).ToList<Phieu_Nhap_Kho>();
+                if (recordsToDelete.Count > 0)
+                {
+                    foreach (var record in recordsToDelete)
+                    {
+                        help.ent.Phieu_Nhap_Kho.Attach(record);
+                        help.ent.Phieu_Nhap_Kho.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
+                dbcxtransaction.Commit();
+                return 1;
+            }
+            return 0;
+            //DatabaseHelper help = new DatabaseHelper();
+            //help.ConnectDatabase();
+            //using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            //{
+
+
+            //    help.ent.Phieu_Nhap_Kho.Attach(nk);
+            //    help.ent.Phieu_Nhap_Kho.Remove(nk);
+            //    if (help.ent.SaveChanges() == 1)
+            //    {
+            //        dbcxtransaction.Commit();
+            //        return 1;
+            //    }
+            //    else
+            //        dbcxtransaction.Rollback();
+            //}
+            //return 0;
             //DAL.BeginTransaction();
-       
+
             //m_dbConnection = DAL.m_conn;
             //if (m_dbConnection.State == ConnectionState.Closed)
             //m_dbConnection.Open();

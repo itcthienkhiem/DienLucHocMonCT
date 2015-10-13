@@ -57,24 +57,28 @@ namespace Inventory.EntityClass
            DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
            // insert
-           try
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
-               var t = new DM_Kho //Make sure you have a table called test in DB
+               try
                {
-                   ID_kho = this.ID_kho,
-                   Ten_kho = this.Ten_kho,                   // ID = Guid.NewGuid(),
-               };
+                   var t = new DM_Kho //Make sure you have a table called test in DB
+                   {
+                       ID_kho = this.ID_kho,
+                       Ten_kho = this.Ten_kho,                   // ID = Guid.NewGuid(),
+                   };
 
-               help.ent.DM_Kho.Add(t);
-               help.ent.SaveChanges();
-               return 1;
+                   help.ent.DM_Kho.Add(t);
+                   help.ent.SaveChanges();
+                   dbcxtransaction.Commit();
+                   return 1;
+               }
+               catch (Exception ex)
+               {
+                   dbcxtransaction.Rollback();
+                   return 0;
+
+               }
            }
-           catch (Exception ex)
-           {
-               return 0;
-
-           }
-
 
            //DatabaseHelper help = new DatabaseHelper();
            //help.ConnectDatabase();
@@ -125,12 +129,17 @@ namespace Inventory.EntityClass
        }
 
        public int Delete(DM_Kho dm)
-       {
-           DatabaseHelper help = new DatabaseHelper();
-           help.ConnectDatabase();
-           help.ent.DM_Kho.Attach(dm);
-           help.ent.DM_Kho.Remove(dm);
-          return help.ent.SaveChanges();
+       {DatabaseHelper help = new DatabaseHelper(); help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               
+              
+               help.ent.DM_Kho.Attach(dm);
+               help.ent.DM_Kho.Remove(dm);
+               int temp = help.ent.SaveChanges();
+               dbcxtransaction.Commit();
+               return temp;
+           }
 
        }
 
