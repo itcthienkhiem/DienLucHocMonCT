@@ -354,39 +354,39 @@ namespace Inventory.EntityClass
             ////m_dbConnection.Close();
             //return result;
         }
-        public int DeleteAllChitiet()
-        {
-            DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
-        from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-        where
-          Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1)
-        select Chi_Tiet_Phieu_Nhap_Vat_Tu;
-            foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
-            {
-                help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
-            }
-            help.ent.SubmitChanges();
-            return 1;
-        }
-        public int DeleteAll(string mapn, string ma_vat_tu)
-        {
-            DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
-    from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-    where
-      Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1) &&
-      Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu == Convert.ToString(1)
-    select Chi_Tiet_Phieu_Nhap_Vat_Tu;
-            foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
-            {
-                db.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
-            }
-            help.ent.SubmitChanges();
-            return 1; 
-        }
+        //public int DeleteAllChitiet()
+        //{
+        //    DatabaseHelper help = new DatabaseHelper();
+        //    help.ConnectDatabase();
+        //    var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
+        //from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+        //where
+        //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1)
+        //select Chi_Tiet_Phieu_Nhap_Vat_Tu;
+        //    foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
+        //    {
+        //        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.de(del);
+        //    }
+        //    help.ent.SubmitChanges();
+        //    return 1;
+        //}
+    //    public int DeleteAll(string mapn, string ma_vat_tu)
+    //    {
+    //        DatabaseHelper help = new DatabaseHelper();
+    //        help.ConnectDatabase();
+    //        var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
+    //from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+    //where
+    //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1) &&
+    //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu == Convert.ToString(1)
+    //select Chi_Tiet_Phieu_Nhap_Vat_Tu;
+    //        foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
+    //        {
+    //            db.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
+    //        }
+    //        help.ent.SubmitChanges();
+    //        return 1; 
+    //    }
         public int Delete(Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
         {
             DatabaseHelper help = new DatabaseHelper();
