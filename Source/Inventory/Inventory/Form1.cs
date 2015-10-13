@@ -210,7 +210,7 @@ namespace Inventory
 
 
                 clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-                clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
+                //clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
             }
             catch (Exception ex) {
                 MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");

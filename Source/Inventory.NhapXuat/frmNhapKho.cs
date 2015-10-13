@@ -224,7 +224,7 @@ namespace Inventory.NhapXuat
 
                                     clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                                     pn.Ma_phieu_nhap = phieunhap.Ma_phieu_nhap;
-                                   // pn.DeleteAllChitiet();
+                                    pn.remove(pn.Ma_phieu_nhap);
                                     for (int i = 0; i < dataTable1.Rows.Count; i++)
                                     {
 

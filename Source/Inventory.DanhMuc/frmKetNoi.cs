@@ -37,7 +37,7 @@ namespace Inventory.DanhMuc
                 txtTenCSDL.Text = settings["ten_CSDL"].Value;
                 cbKhoLamViec.SelectedIndex =int.Parse( settings["IDKho"].Value.ToString() )-1;
                 clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-                clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
+               // clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
 
             }
             catch (Exception ex) { }
@@ -79,7 +79,7 @@ namespace Inventory.DanhMuc
 
                         config.Save();
                         clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-                        clsThamSoUtilities.ID_Kho =int.Parse    ( config.AppSettings.Settings["IDkho"].Value.ToString());
+                    //    clsThamSoUtilities.ID_Kho =int.Parse    ( config.AppSettings.Settings["IDkho"].Value.ToString());
 
                     }
                     catch (Exception ex)

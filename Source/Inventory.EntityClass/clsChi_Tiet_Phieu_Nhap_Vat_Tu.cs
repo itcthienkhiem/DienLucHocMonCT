@@ -73,6 +73,29 @@ namespace Inventory.EntityClass
             //m_dbConnection.Close();
             //return dt;
         }
+        public int remove(string ma_phieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+             help.ent.Database.BeginTransaction();
+            using (var ctx =  help.ent)
+            {
+                //var stud = (from s in ctx.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                //            where s.Ma_vat_tu == "Student1"
+                //            select s).FirstOrDefault();
+                var users = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Where(u => u.Ma_vat_tu == ma_phieu);
+
+                foreach (var u in users)
+                {
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(u);
+                }
+
+            return  help.ent.SaveChanges();
+              //  ctx.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteObject(stud);
+
+              //  int num = ctx.SaveChanges();
+            }
+        }
         public int removebyKey(SQLDAL DAL, string ma_Phieunhap,string ma_vat_tu)
         {
               DatabaseHelper help = new DatabaseHelper();

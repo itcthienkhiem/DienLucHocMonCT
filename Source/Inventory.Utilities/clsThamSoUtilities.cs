@@ -7,8 +7,8 @@ namespace Inventory.Utilities
 {
     public class clsThamSoUtilities
     {
-        public static string connectionString=@"data source=KHIEM-PC\SQLEXPRESS"  + ";initial catalog=QLKhoDienLuc"+ ";persist security info=True;user id=sa"+ ";password=2051990"  + ";MultipleActiveResultSets=True;";
-        public static int ID_Kho;
+        public static string connectionString=@"data source=(local)"  + ";initial catalog=QLKhoDienLuc"+ ";persist security info=True;user id=sa"+ ";password=123456"  + ";MultipleActiveResultSets=True;";
+
 
 
     }
