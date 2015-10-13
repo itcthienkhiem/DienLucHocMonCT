@@ -204,45 +204,67 @@ namespace Inventory.EntityClass
                 table.Rows.Add(row);
             });
             return table;
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
+           
+        }
+
+        public DataTable GetAllChuaPhanKho()
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
 
 
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu, ";
-            //sql += "" + "dm_vat_tu.ten_vat_tu, ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien, ";
-            //sql += "" + "dm_vat_tu.Don_gia, ";
-            //sql += "" + "dm_don_vi_tinh.ten_don_vi_tinh, ";
-            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_don_vi_tinh ";
-            //sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN dm_vat_tu ";
-            //sql += "" + "ON dm_vat_tu.ma_vat_tu = Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN dm_don_vi_tinh ";
-            //sql += "" + "ON dm_don_vi_tinh.ID_Don_vi_tinh = dm_vat_tu.ID_Don_vi_tinh ";
-            //sql += "WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
+            var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                             
+                              join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
+                              where ep.Da_duyet == false
+
+                              select new
+                              {
+                                  ID_chi_tiet_phieu_nhap_vat_tu = ep.ID_chi_tiet_phieu_nhap_vat_tu,
+                                  Ma_vat_tu = ep.Ma_vat_tu,
+                                  Ten_vat_tu = u.Ten_vat_tu,
+                                 
+                                  Chat_luong = ep.Chat_luong,
+                                  So_luong_yeu_cau = ep.So_luong_yeu_cau,
+                                  So_luong_thuc_nhap = ep.So_luong_thuc_lanh,
+                                  Thanh_tien = ep.Thanh_tien,
+                                  Don_gia = ep.Don_gia,
+                                  id_don_vi_tinh = ep.ID_Don_vi_tinh,
+                                 
+                              }).ToList();
+            //return entryPoint.ToList();
+
+            DataTable table = new DataTable();
+            table.Columns.Add("ID_vat_tu", typeof(int));
+            table.Columns.Add("Ma_vat_tu", typeof(string));
+            table.Columns.Add("Ten_vat_tu", typeof(string));
+            table.Columns.Add("Chat_luong", typeof(string));
+            table.Columns.Add("So_luong_yeu_cau", typeof(int));
+            table.Columns.Add("So_luong_thuc_lanh", typeof(int));
+            table.Columns.Add("Thanh_tien", typeof(int));
+            table.Columns.Add("Ten_DVT", typeof(string));
+            table.Columns.Add("Don_gia", typeof(string));
+            entryPoint.ToList().ForEach((n) =>
+            {
+                DataRow row = table.NewRow();
+                row.SetField<int>("ID_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
+                row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+                row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+                row.SetField<string>("Chat_luong", n.Chat_luong);
+                row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
+                row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
+                row.SetField<int?>("Thanh_tien", n.Thanh_tien);
+                row.SetField<int?>("id_don_vi_tinh", n.id_don_vi_tinh);
+
+                row.SetField<int?>("Don_gia", n.Don_gia);
 
 
-            ////string sql = "SELECT Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu,dm_vat_tu.ten_vat_tu,Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong";
-            ////sql += ", Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, Chi_Tiet_Phieu_Nhap_Vat_Tu. So_luong_thuc_lanh, Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien, dm_vat_tu.Don_gia, dm_don_vi_tinh.ten_don_vi_tinh, Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_don_vi_tinh FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
-            ////sql += " join dm_vat_tu on dm_vat_tu.ma_vat_tu = Chi_Tiet_Phieu_Nhap_Vat_Tu.ma_vat_tu";
-            ////sql += " join dm_don_vi_tinh on dm_don_vi_tinh.ID_Don_vi_tinh =dm_vat_tu.ID_Don_vi_tinh ";
-            ////sql+= " WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", ma_Phieunhap));
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            
-            //m_dbConnection.Close();
+                table.Rows.Add(row);
+            });
+            return table;
 
-            //return dt;
         }
 
         public bool CheckTonTaiSoDK()
@@ -253,20 +275,6 @@ namespace Inventory.EntityClass
             return has;
 
 
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
-            //string sql = "SELECT * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            //m_dbConnection.Close();
-
-            //if (dt.Rows.Count > 0)
-            //{
-            //    return true;
-            //}
-            //return false;
         }
         public int Insert(SQLDAL DAL)
         {
