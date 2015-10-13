@@ -365,7 +365,7 @@ namespace Inventory.EntityClass
         select Chi_Tiet_Phieu_Nhap_Vat_Tu;
             foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
             {
-                db.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
+                help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
             }
             help.ent.SubmitChanges();
             return 1;
