@@ -59,6 +59,7 @@ namespace Inventory.EntityClass
            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
                var dm = from d in help.ent.DM_Nhan_Vien
+
                         select new
                         {
                             d.ID_nhan_vien,
