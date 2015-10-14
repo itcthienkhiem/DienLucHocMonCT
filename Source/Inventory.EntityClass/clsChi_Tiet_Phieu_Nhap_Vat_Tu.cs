@@ -11,7 +11,7 @@ using System.Linq;
 using System.Data.Entity;
 namespace Inventory.EntityClass
 {
-   public class clsChi_Tiet_Phieu_Nhap_Vat_Tu
+    public class clsChi_Tiet_Phieu_Nhap_Vat_Tu
     {
         public int? ID_chi_tiet_phieu_nhap;
         public string Ma_phieu_nhap;
@@ -25,21 +25,18 @@ namespace Inventory.EntityClass
         public int? ID_Don_vi_tinh;
         public string Ten_DVT;
         public bool Da_duyet;
+
+
+
        
-
-
-        //public int? ID_Don_vi_tinh;
-
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
         public clsChi_Tiet_Phieu_Nhap_Vat_Tu()
         {
-          //  var str = config.AppSettings.Settings["ConnectionString"].Value;
-          //  m_dbConnection=new SqlConnection(
-            
+        
         }
         public object GetAll()
         {
-           
+
 
 
             DatabaseHelper help = new DatabaseHelper();
@@ -60,29 +57,20 @@ namespace Inventory.EntityClass
                              d.Thanh_tien,
                              d.ID_Don_vi_tinh,
                              e.Ten_don_vi_tinh,
-                             
+
                          };
                 dbcxtransaction.Commit();
                 return (object)dm.ToList();
             }
-              
 
 
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
-            //string sql = "SELECT * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu";
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            //m_dbConnection.Close();
-            //return dt;
+
         }
 
         public int remove(string ma_phieu)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-         //   help.ent.Database.BeginTransaction();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var recordsToDelete = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == ma_phieu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
@@ -97,18 +85,18 @@ namespace Inventory.EntityClass
                 help.ent.SaveChanges();
                 dbcxtransaction.Commit();
             }
-            
+
             return 1;
         }
 
-     
-        public int removebyKey(SQLDAL DAL, string ma_Phieunhap,string ma_vat_tu)
+
+        public int removebyKey(SQLDAL DAL, string ma_Phieunhap, string ma_vat_tu)
         {
-              DatabaseHelper help = new DatabaseHelper();
+            DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                Chi_Tiet_Phieu_Nhap_Vat_Tu deptBook = new Chi_Tiet_Phieu_Nhap_Vat_Tu { Ma_vat_tu = ma_vat_tu,Ma_phieu_nhap = ma_Phieunhap };
+                Chi_Tiet_Phieu_Nhap_Vat_Tu deptBook = new Chi_Tiet_Phieu_Nhap_Vat_Tu { Ma_vat_tu = ma_vat_tu, Ma_phieu_nhap = ma_Phieunhap };
                 help.ent.Entry(deptBook).State = EntityState.Deleted;
                 help.ent.SaveChanges();
                 dbcxtransaction.Commit();
@@ -116,24 +104,6 @@ namespace Inventory.EntityClass
             }
             return 0;
 
-            //DAL.BeginTransaction();
-
-            //m_dbConnection = DAL.m_conn;
-            //if (m_dbConnection.State == ConnectionState.Closed)
-            //    m_dbConnection.Open();
-            //string sql = "Delete from Chi_Tiet_Phieu_Nhap_Vat_Tu WHERE Ma_phieu_nhap=@Ma_phieu_nhap and ma_vat_tu =@ma_vat_tu";
-
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
-            //command.CommandType = CommandType.Text;
-
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", ma_Phieunhap));
-            //command.Parameters.Add(new SqlParameter("@Ma_vat_tu", ma_vat_tu));
-
-            //int result = command.ExecuteNonQuery();
-            //DAL.CommitTransaction();
-
-            //return result;
         }
 
 
@@ -148,12 +118,12 @@ namespace Inventory.EntityClass
 
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            
+
 
             var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
                               join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                              where ep.Ma_phieu_nhap .Equals ( ma_Phieunhap)
+                              where ep.Ma_phieu_nhap.Equals(ma_Phieunhap)
 
                               select new
                               {
@@ -204,66 +174,88 @@ namespace Inventory.EntityClass
                 table.Rows.Add(row);
             });
             return table;
-           
-        }
 
-        public DataTable GetAllChuaPhanKho()
+        }
+        /// <summary>
+        /// ham cap nhat lai trang thai da duyet 
+        /// </summary>
+        /// <param name="maphieunhap"></param>
+        /// <param name="mavattu"></param>
+        /// <returns></returns>
+        public int UpdateDaDuyet(string maphieunhap, string mavattu)
         {
 
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-
-
-            var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-                             
-                              join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                              where ep.Da_duyet == false
-
-                              select new
-                              {
-                                  ID_chi_tiet_phieu_nhap_vat_tu = ep.ID_chi_tiet_phieu_nhap_vat_tu,
-                                  Ma_vat_tu = ep.Ma_vat_tu,
-                                  Ten_vat_tu = u.Ten_vat_tu,
-                                 
-                                  Chat_luong = ep.Chat_luong,
-                                  So_luong_yeu_cau = ep.So_luong_yeu_cau,
-                                  So_luong_thuc_nhap = ep.So_luong_thuc_lanh,
-                                  Thanh_tien = ep.Thanh_tien,
-                                  Don_gia = ep.Don_gia,
-                                  id_don_vi_tinh = ep.ID_Don_vi_tinh,
-                                 
-                              }).ToList();
-            //return entryPoint.ToList();
-
-            DataTable table = new DataTable();
-            table.Columns.Add("ID_vat_tu", typeof(int));
-            table.Columns.Add("Ma_vat_tu", typeof(string));
-            table.Columns.Add("Ten_vat_tu", typeof(string));
-            table.Columns.Add("Chat_luong", typeof(string));
-            table.Columns.Add("So_luong_yeu_cau", typeof(int));
-            table.Columns.Add("So_luong_thuc_lanh", typeof(int));
-            table.Columns.Add("Thanh_tien", typeof(int));
-            table.Columns.Add("Ten_DVT", typeof(string));
-            table.Columns.Add("Don_gia", typeof(string));
-            entryPoint.ToList().ForEach((n) =>
+            //   help.ent.Database.BeginTransaction();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                DataRow row = table.NewRow();
-                row.SetField<int>("ID_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
-                row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
-                row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
-                row.SetField<string>("Chat_luong", n.Chat_luong);
-                row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
-                row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
-                row.SetField<int?>("Thanh_tien", n.Thanh_tien);
-                row.SetField<int?>("id_don_vi_tinh", n.id_don_vi_tinh);
+                var recordsToUpdate = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == maphieunhap && c.Ma_vat_tu == Ma_vat_tu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
+                if (recordsToUpdate.Count > 0)
+                {
+                    foreach (var record in recordsToUpdate)
+                    {
+                        record.Da_duyet = true;
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(record);
+                        help.ent.Entry(record).State = EntityState.Modified;
+                    }
+                }
+                help.ent.SaveChanges();
+                dbcxtransaction.Commit();
+                return 1;
+            }
+            return 0;
 
-                row.SetField<int?>("Don_gia", n.Don_gia);
+
+        }
+        /// <summary>
+        /// lấy danh sách các vật tư chưa phân vào kho
+        /// </summary>
+        /// <returns></returns>
+        public object GetAllChuaPhanKho()
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint =( from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                   
+                         select new
+                         {
+                             d.ID_chi_tiet_phieu_nhap_vat_tu,
+                             d.Ma_phieu_nhap,
+                             d.Ma_vat_tu,
+                          
+                        
+                             d.So_luong_thuc_lanh,
+                          
+
+                         }).ToList();
+                DataTable table = new DataTable();
+                table.Columns.Add("ID_chi_tiet_phieu_nhap_vat_tu", typeof(int));
+                table.Columns.Add("Ma_phieu_nhap", typeof(string));
+                table.Columns.Add("Ma_vat_tu", typeof(string));
+                table.Columns.Add("So_luong_thuc_lanh", typeof(int));
+                entryPoint.ToList().ForEach((n) =>
+                {
+                    DataRow row = table.NewRow();
+                    row.SetField<int>("ID_chi_tiet_phieu_nhap_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
+                    row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
+                    row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+                    row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_lanh);
 
 
 
-                table.Rows.Add(row);
-            });
-            return table;
+
+
+                    table.Rows.Add(row);
+                });
+                dbcxtransaction.Commit();
+                return table;
+               
+                
+            }
 
         }
 
@@ -278,9 +270,9 @@ namespace Inventory.EntityClass
         }
         public int Insert(SQLDAL DAL)
         {
-        
+
             // insert
-              DatabaseHelper help = new DatabaseHelper();
+            DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
@@ -308,41 +300,11 @@ namespace Inventory.EntityClass
                     return 0;
 
                 }
-               
+
             }
 
 
 
-           // DAL.BeginTransaction();
-       
-           // m_dbConnection = DAL.m_conn;
-           // if (m_dbConnection.State == ConnectionState.Closed)
-           // m_dbConnection.Open();
-           // string sql = "";
-           // sql += "INSERT INTO Chi_Tiet_Phieu_Nhap_Vat_Tu (Ma_phieu_nhap,ma_vat_tu,Chat_luong,So_luong_yeu_cau,So_luong_thuc_lanh,don_gia,thanh_tien, ID_Don_vi_tinh) ";
-           // sql += "VALUES(@Ma_phieu_nhap,@ma_vat_tu,@Chat_luong,@So_luong_yeu_cau,@So_luong_thuc_lanh,@don_gia,@thanh_tien, @ID_Don_vi_tinh)";
-
-           // SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
-           // command.CommandType = CommandType.Text;
-
-           // //command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-           // command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
-           // command.Parameters.Add(new SqlParameter("@ma_vat_tu", Ma_vat_tu));
-           // command.Parameters.Add(new SqlParameter("@Chat_luong", Chat_luong));
-           // command.Parameters.Add(new SqlParameter("@Don_gia", Don_gia));
-           // command.Parameters.Add(new SqlParameter("@Thanh_tien", Thanh_tien));
-           // command.Parameters.Add(new SqlParameter("@So_luong_yeu_cau", So_luong_yeu_cau));
-           // command.Parameters.Add(new SqlParameter("@So_luong_thuc_lanh", So_luong_thuc_nhap));
-           //// command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
-           // command.Parameters.Add(new SqlParameter("@ID_Don_vi_tinh", ID_Don_vi_tinh));
-
-
-           // //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-
-           // int result = command.ExecuteNonQuery();
-           // DAL.CommitTransaction();
-
-           // return result;
         }
 
         public int Update(Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
@@ -368,70 +330,9 @@ namespace Inventory.EntityClass
 
 
 
-            //DAL.BeginTransaction();
-       
-            //m_dbConnection = DAL.m_conn;
-            //if (m_dbConnection.State == ConnectionState.Closed)
-            //    m_dbConnection.Open();
-            //string sql = "";
-            //sql += "UPDATE Chi_Tiet_Phieu_Nhap_Vat_Tu ";
-            //sql += "Set Ma_phieu_nhap=@Ma_phieu_nhap,ma_vat_tu=@ma_vat_tu,Chat_luong=@Chat_luong,Don_vi=@Don_vi,So_luong_yeu_cau =@So_luong_yeu_cau,So_luong_thuc_nhap = @So_luong_thuc_nhap, ID_Don_vi_tinh= @ID_Don_vi_tinh ";
-            //sql += "WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
 
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
-            //command.CommandType = CommandType.Text;
-
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
-            //command.Parameters.Add(new SqlParameter("@ma_vat_tu", Ma_vat_tu));
-            //command.Parameters.Add(new SqlParameter("@Chat_luong", Chat_luong));
-            //command.Parameters.Add(new SqlParameter("@Don_vi", Don_vi));
-
-            //command.Parameters.Add(new SqlParameter("@So_luong_yeu_cau", So_luong_yeu_cau));
-            //command.Parameters.Add(new SqlParameter("@So_luong_thuc_nhap", So_luong_thuc_nhap));
-            //command.Parameters.Add(new SqlParameter("@ID_don_vi_tinh", ID_Don_vi_tinh));
-
-            ////command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-
-            //int result = command.ExecuteNonQuery();
-            //DAL.CommitTransaction();
-
-            ////m_dbConnection.Close();
-            //return result;
         }
-        //public int DeleteAllChitiet()
-        //{
-        //    DatabaseHelper help = new DatabaseHelper();
-        //    help.ConnectDatabase();
-        //    var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
-        //from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-        //where
-        //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1)
-        //select Chi_Tiet_Phieu_Nhap_Vat_Tu;
-        //    foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
-        //    {
-        //        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.de(del);
-        //    }
-        //    help.ent.SubmitChanges();
-        //    return 1;
-        //}
-    //    public int DeleteAll(string mapn, string ma_vat_tu)
-    //    {
-    //        DatabaseHelper help = new DatabaseHelper();
-    //        help.ConnectDatabase();
-    //        var queryChi_Tiet_Phieu_Nhap_Vat_Tu =
-    //from Chi_Tiet_Phieu_Nhap_Vat_Tu in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-    //where
-    //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap == Convert.ToString(1) &&
-    //  Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu == Convert.ToString(1)
-    //select Chi_Tiet_Phieu_Nhap_Vat_Tu;
-    //        foreach (var del in queryChi_Tiet_Phieu_Nhap_Vat_Tu)
-    //        {
-    //            db.Chi_Tiet_Phieu_Nhap_Vat_Tu.DeleteOnSubmit(del);
-    //        }
-    //        help.ent.SubmitChanges();
-    //        return 1; 
-    //    }
+
         public int Delete(Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -440,24 +341,6 @@ namespace Inventory.EntityClass
             help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(pn);
             return help.ent.SaveChanges();
 
-            //DAL.BeginTransaction();
-       
-            //m_dbConnection = DAL.m_conn;
-            //if (m_dbConnection.State == ConnectionState.Closed)
-            //    m_dbConnection.Open();
-            //string sql = "Delete from Chi_Tiet_Phieu_Nhap_Vat_Tu WHERE Ma_phieu_nhap=@Ma_phieu_nhap and ma_vat_tu =@ma_vat_tu";
-
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection, DAL.m_trans);
-            //command.CommandType = CommandType.Text;
-
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
-            //command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
-
-            //int result = command.ExecuteNonQuery();
-            //DAL.CommitTransaction();
-
-            //return result;
         }
     }
 }

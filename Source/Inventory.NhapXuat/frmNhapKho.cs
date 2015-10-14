@@ -133,7 +133,7 @@ namespace Inventory.NhapXuat
                             phieunhap.Ngay_lap = dtNgayNhap.Value;
                             //  phieunhap.So_hoa_don = txt
                             phieunhap.Cong_trinh = txtCongTrinh.Text;
-
+                            phieunhap.Da_phan_kho = false;
                             if (phieunhap.Insert(DAL) == 1)
                             {
                                

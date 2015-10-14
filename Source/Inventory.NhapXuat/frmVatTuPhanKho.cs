@@ -21,7 +21,7 @@ namespace Inventory.NhapXuat
         private void init()
         {
             clsChi_Tiet_Phieu_Nhap_Vat_Tu pnk = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            gridDanhSachPhieuNhap.DataSource = pnk.GetAllChuaPhanKho();
+            gridDanhSachPhieuNhap.DataSource = (DataTable)pnk.GetAllChuaPhanKho();
         }
     }
 }
