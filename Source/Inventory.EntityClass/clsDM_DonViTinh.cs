@@ -60,19 +60,7 @@ namespace Inventory.EntityClass
                return (object)dm.ToList();
            }
 
-           //m_dbConnection.Open();
-
-           //DataTable dt = new DataTable();
-           //string sql = "";
-           //sql += "SELECT * ";
-           //sql += "FROM DM_Don_vi_tinh ";
-
-           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           //SqlDataAdapter da = new SqlDataAdapter(command);
-           //da.Fill(dt);
-           //m_dbConnection.Close();
-
-           //return dt;
+       
        }
        // End GetAll
 
