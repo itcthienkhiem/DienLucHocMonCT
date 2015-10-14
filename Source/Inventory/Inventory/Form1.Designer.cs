@@ -45,6 +45,7 @@
             this.quảnLýXuấtKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýHoànTrảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhSáchPhiếuNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.phânKhoVậtTưToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lậpPhieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemDSPhieuXuatTamUng = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,8 @@
             this.MenuItemTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemNhapTonDauKy = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.phânKhoVậtTưToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýKhoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +66,7 @@
             this.quảnLýDanhMụcToolStripMenuItem,
             this.quảnLýKhoToolStripMenuItem,
             this.lậpPhieToolStripMenuItem,
+            this.quảnLýKhoToolStripMenuItem1,
             this.quảnLýTồnĐầuKỳToolStripMenuItem,
             this.giớiThiệuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -190,6 +193,13 @@
             this.danhSáchPhiếuNhậpToolStripMenuItem.Text = "Danh Sách Phiếu Nhập";
             this.danhSáchPhiếuNhậpToolStripMenuItem.Click += new System.EventHandler(this.danhSáchPhiếuNhậpToolStripMenuItem_Click);
             // 
+            // phânKhoVậtTưToolStripMenuItem
+            // 
+            this.phânKhoVậtTưToolStripMenuItem.Name = "phânKhoVậtTưToolStripMenuItem";
+            this.phânKhoVậtTưToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.phânKhoVậtTưToolStripMenuItem.Text = "Phân Kho Vật Tư";
+            this.phânKhoVậtTưToolStripMenuItem.Click += new System.EventHandler(this.phânKhoVậtTưToolStripMenuItem_Click);
+            // 
             // lậpPhieToolStripMenuItem
             // 
             this.lậpPhieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -243,12 +253,20 @@
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
             // 
-            // phânKhoVậtTưToolStripMenuItem
+            // quảnLýKhoToolStripMenuItem1
             // 
-            this.phânKhoVậtTưToolStripMenuItem.Name = "phânKhoVậtTưToolStripMenuItem";
-            this.phânKhoVậtTưToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.phânKhoVậtTưToolStripMenuItem.Text = "Phân Kho Vật Tư";
-            this.phânKhoVậtTưToolStripMenuItem.Click += new System.EventHandler(this.phânKhoVậtTưToolStripMenuItem_Click);
+            this.quảnLýKhoToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem});
+            this.quảnLýKhoToolStripMenuItem1.Name = "quảnLýKhoToolStripMenuItem1";
+            this.quảnLýKhoToolStripMenuItem1.Size = new System.Drawing.Size(87, 20);
+            this.quảnLýKhoToolStripMenuItem1.Text = "Quản Lý Kho";
+            // 
+            // danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem
+            // 
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem.Name = "danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem";
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem.Text = "Danh Sách Vật Tư Tồn Thực Trong Kho";
+            this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem.Click += new System.EventHandler(this.danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem_Click);
             // 
             // MDIMain
             // 
@@ -302,6 +320,8 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemDSPhieuXuatTamUng;
         private System.Windows.Forms.ToolStripMenuItem MenuItemNhapTonDauKy;
         private System.Windows.Forms.ToolStripMenuItem phânKhoVậtTưToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýKhoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem;
     }
 }
 

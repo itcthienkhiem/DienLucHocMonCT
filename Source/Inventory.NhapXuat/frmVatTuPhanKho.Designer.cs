@@ -47,6 +47,7 @@
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Da_phan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.SuspendLayout();
@@ -119,6 +120,7 @@
             this.btnThem.Size = new System.Drawing.Size(50, 50);
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label6
             // 
@@ -192,7 +194,8 @@
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
             this.Ten_vat_tu,
-            this.Da_phan});
+            this.Da_phan,
+            this.So_luong});
             this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(0, 138);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
@@ -243,6 +246,13 @@
             this.Da_phan.ReadOnly = true;
             this.Da_phan.Visible = false;
             // 
+            // So_luong
+            // 
+            this.So_luong.DataPropertyName = "So_luong";
+            this.So_luong.HeaderText = "Column1";
+            this.So_luong.Name = "So_luong";
+            this.So_luong.ReadOnly = true;
+            // 
             // frmVatTuPhanKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,5 +291,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Da_phan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn So_luong;
     }
 }

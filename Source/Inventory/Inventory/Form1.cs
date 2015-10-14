@@ -13,6 +13,7 @@ using Inventory.QuanLyTonDauKy;
 using Inventory.Utilities;
 using System.Configuration;
 using Inventory.Models;
+using Inventory.QuanLyKhoVatTu;
 
 namespace Inventory
 {
@@ -280,6 +281,25 @@ namespace Inventory
         {
             frmVatTuPhanKho frm = new frmVatTuPhanKho();
             frm.Text = "Nhập tồn đầu kỳ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDanhSachVatTuTrongKho frm = new frmDanhSachVatTuTrongKho();
+            frm.Text = "Nhập tồn thực trong kho";
 
             foreach (Form f in this.MdiChildren)
             {

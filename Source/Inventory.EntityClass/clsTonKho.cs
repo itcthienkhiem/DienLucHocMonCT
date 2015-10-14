@@ -37,6 +37,68 @@ namespace Inventory.EntityClass
 
 
         }
+        /// <summary>
+        /// ham nay lay danh sach cac vat tu trong kho co ma kho va ma vat tu can tim de + them vat tu vao kho
+        /// </summary>
+        /// <param name="_ID_kho"></param>
+        /// <param name="mavattu"></param>
+        /// <returns></returns>
+        public static int? getAllVT(int _ID_kho, string mavattu)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Ton_kho
+                         join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                         where d.ID_kho == _ID_kho && d.So_luong > 0 && d.Ma_vat_tu ==mavattu
+                         select new
+                         {
+                             d.ID_ton_kho,
+                             d.ID_kho,
+                             d.Ma_vat_tu,
+                             e.Ten_vat_tu,
+                             d.So_luong,
+                         }).ToList();
+                dbcxtransaction.Commit();
+
+             foreach (var record in entryPoint)
+                    {
+                        int? soluong = record.So_luong;
+                        return soluong;
+                    }
+            };
+            return 0;
+
+            
+
+        }
+        public static object getAll(int _ID_kho)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = from d in help.ent.Ton_kho
+                         join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                         where d.ID_kho ==_ID_kho&& d.So_luong>0
+                         select new
+                         {
+                             d.ID_ton_kho,
+                             d.ID_kho,
+                             d.Ma_vat_tu,
+                             e.Ten_vat_tu,
+                             d.So_luong,
+                         };
+                dbcxtransaction.Commit();
+                return (object)dm.ToList();
+            }
+
+
+
+        }
 
         //public bool CheckTonTaiSoDK(int idkho, string maVT)
         //{
