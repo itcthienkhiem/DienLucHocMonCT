@@ -21,11 +21,13 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var dm = from d in help.ent.Ton_kho
+                         join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                          select new
                          {
                              d.ID_ton_kho,
                              d.ID_kho,
                              d.Ma_vat_tu,
+                             e.Ten_vat_tu,
                              d.So_luong,
                          };
                 dbcxtransaction.Commit();

@@ -212,7 +212,7 @@ namespace Inventory.EntityClass
         /// lấy danh sách các vật tư chưa phân vào kho
         /// </summary>
         /// <returns></returns>
-        public object GetAllChuaPhanKho()
+        public DataTable GetAllChuaPhanKho()
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -220,14 +220,15 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var entryPoint =( from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-                   
+                                  join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                                  join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
                          select new
                          {
                              d.ID_chi_tiet_phieu_nhap_vat_tu,
                              d.Ma_phieu_nhap,
                              d.Ma_vat_tu,
-                          
-                        
+                             e.Ten_vat_tu,
+                             f.Ngay_lap,
                              d.So_luong_thuc_lanh,
                           
 
@@ -236,6 +237,8 @@ namespace Inventory.EntityClass
                 table.Columns.Add("ID_chi_tiet_phieu_nhap_vat_tu", typeof(int));
                 table.Columns.Add("Ma_phieu_nhap", typeof(string));
                 table.Columns.Add("Ma_vat_tu", typeof(string));
+                table.Columns.Add("Ten_vat_tu", typeof(string));
+                table.Columns.Add("Ngay_lap", typeof(DateTime));
                 table.Columns.Add("So_luong_thuc_lanh", typeof(int));
                 entryPoint.ToList().ForEach((n) =>
                 {
@@ -243,6 +246,8 @@ namespace Inventory.EntityClass
                     row.SetField<int>("ID_chi_tiet_phieu_nhap_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
                     row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
                     row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+                    row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                    row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
                     row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_lanh);
 
 

@@ -55,6 +55,7 @@
     <Compile Include="AutoClosingMessageBox.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="clsChiTietPhieuXuatTam.cs" />
+    <Compile Include="clsChiTietTonKho.cs" />
     <Compile Include="clsChi_Tiet_Phieu_Nhap_Vat_Tu.cs" />
     <Compile Include="clsDMVatTu.cs" />
     <Compile Include="clsDM_DonViTinh.cs" />
