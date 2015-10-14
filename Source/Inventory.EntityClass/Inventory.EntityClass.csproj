@@ -67,6 +67,7 @@
     <Compile Include="clsThongTinKetNoi.cs" />
     <Compile Include="clsTonDauKy.cs" />
     <Compile Include="clsTonKho.cs" />
+    <Compile Include="clsXuLyDuLieuChung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLDAL.cs" />
   </ItemGroup>

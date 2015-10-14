@@ -190,7 +190,7 @@ namespace Inventory.EntityClass
             //   help.ent.Database.BeginTransaction();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var recordsToUpdate = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == maphieunhap && c.Ma_vat_tu == Ma_vat_tu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
+                var recordsToUpdate = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == maphieunhap && c.Ma_vat_tu == mavattu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
                 if (recordsToUpdate.Count > 0)
                 {
                     foreach (var record in recordsToUpdate)
@@ -222,6 +222,7 @@ namespace Inventory.EntityClass
                 var entryPoint =( from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
+                                  where d.Da_duyet ==false
                          select new
                          {
                              d.ID_chi_tiet_phieu_nhap_vat_tu,
@@ -230,6 +231,7 @@ namespace Inventory.EntityClass
                              e.Ten_vat_tu,
                              f.Ngay_lap,
                              d.So_luong_thuc_lanh,
+                             d.Da_duyet,
                           
 
                          }).ToList();
@@ -240,6 +242,7 @@ namespace Inventory.EntityClass
                 table.Columns.Add("Ten_vat_tu", typeof(string));
                 table.Columns.Add("Ngay_lap", typeof(DateTime));
                 table.Columns.Add("So_luong_thuc_lanh", typeof(int));
+                table.Columns.Add("Da_duyet", typeof(bool));
                 entryPoint.ToList().ForEach((n) =>
                 {
                     DataRow row = table.NewRow();
@@ -250,7 +253,7 @@ namespace Inventory.EntityClass
                     row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
                     row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_lanh);
 
-
+                    row.SetField<bool?>("Da_duyet", n.Da_duyet);
 
 
 

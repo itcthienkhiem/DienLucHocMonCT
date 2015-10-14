@@ -25,6 +25,7 @@ namespace Inventory.NhapXuat
             this.maphieu = maphieu;
             this.idKho = idKho;
             this.soluong = soluong;
+            this.mavattu = mavattu;
             txtMaVT.Text = mavattu;
             txtTenVT.Text = tenvt;
             txtSoLuong.Text = soluong.ToString();
@@ -34,7 +35,7 @@ namespace Inventory.NhapXuat
         private void btnThem_Click_1(object sender, EventArgs e)
         {
             //load lai form cha 
-            f.init();
+            //f.init();
             Action();
             
                 
@@ -48,23 +49,12 @@ namespace Inventory.NhapXuat
         /// </summary>
         public void Action() {
 
-           
-            clsChi_Tiet_Phieu_Nhap_Vat_Tu ct = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            ct.UpdateDaDuyet(maphieu, mavattu);
-            clsTonKho tk = new clsTonKho();
-            Ton_kho tkmodel = new Ton_kho();
-            tkmodel.ID_kho = idKho;
-            tkmodel.Ma_vat_tu = mavattu;
-           
-            //lay so luong ton trong kho chinh
-            int? sl = clsTonKho.getAllVT(idKho,mavattu);
-            //lay so luong ton kho chinh = so luong ton kho chinh + so luong vat tu nhap vao 
-            tk.So_luong = soluong + (int)sl;
-            tkmodel.So_luong = tk.So_luong;
-            tk.Update(tkmodel);
-            clsChiTietTonKho cttk = new clsChiTietTonKho();
-            cttk.Insert();
-        
+            clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
+            if (dc.Insert(mavattu, idKho, soluong, maphieu) == 1)
+                MessageBox.Show("Bạn đã thêm thành công vật tư vào kho ");
+
+
+          
         }
     }
 }

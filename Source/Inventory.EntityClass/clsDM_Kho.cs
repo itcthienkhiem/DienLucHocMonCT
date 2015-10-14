@@ -42,7 +42,7 @@ namespace Inventory.EntityClass
           
 
        }
-
+     
        public bool CheckTonTaiSoDK()
        {
            DatabaseHelper help = new DatabaseHelper();

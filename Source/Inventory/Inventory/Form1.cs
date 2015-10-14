@@ -13,7 +13,6 @@ using Inventory.QuanLyTonDauKy;
 using Inventory.Utilities;
 using System.Configuration;
 using Inventory.Models;
-using Inventory.QuanLyKhoVatTu;
 
 namespace Inventory
 {

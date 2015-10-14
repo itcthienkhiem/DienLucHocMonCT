@@ -37,6 +37,30 @@ namespace Inventory.EntityClass
 
 
         }
+
+
+        /// <summary>
+        /// hàm này kiểm tra xem vật tư có tồn tại trong bản chưa
+        /// 
+        /// </summary>
+        /// <param name="idkho"></param>
+        /// <param name="mavattu"></param>
+        /// <returns></returns>
+        public bool checkKho_VatTu(int idkho,string mavattu)
+        { 
+             DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Ton_kho
+                    
+                         where d.ID_kho == idkho && d.Ma_vat_tu ==mavattu select d).ToList();
+                if(entryPoint.Count ==0)
+                    return false;
+                return true;
+            }
+        }
+
         /// <summary>
         /// ham nay lay danh sach cac vat tu trong kho co ma kho va ma vat tu can tim de + them vat tu vao kho
         /// </summary>
