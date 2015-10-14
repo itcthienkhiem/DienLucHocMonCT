@@ -95,7 +95,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(TargetDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

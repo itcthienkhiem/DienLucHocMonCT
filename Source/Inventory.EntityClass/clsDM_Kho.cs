@@ -13,7 +13,7 @@ namespace Inventory.EntityClass
 {
    public class clsDM_Kho
     {
-        public int? ID_kho;
+        public int ID_kho;
         public string Ten_kho;
        public clsDM_Kho()
        { 
