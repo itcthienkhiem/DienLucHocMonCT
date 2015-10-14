@@ -313,5 +313,15 @@ namespace Inventory
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void danhSáchVậtTưChưaPhânVàoKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            phânKhoVậtTưToolStripMenuItem_Click(sender, e);
+        }
+
+        private void danhSáchPhiếuNhậpChưaPhânKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            danhSáchPhiếuNhậpToolStripMenuItem_Click(sender, e);
+        }
     }
 }
