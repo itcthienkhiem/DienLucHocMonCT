@@ -83,9 +83,9 @@
     <EmbeddedResource Include="frmReport_Phieu_Nhap_Kho.resx">
       <DependentUpon>frmReport_Phieu_Nhap_Kho.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_Nhap_Kho.rdlc">
+    <Content Include="Report_Nhap_Kho.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inventory.EntityClass\Inventory.EntityClass.csproj">
@@ -94,6 +94,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(TargetDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
