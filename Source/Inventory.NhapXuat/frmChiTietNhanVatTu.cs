@@ -51,8 +51,11 @@ namespace Inventory.NhapXuat
 
             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
             if (dc.Insert(mavattu, idKho, soluong, maphieu) == 1)
+            {
                 MessageBox.Show("Bạn đã thêm thành công vật tư vào kho ");
-
+                f.init();
+                this.Close();
+            }
 
           
         }
