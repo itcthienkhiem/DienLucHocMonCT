@@ -17,11 +17,17 @@ namespace Inventory.NhapXuat
         {
             InitializeComponent();
             init();
+
+            cbKhoNhanVatTu.DataSource = clsDM_Kho.getAll();
+            cbKhoNhanVatTu.DisplayMember = "Ten_kho";
+            cbKhoNhanVatTu.ValueMember = "ID_kho";
         }
         private void init()
         {
+            //lay danh sach cac vat tu trong phieu nhap chua phan vao kho 
             clsChi_Tiet_Phieu_Nhap_Vat_Tu pnk = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            gridDanhSachPhieuNhap.DataSource = (DataTable)pnk.GetAllChuaPhanKho();
+            gridDanhSachPhieuNhap.DataSource= pnk.GetAllChuaPhanKho();
         }
+
     }
 }

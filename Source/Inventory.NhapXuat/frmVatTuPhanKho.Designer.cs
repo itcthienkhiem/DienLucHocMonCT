@@ -42,7 +42,8 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.ID_chi_tiet_phieu_nhap_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbKhoNhanVatTu = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Da_phan = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,11 +190,10 @@
             this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID_chi_tiet_phieu_nhap_vat_tu,
             this.Ma_vat_tu,
             this.Ten_vat_tu,
             this.Da_phan});
-            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(0, 98);
+            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(0, 138);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
             this.gridDanhSachPhieuNhap.ReadOnly = true;
@@ -201,15 +201,25 @@
             this.gridDanhSachPhieuNhap.RowHeadersVisible = false;
             this.gridDanhSachPhieuNhap.RowTemplate.Height = 30;
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(788, 344);
+            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(788, 304);
             this.gridDanhSachPhieuNhap.TabIndex = 54;
             // 
-            // ID_chi_tiet_phieu_nhap_vat_tu
+            // cbKhoNhanVatTu
             // 
-            this.ID_chi_tiet_phieu_nhap_vat_tu.DataPropertyName = "ID_chi_tiet_phieu_nhap_vat_tu";
-            this.ID_chi_tiet_phieu_nhap_vat_tu.HeaderText = "ID_ma_chi_tiet_phieu_nhap";
-            this.ID_chi_tiet_phieu_nhap_vat_tu.Name = "ID_chi_tiet_phieu_nhap_vat_tu";
-            this.ID_chi_tiet_phieu_nhap_vat_tu.ReadOnly = true;
+            this.cbKhoNhanVatTu.FormattingEnabled = true;
+            this.cbKhoNhanVatTu.Location = new System.Drawing.Point(132, 111);
+            this.cbKhoNhanVatTu.Name = "cbKhoNhanVatTu";
+            this.cbKhoNhanVatTu.Size = new System.Drawing.Size(211, 21);
+            this.cbKhoNhanVatTu.TabIndex = 56;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Kho nhận vật tư";
             // 
             // Ma_vat_tu
             // 
@@ -231,12 +241,15 @@
             this.Da_phan.HeaderText = "Da_phan";
             this.Da_phan.Name = "Da_phan";
             this.Da_phan.ReadOnly = true;
+            this.Da_phan.Visible = false;
             // 
             // frmVatTuPhanKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 438);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbKhoNhanVatTu);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.gridDanhSachPhieuNhap);
             this.Name = "frmVatTuPhanKho";
@@ -245,6 +258,7 @@
             this.pnlMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -262,7 +276,8 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.DataGridView gridDanhSachPhieuNhap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_chi_tiet_phieu_nhap_vat_tu;
+        private System.Windows.Forms.ComboBox cbKhoNhanVatTu;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Da_phan;
