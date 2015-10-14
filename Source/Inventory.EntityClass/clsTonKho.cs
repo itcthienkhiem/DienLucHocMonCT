@@ -36,24 +36,24 @@ namespace Inventory.EntityClass
 
         }
 
-        public bool CheckTonTaiSoDK(int idkho, string maVT)
-        {
-        //    DatabaseHelper help = new DatabaseHelper();
-        //    help.ConnectDatabase();
-        //    var temp = help.ent.Ton_kho.Where(
-        //i => i.Ma_vat_tu == maVT
+        //public bool CheckTonTaiSoDK(int idkho, string maVT)
+        //{
+        ////    DatabaseHelper help = new DatabaseHelper();
+        ////    help.ConnectDatabase();
+        ////    var temp = help.ent.Ton_kho.Where(
+        ////i => i.Ma_vat_tu == maVT
 
-        //).ToList();
-        //    string name = "";
-        //    temp.ToList().ForEach((n) =>
-        //    {
-        //        name = n.Ten_vat_tu;
+        ////).ToList();
+        ////    string name = "";
+        ////    temp.ToList().ForEach((n) =>
+        ////    {
+        ////        name = n.Ten_vat_tu;
 
-        //    });
-        //    return name;
+        ////    });
+        ////    return name;
 
 
-        }
+        //}
         public int Insert()
         {
 
