@@ -316,6 +316,7 @@ namespace Inventory.EntityClass
                         Don_gia = this.Don_gia,
                         Thanh_tien = this.Thanh_tien,
                         ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                        Da_duyet = this.Da_duyet,
                     };
 
                     help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Add(t);

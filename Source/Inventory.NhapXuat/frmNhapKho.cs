@@ -150,7 +150,7 @@ namespace Inventory.NhapXuat
                                     chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                     chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
-
+                                    chitiet.Da_duyet = false;
 
                                     chitiet.Insert(DAL);
                                  
@@ -281,7 +281,10 @@ namespace Inventory.NhapXuat
             }
             else
             {
-                MessageBox.Show("Mã phiếu nhập không tồn tại trong csdl!");
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnHuy.Enabled = true;
+               // MessageBox.Show("Mã phiếu nhập không tồn tại trong csdl!");
             }
         }
 
@@ -429,23 +432,30 @@ namespace Inventory.NhapXuat
 
             if (result.Length == 0)
             {
-                DataRow dr = dataTable1.NewRow();
-                dr["Ma_vat_tu"] = cbMaVatTu.Text;
-                dr["ten_vat_tu"] = cbTenVatTu.Text;
-                dr["Ten_don_vi_tinh"] = txtDVT.Text;
-                dr["chat_luong"] = txtChatLuong.Text;
-                dr["so_luong_yeu_cau"] = txtSLYC.Text;
-                dr["so_luong_thuc_lanh"] = txtSLTX.Text;
-                dr["don_gia"] = txtDonGia.Text;
-                clsDMVatTu vt = new clsDMVatTu();
-                DataTable temp = vt.GetAll(cbMaVatTu.Text);
-                dr["ID_don_vi_tinh"] =temp.Rows[0]["ID_Don_vi_tinh"];
-                dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
+                try
+                {
+                    DataRow dr = dataTable1.NewRow();
+                    dr["Ma_vat_tu"] = cbMaVatTu.Text;
+                    dr["ten_vat_tu"] = cbTenVatTu.Text;
+                    dr["Ten_don_vi_tinh"] = txtDVT.Text;
+                    dr["chat_luong"] = txtChatLuong.Text;
+                    dr["so_luong_yeu_cau"] = txtSLYC.Text;
+                    dr["so_luong_thuc_lanh"] = txtSLTX.Text;
+                    dr["don_gia"] = txtDonGia.Text;
+                    clsDMVatTu vt = new clsDMVatTu();
+                    DataTable temp = vt.GetAll(cbMaVatTu.Text);
+                    dr["ID_don_vi_tinh"] = temp.Rows[0]["ID_Don_vi_tinh"];
+                    dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
 
-                dataTable1.Rows.Add(dr);
+                    dataTable1.Rows.Add(dr);
 
-                ResetGridInputForm();
-                PanelButton.setClickStatus(sttaf);
+                    ResetGridInputForm();
+                    PanelButton.setClickStatus(sttaf);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
                 MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
@@ -656,6 +666,17 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
+                DialogResult dialogResult = MessageBox.Show("Bạn chắc chắn muốn xóa phiếu nhập này ?", "Cảnh báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+
+                    //do something
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
+
             }
 
         }
@@ -1159,6 +1180,11 @@ namespace Inventory.NhapXuat
                 // Set the ErrorProvider error with the text to display. 
                 this.errorProvider1.SetError(txtSLTX, errorMsg);
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+
         }
 
 

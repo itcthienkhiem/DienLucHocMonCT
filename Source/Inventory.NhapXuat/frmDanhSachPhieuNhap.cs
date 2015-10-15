@@ -229,9 +229,8 @@ namespace Inventory.NhapXuat
                 //do something
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
                 string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString());
-                clsChi_Tiet_Phieu_Nhap_Vat_Tu ct = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-                ct.remove(maphieu);
-                phieuNhap.Delete(maphieu);
+                if (clsXuLyDuLieuChung.DeletePhieuNhap(maphieu) == 1)
+                    MessageBox.Show("Bạn đã xóa thành công");
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -247,6 +246,11 @@ namespace Inventory.NhapXuat
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

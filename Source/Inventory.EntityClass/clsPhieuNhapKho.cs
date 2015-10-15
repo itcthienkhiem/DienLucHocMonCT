@@ -50,20 +50,20 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
-
+                              where ep.Da_phan_kho == false
                               select new
                               {
-                                ep.  Ma_phieu_nhap ,
-                               ep.   Kho_nhan ,
-                                ep.Ngay_lap,
-                                ep.Ly_do,
-                                ep.So_hoa_don,
-                                ep.Cong_trinh,
-                                ep.Dia_Chi,
-                                ep.ID_Loai_Phieu_Nhap,
-                                ep.Kho_xuat_ra,
-                               // ep.Da_phan_kho,
-                                ep.ID_phieu_nhap,
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  // ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
 
 
                               }).ToList();
