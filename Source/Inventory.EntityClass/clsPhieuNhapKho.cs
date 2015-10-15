@@ -147,6 +147,22 @@ namespace Inventory.EntityClass
         //    return dt;
         //}
 
+        public static bool KTVTChuaDuyet(string ma_Phieunhap)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              where ep.Ma_phieu_nhap.Equals(ma_Phieunhap) && ep.Da_phan_kho == true
+                              select ep).ToList();
+
+            if (entryPoint.Count == 0)
+                return false;// chua co phan tu nao da duyet trong danh sach
+            return true;
+        }
+
         public DataTable GetAll(string maPhieu)
         {
             DatabaseHelper help = new DatabaseHelper();

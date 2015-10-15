@@ -66,5 +66,10 @@ namespace Inventory.NhapXuat
             //process button clicked
         }
 
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

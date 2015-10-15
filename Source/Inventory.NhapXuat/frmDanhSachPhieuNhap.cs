@@ -165,7 +165,11 @@ namespace Inventory.NhapXuat
             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
             DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
             string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_nhap"].Value.ToString();
-
+            if (clsPhieuNhapKho.KTVTChuaDuyet(strMaPhieuNhap) == true)// phieu nay da duyet 
+            {
+                MessageBox.Show("Phiếu nhập này đã được phân vào kho, không thể xóa");
+                return;
+            }
             //frmNhapKho nhapkho = new frmNhapKho(enumStatus.Sua,phieuNhap);
             //nhapkho.Show();
 
@@ -226,9 +230,16 @@ namespace Inventory.NhapXuat
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập này không", "Cảnh báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+               // clsChi_Tiet_Phieu_Nhap_Vat_Tu pnvt = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                 //do something
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
                 string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString());
+                if (clsPhieuNhapKho.KTVTChuaDuyet(maphieu) == true)// phieu nay da duyet 
+                {
+                    MessageBox.Show("Phiếu nhập này đã được phân vào kho, không thể xóa");
+                    return;
+                }
+
                 if (clsXuLyDuLieuChung.DeletePhieuNhap(maphieu) == 1)
                     MessageBox.Show("Bạn đã xóa thành công");
             }

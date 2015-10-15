@@ -44,6 +44,7 @@
             // 
             this.txtMaVT.Location = new System.Drawing.Point(119, 17);
             this.txtMaVT.Name = "txtMaVT";
+            this.txtMaVT.ReadOnly = true;
             this.txtMaVT.Size = new System.Drawing.Size(218, 20);
             this.txtMaVT.TabIndex = 0;
             // 
@@ -52,6 +53,7 @@
             this.txtTenVT.Location = new System.Drawing.Point(119, 43);
             this.txtTenVT.Multiline = true;
             this.txtTenVT.Name = "txtTenVT";
+            this.txtTenVT.ReadOnly = true;
             this.txtTenVT.Size = new System.Drawing.Size(218, 72);
             this.txtTenVT.TabIndex = 1;
             // 
@@ -59,6 +61,7 @@
             // 
             this.txtSoLuong.Location = new System.Drawing.Point(119, 121);
             this.txtSoLuong.Name = "txtSoLuong";
+            this.txtSoLuong.ReadOnly = true;
             this.txtSoLuong.Size = new System.Drawing.Size(218, 20);
             this.txtSoLuong.TabIndex = 2;
             // 
@@ -102,6 +105,7 @@
             // 
             this.txtKhoNhan.Location = new System.Drawing.Point(119, 147);
             this.txtKhoNhan.Name = "txtKhoNhan";
+            this.txtKhoNhan.ReadOnly = true;
             this.txtKhoNhan.Size = new System.Drawing.Size(218, 20);
             this.txtKhoNhan.TabIndex = 6;
             // 
