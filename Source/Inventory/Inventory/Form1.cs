@@ -213,7 +213,7 @@ namespace Inventory
                 //clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
             }
             catch (Exception ex) {
-                MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");
+               // MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");
             }
         }
 
