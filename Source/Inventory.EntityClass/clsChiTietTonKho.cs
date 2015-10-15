@@ -16,8 +16,6 @@ namespace Inventory.EntityClass
       public DateTime Ngay_thay_doi;
       public bool Tang_giam;
 
-
-
         public static object getAll()
         {
 

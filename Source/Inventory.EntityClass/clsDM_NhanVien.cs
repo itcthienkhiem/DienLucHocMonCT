@@ -8,6 +8,7 @@ using System.Data;
 using Inventory.Utilities;
 using Inventory.Models;
 using System.Data.Entity;
+using System.Windows.Forms;
 namespace Inventory.EntityClass
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Inventory.EntityClass
        {
           // nv = new DM_Nhan_Vien();
        }
+
        public clsDM_NhanVien(int ID,string ma_nhan_vien, string ten_nhan_vien, bool trang_thai)
        {
            this.ID_nhan_vien= ID;
@@ -66,7 +68,6 @@ namespace Inventory.EntityClass
                             d.Ten_nhan_vien,
                             d.Ma_nhan_vien,
                             d.Trang_thai,
-
 
                         };
                dbcxtransaction.Commit();
@@ -340,5 +341,75 @@ namespace Inventory.EntityClass
 
        //    return result;
        }// End Delete
+
+
+       public AutoCompleteStringCollection getListMaNhanVien()
+       {
+           m_dbConnection.Open();
+
+           DataSet ds = new DataSet();
+           AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
+
+           string sql = "";
+           sql += "SELECT ";
+           sql += "Ma_nhan_vien ";
+           sql += "FROM DM_Nhan_Vien ";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(ds);
+           m_dbConnection.Close();
+
+           foreach (DataRow row in ds.Tables[0].Rows)
+           {
+               dataCollection.Add(row[0].ToString());
+           }
+
+           return dataCollection;
+       }
+
+       public AutoCompleteStringCollection getListTenNhanVien()
+       {
+           m_dbConnection.Open();
+
+           DataSet ds = new DataSet();
+           AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
+
+           string sql = "";
+           sql += "SELECT ";
+           sql += "Ten_nhan_vien ";
+           sql += "FROM DM_Nhan_Vien ";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(ds);
+           m_dbConnection.Close();
+
+           foreach (DataRow row in ds.Tables[0].Rows)
+           {
+               dataCollection.Add(row[0].ToString());
+           }
+
+           return dataCollection;
+       }
+
+       public DataTable getAll_Ma_Ten_NV()
+       {
+           m_dbConnection.Open();
+
+           DataTable dt = new DataTable();
+
+           string sql = "";
+           sql += "SELECT ";
+           sql += "ID_nhan_vien, Ma_nhan_vien, Ten_nhan_vien ";
+           sql += "FROM DM_Nhan_Vien";
+
+           SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           SqlDataAdapter da = new SqlDataAdapter(command);
+           da.Fill(dt);
+           m_dbConnection.Close();
+
+           return dt;
+       }
     }
 }

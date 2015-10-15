@@ -323,5 +323,24 @@ namespace Inventory
         {
             danhSáchPhiếuNhậpToolStripMenuItem_Click(sender, e);
         }
+
+        private void MenuItemXuatVTChoNhanVien_Click(object sender, EventArgs e)
+        {
+            frmXuatTamVatTuChoNhanVien frm = new frmXuatTamVatTuChoNhanVien();
+            frm.Text = "Xuất tạm vật tư cho nhân viên";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }
