@@ -302,58 +302,111 @@ namespace Inventory.EntityClass
            });
            return table;
 
-           //DatabaseHelper help = new DatabaseHelper();
-           //help.ConnectDatabase();
-           //using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-           //{
-           //    var listOfUsers = (from x in help.ent.DM_Vat_Tu
-           //                       join u in help.ent.DM_Don_vi_tinh on x.ID_Don_vi_tinh equals u.ID_Don_vi_tinh
-           //                       select new
-           //                       {
-           //                           RowA = x,
-           //                           RowB = u
-           //                       });
-           //    DataTable result = new DataTable();
-           //    foreach (var x in listOfUsers)
-           //    {
-           //        result.Rows.Add(x.RowA, x.RowB);
-           //    }
-           //    return result;
-
-
-
-               //var dm = from d in help.ent.DM_Vat_Tu
-               //         select new
-               //         {
-               //             d.Ma_vat_tu,
-               //             d.Ten_vat_tu,
-               //             d.Ten_don_vi_tinh,
-               //             d.Mo_ta,
-               //             d.Don_gia,
-               //             d.id_don_vi_tinh,
-                          
-               //         };
-               //dbcxtransaction.Commit();
-               //return (object)dm.ToList();
            }
-              
-        //   m_dbConnection.Open();
 
-        //   DataTable dt = new DataTable();
-        //   //string sql = "SELECT * FROM DM_Vat_Tu";
-        //   string sql = "";
-        //   sql += "SELECT DM_Vat_Tu.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu, DM_Don_vi_tinh.Ten_don_vi_tinh, DM_Vat_Tu.Mo_ta,DM_vat_tu.Don_gia, DM_Vat_Tu.id_don_vi_tinh ";
-        //   sql += "FROM DM_Vat_Tu ";
-        ////   sql += "INNER ";
-        //   sql +=   "JOIN DM_Don_vi_tinh ";
-        //   sql +=   "ON DM_Vat_Tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh";
+       public DataTable GetAllMa(string TenVT)
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
 
-        //   SqlCommand command = new SqlCommand(sql, m_dbConnection);
-        //   SqlDataAdapter da = new SqlDataAdapter(command);
-        //   da.Fill(dt);
-        //   m_dbConnection.Close();
+           var entryPoint = (from ep in help.ent.DM_Vat_Tu
+                             join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
+                             where ep.Ten_vat_tu.Equals( Ten_vat_tu)
+                             select new
+                             {
+                                 ID_vat_tu = ep.ID_Vat_tu,
+                                 Ma_vat_tu = ep.Ma_vat_tu,
+                                 Ten_vat_tu = ep.Ten_vat_tu,
+                                 Ten_don_vi_tinh = e.Ten_don_vi_tinh,
+                                 Mo_ta = ep.Mo_ta,
+                                 Don_gia = ep.Don_gia,
+                                 id_don_vi_tinh = ep.ID_Don_vi_tinh,
 
-        //   return dt;
+                             }).ToList();
+           DataTable table = new DataTable();
+           table.Columns.Add("ID_vat_tu", typeof(int));
+           table.Columns.Add("Ma_vat_tu", typeof(string));
+           table.Columns.Add("Ten_vat_tu", typeof(string));
+           table.Columns.Add("Ten_don_vi_tinh", typeof(string));
+           table.Columns.Add("Mo_ta", typeof(string));
+           table.Columns.Add("Don_gia", typeof(long));
+           table.Columns.Add("ID_Don_vi_tinh", typeof(int));
+           entryPoint.ToList().ForEach((n) =>
+           {
+               DataRow row = table.NewRow();
+
+               row.SetField<double>("ID_vat_tu", n.ID_vat_tu);
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+               row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+               row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
+
+               row.SetField<string>("Mo_ta", n.Mo_ta);
+
+               row.SetField<long?>("Don_gia", n.Don_gia);
+
+               row.SetField<int?>("ID_Don_vi_tinh", n.id_don_vi_tinh);
+
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+
+
+
+               table.Rows.Add(row);
+           });
+           return table;
+
+       }
+       public DataTable GetAll(string mavattu)
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+
+           var entryPoint = (from ep in help.ent.DM_Vat_Tu
+                             join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
+                             where ep.Ma_vat_tu == mavattu
+                             select new
+                             {
+                                 ID_vat_tu = ep.ID_Vat_tu,
+                                 Ma_vat_tu = ep.Ma_vat_tu,
+                                 Ten_vat_tu = ep.Ten_vat_tu,
+                                 Ten_don_vi_tinh = e.Ten_don_vi_tinh,
+                                 Mo_ta = ep.Mo_ta,
+                                 Don_gia = ep.Don_gia,
+                                 id_don_vi_tinh = ep.ID_Don_vi_tinh,
+
+                             }).ToList();
+           DataTable table = new DataTable();
+           table.Columns.Add("ID_vat_tu", typeof(int));
+           table.Columns.Add("Ma_vat_tu", typeof(string));
+           table.Columns.Add("Ten_vat_tu", typeof(string));
+           table.Columns.Add("Ten_don_vi_tinh", typeof(string));
+           table.Columns.Add("Mo_ta", typeof(string));
+           table.Columns.Add("Don_gia", typeof(long));
+           table.Columns.Add("ID_Don_vi_tinh", typeof(int));
+           entryPoint.ToList().ForEach((n) =>
+           {
+               DataRow row = table.NewRow();
+
+               row.SetField<double>("ID_vat_tu", n.ID_vat_tu);
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+               row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+               row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
+
+               row.SetField<string>("Mo_ta", n.Mo_ta);
+
+               row.SetField<long?>("Don_gia", n.Don_gia);
+
+               row.SetField<int?>("ID_Don_vi_tinh", n.id_don_vi_tinh);
+
+               row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+
+
+
+               table.Rows.Add(row);
+           });
+           return table;
+
+       }
+    
        //}
        // End GetAll
 

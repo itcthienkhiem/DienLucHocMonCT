@@ -28,11 +28,11 @@ namespace Inventory.EntityClass
 
 
 
-       
+
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
         public clsChi_Tiet_Phieu_Nhap_Vat_Tu()
         {
-        
+
         }
         public object GetAll()
         {
@@ -104,6 +104,26 @@ namespace Inventory.EntityClass
             }
             return 0;
 
+        }
+        /// <summary>
+        /// ham kiem tra co vat tu nao da duyet trong phieu nhap chua 
+        /// </summary>
+        /// <param name="ma_Phieunhap"></param>
+        /// <returns>false : chua co , true: da co </returns>
+        public static bool KTVTChuaDuyet(string ma_Phieunhap)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+
+            var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                               where ep.Ma_phieu_nhap.Equals(ma_Phieunhap) && ep.Da_duyet == true
+                              select ep).ToList();
+
+            if (entryPoint.Count == 0)
+                return false;// chua co phan tu nao da duyet trong danh sach
+            return true;
         }
 
 
@@ -219,22 +239,22 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var entryPoint =( from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                var entryPoint = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
-                                  where d.Da_duyet ==false
-                         select new
-                         {
-                             d.ID_chi_tiet_phieu_nhap_vat_tu,
-                             d.Ma_phieu_nhap,
-                             d.Ma_vat_tu,
-                             e.Ten_vat_tu,
-                             f.Ngay_lap,
-                             d.So_luong_thuc_lanh,
-                             d.Da_duyet,
-                          
+                                  where d.Da_duyet == false
+                                  select new
+                                  {
+                                      d.ID_chi_tiet_phieu_nhap_vat_tu,
+                                      d.Ma_phieu_nhap,
+                                      d.Ma_vat_tu,
+                                      e.Ten_vat_tu,
+                                      f.Ngay_lap,
+                                      d.So_luong_thuc_lanh,
+                                      d.Da_duyet,
 
-                         }).ToList();
+
+                                  }).ToList();
                 DataTable table = new DataTable();
                 table.Columns.Add("ID_chi_tiet_phieu_nhap_vat_tu", typeof(int));
                 table.Columns.Add("Ma_phieu_nhap", typeof(string));
@@ -261,8 +281,8 @@ namespace Inventory.EntityClass
                 });
                 dbcxtransaction.Commit();
                 return table;
-               
-                
+
+
             }
 
         }
