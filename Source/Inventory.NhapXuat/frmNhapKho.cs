@@ -23,7 +23,7 @@ namespace Inventory.NhapXuat
     public partial class frmNhapKho : Form
     {
 
-        Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
+       // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
 
         //    Dictionary<string, clsDMVatTu> DicTen = new Dictionary<string, clsDMVatTu>();
         //  DataTable data = new DataTable();
@@ -123,7 +123,7 @@ namespace Inventory.NhapXuat
                         {
                             // phieunhap.
                             phieunhap.Kho_nhan = txtKhoNhan.Text;
-                            phieunhap.Kho_xuat_ra = txtKhoXuat.Text;
+                            phieunhap.Kho_xuat_ra = txtXuatTaiKho.Text;
                             phieunhap.Da_phan_kho = false;
                             phieunhap.ID_Loai_Phieu_Nhap =int.Parse( cbLoaiPhieuNhan.SelectedValue.ToString());
                        //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
@@ -289,14 +289,21 @@ namespace Inventory.NhapXuat
         {
             try
             {
+
+                
+
                 clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
+
                 clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
 
                 if (clsNhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text) == true)
                 {
+
                     DataTable tb = clsNhap.GetAll(txtMaPhieuNhap.Text.Trim());
                     // dtNgayNhap.Text = tb.Rows[0]["Ngay_nhap"].ToString();
-                    dtNgayNhap.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_lap"]);
+                    dtNgayNhap.CustomFormat = "dd-MM-yyyy";
+                    dtNgayNhap.Value = Convert.ToDateTime(tb.Rows[0]["Ngay_lap"].ToString());
+                   // dtNgayNhap.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_lap"]);
 
                     txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
                  //   txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
@@ -324,7 +331,18 @@ namespace Inventory.NhapXuat
 
                         dataTable1.Rows.Add(dr);
                     }
+                    if (clsChi_Tiet_Phieu_Nhap_Vat_Tu.KTVTChuaDuyet(clsNhap.Ma_phieu_nhap) == true)
+
+                    {
+                        //khong cho sua thong tin tren luoi
+                        disableInputForm();
+                        MessageBox.Show("Phiếu nhập này chứa vật tư đã phân vào kho, không thể chỉnh sữa thông tin.");
+                        return false;
+                        
+                    }
+
                     //MessageBox.Show("Tồn tại mã phiếu nhập trong csdl");
+
                     return true;
                 }
                 else
@@ -357,11 +375,12 @@ namespace Inventory.NhapXuat
         {
             if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi || e.KeyCode == Keys.Enter)
             {
-                var val = Dic[cbMaVatTu.Text.Trim()];
-                cbTenVatTu.Text = val.Ten_vat_tu.ToString();
-                txtDVT.Text = val.ten_don_vi_tinh.ToString();
+                string val = cbMaVatTu.Text ;
+                DataTable temp =  new clsDMVatTu().GetAll(val);
+                cbTenVatTu.Text =temp.Rows[0]["Ten_vat_tu"].ToString();
+                txtDVT.Text = temp.Rows[0]["Ten_don_vi_tinh"].ToString();
 
-                txtDonGia.Text = val.Don_gia.ToString();
+                txtDonGia.Text = temp.Rows[0]["Don_gia"].ToString();
             }
 
         }
@@ -370,18 +389,21 @@ namespace Inventory.NhapXuat
         {
             if (e.KeyCode == Keys.Enter)
             {
-                for (int i = 0; i < Dic.Count; i++)
-                {
-                    if (Dic.ToList()[i].Value.Ten_vat_tu.Equals(cbTenVatTu.Text))
+                //for (int i = 0; i < Dic.Count; i++)
+                //{
+                //    if (Dic.ToList()[i].Value.Ten_vat_tu.Equals(cbTenVatTu.Text))
 
-                    // == cbTenVatTu.Text.Trim())
-                    {
-                        var val = Dic.ToList()[i].Value;
-                        cbMaVatTu.Text = val.Ma_vat_tu.ToString();
-                        txtDVT.Text = val.ten_don_vi_tinh.ToString();
-                        txtDonGia.Text = val.Don_gia.ToString();
-                    }
+                //    // == cbTenVatTu.Text.Trim())
+                {
+                    //clsDMVatTu vt = new clsDMVatTu();
+                    //DataTable temp = vt.GetAllMa(cbMaVatTu.Text);
+                    //cbMaVatTu.Text = temp.Rows[0]["Ma_vat_tu"].ToString();
+                    //txtDVT.Text = temp.Rows[0]["Ten_don_vi_tinh"].ToString();
+                    //txtDonGia.Text = temp.Rows[0]["Don_gia"].ToString();
+
+
                 }
+                //}
             }
         }
         
@@ -415,8 +437,9 @@ namespace Inventory.NhapXuat
                 dr["so_luong_yeu_cau"] = txtSLYC.Text;
                 dr["so_luong_thuc_lanh"] = txtSLTX.Text;
                 dr["don_gia"] = txtDonGia.Text;
-                dr["ID_don_vi_tinh"] = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
-
+                clsDMVatTu vt = new clsDMVatTu();
+                DataTable temp = vt.GetAll(cbMaVatTu.Text);
+                dr["ID_don_vi_tinh"] =temp.Rows[0]["ID_Don_vi_tinh"];
                 dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
 
                 dataTable1.Rows.Add(dr);
@@ -501,7 +524,9 @@ namespace Inventory.NhapXuat
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLYC.Text;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value = txtSLTX.Text;
                     gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
-                    gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = Dic[cbMaVatTu.Text].ID_Don_vi_tinh;
+                    clsDMVatTu vt = new clsDMVatTu();
+                    DataTable temp = vt.GetAll(cbMaVatTu.Text);
+                    gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = temp.Rows[0]["ID_Don_vi_tinh"];
                     gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
                   
                     PanelButton.setClickStatus( sttaf);
@@ -540,6 +565,7 @@ namespace Inventory.NhapXuat
         private void btnSua_Click(object sender, EventArgs e)
         {
             dataTable1.Clear();
+            //kiem tra ma phieu nhap xem co vat tu nao trung ko? neu co thì chỉ hiển thị thông tin và ko cho cập nhật
 
             if (txtMaPhieuNhap.Text == "")
             {
@@ -794,7 +820,7 @@ namespace Inventory.NhapXuat
             
             
             //Init cho combobox Ma vat tu, Ten vat tu
-            Dic = GetDict(new clsDMVatTu().GetAll());
+          //  Dic = GetDict(new clsDMVatTu().GetAll());
 
             initMaVatTu();
             initTenVatTu();
@@ -853,15 +879,17 @@ namespace Inventory.NhapXuat
             this.cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             AutoCompleteStringCollection combData1 = new AutoCompleteStringCollection();
-            foreach (string key in Dic.Keys)
+            DataTable temp = new DataTable();
+            temp = new clsDMVatTu().GetAll();
+            for (int i = 0; i < temp.Rows.Count; i++)
             {
-                combData1.Add(Dic[key].Ma_vat_tu);
+                combData1.Add(temp.Rows[i]["ma_vat_tu"].ToString());
             }
 
             cbMaVatTu.AutoCompleteCustomSource = combData1;
             cbMaVatTu.DataSource = combData1;
 
-            cbMaVatTu.SelectedIndex = -1;
+            cbMaVatTu.SelectedIndex = 0;
         }
 
 
@@ -874,9 +902,11 @@ namespace Inventory.NhapXuat
             this.cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             AutoCompleteStringCollection combData2 = new AutoCompleteStringCollection();
-            foreach (string key in Dic.Keys)
+            DataTable temp = new DataTable();
+            temp = new clsDMVatTu().GetAll();
+            for (int i = 0; i < temp.Rows.Count;i++ )
             {
-                combData2.Add(Dic[key].Ten_vat_tu);
+                combData2.Add(temp.Rows[i]["Ten_vat_tu"].ToString());
             }
 
             cbTenVatTu.AutoCompleteCustomSource = combData2;
@@ -941,6 +971,9 @@ namespace Inventory.NhapXuat
             btnSaveGrid.Enabled = _status;
             btnDel.Enabled = _status;
             txtDonGia.Enabled = _status;
+            txtXuatTaiKho.Enabled = _status;
+            txtKhoNhan.Enabled = _status;
+            txtSoHD.Enabled = _status;
           //  txtSLYC.Enabled = _status;
             //txtMaPhieuNhap.Enabled = _status;
 
