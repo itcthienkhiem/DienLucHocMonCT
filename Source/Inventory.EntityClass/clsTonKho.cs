@@ -1,7 +1,10 @@
 ﻿using Inventory.Models;
+using Inventory.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -13,6 +16,36 @@ namespace Inventory.EntityClass
         public int ID_kho;
         public string Ma_vat_tu;
         public int So_luong;
+
+        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+        public string getSL_from_MaVatTu(string Ma_vat_tu, string ID_Kho)
+        {
+            m_dbConnection.Open();
+            System.Data.DataTable dt = new DataTable();
+
+            //Chuẩn bị
+            string sql = "";
+            sql += "SELECT So_luong FROM Ton_kho ";
+            sql += "WHERE Ma_vat_tu=@Ma_vat_tu ";
+            sql += "AND ID_Kho=@ID_Kho ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = Ma_vat_tu;
+            command.Parameters.Add("@ID_Kho", SqlDbType.Int).Value = Int32.Parse(ID_Kho);
+
+            command.CommandType = CommandType.Text;
+
+            //Run
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            //Đóng
+            m_dbConnection.Close();
+
+            return dt.Rows[0]["So_luong"].ToString();
+        }
+
         public static object getAll()
         {
 

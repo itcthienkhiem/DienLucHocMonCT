@@ -118,7 +118,7 @@ namespace Inventory.XuatTamVatTu
         /// <summary>
         /// Re-Load ALL DATA to Grid
         /// </summary>
-        public void LoadData()
+        private void LoadData()
         {
             if (ID_nhan_vien.Equals(string.Empty))
                 gridNhanVienNoVatTu.DataSource = XuatVTChoNV.getDSNhanVienNoVatTu();
@@ -128,12 +128,12 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
-        public void CloseForm()
+        private void CloseForm()
         {
             this.Close();
         }
 
-        public void init_cbMaNhanVien()
+        private void init_cbMaNhanVien()
         {
             cbMaNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbMaNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -150,7 +150,7 @@ namespace Inventory.XuatTamVatTu
             cbMaNhanVien.SelectedIndex = -1;
         }
 
-        public void init_cbTenNhanVien()
+        private void init_cbTenNhanVien()
         {
             cbTenNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbTenNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -183,7 +183,7 @@ namespace Inventory.XuatTamVatTu
         {
             ComboBox comboBox = (ComboBox)sender;
 
-            if ((comboBox.SelectedIndex != -1) && (cbTenNhanVien.SelectedValue != comboBox.SelectedValue))
+            if ((comboBox.SelectedIndex != -1) && (cbMaNhanVien.SelectedValue != comboBox.SelectedValue))
             {
                 cbMaNhanVien.SelectedValue = comboBox.SelectedValue;
                 ID_nhan_vien = comboBox.SelectedValue.ToString();

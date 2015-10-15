@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using Inventory.Utilities;
+
 namespace Inventory.EntityClass
 {
    public  class clsChiTietPhieuXuatTam
@@ -18,7 +19,52 @@ namespace Inventory.EntityClass
        public int so_luong_thuc_lanh;
        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-       public DataTable GetAll(string maPhieu)
+        public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "Ma_phieu_xuat_tam ";
+            sql += "FROM Phieu_Xuat_Tam_Vat_Tu ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        public DataTable getAll_Ma_Phieu()
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "ID_phieu_xuat_tam, Ma_phieu_xuat_tam ";
+            sql += "FROM Phieu_Xuat_Tam_Vat_Tu";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
+
+        public DataTable GetAll(string maPhieu)
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();

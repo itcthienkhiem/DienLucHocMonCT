@@ -52,7 +52,131 @@ namespace Inventory.EntityClass
            this.ID_Don_vi_tinh = id_dvt;
        }
 
-       public string getTenVatTu(string MaVatTu)
+        public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu()
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "Ma_vat_tu ";
+            sql += "FROM DM_Vat_Tu ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu()
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "Ten_vat_tu ";
+            sql += "FROM DM_Vat_Tu ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        public DataTable getAll_Ma_Ten_VatTu()
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "ID_Vat_tu, Ma_vat_tu, Ten_vat_tu ";
+            sql += "FROM DM_Vat_Tu";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
+        public string getDVT_from_IDVT(string ID_vat_tu)
+        {
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+
+            //Chuẩn bị
+            string sql = "";
+            sql += "SELECT DM_Don_vi_tinh.Ten_don_vi_tinh FROM DM_Vat_Tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Don_vi_tinh ";
+            sql += "" + "ON DM_Vat_Tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
+            sql += "WHERE ID_Vat_tu=@ID_Vat_tu";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_Vat_tu", SqlDbType.Int).Value = Int32.Parse(ID_vat_tu);
+
+            command.CommandType = CommandType.Text;
+
+            //Run
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            //Đóng
+            m_dbConnection.Close();
+
+            return dt.Rows[0]["Ten_don_vi_tinh"].ToString();
+        }
+
+        public string getMaVT_from_IDVT(string ID_vat_tu)
+        {
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+
+            //Chuẩn bị
+            string sql = "";
+            sql += "SELECT Ma_vat_tu FROM DM_Vat_Tu ";
+            sql += "WHERE ID_Vat_tu=@ID_Vat_tu";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_Vat_tu", SqlDbType.Int).Value = Int32.Parse(ID_vat_tu);
+
+            command.CommandType = CommandType.Text;
+
+            //Run
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            //Đóng
+            m_dbConnection.Close();
+
+            return dt.Rows[0]["Ma_vat_tu"].ToString();
+        }
+
+        public string getTenVatTu(string MaVatTu)
        {
                 DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();

@@ -20,9 +20,53 @@ namespace Inventory.EntityClass
        
        }
 
-      // SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-       public static object getAll()
+        public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "Ten_kho ";
+            sql += "FROM DM_Kho ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        public DataTable getAll_TenKho()
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "ID_kho, Ten_kho ";
+            sql += "FROM DM_Kho";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
+        public static object getAll()
        {
           
            DatabaseHelper help = new DatabaseHelper();

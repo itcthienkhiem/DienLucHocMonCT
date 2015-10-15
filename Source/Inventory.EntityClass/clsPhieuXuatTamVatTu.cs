@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using Inventory.Utilities;
+//using System.Windows.Forms;
+
 namespace Inventory.EntityClass
 {
    public  class clsPhieuXuatTamVatTu
@@ -24,7 +26,9 @@ namespace Inventory.EntityClass
        }
               SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-         public DataTable GetAll(string maPhieu)
+        
+
+        public DataTable GetAll(string maPhieu)
        {
            m_dbConnection.Open();
            DataTable dt = new DataTable();

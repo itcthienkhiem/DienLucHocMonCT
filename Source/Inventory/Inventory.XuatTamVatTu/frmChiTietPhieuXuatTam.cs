@@ -12,9 +12,10 @@ namespace Inventory.XuatTamVatTu
 {
     /// <summary>
     /// Setup
-    /// [ ] Xuất cho nhân viên --> truyền vào ID
+    /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
     ///     --> Nhân viên đó có thể còn giữ vật tư
     /// [ ] Xác nhận lượng vật tư đã xuất
+    ///     --> Cập nhật lại sl vt tồn trong kho
     /// [ ] Xác nhận hoàn nhập hoặc báo giữ lại VT
     ///     --> NV giữ vật tư thì add vào nợ vật tư
     ///     --> NV hoàn nhập thì cập nhật lại vào kho đã xuất
@@ -34,10 +35,28 @@ namespace Inventory.XuatTamVatTu
     /// 
     /// Khởi tạo: 
     /// [ ] SET enable/disable cho các component
-    /// [ ] init cho Panel
+    /// [ ] init cho Panel trên và dưới
     /// [ ] init cho các comboBox
     /// [ ] Ràng buột dữ liệu
-    /// [ ] 
+    /// 
+    /// 
+    /// Problem:
+    /// [ ] Cache dữ liệu, phòng cúp điện?
+    /// [ ] SL Giữ lại + SL Hoàn Nhập phải bằng SL Đề Nghị --> Trường hợp ko bằng --> chưa xử lý dc
+    /// [ ] Trường hợp mượn vật tư từ "kho khác tên x", khi trả lại, ko trả về "kho khác tên x" đó, mà trả lại kho xuất cho phiếu đó.
+    ///     --> Vấn đề trả nợ giữa các kho sẽ xử lý ở 1 frm khác.
+    /// [ ] Kho mượn vt ko được trùng với kho xuất -> refesh --> remove bớt 1 item khi kho xuất thay đổi.
+    /// [ ] Kho xuất, khi đã chọn vật tư từ kho và add vào grid, thì ko dc thay đổi nữa kho xuất nữa --> set readonly
+    /// [ ] Tạo hàm check, nếu chọn vt mà sl trong kho bằng 0 thì hiện đỏ ở phần sl vật tư
+    /// [ ] Chọn Mã vật tư | Tên VT set luôn dvt, sl còn lại trong kho
+    /// [ ] Xử trường hợp Nhập Tên NV ko có trong DM Nhan Vien
+    /// [ ] Vấn đề SL ảo của 1 loại VT đã add vào grid, vt còn 10, add vật tư A --> 10, lại add vt A 5.
+    ///     --> Phải check đã add chưa, để set còn lại.
+    /// [ ] SL thực xuất có thể ko bằng SL đề nghị, vì tất cả các kho đều hết VT chẳng hạn.
+    /// 
+    /// btnThem:
+    /// [ ] Nhập mã phiếu trước khi chọn thêm, mã phiếu hợp lệ mới dc thêm.
+    /// [ ] Mã phiếu có thể auto tạo từ crc của curDateTime
     /// </summary>
     public partial class frmChiTietPhieuXuatTam : Form
     {
@@ -49,14 +68,30 @@ namespace Inventory.XuatTamVatTu
         {
             InitializeComponent();
 
-            DisableControl_ForNew();
+            //DisableControl_ForNew();
 
             initPanelButton();
 
+            init_cb();
+
+        }
+
+        private void init_cb()
+        {
+            init_cbMaPhieuXuatTam();
+
+            init_cbMaNhanVien();
+            init_cbTenNhanVien();
+
+            init_cbKhoXuat();
+            init_cbMuonVTTaiKho();
+
+            init_cbMaVatTu();
+            init_cbTenVatTu();
         }
 
         /// <summary>
-        /// Demo tinh năng thêm, tắt tạm tính năng sửa.
+        /// Demo tính năng thêm, tắt tạm tính năng sửa.
         /// </summary>
         private void initPanelButton()
         {
@@ -71,11 +106,12 @@ namespace Inventory.XuatTamVatTu
             PanelButton.AddButton(enumButton2.Sua, ref btnSua);
             PanelButton.AddButton(enumButton2.LamMoi, ref btnLamMoi);
             PanelButton.AddButton(enumButton2.Luu, ref btnLuu);
-            PanelButton.AddButton(enumButton2.Huy, ref btnHuy);
 
+            PanelButton.AddButton(enumButton2.Huy, ref btnHuy);
             PanelButton.AddButton(enumButton2.Dong, ref btnDong);
 
             PanelButton.setButtonClickEvent(enumButton2.Dong);
+            PanelButton.setButtonClickEvent(enumButton2.Huy);
 
             PanelButton.setButtonStatus(enumButton2.Xoa, false);
             PanelButton.setButtonStatus(enumButton2.Sua, false);
@@ -118,6 +154,21 @@ namespace Inventory.XuatTamVatTu
         }
 
         /// <summary>
+        /// btnThem:
+        /// [ ] Check xem mã phiếu xuất hợp lệ chưa, có trùng ko? Nếu trùng thì bắt nhập cái khác.
+        /// [ ] Nếu ổn, enable control cho nhập, cho phép lưu, hủy.
+        /// </summary>
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (PanelButton.isClickNone())
+            {
+                PanelButton.setClickThem();
+
+                PanelButton.Enable_btn_Luu_Huy();
+            }
+        }
+
+        /// <summary>
         /// Disable các control, dùng lúc mới load form
         /// </summary>
         private void DisableControl_ForNew()
@@ -147,13 +198,17 @@ namespace Inventory.XuatTamVatTu
 
             //txtDVT, TxtSL (SL VT còn trong kho) mặc định luôn là ReadOnly, nên ko cần disable
             txtDVT.Enabled = true;
+            //SL vật tư còn tồn trong kho, chỉ hoạt động khi chưa duyệt xuất vật tư.
             txtSL.Enabled = true;
             //-----------
 
             txtSLDN.Enabled = false;
+
+            //SL Thực Xuất ko dc lớn hơn sl vt có trong kho
             txtSLTX.Enabled = false;
             chkboxXacNhanXuat.Enabled = false;
 
+            //SL Giữ lại phải ít hơn hoặc bằng SL Đề nghị
             txtSLGL.Enabled = false;
             txtSLHN.Enabled = false;
             chkboxXacNhanHoanNhapGiuLai.Enabled = false;
@@ -166,6 +221,262 @@ namespace Inventory.XuatTamVatTu
             //Disable cả grid
             gridChiTietPhieuXuatTam.Enabled = false;
 
+        }
+
+        private void init_cbMaNhanVien()
+        {
+            cbMaNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMaNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDM_NhanVien nv = new clsDM_NhanVien();
+            AutoCompleteStringCollection combData1 = nv.getListMaNhanVien();
+
+            cbMaNhanVien.AutoCompleteCustomSource = combData1;
+
+            cbMaNhanVien.DataSource = nv.getAll_Ma_Ten_NV();
+            cbMaNhanVien.ValueMember = "ID_nhan_vien";
+            cbMaNhanVien.DisplayMember = "Ma_nhan_vien";
+
+            cbMaNhanVien.SelectedIndex = -1;
+        }
+
+        private void init_cbTenNhanVien()
+        {
+            cbTenNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbTenNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDM_NhanVien nv = new clsDM_NhanVien();
+            AutoCompleteStringCollection combData1 = nv.getListTenNhanVien();
+
+            cbTenNhanVien.AutoCompleteCustomSource = combData1;
+
+            cbTenNhanVien.DataSource = nv.getAll_Ma_Ten_NV();
+            cbTenNhanVien.ValueMember = "ID_nhan_vien";
+            cbTenNhanVien.DisplayMember = "Ten_nhan_vien";
+
+            cbTenNhanVien.SelectedIndex = -1;
+        }
+
+        private void init_cbMaVatTu()
+        {
+            cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDMVatTu vt = new clsDMVatTu();
+            AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
+
+            cbMaVatTu.AutoCompleteCustomSource = combData1;
+
+            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbMaVatTu.ValueMember = "ID_Vat_tu";
+            cbMaVatTu.DisplayMember = "Ma_vat_tu";
+
+            cbMaVatTu.SelectedIndex = -1;
+        }
+
+        private void init_cbTenVatTu()
+        {
+            cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDMVatTu vt = new clsDMVatTu();
+            AutoCompleteStringCollection combData1 = vt.getListTenVatTu();
+
+            cbTenVatTu.AutoCompleteCustomSource = combData1;
+
+            cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbTenVatTu.ValueMember = "ID_Vat_tu";
+            cbTenVatTu.DisplayMember = "Ten_vat_tu";
+
+            cbTenVatTu.SelectedIndex = -1;
+        }
+
+        private void init_cbMaPhieuXuatTam()
+        {
+            cbMaPhieuXuatTam.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMaPhieuXuatTam.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsChiTietPhieuXuatTam PhieuXuat = new clsChiTietPhieuXuatTam();
+            AutoCompleteStringCollection combData1 = PhieuXuat.getListMaPhieuXuatTam();
+
+            cbMaPhieuXuatTam.AutoCompleteCustomSource = combData1;
+
+            cbMaPhieuXuatTam.DataSource = PhieuXuat.getAll_Ma_Phieu();
+            cbMaPhieuXuatTam.ValueMember = "ID_phieu_xuat_tam";
+            cbMaPhieuXuatTam.DisplayMember = "Ma_phieu_xuat_tam";
+
+            cbMaPhieuXuatTam.SelectedIndex = -1;
+        }
+
+        //Kho xuất, khi đã chọn vật tư từ kho, thì ko dc thay đổi nữa.
+        private void init_cbKhoXuat()
+        {
+            //cbKhoXuat.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbKhoXuat.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDM_Kho DMKho = new clsDM_Kho();
+            //AutoCompleteStringCollection combData1 = DMKho.getListMaPhieuXuatTam();
+
+            //cbKhoXuat.AutoCompleteCustomSource = combData1;
+
+            cbKhoXuat.DataSource = DMKho.getAll_TenKho();
+            cbKhoXuat.ValueMember = "ID_kho";
+            cbKhoXuat.DisplayMember = "Ten_kho";
+
+            cbKhoXuat.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Kho mượn vt ko được trùng với kho xuất
+        /// </summary>
+        private void init_cbMuonVTTaiKho()
+        {
+            //cbMuonVTTaiKho.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbMuonVTTaiKho.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDM_Kho DMKho = new clsDM_Kho();
+            //AutoCompleteStringCollection combData1 = DMKho.getListMaPhieuXuatTam();
+
+            //cbMuonVTTaiKho.AutoCompleteCustomSource = combData1;
+
+            cbMuonVTTaiKho.DataSource = DMKho.getAll_TenKho();
+            cbMuonVTTaiKho.ValueMember = "ID_kho";
+            cbMuonVTTaiKho.DisplayMember = "Ten_kho";
+
+            cbMuonVTTaiKho.SelectedIndex = -1;
+        }
+
+        private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            if ((comboBox.SelectedIndex != -1) && (cbTenVatTu.SelectedValue != comboBox.SelectedValue))
+            {
+                cbTenVatTu.SelectedValue = comboBox.SelectedValue;
+                setInfoVatTu(comboBox.SelectedValue.ToString());
+            }
+        }
+
+        private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if ((comboBox.SelectedIndex != -1) && (cbMaVatTu.SelectedValue != comboBox.SelectedValue))
+            {
+                cbMaVatTu.SelectedValue = comboBox.SelectedValue;
+                setInfoVatTu(comboBox.SelectedValue.ToString());
+
+            }
+        }
+
+        /// <summary>
+        /// txtSL: 
+        /// [ ] Nếu ko mượn vt từ kho khác, luôn lấy SL từ kho xuất
+        /// </summary>
+        /// <param name="ID_Vat_tu">The i d_ vat_tu.</param>
+        private void setInfoVatTu(string ID_Vat_tu)
+        {
+            clsDMVatTu vt = new clsDMVatTu();
+            txtDVT.Text = vt.getDVT_from_IDVT(ID_Vat_tu);
+
+            txtSL.Text = "";
+
+            //txtSL
+            string ID_Kho = "";
+
+            if (chkboxEnableMuonVT.Checked)
+            {
+                ID_Kho = cbMuonVTTaiKho.SelectedValue.ToString();
+            }
+            else
+            {
+                ID_Kho = cbKhoXuat.SelectedValue.ToString();
+            }
+            
+            if (Int32.Parse(ID_Kho) >= 0)
+            {
+                string Ma_vat_tu = vt.getMaVT_from_IDVT(ID_Vat_tu);
+
+                clsTonKho TonKho = new clsTonKho();
+                txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
+            }
+        }
+
+        private void setSLVatTu(string ID_Kho)
+        {
+            txtSL.Text = "";
+
+            if (!cbMaVatTu.Text.Equals(string.Empty))
+            {
+                //string ID_Kho = "";
+
+                if (chkboxEnableMuonVT.Checked)
+                {
+                    ID_Kho = cbMuonVTTaiKho.SelectedValue.ToString();
+                }
+                else
+                {
+                    ID_Kho = cbKhoXuat.SelectedValue.ToString();
+                }
+
+                if (Int32.Parse(ID_Kho) >= 0)
+                {
+                    string Ma_vat_tu = cbMaVatTu.Text;
+
+                    clsTonKho TonKho = new clsTonKho();
+                    txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
+                }
+            }
+        }
+
+        private void cbTenNhanVien_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if ((comboBox.SelectedIndex != -1) && (cbMaNhanVien.SelectedValue != comboBox.SelectedValue))
+            {
+                cbMaNhanVien.SelectedValue = comboBox.SelectedValue;
+            }
+        }
+
+        private void cbMaNhanVien_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            if ((comboBox.SelectedIndex != -1) && (cbTenNhanVien.SelectedValue != comboBox.SelectedValue))
+            {
+                cbTenNhanVien.SelectedValue = comboBox.SelectedValue;
+            }
+        }
+
+        private void cbMuonVTTaiKho_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            if ((comboBox.SelectedIndex != -1) && (cbKhoXuat.SelectedValue != comboBox.SelectedValue))
+            {
+                setSLVatTu(comboBox.SelectedValue.ToString());
+            }
+            
+        }
+
+        /// <summary>
+        /// Cần thêm ràng buột để mượn vật tư
+        /// [ ] SL còn lại nhỏ hơn mức đề nghị --> enable mượn VT, hoặc visiable
+        /// [ ] 
+        /// </summary>
+        private void chkboxEnableMuonVT_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkBox = (CheckBox)sender;
+
+            if (chkBox.Checked)
+            {
+                cbKhoXuat.Enabled = false;
+                cbMuonVTTaiKho.Enabled = true;
+            }
+            else
+            {
+                cbKhoXuat.Enabled = true;
+                cbMuonVTTaiKho.Enabled = false;
+            }
         }
 
         //----------------------- Old
@@ -382,30 +693,6 @@ namespace Inventory.XuatTamVatTu
 
         enumStatus staTus = enumStatus.None;
         clsPhieuNhapKho phieuNhapKho = new clsPhieuNhapKho();
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            /*if (staTus == enumStatus.None)
-            {
-                staTus = enumStatus.Them;
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
-                btnLuu.Enabled = true;
-                ResetText();
-                btnCheckMaPhieuXuat.Enabled = false;
-                setStatus(true);
-
-             //   cbMaPhieuXuatTam.Text = "";
-                txtDiaChi.Text = "";
-                txtCongTrinh.Text = "";
-                txtLyDo.Text = "";
-                txtXuatTaiKho.Text = "";
-                dataTableChiTietPhieuXuatTam.Rows.Clear();
-                // gridMaster.ReadOnly = false;
-            }*/
-
-        }
         private void ResetAll()
         {
             /*btnThem.Enabled = true;
@@ -1183,5 +1470,7 @@ namespace Inventory.XuatTamVatTu
             staTus = enumStatus.None;
 
         }
+
+        
     }
 }
