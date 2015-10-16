@@ -24,34 +24,40 @@ namespace Inventory.EntityClass
 
         public bool isHasDuplicateRow(string Ma_phieu_xuat_tam)
         {
+
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.Chi_Tiet_Phieu_Xuat_Tam.Any(cus => cus.Ma_phieu_xuat_tam == Ma_phieu_xuat_tam);
+            return has;
             //Mở
-            m_dbConnection.Open();
+            ////m_dbConnection.Open();
 
-            //Chuẩn bị
-            string sql = "";
-            sql += "SELECT Ma_phieu_xuat_tam FROM Chi_Tiet_Phieu_xuat_tam ";
-            sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+            //////Chuẩn bị
+            ////string sql = "";
+            ////sql += "SELECT Ma_phieu_xuat_tam FROM Chi_Tiet_Phieu_xuat_tam ";
+            ////sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            ////SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-            command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
+            ////command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
 
-            command.CommandType = CommandType.Text;
+            ////command.CommandType = CommandType.Text;
 
-            //Run
+            //////Run
 
-            //Lấy 1 cell về check
-            var firstColumn = command.ExecuteScalar();
+            //////Lấy 1 cell về check
+            ////var firstColumn = command.ExecuteScalar();
 
-            //Đóng
-            m_dbConnection.Close();
+            //////Đóng
+            ////m_dbConnection.Close();
 
-            //Nếu có dữ liệu, thì trùng
-            if (firstColumn != null)
-            {
-                return true;
-            }
-            return false;
+            ////Nếu có dữ liệu, thì trùng
+            //if (firstColumn != null)
+            //{
+            //    return true;
+            //}
+            //return false;
         }
 
         public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
