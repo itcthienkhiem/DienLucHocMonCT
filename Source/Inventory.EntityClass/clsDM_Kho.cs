@@ -24,46 +24,71 @@ namespace Inventory.EntityClass
 
         public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
         {
-            m_dbConnection.Open();
+            //m_dbConnection.Open();
 
-            DataSet ds = new DataSet();
+            //DataSet ds = new DataSet();
             System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-            string sql = "";
-            sql += "SELECT ";
-            sql += "Ten_kho ";
-            sql += "FROM DM_Kho ";
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "Ten_kho ";
+            //sql += "FROM DM_Kho ";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(ds);
-            m_dbConnection.Close();
-
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                dataCollection.Add(row[0].ToString());
-            }
-
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(ds);
+            //m_dbConnection.Close();
+              DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm =( from d in help.ent.DM_Kho
+                        select new
+                        {
+                          
+                            d.Ten_kho
+                        }).ToList();
+               dbcxtransaction.Commit();
+               DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+               foreach (DataRow row in ds.Rows)
+               {
+                   dataCollection.Add(row[0].ToString());
+               }
+           }
             return dataCollection;
         }
 
         public DataTable getAll_TenKho()
         {
-            m_dbConnection.Open();
+                 DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm = (from d in help.ent.DM_Kho
+                         select new
+                         {
+                             d.ID_kho,
+                             d.Ten_kho
+                         }).ToList();
+               dbcxtransaction.Commit();
+               DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+               return ds;
+           }
+            //m_dbConnection.Open();
 
-            DataTable dt = new DataTable();
+            //DataTable dt = new DataTable();
 
-            string sql = "";
-            sql += "SELECT ";
-            sql += "ID_kho, Ten_kho ";
-            sql += "FROM DM_Kho";
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "ID_kho, Ten_kho ";
+            //sql += "FROM DM_Kho";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            m_dbConnection.Close();
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
 
-            return dt;
+            //return dt;
         }
 
         public static object getAll()

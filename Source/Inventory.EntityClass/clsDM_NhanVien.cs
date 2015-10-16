@@ -349,67 +349,130 @@ namespace Inventory.EntityClass
 
            DataSet ds = new DataSet();
            AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
-
-           string sql = "";
-           sql += "SELECT ";
-           sql += "Ma_nhan_vien ";
-           sql += "FROM DM_Nhan_Vien ";
-
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(ds);
-           m_dbConnection.Close();
-
-           foreach (DataRow row in ds.Tables[0].Rows)
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
-               dataCollection.Add(row[0].ToString());
-           }
 
+               var entryPoint = (from ep in help.ent.DM_Nhan_Vien
+                                 select ep.Ma_nhan_vien
+                        ).ToList();
+               DataTable temp= Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+
+               //string sql = "";
+               //sql += "SELECT ";
+               //sql += "Ma_nhan_vien ";
+               //sql += "FROM DM_Nhan_Vien ";
+
+               //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+               //SqlDataAdapter da = new SqlDataAdapter(command);
+               //da.Fill(ds);
+               //m_dbConnection.Close();
+
+               foreach (DataRow row in temp.Rows)
+               {
+                   dataCollection.Add(row[0].ToString());
+               }
+           }
            return dataCollection;
        }
 
        public AutoCompleteStringCollection getListTenNhanVien()
        {
-           m_dbConnection.Open();
-
-           DataSet ds = new DataSet();
            AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
-
-           string sql = "";
-           sql += "SELECT ";
-           sql += "Ten_nhan_vien ";
-           sql += "FROM DM_Nhan_Vien ";
-
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(ds);
-           m_dbConnection.Close();
-
-           foreach (DataRow row in ds.Tables[0].Rows)
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
-               dataCollection.Add(row[0].ToString());
+
+               var entryPoint = (from ep in help.ent.DM_Nhan_Vien
+                                 select ep.Ten_nhan_vien
+                        ).ToList();
+               DataTable temp = Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+
+               //string sql = "";
+               //sql += "SELECT ";
+               //sql += "Ma_nhan_vien ";
+               //sql += "FROM DM_Nhan_Vien ";
+
+               //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+               //SqlDataAdapter da = new SqlDataAdapter(command);
+               //da.Fill(ds);
+               //m_dbConnection.Close();
+
+               foreach (DataRow row in temp.Rows)
+               {
+                   dataCollection.Add(row[0].ToString());
+               }
            }
+           //m_dbConnection.Open();
+
+           //DataSet ds = new DataSet();
+           //AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
+
+           //string sql = "";
+           //sql += "SELECT ";
+           //sql += "Ten_nhan_vien ";
+           //sql += "FROM DM_Nhan_Vien ";
+
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(ds);
+           //m_dbConnection.Close();
+
+           //foreach (DataRow row in ds.Tables[0].Rows)
+           //{
+           //    dataCollection.Add(row[0].ToString());
+           //}
 
            return dataCollection;
        }
 
        public DataTable getAll_Ma_Ten_NV()
        {
-           m_dbConnection.Open();
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
 
-           DataTable dt = new DataTable();
+               var entryPoint = (from ep in help.ent.DM_Nhan_Vien
+                                 select new {
+                                 
+                               ep.  ID_nhan_vien,
+                               ep.  Ma_nhan_vien,
+                               ep.  Ten_nhan_vien,
+                                 }
+                        ).ToList();
+               DataTable temp = Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
-           string sql = "";
-           sql += "SELECT ";
-           sql += "ID_nhan_vien, Ma_nhan_vien, Ten_nhan_vien ";
-           sql += "FROM DM_Nhan_Vien";
+               //string sql = "";
+               //sql += "SELECT ";
+               //sql += "Ma_nhan_vien ";
+               //sql += "FROM DM_Nhan_Vien ";
 
-           SqlCommand command = new SqlCommand(sql, m_dbConnection);
-           SqlDataAdapter da = new SqlDataAdapter(command);
-           da.Fill(dt);
-           m_dbConnection.Close();
+               //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+               //SqlDataAdapter da = new SqlDataAdapter(command);
+               //da.Fill(ds);
+               //m_dbConnection.Close();
 
-           return dt;
+               return temp;
+           }
+
+           //m_dbConnection.Open();
+
+           //DataTable dt = new DataTable();
+
+           //string sql = "";
+           //sql += "SELECT ";
+           //sql += "ID_nhan_vien, Ma_nhan_vien, Ten_nhan_vien ";
+           //sql += "FROM DM_Nhan_Vien";
+
+           //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+           //SqlDataAdapter da = new SqlDataAdapter(command);
+           //da.Fill(dt);
+           //m_dbConnection.Close();
+
+           //return dt;
        }
     }
 }
