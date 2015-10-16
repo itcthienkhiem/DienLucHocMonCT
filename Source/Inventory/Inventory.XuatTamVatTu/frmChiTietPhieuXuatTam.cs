@@ -80,7 +80,8 @@ namespace Inventory.XuatTamVatTu
             initPanelButton();
 
             init_cb();
-
+         string temp =    clsPhieuXuatTamVatTu.RandomMaPhieu();
+         cbMaPhieuXuatTam.Text = temp; 
         }
 
         public void frmChiTietPhieuXuatTam_Load(object sender, EventArgs e)
@@ -239,6 +240,7 @@ namespace Inventory.XuatTamVatTu
                 PanelButton.Enable_btn_Luu_Huy();
 
                 EnableControl_ForNew();
+                cbMaPhieuXuatTam.Text = clsPhieuXuatTamVatTu.RandomMaPhieu();
             }
         }
 
@@ -1309,7 +1311,7 @@ namespace Inventory.XuatTamVatTu
                                     phieuxuat.Cong_trinh = txtCongTrinh.Text;
                                     phieuxuat.Dia_chi = txtDiaChi.Text;
 
-                                    if (phieuxuat.Update(DAL) == 1)
+                                  //  if (phieuxuat.Update(DAL) == 1)
                                     {
                                         try
                                         {

@@ -54,32 +54,44 @@ namespace Inventory.EntityClass
 
         public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu()
         {
-            m_dbConnection.Open();
+            //m_dbConnection.Open();
 
-            DataSet ds = new DataSet();
+            //DataSet ds = new DataSet();
             System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.DM_Vat_Tu 
+                        select  ep
 
-            string sql = "";
-            sql += "SELECT ";
-            sql += "Ma_vat_tu ";
-            sql += "FROM DM_Vat_Tu ";
-
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(ds);
-            m_dbConnection.Close();
-
-            foreach (DataRow row in ds.Tables[0].Rows)
+        ).ToList();
+           
+            temp.ToList().ForEach((n) =>
             {
-                dataCollection.Add(row[0].ToString());
-            }
+                dataCollection.Add(n.Ma_vat_tu);
+
+            });
+            
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "Ma_vat_tu ";
+            //sql += "FROM DM_Vat_Tu ";
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(ds);
+            //m_dbConnection.Close();
+
+            //foreach (DataRow row in ds.Tables[0].Rows)
+            //{
+            //    dataCollection.Add(row[0].ToString());
+            //}
 
             return dataCollection;
         }
 
         public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu()
         {
-            m_dbConnection.Open();
+            // m_dbConnection.Open();
 
             DataSet ds = new DataSet();
             System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();

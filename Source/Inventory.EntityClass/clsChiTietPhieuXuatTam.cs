@@ -19,7 +19,7 @@ namespace Inventory.EntityClass
         public int So_luong_de_nghi;
         public int So_luong_hoan_nhap;
         public int So_luong_giu_lai;
-        public int so_luong_thuc_lanh;
+        public int so_luong_thuc_xuat;
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
         public bool isHasDuplicateRow(string Ma_phieu_xuat_tam)
@@ -241,7 +241,7 @@ namespace Inventory.EntityClass
                         Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
                         So_luong_hoan_nhap = this.So_luong_hoan_nhap,
                         So_luong_giu_lai = this.So_luong_giu_lai,
-                        So_luong_thuc_lanh = this.so_luong_thuc_lanh,
+                        So_luong_thuc_xuat = this.so_luong_thuc_xuat,
                         So_luong_de_nghi = this.So_luong_de_nghi,
 
                     };
