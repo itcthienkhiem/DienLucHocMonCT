@@ -1086,38 +1086,46 @@ namespace Inventory.NhapXuat
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ComboBox c = (ComboBox)sender;
+            try
+            {
+                ComboBox c = (ComboBox)sender;
 
-            string Ma_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+                string Ma_Vat_Tu = c.Items[c.SelectedIndex].ToString();
 
-            clsDMVatTu vattu = new clsDMVatTu();
+                clsDMVatTu vattu = new clsDMVatTu();
 
-            string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
+                string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
 
-            cbTenVatTu.SelectedIndex = cbTenVatTu.Items.IndexOf(Ten_Vat_Tu);
+                cbTenVatTu.SelectedIndex = cbTenVatTu.Items.IndexOf(Ten_Vat_Tu);
 
-            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+                DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
 
-            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
-            txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+                txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+                txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ComboBox c = (ComboBox)sender;
+            try
+            {
+                ComboBox c = (ComboBox)sender;
 
-            string Ten_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+                string Ten_Vat_Tu = c.Items[c.SelectedIndex].ToString();
 
-            clsDMVatTu vattu = new clsDMVatTu();
+                clsDMVatTu vattu = new clsDMVatTu();
 
-            string Ma_Vat_Tu = vattu.getMaVatTu(Ten_Vat_Tu);
+                string Ma_Vat_Tu = vattu.getMaVatTu(Ten_Vat_Tu);
 
-            cbMaVatTu.SelectedIndex = cbMaVatTu.Items.IndexOf(Ma_Vat_Tu);
+                cbMaVatTu.SelectedIndex = cbMaVatTu.Items.IndexOf(Ma_Vat_Tu);
 
-            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+                DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
 
-            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
-            txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+                txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+                txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
