@@ -10,6 +10,7 @@ using Inventory.EntityClass;
 using System.Configuration;
 using Inventory.Utilities;
 using System.IO;
+using Inventory.Models;
 namespace Inventory.DanhMuc
 {
     public partial class frmKetNoi : Form
@@ -35,7 +36,7 @@ namespace Inventory.DanhMuc
                 txtUser.Text = settings["user_Name"].Value;
                 txtPwd.Text = settings["passwd"].Value;
                 txtTenCSDL.Text = settings["ten_CSDL"].Value;
-                cbKhoLamViec.SelectedIndex =int.Parse( settings["IDKho"].Value.ToString() )-1;
+           //     cbKhoLamViec.SelectedIndex =int.Parse( settings["IDKho"].Value.ToString() )-1;
                 clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
                // clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
 
@@ -52,15 +53,6 @@ namespace Inventory.DanhMuc
 
         private void btnKetNoi_Click(object sender, EventArgs e)
         {
-
-          
-           
-               
-
-                ketnoi = new clsThongTinKetNoi(txtServerName.Text, txtUser.Text, txtPwd.Text, txtTenCSDL.Text);
-
-                if (ketnoi.Connect() == true)
-                {
                     try
                     {
                         string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -68,19 +60,17 @@ namespace Inventory.DanhMuc
                         ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
                         configFileMap.ExeConfigFilename = configFile;
                         System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-
-                        config.AppSettings.Settings["server_Name"].Value = ketnoi.server_Name;
-                        config.AppSettings.Settings["user_Name"].Value = ketnoi.user_Name;
-                        config.AppSettings.Settings["passwd"].Value = ketnoi.passwd;
-                        config.AppSettings.Settings["ten_CSDL"].Value = ketnoi.ten_CSDL;
-                        config.AppSettings.Settings["IDkho"].Value = (int.Parse(cbKhoLamViec.SelectedIndex.ToString()) + 1).ToString();
-
-                        config.AppSettings.Settings["ConnectionString"].Value = "Data Source=" + ketnoi.server_Name + ";Initial Catalog=" + ketnoi.ten_CSDL + ";User ID=" + ketnoi.user_Name + ";password=" + ketnoi.passwd;
-
+                       
+                        config.AppSettings.Settings["ConnectionString"].Value = "Data Source=" + txtServerName.Text + ";Initial Catalog=" + txtTenCSDL.Text + ";User ID=" + txtPwd.Text + ";password=" + txtPwd.Text;
                         config.Save();
                         clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-                    //    clsThamSoUtilities.ID_Kho =int.Parse    ( config.AppSettings.Settings["IDkho"].Value.ToString());
-
+                        DatabaseHelper help = new DatabaseHelper();
+                        if (help.ConnectDatabase() == 1)
+                        {
+                            MessageBox.Show("Bạn đã kết nối thành công!");
+                            this.Close();
+                        }
+                            
                     }
                     catch (Exception ex)
                     {
@@ -96,10 +86,7 @@ namespace Inventory.DanhMuc
 
                     this.Close();
 
-                }
-                else
-                    MessageBox.Show("Kết nối thất bại! Vui lòng kiểm tra lại thông tin đăng nhập");
-
+            
           
 
         }

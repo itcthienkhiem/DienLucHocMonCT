@@ -1264,7 +1264,7 @@ namespace Inventory.XuatTamVatTu
                                             //    tdk.So_luong =int.Parse( temp.Rows[0]["So_luong"].ToString())+chitiet.So_luong_thuc_xuat;
 
                                                 tdk.Update(DAL);
-                                                if (chitiet.Delete(DAL) == 0)
+                                               //if (chitiet.Delete(DAL) == 0)
                                                     return;
 
                                             }

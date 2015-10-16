@@ -194,6 +194,7 @@
             this.btnThem.Size = new System.Drawing.Size(50, 50);
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnSua
             // 
