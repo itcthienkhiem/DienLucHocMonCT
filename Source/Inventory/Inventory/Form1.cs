@@ -18,6 +18,8 @@ namespace Inventory
 {
     public partial class MDIMain : Form
     {
+        List<Form> frms = new List<Form>();
+
         public MDIMain()
         {
             InitializeComponent();
@@ -57,7 +59,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void danhMụcVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,7 +83,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void quảnLýNhậpKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,7 +108,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void danhSáchPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,7 +133,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void menuDMDonViTinh_Click(object sender, EventArgs e)
@@ -143,6 +157,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void menuDMNhanVien_Click(object sender, EventArgs e)
@@ -163,6 +181,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void lậpPhieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,6 +210,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void giớiThiệuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -235,6 +261,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void MenuItemDSPhieuXuatTamUng_Click(object sender, EventArgs e)
@@ -254,7 +284,11 @@ namespace Inventory
 
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
+            frm.Show(); 
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void MenuItemNhapTonDauKy_Click(object sender, EventArgs e)
@@ -274,6 +308,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void phânKhoVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
@@ -293,6 +331,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -312,6 +354,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
 
         private void danhSáchVậtTưChưaPhânVàoKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -341,6 +387,10 @@ namespace Inventory
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
         }
     }
 }
