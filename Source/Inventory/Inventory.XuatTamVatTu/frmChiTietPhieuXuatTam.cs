@@ -769,6 +769,23 @@ namespace Inventory.XuatTamVatTu
         {
             CheckBox chkBox = (CheckBox)sender;
 
+            if (chkBox.Checked)
+            {
+                txtSLDN.Enabled = false;
+                txtSLTX.Enabled = false;
+
+                cbMaVatTu.Enabled = false;
+                cbTenVatTu.Enabled = false;
+
+                cbMuonVTTaiKho.Enabled = false;
+                chkboxEnableMuonVT.Enabled = false;
+
+                txtSLHN.Enabled = true;
+                txtSLGL.Enabled = true;
+                chkboxXacNhanHoanNhapGiuLai.Enabled = true;
+
+                chkboxXacNhanXuat.Enabled = false;
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -802,16 +819,24 @@ namespace Inventory.XuatTamVatTu
                     clsDMVatTu vt = new clsDMVatTu();
                     cbMaVatTu.SelectedValue = vt.getID_Ma_Vat_Tu(selectedRow.Cells["_Ma_vat_tu"].Value.ToString());
                     this.cbMaVatTu_SelectionChangeCommitted((object)cbMaVatTu, EventArgs.Empty);
+                    
                     //cbTenVatTu.SelectedValue = cbMaVatTu.SelectedValue;
                     //setInfoVatTu(cbMaVatTu.SelectedValue.ToString());
 
+                    int ID_Kho = Int32.Parse(selectedRow.Cells["_ID_kho"].Value.ToString());
+
+                    if (Int32.Parse(cbKhoXuat.SelectedValue.ToString()) != ID_Kho)
+                    {
+                        chkboxEnableMuonVT.Checked = true;
+                        cbMuonVTTaiKho.SelectedValue = ID_Kho;
+                    }
 
                     txtSLDN.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
                     txtSLTX.Text = selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString();
 
                     chkboxXacNhanXuat.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
 
-
+                    
 
                     //MessageBox.Show("DN: " + selectedRow.Cells["_So_luong_de_nghi"].Value.ToString() + " TX: " + selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString() + " chk: " + selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
 
