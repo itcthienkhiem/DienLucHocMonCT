@@ -18,7 +18,7 @@ namespace Inventory.Models
         public string Ma_phieu_xuat_tam { get; set; }
         public string Ma_vat_tu { get; set; }
         public Nullable<int> So_luong_de_nghi { get; set; }
-        public Nullable<int> So_luong_thuc_xuat { get; set; }
+        public Nullable<int> So_luong_thuc_lanh { get; set; }
         public Nullable<bool> Da_duyen_xuat_vat_tu { get; set; }
         public Nullable<int> So_luong_hoan_nhap { get; set; }
         public Nullable<int> So_luong_giu_lai { get; set; }
