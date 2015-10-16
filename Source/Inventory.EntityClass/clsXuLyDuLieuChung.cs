@@ -87,7 +87,7 @@ namespace Inventory.EntityClass
                       stud.So_luong = stud.So_luong + soluong;
 
                       help.ent.Ton_kho.Attach(stud);
-                      help.ent.Entry(stud).State = EntityState.Modified;
+                      help.ent.Entry(stud).State = EntityState.Modified;//chinh sua so luong
 
                         //help.ent.Ton_kho.Attach(entTonKho);
                         //help.ent.Entry(entTonKho).State = EntityState.Modified;
