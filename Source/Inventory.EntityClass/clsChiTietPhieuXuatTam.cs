@@ -150,18 +150,7 @@ namespace Inventory.EntityClass
                                   select ep).ToList()
               ;
 
-                //var dm = from a in help.ent.Chi_Tiet_Phieu_Xuat_Tam
-
-
-                //          join b in  help.ent.Phieu_Xuat_Tam_Vat_Tu  on b.Ma_phieu_xuat_tam = a.Ma_phieu_xuat_tam 
-                //          join c in help.ent.DM_Vat_Tu  on c.Ma_vat_tu =Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu 
-                //          join d in  help.ent.DM_Don_vi_tinh  on DM_vat_tu.ID_don_vi_tinh =DM_Don_vi_tinh.ID_don_vi_tinh
-                //         select new
-                //         {
-                //             d.ID_phieu_xuat_tam,
-                //             d.Ma_phieu_xuat_tam,
-
-                //         }
+            
                 dbcxtransaction.Commit();
 
                 return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
