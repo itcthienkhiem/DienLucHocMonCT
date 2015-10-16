@@ -150,6 +150,32 @@ namespace Inventory.EntityClass
             return dt.Rows[0]["Ten_don_vi_tinh"].ToString();
         }
 
+        public int getID_Ma_Vat_Tu(string Ma_vat_tu)
+        {
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+
+            //Chuẩn bị
+            string sql = "";
+            sql += "SELECT ID_Vat_tu FROM DM_Vat_Tu ";
+            sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = Ma_vat_tu;
+
+            command.CommandType = CommandType.Text;
+
+            //Run
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            //Đóng
+            m_dbConnection.Close();
+
+            return Int32.Parse(dt.Rows[0]["ID_Vat_tu"].ToString());
+        }
+
         public string getMaVT_from_IDVT(string ID_vat_tu)
         {
             m_dbConnection.Open();

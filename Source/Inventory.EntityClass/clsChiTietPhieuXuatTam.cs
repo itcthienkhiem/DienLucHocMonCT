@@ -230,34 +230,34 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             // insert
-            try
-            {
-                using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-                {
+            //try
+            //{
+            //    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            //    {
 
-                    var t = new Chi_Tiet_Phieu_Xuat_Tam //Make sure you have a table called test in DB
-                    {
-                        Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam,
-                        Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                        So_luong_hoan_nhap = this.So_luong_hoan_nhap,
-                        So_luong_giu_lai = this.So_luong_giu_lai,
-                        So_luong_thuc_lanh = this.so_luong_thuc_lanh,
-                        So_luong_de_nghi = this.So_luong_de_nghi,
+            //        var t = new Chi_Tiet_Phieu_Xuat_Tam //Make sure you have a table called test in DB
+            //        {
+            //            Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam,
+            //            Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
+            //            So_luong_hoan_nhap = this.So_luong_hoan_nhap,
+            //            So_luong_giu_lai = this.So_luong_giu_lai,
+            //            so_luong_thuc_lanh = this.so_luong_thuc_lanh,
+            //            So_luong_de_nghi = this.So_luong_de_nghi,
 
-                    };
+            //        };
 
-                    help.ent.Chi_Tiet_Phieu_Xuat_Tam.Add(t);
-                    help.ent.SaveChanges();
-                    dbcxtransaction.Commit();
-                    return 1;
-                }
-            }
-            catch (Exception ex)
-            {
+            //        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Add(t);
+            //        help.ent.SaveChanges();
+            //        dbcxtransaction.Commit();
+            //        return 1;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
                 return 0;
 
-            }
+            //}
 
             //m_dbConnection = dal.m_conn;
             //if (m_dbConnection.State == ConnectionState.Closed)

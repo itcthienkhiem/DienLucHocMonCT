@@ -479,7 +479,7 @@ namespace Inventory.XuatTamVatTu
         {
             ComboBox comboBox = (ComboBox)sender;
 
-            if ((comboBox.SelectedIndex != -1) && (cbTenVatTu.SelectedValue != comboBox.SelectedValue))
+            if ((comboBox.SelectedIndex > -1) && (cbTenVatTu.SelectedValue != comboBox.SelectedValue))
             {
                 cbTenVatTu.SelectedValue = comboBox.SelectedValue;
                 setInfoVatTu(comboBox.SelectedValue.ToString());
@@ -489,7 +489,7 @@ namespace Inventory.XuatTamVatTu
         private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
-            if ((comboBox.SelectedIndex != -1) && (cbMaVatTu.SelectedValue != comboBox.SelectedValue))
+            if ((comboBox.SelectedIndex > -1) && (cbMaVatTu.SelectedValue != comboBox.SelectedValue))
             {
                 cbMaVatTu.SelectedValue = comboBox.SelectedValue;
                 setInfoVatTu(comboBox.SelectedValue.ToString());
@@ -525,8 +525,8 @@ namespace Inventory.XuatTamVatTu
             {
                 string Ma_vat_tu = vt.getMaVT_from_IDVT(ID_Vat_tu);
 
-                clsTonKho TonKho = new clsTonKho();
-                txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
+                //clsTonKho TonKho = new clsTonKho();
+                //txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
             }
         }
 
@@ -576,13 +576,14 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
+        //Chưa dụng đến phần SL
         private void cbMuonVTTaiKho_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
 
-            if ((comboBox.SelectedIndex != -1) && (cbKhoXuat.SelectedValue != comboBox.SelectedValue))
+            if ((comboBox.SelectedIndex > -1) && (cbKhoXuat.SelectedValue != comboBox.SelectedValue))
             {
-                setSLVatTu(comboBox.SelectedValue.ToString());
+                //setSLVatTu(comboBox.SelectedValue.ToString());
             }
             
         }
@@ -700,8 +701,8 @@ namespace Inventory.XuatTamVatTu
             }
 
 
-                //Move to top later
-                if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
+            //Move to top later
+            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
                 return;
 
             //Kiem tra row trùng lập, chưa giải quyết phần thiếu vật tư, xin thêm
@@ -764,42 +765,81 @@ namespace Inventory.XuatTamVatTu
             // gridMaster.SelectedRows.
         }
 
+        private void chkboxXacNhanXuat_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkBox = (CheckBox)sender;
+
+        }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             //setStatus(true);
             //staTus = enumStatus.SuaLuoi;
+
+            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
+                return;
+
+            if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
+                return;
+
             try
             {
                 //if (staTus == enumStatus.Sua || staTus == enumStatus.Them)
                 //    sttaf = staTus;
 
-                if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
-                    return;
+                if (gridChiTietPhieuXuatTam.Rows.Count > 0)
+                {
+                    PanelButton.setClickStatus(enumButton2.SuaLuoi);
 
-                //staTus = enumStatus.SuaLuoi;
-                PanelButton.setButtonStatus();
+                    btnAddToGrid.Enabled = false;
+                    btnEditRowInGrid.Enabled = false;
+                    btnDelRowInGrid.Enabled = false;
 
+                    //CurrentCell.RowIndex;
+                    Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentRow.Index;
+                    DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[selectedRowCount];
 
-                btnAddToGrid.Enabled = false;
-                btnEditRowInGrid.Enabled = false;
-                btnDelRowInGrid.Enabled = false;
-
-
-                Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentCell.RowIndex;
-                cbMaVatTu.Text = (gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                txtSLHN.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_hoan_nhap"].Value.ToString();
-                txtSLTX.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
-
-                txtSLGL.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
-
-                //                txtSL.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
-                //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
-                txtDVT.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
+                    clsDMVatTu vt = new clsDMVatTu();
+                    cbMaVatTu.SelectedValue = vt.getID_Ma_Vat_Tu(selectedRow.Cells["_Ma_vat_tu"].Value.ToString());
+                    this.cbMaVatTu_SelectionChangeCommitted((object)cbMaVatTu, EventArgs.Empty);
+                    //cbTenVatTu.SelectedValue = cbMaVatTu.SelectedValue;
+                    //setInfoVatTu(cbMaVatTu.SelectedValue.ToString());
 
 
-                cbMaVatTu_KeyDown(null, null);
+                    txtSLDN.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
+                    txtSLTX.Text = selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString();
+
+                    chkboxXacNhanXuat.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
+
+
+
+                    //MessageBox.Show("DN: " + selectedRow.Cells["_So_luong_de_nghi"].Value.ToString() + " TX: " + selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString() + " chk: " + selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
+
+                    //DataRow selectedRow = dataTableChiTietPhieuXuatTam.Rows[selectedRowCount];
+                    //cbMaVatTu.SelectedValue = vt.getID_Ma_Vat_Tu(selectedRow["Ma_vat_tu"].ToString());
+
+                    //MessageBox.Show(selectedRow.Cells["_Ma_vat_tu"].Value.ToString());
+
+                    //MessageBox.Show(gridChiTietPhieuXuatTam.Columns[0].Name);
+
+
+                    //txtSLHN.Text = selectedRow.Cells["So_luong_hoan_nhap"].Value.ToString();
+                    //txtSLTX.Text = selectedRow.Cells["So_luong_thuc_xuat"].Value.ToString();
+
+                    //txtSLGL.Text = selectedRow.Cells["So_luong_giu_lai"].Value.ToString();
+
+                    //                txtSL.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
+                    //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
+                    //txtDVT.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
+
+
+                    //cbMaVatTu_KeyDown(null, null);
+                }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //----------------------- Old
