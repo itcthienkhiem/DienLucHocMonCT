@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridNhanVienNoVatTu = new System.Windows.Forms.DataGridView();
             this.Ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +61,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnXuatVTChoNV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridNhanVienNoVatTu)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.gbGrid.SuspendLayout();
@@ -71,19 +73,19 @@
             this.gridNhanVienNoVatTu.AllowUserToAddRows = false;
             this.gridNhanVienNoVatTu.AllowUserToDeleteRows = false;
             this.gridNhanVienNoVatTu.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridNhanVienNoVatTu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridNhanVienNoVatTu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridNhanVienNoVatTu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridNhanVienNoVatTu.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNhanVienNoVatTu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNhanVienNoVatTu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridNhanVienNoVatTu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridNhanVienNoVatTu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_nhan_vien,
@@ -109,8 +111,8 @@
             // Ma_nhan_vien
             // 
             this.Ma_nhan_vien.DataPropertyName = "Ma_nhan_vien";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle6;
             this.Ma_nhan_vien.HeaderText = "Mã nhân viên";
             this.Ma_nhan_vien.Name = "Ma_nhan_vien";
             this.Ma_nhan_vien.ReadOnly = true;
@@ -192,7 +194,9 @@
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
+            this.pnlMenu.Controls.Add(this.btnXuatVTChoNV);
             this.pnlMenu.Controls.Add(this.btnThem);
+            this.pnlMenu.Controls.Add(this.label4);
             this.pnlMenu.Controls.Add(this.label6);
             this.pnlMenu.Controls.Add(this.label5);
             this.pnlMenu.Controls.Add(this.btnSua);
@@ -384,6 +388,26 @@
             this.cbTenNhanVien.TabIndex = 79;
             this.cbTenNhanVien.SelectionChangeCommitted += new System.EventHandler(this.cbTenNhanVien_SelectionChangeCommitted);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(402, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(174, 14);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Xuất vật tư cho nhân viên này";
+            // 
+            // btnXuatVTChoNV
+            // 
+            this.btnXuatVTChoNV.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.addFile_omc;
+            this.btnXuatVTChoNV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXuatVTChoNV.Location = new System.Drawing.Point(456, 15);
+            this.btnXuatVTChoNV.Name = "btnXuatVTChoNV";
+            this.btnXuatVTChoNV.Size = new System.Drawing.Size(50, 50);
+            this.btnXuatVTChoNV.TabIndex = 2;
+            this.btnXuatVTChoNV.UseVisualStyleBackColor = true;
+            this.btnXuatVTChoNV.Click += new System.EventHandler(this.btnXuatVTChoNV_Click);
+            // 
             // frmXuatTamVatTuChoNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -440,5 +464,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Da_tra_text;
         private System.Windows.Forms.ComboBox cbMaNhanVien;
         private System.Windows.Forms.ComboBox cbTenNhanVien;
+        private System.Windows.Forms.Button btnXuatVTChoNV;
+        private System.Windows.Forms.Label label4;
     }
 }

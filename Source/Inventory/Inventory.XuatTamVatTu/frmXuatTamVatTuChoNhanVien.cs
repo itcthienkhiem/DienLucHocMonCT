@@ -191,5 +191,10 @@ namespace Inventory.XuatTamVatTu
             }
                 
         }
+
+        private void btnXuatVTChoNV_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

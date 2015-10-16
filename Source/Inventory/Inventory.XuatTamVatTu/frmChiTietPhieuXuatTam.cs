@@ -1407,8 +1407,6 @@ namespace Inventory.XuatTamVatTu
                 dr["Ten_don_vi_tinh"] = dt.Rows[i]["Ten_don_vi_tinh"];
                 dataTableChiTietPhieuXuatTam.Rows.Add(dr);
             }
-            
-            //gridChiTietPhieuXuatTam.DataSource = dt;
         }
 
         /// <summary>
@@ -1509,134 +1507,134 @@ namespace Inventory.XuatTamVatTu
 
         public frmChiTietPhieuXuatTam(enumButton2 stt, string MaPhieuXuatTam)
         {
-            InitializeComponent();
-            staTus = enumStatus.None;
+            //InitializeComponent();
+            //staTus = enumStatus.None;
 
 
-            this.cbMaNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbMaNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            this.cbKhoXuat.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbKhoXuat.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //this.cbMaNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //this.cbMaNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //this.cbKhoXuat.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //this.cbKhoXuat.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            this.cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            this.cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            clsDM_Kho dmKho = new clsDM_Kho();
-            //  cbKhoNhap.DisplayMember = "Ten_kho";
-            //  cbKhoNhap.ValueMember = "ID_kho";
-            Dic = GetDict((DataTable)new clsDMVatTu().GetAll());
-            //    DicTen = GetDictTen(new clsDMVatTu().GetAll());
+            //this.cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //this.cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //this.cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //this.cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //clsDM_Kho dmKho = new clsDM_Kho();
+            ////  cbKhoNhap.DisplayMember = "Ten_kho";
+            ////  cbKhoNhap.ValueMember = "ID_kho";
+            //Dic = GetDict((DataTable)new clsDMVatTu().GetAll());
+            ////    DicTen = GetDictTen(new clsDMVatTu().GetAll());
 
-            // cbKhoNhap.DataSource = dmKho.GetAll();
+            //// cbKhoNhap.DataSource = dmKho.GetAll();
 
-            AutoCompleteStringCollection combData1 = new AutoCompleteStringCollection();
-            AutoCompleteStringCollection combData2 = new AutoCompleteStringCollection();
-            foreach (string key in Dic.Keys)
-            {
-                combData1.Add(Dic[key].Ma_vat_tu);
-                combData2.Add(Dic[key].Ten_vat_tu);
+            //AutoCompleteStringCollection combData1 = new AutoCompleteStringCollection();
+            //AutoCompleteStringCollection combData2 = new AutoCompleteStringCollection();
+            //foreach (string key in Dic.Keys)
+            //{
+            //    combData1.Add(Dic[key].Ma_vat_tu);
+            //    combData2.Add(Dic[key].Ten_vat_tu);
 
-            }
-
-
-            cbMaVatTu.AutoCompleteCustomSource = combData1;
-            cbMaVatTu.DataSource = combData1;
-            cbTenVatTu.AutoCompleteCustomSource = combData2;
-            cbTenVatTu.DataSource = combData2;
-            cbMaVatTu.SelectedIndex = -1;
-            cbTenVatTu.SelectedIndex = -1;
-            clsDM_NhanVien dmnv = new clsDM_NhanVien();
-            DataTable temp =(DataTable) dmnv.GetAll();
-            DicNhanVien = GetDictMaNhanVien(temp);
-            //     AutoCompleteStringCollection combDataMa = new AutoCompleteStringCollection();
-            AutoCompleteStringCollection combDataTen = new AutoCompleteStringCollection();
-            foreach (string key in DicNhanVien.Keys)
-            {
-                //   combDataMa.Add(DicNhanVien[key].Ma_nhan_vien);
-                combDataTen.Add(DicNhanVien[key].Ten_nhan_vien);
-
-            }
+            //}
 
 
+            //cbMaVatTu.AutoCompleteCustomSource = combData1;
+            //cbMaVatTu.DataSource = combData1;
+            //cbTenVatTu.AutoCompleteCustomSource = combData2;
+            //cbTenVatTu.DataSource = combData2;
+            //cbMaVatTu.SelectedIndex = -1;
+            //cbTenVatTu.SelectedIndex = -1;
+            //clsDM_NhanVien dmnv = new clsDM_NhanVien();
+            //DataTable temp = (DataTable)dmnv.GetAll();
+            //DicNhanVien = GetDictMaNhanVien(temp);
+            ////     AutoCompleteStringCollection combDataMa = new AutoCompleteStringCollection();
+            //AutoCompleteStringCollection combDataTen = new AutoCompleteStringCollection();
+            //foreach (string key in DicNhanVien.Keys)
+            //{
+            //    //   combDataMa.Add(DicNhanVien[key].Ma_nhan_vien);
+            //    combDataTen.Add(DicNhanVien[key].Ten_nhan_vien);
 
-            cbKhoXuat.AutoCompleteCustomSource = combDataTen;
-            cbKhoXuat.DataSource = temp;
-            cbKhoXuat.DisplayMember = "Ten_nhan_vien";
-            cbKhoXuat.ValueMember = "ID_nhan_vien";
+            //}
 
-            // cbMaNhanVien.SelectedIndex = -1;
-            cbKhoXuat.SelectedIndex = -1;
-            // gridMaster.DataSource = data;
-            //----------
-            if (stt == enumButton2.Sua)
-            {
-                cbMaPhieuXuatTam.Text = MaPhieuXuatTam;
 
-                btnSua_Click(this, EventArgs.Empty);
-            }
-            else if (stt == enumButton2.Them)
-            {
-                btnThem_Click(this, EventArgs.Empty);
-            }
+
+            //cbKhoXuat.AutoCompleteCustomSource = combDataTen;
+            //cbKhoXuat.DataSource = temp;
+            //cbKhoXuat.DisplayMember = "Ten_nhan_vien";
+            //cbKhoXuat.ValueMember = "ID_nhan_vien";
+
+            //// cbMaNhanVien.SelectedIndex = -1;
+            //cbKhoXuat.SelectedIndex = -1;
+            //// gridMaster.DataSource = data;
+            ////----------
+            //if (stt == enumButton2.Sua)
+            //{
+            //    cbMaPhieuXuatTam.Text = MaPhieuXuatTam;
+
+            //    btnSua_Click(this, EventArgs.Empty);
+            //}
+            //else if (stt == enumButton2.Them)
+            //{
+            //    btnThem_Click(this, EventArgs.Empty);
+            //}
         }
 
-        public frmChiTietPhieuXuatTam(enumStatus status, clsPhieuNhapKho phieunhap)
-        {
-            InitializeComponent();
-            this.staTus = status;
-            if (status == enumStatus.Sua || status == enumStatus.Xoa)
-            {
-                this.phieuNhapKho = phieunhap;
-                DataTable chiTietPhieuNhap = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
-                gridChiTietPhieuXuatTam.DataSource = chiTietPhieuNhap;
-                //chitiet.get
-            }
-        }
+        //public frmChiTietPhieuXuatTam(enumStatus status, clsPhieuNhapKho phieunhap)
+        //{
+        //    InitializeComponent();
+        //    this.staTus = status;
+        //    if (status == enumStatus.Sua || status == enumStatus.Xoa)
+        //    {
+        //        this.phieuNhapKho = phieunhap;
+        //        DataTable chiTietPhieuNhap = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
+        //        gridChiTietPhieuXuatTam.DataSource = chiTietPhieuNhap;
+        //        //chitiet.get
+        //    }
+        //}
 
-        
+
 
         internal Dictionary<string, clsDM_NhanVien> GetDictMaNhanVien(DataTable dt)
         {
             var areas = new Dictionary<string, clsDM_NhanVien>();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                areas.Add(dt.Rows[i]["Ma_nhan_vien"].ToString(), new clsDM_NhanVien(
-                    int.Parse( dt.Rows[i]["ID_nhan_vien"].ToString()),
-                     dt.Rows[i]["Ma_nhan_vien"].ToString(),
-                      dt.Rows[i]["Ten_nhan_vien"].ToString(),
-                 bool.Parse (dt.Rows[i]["Trang_thai"].ToString())
-                       
-                    ));
-                //   dt.Rows[i]["ten_vat_tu"];
-            }
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    areas.Add(dt.Rows[i]["Ma_nhan_vien"].ToString(), new clsDM_NhanVien(
+            //        int.Parse(dt.Rows[i]["ID_nhan_vien"].ToString()),
+            //         dt.Rows[i]["Ma_nhan_vien"].ToString(),
+            //          dt.Rows[i]["Ten_nhan_vien"].ToString(),
+            //     bool.Parse(dt.Rows[i]["Trang_thai"].ToString())
+
+            //        ));
+            //    //   dt.Rows[i]["ten_vat_tu"];
+            //}
             return areas;
         }
 
         internal Dictionary<string, clsDMVatTu> GetDict(DataTable dt)
         {
             var areas = new Dictionary<string, clsDMVatTu>();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                areas.Add(dt.Rows[i]["Ma_vat_tu"].ToString(), new clsDMVatTu(
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    areas.Add(dt.Rows[i]["Ma_vat_tu"].ToString(), new clsDMVatTu(
 
-                     dt.Rows[i]["Ma_vat_tu"].ToString(),
-                      dt.Rows[i]["ten_vat_tu"].ToString(),
-                  (dt.Rows[i]["ten_don_vi_tinh"].ToString()),
-                        dt.Rows[i]["Mo_ta"].ToString()
-                        ,
-                       //long.Parse(dt.Rows[i]["Don_gia"].ToString())
-                      // ,
-                       int.Parse(dt.Rows[i]["ID_Don_vi_tinh"].ToString())
-                    ));
+            //         dt.Rows[i]["Ma_vat_tu"].ToString(),
+            //          dt.Rows[i]["ten_vat_tu"].ToString(),
+            //      (dt.Rows[i]["ten_don_vi_tinh"].ToString()),
+            //            dt.Rows[i]["Mo_ta"].ToString()
+            //            ,
+            //           //long.Parse(dt.Rows[i]["Don_gia"].ToString())
+            //           // ,
+            //           int.Parse(dt.Rows[i]["ID_Don_vi_tinh"].ToString())
+            //        ));
 
-                //   dt.Rows[i]["ten_vat_tu"];
+            //    //   dt.Rows[i]["ten_vat_tu"];
 
-            }
+            //}
             return areas;
         }
 
-        
+
 
         enumStatus staTus = enumStatus.None;
         clsPhieuNhapKho phieuNhapKho = new clsPhieuNhapKho();
@@ -1737,24 +1735,24 @@ namespace Inventory.XuatTamVatTu
                     }
                 }*/
             return true;
-            }
+        }
 
 
-//        private int GetIDNhanVien(string TenNV)
-//        {
-//            for(int i =0;i<DicNhanVien.Count;i++)
-//            {
-////                if(DicNhanVien.Ten_nhan_vien.Equals(TenNV);
-////                    return DicNhanVien[i
-//            }}
+        //        private int GetIDNhanVien(string TenNV)
+        //        {
+        //            for(int i =0;i<DicNhanVien.Count;i++)
+        //            {
+        ////                if(DicNhanVien.Ten_nhan_vien.Equals(TenNV);
+        ////                    return DicNhanVien[i
+        //            }}
 
-        
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ResetText();
-            dataTableChiTietPhieuXuatTam.Clear();
-            initEdit();
+            //ResetText();
+            //dataTableChiTietPhieuXuatTam.Clear();
+            //initEdit();
         }
 
         private bool initEdit()
@@ -1826,16 +1824,16 @@ namespace Inventory.XuatTamVatTu
         }
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
-            if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi || (e!=null && e.KeyCode == Keys.Enter))
-            {
-                var val = Dic[cbMaVatTu.Text.Trim()];
-                cbTenVatTu.Text = val.Ten_vat_tu.ToString();
-                txtDVT.Text = val.ten_don_vi_tinh.ToString();
+            //if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi || (e != null && e.KeyCode == Keys.Enter))
+            //{
+            //    var val = Dic[cbMaVatTu.Text.Trim()];
+            //    cbTenVatTu.Text = val.Ten_vat_tu.ToString();
+            //    txtDVT.Text = val.ten_don_vi_tinh.ToString();
 
-                //txtDonGia.Text = val.Don_gia.ToString();
+            //    //txtDonGia.Text = val.Don_gia.ToString();
 
 
-            }
+            //}
 
         }
 
@@ -1854,181 +1852,181 @@ namespace Inventory.XuatTamVatTu
 
         }
 
-        private void cbTenVatTu_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                for (int i = 0; i < Dic.Count; i++)
-                {
-                    if (Dic.ToList()[i].Value.Ten_vat_tu.Equals(cbTenVatTu.Text))
+        //private void cbTenVatTu_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        for (int i = 0; i < Dic.Count; i++)
+        //        {
+        //            if (Dic.ToList()[i].Value.Ten_vat_tu.Equals(cbTenVatTu.Text))
 
-                    // == cbTenVatTu.Text.Trim())
-                    {
-                        var val = Dic.ToList()[i].Value;
-                        cbMaVatTu.Text = val.Ma_vat_tu.ToString();
-                        txtDVT.Text = val.ten_don_vi_tinh.ToString();
-                        //txtDonGia.Text = val.Don_gia.ToString();
-                    }
-                }
-            }
-        }
+        //            // == cbTenVatTu.Text.Trim())
+        //            {
+        //                var val = Dic.ToList()[i].Value;
+        //                cbMaVatTu.Text = val.Ma_vat_tu.ToString();
+        //                txtDVT.Text = val.ten_don_vi_tinh.ToString();
+        //                //txtDonGia.Text = val.Don_gia.ToString();
+        //            }
+        //        }
+        //    }
+        //}
 
-        enumStatus sttaf;
+        //enumStatus sttaf;
 
-        
+
         private void ResetText()
         {
-            cbMaVatTu.Text = "";
-            cbTenVatTu.Text = "";
-            txtDVT.Text = "";
-            //txtChatLuong.Text = "";
-            txtSLTX.Text = "0";
-            txtSLHN.Text = "0";
-          //  txtDonGia.Text = "0";
+            //cbMaVatTu.Text = "";
+            //cbTenVatTu.Text = "";
+            //txtDVT.Text = "";
+            ////txtChatLuong.Text = "";
+            //txtSLTX.Text = "0";
+            //txtSLHN.Text = "0";
+            ////  txtDonGia.Text = "0";
 
-            //            txtChatLuong.Text = "";
-
-        }
-        private void frmNhapKho_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
-            //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
+            ////            txtChatLuong.Text = "";
 
         }
+        //private void frmNhapKho_Load(object sender, EventArgs e)
+        //{
+        //    // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
+        //    //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
 
-        
+        //}
+
+
 
         private void gridMaster_MouseClick(object sender, MouseEventArgs e)
         {
-            if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi)
-            {
-                Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentCell.RowIndex;
-                cbMaVatTu.Text = (gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                if (cbMaVatTu.Text != "")
-                {
-                    cbMaVatTu_KeyDown(null, null);
-                }
-                else
-                    ResetText();
-            }
+            //if (staTus == enumStatus.SuaLuoi || staTus == enumStatus.XoaLuoi)
+            //{
+            //    Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentCell.RowIndex;
+            //    cbMaVatTu.Text = (gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
+            //    if (cbMaVatTu.Text != "")
+            //    {
+            //        cbMaVatTu_KeyDown(null, null);
+            //    }
+            //    else
+            //        ResetText();
+            //}
         }
 
-        
-
-        private void btnHuyBo_Click(object sender, EventArgs e)
-        {
-            btnAddToGrid.Enabled = true;
-            btnEditRowInGrid.Enabled = true;
-            ResetText();
-            staTus = enumStatus.None;
-        }
-
-        private void cbMaPhieuXuatTam_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        DataTable tbAff;
 
 
-        
+        //private void btnHuyBo_Click(object sender, EventArgs e)
+        //{
+        //    btnAddToGrid.Enabled = true;
+        //    btnEditRowInGrid.Enabled = true;
+        //    ResetText();
+        //    staTus = enumStatus.None;
+        //}
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            sttaf = staTus;
+        //private void cbMaPhieuXuatTam_Enter(object sender, EventArgs e)
+        //{
 
-            try
-            {
-                Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentCell.RowIndex;
+        //}
 
-                //string ma_vat_tu = dataTable1.Rows[
-                if (dataTableChiTietPhieuXuatTam.Rows.Count == 0 || selectedRowCount >= dataTableChiTietPhieuXuatTam.Rows.Count)
-                    return;
-                staTus = enumStatus.XoaLuoi;
-                btnDelRowInGrid.Enabled = false;
-                btnAddToGrid.Enabled = false;
-                btnEditRowInGrid.Enabled = false;
-                cbMaVatTu.Text = (gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                txtSLHN.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_hoan_nhap"].Value.ToString();
-                txtSLTX.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
-                txtSLGL.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
-                //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
-                txtDVT.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
+        //DataTable tbAff;
 
 
-                cbMaVatTu_KeyDown(null, null);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        
-
-        
-        private bool setFormData_By_MaPhieuNhap(string Ma_Phieu_Nhap)
-        {
-            clsPhieuNhapKho PhieuNhap = new clsPhieuNhapKho();
-
-            if (PhieuNhap.CheckTonTaiSoDK(Ma_Phieu_Nhap))
-            {
-                //fill vào FRM
-                DataTable tb = PhieuNhap.GetAll(Ma_Phieu_Nhap);
-
-                cbMaPhieuXuatTam.Text = tb.Rows[0]["ma_phieu_xuat_tam"].ToString();
-               // txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
-                dtNgayXuat.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_xuat"]);
-                cbKhoXuat.Text = tb.Rows[0]["ten_nhan_vien"].ToString();
-                txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
-                txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
-                txtDiaChi.Text = tb.Rows[0]["dia_chi"].ToString();
-             //   txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
-
-                //Fill vào grid
-                //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
-
-                //dataTable1 = chiTietPhieuNhap;
-                //gridMaster.DataSource = dataTable1;
 
 
-                //clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+        //private void button3_Click(object sender, EventArgs e)
+        //{
+        //    sttaf = staTus;
 
-                DataTable vChiTiet = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+        //    try
+        //    {
+        //        Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentCell.RowIndex;
 
-                for (int i = 0; i < vChiTiet.Rows.Count; i++)
-                {
-                    DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();
+        //        //string ma_vat_tu = dataTable1.Rows[
+        //        if (dataTableChiTietPhieuXuatTam.Rows.Count == 0 || selectedRowCount >= dataTableChiTietPhieuXuatTam.Rows.Count)
+        //            return;
+        //        staTus = enumStatus.XoaLuoi;
+        //        btnDelRowInGrid.Enabled = false;
+        //        btnAddToGrid.Enabled = false;
+        //        btnEditRowInGrid.Enabled = false;
+        //        cbMaVatTu.Text = (gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
+        //        txtSLHN.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_hoan_nhap"].Value.ToString();
+        //        txtSLTX.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_thuc_xuat"].Value.ToString();
+        //        txtSLGL.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["So_luong_giu_lai"].Value.ToString();
+        //        //txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
+        //        txtDVT.Text = gridChiTietPhieuXuatTam.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
-                    dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
-                    dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
-                    dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
-                    dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
-                    dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
-                    dr["so_luong_giu_lai"] = vChiTiet.Rows[i]["so_luong_giu_lai"].ToString();
-                    dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
-                    dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
-                    dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
 
-                    dataTableChiTietPhieuXuatTam.Rows.Add(dr);
-                }
-                return true;
-            }
-            else
-                return false;
-        }
+        //        cbMaVatTu_KeyDown(null, null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+
+
+
+        //private bool setFormData_By_MaPhieuNhap(string Ma_Phieu_Nhap)
+        //{
+        //    clsPhieuNhapKho PhieuNhap = new clsPhieuNhapKho();
+
+        //    if (PhieuNhap.CheckTonTaiSoDK(Ma_Phieu_Nhap))
+        //    {
+        //        //fill vào FRM
+        //        DataTable tb = PhieuNhap.GetAll(Ma_Phieu_Nhap);
+
+        //        cbMaPhieuXuatTam.Text = tb.Rows[0]["ma_phieu_xuat_tam"].ToString();
+        //        // txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+        //        dtNgayXuat.Text = string.Format("{0:dd/MM/yyyy}", tb.Rows[0]["Ngay_xuat"]);
+        //        cbKhoXuat.Text = tb.Rows[0]["ten_nhan_vien"].ToString();
+        //        txtLyDo.Text = tb.Rows[0]["Ly_do"].ToString();
+        //        txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
+        //        txtDiaChi.Text = tb.Rows[0]["dia_chi"].ToString();
+        //        //   txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
+
+        //        //Fill vào grid
+        //        //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+
+        //        //dataTable1 = chiTietPhieuNhap;
+        //        //gridMaster.DataSource = dataTable1;
+
+
+        //        //clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+
+        //        DataTable vChiTiet = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(Ma_Phieu_Nhap);
+
+        //        for (int i = 0; i < vChiTiet.Rows.Count; i++)
+        //        {
+        //            DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();
+
+        //            dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
+        //            dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
+        //            dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
+        //            dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
+        //            dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
+        //            dr["so_luong_giu_lai"] = vChiTiet.Rows[i]["so_luong_giu_lai"].ToString();
+        //            dr["so_luong_thuc_xuat"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
+        //            dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
+        //            dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_xuat"].ToString());
+
+        //            dataTableChiTietPhieuXuatTam.Rows.Add(dr);
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
 
         private void cbMaPhieuXuatTam_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
-        
 
-        private void cbLoaiPhieu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          
-        }
+
+        //private void cbLoaiPhieu_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+
+        //}
 
         private void btnDong_Click(object sender, EventArgs e)
         {
@@ -2037,12 +2035,12 @@ namespace Inventory.XuatTamVatTu
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ResetText();
-            ResetAll();
-            staTus = enumStatus.None;
+            //ResetText();
+            //ResetAll();
+            //staTus = enumStatus.None;
 
         }
 
-        
+
     }
 }
