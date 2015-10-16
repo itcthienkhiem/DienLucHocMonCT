@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Inventory.XuatTamVatTu
 {
-    public enum enumButton2 : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi, XoaLuoi, SuaLuoi };
+    public enum enumButton2 : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi, XoaLuoi, SuaLuoi, HuySuaLuoi, LuuThayDoiVaoLuoi };
 
-    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, disableInputForm, Huy, Dong };
+    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, disableInputForm, Huy, Dong, ResetGridInputForm };
 
     public delegate void FormActionDelegate2(enumFormAction2 val);
 
@@ -19,6 +19,7 @@ namespace Inventory.XuatTamVatTu
         FormActionDelegate2 frmAct;
 
         enumButton2 clickStatus;
+        enumButton2 gridClickStatus;
 
         //enumFormAction FormActionStatus;
 
@@ -29,6 +30,12 @@ namespace Inventory.XuatTamVatTu
         private Button btnLuu = null;
         private Button btnHuy = null;
         private Button btnDong = null;
+
+        private Button btnAdd = null;
+        private Button btnEdit = null;
+        private Button btnDel = null;
+        private Button btnSave = null;
+        private Button btnCancel = null;
 
         public clsPanelButton2()
         {
@@ -80,6 +87,31 @@ namespace Inventory.XuatTamVatTu
                     btnDong = btn;
                     //btnDong.Click += new System.EventHandler(this.btnDong_Click);
                     break;
+                case enumButton2.ThemLuoi:
+                    btnAdd = btn;
+                    btnAdd.EnabledChanged += new System.EventHandler(btnAdd_EnabledChanged);
+                    //btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+                    break;
+                case enumButton2.XoaLuoi:
+                    btnDel = btn;
+                    btnDel.EnabledChanged += new System.EventHandler(btnDel_EnabledChanged);
+                    //btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+                    break;
+                case enumButton2.SuaLuoi:
+                    btnEdit = btn;
+                    btnEdit.EnabledChanged += new System.EventHandler(btnEdit_EnabledChanged);
+                    //btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+                    break;
+                case enumButton2.HuySuaLuoi:
+                    btnCancel = btn;
+                    btnCancel.EnabledChanged += new System.EventHandler(btnCancel_EnabledChanged);
+                    //btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+                    break;
+                case enumButton2.LuuThayDoiVaoLuoi:
+                    btnSave = btn;
+                    btnSave.EnabledChanged += new System.EventHandler(btnSave_EnabledChanged);
+                    //btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+                    break;
                 default:
                     break;
             }
@@ -111,6 +143,9 @@ namespace Inventory.XuatTamVatTu
                     break;
                 case enumButton2.Dong:
                     btnDong.Click += new System.EventHandler(this.btnDong_Click);
+                    break;
+                case enumButton2.HuySuaLuoi:
+                    btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
                     break;
                 default:
                     break;
@@ -174,6 +209,38 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
+        /// <summary>
+        /// Fire when stt Sửa | Disable -> Hủy, Lưu
+        /// </summary>
+        public void ResetGridButton()
+        {
+            if (isGridClickNone())
+            {
+                if (btnAdd != null && getButtonStatus(enumButton2.ThemLuoi)) btnAdd.Enabled = true;
+                if (btnDel != null && getButtonStatus(enumButton2.XoaLuoi)) btnDel.Enabled = true;
+                if (btnEdit != null && getButtonStatus(enumButton2.SuaLuoi)) btnEdit.Enabled = true;
+
+                if (btnSave != null && getButtonStatus(enumButton2.LuuThayDoiVaoLuoi)) btnSave.Enabled = false;
+                if (btnCancel != null && getButtonStatus(enumButton2.HuySuaLuoi)) btnCancel.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Fire when stt Sửa | Enable -> Hủy, Lưu
+        /// </summary>
+        public void Enable_btn_Luu_Huy_Luoi()
+        {
+            if (isGridClickEdit())
+            {
+                if (btnAdd != null && getButtonStatus(enumButton2.ThemLuoi)) btnAdd.Enabled = false;
+                if (btnDel != null && getButtonStatus(enumButton2.XoaLuoi)) btnDel.Enabled = false;
+                if (btnEdit != null && getButtonStatus(enumButton2.SuaLuoi)) btnEdit.Enabled = false;
+
+                if (btnSave != null && getButtonStatus(enumButton2.LuuThayDoiVaoLuoi)) btnSave.Enabled = true;
+                if (btnCancel != null && getButtonStatus(enumButton2.HuySuaLuoi)) btnCancel.Enabled = true;
+            }
+        }
+
         ////////////////////
         //GET Click Status
         public enumButton2 getClickStatus()
@@ -184,6 +251,16 @@ namespace Inventory.XuatTamVatTu
         public void setClickStatus(enumButton2 stt)
         {
             this.clickStatus = stt;
+        }
+
+        public enumButton2 getGridClickStatus()
+        {
+            return gridClickStatus;
+        }
+
+        public void setGridClickStatus(enumButton2 stt)
+        {
+            this.gridClickStatus = stt;
         }
 
         ////////////////////////////
@@ -207,6 +284,36 @@ namespace Inventory.XuatTamVatTu
         {
             return (clickStatus == enumButton2.Sua) ? true : false;
         }
+
+        public bool isGridClickAdd()
+        {
+            return (gridClickStatus == enumButton2.ThemLuoi) ? true : false;
+        }
+
+        public bool isGridClickDel()
+        {
+            return (gridClickStatus == enumButton2.XoaLuoi) ? true : false;
+        }
+
+        public bool isGridClickEdit()
+        {
+            return (gridClickStatus == enumButton2.SuaLuoi) ? true : false;
+        }
+
+        public bool isGridClickSave()
+        {
+            return (gridClickStatus == enumButton2.LuuThayDoiVaoLuoi) ? true : false;
+        }
+
+        public bool isGridClickCancel()
+        {
+            return (gridClickStatus == enumButton2.HuySuaLuoi) ? true : false;
+        }
+
+        public bool isGridClickNone()
+        {
+            return (gridClickStatus == enumButton2.None) ? true : false;
+        }
         //END BOOL
         ///////////
 
@@ -215,6 +322,11 @@ namespace Inventory.XuatTamVatTu
         public void ResetClickStatus()
         {
             clickStatus = enumButton2.None;
+        }
+
+        public void ResetGridClickStatus()
+        {
+            gridClickStatus = enumButton2.None;
         }
 
 
@@ -249,6 +361,30 @@ namespace Inventory.XuatTamVatTu
         {
             clickStatus = enumButton2.Dong;
         }
+
+        public void setGridClickAdd()
+        {
+            gridClickStatus = enumButton2.ThemLuoi;
+        }
+        public void setGridClickDel()
+        {
+            gridClickStatus = enumButton2.XoaLuoi;
+        }
+
+        public void setGridClickEdit()
+        {
+            gridClickStatus = enumButton2.SuaLuoi;
+        }
+
+        public void setGridClickSave()
+        {
+            gridClickStatus = enumButton2.LuuThayDoiVaoLuoi;
+        }
+
+        public void setGridClickCancel()
+        {
+            gridClickStatus = enumButton2.HuySuaLuoi;
+        }
         //END SET
         /////////
 
@@ -264,6 +400,7 @@ namespace Inventory.XuatTamVatTu
             if (!isClickNone())
             {
                 ResetClickStatus();
+                ResetGridClickStatus();
 
                 ResetButton();
 
@@ -318,6 +455,18 @@ namespace Inventory.XuatTamVatTu
             frmAct.Invoke(enumFormAction2.LoadData);
 
             ResetButton();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (!isGridClickNone())
+            {
+                ResetGridClickStatus();
+
+                ResetGridButton();
+
+                frmAct.Invoke(enumFormAction2.ResetGridInputForm);
+            }
         }
 
         /*
@@ -375,6 +524,51 @@ namespace Inventory.XuatTamVatTu
                 b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.save_bmc;
             else
                 b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.save_disable;
+        }
+
+        private void btnAdd_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_new;
+            else
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_new_disable;
+        }
+
+        private void btnDel_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_delete;
+            else
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_delete_disable;
+        }
+
+        private void btnEdit_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_modify;
+            else
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_modify_disable;
+        }
+
+        private void btnCancel_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_cancel;
+            else
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_cancel_disable;
+        }
+
+        private void btnSave_EnabledChanged(object sender, EventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Enabled)
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_save;
+            else
+                b.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_save_disable;
         }
         /*
          END. --> Add ICON khi Enable & Disable

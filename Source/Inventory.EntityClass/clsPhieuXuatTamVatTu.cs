@@ -23,6 +23,8 @@ namespace Inventory.EntityClass
         public string Cong_trinh;
         public string Dia_chi;
         public DateTime Ngay_lap;
+
+        public bool Da_duyet = false;
         public clsPhieuXuatTamVatTu()
         {
         }
@@ -59,6 +61,95 @@ namespace Inventory.EntityClass
             //da.Fill(dt);
             //m_dbConnection.Close();
             // return dt;
+        }
+
+        public DataTable GetAll_byMaPhieu(string maPhieu)
+        {
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+
+            string sql = "SELECT * FROM Phieu_Xuat_Tam_Vat_Tu ";
+            sql += "join DM_Nhan_Vien on DM_Nhan_Vien.ID_nhan_vien=Phieu_Xuat_Tam_Vat_Tu.ID_nhan_vien ";
+            sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", maPhieu));
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+            return dt;
+        }
+
+        public int Insert_PhieuXuat()
+        {
+            SqlTransaction m_trans = null;
+
+            m_dbConnection.Open();
+            m_trans = m_dbConnection.BeginTransaction();
+
+            if (m_dbConnection.State == ConnectionState.Closed)
+                m_dbConnection.Open();
+
+            string sql = "";
+            sql += "INSERT INTO Phieu_xuat_tam_vat_tu (Ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,Ngay_xuat,Ly_do,Cong_trinh,Dia_chi,Da_duyet) ";
+            sql += "VALUES(@Ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@Ngay_xuat,@Ly_do,@Cong_trinh,@Dia_chi,@Da_duyet)";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
+            command.CommandType = CommandType.Text;
+
+            command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+            command.Parameters.Add("@ID_nhan_vien", SqlDbType.Int).Value = ID_Nhan_vien;
+            command.Parameters.Add("@Ngay_xuat", SqlDbType.DateTime, 50).Value = Ngay_xuat.ToString("yyyy-MM-dd");
+            command.Parameters.Add("@Ly_do", SqlDbType.NVarChar, 50).Value = Ly_do;
+            command.Parameters.Add("@Cong_trinh", SqlDbType.NVarChar, 50).Value = Cong_trinh;
+            command.Parameters.Add("@Dia_chi", SqlDbType.NVarChar, 50).Value = Dia_chi;
+            command.Parameters.Add("@Da_duyet", SqlDbType.Bit).Value = Da_duyet;
+
+            int result = command.ExecuteNonQuery();
+
+            m_trans.Commit();
+            m_dbConnection.Close();
+
+            return result;
+        }
+
+        public int Update_PhieuXuat()
+        {
+            SqlTransaction m_trans = null;
+
+            m_dbConnection.Open();
+            m_trans = m_dbConnection.BeginTransaction();
+
+            if (m_dbConnection.State == ConnectionState.Closed)
+                m_dbConnection.Open();
+
+            string sql = "";
+            sql += "UPDATE Phieu_xuat_tam_vat_tu ";
+            sql += "Set ID_kho=@ID_kho,ID_nhan_vien=@ID_nhan_vien,Ngay_xuat=@Ngay_xuat,Ly_do=@Ly_do,Cong_trinh=@Cong_trinh,Dia_chi=@Dia_chi,Da_duyet=@Da_duyet ";
+            sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+
+            //string sql = "";
+            //sql += "INSERT INTO Phieu_xuat_tam_vat_tu (Ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,Ngay_xuat,Ly_do,Cong_trinh,Dia_chi,Da_duyet) ";
+            //sql += "VALUES(@Ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@Ngay_xuat,@Ly_do,@Cong_trinh,@Dia_chi,@Da_duyet)";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
+            command.CommandType = CommandType.Text;
+
+            command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+            command.Parameters.Add("@ID_nhan_vien", SqlDbType.Int).Value = ID_Nhan_vien;
+            command.Parameters.Add("@Ngay_xuat", SqlDbType.DateTime, 50).Value = Ngay_xuat.ToString("yyyy-MM-dd");
+            command.Parameters.Add("@Ly_do", SqlDbType.NVarChar, 50).Value = Ly_do;
+            command.Parameters.Add("@Cong_trinh", SqlDbType.NVarChar, 50).Value = Cong_trinh;
+            command.Parameters.Add("@Dia_chi", SqlDbType.NVarChar, 50).Value = Dia_chi;
+            command.Parameters.Add("@Da_duyet", SqlDbType.Bit).Value = Da_duyet;
+
+            int result = command.ExecuteNonQuery();
+
+            m_trans.Commit();
+            m_dbConnection.Close();
+
+            return result;
         }
 
         public DataTable GetAll()

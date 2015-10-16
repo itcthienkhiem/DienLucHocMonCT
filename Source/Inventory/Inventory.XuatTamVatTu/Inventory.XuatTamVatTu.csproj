@@ -189,6 +189,24 @@
   <ItemGroup>
     <None Include="Resources\alert-icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-cancel-disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-delete-disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-modify-disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-new-disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-save-disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-cancel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

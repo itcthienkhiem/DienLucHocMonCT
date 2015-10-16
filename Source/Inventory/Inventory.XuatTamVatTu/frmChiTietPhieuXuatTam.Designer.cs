@@ -69,6 +69,7 @@
             this.txtSLDN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.cbMuonVTTaiKho = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelRowInGrid = new System.Windows.Forms.Button();
             this.btnSaveGrid = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnEditRowInGrid = new System.Windows.Forms.Button();
             this.txtSL = new System.Windows.Forms.TextBox();
             this.btnAddToGrid = new System.Windows.Forms.Button();
@@ -132,6 +134,7 @@
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.btnCheckNVGiuVT = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -336,6 +339,7 @@
             this.panel1.Controls.Add(this.chkboxEnableMuonVT);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.cbMuonVTTaiKho);
             this.panel1.Controls.Add(this.label27);
@@ -343,6 +347,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnDelRowInGrid);
             this.panel1.Controls.Add(this.btnSaveGrid);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnEditRowInGrid);
             this.panel1.Controls.Add(this.txtSL);
             this.panel1.Controls.Add(this.btnAddToGrid);
@@ -383,6 +388,7 @@
             this.chkboxXacNhanHoanNhapGiuLai.Size = new System.Drawing.Size(15, 14);
             this.chkboxXacNhanHoanNhapGiuLai.TabIndex = 93;
             this.chkboxXacNhanHoanNhapGiuLai.UseVisualStyleBackColor = true;
+            this.chkboxXacNhanHoanNhapGiuLai.CheckedChanged += new System.EventHandler(this.chkboxXacNhanHoanNhapGiuLai_CheckedChanged);
             // 
             // label30
             // 
@@ -483,6 +489,15 @@
             this.label25.TabIndex = 91;
             this.label25.Text = "Lưu";
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(1060, 55);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(76, 14);
+            this.label32.TabIndex = 92;
+            this.label32.Text = "Hủy thay đổi";
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -552,6 +567,16 @@
             this.btnSaveGrid.TabIndex = 84;
             this.btnSaveGrid.UseVisualStyleBackColor = true;
             this.btnSaveGrid.Click += new System.EventHandler(this.btnSaveGrid_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.button_cancel;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCancel.Location = new System.Drawing.Point(1074, 71);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(45, 29);
+            this.btnCancel.TabIndex = 83;
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnEditRowInGrid
             // 
@@ -987,7 +1012,7 @@
             this.btnLuu.Size = new System.Drawing.Size(50, 50);
             this.btnLuu.TabIndex = 2;
             this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnDong
             // 
@@ -1109,11 +1134,23 @@
             this.btnCheckNVGiuVT.Visible = false;
             this.btnCheckNVGiuVT.Click += new System.EventHandler(this.btnCheckNVGiuVT_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(414, 136);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 94;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // frmChiTietPhieuXuatTam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1190, 514);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.cbMaPhieuXuatTam);
             this.Controls.Add(this.cbMaNhanVien);
@@ -1253,5 +1290,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_giu_lai;
         private System.Windows.Forms.DataGridViewCheckBoxColumn _Da_duyet_hoan_nhap_giu_lai;
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_su_dung;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button button1;
     }
 }
