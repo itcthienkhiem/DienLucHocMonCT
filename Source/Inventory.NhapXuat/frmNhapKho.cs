@@ -376,15 +376,15 @@ namespace Inventory.NhapXuat
 
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
-            if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi || e.KeyCode == Keys.Enter)
-            {
-                string val = cbMaVatTu.Text ;
-                DataTable temp =  new clsDMVatTu().GetAll(val);
-                cbTenVatTu.Text =temp.Rows[0]["Ten_vat_tu"].ToString();
-                txtDVT.Text = temp.Rows[0]["Ten_don_vi_tinh"].ToString();
+            //if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi || e.KeyCode == Keys.Enter)
+            //{
+            //    string val = cbMaVatTu.Text ;
+            //    DataTable temp =  new clsDMVatTu().GetAll(val);
+            //    cbTenVatTu.Text =temp.Rows[0]["Ten_vat_tu"].ToString();
+            //    txtDVT.Text = temp.Rows[0]["Ten_don_vi_tinh"].ToString();
 
-                txtDonGia.Text = temp.Rows[0]["Don_gia"].ToString();
-            }
+            //    txtDonGia.Text = temp.Rows[0]["Don_gia"].ToString();
+            //}
 
         }
 

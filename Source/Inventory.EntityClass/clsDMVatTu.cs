@@ -219,7 +219,7 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             var temp = help.ent.DM_Vat_Tu.Where(
-        i => i.Ma_vat_tu == Ma_vat_tu
+        i => i.Ma_vat_tu == MaVatTu
 
         ).ToList();
             string name = "";
@@ -266,7 +266,7 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             var temp = help.ent.DM_Vat_Tu.Where(
-        i => i.Ten_vat_tu == Ten_vat_tu
+        i => i.Ten_vat_tu == TenVatTu
 
         ).ToList();
             string name = "";
@@ -315,7 +315,7 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.DM_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
-                              where ep.Ma_vat_tu.Equals(Ma_vat_tu)//cau lenh where
+                              where ep.Ma_vat_tu.Equals(MaVatTu)//cau lenh where
                               select new
                               {
                                   ID_vat_tu = ep.ID_Vat_tu,
@@ -473,7 +473,7 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.DM_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
-                              where ep.Ten_vat_tu.Equals(Ten_vat_tu)
+                              where ep.Ten_vat_tu.Equals(TenVT)
                               select new
                               {
                                   ID_vat_tu = ep.ID_Vat_tu,
