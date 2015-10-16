@@ -257,30 +257,30 @@ namespace Inventory.EntityClass
 
                 return 0;
 
-            //}
+                //}
 
-            //m_dbConnection = dal.m_conn;
-            //if (m_dbConnection.State == ConnectionState.Closed)
-            //    m_dbConnection.Open();
+                //m_dbConnection = dal.m_conn;
+                //if (m_dbConnection.State == ConnectionState.Closed)
+                //    m_dbConnection.Open();
 
-            //string sql = "";
-            //sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,so_luong_thuc_lanh) ";
-            //sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@so_luong_thuc_lanh)";
+                //string sql = "";
+                //sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (ma_phieu_xuat_tam,Ma_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,so_luong_thuc_lanh) ";
+                //sql += "VALUES(@ma_phieu_xuat_tam,@Ma_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@so_luong_thuc_lanh)";
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection, dal.m_trans);
-            //command.CommandType = CommandType.Text;
+                //SqlCommand command = new SqlCommand(sql, m_dbConnection, dal.m_trans);
+                //command.CommandType = CommandType.Text;
 
-            ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-            //command.Parameters.Add(new SqlParameter("@ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
-            //command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
-            ////command.Parameters.Add(new SqlParameter("@So_luong_de_nghi", So_luong_de_nghi));
-            //command.Parameters.Add(new SqlParameter("@So_luong_hoan_nhap", So_luong_hoan_nhap));
-            //command.Parameters.Add(new SqlParameter("@So_luong_giu_lai", So_luong_giu_lai));
-            //command.Parameters.Add(new SqlParameter("@so_luong_thuc_lanh", so_luong_thuc_lanh));
+                ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
+                //command.Parameters.Add(new SqlParameter("@ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
+                //command.Parameters.Add(new SqlParameter("@Ma_vat_tu", Ma_vat_tu));
+                ////command.Parameters.Add(new SqlParameter("@So_luong_de_nghi", So_luong_de_nghi));
+                //command.Parameters.Add(new SqlParameter("@So_luong_hoan_nhap", So_luong_hoan_nhap));
+                //command.Parameters.Add(new SqlParameter("@So_luong_giu_lai", So_luong_giu_lai));
+                //command.Parameters.Add(new SqlParameter("@so_luong_thuc_lanh", so_luong_thuc_lanh));
 
-            //int result = command.ExecuteNonQuery();
+                //int result = command.ExecuteNonQuery();
 
-
+            }
             //return result;
         }
 
