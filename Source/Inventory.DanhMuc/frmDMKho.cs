@@ -289,5 +289,10 @@ namespace Inventory.DanhMuc
         {
 
         }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

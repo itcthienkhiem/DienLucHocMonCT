@@ -846,7 +846,7 @@ namespace Inventory.NhapXuat
             initMaVatTu();
             initTenVatTu();
             ///
-            cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhan.getAll();
+            cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
             cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
 
@@ -883,7 +883,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         private void initKhoNhap()
         {
-            clsDM_Kho dmKho = new clsDM_Kho();
+         //   clsDM_Kho dmKho = new clsDM_Kho();
             //cbKhoNhap.DisplayMember = "Ten_kho";
             //cbKhoNhap.ValueMember = "ID_kho";
 

@@ -38,6 +38,8 @@
             this.txtKhoNhan = new System.Windows.Forms.TextBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtNgayNhap = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // txtMaVT
@@ -111,7 +113,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(119, 186);
+            this.btnThem.Location = new System.Drawing.Point(112, 212);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 8;
@@ -121,7 +123,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(229, 186);
+            this.button2.Location = new System.Drawing.Point(222, 212);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 9;
@@ -129,11 +131,32 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(56, 176);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Ngày nhận";
+            // 
+            // dtNgayNhap
+            // 
+            this.dtNgayNhap.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dtNgayNhap.CustomFormat = "dd/MM/yyyy";
+            this.dtNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtNgayNhap.Location = new System.Drawing.Point(121, 173);
+            this.dtNgayNhap.Name = "dtNgayNhap";
+            this.dtNgayNhap.Size = new System.Drawing.Size(216, 20);
+            this.dtNgayNhap.TabIndex = 74;
+            // 
             // frmChiTietNhanVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 247);
+            this.Controls.Add(this.dtNgayNhap);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.label4);
@@ -168,5 +191,7 @@
         private System.Windows.Forms.TextBox txtKhoNhan;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtNgayNhap;
     }
 }

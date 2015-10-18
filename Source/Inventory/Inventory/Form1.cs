@@ -419,5 +419,28 @@ namespace Inventory
             frms.Clear();
             frms.Add(frm);
         }
+
+        private void danhMụcLoạiPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDMLoaiPhieuNhap frm = new frmDMLoaiPhieuNhap();
+            frm.Text = "Loại phiếu nhập ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
     }
 }

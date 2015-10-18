@@ -50,7 +50,8 @@ namespace Inventory.NhapXuat
         public void Action() {
 
             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
-            if (dc.InsertTonKho(mavattu, idKho, soluong, maphieu) == 1)
+            DateTime ngayNhap = dtNgayNhap.Value;
+            if (dc.InsertTonKho(mavattu, idKho, soluong, maphieu, ngayNhap) == 1)
             {
                 MessageBox.Show("Bạn đã thêm thành công vật tư vào kho ");
                 f.init();

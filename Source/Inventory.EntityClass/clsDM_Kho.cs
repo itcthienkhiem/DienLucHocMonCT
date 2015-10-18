@@ -20,8 +20,7 @@ namespace Inventory.EntityClass
        
        }
 
-        SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
-
+    
         public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
         {
             //m_dbConnection.Open();
