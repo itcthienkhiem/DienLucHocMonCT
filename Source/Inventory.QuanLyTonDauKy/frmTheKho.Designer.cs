@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gridTonDauKy = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SOHIEU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NGAY_THANG_CT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +50,6 @@
             this.SO_LUONG_TON = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KY_XAC_NHAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GHI_CHU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridTonDauKy)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,22 +128,22 @@
             this.gridTonDauKy.AllowUserToAddRows = false;
             this.gridTonDauKy.AllowUserToDeleteRows = false;
             this.gridTonDauKy.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridTonDauKy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridTonDauKy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridTonDauKy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridTonDauKy.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridTonDauKy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTonDauKy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTonDauKy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridTonDauKy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTonDauKy.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
@@ -167,6 +167,14 @@
             this.gridTonDauKy.Size = new System.Drawing.Size(1111, 399);
             this.gridTonDauKy.TabIndex = 49;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(475, 50);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 50;
+            // 
             // STT
             // 
             this.STT.HeaderText = "STT";
@@ -181,19 +189,19 @@
             // 
             // NGAY_THANG_CT
             // 
-            this.NGAY_THANG_CT.HeaderText = "Column1";
+            this.NGAY_THANG_CT.HeaderText = "NGAY_THANG_CT";
             this.NGAY_THANG_CT.Name = "NGAY_THANG_CT";
             this.NGAY_THANG_CT.ReadOnly = true;
             // 
             // DIEN_GIAI
             // 
-            this.DIEN_GIAI.HeaderText = "Column1";
+            this.DIEN_GIAI.HeaderText = "DIEN_GIAI";
             this.DIEN_GIAI.Name = "DIEN_GIAI";
             this.DIEN_GIAI.ReadOnly = true;
             // 
             // NGAY_NHAP_XUAT
             // 
-            this.NGAY_NHAP_XUAT.HeaderText = "Column1";
+            this.NGAY_NHAP_XUAT.HeaderText = "NGAY_NHAP_XUAT";
             this.NGAY_NHAP_XUAT.Name = "NGAY_NHAP_XUAT";
             this.NGAY_NHAP_XUAT.ReadOnly = true;
             // 
@@ -226,14 +234,6 @@
             this.GHI_CHU.HeaderText = "GHI_CHU";
             this.GHI_CHU.Name = "GHI_CHU";
             this.GHI_CHU.ReadOnly = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(475, 50);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 50;
             // 
             // frmTheKho
             // 
@@ -269,6 +269,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView gridTonDauKy;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn SOHIEU;
         private System.Windows.Forms.DataGridViewTextBoxColumn NGAY_THANG_CT;
@@ -279,6 +280,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SO_LUONG_TON;
         private System.Windows.Forms.DataGridViewTextBoxColumn KY_XAC_NHAN;
         private System.Windows.Forms.DataGridViewTextBoxColumn GHI_CHU;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
