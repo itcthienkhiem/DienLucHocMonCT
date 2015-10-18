@@ -100,8 +100,8 @@ namespace Inventory.XuatTamVatTu
                 DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
                 string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
 
-                frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
-                ChiTietPhieuXuatTam.Show();
+                //frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
+                //ChiTietPhieuXuatTam.Show();
             }
             catch (Exception ex)
             {
@@ -111,8 +111,8 @@ namespace Inventory.XuatTamVatTu
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Them, "");
-            ChiTietPhieuXuatTam.Show();
+            //frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Them, "");
+            //ChiTietPhieuXuatTam.Show();
         }
     }
 }
