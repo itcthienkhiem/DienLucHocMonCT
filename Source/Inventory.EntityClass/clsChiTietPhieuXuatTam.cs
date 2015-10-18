@@ -298,7 +298,7 @@ namespace Inventory.EntityClass
                             int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                             if ((slTon - SLTX) > 0)
                             {
-                                xlc.InsertTonKho(mvt, IDKho, 0-SLTX, maPhieu);
+                                //xlc.InsertTonKho(mvt, IDKho, 0-SLTX, maPhieu);
                             }
                             else
                             {
@@ -319,7 +319,7 @@ namespace Inventory.EntityClass
                             //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                             if (SLHN > 0)
                             {
-                                xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                                //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
                             }
 
                             if (SLGL > 0)
@@ -356,7 +356,7 @@ namespace Inventory.EntityClass
                         int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                         if ((slTon - SLTX) > 0)
                         {
-                            xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                            //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
                         }
                         else
                         {
@@ -378,7 +378,7 @@ namespace Inventory.EntityClass
                         //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                         if (SLHN > 0)
                         {
-                            xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
                         }
 
                         if (SLGL > 0)
@@ -404,7 +404,7 @@ namespace Inventory.EntityClass
                         int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                         if ((slTon - SLTX) > 0)
                         {
-                            xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                            //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
                         }
                         else
                         {
@@ -425,7 +425,7 @@ namespace Inventory.EntityClass
                         //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
                         if (SLHN > 0)
                         {
-                            xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
                         }
 
                         if (SLGL > 0)
@@ -502,8 +502,7 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
             command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
             command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
-            command.Parameters.Add("
-                @So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
             command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
             command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
             command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
