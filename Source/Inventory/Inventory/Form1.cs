@@ -13,7 +13,8 @@ using Inventory.QuanLyTonDauKy;
 using Inventory.Utilities;
 using System.Configuration;
 using Inventory.Models;
-
+using SplashScreenThreaded;
+using System.Threading;
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -22,8 +23,17 @@ namespace Inventory
 
         public MDIMain()
         {
+            
+            this.Hide();
+            Thread splashthread = new Thread(new ThreadStart(SplashScreen.ShowSplashScreen));
+            splashthread.IsBackground = true;
+            splashthread.Start();
+
             InitializeComponent();
-         //   DatabaseHelper help = new DatabaseHelper();
+            lapToolStripMenuItem_Click(null, null);
+         
+            
+            //   DatabaseHelper help = new DatabaseHelper();
          //   help. ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
             //Entities.ent = help.db;
         }
@@ -224,6 +234,23 @@ namespace Inventory
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
+            SplashScreen.UdpateStatusText("Loading Items!!!");
+            Thread.Sleep(1000);
+            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Success);
+            Thread.Sleep(1000);
+            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Warning);
+
+            Thread.Sleep(1000);
+            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Error);
+            Thread.Sleep(1000);
+            SplashScreen.UdpateStatusText("Testing Default Message Color");
+            Thread.Sleep(1000);
+            SplashScreen.UdpateStatusText("Items Loaded..");
+            Thread.Sleep(500);
+
+            this.Show();
+            SplashScreen.CloseSplashScreen();
+            this.Activate();
             //frmKetNoi kn = new frmKetNoi();
             try
             {

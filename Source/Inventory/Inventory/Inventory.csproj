@@ -129,6 +129,10 @@
       <Project>{f1edb54e-6bca-4689-896a-98a6f99816b2}</Project>
       <Name>Inventory.XuatTamVatTu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SplashScreenThreaded_src\SplashScreenThreaded.csproj">
+      <Project>{1c8df7ca-845c-44c5-b33f-49abc9d19938}</Project>
+      <Name>SplashScreenThreaded</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\background.jpg" />
