@@ -286,11 +286,53 @@ namespace Inventory.EntityClass
                 {
                     for (; i < new_dt.Rows.Count; i++)
                     {
-                        Insert_row(maPhieu, new_dt, i);
-                    }
+                        //InsertTonKho(string mavt, int idkho, int soluong, string maphieu)
+                        bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                        if(bXacNhanXuat)
+                        {
+                            clsTonKho ton = new clsTonKho();
+                            clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                            string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                            int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                            int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+                            int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                            if ((slTon - SLTX) > 0)
+                            {
+                                xlc.InsertTonKho(mvt, IDKho, 0-SLTX, maPhieu);
+                            }
+                            else
+                            {
+                                //
+                            }
+                        }
 
+                        bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                        if (bXacNhanHoanNhapGiuLai)
+                        {
+                            clsTonKho ton = new clsTonKho();
+
+                            clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                            string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                            int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                            int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                            int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+                            //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                            if (SLHN > 0)
+                            {
+                                xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                            }
+
+                            if (SLGL > 0)
+                            {
+                                //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                                //Add nợ
+                            }
+                        }
+                        Insert_row(maPhieu, new_dt, i);
+
+                    }
                     return 1;
-                }
+                } //End Insert mới
 
                 DataRow selectedRow = new_dt.Rows[i];
 
@@ -298,13 +340,101 @@ namespace Inventory.EntityClass
                 int ID_kho = Int32.Parse(selectedRow["ID_kho"].ToString());
 
                 DataRow[] KiemTra = old_dt.Select("Ma_vat_tu = \'" + Ma_vat_tu + "\' AND ID_kho = \'" + ID_kho + "\'");
+                //Update data da co
                 if (KiemTra.Length > 0)
                 {
+                    bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                    bool bOld_XacNhanXuat = bool.Parse(KiemTra[0]["Da_duyet_xuat_vat_tu"].ToString());
+
+                    if (bXacNhanXuat == true && bOld_XacNhanXuat == false)
+                    {
+                        clsTonKho ton = new clsTonKho();
+                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                        int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+                        int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                        if ((slTon - SLTX) > 0)
+                        {
+                            xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                        }
+                        else
+                        {
+                            //
+                        }
+                    }
+
+                    bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    bool bOld_XacNhanHoanNhapGiuLai = bool.Parse(KiemTra[0]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    if (bXacNhanHoanNhapGiuLai == true && bOld_XacNhanHoanNhapGiuLai == false)
+                    {
+                        clsTonKho ton = new clsTonKho();
+
+                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                        int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                        int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+                        //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                        if (SLHN > 0)
+                        {
+                            xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                        }
+
+                        if (SLGL > 0)
+                        {
+                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                            //Add nợ
+                        }
+                    }
+
                     Update_row(maPhieu, new_dt, i);
                     old_dt.Rows.Remove(KiemTra[0]);
                 }
                 else
                 {
+                    bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                    if (bXacNhanXuat)
+                    {
+                        clsTonKho ton = new clsTonKho();
+                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                        int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+                        int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                        if ((slTon - SLTX) > 0)
+                        {
+                            xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                        }
+                        else
+                        {
+                            //
+                        }
+                    }
+
+                    bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    if (bXacNhanHoanNhapGiuLai)
+                    {
+                        clsTonKho ton = new clsTonKho();
+
+                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                        int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                        int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+                        //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                        if (SLHN > 0)
+                        {
+                            xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                        }
+
+                        if (SLGL > 0)
+                        {
+                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                            //Add nợ
+                        }
+                    }
+
                     Insert_row(maPhieu, new_dt, i);
                 }
             }
@@ -372,7 +502,8 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
             command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
             command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
-            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            command.Parameters.Add("
+                @So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
             command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
             command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
             command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
@@ -570,3 +701,4 @@ namespace Inventory.EntityClass
     }
 }
 
+    
