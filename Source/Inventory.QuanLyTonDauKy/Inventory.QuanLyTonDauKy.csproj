@@ -53,6 +53,12 @@
     <Compile Include="frmNhapTonDauKy.Designer.cs">
       <DependentUpon>frmNhapTonDauKy.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTheKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTheKho.Designer.cs">
+      <DependentUpon>frmTheKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTonDauKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmNhapTonDauKy.resx">
       <DependentUpon>frmNhapTonDauKy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTheKho.resx">
+      <DependentUpon>frmTheKho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTonDauKy.resx">
       <DependentUpon>frmTonDauKy.cs</DependentUpon>

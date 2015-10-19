@@ -55,6 +55,7 @@
     <Compile Include="AutoClosingMessageBox.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="clsChiTietPhieuXuatTam.cs" />
+    <Compile Include="clsChiTietTheKho.cs" />
     <Compile Include="clsChiTietTonKho.cs" />
     <Compile Include="clsChi_Tiet_Phieu_Nhap_Vat_Tu.cs" />
     <Compile Include="clsDMVatTu.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="clsLoaiPhieuNhap.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
     <Compile Include="clsPhieuXuatTamVatTu.cs" />
+    <Compile Include="clsTheKho.cs" />
     <Compile Include="clsThongTinKetNoi.cs" />
     <Compile Include="clsTonDauKy.cs" />
     <Compile Include="clsTonKho.cs" />

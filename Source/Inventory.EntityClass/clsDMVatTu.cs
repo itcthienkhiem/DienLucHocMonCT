@@ -51,7 +51,10 @@ namespace Inventory.EntityClass
             //  this.Don_gia = don_gia;
             this.ID_Don_vi_tinh = id_dvt;
         }
-
+        /// <summary>
+        /// lấy tất cả danh sách mã vật tư
+        /// </summary>
+        /// <returns></returns>
         public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu()
         {
             //m_dbConnection.Open();
@@ -88,7 +91,10 @@ namespace Inventory.EntityClass
 
             return dataCollection;
         }
-
+        /// <summary>
+        /// lấy danh sách tên vật tư
+        /// </summary>
+        /// <returns></returns>
         public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu()
         {
             // m_dbConnection.Open();
@@ -96,24 +102,26 @@ namespace Inventory.EntityClass
             DataSet ds = new DataSet();
             System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-            string sql = "";
-            sql += "SELECT ";
-            sql += "Ten_vat_tu ";
-            sql += "FROM DM_Vat_Tu ";
+          //  System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.DM_Vat_Tu
+                        select ep
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(ds);
-            m_dbConnection.Close();
+        ).ToList();
 
-            foreach (DataRow row in ds.Tables[0].Rows)
+            temp.ToList().ForEach((n) =>
             {
-                dataCollection.Add(row[0].ToString());
-            }
+                dataCollection.Add(n.Ten_vat_tu);
+
+            });
 
             return dataCollection;
         }
-
+        /// <summary>
+        /// lấy tất cả thông tin vật tư
+        /// </summary>
+        /// <returns></returns>
         public DataTable getAll_Ma_Ten_VatTu()
         {
             m_dbConnection.Open();
@@ -132,7 +140,18 @@ namespace Inventory.EntityClass
 
             return dt;
         }
+        public DataTable getThongTinTuMaVT(string mavt)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.DM_Vat_Tu
+                        where ep.Ma_vat_tu==mavt
+                        select ep
 
+        ).ToList();
+
+            return Utilities.clsThamSoUtilities.ToDataTable(temp);
+        }
         public string getDVT_from_IDVT(string ID_vat_tu)
         {
             m_dbConnection.Open();
@@ -213,7 +232,11 @@ namespace Inventory.EntityClass
 
             return dt.Rows[0]["Ma_vat_tu"].ToString();
         }
-
+        /// <summary>
+        /// lấy tên vật tư từ mã VT
+        /// </summary>
+        /// <param name="MaVatTu"></param>
+        /// <returns></returns>
         public string getTenVatTu(string MaVatTu)
         {
             DatabaseHelper help = new DatabaseHelper();

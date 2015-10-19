@@ -442,5 +442,51 @@ namespace Inventory
             frms.Clear();
             frms.Add(frm);
         }
+
+        private void thẻKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTheKho frm = new frmTheKho();
+            frm.Text = "Thẻ kho ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
+
+        private void nhậpKhoTừFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNhapTuFile frm = new frmNhapTuFile();
+            frm.Text = "Nhập từ file  ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
     }
 }

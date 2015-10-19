@@ -64,7 +64,24 @@ namespace Inventory.EntityClass
        }
        // End GetAll
 
+       public string getTenDVTTuMa(string madvt)
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm = (from d in help.ent.DM_Don_vi_tinh
+                        select new
+                        {
+                       
+                            d.Ten_don_vi_tinh,
+                          
+                        }).ToList();
+               dbcxtransaction.Commit();
+               return dm[0].Ten_don_vi_tinh.ToString();
+           }
        
+       }
 
        /// <summary>
        /// Kiểm tra trùng lập trước khi ADD

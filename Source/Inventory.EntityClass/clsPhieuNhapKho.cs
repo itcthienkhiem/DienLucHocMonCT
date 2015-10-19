@@ -39,7 +39,8 @@ namespace Inventory.EntityClass
         }
 
         /// <summary>
-        /// Get tất cả dữ liệu từ CSDL, dùng cho Grid
+        /// Get tất cả dữ liệu từ CSDL, dùng cho Grid 
+        /// chưa phân kho 
         /// </summary>
         /// <returns>DataTable</returns>
         public DataTable GetAll()
