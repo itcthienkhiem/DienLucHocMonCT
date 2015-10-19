@@ -97,6 +97,8 @@ namespace Inventory.XuatTamVatTu
 
             //cbMaPhieuXuatTam.Items.Clear();
             //init_cbMaPhieuXuatTam();
+
+            //cbMuonVTTaiKho.Items.RemoveAt(0);
         }
 
         public void frmChiTietPhieuXuatTam_Load(object sender, EventArgs e)
@@ -1205,7 +1207,15 @@ namespace Inventory.XuatTamVatTu
 
         private void cbKhoXuat_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            ComboBox cb = (ComboBox)sender;
 
+            int val = Int32.Parse(cb.SelectedValue.ToString());
+
+            init_cbMuonVTTaiKho();
+
+            int index = cbMuonVTTaiKho.Items.IndexOf(val);
+
+            cbMuonVTTaiKho.Items.RemoveAt(index);
         }
 
     }

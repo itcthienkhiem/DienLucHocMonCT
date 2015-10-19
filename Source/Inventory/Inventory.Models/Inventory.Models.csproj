@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat_luong.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Chi_Tiet_Phieu_Nhap_Vat_Tu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

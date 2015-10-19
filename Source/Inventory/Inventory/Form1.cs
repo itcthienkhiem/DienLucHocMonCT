@@ -30,7 +30,7 @@ namespace Inventory
             splashthread.Start();
 
             InitializeComponent();
-            lapToolStripMenuItem_Click(null, null);
+            //lapToolStripMenuItem_Click(null, null);
          
             
             //   DatabaseHelper help = new DatabaseHelper();
