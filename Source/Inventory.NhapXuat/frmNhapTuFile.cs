@@ -21,18 +21,23 @@ namespace Inventory.NhapXuat
 
         private void btnDuyetFile_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog theDialog = new OpenFileDialog();
-            //theDialog.Title = "Open excel File";
-            //theDialog.Filter = "xlsx files|*.xlsx";
-            //theDialog.InitialDirectory = @"C:\";
-            //if (theDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //        txtTenDuongDan.Text =  (theDialog.FileName.ToString());
-            //}
-            FileStream stream = File.Open(txtTenDuongDan.Text, FileMode.Open, FileAccess.Read);
+            OpenFileDialog theDialog = new OpenFileDialog();
+            theDialog.Title = "Open excel File";
+            theDialog.Filter = "xlsx files|*.xlsx";
+            theDialog.InitialDirectory = @"C:\";
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtTenDuongDan.Text = (theDialog.FileName.ToString());
+            }
+            try
+            {
+              
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
 
-            //lấy định dạng 
-            //nếu 2003 
+        private void ReadFile(FileStream stream)
+        {
             IExcelDataReader excelReader = null;
             if (stream.Name.Split('.')[1].Equals("xls"))
             {
@@ -50,7 +55,7 @@ namespace Inventory.NhapXuat
             //4. DataSet - Create column names from first row
             //  excelReader.IsFirstRowAsColumnNames = true;
             //  DataSet result = excelReader.AsDataSet();
-            gridDanhSachPhieuNhap.DataSource = result.Tables[0];
+            gridDanhSachPhieuNhap.DataSource = result.Tables[cbChonSheet.SelectedIndex];
             this.gridDanhSachPhieuNhap.Sort(this.gridDanhSachPhieuNhap.Columns["column1"], ListSortDirection.Ascending);
             //5. Data Reader methods
             //while (excelReader.Read())
@@ -60,7 +65,6 @@ namespace Inventory.NhapXuat
             //clsPhieuNhapKho pn = new clsPhieuNhapKho();
 
             //6. Free resources (IExcelDataReader is IDisposable)
-
         }
 
         private string ConvertSortDirectionToSql(SortDirection sortDirection)
@@ -85,6 +89,32 @@ namespace Inventory.NhapXuat
         private void gridDanhSachPhieuNhap_Sorted(object sender, EventArgs e)
         {
 
+        }
+
+
+
+        private void btnSheet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbChonSheet.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa chọn sheet hiển thị!");
+                    return;
+                }
+                FileStream stream = File.Open(txtTenDuongDan.Text, FileMode.Open, FileAccess.Read);
+
+                //lấy định dạng 
+                //nếu 2003 
+                ReadFile(stream);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnDuyetFile_Click(sender, e);
         }
     }
 }
