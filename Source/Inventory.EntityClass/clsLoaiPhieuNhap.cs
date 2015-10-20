@@ -1,49 +1,90 @@
 ﻿using Inventory.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
 namespace Inventory.EntityClass
 {
-  public   class clsLoaiPhieuNhap
+  public   class clsLoaiPhieuNhap :ObjecEntity
   {
       public int ID_LPN;
       public string Ma_LPN;
       public string Ten_LPN;
 
       public clsLoaiPhieuNhap() { }
-      public static object getAll()
+      public override bool KiemTraTrungMa()
       {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ma_loai_phieu_nhap == Ma_LPN);
+          return has;
+      }
+      public override System.Data.DataTable GetAllData()
+      {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        select d).ToList();
+              dbcxtransaction.Commit();
+
+              return Utilities.clsThamSoUtilities.ToDataTable(dm);
+          }
+      }
+      public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
+      {
+          System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
 
           DatabaseHelper help = new DatabaseHelper();
           help.ConnectDatabase();
           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
-              var dm = from d in help.ent.Loai_Phieu_Nhap
-                       select new
-                       {
-                           d.ID_Loai_Phieu_Nhap,
-                           d.Ma_loai_phieu_nhap,
-                           d.Ten_loai_phieu_nhap,
-                       };
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        select d).ToList();
               dbcxtransaction.Commit();
-              return (object)dm.ToList();
+              DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+              foreach (DataRow row in ds.Rows)
+              {
+                  dataCollection.Add(row[TenCot].ToString());
+              }
           }
-
-
-
+          return dataCollection;
       }
+      //public static object getAll()
+      //{
 
-      public bool CheckTonTaiSoDK()
-      {
-          DatabaseHelper help = new DatabaseHelper();
-          help.ConnectDatabase();
-          bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ma_loai_phieu_nhap== Ma_LPN);
-          return has;
+      //    DatabaseHelper help = new DatabaseHelper();
+      //    help.ConnectDatabase();
+      //    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+      //    {
+      //        var dm = from d in help.ent.Loai_Phieu_Nhap
+      //                 select new
+      //                 {
+      //                     d.ID_Loai_Phieu_Nhap,
+      //                     d.Ma_loai_phieu_nhap,
+      //                     d.Ten_loai_phieu_nhap,
+      //                 };
+      //        dbcxtransaction.Commit();
+      //        return (object)dm.ToList();
+      //    }
 
-      }
+
+
+      //}
+
+      //public bool CheckTonTaiSoDK()
+      //{
+      //    DatabaseHelper help = new DatabaseHelper();
+      //    help.ConnectDatabase();
+      //    bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ma_loai_phieu_nhap== Ma_LPN);
+      //    return has;
+
+      //}
       public int Insert()
       {
 

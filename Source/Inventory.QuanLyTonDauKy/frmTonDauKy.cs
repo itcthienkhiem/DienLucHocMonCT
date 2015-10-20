@@ -66,11 +66,12 @@ namespace Inventory.QuanLyTonDauKy
         /// </summary>
         private void initKhoNhap()
         {
-            clsDM_Kho dmKho = new clsDM_Kho();
-            cbKhoNhap.DisplayMember = "Ten_kho";
-            cbKhoNhap.ValueMember = "ID_kho";
+            clsGiaoDienChung.initCombobox(cbKhoNhap, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            //clsDM_Kho dmKho = new clsDM_Kho();
+            //cbKhoNhap.DisplayMember = "Ten_kho";
+            //cbKhoNhap.ValueMember = "ID_kho";
 
-            cbKhoNhap.DataSource =clsDM_Kho .getAll();
+            //cbKhoNhap.DataSource =clsDM_Kho .getAll();
 
             cbKhoNhap.SelectedIndex = -1;
         }

@@ -9,30 +9,20 @@ using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.Models;
 using System.Reflection;
+
 namespace Inventory.DanhMuc
 {
-    /// <summary>
-    /// Write by Khiêm
-    /// 
-    /// Editing...
-    /// To-Do LIST
-    /// [x] Chuyển Status về class, use func thay gì set trực tiếp
-    /// [.] B1: Chuyển phần set button về func tập trung --> B2: Tạo 1 class làm việc này
-    /// * Problem
-    /// [ ] Bỏ tính năng xóa trực tiếp, chuyển dùng biến trạng thái True == Deleted | False.
-    /// [ ] ?
-    /// </summary>
-    public partial class frmDMKho : Form
+    public partial class frmDMChatLuong : Form
     {
-        FormActionDelegate frmAction;
+         FormActionDelegate frmAction;
 
         //Data
-        clsDM_Kho DM_Kho1;
+        clsDMChatLuong DM_cl;
 
         //Quản lý Button
         clsPanelButton PanelButton;
 
-        public frmDMKho()
+        public frmDMChatLuong()
         {
             InitializeComponent();
 
@@ -99,7 +89,7 @@ namespace Inventory.DanhMuc
 
             DataGridViewRow SelectedRow = gridDMKho.Rows[selectedRowCount];
 
-            txtTenKho.Text = SelectedRow.Cells["Ten_kho"].Value.ToString();
+            txtTenKho.Text = SelectedRow.Cells["Loai_chat_luong"].Value.ToString();
         }
         public static DataTable ToDataTable<T>(List<T> items)
         {
@@ -131,7 +121,7 @@ namespace Inventory.DanhMuc
         public void LoadData()
         {
 
-            gridDMKho.DataSource = new clsDM_Kho().GetAllData();
+            gridDMKho.DataSource = new clsDMChatLuong().GetAllData();
    
             gridDMKho.Refresh();
         }
@@ -153,7 +143,7 @@ namespace Inventory.DanhMuc
         /// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            DM_Kho1 = new clsDM_Kho();
+            DM_cl = new clsDMChatLuong();
             if (txtTenKho.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Tên kho không được phép rỗng!");
@@ -163,11 +153,11 @@ namespace Inventory.DanhMuc
             {
                 case enumButton.Them:
                     {
-                        DM_Kho1.Ten_kho = txtTenKho.Text.Trim();
+                        DM_cl.Loai_chat_luong = txtTenKho.Text.Trim();
 
-                        if (!DM_Kho1.CheckTonTaiSoDK())
+                        if (!DM_cl.KiemTraTrungMa())
                         {
-                            if (DM_Kho1.Insert() == 1)
+                            if (DM_cl.Insert() == 1)
                             {
                                 //MessageBox.Show("Bạn đã thêm thành công !");
                                 AutoClosingMessageBox.Show("Bạn đã thêm thành công !", "Thông báo", 1000);
@@ -194,19 +184,19 @@ namespace Inventory.DanhMuc
                     }
                 case enumButton.Xoa:
                         {
-                            DM_Kho1.Ten_kho = txtTenKho.Text;
+                            DM_cl.Loai_chat_luong = txtTenKho.Text;
 
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
-                            DM_Kho1.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
+                            DM_cl.ID_chat_luong = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["ID_chat_luong"].Value.ToString());
 
                             DialogResult dialogResult = MessageBox.Show("Bạn có thật sự muốn xóa không ?", "Cảnh báo!", MessageBoxButtons.YesNo);
                             
                             if (dialogResult == DialogResult.Yes)
                             {
-                                DM_Kho kho = new DM_Kho();
-                                kho.ID_kho = DM_Kho1.ID_kho;
-                                kho.Ten_kho = DM_Kho1.Ten_kho;
-                                if (DM_Kho1.Delete(kho) == 1)
+                                Chat_luong kho = new Chat_luong();
+                                kho.Id_chat_luong = DM_cl.ID_chat_luong;
+                                kho.Loai_chat_luong = DM_cl.Loai_chat_luong;
+                                if (DM_cl.Delete(kho) == 1)
                                 {
                                     //MessageBox.Show("Bạn đã xóa thành công !");
 
@@ -231,18 +221,18 @@ namespace Inventory.DanhMuc
                         }
                 case enumButton.Sua:
                         {
-                            DM_Kho1 = new clsDM_Kho();
-                            DM_Kho1.Ten_kho = txtTenKho.Text;
+                            DM_cl = new clsDMChatLuong();
+                            DM_cl.Loai_chat_luong = txtTenKho.Text;
 
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
 
                             if (selectedRowCount >= 0)
                             {
-                                DM_Kho1.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
-                                DM_Kho kho = new DM_Kho();
-                                kho.ID_kho = DM_Kho1.ID_kho;
-                                kho.Ten_kho = DM_Kho1.Ten_kho;
-                                if (DM_Kho1.Update(kho) == 1)
+                                DM_cl.ID_chat_luong = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["ID_chat_luong"].Value.ToString());
+                                Chat_luong kho = new Chat_luong();
+                                kho.Id_chat_luong = DM_cl.ID_chat_luong;
+                                kho.Loai_chat_luong = DM_cl.Loai_chat_luong;
+                                if (DM_cl.Update(kho) == 1)
                                 {
                                     //MessageBox.Show("Bạn đã cập nhật thành công !");
                                     AutoClosingMessageBox.Show("Bạn đã cập nhật thành công !", "Thông báo", 1000);
@@ -275,7 +265,7 @@ namespace Inventory.DanhMuc
             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
             if (selectedRowCount >= 0 && PanelButton.isClickXoa() || PanelButton.isClickSua())
             {
-                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
+                txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_chat_luong"].Value.ToString();
             }
             // txtTenKho.Text = cell.Value.ToString();
         }

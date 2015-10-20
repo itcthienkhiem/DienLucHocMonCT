@@ -58,10 +58,12 @@
     <Compile Include="clsChiTietTheKho.cs" />
     <Compile Include="clsChiTietTonKho.cs" />
     <Compile Include="clsChi_Tiet_Phieu_Nhap_Vat_Tu.cs" />
+    <Compile Include="clsDMChatLuong.cs" />
     <Compile Include="clsDMVatTu.cs" />
     <Compile Include="clsDM_DonViTinh.cs" />
     <Compile Include="clsDM_Kho.cs" />
     <Compile Include="clsDM_NhanVien.cs" />
+    <Compile Include="clsGiaoDienChung.cs" />
     <Compile Include="clsLoaiPhieuNhap.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
     <Compile Include="clsPhieuXuatTamVatTu.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="clsTonKho.cs" />
     <Compile Include="clsXuatVatTuChoNhanVien.cs" />
     <Compile Include="clsXuLyDuLieuChung.cs" />
+    <Compile Include="ObjecEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLDAL.cs" />
   </ItemGroup>

@@ -133,7 +133,7 @@ namespace Inventory.DanhMuc
         public void LoadData()
         {
 
-            gridDMKho.DataSource = clsLoaiPhieuNhap.getAll();
+            gridDMKho.DataSource = new clsLoaiPhieuNhap().GetAllData() ;
 
             gridDMKho.Refresh();
         }
@@ -168,7 +168,7 @@ namespace Inventory.DanhMuc
                         DM_Kho1.Ma_LPN = txtMaLoai.Text.Trim();
                         DM_Kho1.Ten_LPN = txtTenLoai.Text.Trim();
                         
-                        if (!DM_Kho1.CheckTonTaiSoDK())
+                        if (!DM_Kho1.KiemTraTrungMa())
                         {
                             if (DM_Kho1.Insert() == 1)
                             {

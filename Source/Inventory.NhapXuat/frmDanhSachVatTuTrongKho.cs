@@ -18,10 +18,11 @@ namespace Inventory.NhapXuat
 
         private void frmDanhSachVatTuTrongKho_Load(object sender, EventArgs e)
         {
-            cbKho.DataSource = clsDM_Kho.getAll();
-            cbKho.DisplayMember = "Ten_kho";
-            cbKho.ValueMember = "ID_kho";
-            cbKho.SelectedIndex =0;
+            clsGiaoDienChung.initCombobox(cbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            //cbKho.DataSource = clsDM_Kho.getAll();
+            //cbKho.DisplayMember = "Ten_kho";
+            //cbKho.ValueMember = "ID_kho";
+            //cbKho.SelectedIndex =0;
             gridTonKhoThuc.DataSource = clsTonKho.getAll((int)cbKho.SelectedValue) ;
 
         }

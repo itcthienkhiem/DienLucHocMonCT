@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="enumStatus.cs" />
+    <Compile Include="frmDMChatLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMChatLuong.Designer.cs">
+      <DependentUpon>frmDMChatLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDMDonViTinh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmDMChatLuong.resx">
+      <DependentUpon>frmDMChatLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDMDonViTinh.resx">
       <DependentUpon>frmDMDonViTinh.cs</DependentUpon>
     </EmbeddedResource>

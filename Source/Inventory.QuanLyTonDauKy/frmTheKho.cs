@@ -32,14 +32,14 @@ namespace Inventory.QuanLyTonDauKy
             cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             clsDMVatTu vt = new clsDMVatTu();
-            AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
+            //AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
 
-            cbMaVatTu.AutoCompleteCustomSource = combData1;
+            //cbMaVatTu.AutoCompleteCustomSource = combData1;
 
-            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
-            cbMaVatTu.ValueMember = "ID_Vat_tu";
-            cbMaVatTu.DisplayMember = "Ma_vat_tu";
-
+            //cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            //cbMaVatTu.ValueMember = "ID_Vat_tu";
+            //cbMaVatTu.DisplayMember = "Ma_vat_tu";
+            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
             cbMaVatTu.SelectedIndex = -1;
 
 

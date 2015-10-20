@@ -94,7 +94,7 @@
             this.gridDanhSachPhieuNhap.RowHeadersVisible = false;
             this.gridDanhSachPhieuNhap.RowTemplate.Height = 30;
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(964, 412);
+            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(963, 412);
             this.gridDanhSachPhieuNhap.TabIndex = 53;
             this.gridDanhSachPhieuNhap.Sorted += new System.EventHandler(this.gridDanhSachPhieuNhap_Sorted);
             // 
@@ -177,12 +177,14 @@
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_gmc;
             this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnDong.Location = new System.Drawing.Point(896, 6);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(50, 50);
             this.btnDong.TabIndex = 2;
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // linkLabel1
             // 

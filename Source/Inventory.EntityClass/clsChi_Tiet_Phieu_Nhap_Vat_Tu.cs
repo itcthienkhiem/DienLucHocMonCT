@@ -16,7 +16,7 @@ namespace Inventory.EntityClass
         public int? ID_chi_tiet_phieu_nhap;
         public string Ma_phieu_nhap;
         public string Ma_vat_tu;
-        public string Chat_luong;
+        public int ID_Chat_luong;
         public string Don_vi;
         public int? So_luong_yeu_cau;
         public int? So_luong_thuc_lanh;
@@ -50,7 +50,7 @@ namespace Inventory.EntityClass
                              d.ID_chi_tiet_phieu_nhap_vat_tu,
                              d.Ma_phieu_nhap,
                              d.Ma_vat_tu,
-                             d.Chat_luong,
+                             d.ID_Chat_luong,
                              d.So_luong_yeu_cau,
                              d.So_luong_thuc_lanh,
                              d.Don_gia,
@@ -143,6 +143,7 @@ namespace Inventory.EntityClass
             var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
                               join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
+                              join f in help.ent.Chat_luong on ep.ID_Chat_luong equals f.Id_chat_luong
                               where ep.Ma_phieu_nhap.Equals(ma_Phieunhap)
 
                               select new
@@ -151,13 +152,14 @@ namespace Inventory.EntityClass
                                   Ma_vat_tu = ep.Ma_vat_tu,
                                   Ten_vat_tu = u.Ten_vat_tu,
                                   Ten_don_vi_tinh = e.Ten_don_vi_tinh,
-                                  Chat_luong = ep.Chat_luong,
+                                  Chatluong = f.Loai_chat_luong,
                                   So_luong_yeu_cau = ep.So_luong_yeu_cau,
                                   So_luong_thuc_nhap = ep.So_luong_thuc_lanh,
                                   Thanh_tien = ep.Thanh_tien,
                                   Don_gia = ep.Don_gia,
                                   id_don_vi_tinh = ep.ID_Don_vi_tinh,
                                   Ten_DVT = e.Ten_don_vi_tinh,
+                                  
                               }).ToList();
             //return entryPoint.ToList();
 
@@ -180,7 +182,7 @@ namespace Inventory.EntityClass
                 row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
                 row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
                 row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
-                row.SetField<string>("Chat_luong", n.Chat_luong);
+                row.SetField<string>("Chat_luong", n.Chatluong);
                 row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
                 row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
                 row.SetField<int?>("Thanh_tien", n.Thanh_tien);
@@ -310,7 +312,7 @@ namespace Inventory.EntityClass
                     {
                         Ma_phieu_nhap = this.Ma_phieu_nhap,
                         Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                        Chat_luong = this.Chat_luong,
+                        ID_Chat_luong = this.ID_Chat_luong,
                         So_luong_yeu_cau = this.So_luong_yeu_cau,
                         So_luong_thuc_lanh = this.So_luong_thuc_lanh,
                         Don_gia = this.Don_gia,

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Data.Entity;
 namespace Inventory.EntityClass
 {
-   public class clsDM_Kho
+    public class clsDM_Kho : ObjecEntity
     {
         public int ID_kho;
         public string Ten_kho;
@@ -20,96 +20,93 @@ namespace Inventory.EntityClass
        
        }
 
-    
-        public System.Windows.Forms.AutoCompleteStringCollection getListMaPhieuXuatTam()
-        {
-            //m_dbConnection.Open();
+       public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
+       {
+           System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-            //DataSet ds = new DataSet();
-            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql += "Ten_kho ";
-            //sql += "FROM DM_Kho ";
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(ds);
-            //m_dbConnection.Close();
-              DatabaseHelper help = new DatabaseHelper();
-           help.ConnectDatabase();
-           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-           {
-               var dm =( from d in help.ent.DM_Kho
-                        select new
-                        {
-                          
-                            d.Ten_kho
-                        }).ToList();
-               dbcxtransaction.Commit();
-               DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
-               foreach (DataRow row in ds.Rows)
-               {
-                   dataCollection.Add(row[0].ToString());
-               }
-           }
-            return dataCollection;
-        }
-
-        public DataTable getAll_TenKho()
-        {
-                 DatabaseHelper help = new DatabaseHelper();
+           DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
                var dm = (from d in help.ent.DM_Kho
-                         select new
-                         {
-                             d.ID_kho,
-                             d.Ten_kho
-                         }).ToList();
+                         select d).ToList();
                dbcxtransaction.Commit();
                DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
-               return ds;
+               foreach (DataRow row in ds.Rows)
+               {
+                   dataCollection.Add(row[TenCot].ToString());
+               }
            }
-            //m_dbConnection.Open();
+           return dataCollection;
+       }
+        
 
-            //DataTable dt = new DataTable();
+        //public DataTable getAll_TenKho()
+        //{
+        //         DatabaseHelper help = new DatabaseHelper();
+        //   help.ConnectDatabase();
+        //   using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+        //   {
+        //       var dm = (from d in help.ent.DM_Kho
+        //                 select new
+        //                 {
+        //                     d.ID_kho,
+        //                     d.Ten_kho
+        //                 }).ToList();
+        //       dbcxtransaction.Commit();
+        //       DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+        //       return ds;
+        //   }
+        //    //m_dbConnection.Open();
 
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql += "ID_kho, Ten_kho ";
-            //sql += "FROM DM_Kho";
+        //    //DataTable dt = new DataTable();
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            //m_dbConnection.Close();
+        //    //string sql = "";
+        //    //sql += "SELECT ";
+        //    //sql += "ID_kho, Ten_kho ";
+        //    //sql += "FROM DM_Kho";
 
-            //return dt;
-        }
+        //    //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+        //    //SqlDataAdapter da = new SqlDataAdapter(command);
+        //    //da.Fill(dt);
+        //    //m_dbConnection.Close();
 
-        public static object getAll()
+        //    //return dt;
+        //}
+       public override DataTable GetAllData()
        {
-          
            DatabaseHelper help = new DatabaseHelper();
-           help.ConnectDatabase();
-           using (var dbcxtransaction =help.ent.Database.BeginTransaction())
-           {
-               var dm = from d in help.ent.DM_Kho
-                        select new
-                        {
-                            d.ID_kho,
-                            d.Ten_kho
-                        };
-               dbcxtransaction.Commit();
-               return (object)dm.ToList();
-           }
+               help.ConnectDatabase();
+               using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+               {
+                   var dm = (from d in help.ent.DM_Kho
+                             select d).ToList();
+                   dbcxtransaction.Commit();
+
+                   return Utilities.clsThamSoUtilities.ToDataTable(dm);
+               }
+       }
+       // public static object getAll()
+       //{
+          
+       //    DatabaseHelper help = new DatabaseHelper();
+       //    help.ConnectDatabase();
+       //    using (var dbcxtransaction =help.ent.Database.BeginTransaction())
+       //    {
+       //        var dm = from d in help.ent.DM_Kho
+       //                 select new
+       //                 {
+       //                     d.ID_kho,
+       //                     d.Ten_kho
+       //                 };
+       //        dbcxtransaction.Commit();
+       //        return (object)dm.ToList();
+       //    }
               
           
 
-       }
+       //}
      
        public bool CheckTonTaiSoDK()
        {

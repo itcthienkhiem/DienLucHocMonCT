@@ -145,7 +145,7 @@ namespace Inventory.NhapXuat
                                     chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
                                     chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                                    chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
+                                    chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
                                     chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
                                     chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
@@ -235,7 +235,7 @@ namespace Inventory.NhapXuat
 
                                         chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                         chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
-                                        chitiet.Chat_luong = (dataTable1.Rows[i]["Chat_luong"].ToString());
+                                        chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
                                         chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
                                         chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                         chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
@@ -438,7 +438,7 @@ namespace Inventory.NhapXuat
                     dr["Ma_vat_tu"] = cbMaVatTu.Text;
                     dr["ten_vat_tu"] = cbTenVatTu.Text;
                     dr["Ten_don_vi_tinh"] = txtDVT.Text;
-                    dr["chat_luong"] = txtChatLuong.Text;
+                    dr["chat_luong"] = cbChatLuong.SelectedValue;
                     dr["so_luong_yeu_cau"] = txtSLYC.Text;
                     dr["so_luong_thuc_lanh"] = txtSLTX.Text;
                     dr["don_gia"] = txtDonGia.Text;
@@ -491,7 +491,7 @@ namespace Inventory.NhapXuat
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                 txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
                 txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value.ToString();
-                txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
+                cbChatLuong.SelectedText = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
 
@@ -530,7 +530,7 @@ namespace Inventory.NhapXuat
                     gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value = cbMaVatTu.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ten_vat_tu"].Value = cbTenVatTu.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value = txtDVT.Text;
-                    gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = txtChatLuong.Text;
+                    gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = cbChatLuong.SelectedText;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLYC.Text;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value = txtSLTX.Text;
                     gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
@@ -617,7 +617,7 @@ namespace Inventory.NhapXuat
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                 txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
                 txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_thuc_lanh"].Value.ToString();
-                txtChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
+                cbChatLuong.SelectedText = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
                 //PanelButton.setClickStatus(sttaf);
@@ -845,38 +845,28 @@ namespace Inventory.NhapXuat
 
             initMaVatTu();
             initTenVatTu();
+            initChatLuong();
             ///
-            cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
-            cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
-            cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
+            clsGiaoDienChung.initCombobox(cbChatLuong, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
+            //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
+            //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
+            //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
 
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
         }
 
-        //Chưa rõ
-        internal Dictionary<string, clsDMVatTu> GetDict(DataTable dt)
+        private void initChatLuong()
         {
-            var areas = new Dictionary<string, clsDMVatTu>();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                areas.Add(dt.Rows[i]["Ma_vat_tu"].ToString(), new clsDMVatTu(
-
-                     dt.Rows[i]["Ma_vat_tu"].ToString(),
-                      dt.Rows[i]["ten_vat_tu"].ToString(),
-                  (dt.Rows[i]["ten_don_vi_tinh"].ToString()),
-                        dt.Rows[i]["Mo_ta"].ToString()
-                        ,
-                     //  long.Parse(dt.Rows[i]["Don_gia"].ToString())
-                     //  ,
-                       int.Parse(dt.Rows[i]["ID_Don_vi_tinh"].ToString())
-                    ));
-
-                //   dt.Rows[i]["ten_vat_tu"];
-
-            }
-            return areas;
+            clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
         }
+
+        private void initTenVatTu()
+        {
+            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
+        }
+
+      
 
         /// <summary>
         /// Initializes --> combobox kho nhap.
@@ -896,45 +886,15 @@ namespace Inventory.NhapXuat
         /// </summary>
         private void initMaVatTu()
         {
-            this.cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            AutoCompleteStringCollection combData1 = new AutoCompleteStringCollection();
-            DataTable temp = new DataTable();
-            temp = new clsDMVatTu().GetAll();
-            for (int i = 0; i < temp.Rows.Count; i++)
-            {
-                combData1.Add(temp.Rows[i]["ma_vat_tu"].ToString());
-            }
-
-            cbMaVatTu.AutoCompleteCustomSource = combData1;
-            cbMaVatTu.DataSource = combData1;
-
-            cbMaVatTu.SelectedIndex = 0;
+            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_vat_tu", "Ma_vat_tu");
         }
 
 
         /// <summary>
         /// Initializes --> combobox ten vat tu.
         /// </summary>
-        private void initTenVatTu()
-        {
-            this.cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            AutoCompleteStringCollection combData2 = new AutoCompleteStringCollection();
-            DataTable temp = new DataTable();
-            temp = new clsDMVatTu().GetAll();
-            for (int i = 0; i < temp.Rows.Count;i++ )
-            {
-                combData2.Add(temp.Rows[i]["Ten_vat_tu"].ToString());
-            }
-
-            cbTenVatTu.AutoCompleteCustomSource = combData2;
-            cbTenVatTu.DataSource = combData2;
-
-            cbTenVatTu.SelectedIndex = -1;
-        }
+       
 
         public void FormAction(enumFormAction2 frmAct)
         {
@@ -986,7 +946,7 @@ namespace Inventory.NhapXuat
             cbTenVatTu.Enabled = _status;
             txtSLYC.Enabled = _status;
             txtSLTX.Enabled = _status;
-            txtChatLuong.Enabled = _status;
+            cbChatLuong.Enabled = _status;
             btnAdd.Enabled = _status;
             btnEdit.Enabled = _status;
             btnSaveGrid.Enabled = _status;
@@ -1019,7 +979,7 @@ namespace Inventory.NhapXuat
             cbTenVatTu.Text = "";
 
             txtDVT.Text = "";
-            txtChatLuong.Text = "";
+            cbChatLuong.Text = "";
             txtSLTX.Text = "0";
             txtSLYC.Text = "0";
             txtDonGia.Text = "0";
@@ -1090,13 +1050,13 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
 
-                string Ma_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+                string Ma_Vat_Tu = c.SelectedText.ToString();
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
                 string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
 
-                cbTenVatTu.SelectedIndex = cbTenVatTu.Items.IndexOf(Ten_Vat_Tu);
+                cbTenVatTu.SelectedText = Ten_Vat_Tu;
 
                 DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
 

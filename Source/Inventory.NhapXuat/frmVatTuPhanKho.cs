@@ -17,10 +17,10 @@ namespace Inventory.NhapXuat
         {
             InitializeComponent();
             init();
-
-            cbKhoNhanVatTu.DataSource = clsDM_Kho.getAll();
-            cbKhoNhanVatTu.DisplayMember = "Ten_kho";
-            cbKhoNhanVatTu.ValueMember = "ID_kho";
+            clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            //cbKhoNhanVatTu.DataSource = clsDM_Kho.getAll();
+            //cbKhoNhanVatTu.DisplayMember = "Ten_kho";
+            //cbKhoNhanVatTu.ValueMember = "ID_kho";
         }
         public void init()
         {
