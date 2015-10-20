@@ -455,36 +455,38 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbMaVatTu()
         {
-            cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_vat_tu", "Ma_vat_tu");
+            //cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsDMVatTu vt = new clsDMVatTu();
-            AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
+            //clsDMVatTu vt = new clsDMVatTu();
+            //AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
 
-            cbMaVatTu.AutoCompleteCustomSource = combData1;
+            //cbMaVatTu.AutoCompleteCustomSource = combData1;
 
-            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
-            cbMaVatTu.ValueMember = "ID_Vat_tu";
-            cbMaVatTu.DisplayMember = "Ma_vat_tu";
+            //cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            //cbMaVatTu.ValueMember = "ID_Vat_tu";
+            //cbMaVatTu.DisplayMember = "Ma_vat_tu";
 
             cbMaVatTu.SelectedIndex = -1;
         }
 
         private void init_cbTenVatTu()
         {
-            cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
+            //cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsDMVatTu vt = new clsDMVatTu();
-            AutoCompleteStringCollection combData1 = vt.getListTenVatTu();
+            //clsDMVatTu vt = new clsDMVatTu();
+            //AutoCompleteStringCollection combData1 = vt.getListTenVatTu();
 
-            cbTenVatTu.AutoCompleteCustomSource = combData1;
+            //cbTenVatTu.AutoCompleteCustomSource = combData1;
 
-            cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
-            cbTenVatTu.ValueMember = "ID_Vat_tu";
-            cbTenVatTu.DisplayMember = "Ten_vat_tu";
+            //cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            //cbTenVatTu.ValueMember = "ID_Vat_tu";
+            //cbTenVatTu.DisplayMember = "Ten_vat_tu";
 
-            cbTenVatTu.SelectedIndex = -1;
+            //cbTenVatTu.SelectedIndex = -1;
         }
 
         private void init_cbMaPhieuXuatTam()
@@ -515,11 +517,10 @@ namespace Inventory.XuatTamVatTu
 
             //cbKhoXuat.AutoCompleteCustomSource = combData1;
 
-            cbKhoXuat.DataSource = DMKho.getAll_TenKho();
-            cbKhoXuat.ValueMember = "ID_kho";
-            cbKhoXuat.DisplayMember = "Ten_kho";
+            clsGiaoDienChung.initCombobox(cbKhoXuat, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");// DMKho.getAll_TenKho();
+            
 
-            cbKhoXuat.SelectedIndex = -1;
+           
         }
 
         /// <summary>
@@ -535,9 +536,7 @@ namespace Inventory.XuatTamVatTu
 
             //cbMuonVTTaiKho.AutoCompleteCustomSource = combData1;
 
-            cbMuonVTTaiKho.DataSource = DMKho.getAll_TenKho();
-            cbMuonVTTaiKho.ValueMember = "ID_kho";
-            cbMuonVTTaiKho.DisplayMember = "Ten_kho";
+            clsGiaoDienChung.initCombobox(cbMuonVTTaiKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
 
             cbMuonVTTaiKho.SelectedIndex = -1;
         }
