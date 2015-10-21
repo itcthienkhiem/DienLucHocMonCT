@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.gridMaster = new System.Windows.Forms.DataGridView();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,7 +97,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtChatLuong = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
@@ -115,6 +114,7 @@
             this.cbLoaiPhieuNhan = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.txtXuatTaiKho = new System.Windows.Forms.TextBox();
+            this.cbChatLuong = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -135,8 +135,8 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -144,15 +144,15 @@
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -170,8 +170,8 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMaster.Size = new System.Drawing.Size(1017, 290);
@@ -661,6 +661,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel1.Controls.Add(this.cbChatLuong);
             this.panel1.Controls.Add(this.btnDel);
             this.panel1.Controls.Add(this.btnSaveGrid);
             this.panel1.Controls.Add(this.btnEdit);
@@ -669,7 +670,6 @@
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Controls.Add(this.txtChatLuong);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.cbTenVatTu);
             this.panel1.Controls.Add(this.cbMaVatTu);
@@ -769,14 +769,6 @@
             this.label21.Size = new System.Drawing.Size(67, 14);
             this.label21.TabIndex = 81;
             this.label21.Text = "Chất lượng";
-            // 
-            // txtChatLuong
-            // 
-            this.txtChatLuong.Enabled = false;
-            this.txtChatLuong.Location = new System.Drawing.Point(698, 25);
-            this.txtChatLuong.Name = "txtChatLuong";
-            this.txtChatLuong.Size = new System.Drawing.Size(91, 22);
-            this.txtChatLuong.TabIndex = 82;
             // 
             // btnAdd
             // 
@@ -946,6 +938,14 @@
             this.txtXuatTaiKho.Size = new System.Drawing.Size(199, 22);
             this.txtXuatTaiKho.TabIndex = 82;
             // 
+            // cbChatLuong
+            // 
+            this.cbChatLuong.FormattingEnabled = true;
+            this.cbChatLuong.Location = new System.Drawing.Point(696, 25);
+            this.cbChatLuong.Name = "cbChatLuong";
+            this.cbChatLuong.Size = new System.Drawing.Size(93, 22);
+            this.cbChatLuong.TabIndex = 87;
+            // 
             // frmNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1043,7 +1043,6 @@
         private System.Data.DataColumn dataColumn8;
         private System.Data.DataColumn dataColumn9;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtChatLuong;
         private System.Windows.Forms.Button btnSaveGrid;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.DateTimePicker dtNgayNhap;
@@ -1074,5 +1073,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Don_gia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Thanh_tien;
         private System.Windows.Forms.TextBox txtXuatTaiKho;
+        private System.Windows.Forms.ComboBox cbChatLuong;
     }
 }
