@@ -16,7 +16,7 @@ namespace Inventory.EntityClass
         /// hàm xữ lý thêm vật tư vào kho liên quan đến nhiều lớp, tính toán phức tạp
         /// </summary>
         /// <returns></returns>
-        public int InsertTonKho(string mavt, int idkho, int soluong, string maphieu,DateTime NgayNhap)
+        public int InsertTonKho(string mavt, int idkho, int soluong, string maphieu,DateTime NgayNhap,int ID_chat_luong)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -36,6 +36,7 @@ namespace Inventory.EntityClass
                         entTonKho.ID_kho = idkho;
                         entTonKho.Ma_vat_tu = mavt;
                         entTonKho.So_luong = soluong;
+                        entTonKho.ID_Chat_luong = ID_chat_luong;
                         help.ent.Ton_kho.Add(entTonKho);
                         help.ent.SaveChanges();
 
@@ -98,6 +99,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
+                            tk.ID_Chat_luong = ID_chat_luong;
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 
@@ -156,6 +158,7 @@ namespace Inventory.EntityClass
                         cttk.ID_Ton_kho = stud.ID_ton_kho;
                         cttk.Ma_phieu = maphieu;
                         cttk.So_luong = stud.So_luong;
+                        
                         cttk.Ngay_thay_doi = DateTime.Now;
                         cttk.Tang_Giam = true;//<-- set tang 
                         help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
@@ -212,6 +215,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
+                            tk.ID_Chat_luong = ID_chat_luong;   
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 

@@ -54,13 +54,13 @@
             this.txtMoTa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.gridDMVatTu = new System.Windows.Forms.DataGridView();
-            this.dataSet1 = new System.Data.DataSet();
-            this.txtMaVatTu = new System.Windows.Forms.TextBox();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mo_ta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSet1 = new System.Data.DataSet();
+            this.txtMaVatTu = new System.Windows.Forms.TextBox();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDMVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -339,18 +339,6 @@
             this.gridDMVatTu.TabIndex = 42;
             this.gridDMVatTu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDMVatTu_CellClick);
             // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "NewDataSet";
-            // 
-            // txtMaVatTu
-            // 
-            this.txtMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtMaVatTu.Location = new System.Drawing.Point(72, 98);
-            this.txtMaVatTu.Name = "txtMaVatTu";
-            this.txtMaVatTu.Size = new System.Drawing.Size(171, 22);
-            this.txtMaVatTu.TabIndex = 35;
-            // 
             // Ma_vat_tu
             // 
             this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
@@ -387,6 +375,18 @@
             this.Mo_ta.HeaderText = "Mô tả";
             this.Mo_ta.Name = "Mo_ta";
             this.Mo_ta.ReadOnly = true;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "NewDataSet";
+            // 
+            // txtMaVatTu
+            // 
+            this.txtMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtMaVatTu.Location = new System.Drawing.Point(72, 98);
+            this.txtMaVatTu.Name = "txtMaVatTu";
+            this.txtMaVatTu.Size = new System.Drawing.Size(171, 22);
+            this.txtMaVatTu.TabIndex = 35;
             // 
             // frmDMVatTu
             // 

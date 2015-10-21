@@ -24,10 +24,10 @@ namespace Inventory
         public MDIMain()
         {
             
-            this.Hide();
-            Thread splashthread = new Thread(new ThreadStart(SplashScreen.ShowSplashScreen));
-            splashthread.IsBackground = true;
-            splashthread.Start();
+            //this.Hide();
+            //Thread splashthread = new Thread(new ThreadStart(SplashScreen.ShowSplashScreen));
+            //splashthread.IsBackground = true;
+            //splashthread.Start();
 
             InitializeComponent();
             //lapToolStripMenuItem_Click(null, null);

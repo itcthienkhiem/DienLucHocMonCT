@@ -125,7 +125,12 @@ namespace Inventory.NhapXuat
                             phieunhap.Kho_nhan = txtKhoNhan.Text;
                             phieunhap.Kho_xuat_ra = txtXuatTaiKho.Text;
                             phieunhap.Da_phan_kho = false;
-                            phieunhap.ID_Loai_Phieu_Nhap =int.Parse( cbLoaiPhieuNhan.SelectedValue.ToString());
+                            if (cbLoaiPhieuNhan.Text == "")
+                            {
+                                MessageBox.Show("Loại phiếu nhập bắt buộc nhập");
+                                return;
+                            }
+                            phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
                        //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             phieunhap.Dia_chi = txtDiaChi.Text;
@@ -151,7 +156,7 @@ namespace Inventory.NhapXuat
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                     chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                     chitiet.Da_duyet = false;
-
+                                    
                                     chitiet.Insert(DAL);
                                  
                                 }
@@ -198,6 +203,7 @@ namespace Inventory.NhapXuat
                                 phieunhap.Ngay_lap = dtNgayNhap.Value;
                                 phieunhap.So_hoa_don = txtSoHD.Text;
                                 phieunhap.Cong_trinh = txtCongTrinh.Text;
+
                                 DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
                                 Phieu_Nhap_Kho nk = new Phieu_Nhap_Kho();
                               
@@ -241,6 +247,7 @@ namespace Inventory.NhapXuat
                                         chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                         chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                         chitiet.Da_duyet = false;
+                                        chitiet.ID_Chat_luong = int .Parse(cbChatLuong.SelectedValue.ToString());
                                         if (chitiet.Insert(DAL) == 1)
                                         {
                                             MessageBox.Show("Chỉnh sữa thông tin thành công !");
@@ -312,7 +319,7 @@ namespace Inventory.NhapXuat
                  //   txtXuatTaiKho.Text = tb.Rows[0]["ID_kho"].ToString();
                     txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
                     txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
-
+                    cbLoaiPhieuNhan.SelectedValue = tb.Rows[0]["ID_Loai_Phieu_Nhap"].ToString();
                     clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                     DataTable vChiTiet = (DataTable)chitiet.GetAll(txtMaPhieuNhap.Text);
                     for (int i = 0; i < vChiTiet.Rows.Count; i++)
@@ -325,6 +332,7 @@ namespace Inventory.NhapXuat
                         dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
                         //  dr["don_vi_tinh"] = vChiTiet.Rows[i]["don_vi_tinh"].ToString() ;
                         dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
+                        dr["ID_chat_luong"] = vChiTiet.Rows[i]["ID_chat_luong"].ToString();
                         dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
                         dr["so_luong_thuc_lanh"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
                         dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
@@ -438,19 +446,23 @@ namespace Inventory.NhapXuat
                     dr["Ma_vat_tu"] = cbMaVatTu.Text;
                     dr["ten_vat_tu"] = cbTenVatTu.Text;
                     dr["Ten_don_vi_tinh"] = txtDVT.Text;
-                    dr["chat_luong"] = cbChatLuong.SelectedValue;
+                    dr["chat_luong"] = cbChatLuong.Text;
+                    dr["ID_chat_luong"] = cbChatLuong.SelectedValue;
                     dr["so_luong_yeu_cau"] = txtSLYC.Text;
                     dr["so_luong_thuc_lanh"] = txtSLTX.Text;
                     dr["don_gia"] = txtDonGia.Text;
                     clsDMVatTu vt = new clsDMVatTu();
                     DataTable temp = vt.GetAll(cbMaVatTu.Text);
                     dr["ID_don_vi_tinh"] = temp.Rows[0]["ID_Don_vi_tinh"];
-                    dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
+                    if (txtDonGia.Text == "")
+                        txtDonGia.Text = "0";
+                    dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text)==0;
 
                     dataTable1.Rows.Add(dr);
 
                     ResetGridInputForm();
                     PanelButton.setClickStatus(sttaf);
+
                 }
                 catch (Exception ex)
                 {
@@ -491,7 +503,7 @@ namespace Inventory.NhapXuat
                 cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                 txtSLYC.Text = gridMaster.Rows[selectedRowCount].Cells["So_luong_yeu_cau"].Value.ToString();
                 txtSLTX.Text = gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value.ToString();
-                cbChatLuong.SelectedText = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
+                cbChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["Chat_luong"].Value.ToString();
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
 
 
@@ -530,13 +542,17 @@ namespace Inventory.NhapXuat
                     gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value = cbMaVatTu.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ten_vat_tu"].Value = cbTenVatTu.Text;
                     gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value = txtDVT.Text;
-                    gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = cbChatLuong.SelectedText;
+                    gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value = cbChatLuong.Text;
+                    gridMaster.Rows[selectedRowCount].Cells["ID_chat_luong"].Value = cbChatLuong.SelectedValue;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_yeu_cau"].Value = txtSLYC.Text;
                     gridMaster.Rows[selectedRowCount].Cells["so_luong_thuc_lanh"].Value = txtSLTX.Text;
                     gridMaster.Rows[selectedRowCount].Cells["don_gia"].Value = txtDonGia.Text;
                     clsDMVatTu vt = new clsDMVatTu();
                     DataTable temp = vt.GetAll(cbMaVatTu.Text);
                     gridMaster.Rows[selectedRowCount].Cells["ID_don_vi_tinh"].Value = temp.Rows[0]["ID_Don_vi_tinh"];
+                    if (txtDonGia.Text == "")
+                        txtDonGia.Text = "0";
+
                     gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
                   
                     PanelButton.setClickStatus( sttaf);
@@ -847,7 +863,7 @@ namespace Inventory.NhapXuat
             initTenVatTu();
             initChatLuong();
             ///
-            clsGiaoDienChung.initCombobox(cbChatLuong, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
+            clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
             //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
@@ -1056,7 +1072,7 @@ namespace Inventory.NhapXuat
 
                 string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
 
-                cbTenVatTu.SelectedText = Ten_Vat_Tu;
+                cbTenVatTu.Text = Ten_Vat_Tu;
 
                 DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
 

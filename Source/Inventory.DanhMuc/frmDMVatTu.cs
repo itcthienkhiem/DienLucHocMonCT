@@ -180,6 +180,11 @@ namespace Inventory.DanhMuc
 
                         DM_VatTu.Ma_vat_tu = txtMaVatTu.Text.Trim();
                         DM_VatTu.Ten_vat_tu = txtTenVatTu.Text.Trim();
+                        if (cboDonViTinh.Text == "")
+                        {
+                            MessageBox.Show("Bạn chưa chọn đơn vị tính");
+                            return;
+                        }
                         DM_VatTu.ID_Don_vi_tinh = Int32.Parse(cboDonViTinh.SelectedValue.ToString());
                         DM_VatTu.Mo_ta = txtMoTa.Text.Trim();
 
