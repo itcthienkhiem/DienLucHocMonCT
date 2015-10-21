@@ -18,7 +18,8 @@ namespace Inventory.NhapXuat
         string mavattu;
         int idKho;
         int soluong;
-        public frmChiTietNhanVatTu(frmVatTuPhanKho f,string maphieu,string mavattu,int idKho,int soluong,string tenvt,string tenkho)
+        int id_chatluong;
+        public frmChiTietNhanVatTu(frmVatTuPhanKho f,string maphieu,string mavattu,int idKho,int soluong,string tenvt,string tenkho,int id_chatluong)
         {
             InitializeComponent();
             this.f = f;
@@ -30,6 +31,7 @@ namespace Inventory.NhapXuat
             txtTenVT.Text = tenvt;
             txtSoLuong.Text = soluong.ToString();
             txtKhoNhan.Text = tenkho;
+            this.id_chatluong = id_chatluong;
         }
 
         private void btnThem_Click_1(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace Inventory.NhapXuat
 
             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
             DateTime ngayNhap = dtNgayNhap.Value;
-            if (dc.InsertTonKho(mavattu, idKho, soluong, maphieu, ngayNhap) == 1)
+            if (dc.InsertTonKho(mavattu, idKho, soluong, maphieu, ngayNhap,id_chatluong) == 1)
             {
                 MessageBox.Show("Bạn đã thêm thành công vật tư vào kho ");
                 f.init();

@@ -62,25 +62,21 @@ namespace Inventory.EntityClass
                             help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(temp);
                             help.ent.Entry(temp).State = EntityState.Modified;
                         }
+                         help.ent.SaveChanges();
                         //cập nhật trạng thái phiếu nhập
                         var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 
-                                            where d.Ma_phieu_nhap == maphieu && d.Da_phan_kho ==false
+                                            where d.Ma_phieu_nhap == maphieu
                                             select d).ToList();
-                        foreach (var temp in entryPointPN)
+                        if (entryPointPN[0].Da_phan_kho == false)
                         {
-                            temp.Da_phan_kho =true ;
-                            help.ent.Phieu_Nhap_Kho.Attach(temp);
-                            help.ent.Entry(temp).State = EntityState.Modified;
+                            entryPointPN[0].Da_phan_kho = true;
+                            help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
+                            help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
                         }
-                        
                         help.ent.SaveChanges();
 
-                        var entryPointCTPN = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-
-
-                                              where d.Ma_phieu_nhap == maphieu && d.Ma_vat_tu == mavt
-                                              select d).ToList();
+                     
                         
                         //sau đó thêm 1 dòng vào trong thẻ kho
                         //thêm vào chi tiết thẻ kho
@@ -105,11 +101,11 @@ namespace Inventory.EntityClass
 
 
                             Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
-                            cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
+                            cttks.ID_The_Kho = tk.ID_The_Kho;
                             cttks.Ma_phieu = maphieu;
                             cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                             cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCTPN[0].So_luong_thuc_lanh;
+                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
                             cttks.Loai_phieu = true;
                             cttks.Ngay_nhap_xuat = NgayNhap;
                             help.ent.Chi_tiet_the_kho.Add(cttks);
@@ -126,13 +122,16 @@ namespace Inventory.EntityClass
                             cttks.Ma_phieu = maphieu;
                             cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                             cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCTPN[0].So_luong_thuc_lanh;
+                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
                             cttks.Loai_phieu = true;
                             cttks.Ngay_nhap_xuat = NgayNhap;
                             help.ent.Chi_tiet_the_kho.Add(cttks);
                             help.ent.SaveChanges();
 
                         }
+                       
+
+
                         dbcxtransaction.Commit();//hoan thanh thao tac
                         return 1;
                     }
@@ -166,19 +165,19 @@ namespace Inventory.EntityClass
                         //cập nhật lại trạng thái phiếu nhập 
                         var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 
-                                            where d.Ma_phieu_nhap == maphieu && d.Da_phan_kho == false
+                                            where d.Ma_phieu_nhap == maphieu
                                             select d).ToList();
-                        foreach (var temp in entryPointPN)
+                        if(entryPointPN[0].Da_phan_kho ==false)
                         {
-                            temp.Da_phan_kho = true;
-                            help.ent.Phieu_Nhap_Kho.Attach(temp);
-                            help.ent.Entry(temp).State = EntityState.Modified;
+                            entryPointPN[0].Da_phan_kho = true;
+                            help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
+                            help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
                         }
 
                         help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
                        
-                        Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
+                        //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
                                             where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu
@@ -192,11 +191,7 @@ namespace Inventory.EntityClass
                         }
                         help.ent.SaveChanges();
 
-                        var entryPointCTPN = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-
-
-                                              where d.Ma_phieu_nhap == maphieu && d.Ma_vat_tu == mavt
-                                              select d).ToList();
+                      
 
                         //sau đó thêm 1 dòng vào trong thẻ kho
                         //thêm vào chi tiết thẻ kho
@@ -225,7 +220,7 @@ namespace Inventory.EntityClass
                             cttks.Ma_phieu = maphieu;
                             cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                             cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCTPN[0].So_luong_thuc_lanh;
+                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
                             cttks.Loai_phieu = true;
                             cttks.Ngay_nhap_xuat = NgayNhap;
                             help.ent.Chi_tiet_the_kho.Add(cttks);
@@ -242,7 +237,7 @@ namespace Inventory.EntityClass
                             cttks.Ma_phieu = maphieu;
                             cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                             cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCTPN[0].So_luong_thuc_lanh;
+                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
                             cttks.Loai_phieu = true;
                             cttks.Ngay_nhap_xuat = NgayNhap;
                             help.ent.Chi_tiet_the_kho.Add(cttks);
@@ -250,7 +245,7 @@ namespace Inventory.EntityClass
 
                         }
 
-
+                    
                         dbcxtransaction.Commit();//hoan thanh thao tac
                         return 1;
                     }

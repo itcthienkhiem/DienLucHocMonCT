@@ -37,14 +37,20 @@ namespace Inventory.NhapXuat
                 DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
                 string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString();
                 string maphieu = SelectedRow.Cells["Ma_phieu_nhap"].Value.ToString();
+                if (cbKhoNhanVatTu.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa chọn kho để phân vật tư");
+                    return;
+                }
                 int idKho = (int)cbKhoNhanVatTu.SelectedValue;
+
                 //  string soluong = SelectedRow.Cells["So_luong"].Value.ToString();
                 string tenvt = SelectedRow.Cells["Ten_vat_tu"].Value.ToString();
                 string tenkho = cbKhoNhanVatTu.Text;
                 int soluong = int.Parse(SelectedRow.Cells["So_luong_thuc_lanh"].Value.ToString());
                 //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString();
-
-                frmChiTietNhanVatTu ob = new frmChiTietNhanVatTu(this, maphieu, mavt, idKho, soluong, tenvt, tenkho);
+                int idcl = int.Parse(SelectedRow.Cells["ID_chat_luong"].Value.ToString());
+                frmChiTietNhanVatTu ob = new frmChiTietNhanVatTu(this, maphieu, mavt, idKho, soluong, tenvt, tenkho, idcl);
 
 
                 ob.Show(); //show child

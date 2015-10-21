@@ -249,6 +249,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
+                                  join g in help.ent.Chat_luong on d.ID_Chat_luong equals g.Id_chat_luong
                                   where d.Da_duyet == false
                                   select new
                                   {
@@ -259,35 +260,39 @@ namespace Inventory.EntityClass
                                       f.Ngay_lap,
                                       d.So_luong_thuc_lanh,
                                       d.Da_duyet,
-
+                                      d.ID_Chat_luong,
+                                     g.Loai_chat_luong,
 
                                   }).ToList();
-                DataTable table = new DataTable();
-                table.Columns.Add("ID_chi_tiet_phieu_nhap_vat_tu", typeof(int));
-                table.Columns.Add("Ma_phieu_nhap", typeof(string));
-                table.Columns.Add("Ma_vat_tu", typeof(string));
-                table.Columns.Add("Ten_vat_tu", typeof(string));
-                table.Columns.Add("Ngay_lap", typeof(DateTime));
-                table.Columns.Add("So_luong_thuc_lanh", typeof(int));
-                table.Columns.Add("Da_duyet", typeof(bool));
-                entryPoint.ToList().ForEach((n) =>
-                {
-                    DataRow row = table.NewRow();
-                    row.SetField<int>("ID_chi_tiet_phieu_nhap_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
-                    row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
-                    row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
-                    row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
-                    row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
-                    row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_lanh);
+                //DataTable table = new DataTable();
+                //table.Columns.Add("ID_chi_tiet_phieu_nhap_vat_tu", typeof(int));
+                //table.Columns.Add("Ma_phieu_nhap", typeof(string));
+                //table.Columns.Add("Ma_vat_tu", typeof(string));
+                //table.Columns.Add("Ten_vat_tu", typeof(string));
+                //table.Columns.Add("Ngay_lap", typeof(DateTime));
+                //table.Columns.Add("So_luong_thuc_lanh", typeof(int));
+                //table.Columns.Add("Da_duyet", typeof(bool));
+                //table.Columns.Add("ID_chat_luong", typeof(int));
+                //table.Columns.Add("Loai_chat_luong", typeof(string));
 
-                    row.SetField<bool?>("Da_duyet", n.Da_duyet);
+                //entryPoint.ToList().ForEach((n) =>
+                //{
+                //    DataRow row = table.NewRow();
+                //    row.SetField<int>("ID_chi_tiet_phieu_nhap_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
+                //    row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
+                //    row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
+                //    row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap);
+                //    row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
+                //    row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_lanh);
+
+                //    row.SetField<bool?>("Da_duyet", n.Da_duyet);
 
 
 
-                    table.Rows.Add(row);
-                });
+                //    table.Rows.Add(row);
+                //});
                 dbcxtransaction.Commit();
-                return table;
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
 
             }
