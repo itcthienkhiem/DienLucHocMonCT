@@ -35,6 +35,7 @@ namespace Inventory.EntityClass
             }
             return dataCollection;
         }
+      
         public override DataTable GetAllData()
         {
             DatabaseHelper help = new DatabaseHelper();

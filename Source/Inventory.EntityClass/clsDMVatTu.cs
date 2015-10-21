@@ -29,9 +29,11 @@ namespace Inventory.EntityClass
         public int ID_Don_vi_tinh;
         public string ten_don_vi_tinh;
         public long Don_gia;
-
+        public bool Da_xuat;
         public string Mo_ta;
-
+        public bool Trang_Thai;
+        public string Ten_khong_dau;
+        
         public SortedDictionary<string, int> dicDonViTinh = new SortedDictionary<string, int>();
 
         public int Selected_DonViTinh;
@@ -72,6 +74,21 @@ namespace Inventory.EntityClass
             }
             return dataCollection;
         }
+        public  bool KiemTraTrungMa(DatabaseHelper help)
+        {
+           
+            bool has = help.ent.DM_Vat_Tu.Any(cus => cus.Ma_vat_tu == Ma_vat_tu);
+            return has;
+        }
+        public override bool KiemTraTrungMa()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.DM_Vat_Tu.Any(cus => cus.Ma_vat_tu == Ma_vat_tu);
+            return has;
+        }
+
+
         /// <summary>
         /// tiếp tục đặt biệt hóa phổ dụng
         /// </summary>
@@ -105,13 +122,13 @@ namespace Inventory.EntityClass
         //                select  ep
 
         //).ToList();
-           
+
         //    temp.ToList().ForEach((n) =>
         //    {
         //        dataCollection.Add(n.Ma_vat_tu);
 
         //    });
-            
+
         //    //string sql = "";
         //    //sql += "SELECT ";
         //    //sql += "Ma_vat_tu ";
@@ -183,7 +200,7 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             var temp = (from ep in help.ent.DM_Vat_Tu
-                        where ep.Ma_vat_tu==mavt
+                        where ep.Ma_vat_tu == mavt
                         select ep
 
         ).ToList();
@@ -750,6 +767,41 @@ namespace Inventory.EntityClass
         }
         // End Checkduplicaterows
 
+        /// <summary>
+        /// hàm insert sử dụng transaction
+        /// </summary>
+        /// <returns></returns>
+        public int Insert(DatabaseHelper help)
+        {
+
+
+            try
+            {
+                var t = new DM_Vat_Tu //Make sure you have a table called test in DB
+                {
+                    Ma_vat_tu = this.Ma_vat_tu,
+                    Ten_vat_tu = this.Ten_vat_tu,                   // ID = Guid.NewGuid(),
+                    ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                    Mo_ta = this.Mo_ta??"",
+                    Da_xuat =this.Da_xuat,
+                    Don_gia =0,
+                    Trang_thai =true,
+                    Ten_khong_dau = this.Ten_khong_dau??"",
+                };
+
+                help.ent.DM_Vat_Tu.Add(t);
+                help.ent.SaveChanges();
+
+                return 1;
+            }
+
+            catch (Exception ex)
+            {
+
+                return 0;
+
+            }
+        }
 
         /// <summary>
         /// Insert ALL

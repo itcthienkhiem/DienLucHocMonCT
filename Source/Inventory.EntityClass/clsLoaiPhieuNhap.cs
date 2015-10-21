@@ -22,6 +22,25 @@ namespace Inventory.EntityClass
           bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ma_loai_phieu_nhap == Ma_LPN);
           return has;
       }
+      public override bool KiemTraTrungTen(string ten)
+      {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ten_loai_phieu_nhap == ten);
+          return has;
+      }
+      public int GetFirst(DatabaseHelper help)
+      { 
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        select d).First();
+
+              return dm.ID_Loai_Phieu_Nhap;
+          }
+
+      }
+      
       public override System.Data.DataTable GetAllData()
       {
           DatabaseHelper help = new DatabaseHelper();

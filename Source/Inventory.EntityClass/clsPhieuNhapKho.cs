@@ -322,7 +322,28 @@ namespace Inventory.EntityClass
         //    //}
         //    //return false;
         //}
+        public bool CheckTonTaiSoDK(string Ma_phieu_nhap, DatabaseHelper help)
+        {
+            
+            bool has = help.ent.Phieu_Nhap_Kho.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap);
+            return has;
 
+
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE ma_phieu_nhap=@ma_phieu_nhap";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
+        }
         public bool CheckTonTaiSoDK(string Ma_phieu_nhap)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -368,7 +389,7 @@ namespace Inventory.EntityClass
                         ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap,
                         Kho_xuat_ra = this.Kho_xuat_ra,
                         Da_phan_kho = this.Da_phan_kho,
-                        ID_phieu_nhap = this.ID_phieu_nhap,
+                     //   ID_phieu_nhap = this.ID_phieu_nhap,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);
@@ -383,40 +404,82 @@ namespace Inventory.EntityClass
                     return 0;
                 }
             }
-
-
-
-
-            //dal.BeginTransaction();
-
-            //m_dbConnection = dal.m_conn;
-            //if(m_dbConnection.State == ConnectionState.Closed)
-            //    m_dbConnection.Open();
-
-            //string sql = "";
-            //sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi,Cong_trinh) ";
-            //sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi,@Cong_trinh)";
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
-            //command.CommandType = CommandType.Text;
-
-            ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
-            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-            //command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
-            //command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
-            ////  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
-            //command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
-            //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
-
-
-            ////command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-
-            //int result = command.ExecuteNonQuery();
-            //dal.CommitTransaction();
-
-            //return result;
         }
+        /// <summary>
+        /// hàm insert này dùng transaction để insert
+        /// </summary>
+        /// <param name="help"></param>
+        /// <returns></returns>
+        public int Insert(DatabaseHelper help)
+        {
+
+            // insert
+          
+            {
+                try
+                {
+                    var t = new Phieu_Nhap_Kho //Make sure you have a table called test in DB
+                    {
+                        Ma_phieu_nhap = this.Ma_phieu_nhap??"",
+                        Kho_nhan = this.Kho_nhan??"",
+                        Ngay_lap = this.Ngay_lap,
+                        Ly_do = this.Ly_do??"",
+                        So_hoa_don = this.So_hoa_don ?? "",
+                        Cong_trinh = this.Cong_trinh ?? "",
+                        Dia_Chi = this.Dia_chi ?? "",
+                        ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap ==null?0:this.ID_Loai_Phieu_Nhap,
+                        Kho_xuat_ra = this.Kho_xuat_ra ?? "",
+                        Da_phan_kho = this.Da_phan_kho==null?false:this.Da_phan_kho,
+                        
+                        Ngay_nhap_vat_tu = DateTime.Today,
+                     //   ID_phieu_nhap = this.ID_phieu_nhap,
+                    };
+
+                    help.ent.Phieu_Nhap_Kho.Add(t);
+                    help.ent.SaveChanges();
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+
+
+                    return 0;
+                }
+            }
+        }
+
+
+        //dal.BeginTransaction();
+
+        //m_dbConnection = dal.m_conn;
+        //if(m_dbConnection.State == ConnectionState.Closed)
+        //    m_dbConnection.Open();
+
+        //string sql = "";
+        //sql += "INSERT INTO Phieu_Nhap_Kho (ma_phieu_nhap,ID_kho,Ngay_lap,ly_do,Dia_chi,Cong_trinh) ";
+        //sql += "VALUES(@ma_phieu_nhap,@ID_kho,@Ngay_lap,@ly_do,@Dia_chi,@Cong_trinh)";
+
+        //SqlCommand command = new SqlCommand(sql, m_dbConnection,dal.m_trans);
+        //command.CommandType = CommandType.Text;
+
+        ////command.Parameters.Add(new SQLiteParameter("@BangKe_Id", BangKe_Id));
+        //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+        //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
+        //command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
+        //command.Parameters.Add(new SqlParameter("@Ly_do", Ly_do));
+        ////  command.Parameters.Add(new SqlParameter("@So_hoa_don", So_hoa_don));
+        //command.Parameters.Add(new SqlParameter("@Dia_chi", Dia_chi));
+        //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
+
+
+        ////command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
+
+        //int result = command.ExecuteNonQuery();
+        //dal.CommitTransaction();
+
+        //return result;
+
 
         public int Update(Phieu_Nhap_Kho nk)
         {

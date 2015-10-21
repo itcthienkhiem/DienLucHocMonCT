@@ -62,15 +62,52 @@ namespace Inventory.EntityClass
 
        
        }
-       // End GetAll
+       public int getMATuTen(string Ten, DatabaseHelper help)
+       {
+           
+         
+           {
 
-       public string getTenDVTTuMa(string madvt)
+               var dm = (from d in help.ent.DM_Don_vi_tinh
+                         where d.Ten_don_vi_tinh == Ten
+                         select new
+                         {
+
+                             d.ID_Don_vi_tinh,
+
+                         }).ToList();
+             
+               return dm[0].ID_Don_vi_tinh;
+           }
+       }
+       // End GetAll
+       public int getMATuTen(string Ten)
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+
+               var dm = (from d in help.ent.DM_Don_vi_tinh
+                         where d.Ten_don_vi_tinh ==Ten
+                         select new
+                         {
+
+                             d.ID_Don_vi_tinh,
+
+                         }).ToList();
+               dbcxtransaction.Commit();
+               return dm[0].ID_Don_vi_tinh;
+           }
+       }
+       public string getTenDVTTuMa(int madvt)
        {
            DatabaseHelper help = new DatabaseHelper();
            help.ConnectDatabase();
            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
            {
                var dm = (from d in help.ent.DM_Don_vi_tinh
+                         where d.ID_Don_vi_tinh == madvt
                         select new
                         {
                        
@@ -82,7 +119,13 @@ namespace Inventory.EntityClass
            }
        
        }
+       public bool hasDuplicateRow(DatabaseHelper help)
+       {
+           
+           bool has = help.ent.DM_Don_vi_tinh.Any(cus => cus.Ten_don_vi_tinh == Ten_don_vi_tinh);
+           return has;
 
+       }
        /// <summary>
        /// Kiểm tra trùng lập trước khi ADD
        /// [Update] Dùng ExecuteScalar để check 1 first cell, đổi tên hàm thân thiện hơn
@@ -128,8 +171,33 @@ namespace Inventory.EntityClass
            //return false;
        }
        // End Checkduplicaterows
+    
+       public int Insert(DatabaseHelper help)
+       {
+           //command.Parameters.Add(new SqlParameter("@Ten_kho", Ten_kho));
 
+          
+           // insert
+           try
+           {
+               var t = new DM_Don_vi_tinh //Make sure you have a table called test in DB
+               {
+                   ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                   Ten_don_vi_tinh = this.Ten_don_vi_tinh,
+                   // ID = Guid.NewGuid(),
 
+               };
+
+               help.ent.DM_Don_vi_tinh.Add(t);
+               help.ent.SaveChanges();
+               return 1;
+           }
+           catch (Exception ex)
+           {
+               return 0;
+
+           }
+       }
        /// <summary>
        /// Insert ALL
        /// </summary>

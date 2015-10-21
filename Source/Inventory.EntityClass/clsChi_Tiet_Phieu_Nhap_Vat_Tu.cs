@@ -19,10 +19,10 @@ namespace Inventory.EntityClass
         public int ID_Chat_luong;
         public string Don_vi;
         public int? So_luong_yeu_cau;
-        public int? So_luong_thuc_lanh;
+        public double? So_luong_thuc_lanh;
         public int? Don_gia;
         public int? Thanh_tien;
-        public int? ID_Don_vi_tinh;
+        public int ID_Don_vi_tinh;
         public string Ten_DVT;
         public bool Da_duyet;
 
@@ -189,7 +189,7 @@ namespace Inventory.EntityClass
                 row.SetField<string>("Chat_luong", n.Chatluong);
                 row.SetField<int>("ID_Chat_luong", n.ID_Chat_luong);
                 row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
-                row.SetField<int?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
+                row.SetField<double?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
                 row.SetField<int?>("Thanh_tien", n.Thanh_tien);
                 row.SetField<int?>("id_don_vi_tinh", n.id_don_vi_tinh);
                 row.SetField<string>("Ten_DVT", n.Ten_DVT);
@@ -299,11 +299,10 @@ namespace Inventory.EntityClass
 
         }
 
-        public bool CheckTonTaiSoDK()
+        public bool CheckTonTaiSoDK(DatabaseHelper help)
         {
-            DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            bool has = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap);
+           
+            bool has = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap && cus.Ma_vat_tu == Ma_vat_tu &&cus. ID_Chat_luong == ID_Chat_luong);
             return has;
 
 
@@ -338,6 +337,50 @@ namespace Inventory.EntityClass
                 catch (Exception ex)
                 {
                     dbcxtransaction.Rollback();
+                    return 0;
+
+                }
+
+            }
+
+
+
+        }
+        /// <summary>
+        /// hàm insert sử dụng transaction bên ngoài
+        /// </summary>
+        /// <param name="DAL"></param>
+        /// <returns></returns>
+        public int Insert(DatabaseHelper help)
+        {
+
+            // insert
+           
+        
+            {
+                try
+                {
+                    var t = new Chi_Tiet_Phieu_Nhap_Vat_Tu //Make sure you have a table called test in DB
+                    {
+                        Ma_phieu_nhap = this.Ma_phieu_nhap,
+                        Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
+                        ID_Chat_luong = this.ID_Chat_luong,
+                        So_luong_yeu_cau = this.So_luong_yeu_cau??0,
+                        So_luong_thuc_lanh = this.So_luong_thuc_lanh??0,
+                        Don_gia = this.Don_gia??0,
+                        Thanh_tien = this.Thanh_tien??0,
+                        ID_Don_vi_tinh = this.ID_Don_vi_tinh,
+                        Da_duyet = this.Da_duyet,
+                        
+                    };
+
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Add(t);
+                    help.ent.SaveChanges(); //dbcxtransaction.Commit();
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                   // dbcxtransaction.Rollback();
                     return 0;
 
                 }

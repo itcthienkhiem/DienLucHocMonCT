@@ -50,7 +50,7 @@ namespace Inventory.QuanLyTonDauKy
         {
             DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.Text);
             txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
-            string iddvt = table.Rows[0]["ID_don_vi_tinh"].ToString();
+            int iddvt = int.Parse( table.Rows[0]["ID_don_vi_tinh"].ToString());
             clsDM_DonViTinh dvt = new clsDM_DonViTinh();
             string tenDVT = dvt.getTenDVTTuMa(iddvt);
             txtDVT.Text = tenDVT;

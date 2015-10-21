@@ -10,15 +10,51 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
 using System.DirectoryServices;
+using Inventory.Models;
+using System.Threading;
 namespace Inventory.NhapXuat
 {
     public partial class frmNhapTuFile : Form
     {
+
         public frmNhapTuFile()
         {
-            InitializeComponent();
+            InitializeComponent();   // To report progress from the background worker we need to set this property
+            countLabel = "/" + count.ToString();
+        }
+        int count = 0;
+        delegate void StringParameterDelegate(string value);
+        String countLabel;
+        //When your button is clicked to process the loops, start a thread for process the loops
+        public void StartProcessingButtonClick(object sender, EventArgs e)
+        {
+            Thread queryRunningThread = new Thread(new ThreadStart(ProcessLoop));
+            queryRunningThread.Name = "ProcessLoop";
+            queryRunningThread.IsBackground = true;
+            queryRunningThread.Start();
         }
 
+        private void ProcessLoop()
+        {
+            for (int i = 0; i < count; i++)
+            {
+
+                UpdateProgressLabel("Step " + i.ToString() + countLabel);
+            }
+        }
+
+        void UpdateProgressLabel(string value)
+        {
+            if (InvokeRequired)
+            {
+                // We're not in the UI thread, so we need to call BeginInvoke
+                BeginInvoke(new StringParameterDelegate(UpdateProgressLabel), new object[] { value });
+                return;
+            }
+            // Must be on the UI thread if we've got this far
+            labelProgress.Text = value;
+            Progressbar.Value = int.Parse(value);
+        }
         private void btnDuyetFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog theDialog = new OpenFileDialog();
@@ -31,11 +67,14 @@ namespace Inventory.NhapXuat
             }
             try
             {
-              
+
             }
+
+
+
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
+        DataTable tb = null;
         private void ReadFile(FileStream stream)
         {
             IExcelDataReader excelReader = null;
@@ -55,8 +94,20 @@ namespace Inventory.NhapXuat
             //4. DataSet - Create column names from first row
             //  excelReader.IsFirstRowAsColumnNames = true;
             //  DataSet result = excelReader.AsDataSet();
+            //  ChuanHoaDuLieu(result);
+            //  gridDanhSachPhieuNhap.DataSource = ChuanHoaDuLieu(result);
             gridDanhSachPhieuNhap.DataSource = result.Tables[cbChonSheet.SelectedIndex];
             this.gridDanhSachPhieuNhap.Sort(this.gridDanhSachPhieuNhap.Columns["column1"], ListSortDirection.Ascending);
+            tb = result.Tables[cbChonSheet.SelectedIndex].Copy();
+
+
+            DataView dv = tb.DefaultView;
+            //   Sort data
+            dv.Sort = "column1";
+            //   Convert back your sorted DataView to DataTable
+            tb = dv.ToTable();
+            RemoveAllRowsNULL(tb);
+            gridDanhSachPhieuNhap.DataSource = tb;
             //5. Data Reader methods
             //while (excelReader.Read())
             //{
@@ -66,7 +117,18 @@ namespace Inventory.NhapXuat
 
             //6. Free resources (IExcelDataReader is IDisposable)
         }
+        public void RemoveAllRowsNULL(DataTable tb)
+        {
+            //xóa hết các dòng rỗng
+            for (int i = tb.Rows.Count - 1; i >= 0; i--)
+                if (tb.Rows[i]["column1"].ToString() == "")
+                    tb.Rows.RemoveAt(i);
+            //xóa hết các cột rỗng 
+            for (int i = tb.Columns.Count - 1; i >= 0; i--)
+                if (tb.Rows[0][i].ToString() == "")
+                    tb.Columns.RemoveAt(i);
 
+        }
         private string ConvertSortDirectionToSql(SortDirection sortDirection)
         {
             string newSortDirection = String.Empty;
@@ -84,7 +146,7 @@ namespace Inventory.NhapXuat
 
 
         }
-      
+
 
         private void gridDanhSachPhieuNhap_Sorted(object sender, EventArgs e)
         {
@@ -120,6 +182,139 @@ namespace Inventory.NhapXuat
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnChuyenDoi_Click(object sender, EventArgs e)
+        {
+            //    backgroundWorker1.RunWorkerAsync();
+            Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
+            queryRunningThread.Name = "ProcessLoop";
+            queryRunningThread.IsBackground = true;
+            queryRunningThread.Start();
+           // ChuyenDoi();
+        }
+        /// <summary>
+        /// hàm này tiến hành cập nhật lại CSDL rất lớn liên quang 5000 dòng
+        /// 
+        /// </summary>
+        public void ChuyenDoi()
+        {
+            //    Progressbar.Value=0;
+            //  countLabel = tb.Rows.Count.ToString();
+            Progressbar.Maximum = tb.Rows.Count;
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            // insert
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                try
+                {
+                    for (int i = 0; i < tb.Rows.Count - 1; i++)
+                    {
+                        string Ma_phieu_nhap = tb.Rows[i]["column1"].ToString();
+                        DateTime Ngay_lap = DateTime.Parse(tb.Rows[i]["column2"].ToString());
+                        string Kho_nhan = tb.Rows[i]["column3"].ToString();
+                        string Ly_do = tb.Rows[i]["column4"].ToString();
+                        string Ma_vat_tu = tb.Rows[i]["column5"].ToString();
+                        string Ten_vat_tu = tb.Rows[i]["column6"].ToString();
+                        string Chat_luong = tb.Rows[i]["column7"].ToString();
+
+                        string DVT = tb.Rows[i]["column8"].ToString();
+                        string So_luong_thuc_lanh = tb.Rows[i]["column9"].ToString();
+                        string Don_gia = tb.Rows[i]["column10"].ToString();
+                        string Thanh_tien = tb.Rows[i]["column11"].ToString();
+
+                        //kiểm tra xem dòng đó có trùng với phiếu nhận trong bảng pn chưa     
+                        clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+                        if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
+                        {
+                            pnk.Ma_phieu_nhap = Ma_phieu_nhap;
+                            pnk.Ngay_lap = Ngay_lap;
+                            pnk.Kho_nhan = Kho_nhan;
+                            pnk.Ly_do = Ly_do;
+
+                            pnk.ID_Loai_Phieu_Nhap = new clsLoaiPhieuNhap().GetFirst(help);
+
+                            if (pnk.Insert(help) == 0)
+                            {
+                                dbcxtransaction.Rollback();
+                                MessageBox.Show("insert thất bại tại dòng !" + i);
+                                return;
+                            }
+
+                        }
+                        clsChi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+                        ctpn.Ma_vat_tu = Ma_vat_tu;
+                        ctpn.Ma_phieu_nhap = Ma_phieu_nhap;
+                        ctpn.ID_Chat_luong = Chat_luong.Contains("mới") ? 1 : 2;
+                        //kiểm tra xem vật tư đã có trong csdl chưa nếu chưa thêm vào 
+                        clsDM_DonViTinh DMDVT = new clsDM_DonViTinh();
+                        if (ctpn.CheckTonTaiSoDK(help))
+                        {
+
+                            DMDVT.Ten_don_vi_tinh = DVT;
+
+                            //  DMDVT.ID_Don_vi_tinh = ctpn.ID_Don_vi_tinh;
+
+                            if (DMDVT.hasDuplicateRow(help) == false)
+                            {
+                                //nếu chưa có thì insert dòng mới 
+                                DMDVT.Insert(help);
+                            }
+
+
+
+
+
+                            //tiến hành insert 5000 dòng dữ liệu từ phiếu nhập
+                        }
+                        ctpn.ID_Don_vi_tinh = DMDVT.getMATuTen(DVT, help);
+                        //kiểm tra mã vật tư đã tồn tại chưa trong CSDL
+                        clsDMVatTu vt = new clsDMVatTu();
+                        vt.Ma_vat_tu = Ma_vat_tu;
+                        vt.Ten_vat_tu = Ten_vat_tu;
+                        vt.ID_Don_vi_tinh = ctpn.ID_Don_vi_tinh;
+                        if (vt.KiemTraTrungMa(help) == false)
+                        {
+                            vt.Insert(help);
+                        }
+                        ctpn.So_luong_thuc_lanh = double.Parse(So_luong_thuc_lanh);
+                        ctpn.Insert(help);
+                        backgroundWorker1.ReportProgress(i);
+                        // Simulate long task 
+
+                        //  queryRunningThread.Abort();
+
+                    }
+                    dbcxtransaction.Commit();
+                    MessageBox.Show("Thêm thành công!");
+                }
+                catch (Exception ex)
+                {
+                    dbcxtransaction.Rollback(); MessageBox.Show("insert thất bại!");
+                    return;
+
+                }
+
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ChuyenDoi();
+            // Your background task goes here 
+
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Progressbar.Value = e.ProgressPercentage;
+            label1.Text = String.Format("Trade{0}", e.ProgressPercentage);
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }
