@@ -39,7 +39,7 @@ namespace Inventory.QuanLyTonDauKy
             //cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
             //cbMaVatTu.ValueMember = "ID_Vat_tu";
             //cbMaVatTu.DisplayMember = "Ma_vat_tu";
-            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
+            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
             cbMaVatTu.SelectedIndex = -1;
 
 
@@ -79,6 +79,11 @@ namespace Inventory.QuanLyTonDauKy
         {
         
        //     cbMaVatTu_KeyDown(null, null);
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

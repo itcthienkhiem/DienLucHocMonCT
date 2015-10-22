@@ -227,7 +227,7 @@ namespace Inventory.NhapXuat
                         string So_luong_thuc_lanh = tb.Rows[i]["column9"].ToString();
                         string Don_gia = tb.Rows[i]["column10"].ToString();
                         string Thanh_tien = tb.Rows[i]["column11"].ToString();
-                        string Loai_PN = tb.Rows[i]["column12"].ToString();
+                        string Loai_PN = "XD";// tb.Rows[i]["column12"].ToString()??"XD";
                         //kiểm tra xem dòng đó có trùng với phiếu nhận trong bảng pn chưa     
                         clsPhieuNhapKho pnk = new clsPhieuNhapKho();
                         if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
@@ -238,7 +238,7 @@ namespace Inventory.NhapXuat
                             pnk.Ly_do = Ly_do;
                             clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
                             LPN.Ma_LPN = Loai_PN;
-                            pnk.ID_Loai_Phieu_Nhap = new clsLoaiPhieuNhap().GetFirst(help);
+                            pnk.ID_Loai_Phieu_Nhap = LPN.GetFirst(help);
 
                             if (pnk.Insert(help) == 0)
                             {

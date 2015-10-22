@@ -31,7 +31,6 @@ namespace Inventory.EntityClass
       }
       public int GetFirst(DatabaseHelper help)
       { 
-            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Loai_Phieu_Nhap
                         where d.Ma_loai_phieu_nhap == Ma_LPN

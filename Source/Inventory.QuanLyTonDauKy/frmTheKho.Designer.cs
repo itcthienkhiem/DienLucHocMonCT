@@ -52,14 +52,20 @@
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
             this.txtDVT = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).BeginInit();
+            this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(398, 12);
+            this.label1.Location = new System.Drawing.Point(477, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 33);
             this.label1.TabIndex = 0;
@@ -68,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(768, 9);
+            this.label2.Location = new System.Drawing.Point(847, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 1;
@@ -77,7 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(294, 95);
+            this.label3.Location = new System.Drawing.Point(373, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 13);
             this.label3.TabIndex = 2;
@@ -85,7 +91,7 @@
             // 
             // txtTenVatTu
             // 
-            this.txtTenVatTu.Location = new System.Drawing.Point(280, 111);
+            this.txtTenVatTu.Location = new System.Drawing.Point(359, 210);
             this.txtTenVatTu.Multiline = true;
             this.txtTenVatTu.Name = "txtTenVatTu";
             this.txtTenVatTu.Size = new System.Drawing.Size(187, 34);
@@ -94,7 +100,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 29);
+            this.label4.Location = new System.Drawing.Point(91, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 5;
@@ -102,7 +108,7 @@
             // 
             // txtDonVi
             // 
-            this.txtDonVi.Location = new System.Drawing.Point(62, 22);
+            this.txtDonVi.Location = new System.Drawing.Point(141, 121);
             this.txtDonVi.Multiline = true;
             this.txtDonVi.Name = "txtDonVi";
             this.txtDonVi.Size = new System.Drawing.Size(187, 34);
@@ -110,7 +116,7 @@
             // 
             // txtDiaDiem
             // 
-            this.txtDiaDiem.Location = new System.Drawing.Point(62, 74);
+            this.txtDiaDiem.Location = new System.Drawing.Point(141, 173);
             this.txtDiaDiem.Multiline = true;
             this.txtDiaDiem.Name = "txtDiaDiem";
             this.txtDiaDiem.Size = new System.Drawing.Size(187, 34);
@@ -119,7 +125,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1, 86);
+            this.label5.Location = new System.Drawing.Point(80, 185);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 7;
@@ -158,7 +164,7 @@
             this.SO_LUONG_TON,
             this.KY_XAC_NHAN,
             this.GHI_CHU});
-            this.gridTheKho.Location = new System.Drawing.Point(4, 151);
+            this.gridTheKho.Location = new System.Drawing.Point(4, 287);
             this.gridTheKho.MultiSelect = false;
             this.gridTheKho.Name = "gridTheKho";
             this.gridTheKho.ReadOnly = true;
@@ -166,7 +172,7 @@
             this.gridTheKho.RowHeadersVisible = false;
             this.gridTheKho.RowTemplate.Height = 30;
             this.gridTheKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTheKho.Size = new System.Drawing.Size(1111, 399);
+            this.gridTheKho.Size = new System.Drawing.Size(1111, 263);
             this.gridTheKho.TabIndex = 49;
             // 
             // STT
@@ -232,7 +238,7 @@
             // cbMaVatTu
             // 
             this.cbMaVatTu.FormattingEnabled = true;
-            this.cbMaVatTu.Location = new System.Drawing.Point(732, 25);
+            this.cbMaVatTu.Location = new System.Drawing.Point(811, 124);
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(187, 21);
             this.cbMaVatTu.TabIndex = 50;
@@ -243,7 +249,7 @@
             // 
             // txtDVT
             // 
-            this.txtDVT.Location = new System.Drawing.Point(732, 102);
+            this.txtDVT.Location = new System.Drawing.Point(811, 201);
             this.txtDVT.Multiline = true;
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.Size = new System.Drawing.Size(187, 34);
@@ -252,17 +258,72 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(746, 86);
+            this.label6.Location = new System.Drawing.Point(825, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 51;
             this.label6.Text = "Đơn vị";
+            // 
+            // pnlMenu
+            // 
+            this.pnlMenu.Controls.Add(this.btnHuy);
+            this.pnlMenu.Controls.Add(this.label7);
+            this.pnlMenu.Controls.Add(this.btnDong);
+            this.pnlMenu.Controls.Add(this.label9);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMenu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(1093, 95);
+            this.pnlMenu.TabIndex = 53;
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackgroundImage = global::Inventory.QuanLyTonDauKy.Properties.Resources.search_bmc;
+            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHuy.Location = new System.Drawing.Point(13, 12);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(58, 54);
+            this.btnHuy.TabIndex = 4;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 65);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 14);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Xem";
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.QuanLyTonDauKy.Properties.Resources.close_gmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(963, 13);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(58, 54);
+            this.btnDong.TabIndex = 2;
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(975, 67);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 14);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Đóng";
             // 
             // frmTheKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1093, 553);
+            this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.txtDVT);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbMaVatTu);
@@ -278,6 +339,8 @@
             this.Name = "frmTheKho";
             this.Text = "frmTheKho";
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).EndInit();
+            this.pnlMenu.ResumeLayout(false);
+            this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,5 +370,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GHI_CHU;
         private System.Windows.Forms.TextBox txtDVT;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnDong;
+        private System.Windows.Forms.Label label9;
     }
 }
