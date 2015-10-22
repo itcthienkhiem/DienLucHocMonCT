@@ -47,34 +47,56 @@ namespace Inventory.QuanLyTonDauKy
 
 
         }
-        private void Search(DateTime tungay,DataTable denngay)
+        private void Search(DateTime tungay,DateTime denngay)
         {
-            clsTheKho thekho = new clsTheKho();
-            int? temp = thekho.Search((int)cbChatLuong.SelectedValue, cbMaVatTu.Text);
+            try
+            {
+                clsTheKho thekho = new clsTheKho();
+                int search =  thekho.Search((int)cbChatLuong.SelectedValue, cbMaVatTu.Text);
+                if (search !=-1)
+                {
+                    clsChiTietTheKho cttk = new clsChiTietTheKho();
 
+                    DataTable tb = cttk.Search(tungay, denngay,search);
+                    gridTheKho.DataSource = tb;
+                }
+            }
+            catch (Exception ex) { }
         }
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
-            DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.Text);
-            txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
-            int iddvt = int.Parse( table.Rows[0]["ID_don_vi_tinh"].ToString());
-            clsDM_DonViTinh dvt = new clsDM_DonViTinh();
-            string tenDVT = dvt.getTenDVTTuMa(iddvt);
-            txtDVT.Text = tenDVT;
-
+            try
+            {
+                DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.Text);
+                txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
+                int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
+                clsDM_DonViTinh dvt = new clsDM_DonViTinh();
+                string tenDVT = dvt.getTenDVTTuMa(iddvt);
+                txtDVT.Text = tenDVT;
+            }
+            catch (Exception ex) { }
             
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
-            ComboBox cbo = (ComboBox)sender;
-            cbo.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox_PreviewKeyDown);
+            try
+            {
+                ComboBox cbo = (ComboBox)sender;
+                cbo.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox_PreviewKeyDown);
+            }
+            catch (Exception ex) { }
+
         }
 
         private void comboBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            ComboBox cbo = (ComboBox)sender;
-            cbo.PreviewKeyDown -= comboBox_PreviewKeyDown;
-            if (cbo.DroppedDown) cbo.Focus();
+            try
+            {
+                ComboBox cbo = (ComboBox)sender;
+                cbo.PreviewKeyDown -= comboBox_PreviewKeyDown;
+                if (cbo.DroppedDown) cbo.Focus();
+            }
+            catch (Exception ex) { }
         }
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
@@ -91,6 +113,11 @@ namespace Inventory.QuanLyTonDauKy
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Search(dtTuNgay.Value , dtDenNgay.Value);
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -108,6 +108,7 @@ namespace Inventory.EntityClass
                             cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
                             cttks.Loai_phieu = true;
                             cttks.Ngay_nhap_xuat = NgayNhap;
+                            
                             help.ent.Chi_tiet_the_kho.Add(cttks);
                             help.ent.SaveChanges();
 
@@ -180,7 +181,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -281,7 +282,7 @@ namespace Inventory.EntityClass
                 {
                     var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                        where d.Ma_phieu_nhap == maphieu
+                                        where d.Ma_phieu_nhap == maphieu 
                                         select d).ToList();
                     foreach (var temp in entryPointCT)
                     {

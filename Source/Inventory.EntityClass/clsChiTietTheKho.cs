@@ -154,17 +154,16 @@ namespace Inventory.EntityClass
             }
         }
 
-        public DataTable Search(DateTime tungay, DateTime denngay)
+      
+        public DataTable Search(DateTime tungays, DateTime denngays,int id_the_kho)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var dm = (from d in help.ent.Chi_tiet_the_kho
-                          where d.Ngay_nhap_xuat >=tungay &&d.Ngay_nhap_xuat<=denngay
-                          select d).ToList();
-                dbcxtransaction.Commit();
-                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+                var filteredData = help.ent.Chi_tiet_the_kho.Where(t => t.Ngay_nhap_xuat >= tungays && t.Ngay_nhap_xuat <= denngays && t.ID_The_Kho == id_the_kho).ToList();
+          
+                return Utilities.clsThamSoUtilities.ToDataTable(filteredData);
             }
         }
     }

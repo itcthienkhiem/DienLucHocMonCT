@@ -99,7 +99,7 @@ namespace Inventory.EntityClass
 
             return temp;
         }
-        public int? Search(int ID_chat_luong, string mavattu)
+        public int Search(int ID_chat_luong, string mavattu)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
@@ -107,8 +107,11 @@ namespace Inventory.EntityClass
                       where d.ID_Chat_luong == ID_chat_luong && d.Ma_vat_tu == mavattu
                       select new {
                         d.ID_Chat_luong,
-                      }).First();
-            return (int? )dm.ID_Chat_luong;
+                      }).ToList();
+            if (dm.Count == 0)
+                return -1;
+            return (int)dm[0].ID_Chat_luong;
+           
         }
         public int Delete(DatabaseHelper help)
         {
