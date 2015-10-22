@@ -176,6 +176,8 @@ namespace Inventory.NhapXuat
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+          
             btnDuyetFile_Click(sender, e);
         }
 
@@ -186,11 +188,12 @@ namespace Inventory.NhapXuat
 
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
-            //    backgroundWorker1.RunWorkerAsync();
-            Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
-            queryRunningThread.Name = "ProcessLoop";
-            queryRunningThread.IsBackground = true;
-            queryRunningThread.Start();
+            Progressbar.Maximum = tb.Rows.Count;
+                backgroundWorker1.RunWorkerAsync();
+            //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
+            //queryRunningThread.Name = "ProcessLoop";
+            //queryRunningThread.IsBackground = true;
+            //queryRunningThread.Start();
            // ChuyenDoi();
         }
         /// <summary>
@@ -201,7 +204,7 @@ namespace Inventory.NhapXuat
         {
             //    Progressbar.Value=0;
             //  countLabel = tb.Rows.Count.ToString();
-            Progressbar.Maximum = tb.Rows.Count;
+         //   
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             // insert
@@ -281,12 +284,14 @@ namespace Inventory.NhapXuat
                         ctpn.So_luong_thuc_lanh = double.Parse(So_luong_thuc_lanh);
                         ctpn.Insert(help);
                         backgroundWorker1.ReportProgress(i);
+                       // System.Threading.Thread.Sleep(100); 
                         // Simulate long task 
 
                         //  queryRunningThread.Abort();
 
                     }
                     dbcxtransaction.Commit();
+                    backgroundWorker1.ReportProgress(0);
                     MessageBox.Show("Thêm thành công!");
                 }
                 catch (Exception ex)
@@ -309,7 +314,7 @@ namespace Inventory.NhapXuat
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             Progressbar.Value = e.ProgressPercentage;
-            label1.Text = String.Format("Trade{0}", e.ProgressPercentage);
+            lbTxt.Text = String.Format("Progress: {0}", e.ProgressPercentage);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
