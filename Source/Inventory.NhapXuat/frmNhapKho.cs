@@ -152,7 +152,7 @@ namespace Inventory.NhapXuat
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                     chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
                                     chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                    chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                     chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                     chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                     chitiet.Da_duyet = false;
@@ -243,7 +243,7 @@ namespace Inventory.NhapXuat
                                         chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                         chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
                                         chitiet.So_luong_yeu_cau = int.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                        chitiet.So_luong_thuc_lanh = int.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                        chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                         chitiet.Don_gia = int.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                         chitiet.Thanh_tien = int.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                         chitiet.Da_duyet = false;
