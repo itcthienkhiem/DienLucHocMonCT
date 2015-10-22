@@ -261,6 +261,8 @@ namespace Inventory.EntityClass
             //return 0;
 
         }
+       
+
         /// <summary>
         /// hàm này lưu trử thao tác xóa vật tư có mã phiếu tương ứng
         /// </summary>

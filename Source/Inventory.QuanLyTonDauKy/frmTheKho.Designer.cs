@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTenVatTu = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtDonVi = new System.Windows.Forms.TextBox();
             this.txtDiaDiem = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gridTheKho = new System.Windows.Forms.DataGridView();
@@ -57,6 +56,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnDong = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.cbKho = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbChatLuong = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +85,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(373, 194);
+            this.label3.Location = new System.Drawing.Point(471, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 13);
             this.label3.TabIndex = 2;
@@ -94,29 +96,21 @@
             this.txtTenVatTu.Location = new System.Drawing.Point(359, 210);
             this.txtTenVatTu.Multiline = true;
             this.txtTenVatTu.Name = "txtTenVatTu";
-            this.txtTenVatTu.Size = new System.Drawing.Size(187, 34);
+            this.txtTenVatTu.Size = new System.Drawing.Size(427, 34);
             this.txtTenVatTu.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(91, 128);
+            this.label4.Location = new System.Drawing.Point(76, 164);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "ĐƠN VỊ";
-            // 
-            // txtDonVi
-            // 
-            this.txtDonVi.Location = new System.Drawing.Point(141, 121);
-            this.txtDonVi.Multiline = true;
-            this.txtDonVi.Name = "txtDonVi";
-            this.txtDonVi.Size = new System.Drawing.Size(187, 34);
-            this.txtDonVi.TabIndex = 6;
+            this.label4.Text = "Kho";
             // 
             // txtDiaDiem
             // 
-            this.txtDiaDiem.Location = new System.Drawing.Point(141, 173);
+            this.txtDiaDiem.Location = new System.Drawing.Point(137, 234);
             this.txtDiaDiem.Multiline = true;
             this.txtDiaDiem.Name = "txtDiaDiem";
             this.txtDiaDiem.Size = new System.Drawing.Size(187, 34);
@@ -125,7 +119,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(80, 185);
+            this.label5.Location = new System.Drawing.Point(76, 246);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 7;
@@ -318,11 +312,39 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "Đóng";
             // 
+            // cbKho
+            // 
+            this.cbKho.FormattingEnabled = true;
+            this.cbKho.Location = new System.Drawing.Point(137, 161);
+            this.cbKho.Name = "cbKho";
+            this.cbKho.Size = new System.Drawing.Size(187, 21);
+            this.cbKho.TabIndex = 54;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(73, 201);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 13);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Chất lượng";
+            // 
+            // cbChatLuong
+            // 
+            this.cbChatLuong.FormattingEnabled = true;
+            this.cbChatLuong.Location = new System.Drawing.Point(137, 198);
+            this.cbChatLuong.Name = "cbChatLuong";
+            this.cbChatLuong.Size = new System.Drawing.Size(187, 21);
+            this.cbChatLuong.TabIndex = 56;
+            // 
             // frmTheKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1093, 553);
+            this.Controls.Add(this.cbChatLuong);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cbKho);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.txtDVT);
             this.Controls.Add(this.label6);
@@ -330,7 +352,6 @@
             this.Controls.Add(this.gridTheKho);
             this.Controls.Add(this.txtDiaDiem);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtDonVi);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTenVatTu);
             this.Controls.Add(this.label3);
@@ -353,7 +374,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTenVatTu;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtDonVi;
         private System.Windows.Forms.TextBox txtDiaDiem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView gridTheKho;
@@ -375,5 +395,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cbKho;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbChatLuong;
     }
 }
