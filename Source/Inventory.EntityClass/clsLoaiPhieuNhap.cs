@@ -34,6 +34,7 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        where d.Ma_loai_phieu_nhap == Ma_LPN
                         select d).First();
 
               return dm.ID_Loai_Phieu_Nhap;

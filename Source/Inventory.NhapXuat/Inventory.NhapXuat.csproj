@@ -194,6 +194,10 @@
       <Project>{96444DAC-3070-4943-B9C9-3C005311F249}</Project>
       <Name>Inventory.Report</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Inventory.Utilities\Inventory.Utilities.csproj">
+      <Project>{bde21978-8fdb-4215-96b6-58a6a6863459}</Project>
+      <Name>Inventory.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory\Inventory.Models\Inventory.Models.csproj">
       <Project>{af07e61b-f4a5-4b74-b131-4ec8add3aa72}</Project>
       <Name>Inventory.Models</Name>

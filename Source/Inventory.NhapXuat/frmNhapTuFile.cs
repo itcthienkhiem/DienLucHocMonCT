@@ -12,6 +12,7 @@ using Inventory.EntityClass;
 using System.DirectoryServices;
 using Inventory.Models;
 using System.Threading;
+using System.Diagnostics;
 namespace Inventory.NhapXuat
 {
     public partial class frmNhapTuFile : Form
@@ -226,7 +227,7 @@ namespace Inventory.NhapXuat
                         string So_luong_thuc_lanh = tb.Rows[i]["column9"].ToString();
                         string Don_gia = tb.Rows[i]["column10"].ToString();
                         string Thanh_tien = tb.Rows[i]["column11"].ToString();
-
+                        string Loai_PN = tb.Rows[i]["column12"].ToString();
                         //kiểm tra xem dòng đó có trùng với phiếu nhận trong bảng pn chưa     
                         clsPhieuNhapKho pnk = new clsPhieuNhapKho();
                         if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
@@ -235,7 +236,8 @@ namespace Inventory.NhapXuat
                             pnk.Ngay_lap = Ngay_lap;
                             pnk.Kho_nhan = Kho_nhan;
                             pnk.Ly_do = Ly_do;
-
+                            clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
+                            LPN.Ma_LPN = Loai_PN;
                             pnk.ID_Loai_Phieu_Nhap = new clsLoaiPhieuNhap().GetFirst(help);
 
                             if (pnk.Insert(help) == 0)
@@ -252,7 +254,7 @@ namespace Inventory.NhapXuat
                         ctpn.ID_Chat_luong = Chat_luong.Contains("mới") ? 1 : 2;
                         //kiểm tra xem vật tư đã có trong csdl chưa nếu chưa thêm vào 
                         clsDM_DonViTinh DMDVT = new clsDM_DonViTinh();
-                        if (ctpn.CheckTonTaiSoDK(help))
+                        if (ctpn.CheckTonTaiSoDK(help)==false)
                         {
 
                             DMDVT.Ten_don_vi_tinh = DVT;
@@ -296,7 +298,9 @@ namespace Inventory.NhapXuat
                 }
                 catch (Exception ex)
                 {
-                    dbcxtransaction.Rollback(); MessageBox.Show("insert thất bại!");
+                    dbcxtransaction.Rollback();  // Get stack trace for the exception with source file information
+                    MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+
                     return;
 
                 }

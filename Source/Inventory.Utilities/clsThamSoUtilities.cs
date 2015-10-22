@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -29,7 +30,13 @@ namespace Inventory.Utilities
             return table;
         }
 
-    
+        public static string COException(Exception ex)
+        {
+            var st = new StackTrace(ex, true);
+            // Get the top stack frame
+
+            return st.ToString() + " \n ";
+        }
 
        
     }
