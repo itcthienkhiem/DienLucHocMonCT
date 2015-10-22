@@ -23,7 +23,7 @@ namespace Inventory.NhapXuat
             //cbKho.DisplayMember = "Ten_kho";
             //cbKho.ValueMember = "ID_kho";
             //cbKho.SelectedIndex =0;
-            gridTonKhoThuc.DataSource = clsTonKho.getAll((int)cbKho.SelectedValue) ;
+           // gridTonKhoThuc.DataSource = clsTonKho.getAll((int)cbKho.SelectedValue) ;
 
         }
 

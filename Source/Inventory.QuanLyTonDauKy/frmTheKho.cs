@@ -40,12 +40,19 @@ namespace Inventory.QuanLyTonDauKy
             //cbMaVatTu.ValueMember = "ID_Vat_tu";
             //cbMaVatTu.DisplayMember = "Ma_vat_tu";
             clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
+            clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
+
             cbMaVatTu.SelectedIndex = -1;
 
 
 
         }
+        private void Search(DateTime tungay,DataTable denngay)
+        {
+            clsTheKho thekho = new clsTheKho();
+            int? temp = thekho.Search((int)cbChatLuong.SelectedValue, cbMaVatTu.Text);
 
+        }
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
             DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.Text);
