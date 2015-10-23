@@ -9,8 +9,8 @@ using System.Text;
 namespace Inventory.Utilities
 {
     public static class clsThamSoUtilities
-    {
-        public static string connectionString = @"data source=(local)" + ";initial catalog=QLKhoDienLuc" + ";persist security info=True;user id=sa" + ";password=123456" + ";MultipleActiveResultSets=True;";
+    {                                              //Data Source=KHIEM-PC\SQLEXPRESS;Initial Catalog=QLKhoDienLuc;persist security info=True;User Id=sa;Password=2051990;MultipleActiveResultSets=True;
+        public static string connectionString; //= @"data source=KHIEM-PC\SQLEXPRESS" + ";initial catalog=QLKhoDienLuc" + ";persist security info=True;user id=sa" + ";password=2051990" + ";MultipleActiveResultSets=True;";
 
 
         public static DataTable ToDataTable<T>(this IList<T> data)
