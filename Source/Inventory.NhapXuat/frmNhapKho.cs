@@ -384,6 +384,8 @@ namespace Inventory.NhapXuat
 
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+                cbMaVatTu_SelectionChangeCommitted(sender, e);
             //if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi || e.KeyCode == Keys.Enter)
             //{
             //    string val = cbMaVatTu.Text ;
@@ -400,6 +402,8 @@ namespace Inventory.NhapXuat
         {
             if (e.KeyCode == Keys.Enter)
             {
+
+                cbTenVatTu_SelectionChangeCommitted(sender, e);
                 //for (int i = 0; i < Dic.Count; i++)
                 //{
                 //    if (Dic.ToList()[i].Value.Ten_vat_tu.Equals(cbTenVatTu.Text))
@@ -1065,8 +1069,9 @@ namespace Inventory.NhapXuat
             try
             {
                 ComboBox c = (ComboBox)sender;
-
-                string Ma_Vat_Tu = c.SelectedText.ToString();
+                //DataRowView dtv = c.Items[c.SelectedIndex] as DataRowView ;
+                
+                string Ma_Vat_Tu = c.Text.ToString();
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
@@ -1088,13 +1093,13 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
 
-                string Ten_Vat_Tu = c.Items[c.SelectedIndex].ToString();
+                string Ten_Vat_Tu = c.Text.ToString();
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
                 string Ma_Vat_Tu = vattu.getMaVatTu(Ten_Vat_Tu);
 
-                cbMaVatTu.SelectedIndex = cbMaVatTu.Items.IndexOf(Ma_Vat_Tu);
+                cbMaVatTu.Text = Ma_Vat_Tu;
 
                 DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
 

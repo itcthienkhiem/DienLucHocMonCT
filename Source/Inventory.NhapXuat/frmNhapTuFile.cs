@@ -189,13 +189,20 @@ namespace Inventory.NhapXuat
 
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
+            try
+            {
                 Progressbar.Maximum = tb.Rows.Count;
                 backgroundWorker1.RunWorkerAsync();
-            //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
-            //queryRunningThread.Name = "ProcessLoop";
-            //queryRunningThread.IsBackground = true;
-            //queryRunningThread.Start();
-           // ChuyenDoi();
+                //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
+                //queryRunningThread.Name = "ProcessLoop";
+                //queryRunningThread.IsBackground = true;
+                //queryRunningThread.Start();
+                // ChuyenDoi();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+            }
         }
         /// <summary>
         /// hàm này tiến hành cập nhật lại CSDL rất lớn liên quang 5000 dòng
