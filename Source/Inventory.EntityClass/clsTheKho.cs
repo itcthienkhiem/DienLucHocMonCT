@@ -106,11 +106,11 @@ namespace Inventory.EntityClass
             var dm = (from d in help.ent.The_kho
                       where d.ID_Chat_luong == ID_chat_luong && d.Ma_vat_tu == mavattu
                       select new {
-                        d.ID_Chat_luong,
+                        d.ID_The_Kho,
                       }).ToList();
             if (dm.Count == 0)
                 return -1;
-            return (int)dm[0].ID_Chat_luong;
+            return (int)dm[0].ID_The_Kho;
            
         }
         public int Delete(DatabaseHelper help)

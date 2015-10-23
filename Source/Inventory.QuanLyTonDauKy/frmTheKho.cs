@@ -58,6 +58,29 @@ namespace Inventory.QuanLyTonDauKy
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
 
                     DataTable tb = cttk.Search(tungay, denngay,search);
+                    DataView dv = tb.DefaultView;
+                    //   Sort data
+
+                    dv.Sort = "Ngay_nhap_xuat";
+                    //   Convert back your sorted DataView to DataTable
+                    tb = dv.ToTable();
+                    double sln = double.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ?  double.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
+                    double slx = double.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
+
+                    double slt = double.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? double.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
+                    double tontruoc = 0;
+                    double tonhientai = sln - slx + tontruoc;
+                    tontruoc = tonhientai;
+                    tb.Rows[0]["SL_ton"] = tonhientai;   
+                    for (int i = 1; i < tb.Rows.Count; i++)
+                    {
+                        sln = double.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? double.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
+                        slx = double.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
+                         tonhientai=tontruoc + sln - slx;
+                         tontruoc = tonhientai;
+                         tb.Rows[i]["SL_ton"] = tonhientai;   
+                    }
+
                     gridTheKho.DataSource = tb;
                 }
             }
@@ -117,6 +140,7 @@ namespace Inventory.QuanLyTonDauKy
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            
             Search(dtTuNgay.Value , dtDenNgay.Value);
         }
     }
