@@ -438,19 +438,22 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbTenNhanVien()
         {
-            cbTenNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbTenNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsDM_NhanVien nv = new clsDM_NhanVien();
-            AutoCompleteStringCollection combData1 = nv.getListTenNhanVien();
+            clsGiaoDienChung.initCombobox(cbTenNhanVien, new clsDM_NhanVien(), "Ten_nhan_vien", "ID_nhan_vien", "Ten_nhan_vien");
 
-            cbTenNhanVien.AutoCompleteCustomSource = combData1;
+            //cbTenNhanVien.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbTenNhanVien.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            cbTenNhanVien.DataSource = nv.getAll_Ma_Ten_NV();
-            cbTenNhanVien.ValueMember = "ID_nhan_vien";
-            cbTenNhanVien.DisplayMember = "Ten_nhan_vien";
+            //clsDM_NhanVien nv = new clsDM_NhanVien();
+            //AutoCompleteStringCollection combData1 = nv.getListTenNhanVien();
 
-            cbTenNhanVien.SelectedIndex = -1;
+            //cbTenNhanVien.AutoCompleteCustomSource = combData1;
+
+            //cbTenNhanVien.DataSource = nv.getAll_Ma_Ten_NV();
+            //cbTenNhanVien.ValueMember = "ID_nhan_vien";
+            //cbTenNhanVien.DisplayMember = "Ten_nhan_vien";
+
+            //cbTenNhanVien.SelectedIndex = -1;
         }
 
         private void init_cbMaVatTu()
@@ -491,19 +494,22 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbMaPhieuXuatTam()
         {
-            cbMaPhieuXuatTam.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbMaPhieuXuatTam.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsChiTietPhieuXuatTam PhieuXuat = new clsChiTietPhieuXuatTam();
-            AutoCompleteStringCollection combData1 = PhieuXuat.getListMaPhieuXuatTam();
+            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsChiTietPhieuXuatTam(), "Ma_phieu_xuat_tam", "ID_phieu_xuat_tam", "Ma_phieu_xuat_tam");
+            
+            //cbMaPhieuXuatTam.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cbMaPhieuXuatTam.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            cbMaPhieuXuatTam.AutoCompleteCustomSource = combData1;
+            //clsChiTietPhieuXuatTam PhieuXuat = new clsChiTietPhieuXuatTam();
+            //AutoCompleteStringCollection combData1 = PhieuXuat.getListMaPhieuXuatTam();
 
-            cbMaPhieuXuatTam.DataSource = PhieuXuat.getAll_Ma_Phieu();
-            cbMaPhieuXuatTam.ValueMember = "ID_phieu_xuat_tam";
-            cbMaPhieuXuatTam.DisplayMember = "Ma_phieu_xuat_tam";
+            //cbMaPhieuXuatTam.AutoCompleteCustomSource = combData1;
 
-            cbMaPhieuXuatTam.SelectedIndex = -1;
+            //cbMaPhieuXuatTam.DataSource = PhieuXuat.getAll_Ma_Phieu();
+            //cbMaPhieuXuatTam.ValueMember = "ID_phieu_xuat_tam";
+            //cbMaPhieuXuatTam.DisplayMember = "Ma_phieu_xuat_tam";
+
+            //cbMaPhieuXuatTam.SelectedIndex = -1;
         }
 
         //Kho xuất, khi đã chọn vật tư từ kho, thì ko dc thay đổi nữa.
