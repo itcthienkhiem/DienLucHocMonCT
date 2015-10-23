@@ -10,10 +10,11 @@ namespace Inventory.EntityClass
 {
     public class clsChiTietTheKho
     {
+        //~
         public int ID_the_kho;
         public string Ma_phieu;
         public bool Loai_phieu;
-       // public string Ma_phieu;
+        // public string Ma_phieu;
         public DateTime Ngay_xuat_chung_tu;
         public DateTime Ngay_nhap_xuat;
         public string Dien_giai;
@@ -22,10 +23,10 @@ namespace Inventory.EntityClass
         public double SL_Ton;
         public bool Da_quyet_toan;
         public string Ghi_chu;
-      
-        
 
-           public int Insert(DatabaseHelper help)
+
+
+        public int Insert(DatabaseHelper help)
         {
 
             // insert
@@ -44,11 +45,11 @@ namespace Inventory.EntityClass
                         Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                         Dien_giai = this.Dien_giai,
                         SL_Nhap = this.SL_Nhap,
-                       // SL_Xuat = this.SL_Xuat,
-                        //SL_Ton = this.SL_Ton,
+                        SL_Xuat = this.SL_Xuat,
+                        SL_Ton = this.SL_Ton,
                         Da_quyet_toan = this.Da_quyet_toan,
                         Ghi_chu = this.Ghi_chu,
-                     
+
                     };
 
                     help.ent.Chi_tiet_the_kho.Add(t);
@@ -85,8 +86,8 @@ namespace Inventory.EntityClass
                 Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                 Dien_giai = this.Dien_giai,
                 SL_Nhap = this.SL_Nhap,
-                //SL_Xuat = this.SL_Xuat,
-                //SL_Ton = this.SL_Ton,
+                SL_Xuat = this.SL_Xuat,
+                SL_Ton = this.SL_Ton,
                 Da_quyet_toan = this.Da_quyet_toan,
                 Ghi_chu = this.Ghi_chu,
 
@@ -102,11 +103,11 @@ namespace Inventory.EntityClass
 
                 }
 
-             
+
             }
             catch (Exception ex)
             {
-               
+
             }
 
             return temp;
@@ -124,8 +125,8 @@ namespace Inventory.EntityClass
                 Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                 Dien_giai = this.Dien_giai,
                 SL_Nhap = this.SL_Nhap,
-                //SL_Xuat = this.SL_Xuat,
-                //SL_Ton = this.SL_Ton,
+                SL_Xuat = this.SL_Xuat,
+                SL_Ton = this.SL_Ton,
                 Da_quyet_toan = this.Da_quyet_toan,
                 Ghi_chu = this.Ghi_chu,
 
@@ -154,15 +155,15 @@ namespace Inventory.EntityClass
             }
         }
 
-      
-        public DataTable Search(DateTime tungays, DateTime denngays,int id_the_kho)
+
+        public DataTable Search(DateTime tungays, DateTime denngays, int id_the_kho)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var filteredData = help.ent.Chi_tiet_the_kho.Where(t => t.Ngay_nhap_xuat >= tungays && t.Ngay_nhap_xuat <= denngays && t.ID_The_Kho == id_the_kho).ToList();
-          
+
                 return Utilities.clsThamSoUtilities.ToDataTable(filteredData);
             }
         }
