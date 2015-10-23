@@ -52,7 +52,7 @@ namespace Inventory.EntityClass
                              d.Ma_phieu_nhap,
                              d.Ma_vat_tu,
                              
-                             d.ID_Chat_luong,
+                             d.Id_chat_luong,
                              d.So_luong_yeu_cau,
                              d.So_luong_thuc_lanh,
                              d.Don_gia,
@@ -145,7 +145,7 @@ namespace Inventory.EntityClass
             var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
                               join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                              join f in help.ent.Chat_luong on ep.ID_Chat_luong equals f.Id_chat_luong
+                              join f in help.ent.Chat_luong on ep.Id_chat_luong equals f.Id_chat_luong
                               where ep.Ma_phieu_nhap.Equals(ma_Phieunhap)
 
                               select new
@@ -249,7 +249,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
-                                  join g in help.ent.Chat_luong on d.ID_Chat_luong equals g.Id_chat_luong
+                                  join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
                                   where d.Da_duyet == false
                                   select new
                                   {
@@ -260,7 +260,7 @@ namespace Inventory.EntityClass
                                       f.Ngay_lap,
                                       d.So_luong_thuc_lanh,
                                       d.Da_duyet,
-                                      d.ID_Chat_luong,
+                                      d.Id_chat_luong,
                                      g.Loai_chat_luong,
 
                                   }).ToList();
@@ -302,7 +302,7 @@ namespace Inventory.EntityClass
         public bool CheckTonTaiSoDK(DatabaseHelper help)
         {
            
-            bool has = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap && cus.Ma_vat_tu == Ma_vat_tu &&cus. ID_Chat_luong == ID_Chat_luong);
+            bool has = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Any(cus => cus.Ma_phieu_nhap == Ma_phieu_nhap && cus.Ma_vat_tu == Ma_vat_tu &&cus. Id_chat_luong == ID_Chat_luong);
             return has;
 
 
@@ -321,7 +321,7 @@ namespace Inventory.EntityClass
                     {
                         Ma_phieu_nhap = this.Ma_phieu_nhap,
                         Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                        ID_Chat_luong = this.ID_Chat_luong,
+                        Id_chat_luong = this.ID_Chat_luong,
                         So_luong_yeu_cau = this.So_luong_yeu_cau,
                         So_luong_thuc_lanh = this.So_luong_thuc_lanh,
                         Don_gia = this.Don_gia,
@@ -364,7 +364,7 @@ namespace Inventory.EntityClass
                     {
                         Ma_phieu_nhap = this.Ma_phieu_nhap,
                         Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                        ID_Chat_luong = this.ID_Chat_luong,
+                        Id_chat_luong = this.ID_Chat_luong,
                         So_luong_yeu_cau = this.So_luong_yeu_cau??0,
                         So_luong_thuc_lanh = this.So_luong_thuc_lanh??0,
                         Don_gia = this.Don_gia??0,

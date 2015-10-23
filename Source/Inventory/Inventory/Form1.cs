@@ -23,13 +23,14 @@ namespace Inventory
 
         public MDIMain()
         {
-            
-            //this.Hide();
-            //Thread splashthread = new Thread(new ThreadStart(SplashScreen.ShowSplashScreen));
-            //splashthread.IsBackground = true;
-            //splashthread.Start();
+
+            this.Hide();
+            Thread splashthread = new Thread(new ThreadStart(Show));
+            splashthread.IsBackground = true;
+            splashthread.Start();
 
             InitializeComponent();
+           
             //lapToolStripMenuItem_Click(null, null);
          
             
@@ -234,6 +235,7 @@ namespace Inventory
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
+            //backgroundWorker1.RunWorkerAsync();
             //SplashScreen.UdpateStatusText("Loading Items!!!");
             //Thread.Sleep(1000);
             //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Success);
@@ -248,10 +250,17 @@ namespace Inventory
             //SplashScreen.UdpateStatusText("Items Loaded..");
             //Thread.Sleep(500);
 
-            this.Show();
+            //this.Show();
             //SplashScreen.CloseSplashScreen();
-            this.Activate();
+            //this.Activate();
             //frmKetNoi kn = new frmKetNoi();
+
+            //Thread splashthread = new Thread(new ThreadStart(Show));
+            //splashthread.IsBackground = true;
+            //splashthread.Start();
+
+
+
             try
             {
                 string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -269,7 +278,11 @@ namespace Inventory
                // MessageBox.Show("Chưa cấu hình CSDL! Vui lòng cấu hình hệ thống trước.");
             }
         }
-
+        public void Show()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+        }
         private void lapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
@@ -510,6 +523,21 @@ namespace Inventory
                 frms[i].Close();
             frms.Clear();
             frms.Add(frm);
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            lapToolStripMenuItem_Click(null, null);
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

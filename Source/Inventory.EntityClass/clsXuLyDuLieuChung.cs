@@ -42,7 +42,7 @@ namespace Inventory.EntityClass
                         entTonKho.ID_kho = idkho;
                         entTonKho.Ma_vat_tu = mavt;
                         entTonKho.So_luong = soluong;
-                        entTonKho.ID_Chat_luong = ID_chat_luong;
+                        entTonKho.Id_chat_luong = ID_chat_luong;
                         help.ent.Ton_kho.Add(entTonKho);
                         help.ent.SaveChanges();
 
@@ -60,7 +60,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -101,7 +101,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
-                            tk.ID_Chat_luong = ID_chat_luong;
+                            tk.Id_chat_luong = ID_chat_luong;
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 
@@ -186,7 +186,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -216,7 +216,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
-                            tk.ID_Chat_luong = ID_chat_luong;
+                            tk.Id_chat_luong = ID_chat_luong;
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 
@@ -292,7 +292,7 @@ namespace Inventory.EntityClass
                         entTonKho.ID_kho = idkho;
                         entTonKho.Ma_vat_tu = mavt;
                         entTonKho.So_luong = soluong;
-                        entTonKho.ID_Chat_luong = ID_chat_luong;
+                        entTonKho.Id_chat_luong = ID_chat_luong;
                         help.ent.Ton_kho.Add(entTonKho);
                         help.ent.SaveChanges();
 
@@ -310,7 +310,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -351,7 +351,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
-                            tk.ID_Chat_luong = ID_chat_luong;
+                            tk.Id_chat_luong = ID_chat_luong;
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 
@@ -437,7 +437,7 @@ namespace Inventory.EntityClass
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
 
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.ID_Chat_luong == ID_chat_luong
+                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
                                             select d).ToList();
                         foreach (var temp in entryPointCT)
                         {
@@ -467,7 +467,7 @@ namespace Inventory.EntityClass
                             tk.Ma_vat_tu = mavt;
                             tk.Dia_diem = idkho.ToString();
                             tk.Don_vi = idkho.ToString();
-                            tk.ID_Chat_luong = ID_chat_luong;   
+                            tk.Id_chat_luong = ID_chat_luong;   
                             help.ent.The_kho.Add(tk);
                             help.ent.SaveChanges();
 

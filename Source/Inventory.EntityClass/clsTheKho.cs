@@ -43,7 +43,7 @@ namespace Inventory.EntityClass
                     {
 
                         Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                        ID_Chat_luong = this.ID_chat_luong,
+                        Id_chat_luong = this.ID_chat_luong,
                         Don_vi = this.Don_vi,
                         Dia_diem = this.Dia_diem,
 
@@ -75,7 +75,7 @@ namespace Inventory.EntityClass
             var t = new The_kho
              {
                  Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                 ID_Chat_luong = this.ID_chat_luong,
+                 Id_chat_luong = this.ID_chat_luong,
                  Don_vi = this.Don_vi,
                  Dia_diem = this.Dia_diem,
              };
@@ -104,7 +104,7 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             var dm = (from d in help.ent.The_kho
-                      where d.ID_Chat_luong == ID_chat_luong && d.Ma_vat_tu == mavattu
+                      where d.Id_chat_luong == ID_chat_luong && d.Ma_vat_tu == mavattu
                       select new {
                         d.ID_The_Kho,
                       }).ToList();
@@ -119,7 +119,7 @@ namespace Inventory.EntityClass
             {
 
                 Ma_vat_tu = this.Ma_vat_tu,                   // ID = Guid.NewGuid(),
-                ID_Chat_luong = this.ID_chat_luong,
+                Id_chat_luong = this.ID_chat_luong,
                 Don_vi = this.Don_vi,
                 Dia_diem = this.Dia_diem,
 
