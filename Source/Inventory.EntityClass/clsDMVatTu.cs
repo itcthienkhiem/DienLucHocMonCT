@@ -53,6 +53,7 @@ namespace Inventory.EntityClass
             //  this.Don_gia = don_gia;
             this.ID_Don_vi_tinh = id_dvt;
         }
+
         //đặc biệt phổ dụng
         public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
         {
@@ -110,69 +111,70 @@ namespace Inventory.EntityClass
         /// lấy tất cả danh sách mã vật tư
         /// </summary>
         /// <returns></returns>
-        //public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu()
-        //{
-        //    //m_dbConnection.Open();
+        public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu()
+        {
+            //m_dbConnection.Open();
 
-        //    //DataSet ds = new DataSet();
-        //    System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
-        //    DatabaseHelper help = new DatabaseHelper();
-        //    help.ConnectDatabase();
-        //    var temp = (from ep in help.ent.DM_Vat_Tu 
-        //                select  ep
+            //DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.DM_Vat_Tu
+                        select ep
 
-        //).ToList();
+        ).ToList();
 
-        //    temp.ToList().ForEach((n) =>
-        //    {
-        //        dataCollection.Add(n.Ma_vat_tu);
+            temp.ToList().ForEach((n) =>
+            {
+                dataCollection.Add(n.Ma_vat_tu);
 
-        //    });
+            });
 
-        //    //string sql = "";
-        //    //sql += "SELECT ";
-        //    //sql += "Ma_vat_tu ";
-        //    //sql += "FROM DM_Vat_Tu ";
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "Ma_vat_tu ";
+            //sql += "FROM DM_Vat_Tu ";
 
-        //    //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-        //    //SqlDataAdapter da = new SqlDataAdapter(command);
-        //    //da.Fill(ds);
-        //    //m_dbConnection.Close();
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(ds);
+            //m_dbConnection.Close();
 
-        //    //foreach (DataRow row in ds.Tables[0].Rows)
-        //    //{
-        //    //    dataCollection.Add(row[0].ToString());
-        //    //}
+            //foreach (DataRow row in ds.Tables[0].Rows)
+            //{
+            //    dataCollection.Add(row[0].ToString());
+            //}
 
-        //    return dataCollection;
-        //}
+            return dataCollection;
+        }
+
+
         /// <summary>
         /// lấy danh sách tên vật tư
         /// </summary>
         /// <returns></returns>
-        //public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu()
-        //{
-        //    // m_dbConnection.Open();
+        public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu()
+        {
+            // m_dbConnection.Open();
 
-        //    DataSet ds = new DataSet();
-        //    System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-        //  //  System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
-        //    DatabaseHelper help = new DatabaseHelper();
-        //    help.ConnectDatabase();
-        //    var temp = (from ep in help.ent.DM_Vat_Tu
-        //                select ep
+            //System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
 
-        //).ToList();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.DM_Vat_Tu
+                        select ep).ToList();
 
-        //    temp.ToList().ForEach((n) =>
-        //    {
-        //        dataCollection.Add(n.Ten_vat_tu);
+            temp.ToList().ForEach((n) =>
+            {
+                dataCollection.Add(n.Ten_vat_tu);
+            });
 
-        //    });
+            return dataCollection;
+        }
 
-        //    return dataCollection;
-        //}
         /// <summary>
         /// lấy tất cả thông tin vật tư
         /// </summary>

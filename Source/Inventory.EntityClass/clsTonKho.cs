@@ -18,6 +18,40 @@ namespace Inventory.EntityClass
         public double So_luong;
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+
+        public int getSL(string Ma_vat_tu, int ID_Kho, int Id_chat_luong)
+        {
+
+            m_dbConnection.Open();
+            System.Data.DataTable dt = new DataTable();
+
+            //Chuẩn bị
+            string sql = "";
+            sql += "SELECT So_luong FROM Ton_kho ";
+            sql += "WHERE Ma_vat_tu=@Ma_vat_tu ";
+            sql += "AND ID_Kho=@ID_Kho ";
+            sql += "AND Id_chat_luong=@Id_chat_luong ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = Ma_vat_tu;
+            command.Parameters.Add("@ID_Kho", SqlDbType.Int).Value = ID_Kho;
+            command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Id_chat_luong;
+
+            command.CommandType = CommandType.Text;
+
+            //Run
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+
+            //Đóng
+            m_dbConnection.Close();
+            if (dt.Rows.Count > 0)
+                return Int32.Parse(dt.Rows[0]["So_luong"].ToString());
+            else
+                return 0;
+        }
+
         public string getSL_from_MaVatTu(string Ma_vat_tu, string ID_Kho)
         {
             return getAllVT(ID_kho, Ma_vat_tu).ToString();
@@ -111,7 +145,7 @@ namespace Inventory.EntityClass
             {
                 var entryPoint = (from d in help.ent.Ton_kho
                          join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
-                         where d.ID_kho == _ID_kho && d.So_luong > 0 && d.Ma_vat_tu ==mavattu
+                         where d.ID_kho == _ID_kho && d.So_luong > 0 && d.Ma_vat_tu == mavattu
                          select new
                          {
                              d.ID_ton_kho,
@@ -129,10 +163,8 @@ namespace Inventory.EntityClass
                     }
             };
             return 0;
-
-            
-
         }
+
         public static object getAll(int _ID_kho)
         {
 
@@ -154,9 +186,6 @@ namespace Inventory.EntityClass
                 dbcxtransaction.Commit();
                 return (object)dm.ToList();
             }
-
-
-
         }
 
         //public bool CheckTonTaiSoDK(int idkho, string maVT)
@@ -261,16 +290,12 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper(); help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-
-
                 help.ent.Ton_kho.Attach(dm);
                 help.ent.Ton_kho.Remove(dm);
                 int temp = help.ent.SaveChanges();
                 dbcxtransaction.Commit();
                 return temp;
             }
-
         }
-
     }
 }

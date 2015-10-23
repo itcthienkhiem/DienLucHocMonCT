@@ -35,7 +35,32 @@ namespace Inventory.EntityClass
             }
             return dataCollection;
         }
-      
+
+        /// <summary>
+        /// lấy danh sách tên vật tư
+        /// </summary>
+        /// <returns></returns>
+        public System.Windows.Forms.AutoCompleteStringCollection getListLoaiChatLuong()
+        {
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            //System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = (from ep in help.ent.Chat_luong
+                        select ep).ToList();
+
+            temp.ToList().ForEach((n) =>
+            {
+                dataCollection.Add(n.Loai_chat_luong);
+            });
+
+            return dataCollection;
+        }
+
         public override DataTable GetAllData()
         {
             DatabaseHelper help = new DatabaseHelper();

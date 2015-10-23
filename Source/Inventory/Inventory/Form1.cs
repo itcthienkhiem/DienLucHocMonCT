@@ -234,22 +234,22 @@ namespace Inventory
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
-            SplashScreen.UdpateStatusText("Loading Items!!!");
-            Thread.Sleep(1000);
-            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Success);
-            Thread.Sleep(1000);
-            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Warning);
+            //SplashScreen.UdpateStatusText("Loading Items!!!");
+            //Thread.Sleep(1000);
+            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Success);
+            //Thread.Sleep(1000);
+            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Warning);
 
-            Thread.Sleep(1000);
-            SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Error);
-            Thread.Sleep(1000);
-            SplashScreen.UdpateStatusText("Testing Default Message Color");
-            Thread.Sleep(1000);
-            SplashScreen.UdpateStatusText("Items Loaded..");
-            Thread.Sleep(500);
+            //Thread.Sleep(1000);
+            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Error);
+            //Thread.Sleep(1000);
+            //SplashScreen.UdpateStatusText("Testing Default Message Color");
+            //Thread.Sleep(1000);
+            //SplashScreen.UdpateStatusText("Items Loaded..");
+            //Thread.Sleep(500);
 
             this.Show();
-            SplashScreen.CloseSplashScreen();
+            //SplashScreen.CloseSplashScreen();
             this.Activate();
             //frmKetNoi kn = new frmKetNoi();
             try

@@ -21,6 +21,7 @@ namespace Inventory.EntityClass
         public int So_luong_hoan_nhap;
         public int So_luong_giu_lai;
         public int so_luong_thuc_lanh;
+        public int Id_chat_luong;
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
 
@@ -64,6 +65,7 @@ namespace Inventory.EntityClass
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             bool has = help.ent.Chi_Tiet_Phieu_Xuat_Tam.Any(cus => cus.Ma_phieu_xuat_tam == Ma_phieu_xuat_tam);
+            
             return has;
             //Mở
             ////m_dbConnection.Open();
@@ -178,13 +180,13 @@ namespace Inventory.EntityClass
             m_dbConnection.Open();
 
             DataTable dt = new DataTable();
-            
 
-            string sql = "SELECT Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu,DM_Vat_Tu.Ten_vat_tu,Chi_tiet_Phieu_Xuat_Tam.ID_kho,DM_Kho.Ten_kho,Chi_tiet_Phieu_Xuat_Tam.So_luong_de_nghi,Chi_tiet_Phieu_Xuat_Tam.So_luong_thuc_xuat,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_xuat_vat_tu,Chi_tiet_Phieu_Xuat_Tam.So_luong_hoan_nhap,Chi_tiet_Phieu_Xuat_Tam.So_luong_giu_lai,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_hoan_nhap_giu_lai,Chi_tiet_Phieu_Xuat_Tam.So_luong_su_dung,DM_Don_vi_tinh.Ten_don_vi_tinh FROM Chi_tiet_Phieu_Xuat_Tam ";
+            string sql = "SELECT Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu,DM_Vat_Tu.Ten_vat_tu,Chi_tiet_Phieu_Xuat_Tam.ID_kho,DM_Kho.Ten_kho,Chi_tiet_Phieu_Xuat_Tam.So_luong_de_nghi,Chi_tiet_Phieu_Xuat_Tam.So_luong_thuc_xuat,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_xuat_vat_tu,Chi_tiet_Phieu_Xuat_Tam.So_luong_hoan_nhap,Chi_tiet_Phieu_Xuat_Tam.So_luong_giu_lai,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_hoan_nhap_giu_lai,DM_Don_vi_tinh.Ten_don_vi_tinh,Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong,Chat_luong.Loai_chat_luong FROM Chi_tiet_Phieu_Xuat_Tam ";
             sql += "join DM_Vat_Tu on DM_Vat_Tu.Ma_vat_tu =Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu ";
             sql += "join DM_Don_vi_tinh on DM_vat_tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
             sql += "join DM_Kho on Chi_tiet_Phieu_Xuat_Tam.ID_kho=DM_Kho.ID_kho ";
-            sql += " WHERE Chi_tiet_Phieu_Xuat_Tam.Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+            sql += "join Chat_luong on Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong=Chat_luong.Id_chat_luong ";
+            sql += "WHERE Chi_tiet_Phieu_Xuat_Tam.Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
 
             SqlCommand command = new SqlCommand(sql, m_dbConnection);
             command.CommandType = CommandType.Text;
@@ -206,7 +208,6 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-
                 var entryPoint = (from ep in help.ent.Chi_Tiet_Phieu_Xuat_Tam
                                   join e in help.ent.Phieu_Xuat_Tam_Vat_Tu on ep.Ma_phieu_xuat_tam equals e.Ma_phieu_xuat_tam
                                   join t in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals t.Ma_vat_tu
@@ -251,6 +252,7 @@ namespace Inventory.EntityClass
                          ).ToList();
                 return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
             }
+
             //m_dbConnection.Open();
             //DataTable dt = new DataTable();
             //string sql = "SELECT * FROM Chi_Tiet_Phieu_xuat_tam ";
@@ -312,162 +314,173 @@ namespace Inventory.EntityClass
             DataTable old_dt = GetDataTable(maPhieu);
             DataTable new_dt = dt.Copy();
 
+            //Nếu mã phiếu này chưa có trong DB, thêm mới tất cả.
+            if (old_dt.Rows.Count == 0)
+            {
+                for (int i=0; i < new_dt.Rows.Count; i++)
+                {
+                    //Phần này cập nhập tồn kho --> Tạm chưa xử lý
+                    ////InsertTonKho(string mavt, int idkho, int soluong, string maphieu)
+                    //bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                    //if(bXacNhanXuat)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+
+                    //    int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if ((slTon - SLTX) > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, 0-SLTX, maPhieu);
+                    //    }
+                    //    else
+                    //    {
+                    //        //
+                    //    }
+                    //}
+
+                    //bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    //if (bXacNhanHoanNhapGiuLai)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
+
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                    //    int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+                    //    //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if (SLHN > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //    }
+
+                    //    if (SLGL > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //        //Add nợ
+                    //    }
+                    //}
+
+                    Insert_row(maPhieu, new_dt, i);
+
+                }
+                return 1;
+            } //End Insert mới
+
             //Nếu đã có trong DB, cập nhật theo table mới --> update cái đã có, insert cái chưa có
             for (int i = 0; i < new_dt.Rows.Count; i++)
             {
-                //Nếu mã phiếu này chưa có trong DB, thêm mới tất cả.
-                if (old_dt.Rows.Count == 0)
-                {
-                    for (; i < new_dt.Rows.Count; i++)
-                    {
-                        //InsertTonKho(string mavt, int idkho, int soluong, string maphieu)
-                        bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
-                        if(bXacNhanXuat)
-                        {
-                            clsTonKho ton = new clsTonKho();
-                            clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                            string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                            int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                            int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
-                            int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                            if ((slTon - SLTX) > 0)
-                            {
-                                //xlc.InsertTonKho(mvt, IDKho, 0-SLTX, maPhieu);
-                            }
-                            else
-                            {
-                                //
-                            }
-                        }
-
-                        bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
-                        if (bXacNhanHoanNhapGiuLai)
-                        {
-                            clsTonKho ton = new clsTonKho();
-
-                            clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                            string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                            int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                            int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
-                            int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
-                            //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                            if (SLHN > 0)
-                            {
-                                //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                            }
-
-                            if (SLGL > 0)
-                            {
-                                //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                                //Add nợ
-                            }
-                        }
-                        Insert_row(maPhieu, new_dt, i);
-
-                    }
-                    return 1;
-                } //End Insert mới
-
                 DataRow selectedRow = new_dt.Rows[i];
 
                 string Ma_vat_tu = selectedRow["Ma_vat_tu"].ToString();
                 int ID_kho = Int32.Parse(selectedRow["ID_kho"].ToString());
+                int Id_chat_luong = Int32.Parse(selectedRow["Id_chat_luong"].ToString());
 
-                DataRow[] KiemTra = old_dt.Select("Ma_vat_tu = \'" + Ma_vat_tu + "\' AND ID_kho = \'" + ID_kho + "\'");
+                DataRow[] KiemTra = old_dt.Select("Ma_vat_tu = \'" + Ma_vat_tu + "\' AND ID_kho = \'" + ID_kho + "\' AND Id_chat_luong = \'" + Id_chat_luong + "\'");
+
                 //Update data da co
                 if (KiemTra.Length > 0)
                 {
-                    bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
-                    bool bOld_XacNhanXuat = bool.Parse(KiemTra[0]["Da_duyet_xuat_vat_tu"].ToString());
+                    //Phần xử lý cập nhật tồn kho
 
-                    if (bXacNhanXuat == true && bOld_XacNhanXuat == false)
-                    {
-                        clsTonKho ton = new clsTonKho();
-                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                        int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
-                        int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                        if ((slTon - SLTX) > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
-                        }
-                        else
-                        {
-                            //
-                        }
-                    }
+                    //bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                    //bool bOld_XacNhanXuat = bool.Parse(KiemTra[0]["Da_duyet_xuat_vat_tu"].ToString());
 
-                    bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
-                    bool bOld_XacNhanHoanNhapGiuLai = bool.Parse(KiemTra[0]["Da_duyet_hoan_nhap_giu_lai"].ToString());
-                    if (bXacNhanHoanNhapGiuLai == true && bOld_XacNhanHoanNhapGiuLai == false)
-                    {
-                        clsTonKho ton = new clsTonKho();
+                    //if (bXacNhanXuat == true && bOld_XacNhanXuat == false)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+                    //    int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if ((slTon - SLTX) > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                    //    }
+                    //    else
+                    //    {
+                    //        //
+                    //    }
+                    //}
 
-                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                        int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
-                        int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
-                        //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                        if (SLHN > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                        }
+                    //bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    //bool bOld_XacNhanHoanNhapGiuLai = bool.Parse(KiemTra[0]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    //if (bXacNhanHoanNhapGiuLai == true && bOld_XacNhanHoanNhapGiuLai == false)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
 
-                        if (SLGL > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                            //Add nợ
-                        }
-                    }
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                    //    int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+                    //    //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if (SLHN > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //    }
 
+                    //    if (SLGL > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //        //Add nợ
+                    //    }
+                    //}
+
+                    //Row đã cập nhật thì xóa đi
                     Update_row(maPhieu, new_dt, i);
                     old_dt.Rows.Remove(KiemTra[0]);
                 }
                 else
                 {
-                    bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
-                    if (bXacNhanXuat)
-                    {
-                        clsTonKho ton = new clsTonKho();
-                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                        int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
-                        int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                        if ((slTon - SLTX) > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
-                        }
-                        else
-                        {
-                            //
-                        }
-                    }
+                    //Phần xử lý cập nhật tồn kho
 
-                    bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
-                    if (bXacNhanHoanNhapGiuLai)
-                    {
-                        clsTonKho ton = new clsTonKho();
+                    //bool bXacNhanXuat = bool.Parse(new_dt.Rows[i]["Da_duyet_xuat_vat_tu"].ToString());
+                    //if (bXacNhanXuat)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLTX = Int32.Parse(new_dt.Rows[i]["So_luong_thuc_xuat"].ToString());
+                    //    int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if ((slTon - SLTX) > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, 0 - SLTX, maPhieu);
+                    //    }
+                    //    else
+                    //    {
+                    //        //
+                    //    }
+                    //}
 
-                        clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
-                        string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
-                        int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
-                        int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
-                        int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
-                        //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
-                        if (SLHN > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                        }
+                    //bool bXacNhanHoanNhapGiuLai = bool.Parse(new_dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+                    //if (bXacNhanHoanNhapGiuLai)
+                    //{
+                    //    clsTonKho ton = new clsTonKho();
 
-                        if (SLGL > 0)
-                        {
-                            //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
-                            //Add nợ
-                        }
-                    }
+                    //    clsXuLyDuLieuChung xlc = new clsXuLyDuLieuChung();
+                    //    string mvt = new_dt.Rows[i]["Ma_vat_tu"].ToString();
+                    //    int IDKho = Int32.Parse(new_dt.Rows[i]["ID_kho"].ToString());
+                    //    int SLHN = Int32.Parse(new_dt.Rows[i]["So_luong_hoan_nhap"].ToString());
+                    //    int SLGL = Int32.Parse(new_dt.Rows[i]["So_luong_giu_lai"].ToString());
+
+                    //    //int slTon = Int32.Parse(ton.getSL_from_MaVatTu(mvt, IDKho.ToString()));
+                    //    if (SLHN > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //    }
+
+                    //    if (SLGL > 0)
+                    //    {
+                    //        //xlc.InsertTonKho(mvt, IDKho, SLHN, maPhieu);
+                    //        //Add nợ
+                    //    }
+                    //}
 
                     Insert_row(maPhieu, new_dt, i);
                 }
@@ -526,8 +539,8 @@ namespace Inventory.EntityClass
                 m_dbConnection.Open();
 
             string sql = "";
-            sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (Ma_phieu_xuat_tam,Ma_vat_tu,ID_kho,So_luong_de_nghi,So_luong_thuc_xuat,Da_duyet_xuat_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai) ";
-            sql += "VALUES(@Ma_phieu_xuat_tam,@Ma_vat_tu,@ID_kho,@So_luong_de_nghi,@So_luong_thuc_xuat,@Da_duyet_xuat_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@Da_duyet_hoan_nhap_giu_lai)";
+            sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (Ma_phieu_xuat_tam,Ma_vat_tu,ID_kho,So_luong_de_nghi,So_luong_thuc_xuat,Da_duyet_xuat_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai,Id_chat_luong) ";
+            sql += "VALUES(@Ma_phieu_xuat_tam,@Ma_vat_tu,@ID_kho,@So_luong_de_nghi,@So_luong_thuc_xuat,@Da_duyet_xuat_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@Da_duyet_hoan_nhap_giu_lai,@Id_chat_luong)";
 
             SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
             command.CommandType = CommandType.Text;
@@ -541,6 +554,7 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
             command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
             command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+            command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
 
             int result = command.ExecuteNonQuery();
 
@@ -563,7 +577,7 @@ namespace Inventory.EntityClass
             string sql = "";
             sql += "UPDATE Chi_Tiet_Phieu_Xuat_Tam ";
             sql += "Set So_luong_de_nghi=@So_luong_de_nghi,So_luong_thuc_xuat=@So_luong_thuc_xuat,Da_duyet_xuat_vat_tu=@Da_duyet_xuat_vat_tu,So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai=@So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai=@Da_duyet_hoan_nhap_giu_lai ";
-            sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam AND Ma_vat_tu=@Ma_vat_tu AND ID_kho=@ID_kho";
+            sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam AND Ma_vat_tu=@Ma_vat_tu AND Id_chat_luong=@Id_chat_luong AND ID_kho=@ID_kho";
 
 
             SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
@@ -578,6 +592,7 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
             command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
             command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+            command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
 
             int result = command.ExecuteNonQuery();
 

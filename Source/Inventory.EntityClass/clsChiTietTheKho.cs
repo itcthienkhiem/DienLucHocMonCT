@@ -44,8 +44,8 @@ namespace Inventory.EntityClass
                         Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                         Dien_giai = this.Dien_giai,
                         SL_Nhap = this.SL_Nhap,
-                        SL_Xuat = this.SL_Xuat,
-                        SL_Ton = this.SL_Ton,
+                       // SL_Xuat = this.SL_Xuat,
+                        //SL_Ton = this.SL_Ton,
                         Da_quyet_toan = this.Da_quyet_toan,
                         Ghi_chu = this.Ghi_chu,
                      
@@ -85,8 +85,8 @@ namespace Inventory.EntityClass
                 Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                 Dien_giai = this.Dien_giai,
                 SL_Nhap = this.SL_Nhap,
-                SL_Xuat = this.SL_Xuat,
-                SL_Ton = this.SL_Ton,
+                //SL_Xuat = this.SL_Xuat,
+                //SL_Ton = this.SL_Ton,
                 Da_quyet_toan = this.Da_quyet_toan,
                 Ghi_chu = this.Ghi_chu,
 
@@ -124,8 +124,8 @@ namespace Inventory.EntityClass
                 Ngay_nhap_xuat = this.Ngay_nhap_xuat,
                 Dien_giai = this.Dien_giai,
                 SL_Nhap = this.SL_Nhap,
-                SL_Xuat = this.SL_Xuat,
-                SL_Ton = this.SL_Ton,
+                //SL_Xuat = this.SL_Xuat,
+                //SL_Ton = this.SL_Ton,
                 Da_quyet_toan = this.Da_quyet_toan,
                 Ghi_chu = this.Ghi_chu,
 
