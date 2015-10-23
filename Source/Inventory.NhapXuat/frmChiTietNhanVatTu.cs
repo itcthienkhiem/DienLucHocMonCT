@@ -17,9 +17,9 @@ namespace Inventory.NhapXuat
         string maphieu;
         string mavattu;
         int idKho;
-        int soluong;
+        double soluong;
         int id_chatluong;
-        public frmChiTietNhanVatTu(frmVatTuPhanKho f,string maphieu,string mavattu,int idKho,int soluong,string tenvt,string tenkho,int id_chatluong)
+        public frmChiTietNhanVatTu(frmVatTuPhanKho f, string maphieu, string mavattu, int idKho, double soluong, string tenvt, string tenkho, int id_chatluong)
         {
             InitializeComponent();
             this.f = f;

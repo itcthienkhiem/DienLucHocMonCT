@@ -12,7 +12,7 @@ using System.Data.Entity;
 
 namespace Inventory.EntityClass
 {
-    public class clsChiTietPhieuXuatTam
+    public class clsChiTietPhieuXuatTam: ObjecEntity
     {
         public string Ma_phieu_xuat_tam;
 
@@ -23,6 +23,40 @@ namespace Inventory.EntityClass
         public int so_luong_thuc_lanh;
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
+
+        public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
+        {
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                          select d).ToList();
+                dbcxtransaction.Commit();
+                DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+                foreach (DataRow row in ds.Rows)
+                {
+                    dataCollection.Add(row[TenCot].ToString());
+                }
+            }
+            return dataCollection;
+        }
+        public override DataTable GetAllData()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                          select d).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
         public bool isHasDuplicateRow(string Ma_phieu_xuat_tam)
         {
 

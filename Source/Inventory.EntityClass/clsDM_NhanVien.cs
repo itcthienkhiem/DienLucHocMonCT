@@ -19,7 +19,7 @@ namespace Inventory.EntityClass
     /// - Update
     /// - Delete
     /// </summary>
-    public class clsDM_NhanVien
+    public class clsDM_NhanVien :ObjecEntity 
     {
        //List var dùng trong DM Vat Tu
         public int ID_nhan_vien;
@@ -37,6 +37,39 @@ namespace Inventory.EntityClass
           // nv = new DM_Nhan_Vien();
        }
 
+       public override DataTable GetAllData()
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm = (from d in help.ent.DM_Nhan_Vien
+                         select d).ToList();
+               dbcxtransaction.Commit();
+
+               return Utilities.clsThamSoUtilities.ToDataTable(dm);
+           }
+       }
+       public override AutoCompleteStringCollection getListToCombobox(string TenCot)
+       {
+           System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm = (from d in help.ent.DM_Nhan_Vien
+                         select d).ToList();
+               dbcxtransaction.Commit();
+               DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+               foreach (DataRow row in ds.Rows)
+               {
+                   dataCollection.Add(row[TenCot].ToString());
+               }
+           }
+           return dataCollection;
+       }
        public clsDM_NhanVien(int ID,string ma_nhan_vien, string ten_nhan_vien, bool trang_thai)
        {
            this.ID_nhan_vien= ID;

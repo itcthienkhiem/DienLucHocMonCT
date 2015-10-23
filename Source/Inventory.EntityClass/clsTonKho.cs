@@ -15,7 +15,7 @@ namespace Inventory.EntityClass
         public int ID_ton_kho;
         public int ID_kho;
         public string Ma_vat_tu;
-        public int So_luong;
+        public double So_luong;
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
         public string getSL_from_MaVatTu(string Ma_vat_tu, string ID_Kho)
@@ -102,7 +102,7 @@ namespace Inventory.EntityClass
         /// <param name="_ID_kho"></param>
         /// <param name="mavattu"></param>
         /// <returns></returns>
-        public static int? getAllVT(int _ID_kho, string mavattu)
+        public static double? getAllVT(int _ID_kho, string mavattu)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -124,7 +124,7 @@ namespace Inventory.EntityClass
 
              foreach (var record in entryPoint)
                     {
-                        int? soluong = record.So_luong;
+                        double? soluong = record.So_luong;
                         return soluong;
                     }
             };

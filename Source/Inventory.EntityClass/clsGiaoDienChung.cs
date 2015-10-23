@@ -18,16 +18,21 @@ namespace Inventory.EntityClass
        /// <param name="DisplayMember">tên hiển thị</param>
        public static void initCombobox(ComboBox cbb, ObjecEntity entCls, string tencot, string ValueMember, string DisplayMember)
        {
-         cbb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-         cbb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+           try
+           {
+               cbb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+               cbb.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-         AutoCompleteStringCollection combData1 =  entCls.getListToCombobox(tencot);// new AutoCompleteStringCollection();
+               AutoCompleteStringCollection combData1 = entCls.getListToCombobox(tencot);// new AutoCompleteStringCollection();
 
-           cbb.AutoCompleteCustomSource = combData1;
-           cbb.DataSource = entCls.GetAllData();
-           cbb.DisplayMember = DisplayMember;
-           cbb.ValueMember = ValueMember;
-           cbb.SelectedIndex = -1;
+               cbb.AutoCompleteCustomSource = combData1;
+               cbb.DataSource = entCls.GetAllData();
+               cbb.DisplayMember = DisplayMember;
+               cbb.ValueMember = ValueMember;
+               cbb.SelectedIndex = -1;
+           }
+           catch (Exception ex) {  }
+
        }
     }
 }

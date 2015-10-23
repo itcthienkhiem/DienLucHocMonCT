@@ -22,6 +22,7 @@ namespace Inventory.EntityClass
         {
             m_dbConnection.Open();
             DataTable dt = new DataTable();
+
             string sql = "";
             sql += "SELECT DM_Kho.Ten_kho, Ton_dau_ky.Ma_vat_tu, DM_vat_tu.Ten_vat_tu, Ton_dau_ky.So_luong ";
             sql += "FROM Ton_dau_ky";

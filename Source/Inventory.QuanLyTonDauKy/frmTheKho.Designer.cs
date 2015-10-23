@@ -60,7 +60,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(466, 148);
+            this.label1.Location = new System.Drawing.Point(488, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 33);
             this.label1.TabIndex = 0;
@@ -78,7 +78,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(471, 194);
+            this.label3.Location = new System.Drawing.Point(493, 158);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 13);
             this.label3.TabIndex = 2;
@@ -89,7 +89,7 @@
             this.txtTenVatTu.Location = new System.Drawing.Point(359, 210);
             this.txtTenVatTu.Multiline = true;
             this.txtTenVatTu.Name = "txtTenVatTu";
-            this.txtTenVatTu.Size = new System.Drawing.Size(427, 34);
+            this.txtTenVatTu.Size = new System.Drawing.Size(427, 64);
             this.txtTenVatTu.TabIndex = 3;
             // 
             // txtDiaDiem
@@ -145,7 +145,7 @@
             // cbMaVatTu
             // 
             this.cbMaVatTu.FormattingEnabled = true;
-            this.cbMaVatTu.Location = new System.Drawing.Point(811, 156);
+            this.cbMaVatTu.Location = new System.Drawing.Point(814, 210);
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(187, 21);
             this.cbMaVatTu.TabIndex = 50;
@@ -156,7 +156,7 @@
             // 
             // txtDVT
             // 
-            this.txtDVT.Location = new System.Drawing.Point(811, 201);
+            this.txtDVT.Location = new System.Drawing.Point(814, 255);
             this.txtDVT.Multiline = true;
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.Size = new System.Drawing.Size(187, 34);
@@ -165,7 +165,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(825, 185);
+            this.label6.Location = new System.Drawing.Point(828, 239);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 51;
@@ -284,7 +284,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(825, 132);
+            this.label12.Location = new System.Drawing.Point(828, 186);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 78;

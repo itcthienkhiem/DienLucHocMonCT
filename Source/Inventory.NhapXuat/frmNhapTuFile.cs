@@ -189,7 +189,7 @@ namespace Inventory.NhapXuat
 
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
-            Progressbar.Maximum = tb.Rows.Count;
+                Progressbar.Maximum = tb.Rows.Count;
                 backgroundWorker1.RunWorkerAsync();
             //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
             //queryRunningThread.Name = "ProcessLoop";

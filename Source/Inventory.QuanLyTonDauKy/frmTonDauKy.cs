@@ -106,7 +106,11 @@ namespace Inventory.QuanLyTonDauKy
         /// </summary>
         public void LoadData()
         {
-            gridTonDauKy.DataSource = TonDauKy.GetAll();
+            try
+            {
+                gridTonDauKy.DataSource = TonDauKy.GetAll();
+            }
+            catch (Exception ex) { }
         }
 
         public void CloseForm()

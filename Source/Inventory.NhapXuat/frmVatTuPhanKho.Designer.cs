@@ -40,12 +40,16 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.cbKhoNhanVatTu = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Da_phan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.So_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbKhoNhanVatTu = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chbChonTatCa = new System.Windows.Forms.CheckBox();
+            this.progressAll = new System.Windows.Forms.ProgressBar();
+            this.txtRunning = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.SuspendLayout();
@@ -185,23 +189,6 @@
             this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(788, 304);
             this.gridDanhSachPhieuNhap.TabIndex = 54;
             // 
-            // cbKhoNhanVatTu
-            // 
-            this.cbKhoNhanVatTu.FormattingEnabled = true;
-            this.cbKhoNhanVatTu.Location = new System.Drawing.Point(132, 111);
-            this.cbKhoNhanVatTu.Name = "cbKhoNhanVatTu";
-            this.cbKhoNhanVatTu.Size = new System.Drawing.Size(211, 21);
-            this.cbKhoNhanVatTu.TabIndex = 56;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 113);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Kho nhận vật tư";
-            // 
             // Ma_vat_tu
             // 
             this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
@@ -231,11 +218,64 @@
             this.So_luong.Name = "So_luong";
             this.So_luong.ReadOnly = true;
             // 
+            // cbKhoNhanVatTu
+            // 
+            this.cbKhoNhanVatTu.FormattingEnabled = true;
+            this.cbKhoNhanVatTu.Location = new System.Drawing.Point(132, 111);
+            this.cbKhoNhanVatTu.Name = "cbKhoNhanVatTu";
+            this.cbKhoNhanVatTu.Size = new System.Drawing.Size(211, 21);
+            this.cbKhoNhanVatTu.TabIndex = 56;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Kho nhận vật tư";
+            // 
+            // chbChonTatCa
+            // 
+            this.chbChonTatCa.AutoSize = true;
+            this.chbChonTatCa.Location = new System.Drawing.Point(349, 112);
+            this.chbChonTatCa.Name = "chbChonTatCa";
+            this.chbChonTatCa.Size = new System.Drawing.Size(81, 17);
+            this.chbChonTatCa.TabIndex = 57;
+            this.chbChonTatCa.Text = "Chọn tất cả";
+            this.chbChonTatCa.UseVisualStyleBackColor = true;
+            // 
+            // progressAll
+            // 
+            this.progressAll.Location = new System.Drawing.Point(646, 113);
+            this.progressAll.Name = "progressAll";
+            this.progressAll.Size = new System.Drawing.Size(142, 23);
+            this.progressAll.TabIndex = 58;
+            // 
+            // txtRunning
+            // 
+            this.txtRunning.AutoSize = true;
+            this.txtRunning.Location = new System.Drawing.Point(712, 95);
+            this.txtRunning.Name = "txtRunning";
+            this.txtRunning.Size = new System.Drawing.Size(13, 13);
+            this.txtRunning.TabIndex = 59;
+            this.txtRunning.Text = "0";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // frmVatTuPhanKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 438);
+            this.Controls.Add(this.txtRunning);
+            this.Controls.Add(this.progressAll);
+            this.Controls.Add(this.chbChonTatCa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbKhoNhanVatTu);
             this.Controls.Add(this.pnlMenu);
@@ -268,5 +308,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Da_phan;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong;
+        private System.Windows.Forms.CheckBox chbChonTatCa;
+        private System.Windows.Forms.ProgressBar progressAll;
+        private System.Windows.Forms.Label txtRunning;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
