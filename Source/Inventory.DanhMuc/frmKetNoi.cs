@@ -11,6 +11,7 @@ using System.Configuration;
 using Inventory.Utilities;
 using System.IO;
 using Inventory.Models;
+using System.Xml;
 namespace Inventory.DanhMuc
 {
     public partial class frmKetNoi : Form
@@ -22,24 +23,7 @@ namespace Inventory.DanhMuc
             try
             {
 
-                string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                string configFile = System.IO.Path.Combine(appPath, "App.config");
-                
-                ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
-                configFileMap.ExeConfigFilename = configFile;
-              
-
-                System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-
-                var settings = config.AppSettings.Settings;
-                txtServerName.Text = settings["server_Name"].Value;
-                txtUser.Text = settings["user_Name"].Value;
-                txtPwd.Text = settings["passwd"].Value;
-                txtTenCSDL.Text = settings["ten_CSDL"].Value;
-           //     cbKhoLamViec.SelectedIndex =int.Parse( settings["IDKho"].Value.ToString() )-1;
-                clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-               // clsThamSoUtilities.ID_Kho = int.Parse(config.AppSettings.Settings["IDkho"].Value.ToString());
-
+             
             }
             catch (Exception ex) { }
         }
@@ -50,44 +34,64 @@ namespace Inventory.DanhMuc
             config.AppSettings.Settings.Add(key, value);
             config.Save(ConfigurationSaveMode.Modified);
         }
+        public void updateConfigFile(string con)
+        {
+            //updating config file
+            XmlDocument XmlDoc = new XmlDocument();
+            //Loading the Config file
+            XmlDoc.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+            // XmlDoc.Load("App.config");
+            foreach (XmlElement xElement in XmlDoc.DocumentElement)
+            {
+                if (xElement.Name == "connectionStrings")
+                {
+                    //setting the coonection string
+                    xElement.LastChild.Attributes[1].Value = con;
+                }
+            }
+            //writing the connection string in config file
+            XmlDoc.Save(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+           // XmlDoc.Save("App.config");
+        }
+
+        private void btn_Connect_Click(object sender, EventArgs e)
+        {
+
+           // @"data source=KHIEM-PC\SQLEXPRESS" + ";initial catalog=QLKhoDienLuc" + ";persist security info=True;user id=sa" + ";password=2051990" + ";MultipleActiveResultSets=True;";
+            StringBuilder Con = new StringBuilder("Data Source=");
+            Con.Append(txtServerName.Text);
+            Con.Append(";Initial Catalog=");
+            Con.Append(txtTenCSDL.Text);
+            if (String.IsNullOrEmpty(txtUser.Text) && String.IsNullOrEmpty(txtPwd.Text))
+                Con.Append(";Integrated Security=true;");
+            else
+            {
+                Con.Append(";persist security info=True");
+                Con.Append(";User Id=");
+                Con.Append(txtUser.Text);
+                Con.Append(";Password=");
+                Con.Append(txtPwd.Text);
+                Con.Append(";MultipleActiveResultSets=True;");
+            }
+
+            string strCon = Con.ToString();
+            DatabaseHelper help = new DatabaseHelper();
+            if (help.CheckConnection(strCon) == 0)
+            {
+                MessageBox.Show("Kết nối thất bại vui lòng kiểm tra lại thông tin ");
+                return;
+            }
+            else
+            {
+                Utilities.clsThamSoUtilities.connectionString = strCon;
+                help.CloseDatabase();
+                updateConfigFile(strCon);
+                this.Close();
+            }
+        }
 
         private void btnKetNoi_Click(object sender, EventArgs e)
         {
-                    try
-                    {
-                        string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                        string configFile = System.IO.Path.Combine(appPath, "App.config");
-                        ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap();
-                        configFileMap.ExeConfigFilename = configFile;
-                        System.Configuration.Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-                       
-                        config.AppSettings.Settings["ConnectionString"].Value = "Data Source=" + txtServerName.Text + ";Initial Catalog=" + txtTenCSDL.Text + ";User ID=" + txtPwd.Text + ";password=" + txtPwd.Text;
-                        config.Save();
-                        clsThamSoUtilities.connectionString = config.AppSettings.Settings["ConnectionString"].Value;
-                        DatabaseHelper help = new DatabaseHelper();
-                        if (help.ConnectDatabase() == 1)
-                        {
-                            MessageBox.Show("Bạn đã kết nối thành công!");
-                            this.Close();
-                        }
-                            
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-                    
-
-                    
-
-                   // config.Save(ConfigurationSaveMode.Modified);
-            //        ConfigurationManager.RefreshSection("appSettings");
-
-                    this.Close();
-
-            
-          
 
         }
 

@@ -140,7 +140,7 @@
             this.btnKetNoi.Size = new System.Drawing.Size(58, 54);
             this.btnKetNoi.TabIndex = 2;
             this.btnKetNoi.UseVisualStyleBackColor = true;
-            this.btnKetNoi.Click += new System.EventHandler(this.btnKetNoi_Click);
+            this.btnKetNoi.Click += new System.EventHandler(this.btn_Connect_Click);
             // 
             // label5
             // 

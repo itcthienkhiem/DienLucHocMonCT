@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtTenLoai = new System.Windows.Forms.TextBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -49,9 +48,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.gridDMKho = new System.Windows.Forms.DataGridView();
-            this.ID_LoaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_Phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMaLoai = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,13 +84,13 @@
             this.pnlMenu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(644, 92);
+            this.pnlMenu.Size = new System.Drawing.Size(646, 92);
             this.pnlMenu.TabIndex = 50;
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(408, 42);
+            this.linkLabel1.Location = new System.Drawing.Point(354, 61);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(222, 14);
             this.linkLabel1.TabIndex = 7;
@@ -145,7 +141,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_gmc;
             this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(579, 6);
+            this.btnDong.Location = new System.Drawing.Point(581, 6);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(50, 50);
             this.btnDong.TabIndex = 2;
@@ -155,7 +151,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(589, 56);
+            this.label7.Location = new System.Drawing.Point(591, 56);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
@@ -245,28 +241,24 @@
             this.gridDMKho.AllowUserToAddRows = false;
             this.gridDMKho.AllowUserToDeleteRows = false;
             this.gridDMKho.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridDMKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDMKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDMKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridDMKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridDMKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID_LoaiPhieu,
-            this.Ten_Phieu,
-            this.MaLoai});
-            this.gridDMKho.Location = new System.Drawing.Point(3, 133);
+            this.gridDMKho.Location = new System.Drawing.Point(0, 140);
             this.gridDMKho.MultiSelect = false;
             this.gridDMKho.Name = "gridDMKho";
             this.gridDMKho.ReadOnly = true;
@@ -274,31 +266,8 @@
             this.gridDMKho.RowHeadersVisible = false;
             this.gridDMKho.RowTemplate.Height = 30;
             this.gridDMKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDMKho.Size = new System.Drawing.Size(760, 208);
+            this.gridDMKho.Size = new System.Drawing.Size(646, 405);
             this.gridDMKho.TabIndex = 51;
-            // 
-            // ID_LoaiPhieu
-            // 
-            this.ID_LoaiPhieu.DataPropertyName = "ID_LoaiPhieu";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID_LoaiPhieu.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ID_LoaiPhieu.HeaderText = "ID";
-            this.ID_LoaiPhieu.Name = "ID_LoaiPhieu";
-            this.ID_LoaiPhieu.ReadOnly = true;
-            // 
-            // Ten_Phieu
-            // 
-            this.Ten_Phieu.DataPropertyName = "Ten_Phieu";
-            this.Ten_Phieu.HeaderText = "Tên phiếu";
-            this.Ten_Phieu.Name = "Ten_Phieu";
-            this.Ten_Phieu.ReadOnly = true;
-            this.Ten_Phieu.Width = 120;
-            // 
-            // MaLoai
-            // 
-            this.MaLoai.HeaderText = "MaLoai";
-            this.MaLoai.Name = "MaLoai";
-            this.MaLoai.ReadOnly = true;
             // 
             // label9
             // 
@@ -330,7 +299,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 461);
+            this.ClientSize = new System.Drawing.Size(646, 538);
             this.Controls.Add(this.txtMaLoai);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTenLoai);
@@ -370,8 +339,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtMaLoai;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_LoaiPhieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ten_Phieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaLoai;
     }
 }
