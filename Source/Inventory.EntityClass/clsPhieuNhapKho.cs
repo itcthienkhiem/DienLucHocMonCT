@@ -37,10 +37,31 @@ namespace Inventory.EntityClass
         public clsPhieuNhapKho()
         {
         }
+        /// <summary>
+        /// lấy tất cả danh sách theo điều kiện đã duyệt hay chưa duyệt 
+        /// </summary>
+        /// <param name="status"> true: đã duyệt, false : chưa duyệt</param>
+        /// <returns></returns>
+        public DataTable GetAll(bool status,string value)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
+                              where ep.Da_phan_kho == status && ep.ID_Loai_Phieu_Nhap.ToString().Contains(value)
+
+                              select ep).ToList();
+            // return entryPoint;
+
+
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+
+        }
 
         /// <summary>
         /// Get tất cả dữ liệu từ CSDL, dùng cho Grid 
-        /// chưa phân kho 
+        /// 
         /// </summary>
         /// <returns>DataTable</returns>
         public DataTable GetAll()
@@ -51,59 +72,12 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
-                              where ep.Da_phan_kho == false
-                              select new
-                              {
-                                  ep.Ma_phieu_nhap,
-                                  ep.Kho_nhan,
-                                  ep.Ngay_lap,
-                                  ep.Ly_do,
-                                  ep.So_hoa_don,
-                                  ep.Cong_trinh,
-                                  ep.Dia_Chi,
-                                  ep.ID_Loai_Phieu_Nhap,
-                                  ep.Kho_xuat_ra,
-                                  // ep.Da_phan_kho,
-                                  ep.ID_phieu_nhap,
-
-
-                              }).ToList();
+                            
+                              select ep).ToList();
             // return entryPoint;
 
-            DataTable table = new DataTable();
-            table.Columns.Add("Ma_phieu_nhap", typeof(string));
-            table.Columns.Add("kho_nhan", typeof(string));
-            table.Columns.Add("Ngay_lap", typeof(DateTime));
-            table.Columns.Add("Ly_do", typeof(string));
-            table.Columns.Add("So_hoa_don", typeof(string));
-            table.Columns.Add("Cong_trinh", typeof(string));
-            table.Columns.Add("Dia_Chi", typeof(string));
-            table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
-            table.Columns.Add("Kho_xuat_ra", typeof(string));
-            table.Columns.Add("Da_phan_kho", typeof(bool));
-            table.Columns.Add("ID_phieu_nhap", typeof(int));
-            entryPoint.ToList().ForEach((n) =>
-            {
-                DataRow row = table.NewRow();
-                row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
-                row.SetField<string>("Kho_nhan", n.Kho_nhan);
-                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap.Value);
-                row.SetField<string>("Ly_do", n.Ly_do);
-                row.SetField<string>("So_hoa_don", n.So_hoa_don);
-                row.SetField<string>("Cong_trinh", n.Cong_trinh);
-                row.SetField<string>("Dia_Chi", n.Dia_Chi);
-                row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
-                row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                //row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
-                row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
-
-
-
-
-
-                table.Rows.Add(row);
-            });
-            return table;
+         
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
 
 
@@ -132,6 +106,9 @@ namespace Inventory.EntityClass
 
             //return dt;
         }
+
+
+
         // End GetAll
 
         //public DataTable GetAll()
@@ -478,8 +455,7 @@ namespace Inventory.EntityClass
         //int result = command.ExecuteNonQuery();
         //dal.CommitTransaction();
 
-        //return result;
-
+       
 
         public int Update(Phieu_Nhap_Kho nk)
         {
@@ -503,32 +479,7 @@ namespace Inventory.EntityClass
             return temp;
 
 
-            //DAL.BeginTransaction();
-
-            //m_dbConnection = DAL.m_conn;
-            //if (m_dbConnection.State == ConnectionState.Closed)
-            //m_dbConnection.Open();
-
-            //string sql = "";
-            //sql += "UPDATE Phieu_Nhap_Kho ";
-            //sql += "Set ma_phieu_nhap=@ma_phieu_nhap,ID_kho=@ID_kho,Ngay_lap=@Ngay_lap,ly_do=@ly_do,dia_chi = @dia_chi,cong_trinh = @cong_trinh ";
-            //sql += "WHERE ma_phieu_nhap=@ma_phieu_nhap";
-
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection,DAL.m_trans);
-            //command.CommandType = CommandType.Text;
-
-            //command.Parameters.Add(new SqlParameter("@ma_phieu_nhap", Ma_phieu_nhap));
-            //command.Parameters.Add(new SqlParameter("@ID_kho", ID_kho));
-            //command.Parameters.Add(new SqlParameter("@Ngay_lap", Ngay_lap.ToString("yyyy-MM-dd")));
-            //command.Parameters.Add(new SqlParameter("@ly_do", Ly_do));
-            ////  command.Parameters.Add(new SqlParameter("@so_hoa_don", So_hoa_don));
-            //command.Parameters.Add(new SqlParameter("@dia_chi", Dia_chi));
-            //command.Parameters.Add(new SqlParameter("@Cong_trinh", Cong_trinh));
-
-            //int result = command.ExecuteNonQuery();
-            //DAL.CommitTransaction();
-            //return result;
+          
         }
         public int Delete(string ma_phieu)
         {

@@ -103,7 +103,7 @@ namespace Inventory.NhapXuat
                         DateTime ngayNhap = DateTime.Now;
                         try
                         {
-                            if (dc.InsertTonKho(help, mavt, idKho, soluong, maphieu, ngayNhap, idcl) == 0)
+                            if (dc.InsertTonKho(help, mavt, idKho, soluong, maphieu, ngayNhap, idcl,true) == 0)
                             {
                                 dbcxtransaction.Rollback();
                                 MessageBox.Show("Thêm thất bại tại dòng " + i);

@@ -22,6 +22,7 @@ namespace Inventory.NhapXuat
         {
             InitializeComponent();   // To report progress from the background worker we need to set this property
             countLabel = "/" + count.ToString();
+         
         }
         int count = 0;
         delegate void StringParameterDelegate(string value);
@@ -186,11 +187,12 @@ namespace Inventory.NhapXuat
         {
             this.Close();
         }
-
+        string Loai_PN;
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
             try
             {
+                 Loai_PN = cbLPN.Text;
                 Progressbar.Maximum = tb.Rows.Count;
                 backgroundWorker1.RunWorkerAsync();
                 //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
@@ -234,7 +236,7 @@ namespace Inventory.NhapXuat
                         string So_luong_thuc_lanh = tb.Rows[i]["column9"].ToString();
                         string Don_gia = tb.Rows[i]["column10"].ToString();
                         string Thanh_tien = tb.Rows[i]["column11"].ToString();
-                        string Loai_PN = "XD";// tb.Rows[i]["column12"].ToString()??"XD";
+                    // tb.Rows[i]["column12"].ToString()??"XD";
                         //kiểm tra xem dòng đó có trùng với phiếu nhận trong bảng pn chưa     
                         clsPhieuNhapKho pnk = new clsPhieuNhapKho();
                         if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
@@ -331,6 +333,12 @@ namespace Inventory.NhapXuat
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
+        }
+
+        private void frmNhapTuFile_Load(object sender, EventArgs e)
+        {
+            clsGiaoDienChung.initCombobox(cbLPN, new clsLoaiPhieuNhap(), "Ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "Ma_loai_phieu_nhap");
+       
         }
     }
 }

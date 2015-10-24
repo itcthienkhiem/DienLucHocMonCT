@@ -14,8 +14,11 @@ namespace Inventory.EntityClass
     {
 
 
+
+
         /// <summary>
         /// hàm insert tồn kho sử dụng transaction bên ngoài 
+        /// hàm này dùng + số lượng với mã phiếu X
         /// </summary>
         /// <param name="mavt"></param>
         /// <param name="idkho"></param>
@@ -24,7 +27,7 @@ namespace Inventory.EntityClass
         /// <param name="NgayNhap"></param>
         /// <param name="ID_chat_luong"></param>
         /// <returns></returns>
-        public int InsertTonKho(DatabaseHelper help, string mavt, int idkho, double soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong)
+        public int InsertTonKho(DatabaseHelper help, string mavt, int idkho, double soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong, bool LNP)
         {
 
           
@@ -33,7 +36,7 @@ namespace Inventory.EntityClass
                 {
                     var entryPoint = (from d in help.ent.Ton_kho
 
-                                      where d.ID_kho == idkho && d.Ma_vat_tu == mavt
+                                      where d.ID_kho == idkho && d.Ma_vat_tu == mavt &&d.Id_chat_luong == ID_chat_luong
                                       select d).ToList();
                     if (entryPoint.Count == 0)
                     {
@@ -91,7 +94,7 @@ namespace Inventory.EntityClass
                         //nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho
                         var entryPointTK = (from d in help.ent.The_kho
 
-                                            where d.Ma_vat_tu == mavt
+                                            where d.Ma_vat_tu == mavt&& d.Id_chat_luong == ID_chat_luong 
                                             select d).ToList();
                         //nếu chưa có trong thẻ kho 
                         if (entryPointTK.Count == 0)
@@ -143,14 +146,17 @@ namespace Inventory.EntityClass
                     }
                     else
                     {
-                        //neu kho đó đã có vật tư thì tiến hành cộng vật tư hiện tại vào kho
+                        //neu kho đó đã có vật tư thì tiến hành cộng, hoac tru vật tư hiện tại vào kho
 
                         // entTonKho.So_luong = soluong;
                         //lay 1 dong ra 
-                        var stud = help.ent.Ton_kho.Where(s => s.ID_kho == idkho && s.Ma_vat_tu == mavt).FirstOrDefault<Ton_kho>();
-
-                        stud.So_luong = stud.So_luong + soluong;
-
+                        var stud = help.ent.Ton_kho.Where(s => s.ID_kho == idkho && s.Ma_vat_tu == mavt && s.Id_chat_luong == ID_chat_luong).FirstOrDefault<Ton_kho>();
+                        if (LNP == true)
+                        {
+                            stud.So_luong = stud.So_luong + soluong;
+                        }
+                        else
+                            stud.So_luong = stud.So_luong - soluong;
                         help.ent.Ton_kho.Attach(stud);
                         help.ent.Entry(stud).State = EntityState.Modified;//chinh sua so luong
 
@@ -165,13 +171,16 @@ namespace Inventory.EntityClass
                         cttk.So_luong = stud.So_luong;
 
                         cttk.Ngay_thay_doi = DateTime.Now;
-                        cttk.Tang_Giam = true;//<-- set tang 
+                        if(LNP == true)
+                            cttk.Tang_Giam = true;//<-- set tang 
+                        else
+                            cttk.Tang_Giam = false;
                         help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
                         help.ent.SaveChanges();
                         //cập nhật lại trạng thái phiếu nhập 
                         var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 
-                                            where d.Ma_phieu_nhap == maphieu
+                                            where d.Ma_phieu_nhap == maphieu 
                                             select d).ToList();
                         if (entryPointPN[0].Da_phan_kho == false)
                         {
@@ -206,7 +215,7 @@ namespace Inventory.EntityClass
                         //nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho
                         var entryPointTK = (from d in help.ent.The_kho
 
-                                            where d.Ma_vat_tu == mavt
+                                            where d.Ma_vat_tu == mavt &&d.Id_chat_luong == ID_chat_luong
                                             select d).ToList();
                         //nếu chưa có trong thẻ kho 
                         if (entryPointTK.Count == 0)
@@ -244,7 +253,12 @@ namespace Inventory.EntityClass
                             cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                             cttks.Dien_giai = entryPointPN[0].Ly_do;
                             cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
-                            cttks.Loai_phieu = true;
+                            if (LNP == true)
+                            {
+                                cttks.Loai_phieu = true;
+                            }
+                            else
+                                cttks.Loai_phieu = false;
                             cttks.Ngay_nhap_xuat = NgayNhap;
                             help.ent.Chi_tiet_the_kho.Add(cttks);
                             help.ent.SaveChanges();
@@ -269,6 +283,7 @@ namespace Inventory.EntityClass
 
         }
         /// <summary>
+        /// hàm này bị sai tạm thời không dùng mà dùng hàm trên 
         /// hàm xữ lý thêm vật tư vào kho liên quan đến nhiều lớp, tính toán phức tạp
         /// </summary>
         /// <returns></returns>

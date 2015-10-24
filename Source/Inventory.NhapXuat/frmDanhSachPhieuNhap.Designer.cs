@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnDuyetPhieu = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -46,6 +48,14 @@
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
+            this.rdoDaDuyet = new System.Windows.Forms.RadioButton();
+            this.rdoChuaDuyet = new System.Windows.Forms.RadioButton();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.rdoAllGird = new System.Windows.Forms.RadioButton();
+            this.cbKhoNhanVatTu = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbbLoaiPhieu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +82,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(1, 98);
+            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(1, 151);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
             this.gridDanhSachPhieuNhap.ReadOnly = true;
@@ -80,13 +90,15 @@
             this.gridDanhSachPhieuNhap.RowHeadersVisible = false;
             this.gridDanhSachPhieuNhap.RowTemplate.Height = 30;
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(849, 359);
+            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(849, 306);
             this.gridDanhSachPhieuNhap.TabIndex = 52;
             this.gridDanhSachPhieuNhap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridgridDanhSachPhieuNhap_CellClick);
             this.gridDanhSachPhieuNhap.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDanhSachPhieuNhap_CellContentClick);
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.btnDuyetPhieu);
+            this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.btnHuy);
             this.pnlMenu.Controls.Add(this.label2);
             this.pnlMenu.Controls.Add(this.btnLuu);
@@ -108,6 +120,26 @@
             this.pnlMenu.Size = new System.Drawing.Size(850, 92);
             this.pnlMenu.TabIndex = 53;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
+            // 
+            // btnDuyetPhieu
+            // 
+            this.btnDuyetPhieu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.up_bmc;
+            this.btnDuyetPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDuyetPhieu.Location = new System.Drawing.Point(363, 12);
+            this.btnDuyetPhieu.Name = "btnDuyetPhieu";
+            this.btnDuyetPhieu.Size = new System.Drawing.Size(50, 50);
+            this.btnDuyetPhieu.TabIndex = 6;
+            this.btnDuyetPhieu.UseVisualStyleBackColor = true;
+            this.btnDuyetPhieu.Click += new System.EventHandler(this.btnDuyetPhieu_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(350, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 14);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Duyệt Phiếu";
             // 
             // btnHuy
             // 
@@ -252,11 +284,96 @@
             this.lblSua.TabIndex = 3;
             this.lblSua.Text = "Sửa";
             // 
+            // rdoDaDuyet
+            // 
+            this.rdoDaDuyet.AutoSize = true;
+            this.rdoDaDuyet.Location = new System.Drawing.Point(99, 128);
+            this.rdoDaDuyet.Name = "rdoDaDuyet";
+            this.rdoDaDuyet.Size = new System.Drawing.Size(70, 17);
+            this.rdoDaDuyet.TabIndex = 54;
+            this.rdoDaDuyet.TabStop = true;
+            this.rdoDaDuyet.Text = "Đã Duyệt";
+            this.rdoDaDuyet.UseVisualStyleBackColor = true;
+            // 
+            // rdoChuaDuyet
+            // 
+            this.rdoChuaDuyet.AutoSize = true;
+            this.rdoChuaDuyet.Location = new System.Drawing.Point(187, 128);
+            this.rdoChuaDuyet.Name = "rdoChuaDuyet";
+            this.rdoChuaDuyet.Size = new System.Drawing.Size(81, 17);
+            this.rdoChuaDuyet.TabIndex = 55;
+            this.rdoChuaDuyet.TabStop = true;
+            this.rdoChuaDuyet.Text = "Chưa Duyệt";
+            this.rdoChuaDuyet.UseVisualStyleBackColor = true;
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.Location = new System.Drawing.Point(318, 101);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(75, 35);
+            this.btnTimKiem.TabIndex = 56;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // rdoAllGird
+            // 
+            this.rdoAllGird.AutoSize = true;
+            this.rdoAllGird.Location = new System.Drawing.Point(36, 128);
+            this.rdoAllGird.Name = "rdoAllGird";
+            this.rdoAllGird.Size = new System.Drawing.Size(57, 17);
+            this.rdoAllGird.TabIndex = 57;
+            this.rdoAllGird.TabStop = true;
+            this.rdoAllGird.Text = "Tất Cả";
+            this.rdoAllGird.UseVisualStyleBackColor = true;
+            // 
+            // cbKhoNhanVatTu
+            // 
+            this.cbKhoNhanVatTu.FormattingEnabled = true;
+            this.cbKhoNhanVatTu.Location = new System.Drawing.Point(469, 101);
+            this.cbKhoNhanVatTu.Name = "cbKhoNhanVatTu";
+            this.cbKhoNhanVatTu.Size = new System.Drawing.Size(213, 21);
+            this.cbKhoNhanVatTu.TabIndex = 58;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(408, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 59;
+            this.label4.Text = "Kho Nhập";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(23, 101);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Loại phiếu";
+            // 
+            // cbbLoaiPhieu
+            // 
+            this.cbbLoaiPhieu.FormattingEnabled = true;
+            this.cbbLoaiPhieu.Location = new System.Drawing.Point(99, 101);
+            this.cbbLoaiPhieu.Name = "cbbLoaiPhieu";
+            this.cbbLoaiPhieu.Size = new System.Drawing.Size(213, 21);
+            this.cbbLoaiPhieu.TabIndex = 60;
+            // 
             // frmDanhSachPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 458);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cbbLoaiPhieu);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbKhoNhanVatTu);
+            this.Controls.Add(this.rdoAllGird);
+            this.Controls.Add(this.btnTimKiem);
+            this.Controls.Add(this.rdoChuaDuyet);
+            this.Controls.Add(this.rdoDaDuyet);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.gridDanhSachPhieuNhap);
             this.Name = "frmDanhSachPhieuNhap";
@@ -265,6 +382,7 @@
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -286,6 +404,16 @@
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblSua;
+        private System.Windows.Forms.RadioButton rdoDaDuyet;
+        private System.Windows.Forms.RadioButton rdoChuaDuyet;
+        private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.RadioButton rdoAllGird;
+        private System.Windows.Forms.Button btnDuyetPhieu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbKhoNhanVatTu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbbLoaiPhieu;
 
     }
 }

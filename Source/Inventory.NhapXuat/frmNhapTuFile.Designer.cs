@@ -49,6 +49,8 @@
             this.labelProgress = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lbTxt = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbLPN = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -269,11 +271,30 @@
             this.lbTxt.TabIndex = 64;
             this.lbTxt.Text = "label6";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(619, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 66;
+            this.label6.Text = "Chọn loại phiếu";
+            // 
+            // cbLPN
+            // 
+            this.cbLPN.FormattingEnabled = true;
+            this.cbLPN.Location = new System.Drawing.Point(718, 113);
+            this.cbLPN.Name = "cbLPN";
+            this.cbLPN.Size = new System.Drawing.Size(121, 21);
+            this.cbLPN.TabIndex = 67;
+            // 
             // frmNhapTuFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 557);
+            this.Controls.Add(this.cbLPN);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lbTxt);
             this.Controls.Add(this.labelProgress);
             this.Controls.Add(this.Progressbar);
@@ -285,6 +306,7 @@
             this.Controls.Add(this.txtTenDuongDan);
             this.Name = "frmNhapTuFile";
             this.Text = "frmNhapTuFile";
+            this.Load += new System.EventHandler(this.frmNhapTuFile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).EndInit();
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
@@ -314,5 +336,7 @@
         private System.Windows.Forms.Label labelProgress;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lbTxt;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbLPN;
     }
 }

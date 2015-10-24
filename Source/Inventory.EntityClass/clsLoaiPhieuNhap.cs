@@ -40,7 +40,22 @@ namespace Inventory.EntityClass
           }
 
       }
-      
+      /// <summary>
+      /// hàm get tên từ ID
+      /// </summary>
+      /// <param name="id"></param>
+      /// <returns></returns>
+      public string getTenLPN(int id )
+      {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          var dm = (from d in help.ent.Loai_Phieu_Nhap
+                    where d.ID_Loai_Phieu_Nhap == id
+                    select new { 
+                    d.Ten_loai_phieu_nhap,
+                    }).First();
+          return dm.Ten_loai_phieu_nhap;
+      }
       public override System.Data.DataTable GetAllData()
       {
           DatabaseHelper help = new DatabaseHelper();
