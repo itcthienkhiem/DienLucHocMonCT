@@ -169,7 +169,7 @@ namespace Inventory.EntityClass
         /// </summary>
         /// <param name="_ID_kho"></param>
         /// <returns></returns>
-        public static DataTable getAll(string TenKho, string TenChatLuong, string tenvt, string mavt)
+        public static DataTable getAll(string TenKho, string TenChatLuong,string tenvt, string mavt)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -182,8 +182,8 @@ namespace Inventory.EntityClass
                           join gl in help.ent.Chat_luong on d.Id_chat_luong equals gl.Id_chat_luong
 
 
-                          where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(TenKho)
-                          && e.Ten_vat_tu .Contains (tenvt)&& e.Ma_vat_tu .Contains(mavt)
+                          where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(TenKho)&& e.Ten_vat_tu .Contains(tenvt)
+                          && e.Ma_vat_tu.Contains(mavt) 
                           group d by new { d.Ma_vat_tu, e.Ten_vat_tu } into gs
                           let TotalPoints = gs.Sum(m => m.So_luong)
                           orderby TotalPoints descending

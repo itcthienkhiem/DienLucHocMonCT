@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 
@@ -154,7 +155,30 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
+        /// <summary>
+        /// hàm get tất cả chi tiết thẻ kho trong id_the_kho nhỏ hơn ngày tìm kiếm
+        /// </summary>
+        /// <param name="tungays"></param>
+        /// <param name="denngays"></param>
+        /// <param name="id_the_kho"></param>
+        /// <returns></returns>
+        public DataTable GetAllSLT(DateTime tungay, int id_the_kho)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var filteredData = (from d in help.ent.Chi_tiet_the_kho
+                                    where d.ID_The_Kho == id_the_kho && EntityFunctions.TruncateTime(d.Ngay_xuat_chung_tu) < EntityFunctions.TruncateTime(tungay)
+                                    orderby d.Ngay_xuat_chung_tu
+                                    select d)
+                    .ToList();
 
+
+                return Utilities.clsThamSoUtilities.ToDataTable(filteredData);
+
+            }
+        }
 
         public DataTable Search(DateTime tungays, DateTime denngays, int id_the_kho)
         {
@@ -163,7 +187,7 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var filteredData =(from d in help.ent.Chi_tiet_the_kho
-                    where d.Ngay_xuat_chung_tu >= tungays && d.Ngay_xuat_chung_tu <= denngays && d.ID_The_Kho == id_the_kho
+                    where  EntityFunctions.TruncateTime(d.Ngay_xuat_chung_tu)>=EntityFunctions.TruncateTime(tungays) &&EntityFunctions.TruncateTime( d.Ngay_xuat_chung_tu) <= EntityFunctions.TruncateTime(denngays) && d.ID_The_Kho == id_the_kho
                     orderby d.Ngay_xuat_chung_tu 
                                    select d)
                     .ToList();

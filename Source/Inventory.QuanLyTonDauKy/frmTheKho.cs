@@ -56,7 +56,16 @@ namespace Inventory.QuanLyTonDauKy
                 if (search !=-1)
                 {
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
-
+                    DataTable tbcttk = cttk.GetAllSLT(tungay,search);
+                    //danh sách đã được sắp xếp tăng dần
+                    double tkt = 0;
+                    for (int i = 0; i < tbcttk.Rows.Count; i++)
+                    {
+                        double slnt = double.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? double.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
+                        double slxt = double.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? double.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
+                        double sltt = double.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? double.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
+                        tkt = tkt + sltt + slnt - slxt;
+                    }
                     DataTable tb = cttk.Search(tungay, denngay,search);
                    // DataView dv = tb.DefaultView;
                     //   Sort data
@@ -68,7 +77,7 @@ namespace Inventory.QuanLyTonDauKy
                     double slx = double.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
 
                     double slt = double.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? double.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
-                    double tontruoc = 0;
+                    double tontruoc = tkt;
                     double tonhientai = sln - slx + tontruoc;
                     tontruoc = tonhientai;
                     tb.Rows[0]["SL_ton"] = tonhientai;   

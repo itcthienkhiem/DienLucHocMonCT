@@ -51,10 +51,10 @@
             this.btnXem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbChatLuong = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTonKhoThuc)).BeginInit();
@@ -226,23 +226,6 @@
             this.cbChatLuong.Size = new System.Drawing.Size(152, 21);
             this.cbChatLuong.TabIndex = 131;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(236, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 132;
-            this.label2.Text = "Tên vật tư";
-            // 
-            // cbTenVatTu
-            // 
-            this.cbTenVatTu.FormattingEnabled = true;
-            this.cbTenVatTu.Location = new System.Drawing.Point(305, 39);
-            this.cbTenVatTu.Name = "cbTenVatTu";
-            this.cbTenVatTu.Size = new System.Drawing.Size(152, 21);
-            this.cbTenVatTu.TabIndex = 133;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -259,6 +242,23 @@
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(152, 21);
             this.cbMaVatTu.TabIndex = 135;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(236, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 132;
+            this.label2.Text = "Tên vật tư";
+            // 
+            // cbTenVatTu
+            // 
+            this.cbTenVatTu.FormattingEnabled = true;
+            this.cbTenVatTu.Location = new System.Drawing.Point(305, 39);
+            this.cbTenVatTu.Name = "cbTenVatTu";
+            this.cbTenVatTu.Size = new System.Drawing.Size(152, 21);
+            this.cbTenVatTu.TabIndex = 133;
             // 
             // frmDanhSachVatTuTrongKho
             // 
@@ -308,9 +308,9 @@
         private System.Windows.Forms.Button btnXem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbChatLuong;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbTenVatTu;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbMaVatTu;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbTenVatTu;
     }
 }

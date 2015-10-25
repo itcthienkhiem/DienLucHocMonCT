@@ -18,7 +18,13 @@ namespace Inventory.EntityClass
 
         /// <summary>
         /// hàm insert tồn kho sử dụng transaction bên ngoài 
-        /// hàm này dùng + số lượng với mã phiếu X
+        /// hàm này dùng +,- số lượng với mã phiếu X
+        /// sử dụng chung cho phiếu nhập và cả xuất liên quan đến các bảng ton kho
+        /// chi tiet ton kho
+        /// phieu nhap 
+        /// chi tiet phieu nhap
+        /// the kho
+        /// chi tiet the kho
         /// </summary>
         /// <param name="mavt"></param>
         /// <param name="idkho"></param>
@@ -229,7 +235,7 @@ namespace Inventory.EntityClass
                         cttks.Ngay_xuat_chung_tu = entryPointPN.First().Ngay_lap;
                         cttks.Dien_giai = entryPointPN.First().Ly_do;
                         cttks.SL_Nhap = soluong;
-                        cttks.SL_Ton = soluong;// nếu đây là dòng đầu tiên trong danh sách thì số lượng tồn = sl thực lãnh
+                       // cttks.SL_Ton = soluong;// nếu đây là dòng đầu tiên trong danh sách thì số lượng tồn = sl thực lãnh
                         cttks.Loai_phieu = true;
                         cttks.Ngay_nhap_xuat = NgayNhap;
                         help.ent.Chi_tiet_the_kho.Add(cttks);
@@ -250,26 +256,26 @@ namespace Inventory.EntityClass
                         //tìm kiếm số lượng tồn trước đó
 
                         //sln danh sách các thẻ kho có
-                        int id = entryPointTK.First().ID_The_Kho;
-                        var slt = (from d in help.ent.Chi_tiet_the_kho
+                        //int id = entryPointTK.First().ID_The_Kho;
+                        //var slt = (from d in help.ent.Chi_tiet_the_kho
 
-                                   where d.ID_The_Kho == id
-                                   orderby d.ID_chi_tiet_the_kho 
+                        //           where d.ID_The_Kho == id
+                        //           orderby d.ID_chi_tiet_the_kho 
 
-                                   select d).ToList().Last();
+                        //           select d).ToList().Last();
 
                         if (LNP == true)
                         {
                             //nếu phiếu nhập X
                             cttks.Loai_phieu = true;
-                            //thì cộng vào tồn 
-                            cttks.SL_Ton = slt.SL_Ton + soluong;
+                            //thì cộng vào t0ồn 
+                         //   cttks.SL_Ton = slt.SL_Ton + soluong;
 
                         }
                         else
                         {
                             cttks.Loai_phieu = false;
-                            cttks.SL_Ton = slt.SL_Ton - soluong;
+                        //    cttks.SL_Ton = slt.SL_Ton - soluong;
 
                         }
                         cttks.Ngay_nhap_xuat = NgayNhap;
