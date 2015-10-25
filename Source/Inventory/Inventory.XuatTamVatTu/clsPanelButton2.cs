@@ -404,8 +404,8 @@ namespace Inventory.XuatTamVatTu
 
                 ResetButton();
 
-                frmAct.Invoke(enumFormAction2.disableInputForm);
                 frmAct.Invoke(enumFormAction2.ResetInputForm);
+                frmAct.Invoke(enumFormAction2.disableInputForm);
             }
         }
 

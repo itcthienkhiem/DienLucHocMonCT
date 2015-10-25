@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.NhapXuat;
+using Inventory.Utilities;
+
 namespace Inventory.XuatTamVatTu
 {
     /// <summary>
@@ -73,14 +75,18 @@ namespace Inventory.XuatTamVatTu
 
         private System.Windows.Forms.ErrorProvider errorProvider1;
 
+        AutoConfigFormControls autoConfigFormControls;
+
         public frmChiTietPhieuXuatTam()
         {
             InitializeComponent();
 
             ToolTip1 = new System.Windows.Forms.ToolTip();
             errorProvider1 = new ErrorProvider();
+            autoConfigFormControls = new AutoConfigFormControls(ref errorProvider1);
 
             initPanelButton();
+            initTextBox();
 
             init_cb();
 
@@ -179,9 +185,11 @@ namespace Inventory.XuatTamVatTu
                     break;
                 case enumFormAction2.ResetInputForm:
                     ResetInputForm();
+                    //ToolTip1.Show("ResetInputForm();", this.cbMaPhieuXuatTam, 20, 20, 2000);
                     break;
                 case enumFormAction2.disableInputForm:
                     DisableControl_ForNew();
+                    //ToolTip1.Show("DisableControl_ForNew();", this.cbMaPhieuXuatTam, 20, 20, 2000);
                     break;
                 case enumFormAction2.Huy:
                     break;
@@ -280,15 +288,15 @@ namespace Inventory.XuatTamVatTu
                                 {
                                     MessageBox.Show("Bạn đã thêm thành công!");
 
-                                    PanelButton.ResetClickStatus();
-                                    PanelButton.ResetGridClickStatus();
+                                    //PanelButton.ResetClickStatus();
+                                    //PanelButton.ResetGridClickStatus();
 
-                                    PanelButton.ResetButton();
+                                    //PanelButton.ResetButton();
 
-                                    init_cbMaPhieuXuatTam();
+                                    //init_cbMaPhieuXuatTam();
 
-                                    ResetInputForm();
-                                    DisableControl_ForNew();
+                                    //ResetInputForm();
+                                    //DisableControl_ForNew();
                                 }
                             }
                             catch (Exception ex)
@@ -329,15 +337,15 @@ namespace Inventory.XuatTamVatTu
                                     {
                                         MessageBox.Show("Bạn đã sửa thành công!");
 
-                                        PanelButton.ResetClickStatus();
-                                        PanelButton.ResetGridClickStatus();
+                                        //PanelButton.ResetClickStatus();
+                                        //PanelButton.ResetGridClickStatus();
 
-                                        PanelButton.ResetButton();
+                                        //PanelButton.ResetButton();
 
-                                        init_cbMaPhieuXuatTam();
+                                        //init_cbMaPhieuXuatTam();
 
-                                        ResetInputForm();
-                                        DisableControl_ForNew();
+                                        //ResetInputForm();
+                                        //DisableControl_ForNew();
                                     }
                                 }
                                 catch (Exception ex)
@@ -384,68 +392,123 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private bool checkSoLuongXuat()
         {
+            //bool flag = true;
 
-            if ((int.Parse(txtSLDN.Text.Trim())) <= 0)
+            if (getDouble(txtSLDN) == 0)
             {
-                //MessageBox.Show("Số lượng vật tư không thể là số âm!");
                 ToolTip1.Show("Số lượng đề nghị không thể bằng 0!", this.txtSLDN, 20, 20, 1500);
-                return;
+                return false;
             }
 
-            if ((int.Parse(txtSLDN.Text.Trim())) < 0 || (int.Parse(txtSLTX.Text.Trim())) < 0)
+            if (getDouble(txtSLDN) < getDouble(txtSLTX))
             {
-                //MessageBox.Show("Số lượng vật tư không thể là số âm!");
-                ToolTip1.Show("Số lượng vật tư không thể là số âm!", this.txtSLDN, 20, 20, 1500);
-                return;
+                ToolTip1.Show("SL thực xuất không thể lớn hơn SL đề nghị!", this.txtSLTX, 20, 20, 1500);
+                return false;
             }
 
-            if ((int.Parse(txtSLHN.Text.Trim())) < 0 || (int.Parse(txtSLGL.Text.Trim())) < 0)
+            if (getDouble(txtSLDN) < 0)
             {
-                //MessageBox.Show("Số lượng vật tư không thể là số âm!");
-                ToolTip1.Show("Số lượng vật tư không thể là số âm!", this.txtSLGL, 20, 20, 1500);
-                return;
+                ToolTip1.Show("Số lượng đề nghị không thể là số âm!", this.txtSLDN, 20, 20, 1500);
+                return false;
             }
 
+            if (getDouble(txtSLTX) < 0)
+            {
+                ToolTip1.Show("Số lượng thực xuất không thể là số âm!", this.txtSLTX, 20, 20, 1500);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool checkSoLuongHNGL()
+        {
+            //bool flag = true;
+
+            if (getDouble(txtSLHN) < 0)
+            {
+                ToolTip1.Show("Số lượng hoàn nhập không thể là số âm!", this.txtSLHN, 20, 20, 1500);
+                return false;
+            }
+
+            if (getDouble(txtSLGL) < 0)
+            {
+                ToolTip1.Show("Số lượng giữ lại không thể là số âm!", this.txtSLGL, 20, 20, 1500);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool check_cbVT()
+        {
+            //bool flag = true;
 
             if (cbMaVatTu.Text == "" || cbTenVatTu.Text == "" || cbMaVatTu.SelectedIndex == -1 || cbTenVatTu.SelectedIndex == -1)
             {
-                //MessageBox.Show("Bạn chưa chọn Vật Tư!");
                 ToolTip1.Show("Bạn chưa chọn Vật Tư!", this.cbMaVatTu, 15, 15, 1500);
-                return;
+                return false;
             }
 
             if (cbChatLuong.Text == "" || cbChatLuong.SelectedIndex == -1)
             {
-                //MessageBox.Show("Bạn chưa chọn Vật Tư!");
                 ToolTip1.Show("Bạn chưa chọn Loại Chất Lượng!", this.cbChatLuong, 15, 15, 1500);
-                return;
+                return false;
             }
 
+            return true;
+        }
 
-
+        private bool check_cbKho()
+        {
+            //bool flag = true;
             int ID_Kho = getIDKho();
+
             if (ID_Kho == -1)
             {
-                MessageBox.Show("Bạn chưa chọn kho xuất!");
-                return;
+                ToolTip1.Show("Bạn chưa chọn kho xuất!", this.cbKhoXuat, 15, 15, 1500);
+                return false;
             }
+
             if (ID_Kho == -2)
             {
-                MessageBox.Show("Bạn chưa chọn kho mượn!");
-                return;
+                ToolTip1.Show("Bạn chưa chọn kho mượn!", this.cbMuonVTTaiKho, 15, 15, 1500);
+                return false;
             }
+
             if (ID_Kho == -3)
             {
-                MessageBox.Show("Kho mượn và kho xuất không thể trùng nhau");
+                ToolTip1.Show("Kho mượn và kho xuất không thể trùng nhau!", this.cbMuonVTTaiKho, 15, 15, 1500);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //Move to top later
+            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
+            {
                 return;
             }
 
-
-            //Move to top later
-            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
-                return;
+            if (chkboxXacNhanXuat.Checked == false)
+            {
+                if (check_cbKho() == false || check_cbVT() == false || checkSoLuongXuat() == false)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (checkSoLuongHNGL() == false)
+                {
+                    return;
+                }
+            }
 
             //Kiem tra row trùng lập, chưa giải quyết phần thiếu vật tư, xin thêm
             //---------- TEST
@@ -467,8 +530,11 @@ namespace Inventory.XuatTamVatTu
             //dataTableChiTietPhieuXuatTam.Rows.Add(dr);
             //-------
 
+            int ID_Kho = getIDKho();
+
             //Tạm thời vật tư a trong kho x ko dc add quá 2 lần. --> chưa giải quyết phần thiếu vật tư, xin thêm
             DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select("Ma_vat_tu = \'" + cbMaVatTu.Text.Trim() + "\' AND ID_kho = \'" + ID_Kho + "\'");
+
             if (chkMaVatTu.Length != 0)
             {
                 MessageBox.Show("Vật tư bạn chọn, đã tồn tại!");
@@ -503,7 +569,8 @@ namespace Inventory.XuatTamVatTu
             ResetGridInputForm();
 
             //Khi đã add data của kho xuất rồi, thì đó là kho xuất chính, ko thể thay đổi nữa.
-            cbKhoXuat.Enabled = false;
+            //cbKhoXuat.Enabled = false;
+            setup_cbKhoXuat();
 
             // gridMaster.SelectedRows.
         }
@@ -600,8 +667,8 @@ namespace Inventory.XuatTamVatTu
                 {
                     dataTableChiTietPhieuXuatTam.Rows.RemoveAt(selectedRowCount);
 
-                    if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
-                        cbKhoXuat.Enabled = true;
+                    //if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
+                    //    cbKhoXuat.Enabled = true;
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -612,6 +679,8 @@ namespace Inventory.XuatTamVatTu
             {
                 MessageBox.Show(ex.Message);
             }
+
+            setup_cbKhoXuat();
         }
 
         private void btnSaveGrid_Click(object sender, EventArgs e)
@@ -768,15 +837,6 @@ namespace Inventory.XuatTamVatTu
 
                         txtSL.Text = SL.ToString();
 
-                        //if (SL <= 0)
-                        //{
-                        //    setColorSL(false);
-                        //}
-                        //else
-                        //{
-                        //    setColorSL(true);
-                        //}
-
                     }
                 }
             }
@@ -785,35 +845,35 @@ namespace Inventory.XuatTamVatTu
 
         private int getIDKho()
         {
-            if (chkboxEnableMuonVT.Checked)
+            //Kiểm tra lỗi kho xuất trước
+            if (cbKhoXuat.Text.Trim().Equals(string.Empty) || cbKhoXuat.SelectedIndex == -1)
             {
-                if (cbMuonVTTaiKho.Text.Trim().Equals(string.Empty) || cbMuonVTTaiKho.SelectedIndex == -1)
-                {
-                    //Chưa chọn kho mượn
-                    return -2;
-                }
-                else if (cbMuonVTTaiKho.SelectedValue == cbKhoXuat.SelectedValue)
-                {
-                    //Kho mượn và kho xuất trùng nhau
-                    return -3;
-                }
-                else
-                {
-                    return Int32.Parse(cbMuonVTTaiKho.SelectedValue.ToString());
-                }
+                //Chưa chọn kho xuất
+                return -1;
             }
             else
             {
-                if (cbKhoXuat.Text.Trim().Equals(string.Empty) || cbKhoXuat.SelectedIndex == -1)
+                //Kiểm tra trường hợp mượn vật tư
+                if (chkboxEnableMuonVT.Checked == true)
                 {
-                    //Chưa chọn kho xuất
-                    return -1;
+                    if (cbMuonVTTaiKho.Text.Trim().Equals(string.Empty) || cbMuonVTTaiKho.SelectedIndex == -1)
+                    {
+                        //Chưa chọn kho mượn
+                        return -2;
+                    }
+
+                    if (Int32.Parse(cbMuonVTTaiKho.SelectedValue.ToString()) == Int32.Parse(cbKhoXuat.SelectedValue.ToString()))
+                    {
+                        //Kho mượn và kho xuất trùng nhau
+                        return -3;
+                    }
+
+                    return Int32.Parse(cbMuonVTTaiKho.SelectedValue.ToString());
                 }
-                else
-                {
-                    return Int32.Parse(cbKhoXuat.SelectedValue.ToString());
-                }
+
+                return Int32.Parse(cbKhoXuat.SelectedValue.ToString());
             }
+            
         }
 
         /// <summary>
@@ -872,6 +932,16 @@ namespace Inventory.XuatTamVatTu
 
         }
 
+        private void setup_cbKhoXuat()
+        {
+            if (dataTableChiTietPhieuXuatTam.Rows.Count > 0)
+            {
+                cbKhoXuat.Enabled = false;
+            }
+            else
+                cbKhoXuat.Enabled = true;
+        }
+
         private void SetDataToGrid()
         {
             clsChiTietPhieuXuatTam ChitTietPhieuXuat = new clsChiTietPhieuXuatTam();
@@ -892,13 +962,23 @@ namespace Inventory.XuatTamVatTu
                 dr["So_luong_hoan_nhap"] = dt.Rows[i]["So_luong_hoan_nhap"];
                 dr["So_luong_giu_lai"] = dt.Rows[i]["So_luong_giu_lai"];
                 dr["Da_duyet_hoan_nhap_giu_lai"] = dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"];
-                //dr["So_luong_su_dung"] = dt.Rows[i]["So_luong_su_dung"];
                 dr["Ten_don_vi_tinh"] = dt.Rows[i]["Ten_don_vi_tinh"];
                 dataTableChiTietPhieuXuatTam.Rows.Add(dr);
             }
+
+            setup_cbKhoXuat();
         }
 
-        
+        //BEGIN-------------------------Phần Init txtBox-------
+        private void initTextBox()
+        {
+            autoConfigFormControls.AddTextBox(ref txtSLDN);
+            autoConfigFormControls.AddTextBox(ref txtSLTX);
+            autoConfigFormControls.AddTextBox(ref txtSLHN);
+            autoConfigFormControls.AddTextBox(ref txtSLGL);
+        }
+        //END-------------------------Phần Init txtBox-------
+
 
         //BEGIN-------------------------Phần Init cb-------
         private void init_cb()
@@ -956,8 +1036,6 @@ namespace Inventory.XuatTamVatTu
         {
             clsDM_Kho DMKho = new clsDM_Kho();
 
-            //clsGiaoDienChung.initCombobox(cbKhoXuat, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-
             cbKhoXuat.DataSource = DMKho.getAll_TenKho();
             cbKhoXuat.ValueMember = "ID_kho";
             cbKhoXuat.DisplayMember = "Ten_kho";
@@ -967,8 +1045,6 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbMaVatTu()
         {
-            //clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_vat_tu", "Ma_vat_tu");
-
             cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
@@ -986,8 +1062,6 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbTenVatTu()
         {
-            //clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
-
             cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
@@ -1005,8 +1079,6 @@ namespace Inventory.XuatTamVatTu
 
         private void init_cbChatLuong()
         {
-            //clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
-
             cbChatLuong.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbChatLuong.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
@@ -1028,8 +1100,6 @@ namespace Inventory.XuatTamVatTu
         private void init_cbMuonVTTaiKho()
         {
             clsDM_Kho DMKho = new clsDM_Kho();
-
-            //clsGiaoDienChung.initCombobox(cbMuonVTTaiKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
 
             cbMuonVTTaiKho.DataSource = DMKho.getAll_TenKho();
             cbMuonVTTaiKho.ValueMember = "ID_kho";
@@ -1111,15 +1181,6 @@ namespace Inventory.XuatTamVatTu
 
         private void cbKhoXuat_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //ComboBox cb = (ComboBox)sender;
-
-            //int val = Int32.Parse(cb.SelectedValue.ToString());
-
-            //init_cbMuonVTTaiKho();
-
-            //int index = cbMuonVTTaiKho.Items.IndexOf(val);
-
-            //cbMuonVTTaiKho.Items.RemoveAt(index);
             setSLVatTu();
         }
 
@@ -1242,7 +1303,6 @@ namespace Inventory.XuatTamVatTu
 
         }
 
-        
 
         public void ResetInputForm()
         {
@@ -1311,14 +1371,33 @@ namespace Inventory.XuatTamVatTu
             this.Close();
         }
 
+        private double getDouble(TextBox txtBox)
+        {
+            double tmp;
+            if (double.TryParse(txtBox.Text.Trim().ToString(), out tmp))
+            {
+                return tmp;
+            }
+            else
+                return -1;
+        }
+
         //--------------EVENT
         private void chkboxXacNhanXuat_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chkBox = (CheckBox)sender;
 
-            if (Int32.Parse(txtSLDN.Text.Trim().ToString()) == 0)
+            //if (getDouble(txtSLDN) == 0)
+            //{
+            //    ToolTip1.Show("SL đề nghị không thể bằng 0", this.chkboxXacNhanXuat, 15, 15, 1500);
+            //    if (chkBox.Checked == true)
+            //        chkBox.Checked = false;
+            //    return;
+            //}
+
+            if (check_cbKho() == false || check_cbVT() == false || checkSoLuongXuat() == false)
             {
-                ToolTip1.Show("SL đề nghị không thể bằng 0", this.chkboxXacNhanXuat, 15, 15, 1500);
+                //ToolTip1.Show("SL đề nghị không thể bằng 0", this.chkboxXacNhanXuat, 15, 15, 1500);
                 if (chkBox.Checked == true)
                     chkBox.Checked = false;
                 return;
@@ -1371,7 +1450,7 @@ namespace Inventory.XuatTamVatTu
             //Xử lý chưa chọn kho xuất
             if (cbKhoXuat.SelectedIndex < 0 && chkBox.Checked == true)
             {
-                ToolTip1.Show("Bạn chưa chọn kho xuất!", this.chkboxEnableMuonVT, 10, 10, 2000);
+                ToolTip1.Show("Bạn chưa chọn kho xuất!", this.chkboxEnableMuonVT, 15, 15, 2000);
                 chkBox.Checked = false;
                 return;
             }
@@ -1384,132 +1463,19 @@ namespace Inventory.XuatTamVatTu
             }
             else
             {
-                if (dataTableChiTietPhieuXuatTam != null)
-                {
-                    if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
-                    {
-                        cbKhoXuat.Enabled = true;
-                    }
-                }
+                //if (dataTableChiTietPhieuXuatTam != null)
+                //{
+                //    if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
+                //    {
+                //        cbKhoXuat.Enabled = true;
+                //    }
+                //}
+
+                setup_cbKhoXuat();
                 cbMuonVTTaiKho.Enabled = false;
             }
         }
 
-        private void txtSLDN_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtSLDN_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string errorMsg = "Số lượng đề nghị không đúng!";
-            Int32 tmp;
-            if (!Int32.TryParse(txt.Text.Trim().ToString(), out tmp) || txt.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txt.Select(0, txt.Text.Length);
-
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txt, errorMsg);
-            }
-        }
-
-        private void txtSLDN_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtSLDN, "");
-        }
-
-        private void txtSLTX_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtSLTX_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string errorMsg = "Số lượng thực xuất không đúng!";
-            Int32 tmp;
-            if (!Int32.TryParse(txt.Text.Trim().ToString(), out tmp) || txt.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txt.Select(0, txt.Text.Length);
-
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txt, errorMsg);
-            }
-        }
-
-        private void txtSLTX_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtSLTX, "");
-        }
-
-        private void txtSLGL_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtSLGL_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string errorMsg = "Số lượng giữ lại không đúng!";
-            Int32 tmp;
-            if (!Int32.TryParse(txt.Text.Trim().ToString(), out tmp) || txt.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txt.Select(0, txt.Text.Length);
-
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txt, errorMsg);
-            }
-        }
-
-        private void txtSLGL_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtSLGL, "");
-        }
-
-        private void txtSLHN_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtSLHN_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string errorMsg = "Số lượng hoàn nhập không đúng!";
-            Int32 tmp;
-            if (!Int32.TryParse(txt.Text.Trim().ToString(), out tmp) || txt.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txt.Select(0, txt.Text.Length);
-
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txt, errorMsg);
-            }
-        }
-
-        private void txtSLHN_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtSLHN, "");
-        }
 
         /// <summary>
         /// Xử lý hiện SL của "loại VT_chất lượng"
@@ -1523,7 +1489,5 @@ namespace Inventory.XuatTamVatTu
                 setSLVatTu();
             }
         }
-
-        
     }
 }

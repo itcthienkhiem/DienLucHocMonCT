@@ -548,11 +548,11 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
             command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
             command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-            command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
-            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
+            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
             command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
-            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
-            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
+            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
+            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
             command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
             command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
 
@@ -586,11 +586,11 @@ namespace Inventory.EntityClass
             command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
             command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
             command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-            command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
-            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
+            command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
             command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
-            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
-            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
+            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
+            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
             command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
             command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
 

@@ -86,6 +86,10 @@
       <Project>{9c6d98b7-04cc-4867-8fd4-ea72c1ef1c29}</Project>
       <Name>Inventory.NhapXuat</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Inventory.Utilities\Inventory.Utilities.csproj">
+      <Project>{bde21978-8fdb-4215-96b6-58a6a6863459}</Project>
+      <Name>Inventory.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.Models\Inventory.Models.csproj">
       <Project>{af07e61b-f4a5-4b74-b131-4ec8add3aa72}</Project>
       <Name>Inventory.Models</Name>
