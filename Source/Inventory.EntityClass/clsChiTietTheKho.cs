@@ -162,9 +162,15 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                var filteredData = help.ent.Chi_tiet_the_kho.Where(t => t.Ngay_nhap_xuat >= tungays && t.Ngay_nhap_xuat <= denngays && t.ID_The_Kho == id_the_kho).ToList();
+                var filteredData =(from d in help.ent.Chi_tiet_the_kho
+                    where d.Ngay_xuat_chung_tu >= tungays && d.Ngay_xuat_chung_tu <= denngays && d.ID_The_Kho == id_the_kho
+                    orderby d.Ngay_xuat_chung_tu 
+                                   select d)
+                    .ToList();
 
+               
                 return Utilities.clsThamSoUtilities.ToDataTable(filteredData);
+            
             }
         }
     }

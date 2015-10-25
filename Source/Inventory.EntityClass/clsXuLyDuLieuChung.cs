@@ -38,6 +38,7 @@ namespace Inventory.EntityClass
 
                                       where d.ID_kho == idkho && d.Ma_vat_tu == mavt &&d.Id_chat_luong == ID_chat_luong
                                       select d).ToList();
+                    #region "Thêm bảng tồn kho "
                     if (entryPoint.Count == 0)
                     {
                         //neu chưa có tiền hành lưu vật tư này vào kho với số lượng bằng số lượng nhập
@@ -60,89 +61,64 @@ namespace Inventory.EntityClass
                         help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
                         help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
-                        //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
-                        var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
-                                            select d).ToList();
-                        foreach (var temp in entryPointCT)
-                        {
-                            temp.Da_duyet = true;
-                            help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(temp);
-                            help.ent.Entry(temp).State = EntityState.Modified;
-                        }
-                        help.ent.SaveChanges();
+                        //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();                    
                         //cập nhật trạng thái phiếu nhập
-                        var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
+                        ////sau đó thêm 1 dòng vào trong thẻ kho
+                        ////thêm vào chi tiết thẻ kho
+                        //// tìm kiếm thẻ kho xem đã có thẻ kho có mã vật tư hay chưa ?
+                        //// nếu có tiến hành thêm 1 dòng vào chi tiết thẻ kho 
+                        ////nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho
+                        //var entryPointTK = (from d in help.ent.The_kho
 
-                                            where d.Ma_phieu_nhap == maphieu
-                                            select d).ToList();
-                        if (entryPointPN[0].Da_phan_kho == false)
-                        {
-                            entryPointPN[0].Da_phan_kho = true;
-                            help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
-                            help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
-                        }
-                        help.ent.SaveChanges();
-
-
-
-                        //sau đó thêm 1 dòng vào trong thẻ kho
-                        //thêm vào chi tiết thẻ kho
-                        // tìm kiếm thẻ kho xem đã có thẻ kho có mã vật tư hay chưa ?
-                        // nếu có tiến hành thêm 1 dòng vào chi tiết thẻ kho 
-                        //nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho
-                        var entryPointTK = (from d in help.ent.The_kho
-
-                                            where d.Ma_vat_tu == mavt&& d.Id_chat_luong == ID_chat_luong 
-                                            select d).ToList();
-                        //nếu chưa có trong thẻ kho 
-                        if (entryPointTK.Count == 0)
-                        {
-                            //tiến hành thêm 1 dong vao the kho và chi tiet the kho
-                            The_kho tk = new The_kho();
-                            tk.Ma_vat_tu = mavt;
-                            tk.Dia_diem = idkho.ToString();
-                            tk.Don_vi = idkho.ToString();
-                            tk.Id_chat_luong = ID_chat_luong;
-                            help.ent.The_kho.Add(tk);
-                            help.ent.SaveChanges();
+                        //                    where d.Ma_vat_tu == mavt&& d.Id_chat_luong == ID_chat_luong 
+                        //                    select d).ToList();
+                        ////nếu chưa có trong thẻ kho 
+                        //if (entryPointTK.Count == 0)
+                        //{
+                        //    //tiến hành thêm 1 dong vao the kho và chi tiet the kho
+                        //    The_kho tk = new The_kho();
+                        //    tk.Ma_vat_tu = mavt;
+                        //    tk.Dia_diem = idkho.ToString();
+                        //    tk.Don_vi = idkho.ToString();
+                        //    tk.Id_chat_luong = ID_chat_luong;
+                        //    help.ent.The_kho.Add(tk);
+                        //    help.ent.SaveChanges();
 
 
-                            Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
-                            cttks.ID_The_Kho = tk.ID_The_Kho;
-                            cttks.Ma_phieu = maphieu;
-                            cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
-                            cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
-                            cttks.Loai_phieu = true;
-                            cttks.Ngay_nhap_xuat = NgayNhap;
+                        //    Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
+                        //    cttks.ID_The_Kho = tk.ID_The_Kho;
+                        //    cttks.Ma_phieu = maphieu;
+                        //    cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
+                        //    cttks.Dien_giai = entryPointPN[0].Ly_do;
+                        //    cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                        //    cttks.Loai_phieu = true;
+                        //    cttks.Ngay_nhap_xuat = NgayNhap;
 
-                            help.ent.Chi_tiet_the_kho.Add(cttks);
-                            help.ent.SaveChanges();
+                        //    help.ent.Chi_tiet_the_kho.Add(cttks);
+                        //    help.ent.SaveChanges();
 
 
-                        }
-                        else
-                        {
+                        //}
+                        //else
+                        //{
 
-                            //nếu đã có trong bảng thẻ kho thì tiến hành thêm vào bảng chi tiết thẻ kho 1 dòng mới
-                            Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
-                            cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
-                            cttks.Ma_phieu = maphieu;
-                            cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
-                            cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
-                            cttks.Loai_phieu = true;
-                            cttks.Ngay_nhap_xuat = NgayNhap;
-                            help.ent.Chi_tiet_the_kho.Add(cttks);
-                            help.ent.SaveChanges();
+                        //    //nếu đã có trong bảng thẻ kho thì tiến hành thêm vào bảng chi tiết thẻ kho 1 dòng mới
+                        //    Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
+                        //    cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
+                        //    cttks.Ma_phieu = maphieu;
+                        //    cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
+                        //    cttks.Dien_giai = entryPointPN[0].Ly_do;
+                        //    cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                        //    cttks.Loai_phieu = true;
+                        //    cttks.Ngay_nhap_xuat = NgayNhap;
+                        //    help.ent.Chi_tiet_the_kho.Add(cttks);
+                        //    help.ent.SaveChanges();
 
-                        }
+                        //}
 
 
 
-                        return 1;
+                      //  return 1;
                     }
                     else
                     {
@@ -178,97 +154,130 @@ namespace Inventory.EntityClass
                         help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
                         help.ent.SaveChanges();
                         //cập nhật lại trạng thái phiếu nhập 
-                        var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
+                        //var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 
-                                            where d.Ma_phieu_nhap == maphieu 
-                                            select d).ToList();
-                        if (entryPointPN[0].Da_phan_kho == false)
-                        {
-                            entryPointPN[0].Da_phan_kho = true;
-                            help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
-                            help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
-                        }
+                        //                    where d.Ma_phieu_nhap == maphieu 
+                        //                    select d).ToList();
+                        //if (entryPointPN[0].Da_phan_kho == false)
+                        //{
+                        //    entryPointPN[0].Da_phan_kho = true;
+                        //    help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
+                        //    help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
+                        //}
 
-                        help.ent.SaveChanges();
+                        //help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
 
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
-                        var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
-
-                                            where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
-                                            select d).ToList();
-                        foreach (var temp in entryPointCT)
-                        {
-                            temp.Da_duyet = true;
-
-                            help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(temp);
-                            help.ent.Entry(temp).State = EntityState.Modified;
-                        }
-                        help.ent.SaveChanges();
-
-
-
+                       
                         //sau đó thêm 1 dòng vào trong thẻ kho
                         //thêm vào chi tiết thẻ kho
                         // tìm kiếm thẻ kho xem đã có thẻ kho có mã vật tư hay chưa ?
                         // nếu có tiến hành thêm 1 dòng vào chi tiết thẻ kho 
-                        //nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho
-                        var entryPointTK = (from d in help.ent.The_kho
+                        //nếu không có thì tiến hành insert và trong bảng thẻ kho và chi tiết thẻ kho                    
+                     //   dbcxtransaction.Commit();//hoan thanh thao tac
 
-                                            where d.Ma_vat_tu == mavt &&d.Id_chat_luong == ID_chat_luong
-                                            select d).ToList();
-                        //nếu chưa có trong thẻ kho 
-                        if (entryPointTK.Count == 0)
+                    }
+                    #endregion
+                    #region "Cập nhật bảng chi tiết pn,ctpn"
+                    var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+
+                                        where d.Ma_vat_tu == mavt && d.Ma_phieu_nhap == maphieu && d.Id_chat_luong == ID_chat_luong
+                                        select d).ToList();
+                    foreach (var temp in entryPointCT)
+                    {
+                        temp.Da_duyet = true;
+
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(temp);
+                        help.ent.Entry(temp).State = EntityState.Modified;
+                    }
+                    help.ent.SaveChanges();
+                    var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
+
+                                        where d.Ma_phieu_nhap == maphieu
+                                        select d).ToList();
+                    if (entryPointPN[0].Da_phan_kho == false)
+                    {
+                        entryPointPN[0].Da_phan_kho = true;
+                        help.ent.Phieu_Nhap_Kho.Attach(entryPointPN[0]);
+                        help.ent.Entry(entryPointPN[0]).State = EntityState.Modified;
+                    }
+                   
+                    help.ent.SaveChanges();
+                    #endregion
+                    #region "Xữ lý kho , thẻ kho"
+                    var entryPointTK = (from d in help.ent.The_kho
+
+                                        where d.Ma_vat_tu == mavt && d.Id_chat_luong == ID_chat_luong
+                                        select d).ToList();
+                    //nếu chưa có trong thẻ kho 
+                    if (entryPointTK.Count == 0)
+                    {
+                        //tiến hành thêm 1 dong vao the kho và chi tiet the kho
+                        The_kho tk = new The_kho();
+                        tk.Ma_vat_tu = mavt;
+                        tk.Dia_diem = idkho.ToString();
+                        tk.Don_vi = idkho.ToString();
+                        tk.Id_chat_luong = ID_chat_luong;
+                        help.ent.The_kho.Add(tk);
+                        help.ent.SaveChanges();
+
+
+                        Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
+                        cttks.ID_The_Kho = tk.ID_The_Kho;
+                        cttks.Ma_phieu = maphieu;
+                        cttks.Ngay_xuat_chung_tu = entryPointPN.First().Ngay_lap;
+                        cttks.Dien_giai = entryPointPN.First().Ly_do;
+                        cttks.SL_Nhap = soluong;
+                        cttks.SL_Ton = soluong;// nếu đây là dòng đầu tiên trong danh sách thì số lượng tồn = sl thực lãnh
+                        cttks.Loai_phieu = true;
+                        cttks.Ngay_nhap_xuat = NgayNhap;
+                        help.ent.Chi_tiet_the_kho.Add(cttks);
+                        help.ent.SaveChanges();
+
+
+                    }
+                    else
+                    {
+
+                        //nếu đã có trong bảng thẻ kho thì tiến hành thêm vào bảng chi tiết thẻ kho 1 dòng mới
+                        Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
+                        cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
+                        cttks.Ma_phieu = maphieu;
+                        cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
+                        cttks.Dien_giai = entryPointPN[0].Ly_do;
+                        cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                        //tìm kiếm số lượng tồn trước đó
+
+                        //sln danh sách các thẻ kho có
+                        int id = entryPointTK.First().ID_The_Kho;
+                        var slt = (from d in help.ent.Chi_tiet_the_kho
+
+                                   where d.ID_The_Kho == id
+                                   orderby d.ID_chi_tiet_the_kho 
+
+                                   select d).ToList().Last();
+
+                        if (LNP == true)
                         {
-                            //tiến hành thêm 1 dong vao the kho và chi tiet the kho
-                            The_kho tk = new The_kho();
-                            tk.Ma_vat_tu = mavt;
-                            tk.Dia_diem = idkho.ToString();
-                            tk.Don_vi = idkho.ToString();
-                            tk.Id_chat_luong = ID_chat_luong;
-                            help.ent.The_kho.Add(tk);
-                            help.ent.SaveChanges();
-
-
-                            Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
-                            cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
-                            cttks.Ma_phieu = maphieu;
-                            cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
-                            cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                            //nếu phiếu nhập X
                             cttks.Loai_phieu = true;
-                            cttks.Ngay_nhap_xuat = NgayNhap;
-                            help.ent.Chi_tiet_the_kho.Add(cttks);
-                            help.ent.SaveChanges();
-
+                            //thì cộng vào tồn 
+                            cttks.SL_Ton = slt.SL_Ton + soluong;
 
                         }
                         else
                         {
-
-                            //nếu đã có trong bảng thẻ kho thì tiến hành thêm vào bảng chi tiết thẻ kho 1 dòng mới
-                            Chi_tiet_the_kho cttks = new Chi_tiet_the_kho();
-                            cttks.ID_The_Kho = entryPointTK[0].ID_The_Kho;
-                            cttks.Ma_phieu = maphieu;
-                            cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
-                            cttks.Dien_giai = entryPointPN[0].Ly_do;
-                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
-                            if (LNP == true)
-                            {
-                                cttks.Loai_phieu = true;
-                            }
-                            else
-                                cttks.Loai_phieu = false;
-                            cttks.Ngay_nhap_xuat = NgayNhap;
-                            help.ent.Chi_tiet_the_kho.Add(cttks);
-                            help.ent.SaveChanges();
+                            cttks.Loai_phieu = false;
+                            cttks.SL_Ton = slt.SL_Ton - soluong;
 
                         }
+                        cttks.Ngay_nhap_xuat = NgayNhap;
+                        help.ent.Chi_tiet_the_kho.Add(cttks);
+                        help.ent.SaveChanges();
 
-
-                     //   dbcxtransaction.Commit();//hoan thanh thao tac
-                        return 1;
                     }
+                    #endregion
                 }
                 catch (Exception ex)
                 {

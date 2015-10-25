@@ -58,12 +58,12 @@ namespace Inventory.QuanLyTonDauKy
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
 
                     DataTable tb = cttk.Search(tungay, denngay,search);
-                    DataView dv = tb.DefaultView;
+                   // DataView dv = tb.DefaultView;
                     //   Sort data
 
-                    dv.Sort = "Ngay_nhap_xuat";
+                   // dv.Sort = "Ngay_nhap_xuat";
                     //   Convert back your sorted DataView to DataTable
-                    tb = dv.ToTable();
+                   // tb = dv.ToTable();
                     double sln = double.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ?  double.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
                     double slx = double.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
 
