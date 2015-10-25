@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.cbKho = new System.Windows.Forms.ComboBox();
             this.dataSet1 = new System.Data.DataSet();
@@ -49,6 +49,12 @@
             this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridTonKhoThuc = new System.Windows.Forms.DataGridView();
             this.btnXem = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbChatLuong = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTenVatTu = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbMaVatTu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTonKhoThuc)).BeginInit();
@@ -148,8 +154,8 @@
             // Ten_kho
             // 
             this.Ten_kho.DataPropertyName = "Ten_kho";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ten_kho.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ten_kho.DefaultCellStyle = dataGridViewCellStyle4;
             this.Ten_kho.HeaderText = "Tên kho";
             this.Ten_kho.Name = "Ten_kho";
             this.Ten_kho.ReadOnly = true;
@@ -160,29 +166,29 @@
             this.gridTonKhoThuc.AllowUserToAddRows = false;
             this.gridTonKhoThuc.AllowUserToDeleteRows = false;
             this.gridTonKhoThuc.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridTonKhoThuc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridTonKhoThuc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gridTonKhoThuc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridTonKhoThuc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridTonKhoThuc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTonKhoThuc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTonKhoThuc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridTonKhoThuc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTonKhoThuc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ten_kho,
             this.Ma_vat_tu,
             this.Ten_vat_tu,
             this.So_luong});
-            this.gridTonKhoThuc.Location = new System.Drawing.Point(0, 54);
+            this.gridTonKhoThuc.Location = new System.Drawing.Point(0, 66);
             this.gridTonKhoThuc.MultiSelect = false;
             this.gridTonKhoThuc.Name = "gridTonKhoThuc";
             this.gridTonKhoThuc.ReadOnly = true;
@@ -190,24 +196,81 @@
             this.gridTonKhoThuc.RowHeadersVisible = false;
             this.gridTonKhoThuc.RowTemplate.Height = 30;
             this.gridTonKhoThuc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTonKhoThuc.Size = new System.Drawing.Size(1098, 383);
+            this.gridTonKhoThuc.Size = new System.Drawing.Size(1098, 371);
             this.gridTonKhoThuc.TabIndex = 126;
             // 
             // btnXem
             // 
-            this.btnXem.Location = new System.Drawing.Point(235, 7);
+            this.btnXem.Location = new System.Drawing.Point(475, 12);
             this.btnXem.Name = "btnXem";
-            this.btnXem.Size = new System.Drawing.Size(66, 31);
+            this.btnXem.Size = new System.Drawing.Size(66, 44);
             this.btnXem.TabIndex = 129;
             this.btnXem.Text = "Xem";
             this.btnXem.UseVisualStyleBackColor = true;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(236, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 130;
+            this.label1.Text = "Chất lượng";
+            // 
+            // cbChatLuong
+            // 
+            this.cbChatLuong.FormattingEnabled = true;
+            this.cbChatLuong.Location = new System.Drawing.Point(305, 13);
+            this.cbChatLuong.Name = "cbChatLuong";
+            this.cbChatLuong.Size = new System.Drawing.Size(152, 21);
+            this.cbChatLuong.TabIndex = 131;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(236, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 132;
+            this.label2.Text = "Tên vật tư";
+            // 
+            // cbTenVatTu
+            // 
+            this.cbTenVatTu.FormattingEnabled = true;
+            this.cbTenVatTu.Location = new System.Drawing.Point(305, 39);
+            this.cbTenVatTu.Name = "cbTenVatTu";
+            this.cbTenVatTu.Size = new System.Drawing.Size(152, 21);
+            this.cbTenVatTu.TabIndex = 133;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 134;
+            this.label4.Text = "Mã vật tư";
+            // 
+            // cbMaVatTu
+            // 
+            this.cbMaVatTu.FormattingEnabled = true;
+            this.cbMaVatTu.Location = new System.Drawing.Point(77, 39);
+            this.cbMaVatTu.Name = "cbMaVatTu";
+            this.cbMaVatTu.Size = new System.Drawing.Size(152, 21);
+            this.cbMaVatTu.TabIndex = 135;
             // 
             // frmDanhSachVatTuTrongKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 540);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbMaVatTu);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbTenVatTu);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbChatLuong);
             this.Controls.Add(this.btnXem);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.gridTonKhoThuc);
@@ -243,5 +306,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_kho;
         private System.Windows.Forms.DataGridView gridTonKhoThuc;
         private System.Windows.Forms.Button btnXem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbChatLuong;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbTenVatTu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbMaVatTu;
     }
 }
