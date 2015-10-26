@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.gridMaster = new System.Windows.Forms.DataGridView();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,21 +58,12 @@
             this.dataColumn11 = new System.Data.DataColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnTest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnLuu = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnThem = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLamMoi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -92,15 +83,11 @@
             this.txtDVT = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbChatLuong = new System.Windows.Forms.ComboBox();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.btnSaveGrid = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -117,6 +104,21 @@
             this.cbLoaiPhieuNhan = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.txtXuatTaiKho = new System.Windows.Forms.TextBox();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnSaveGrid = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.cbngd = new System.Windows.Forms.RadioButton();
+            this.cbxsd = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -137,8 +139,8 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -146,15 +148,15 @@
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -173,8 +175,8 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMaster.Size = new System.Drawing.Size(1017, 290);
@@ -374,40 +376,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
-            // btnHuy
-            // 
-            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_bmc1;
-            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(212, 13);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(58, 54);
-            this.btnHuy.TabIndex = 4;
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.printOut_omc;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint.Location = new System.Drawing.Point(731, 11);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(58, 54);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnTest
-            // 
-            this.btnTest.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.search_bmc;
-            this.btnTest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTest.Location = new System.Drawing.Point(654, 11);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(58, 54);
-            this.btnTest.TabIndex = 2;
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Visible = false;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -417,17 +385,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Testing...";
             this.label1.Visible = false;
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
-            this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(276, 13);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(58, 54);
-            this.btnLuu.TabIndex = 2;
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // label26
             // 
@@ -447,17 +404,6 @@
             this.label10.TabIndex = 3;
             this.label10.Text = "Lưu";
             // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
-            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(919, 13);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(58, 54);
-            this.btnDong.TabIndex = 2;
-            this.btnDong.UseVisualStyleBackColor = true;
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -467,17 +413,6 @@
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
-            // 
-            // btnThem
-            // 
-            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
-            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThem.Location = new System.Drawing.Point(10, 11);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(58, 54);
-            this.btnThem.TabIndex = 2;
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label6
             // 
@@ -496,38 +431,6 @@
             this.label5.Size = new System.Drawing.Size(39, 14);
             this.label5.TabIndex = 3;
             this.label5.Text = "Thêm";
-            // 
-            // btnSua
-            // 
-            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
-            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSua.Location = new System.Drawing.Point(79, 11);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(58, 56);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_gmc;
-            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXoa.Location = new System.Drawing.Point(340, 12);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(58, 54);
-            this.btnXoa.TabIndex = 2;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
-            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLamMoi.Location = new System.Drawing.Point(146, 11);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(58, 54);
-            this.btnLamMoi.TabIndex = 2;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -718,42 +621,6 @@
             this.cbChatLuong.Size = new System.Drawing.Size(93, 22);
             this.cbChatLuong.TabIndex = 87;
             // 
-            // btnDel
-            // 
-            this.btnDel.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_delete;
-            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnDel.Enabled = false;
-            this.btnDel.Location = new System.Drawing.Point(857, 21);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(45, 29);
-            this.btnDel.TabIndex = 86;
-            this.btnDel.UseVisualStyleBackColor = true;
-            this.btnDel.Click += new System.EventHandler(this.btnGridDel_Click);
-            // 
-            // btnSaveGrid
-            // 
-            this.btnSaveGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_save;
-            this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSaveGrid.Enabled = false;
-            this.btnSaveGrid.Location = new System.Drawing.Point(962, 21);
-            this.btnSaveGrid.Name = "btnSaveGrid";
-            this.btnSaveGrid.Size = new System.Drawing.Size(55, 29);
-            this.btnSaveGrid.TabIndex = 84;
-            this.btnSaveGrid.UseVisualStyleBackColor = true;
-            this.btnSaveGrid.Click += new System.EventHandler(this.btnGridSave_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_modify;
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(910, 21);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(45, 29);
-            this.btnEdit.TabIndex = 83;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnGridEdit_Click);
-            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -798,18 +665,6 @@
             this.label21.Size = new System.Drawing.Size(67, 14);
             this.label21.TabIndex = 81;
             this.label21.Text = "Chất lượng";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_new;
-            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(805, 21);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(45, 29);
-            this.btnAdd.TabIndex = 80;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnGridAdd_Click);
             // 
             // cbTenVatTu
             // 
@@ -965,11 +820,182 @@
             this.txtXuatTaiKho.Size = new System.Drawing.Size(199, 22);
             this.txtXuatTaiKho.TabIndex = 82;
             // 
+            // btnDel
+            // 
+            this.btnDel.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_delete;
+            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDel.Enabled = false;
+            this.btnDel.Location = new System.Drawing.Point(857, 21);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(45, 29);
+            this.btnDel.TabIndex = 86;
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnGridDel_Click);
+            // 
+            // btnSaveGrid
+            // 
+            this.btnSaveGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_save;
+            this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSaveGrid.Enabled = false;
+            this.btnSaveGrid.Location = new System.Drawing.Point(962, 21);
+            this.btnSaveGrid.Name = "btnSaveGrid";
+            this.btnSaveGrid.Size = new System.Drawing.Size(55, 29);
+            this.btnSaveGrid.TabIndex = 84;
+            this.btnSaveGrid.UseVisualStyleBackColor = true;
+            this.btnSaveGrid.Click += new System.EventHandler(this.btnGridSave_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_modify;
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(910, 21);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(45, 29);
+            this.btnEdit.TabIndex = 83;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnGridEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_new;
+            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAdd.Enabled = false;
+            this.btnAdd.Location = new System.Drawing.Point(805, 21);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(45, 29);
+            this.btnAdd.TabIndex = 80;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnGridAdd_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_bmc1;
+            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHuy.Location = new System.Drawing.Point(212, 13);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(58, 54);
+            this.btnHuy.TabIndex = 4;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.printOut_omc;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.Location = new System.Drawing.Point(731, 11);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(58, 54);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnTest
+            // 
+            this.btnTest.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.search_bmc;
+            this.btnTest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTest.Location = new System.Drawing.Point(654, 11);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(58, 54);
+            this.btnTest.TabIndex = 2;
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
+            this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLuu.Location = new System.Drawing.Point(276, 13);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(58, 54);
+            this.btnLuu.TabIndex = 2;
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(919, 13);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(58, 54);
+            this.btnDong.TabIndex = 2;
+            this.btnDong.UseVisualStyleBackColor = true;
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
+            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThem.Location = new System.Drawing.Point(10, 11);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(58, 54);
+            this.btnThem.TabIndex = 2;
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
+            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSua.Location = new System.Drawing.Point(79, 11);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(58, 56);
+            this.btnSua.TabIndex = 2;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_gmc;
+            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXoa.Location = new System.Drawing.Point(340, 12);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(58, 54);
+            this.btnXoa.TabIndex = 2;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
+            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLamMoi.Location = new System.Drawing.Point(146, 11);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(58, 54);
+            this.btnLamMoi.TabIndex = 2;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
+            // 
+            // cbngd
+            // 
+            this.cbngd.AutoSize = true;
+            this.cbngd.Location = new System.Drawing.Point(10, 228);
+            this.cbngd.Name = "cbngd";
+            this.cbngd.Size = new System.Drawing.Size(97, 18);
+            this.cbngd.TabIndex = 83;
+            this.cbngd.TabStop = true;
+            this.cbngd.Text = "Nhập gối đầu";
+            this.cbngd.UseVisualStyleBackColor = true;
+            // 
+            // cbxsd
+            // 
+            this.cbxsd.AutoSize = true;
+            this.cbxsd.Location = new System.Drawing.Point(122, 228);
+            this.cbxsd.Name = "cbxsd";
+            this.cbxsd.Size = new System.Drawing.Size(99, 18);
+            this.cbxsd.TabIndex = 84;
+            this.cbxsd.TabStop = true;
+            this.cbxsd.Text = "Xuất sử dụng";
+            this.cbxsd.UseVisualStyleBackColor = true;
+            // 
             // frmNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 685);
+            this.Controls.Add(this.cbxsd);
+            this.Controls.Add(this.cbngd);
             this.Controls.Add(this.txtXuatTaiKho);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.cbLoaiPhieuNhan);
@@ -1095,5 +1121,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Don_gia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Thanh_tien;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Chat_Luong;
+        private System.Windows.Forms.RadioButton cbngd;
+        private System.Windows.Forms.RadioButton cbxsd;
     }
 }
