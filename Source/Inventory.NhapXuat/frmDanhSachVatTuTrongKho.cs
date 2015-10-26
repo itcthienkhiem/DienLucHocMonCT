@@ -33,7 +33,14 @@ namespace Inventory.NhapXuat
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            gridTonKhoThuc.DataSource = clsTonKho.getAll(cbKho.Text,cbChatLuong.Text,cbTenVatTu.Text,cbMaVatTu.Text);
+            try
+            {
+                gridTonKhoThuc.DataSource = clsTonKho.getAll(cbKho.Text, cbChatLuong.Text, cbTenVatTu.Text, cbMaVatTu.Text);
+            }
+            catch (Exception ex)
+            { 
+            }
+
         }
     }
 }
