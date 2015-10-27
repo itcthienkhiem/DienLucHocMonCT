@@ -234,7 +234,7 @@ namespace Inventory.NhapXuat
                                 nk.Ly_do = phieunhap.Ly_do;
                                 nk.Ngay_lap = phieunhap.Ngay_lap;
                                 nk.So_hoa_don = phieunhap.So_hoa_don;
-                                phieunhap.isGoiDau = chbNGD.Checked;
+                                nk.isGoiDau = chbNGD.Checked;
                                 if (phieunhap.Update(nk) == 1)
                                 {
 

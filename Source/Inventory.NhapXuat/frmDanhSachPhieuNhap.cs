@@ -104,9 +104,9 @@ namespace Inventory.NhapXuat
         public void LoadData()
         {
             gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll();
-     //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             clsGiaoDienChung.initCombobox(cbbLoaiPhieu, new clsLoaiPhieuNhap(), "Ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "Ma_loai_phieu_nhap");
-       
+
         }
 
         public void CloseForm()
@@ -274,7 +274,7 @@ namespace Inventory.NhapXuat
             try
             {
                 if (rdoChuaDuyet.Checked == true)
-                    gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(false,cbbLoaiPhieu.SelectedValue.ToString());
+                    gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(false, cbbLoaiPhieu.SelectedValue.ToString());
                 else
                     if (rdoDaDuyet.Checked == true)
                         gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(true, cbbLoaiPhieu.SelectedValue.ToString());
@@ -300,6 +300,8 @@ namespace Inventory.NhapXuat
         {
             try
             {
+
+
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
                 //   DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
                 //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString
@@ -325,9 +327,7 @@ namespace Inventory.NhapXuat
 
                 using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                 {
-                    if (TenLPN.Contains(setting) == true)
-                    {
-                        for (int i = 0; i < tb.Rows.Count; i++)
+                     for (int i = 0; i < tb.Rows.Count; i++)
                         {
                             //duyệt qua từng dòng insert chi tiết phiếu nhập vào
                             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
@@ -337,35 +337,52 @@ namespace Inventory.NhapXuat
                             int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
 
                             DateTime ngayNhap = DateTime.Now;
-
-                            if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
+                            bool isGoiDau = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isGoiDau"].Value.ToString());
+                            if (isGoiDau == true)
                             {
-                                dbcxtransaction.Rollback();
+                                clsVatTuGoiDauKy gdk = new clsVatTuGoiDauKy();
+                                
+                                gdk.ID_chat_luong = id_chat_luong;
+                                gdk.Ma_vat_tu = mavattu;
+                                gdk.So_Luong = soluong;
+                                gdk.ID_kho = idKho;
+                                if (gdk.CheckTonTaiSoDK() == true)
+                                {
+                                    MessageBox.Show("Vật tư này đã có trong vật tư gối đầu rồi, không thể duyệt gối đầu nữa!");
+                                    return;
+                                }
+                                if (gdk.Insert() == 0)
+
+                                {
+                                    MessageBox.Show("Đã có lỗi xãy ra !");
+                                    return;
+                                }
+
                             }
-
-                        }
-
-                        dbcxtransaction.Commit();
-                        MessageBox.Show("Bạn đã thêm thành công !");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < tb.Rows.Count; i++)
-                        {
-                            clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
-                            string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
-                            //   int idKho = int.Parse(tb.Rows[i]["ID_kho"].ToString());
-                            double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
-                            int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
-
-                            DateTime ngayNhap = DateTime.Now;
-
-                            if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, false) == 0)
+                            if (TenLPN.Contains(setting) == true)
                             {
-                                dbcxtransaction.Rollback();
+
+                                if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
+                                {
+                                    dbcxtransaction.Rollback();
+                                }
+
+
+                            
                             }
-                        }
+                            else
+                            {
+                                //CO MA PHIEU TD
+
+                                //PHIEU TRU KHO
+                                if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, false) == 0)
+                                {
+                                    dbcxtransaction.Rollback();
+                                }
+                            }
                     }
+                       dbcxtransaction.Commit();
+                     MessageBox.Show("Bạn đã thêm thành công !");
                 }
 
 
@@ -375,11 +392,12 @@ namespace Inventory.NhapXuat
                 }
                 catch (Exception ex) { }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
-    
+
 
     }
 }

@@ -51,6 +51,7 @@
             this.lbTxt = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cbLPN = new System.Windows.Forms.ComboBox();
+            this.chbGoiDau = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -288,11 +289,22 @@
             this.cbLPN.Size = new System.Drawing.Size(121, 21);
             this.cbLPN.TabIndex = 67;
             // 
+            // chbGoiDau
+            // 
+            this.chbGoiDau.AutoSize = true;
+            this.chbGoiDau.Location = new System.Drawing.Point(485, 132);
+            this.chbGoiDau.Name = "chbGoiDau";
+            this.chbGoiDau.Size = new System.Drawing.Size(92, 17);
+            this.chbGoiDau.TabIndex = 68;
+            this.chbGoiDau.Text = "Phiếu gối đầu";
+            this.chbGoiDau.UseVisualStyleBackColor = true;
+            // 
             // frmNhapTuFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 557);
+            this.Controls.Add(this.chbGoiDau);
             this.Controls.Add(this.cbLPN);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lbTxt);
@@ -338,5 +350,6 @@
         private System.Windows.Forms.Label lbTxt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbLPN;
+        private System.Windows.Forms.CheckBox chbGoiDau;
     }
 }

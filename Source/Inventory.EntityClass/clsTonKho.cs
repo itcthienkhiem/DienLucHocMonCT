@@ -7,7 +7,6 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-
 namespace Inventory.EntityClass
 {
     public class clsTonKho

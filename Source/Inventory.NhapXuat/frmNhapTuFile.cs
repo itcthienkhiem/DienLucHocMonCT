@@ -242,11 +242,13 @@ namespace Inventory.NhapXuat
                         if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
                         {
                             pnk.Ma_phieu_nhap = Ma_phieu_nhap;
+                            pnk.isGoiDau = chbGoiDau.Checked;
                             pnk.Ngay_lap = Ngay_lap;
                             pnk.Kho_nhan = Kho_nhan;
                             pnk.Ly_do = Ly_do;
                             clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
                             LPN.Ma_LPN = Loai_PN;
+                            
                             pnk.ID_Loai_Phieu_Nhap = LPN.GetFirst(help);
 
                             if (pnk.Insert(help) == 0)
