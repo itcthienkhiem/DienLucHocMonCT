@@ -18,10 +18,10 @@ namespace Inventory.EntityClass
         public string Ma_vat_tu;
         public int ID_Chat_luong;
         public string Don_vi;
-        public int? So_luong_yeu_cau;
+        public double? So_luong_yeu_cau;
         public double? So_luong_thuc_lanh;
-        public int? Don_gia;
-        public int? Thanh_tien;
+        public double? Don_gia;
+        public double? Thanh_tien;
         public int ID_Don_vi_tinh;
         public string Ten_DVT;
         public bool Da_duyet;
@@ -59,7 +59,7 @@ namespace Inventory.EntityClass
                              d.Thanh_tien,
                              d.ID_Don_vi_tinh,
                              e.Ten_don_vi_tinh,
-
+                             d
                          };
                 dbcxtransaction.Commit();
                 return (object)dm.ToList();
@@ -157,7 +157,7 @@ namespace Inventory.EntityClass
                                   Chatluong = f.Loai_chat_luong,
                                   ID_Chat_luong = f.Id_chat_luong,
                                   So_luong_yeu_cau = ep.So_luong_yeu_cau,
-                                  So_luong_thuc_nhap = ep.So_luong_thuc_lanh,
+                                  So_luong_thuc_lanh = ep.So_luong_thuc_lanh,
                                   Thanh_tien = ep.Thanh_tien,
                                   Don_gia = ep.Don_gia,
                                   id_don_vi_tinh = ep.ID_Don_vi_tinh,
@@ -166,41 +166,7 @@ namespace Inventory.EntityClass
                               }).ToList();
             //return entryPoint.ToList();
 
-            DataTable table = new DataTable();
-            table.Columns.Add("ID_vat_tu", typeof(int));
-            table.Columns.Add("Ma_vat_tu", typeof(string));
-            table.Columns.Add("Ten_vat_tu", typeof(string));
-            table.Columns.Add("Ten_don_vi_tinh", typeof(string));
-            table.Columns.Add("Chat_luong", typeof(string));
-            table.Columns.Add("ID_Chat_luong", typeof(int));
-            table.Columns.Add("So_luong_yeu_cau", typeof(int));
-            table.Columns.Add("So_luong_thuc_lanh", typeof(int));
-            table.Columns.Add("Thanh_tien", typeof(int));
-            table.Columns.Add("id_don_vi_tinh", typeof(int));
-            table.Columns.Add("Ten_DVT", typeof(string));
-            table.Columns.Add("Don_gia", typeof(string));
-            entryPoint.ToList().ForEach((n) =>
-            {
-                DataRow row = table.NewRow();
-                row.SetField<int>("ID_vat_tu", n.ID_chi_tiet_phieu_nhap_vat_tu);
-                row.SetField<string>("Ma_vat_tu", n.Ma_vat_tu);
-                row.SetField<string>("Ten_vat_tu", n.Ten_vat_tu);
-                row.SetField<string>("Ten_don_vi_tinh", n.Ten_don_vi_tinh);
-                row.SetField<string>("Chat_luong", n.Chatluong);
-                row.SetField<int>("ID_Chat_luong", n.ID_Chat_luong);
-                row.SetField<int?>("So_luong_yeu_cau", n.So_luong_yeu_cau);
-                row.SetField<double?>("So_luong_thuc_lanh", n.So_luong_thuc_nhap);
-                row.SetField<int?>("Thanh_tien", n.Thanh_tien);
-                row.SetField<int?>("id_don_vi_tinh", n.id_don_vi_tinh);
-                row.SetField<string>("Ten_DVT", n.Ten_DVT);
-
-                row.SetField<int?>("Don_gia", n.Don_gia);
-
-
-
-                table.Rows.Add(row);
-            });
-            return table;
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
         }
         /// <summary>

@@ -104,7 +104,7 @@ namespace Inventory.NhapXuat
         public void LoadData()
         {
             gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll();
-            clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+     //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             clsGiaoDienChung.initCombobox(cbbLoaiPhieu, new clsLoaiPhieuNhap(), "Ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "Ma_loai_phieu_nhap");
        
         }
@@ -298,84 +298,88 @@ namespace Inventory.NhapXuat
 
         private void XuLyNhap_Phieu()
         {
-            if (cbKhoNhanVatTu.Text == "")
-            {
-                MessageBox.Show("Bạn chưa chọn kho để phân vật tư");
-                return;
-            }
-
-            Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-            //   DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
-            //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString
-            string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString();
-            bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
-            if (Da_phan_kho == true)
-            {
-                MessageBox.Show("Phiếu này đã duyệt và phân kho ");
-                return;
-            }
-            int ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
-            clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
-            LPN.ID_LPN = ID_loai_phieu_nhap;
-            // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
-            DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
-            DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
-            string setting = Properties.Settings.Default.PhieuNhap;
-
-            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-            {
-                if (TenLPN.Contains(setting) == true)
-                {
-                    for (int i = 0; i < tb.Rows.Count; i++)
-                    {
-                        //duyệt qua từng dòng insert chi tiết phiếu nhập vào
-                        clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
-                        string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
-                        int idKho = (int)cbKhoNhanVatTu.SelectedValue;
-                        double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
-                        int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
-
-                        DateTime ngayNhap = DateTime.Now;
-
-                        if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
-                        {
-                            dbcxtransaction.Rollback();
-                        }
-
-                    }
-
-                    dbcxtransaction.Commit();
-                    MessageBox.Show("Bạn đã thêm thành công !");
-                }
-                else
-                {
-                    for (int i = 0; i < tb.Rows.Count; i++)
-                    {
-                        clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
-                        string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
-                        int idKho = (int)cbKhoNhanVatTu.SelectedValue;
-                        double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
-                        int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
-
-                        DateTime ngayNhap = DateTime.Now;
-
-                        if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, false) == 0)
-                        {
-                            dbcxtransaction.Rollback();
-                        }
-                    }
-                }
-            }
-
-
             try
             {
-                LoadData();
+                Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+                //   DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
+                //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString
+                string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString();
+                bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
+                if (Da_phan_kho == true)
+                {
+                    MessageBox.Show("Phiếu này đã duyệt và phân kho ");
+                    return;
+
+                }
+
+                int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
+                int ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
+                clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
+                LPN.ID_LPN = ID_loai_phieu_nhap;
+                // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
+                DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
+                DatabaseHelper help = new DatabaseHelper();
+                help.ConnectDatabase();
+                string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
+                string setting = Properties.Settings.Default.PhieuNhap;
+
+                using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+                {
+                    if (TenLPN.Contains(setting) == true)
+                    {
+                        for (int i = 0; i < tb.Rows.Count; i++)
+                        {
+                            //duyệt qua từng dòng insert chi tiết phiếu nhập vào
+                            clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
+                            string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
+
+                            double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
+                            int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
+
+                            DateTime ngayNhap = DateTime.Now;
+
+                            if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
+                            {
+                                dbcxtransaction.Rollback();
+                            }
+
+                        }
+
+                        dbcxtransaction.Commit();
+                        MessageBox.Show("Bạn đã thêm thành công !");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < tb.Rows.Count; i++)
+                        {
+                            clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
+                            string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
+                            //   int idKho = int.Parse(tb.Rows[i]["ID_kho"].ToString());
+                            double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
+                            int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
+
+                            DateTime ngayNhap = DateTime.Now;
+
+                            if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, false) == 0)
+                            {
+                                dbcxtransaction.Rollback();
+                            }
+                        }
+                    }
+                }
+
+
+                try
+                {
+                    LoadData();
+                }
+                catch (Exception ex) { }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
+    
 
     }
 }
