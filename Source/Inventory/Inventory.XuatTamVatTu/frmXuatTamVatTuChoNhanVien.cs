@@ -31,13 +31,13 @@ namespace Inventory.XuatTamVatTu
 
         clsXuatVatTuChoNhanVien XuatVTChoNV;
 
-        string ID_nhan_vien;
+        string _ID_nv;
 
         public frmXuatTamVatTuChoNhanVien()
         {
             InitializeComponent();
 
-            ID_nhan_vien = "";
+            _ID_nv = "";
 
             XuatVTChoNV = new clsXuatVatTuChoNhanVien();
 
@@ -96,7 +96,7 @@ namespace Inventory.XuatTamVatTu
                     //Reset data
                     cbMaNhanVien.SelectedIndex = -1;
                     cbTenNhanVien.SelectedIndex = -1;
-                    ID_nhan_vien = "";
+                    _ID_nv = "";
                     LoadData();
                     break;
                 case enumFormAction2.CloseForm:
@@ -120,11 +120,11 @@ namespace Inventory.XuatTamVatTu
         /// </summary>
         private void LoadData()
         {
-            if (ID_nhan_vien.Equals(string.Empty))
+            if (_ID_nv.Equals(string.Empty))
                 gridNhanVienNoVatTu.DataSource = XuatVTChoNV.getDSNhanVienNoVatTu();
             else
             {
-                gridNhanVienNoVatTu.DataSource = XuatVTChoNV.getDSNhanVienNoVatTu(ID_nhan_vien);
+                gridNhanVienNoVatTu.DataSource = XuatVTChoNV.getDSNhanVienNoVatTu(_ID_nv);
             }
         }
 
@@ -173,7 +173,7 @@ namespace Inventory.XuatTamVatTu
             if ((comboBox.SelectedIndex != -1) && (cbTenNhanVien.SelectedValue != comboBox.SelectedValue))
             {
                 cbTenNhanVien.SelectedValue = comboBox.SelectedValue;
-                ID_nhan_vien = comboBox.SelectedValue.ToString();
+                _ID_nv = comboBox.SelectedValue.ToString();
                 LoadData();
             }
             
@@ -186,7 +186,7 @@ namespace Inventory.XuatTamVatTu
             if ((comboBox.SelectedIndex != -1) && (cbMaNhanVien.SelectedValue != comboBox.SelectedValue))
             {
                 cbMaNhanVien.SelectedValue = comboBox.SelectedValue;
-                ID_nhan_vien = comboBox.SelectedValue.ToString();
+                _ID_nv = comboBox.SelectedValue.ToString();
                 LoadData();
             }
                 
@@ -194,7 +194,32 @@ namespace Inventory.XuatTamVatTu
 
         private void btnXuatVTChoNV_Click(object sender, EventArgs e)
         {
+            if (gridNhanVienNoVatTu.RowCount == 0)
+            {
+                return;
+            }
 
+            Int32 selectedRowCount = gridNhanVienNoVatTu.CurrentRow.Index; // CurrentCell.RowIndex;
+            int id_nv;
+            if (selectedRowCount >= 0)
+            {
+                id_nv = Int32.Parse(gridNhanVienNoVatTu.Rows[selectedRowCount].Cells["ID_nhan_vien"].Value.ToString());
+                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam(id_nv);
+                //frm.Text = "Xuất tạm vật tư cho nhân viên";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this.ParentForm;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+            }
         }
     }
 }

@@ -28,159 +28,161 @@ namespace Inventory.EntityClass
 
         public DataTable getDSNhanVienNoVatTu()
         {
+            //  DatabaseHelper help = new DatabaseHelper();
+            //help.ConnectDatabase();
+            //using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            //{
+
+            //    var entryPoint = (from ep in help.ent.No_vat_tu
+            //                      join e in help.ent.DM_Nhan_Vien on ep.ID_nhan_vien equals e.ID_nhan_vien
+            //                      join t in help.ent.Phieu_Xuat_Tam_Vat_Tu on ep.Ma_phieu_xuat_tam equals t.Ma_phieu_xuat_tam
+            //                      join s in help.ent.DM_Kho on t.ID_kho equals s.ID_kho
+            //                      join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
+            //                      where ep.Da_tra == false
+            //                      select new
+            //                      {
+            //                          e.ID_nhan_vien,
+            //                          e.Ma_nhan_vien,
+            //                          e.Ten_nhan_vien,
+            //                          ep.Ma_phieu_xuat_tam,
+            //                          ep.Ma_vat_tu,
+            //                          u.Ten_vat_tu,
+            //                          s.Ten_kho,
+            //                          ep.So_luong_giu_lai,
+            //                          ep.Da_tra,
 
 
+            //                      }).ToList()
+            //  ;
 
 
-              DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-            {
+            //    dbcxtransaction.Commit();
 
-                var entryPoint = (from ep in help.ent.No_vat_tu
-                                  join e in help.ent.DM_Nhan_Vien on ep.ID_nhan_vien equals e.ID_nhan_vien
-                                  join t in help.ent.Phieu_Xuat_Tam_Vat_Tu on ep.Ma_phieu_xuat_tam equals t.Ma_phieu_xuat_tam
-                                  join s in help.ent.DM_Kho on t.ID_kho equals s.ID_kho
-                                  join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                                  where ep.Da_tra == false
-                                  select new
-                                  {
-                                      e.Ma_nhan_vien,
-                                      e.Ten_nhan_vien,
-                                      ep.Ma_phieu_xuat_tam,
-                                      ep.Ma_vat_tu,
-                                      u.Ten_vat_tu,
-                                      s.Ten_kho,
-                                      ep.So_luong_giu_lai,
-                                      ep.Da_tra,
+            //    return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
+            //}
 
-                                  }).ToList()
-              ;
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+            string sql = "";
+            sql += "SELECT ";
+            sql += "No_vat_tu.ID_nhan_vien, ";
+            sql += "DM_Nhan_Vien.Ma_nhan_vien, ";
+            sql += "DM_Nhan_Vien.Ten_nhan_vien, ";
+            sql += "No_vat_tu.Ma_phieu_xuat_tam, ";
+            sql += "No_vat_tu.Ma_vat_tu, ";
+            sql += "DM_Vat_Tu.Ten_vat_tu, ";
+            sql += "DM_Kho.Ten_kho, ";
+            sql += "No_vat_tu.So_luong_giu_lai, ";
+            sql += "No_vat_tu.Da_tra, ";
+            sql += "CASE WHEN No_vat_tu.Da_tra = 'TRUE' THEN N'Đã trả' ELSE N'Chưa trả' END as Da_tra_text ";
+            sql += "FROM No_vat_tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Nhan_Vien ";
+            sql += "" + "ON No_vat_tu.ID_nhan_vien=DM_Nhan_Vien.ID_nhan_vien ";
+            sql += "INNER ";
+            sql += "" + "JOIN Phieu_Xuat_Tam_Vat_Tu ";
+            sql += "" + "ON No_vat_tu.Ma_phieu_xuat_tam=Phieu_Xuat_Tam_Vat_Tu.Ma_phieu_xuat_tam ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Kho ";
+            sql += "" + "ON Phieu_Xuat_Tam_Vat_Tu.ID_kho=DM_Kho.ID_kho ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Vat_Tu ";
+            sql += "" + "ON No_vat_tu.Ma_vat_tu=DM_Vat_Tu.Ma_vat_tu ";
+            sql += "WHERE No_vat_tu.Da_tra=@Da_tra";
 
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
 
-                dbcxtransaction.Commit();
+            command.Parameters.Add("@Da_tra", SqlDbType.Bit).Value = false;
 
-                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
-                ///m_dbConnection.Open();
-            }
-            //DataTable dt = new DataTable();
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql += "DM_Nhan_Vien.Ma_nhan_vien, ";
-            //sql += "DM_Nhan_Vien.Ten_nhan_vien, ";
-            //sql += "No_vat_tu.Ma_phieu_xuat_tam, ";
-            //sql += "No_vat_tu.Ma_vat_tu, ";
-            //sql += "DM_Vat_Tu.Ten_vat_tu, ";
-            //sql += "DM_Kho.Ten_kho, ";
-            //sql += "No_vat_tu.So_luong_giu_lai, ";
-            //sql += "No_vat_tu.Da_tra, ";
-            //sql += "CASE WHEN No_vat_tu.Da_tra = 'TRUE' THEN N'Đã trả' ELSE N'Chưa trả' END as Da_tra_text ";
-            //sql += "FROM No_vat_tu ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Nhan_Vien ";
-            //sql += "" + "ON No_vat_tu.ID_nhan_vien=DM_Nhan_Vien.ID_nhan_vien ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN Phieu_Xuat_Tam_Vat_Tu ";
-            //sql += "" + "ON No_vat_tu.Ma_phieu_xuat_tam=Phieu_Xuat_Tam_Vat_Tu.Ma_phieu_xuat_tam ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Kho ";
-            //sql += "" + "ON Phieu_Xuat_Tam_Vat_Tu.ID_kho=DM_Kho.ID_kho ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Vat_Tu ";
-            //sql += "" + "ON No_vat_tu.Ma_vat_tu=DM_Vat_Tu.Ma_vat_tu ";
-            //sql += "WHERE No_vat_tu.Da_tra=@Da_tra";
+            command.CommandType = CommandType.Text;
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
 
-            //command.Parameters.Add("@Da_tra", SqlDbType.Bit).Value = false;
-
-            //command.CommandType = CommandType.Text;
-
-            //da.Fill(dt);
-            //m_dbConnection.Close();
-
-            //return dt;
+            return dt;
         }
 
         public DataTable getDSNhanVienNoVatTu(string ID_nhan_vien)
         {
-                DatabaseHelper help = new DatabaseHelper();
-            help.ConnectDatabase();
-            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-            {
+            //DatabaseHelper help = new DatabaseHelper();
+            //help.ConnectDatabase();
+            //using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            //{
 
-                var entryPoint = (from ep in help.ent.No_vat_tu
-                                  join e in help.ent.DM_Nhan_Vien on ep.ID_nhan_vien equals e.ID_nhan_vien
-                                  join t in help.ent.Phieu_Xuat_Tam_Vat_Tu on ep.Ma_phieu_xuat_tam equals t.Ma_phieu_xuat_tam
-                                  join s in help.ent.DM_Kho on t.ID_kho equals s.ID_kho
-                                  join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
-                                  where ep.Da_tra == false && ep.ID_nhan_vien == int.Parse(ID_nhan_vien)
-                                  select new
-                                  {
-                                      e.Ma_nhan_vien,
-                                      e.Ten_nhan_vien,
-                                      ep.Ma_phieu_xuat_tam,
-                                      ep.Ma_vat_tu,
-                                      u.Ten_vat_tu,
-                                      s.Ten_kho,
-                                      ep.So_luong_giu_lai,
-                                      ep.Da_tra,
-
-
-                                  }).ToList()
-              ;
+            //    var entryPoint = (from ep in help.ent.No_vat_tu
+            //                      join e in help.ent.DM_Nhan_Vien on ep.ID_nhan_vien equals e.ID_nhan_vien
+            //                      join t in help.ent.Phieu_Xuat_Tam_Vat_Tu on ep.Ma_phieu_xuat_tam equals t.Ma_phieu_xuat_tam
+            //                      join s in help.ent.DM_Kho on t.ID_kho equals s.ID_kho
+            //                      join u in help.ent.DM_Vat_Tu on ep.Ma_vat_tu equals u.Ma_vat_tu
+            //                      where ep.Da_tra == false && ep.ID_nhan_vien == int.Parse(ID_nhan_vien)
+            //                      select new
+            //                      {
+            //                          e.ID_nhan_vien,
+            //                          e.Ma_nhan_vien,
+            //                          e.Ten_nhan_vien,
+            //                          ep.Ma_phieu_xuat_tam,
+            //                          ep.Ma_vat_tu,
+            //                          u.Ten_vat_tu,
+            //                          s.Ten_kho,
+            //                          ep.So_luong_giu_lai,
+            //                          ep.Da_tra,
 
 
-                dbcxtransaction.Commit();
+            //                      }).ToList()
+            //  ;
 
-                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
-            }
+            //    dbcxtransaction.Commit();
 
-            //m_dbConnection.Open();
+            //    return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
-            //DataTable dt = new DataTable();
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql += "DM_Nhan_Vien.Ma_nhan_vien, ";
-            //sql += "DM_Nhan_Vien.Ten_nhan_vien, ";
-            //sql += "No_vat_tu.Ma_phieu_xuat_tam, ";
-            //sql += "No_vat_tu.Ma_vat_tu, ";
-            //sql += "DM_Vat_Tu.Ten_vat_tu, ";
-            //sql += "DM_Kho.Ten_kho, ";
-            //sql += "No_vat_tu.So_luong_giu_lai, ";
-            //sql += "No_vat_tu.Da_tra, ";
-            //sql += "CASE WHEN No_vat_tu.Da_tra = 'TRUE' THEN N'Đã trả' ELSE N'Chưa trả' END as Da_tra_text ";
-            //sql += "FROM No_vat_tu ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Nhan_Vien ";
-            //sql += "" + "ON No_vat_tu.ID_nhan_vien=DM_Nhan_Vien.ID_nhan_vien ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN Phieu_Xuat_Tam_Vat_Tu ";
-            //sql += "" + "ON No_vat_tu.Ma_phieu_xuat_tam=Phieu_Xuat_Tam_Vat_Tu.Ma_phieu_xuat_tam ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Kho ";
-            //sql += "" + "ON Phieu_Xuat_Tam_Vat_Tu.ID_kho=DM_Kho.ID_kho ";
-            //sql += "INNER ";
-            //sql += "" + "JOIN DM_Vat_Tu ";
-            //sql += "" + "ON No_vat_tu.Ma_vat_tu=DM_Vat_Tu.Ma_vat_tu ";
-            //sql += "WHERE No_vat_tu.Da_tra=@Da_tra ";
-            //sql += "AND No_vat_tu.ID_nhan_vien=@ID_nhan_vien";
+            //}
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            m_dbConnection.Open();
 
-            //command.Parameters.Add("@Da_tra", SqlDbType.Bit).Value = false;
-            //command.Parameters.Add("@ID_nhan_vien", SqlDbType.Int).Value = Int32.Parse(ID_nhan_vien);
+            DataTable dt = new DataTable();
+            string sql = "";
+            sql += "SELECT ";
+            sql += "No_vat_tu.ID_nhan_vien, ";
+            sql += "DM_Nhan_Vien.Ma_nhan_vien, ";
+            sql += "DM_Nhan_Vien.Ten_nhan_vien, ";
+            sql += "No_vat_tu.Ma_phieu_xuat_tam, ";
+            sql += "No_vat_tu.Ma_vat_tu, ";
+            sql += "DM_Vat_Tu.Ten_vat_tu, ";
+            sql += "DM_Kho.Ten_kho, ";
+            sql += "No_vat_tu.So_luong_giu_lai, ";
+            sql += "No_vat_tu.Da_tra, ";
+            sql += "CASE WHEN No_vat_tu.Da_tra = 'TRUE' THEN N'Đã trả' ELSE N'Chưa trả' END as Da_tra_text ";
+            sql += "FROM No_vat_tu ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Nhan_Vien ";
+            sql += "" + "ON No_vat_tu.ID_nhan_vien=DM_Nhan_Vien.ID_nhan_vien ";
+            sql += "INNER ";
+            sql += "" + "JOIN Phieu_Xuat_Tam_Vat_Tu ";
+            sql += "" + "ON No_vat_tu.Ma_phieu_xuat_tam=Phieu_Xuat_Tam_Vat_Tu.Ma_phieu_xuat_tam ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Kho ";
+            sql += "" + "ON Phieu_Xuat_Tam_Vat_Tu.ID_kho=DM_Kho.ID_kho ";
+            sql += "INNER ";
+            sql += "" + "JOIN DM_Vat_Tu ";
+            sql += "" + "ON No_vat_tu.Ma_vat_tu=DM_Vat_Tu.Ma_vat_tu ";
+            sql += "WHERE No_vat_tu.Da_tra=@Da_tra ";
+            sql += "AND No_vat_tu.ID_nhan_vien=@ID_nhan_vien";
 
-            //command.CommandType = CommandType.Text;
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            //m_dbConnection.Close();
+            command.Parameters.Add("@Da_tra", SqlDbType.Bit).Value = false;
+            command.Parameters.Add("@ID_nhan_vien", SqlDbType.Int).Value = Int32.Parse(ID_nhan_vien);
 
-            //return dt;
+            command.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
         }
     }
 }

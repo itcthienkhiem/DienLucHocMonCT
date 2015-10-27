@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridNhanVienNoVatTu = new System.Windows.Forms.DataGridView();
-            this.Ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Da_tra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Da_tra_text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -49,7 +40,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnXuatVTChoNV = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSua = new System.Windows.Forms.Button();
@@ -61,8 +54,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnXuatVTChoNV = new System.Windows.Forms.Button();
+            this.ID_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Da_tra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Da_tra_text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridNhanVienNoVatTu)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.gbGrid.SuspendLayout();
@@ -73,21 +74,22 @@
             this.gridNhanVienNoVatTu.AllowUserToAddRows = false;
             this.gridNhanVienNoVatTu.AllowUserToDeleteRows = false;
             this.gridNhanVienNoVatTu.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridNhanVienNoVatTu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridNhanVienNoVatTu.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridNhanVienNoVatTu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridNhanVienNoVatTu.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNhanVienNoVatTu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNhanVienNoVatTu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridNhanVienNoVatTu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridNhanVienNoVatTu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_nhan_vien,
             this.Ma_nhan_vien,
             this.Ten_nhan_vien,
             this.Ma_phieu_xuat_tam,
@@ -107,75 +109,6 @@
             this.gridNhanVienNoVatTu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridNhanVienNoVatTu.Size = new System.Drawing.Size(922, 134);
             this.gridNhanVienNoVatTu.TabIndex = 62;
-            // 
-            // Ma_nhan_vien
-            // 
-            this.Ma_nhan_vien.DataPropertyName = "Ma_nhan_vien";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.Ma_nhan_vien.Name = "Ma_nhan_vien";
-            this.Ma_nhan_vien.ReadOnly = true;
-            // 
-            // Ten_nhan_vien
-            // 
-            this.Ten_nhan_vien.DataPropertyName = "Ten_nhan_vien";
-            this.Ten_nhan_vien.HeaderText = "Tên nhân viên";
-            this.Ten_nhan_vien.Name = "Ten_nhan_vien";
-            this.Ten_nhan_vien.ReadOnly = true;
-            this.Ten_nhan_vien.Width = 160;
-            // 
-            // Ma_phieu_xuat_tam
-            // 
-            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.HeaderText = "Mã phiếu xuất tạm";
-            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.ReadOnly = true;
-            // 
-            // Ma_vat_tu
-            // 
-            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Mã vật tư";
-            this.Ma_vat_tu.Name = "Ma_vat_tu";
-            this.Ma_vat_tu.ReadOnly = true;
-            // 
-            // Ten_vat_tu
-            // 
-            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
-            this.Ten_vat_tu.HeaderText = "Tên vật tư";
-            this.Ten_vat_tu.Name = "Ten_vat_tu";
-            this.Ten_vat_tu.ReadOnly = true;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            // 
-            // So_luong_giu_lai
-            // 
-            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
-            this.So_luong_giu_lai.HeaderText = "Số lượng giữ lại";
-            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
-            this.So_luong_giu_lai.ReadOnly = true;
-            // 
-            // Da_tra
-            // 
-            this.Da_tra.DataPropertyName = "Da_tra";
-            this.Da_tra.HeaderText = "Đã trả";
-            this.Da_tra.Name = "Da_tra";
-            this.Da_tra.ReadOnly = true;
-            this.Da_tra.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Da_tra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Da_tra.Visible = false;
-            // 
-            // Da_tra_text
-            // 
-            this.Da_tra_text.DataPropertyName = "Da_tra_text";
-            this.Da_tra_text.HeaderText = "Đã trả";
-            this.Da_tra_text.Name = "Da_tra_text";
-            this.Da_tra_text.ReadOnly = true;
             // 
             // label9
             // 
@@ -270,6 +203,17 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
             // 
+            // btnXuatVTChoNV
+            // 
+            this.btnXuatVTChoNV.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.addFile_omc;
+            this.btnXuatVTChoNV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXuatVTChoNV.Location = new System.Drawing.Point(456, 15);
+            this.btnXuatVTChoNV.Name = "btnXuatVTChoNV";
+            this.btnXuatVTChoNV.Size = new System.Drawing.Size(50, 50);
+            this.btnXuatVTChoNV.TabIndex = 2;
+            this.btnXuatVTChoNV.UseVisualStyleBackColor = true;
+            this.btnXuatVTChoNV.Click += new System.EventHandler(this.btnXuatVTChoNV_Click);
+            // 
             // btnThem
             // 
             this.btnThem.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.addFile_omc;
@@ -279,6 +223,15 @@
             this.btnThem.Size = new System.Drawing.Size(50, 50);
             this.btnThem.TabIndex = 2;
             this.btnThem.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(402, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(174, 14);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Xuất vật tư cho nhân viên này";
             // 
             // label6
             // 
@@ -388,25 +341,82 @@
             this.cbTenNhanVien.TabIndex = 79;
             this.cbTenNhanVien.SelectionChangeCommitted += new System.EventHandler(this.cbTenNhanVien_SelectionChangeCommitted);
             // 
-            // label4
+            // ID_nhan_vien
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(402, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(174, 14);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Xuất vật tư cho nhân viên này";
+            this.ID_nhan_vien.DataPropertyName = "ID_nhan_vien";
+            this.ID_nhan_vien.HeaderText = "ID Nhân Viên";
+            this.ID_nhan_vien.Name = "ID_nhan_vien";
+            this.ID_nhan_vien.ReadOnly = true;
+            this.ID_nhan_vien.Visible = false;
             // 
-            // btnXuatVTChoNV
+            // Ma_nhan_vien
             // 
-            this.btnXuatVTChoNV.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.addFile_omc;
-            this.btnXuatVTChoNV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXuatVTChoNV.Location = new System.Drawing.Point(456, 15);
-            this.btnXuatVTChoNV.Name = "btnXuatVTChoNV";
-            this.btnXuatVTChoNV.Size = new System.Drawing.Size(50, 50);
-            this.btnXuatVTChoNV.TabIndex = 2;
-            this.btnXuatVTChoNV.UseVisualStyleBackColor = true;
-            this.btnXuatVTChoNV.Click += new System.EventHandler(this.btnXuatVTChoNV_Click);
+            this.Ma_nhan_vien.DataPropertyName = "Ma_nhan_vien";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Ma_nhan_vien.HeaderText = "Mã nhân viên";
+            this.Ma_nhan_vien.Name = "Ma_nhan_vien";
+            this.Ma_nhan_vien.ReadOnly = true;
+            // 
+            // Ten_nhan_vien
+            // 
+            this.Ten_nhan_vien.DataPropertyName = "Ten_nhan_vien";
+            this.Ten_nhan_vien.HeaderText = "Tên nhân viên";
+            this.Ten_nhan_vien.Name = "Ten_nhan_vien";
+            this.Ten_nhan_vien.ReadOnly = true;
+            this.Ten_nhan_vien.Width = 160;
+            // 
+            // Ma_phieu_xuat_tam
+            // 
+            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.HeaderText = "Mã phiếu xuất tạm";
+            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.ReadOnly = true;
+            // 
+            // Ma_vat_tu
+            // 
+            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Mã vật tư";
+            this.Ma_vat_tu.Name = "Ma_vat_tu";
+            this.Ma_vat_tu.ReadOnly = true;
+            // 
+            // Ten_vat_tu
+            // 
+            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
+            this.Ten_vat_tu.HeaderText = "Tên vật tư";
+            this.Ten_vat_tu.Name = "Ten_vat_tu";
+            this.Ten_vat_tu.ReadOnly = true;
+            // 
+            // Ten_kho
+            // 
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
+            // 
+            // So_luong_giu_lai
+            // 
+            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
+            this.So_luong_giu_lai.HeaderText = "Số lượng giữ lại";
+            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
+            this.So_luong_giu_lai.ReadOnly = true;
+            // 
+            // Da_tra
+            // 
+            this.Da_tra.DataPropertyName = "Da_tra";
+            this.Da_tra.HeaderText = "Đã trả";
+            this.Da_tra.Name = "Da_tra";
+            this.Da_tra.ReadOnly = true;
+            this.Da_tra.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_tra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Da_tra.Visible = false;
+            // 
+            // Da_tra_text
+            // 
+            this.Da_tra_text.DataPropertyName = "Da_tra_text";
+            this.Da_tra_text.HeaderText = "Đã trả";
+            this.Da_tra_text.Name = "Da_tra_text";
+            this.Da_tra_text.ReadOnly = true;
             // 
             // frmXuatTamVatTuChoNhanVien
             // 
@@ -453,6 +463,11 @@
         private System.Windows.Forms.Label lblSua;
         private System.Windows.Forms.GroupBox gbGrid;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbMaNhanVien;
+        private System.Windows.Forms.ComboBox cbTenNhanVien;
+        private System.Windows.Forms.Button btnXuatVTChoNV;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_nhan_vien;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_nhan_vien;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_nhan_vien;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu_xuat_tam;
@@ -462,9 +477,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_giu_lai;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Da_tra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Da_tra_text;
-        private System.Windows.Forms.ComboBox cbMaNhanVien;
-        private System.Windows.Forms.ComboBox cbTenNhanVien;
-        private System.Windows.Forms.Button btnXuatVTChoNV;
-        private System.Windows.Forms.Label label4;
     }
 }

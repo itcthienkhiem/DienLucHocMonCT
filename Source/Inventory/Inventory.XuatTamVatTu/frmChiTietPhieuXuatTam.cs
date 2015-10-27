@@ -61,6 +61,11 @@ namespace Inventory.XuatTamVatTu
     /// [ ] Nhập mã phiếu trước khi chọn thêm, mã phiếu hợp lệ mới dc thêm.
     /// [ ] Mã phiếu có thể auto tạo từ crc của curDateTime
     /// 
+    /// Xử lý với nhân viên giữ vật tư:
+    /// [ ] Nếu còn giữ VT, bắt phải dùng tiếp vật tư đó --> xử lý ở nút ADD
+    /// [ ] Hoặc phải hoàn nhập, bật về frm của phiếu xuất cũ --> thêm vào hoàn nhập --> xóa nợ.
+    /// [?] Vấn đề --> duyệt hoàn nhập giữ lại @.@
+    /// 
     /// ToolTip1.Show("Nhân viên này còn đang giữ vật tư", this.cbTenNhanVien, 15, 15, 1500);
     /// </summary>
     public partial class frmChiTietPhieuXuatTam : Form
@@ -115,7 +120,10 @@ namespace Inventory.XuatTamVatTu
             frm_init();
 
             //this.ID_nhan_vien = ID_nhan_vien;
+            cbMaPhieuXuatTam.Text = TaoMaPhieu();
+            btnThem_Click(btnThem, EventArgs.Empty);
             cbMaNhanVien.SelectedValue = ID_nhan_vien;
+            cbMaNhanVien_SelectionChangeCommitted(cbMaNhanVien, EventArgs.Empty);
         }
 
         private string TaoMaPhieu()
@@ -343,6 +351,8 @@ namespace Inventory.XuatTamVatTu
                                 if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam) == 1)
                                 {
                                     MessageBox.Show("Bạn đã thêm thành công!");
+
+                                    PanelButton.setClickSua();
 
                                     //PanelButton.ResetClickStatus();
                                     //PanelButton.ResetGridClickStatus();
