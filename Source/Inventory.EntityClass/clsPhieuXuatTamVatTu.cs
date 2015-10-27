@@ -79,6 +79,26 @@ namespace Inventory.EntityClass
             return dt;
         }
 
+        public int GetMaxID()
+        {
+            m_dbConnection.Open();
+            DataTable dt = new DataTable();
+
+            string sql = "SELECT MAX(ID_phieu_xuat_tam) as maxid FROM Phieu_Xuat_Tam_Vat_Tu ";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            if (dt.Rows.Count == 0 || dt.Rows[0]["maxid"].ToString().Equals(string.Empty))
+            {
+                return 0;
+            }
+
+            return Int32.Parse(dt.Rows[0]["maxid"].ToString());
+        }
+
         public int Insert_PhieuXuat()
         {
             SqlTransaction m_trans = null;

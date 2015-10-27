@@ -19,7 +19,108 @@ namespace Inventory.EntityClass
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-        public int getSL(string Ma_vat_tu, int ID_Kho, int Id_chat_luong)
+        /// <summary>
+        /// lấy tất cả danh sách mã vật tư
+        /// </summary>
+        public System.Windows.Forms.AutoCompleteStringCollection getListMaVatTu(int ID_kho)
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "Ma_vat_tu ";
+            sql += "FROM Ton_kho ";
+            sql += "WHERE ID_kho=@ID_kho";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+
+            command.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        /// <summary>
+        /// lấy tất cả danh sách Tên vật tư
+        /// </summary>
+        public System.Windows.Forms.AutoCompleteStringCollection getListTenVatTu(int ID_kho)
+        {
+            m_dbConnection.Open();
+
+            DataSet ds = new DataSet();
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "DM_Vat_Tu.Ten_vat_tu ";
+            sql += "FROM Ton_kho ";
+            sql += "JOIN DM_Vat_Tu ";
+            sql += "ON DM_Vat_Tu.Ma_vat_tu = Ton_kho.Ma_vat_tu ";
+            sql += "WHERE Ton_kho.ID_kho=@ID_kho";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+
+            command.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(ds);
+            m_dbConnection.Close();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                dataCollection.Add(row[0].ToString());
+            }
+
+            return dataCollection;
+        }
+
+        /// <summary>
+        /// lấy tất cả thông tin vật tư
+        /// </summary>
+        /// <returns></returns>
+        public DataTable getAll_Ma_Ten_VatTu(int ID_kho)
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+
+            string sql = "";
+            sql += "SELECT ";
+            sql += "DM_Vat_Tu.ID_Vat_tu, Ton_kho.Ma_vat_tu, DM_Vat_Tu.Ten_vat_tu ";
+            sql += "FROM Ton_kho ";
+            sql += "JOIN DM_Vat_Tu ";
+            sql += "ON DM_Vat_Tu.Ma_vat_tu = Ton_kho.Ma_vat_tu ";
+            sql += "WHERE Ton_kho.ID_kho=@ID_kho";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = ID_kho;
+
+            command.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
+        }
+
+        public Double getSL(string Ma_vat_tu, int ID_Kho, int Id_chat_luong)
         {
 
             m_dbConnection.Open();
@@ -47,7 +148,7 @@ namespace Inventory.EntityClass
             //Đóng
             m_dbConnection.Close();
             if (dt.Rows.Count > 0)
-                return Int32.Parse(dt.Rows[0]["So_luong"].ToString());
+                return Double.Parse(dt.Rows[0]["So_luong"].ToString());
             else
                 return 0;
         }

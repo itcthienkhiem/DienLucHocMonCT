@@ -289,6 +289,7 @@
             this.btnCheckMaPhieuXuat.TabIndex = 86;
             this.btnCheckMaPhieuXuat.Text = "...";
             this.btnCheckMaPhieuXuat.UseVisualStyleBackColor = true;
+            this.btnCheckMaPhieuXuat.Click += new System.EventHandler(this.btnCheckMaPhieuXuat_Click);
             // 
             // label15
             // 
@@ -601,7 +602,7 @@
             this.txtSL.ReadOnly = true;
             this.txtSL.Size = new System.Drawing.Size(153, 22);
             this.txtSL.TabIndex = 81;
-            this.txtSL.Text = "0";
+            this.txtSL.Text = "-";
             this.txtSL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSL.TextChanged += new System.EventHandler(this.txtSL_TextChanged);
             // 

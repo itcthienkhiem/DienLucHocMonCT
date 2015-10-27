@@ -29,7 +29,7 @@ namespace Inventory.XuatTamVatTu
     /// 
     /// Xử lý ngoại lệ:
     /// [ ] Xuất cho nhân viên chưa có trong DM NV --> Yêu cầu thêm, hoặc ask: tự động thêm (Ko khả thi)
-    /// [ ] 
+    /// [ ] Trường hợp nhân viên giữ lại --> ngày hôm sau dùng tiếp, nhưng ít hơn SL giữ lại.
     /// 
     /// Show:
     /// [ ] SL vật tư còn lại trong kho đã chọn
@@ -73,17 +73,31 @@ namespace Inventory.XuatTamVatTu
 
         clsChiTietPhieuXuatTam PhieuXuat;
 
+        //private enum enumFlagSL : byte { None = 0, HasVal, Alert };
+
+        //enumFlagSL flagSL;
+
         private System.Windows.Forms.ErrorProvider errorProvider1;
 
         AutoConfigFormControls autoConfigFormControls;
 
+        //int ID_nhan_vien;
+
         public frmChiTietPhieuXuatTam()
         {
             InitializeComponent();
+            frm_init();
 
+
+        }
+
+        private void frm_init()
+        {
             ToolTip1 = new System.Windows.Forms.ToolTip();
             errorProvider1 = new ErrorProvider();
             autoConfigFormControls = new AutoConfigFormControls(ref errorProvider1);
+
+            //flagSL = enumFlagSL.None;
 
             initPanelButton();
             initTextBox();
@@ -93,6 +107,41 @@ namespace Inventory.XuatTamVatTu
             PhieuXuat = new clsChiTietPhieuXuatTam();
 
             DisableControl_ForNew();
+        }
+
+        public frmChiTietPhieuXuatTam(int ID_nhan_vien)
+        {
+            InitializeComponent();
+            frm_init();
+
+            //this.ID_nhan_vien = ID_nhan_vien;
+            cbMaNhanVien.SelectedValue = ID_nhan_vien;
+        }
+
+        private string TaoMaPhieu()
+        {
+            DateTime today = DateTime.Today;
+            clsPhieuXuatTamVatTu px = new clsPhieuXuatTamVatTu();
+
+            int stt = px.GetMaxID() + 1;
+
+            string s = stt.ToString();
+
+            for (int i = s.Length; s.Length < 4; i++)
+            {
+                s = "0" + s;
+            }
+
+            string result = today.Year.ToString().Substring(2, 2) + today.Month.ToString() + today.Day.ToString() + s;
+
+            // ID_phieu_xuat_tam
+
+            return result;
+        }
+
+        private void btnCheckMaPhieuXuat_Click(object sender, EventArgs e)
+        {
+            cbMaPhieuXuatTam.Text = TaoMaPhieu();
 
         }
 
@@ -112,7 +161,12 @@ namespace Inventory.XuatTamVatTu
             //init_cbMaPhieuXuatTam();
 
             //cbMuonVTTaiKho.Items.RemoveAt(0);
-            ToolTip1.Show(cbChatLuong.SelectedIndex.ToString(), this.cbChatLuong, 0, 0, 2000);
+            //GetItemText(cbMaVatTu.SelectedItem)
+            //ToolTip1.Show(cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem), this.cbMaVatTu, 0, 0, 2000);
+
+            //clsPhieuXuatTamVatTu px = new clsPhieuXuatTamVatTu();
+
+            ToolTip1.Show(TaoMaPhieu(), this.cbMaVatTu, 0, 0, 2000);
         }
 
         public void frmChiTietPhieuXuatTam_Load(object sender, EventArgs e)
@@ -220,6 +274,8 @@ namespace Inventory.XuatTamVatTu
         /// </summary>
         private void btnThem_Click(object sender, EventArgs e)
         {
+            cbMaPhieuXuatTam.Text = TaoMaPhieu();
+
             //Nếu cbMaPhieuXuatTam đã có thì báo lỗi --> đề nghị nhập lại --> ko cho thêm
             if (cbMaPhieuXuatTam.Text.Trim().Equals(string.Empty))
             {
@@ -712,38 +768,30 @@ namespace Inventory.XuatTamVatTu
             clsDMVatTu vt = new clsDMVatTu();
             txtDVT.Text = vt.getDVT_from_IDVT(ID_Vat_tu);
 
-            txtSL.Text = "0";
+            //txtSL.Text = "-";
 
-            //txtSL
-            string ID_Kho = "";
+            ////txtSL
+            //string ID_Kho = "";
 
-            if (chkboxEnableMuonVT.Checked)
-            {
-                ID_Kho = cbMuonVTTaiKho.SelectedValue.ToString();
-            }
-            else
-            {
-                ID_Kho = cbKhoXuat.SelectedValue.ToString();
-            }
+            //if (chkboxEnableMuonVT.Checked)
+            //{
+            //    ID_Kho = cbMuonVTTaiKho.SelectedValue.ToString();
+            //}
+            //else
+            //{
+            //    ID_Kho = cbKhoXuat.SelectedValue.ToString();
+            //}
             
-            if (Int32.Parse(ID_Kho) >= 0)
-            {
-                string Ma_vat_tu = vt.getMaVT_from_IDVT(ID_Vat_tu);
+            //if (Int32.Parse(ID_Kho) >= 0)
+            //{
+            //    string Ma_vat_tu = vt.getMaVT_from_IDVT(ID_Vat_tu);
 
-                //clsTonKho TonKho = new clsTonKho();
-                //txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
-            }
+            //    //clsTonKho TonKho = new clsTonKho();
+            //    //txtSL.Text = TonKho.getSL_from_MaVatTu(Ma_vat_tu, ID_Kho);
+            //}
         }
 
-        private void reset_txtSL()
-        {
-            if (chkboxXacNhanXuat.Checked || (Int32.Parse(txtSL.Text.Trim().ToString()) == 0))
-            {
-                this.txtSL.BackColor = System.Drawing.SystemColors.Control;
-                this.txtSL.ForeColor = System.Drawing.SystemColors.WindowText;
-                errorProvider1.SetError(txtSL, "");
-            }
-        }
+        
         private  void setColorSL(bool flag)
         {
             if(flag || chkboxXacNhanXuat.Checked)
@@ -768,22 +816,32 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
+        private void reset_txtSL()
+        {
+            txtSL.Text = "-";
+            this.txtSL.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSL.ForeColor = System.Drawing.SystemColors.WindowText;
+            errorProvider1.SetError(txtSL, "");
+        }
+
         private void txtSL_TextChanged(object sender, EventArgs e)
         {
-            //B1:Check VT
-            if (cbMaVatTu.Text.Equals(string.Empty) || cbMaVatTu.SelectedIndex == -1)
+            TextBox SoLuong = (TextBox)sender;
+
+            Double sl;
+            if (SoLuong.Text.Trim().ToString().Equals("-") || Double.TryParse(SoLuong.Text.Trim().ToString(), out sl) == false)
             {
                 reset_txtSL();
                 return;
             }
-            
-            //Check Chất Lượng
-            if (cbChatLuong.Text.Equals(string.Empty) || cbChatLuong.SelectedIndex == -1)
+
+            //Double sl;
+            if (chkboxXacNhanXuat.Checked == true && Double.TryParse(txtSL.Text.Trim().ToString(), out sl) == true)
             {
                 reset_txtSL();
                 return;
             }
-            
+
             //Check ID Kho
             if (getIDKho() < 0)
             {
@@ -791,20 +849,27 @@ namespace Inventory.XuatTamVatTu
                 return;
             }
 
-            TextBox SoLuong = (TextBox)sender;
-
-            if (Int32.Parse(SoLuong.Text.Trim().ToString()) > 0 || chkboxXacNhanXuat.Checked)
+            //Check VT
+            if (cbMaVatTu.SelectedIndex == -1)
             {
-                if (Int32.Parse(SoLuong.Text.Trim().ToString()) > 0)
-                {
-                    this.txtSL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-                    this.txtSL.ForeColor = System.Drawing.SystemColors.WindowText;
-                    errorProvider1.SetError(txtSL, "");
-                }
-                else
-                {
-                    reset_txtSL();
-                }
+                reset_txtSL();
+                return;
+            }
+
+            //Check Chất Lượng
+            if (cbChatLuong.SelectedIndex == -1)
+            {
+                reset_txtSL();
+                return;
+            }
+
+
+
+            if (Double.Parse(SoLuong.Text.Trim().ToString()) > 0)
+            {
+                this.txtSL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+                this.txtSL.ForeColor = System.Drawing.SystemColors.WindowText;
+                errorProvider1.SetError(txtSL, "");
             }
             else
             {
@@ -816,30 +881,66 @@ namespace Inventory.XuatTamVatTu
 
         private void setSLVatTu()
         {
-            //getSL
-            //txtSL.Text = "0";
+            //txtSL.Text = "-";
 
-            //B1:Check VT
-            if (!cbMaVatTu.Text.Equals(string.Empty) && cbMaVatTu.SelectedIndex != -1)
+            //chkboxXacNhanXuat == true
+            Double sl;
+            if (chkboxXacNhanXuat.Checked == true && Double.TryParse(txtSL.Text.Trim().ToString(), out sl) == true)
             {
-                //Check Chất Lượng
-                if (!cbChatLuong.Text.Equals(string.Empty) && cbChatLuong.SelectedIndex != -1)
-                {
-                    //Check ID Kho
-                    if (getIDKho() >= 0)
-                    {
-                        string Ma_vat_tu = cbMaVatTu.Text.Trim().ToString();
-                        int ID_kho = getIDKho();
-                        int Id_chat_luong = Int32.Parse(cbChatLuong.SelectedValue.ToString());
-
-                        clsTonKho TonKho = new clsTonKho();
-                        int SL = TonKho.getSL(Ma_vat_tu, ID_kho, Id_chat_luong);
-
-                        txtSL.Text = SL.ToString();
-
-                    }
-                }
+                reset_txtSL();
+                return;
             }
+
+            //Check ID Kho
+            int ID_kho = getIDKho();
+            if (getIDKho() < 0)
+            {
+                reset_txtSL();
+                return;
+            }
+
+            //Check VT
+            if (cbMaVatTu.SelectedIndex == -1)
+            {
+                reset_txtSL();
+                return;
+            }
+
+            //Check Chất Lượng
+            if (cbChatLuong.SelectedIndex == -1)
+            {
+                reset_txtSL();
+                return;
+            }
+
+            string Ma_vat_tu = cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem); //cbMaVatTu.SelectedText.ToString(); //cbMaVatTu.Text.Trim().ToString();
+            int Id_chat_luong = Int32.Parse(cbChatLuong.SelectedValue.ToString());
+
+            clsTonKho TonKho = new clsTonKho();
+            Double SL = TonKho.getSL(Ma_vat_tu, ID_kho, Id_chat_luong);
+
+            txtSL.Text = SL.ToString();
+
+            ////B1:Check VT
+            //if (cbMaVatTu.SelectedIndex != -1)
+            //{
+            //    //Check Chất Lượng
+            //    if (cbChatLuong.SelectedIndex != -1)
+            //    {
+            //        //Check ID Kho
+
+            //        if (ID_kho >= 0)
+            //        {
+            //            string Ma_vat_tu = cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem); //cbMaVatTu.SelectedText.ToString(); //cbMaVatTu.Text.Trim().ToString();
+            //            int Id_chat_luong = Int32.Parse(cbChatLuong.SelectedValue.ToString());
+
+            //            clsTonKho TonKho = new clsTonKho();
+            //            Double SL = TonKho.getSL(Ma_vat_tu, ID_kho, Id_chat_luong);
+
+            //            txtSL.Text = SL.ToString();
+            //        }
+            //    }
+            //}
         }
 
 
@@ -1043,34 +1144,57 @@ namespace Inventory.XuatTamVatTu
             cbKhoXuat.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Chia làm 2 hướng, init DS VT kho xuất chính, init theo DS VT theo kho mượn.
+        /// </summary>
         private void init_cbMaVatTu()
         {
+            int ID_Kho = getIDKho();
+            if (ID_Kho < 0)
+            {
+                cbMaVatTu.DataSource = null;
+                cbMaVatTu.AutoCompleteCustomSource = null;
+                return;
+            }
+
             cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsDMVatTu vt = new clsDMVatTu();
-            AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
+            clsTonKho vt = new clsTonKho();
+            AutoCompleteStringCollection combData1 = vt.getListMaVatTu(ID_Kho);
 
             cbMaVatTu.AutoCompleteCustomSource = combData1;
 
-            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu(ID_Kho);
             cbMaVatTu.ValueMember = "ID_Vat_tu";
             cbMaVatTu.DisplayMember = "Ma_vat_tu";
 
             cbMaVatTu.SelectedIndex = -1;
+            
+
+            
         }
 
         private void init_cbTenVatTu()
         {
+            int ID_Kho = getIDKho();
+            if (ID_Kho < 0)
+            {
+                cbTenVatTu.DataSource = null;
+                cbTenVatTu.AutoCompleteCustomSource = null;
+                return;
+            }
+
             cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            clsDMVatTu vt = new clsDMVatTu();
-            AutoCompleteStringCollection combData1 = vt.getListTenVatTu();
+            clsTonKho vt = new clsTonKho();
+
+            AutoCompleteStringCollection combData1 = vt.getListTenVatTu(ID_Kho);
 
             cbTenVatTu.AutoCompleteCustomSource = combData1;
 
-            cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu(ID_Kho);
             cbTenVatTu.ValueMember = "ID_Vat_tu";
             cbTenVatTu.DisplayMember = "Ten_vat_tu";
 
@@ -1149,10 +1273,21 @@ namespace Inventory.XuatTamVatTu
         {
             ComboBox comboBox = (ComboBox)sender;
 
+            if (cbKhoXuat.SelectedValue.ToString() == comboBox.SelectedValue.ToString())
+            {
+                ToolTip1.Show("Kho xuất và kho mượn không thể trùng nhau", this.cbMuonVTTaiKho, 15, 15, 2000);
+                comboBox.SelectedIndex = -1;
+                init_cbMaVatTu();
+                init_cbTenVatTu();
+                return;
+            }
+
             if ((comboBox.SelectedIndex > -1) && (cbKhoXuat.SelectedValue != comboBox.SelectedValue))
             {
                 //setSLVatTu(comboBox.SelectedValue.ToString());
                 setSLVatTu();
+                init_cbMaVatTu();
+                init_cbTenVatTu();
             }
 
         }
@@ -1182,6 +1317,8 @@ namespace Inventory.XuatTamVatTu
         private void cbKhoXuat_SelectionChangeCommitted(object sender, EventArgs e)
         {
             setSLVatTu();
+            init_cbMaVatTu();
+            init_cbTenVatTu();
         }
 
         //END-------------------------Phần Init cb-------
@@ -1329,7 +1466,7 @@ namespace Inventory.XuatTamVatTu
             cbChatLuong.SelectedIndex = -1;
             txtDVT.Text = "";
             chkboxEnableMuonVT.Checked = false;
-            txtSL.Text = "0";
+            txtSL.Text = "-";
 
             txtSLDN.Text = "0";
             txtSLTX.Text = "0";
@@ -1421,6 +1558,8 @@ namespace Inventory.XuatTamVatTu
 
                 chkboxXacNhanXuat.Enabled = false;
             }
+
+            setSLVatTu();
         }
 
         /// <summary>
@@ -1472,7 +1611,10 @@ namespace Inventory.XuatTamVatTu
                 //}
 
                 setup_cbKhoXuat();
+                cbMuonVTTaiKho.SelectedIndex = -1;
                 cbMuonVTTaiKho.Enabled = false;
+                init_cbMaVatTu();
+                init_cbTenVatTu();
             }
         }
 
@@ -1489,5 +1631,7 @@ namespace Inventory.XuatTamVatTu
                 setSLVatTu();
             }
         }
+
+        
     }
 }
