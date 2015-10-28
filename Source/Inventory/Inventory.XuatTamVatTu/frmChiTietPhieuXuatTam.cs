@@ -17,7 +17,8 @@ namespace Inventory.XuatTamVatTu
     /// [.] Xử lý logic trên frm --> dc khoảng 60%
     /// [x] Cập nhật dữ liệu tồn sau khi xuất bình thường --> Đang làm...
     /// [.] Xử lý vấn đề nhiều loại VT trên cùng 1 grid --> in processing... --> 80%, check sau
-    /// [ ] Sửa lại phần cập nhật vào DB
+    /// [.] Sửa lại phần cập nhật vào DB --> căn bản xong
+    /// [ ] Xử lý phần mượn vt giữa các kho
     /// 
     /// Setup
     /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
