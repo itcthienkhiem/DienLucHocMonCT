@@ -30,7 +30,13 @@ namespace Inventory.EntityClass
         }
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-
+        public bool chkPhieuXuatTam(string sMa_phieu_xuat_tam)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.Phieu_Xuat_Tam_Vat_Tu.Any(cus => cus.Ma_phieu_xuat_tam == sMa_phieu_xuat_tam);
+            return has;
+        }
 
         public DataTable GetAll(string maPhieu)
         {
@@ -99,21 +105,38 @@ namespace Inventory.EntityClass
             return Int32.Parse(dt.Rows[0]["maxid"].ToString());
         }
 
-        public int Insert_PhieuXuat()
+        public int CapNhapPhieuXuat(SqlTransaction m_trans, SqlConnection m_conn)
         {
-            SqlTransaction m_trans = null;
+            if (m_conn.State == ConnectionState.Closed)
+                m_conn.Open();
 
-            m_dbConnection.Open();
-            m_trans = m_dbConnection.BeginTransaction();
+            if (chkPhieuXuatTam(Ma_phieu_xuat_tam) == true)
+            {
+                //update
+                return Update_PhieuXuat(m_trans, m_conn);
+            }
+            else
+            {
+                //Insert
+                return Insert_PhieuXuat(m_trans, m_conn);
+            }
+        }
 
-            if (m_dbConnection.State == ConnectionState.Closed)
-                m_dbConnection.Open();
+        public int Insert_PhieuXuat(SqlTransaction m_trans, SqlConnection m_conn)
+        {
+            //SqlTransaction m_trans = null;
+
+            //m_dbConnection.Open();
+            //m_trans = m_dbConnection.BeginTransaction();
+
+            if (m_conn.State == ConnectionState.Closed)
+                m_conn.Open();
 
             string sql = "";
             sql += "INSERT INTO Phieu_xuat_tam_vat_tu (Ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,Ngay_xuat,Ly_do,Cong_trinh,Dia_chi,Da_duyet) ";
             sql += "VALUES(@Ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@Ngay_xuat,@Ly_do,@Cong_trinh,@Dia_chi,@Da_duyet)";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
+            SqlCommand command = new SqlCommand(sql, m_conn, m_trans);
             command.CommandType = CommandType.Text;
 
             command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
@@ -127,21 +150,21 @@ namespace Inventory.EntityClass
 
             int result = command.ExecuteNonQuery();
 
-            m_trans.Commit();
-            m_dbConnection.Close();
+            //m_trans.Commit();
+            //m_dbConnection.Close();
 
             return result;
         }
 
-        public int Update_PhieuXuat()
+        public int Update_PhieuXuat(SqlTransaction m_trans, SqlConnection m_conn)
         {
-            SqlTransaction m_trans = null;
+            //SqlTransaction m_trans = null;
 
-            m_dbConnection.Open();
-            m_trans = m_dbConnection.BeginTransaction();
+            //m_dbConnection.Open();
+            //m_trans = m_dbConnection.BeginTransaction();
 
-            if (m_dbConnection.State == ConnectionState.Closed)
-                m_dbConnection.Open();
+            if (m_conn.State == ConnectionState.Closed)
+                m_conn.Open();
 
             string sql = "";
             sql += "UPDATE Phieu_xuat_tam_vat_tu ";
@@ -152,7 +175,7 @@ namespace Inventory.EntityClass
             //sql += "INSERT INTO Phieu_xuat_tam_vat_tu (Ma_phieu_xuat_tam,ID_kho,ID_nhan_vien,Ngay_xuat,Ly_do,Cong_trinh,Dia_chi,Da_duyet) ";
             //sql += "VALUES(@Ma_phieu_xuat_tam,@ID_kho,@ID_nhan_vien,@Ngay_xuat,@Ly_do,@Cong_trinh,@Dia_chi,@Da_duyet)";
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection, m_trans);
+            SqlCommand command = new SqlCommand(sql, m_conn, m_trans);
             command.CommandType = CommandType.Text;
 
             command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = Ma_phieu_xuat_tam;
@@ -166,8 +189,8 @@ namespace Inventory.EntityClass
 
             int result = command.ExecuteNonQuery();
 
-            m_trans.Commit();
-            m_dbConnection.Close();
+            //m_trans.Commit();
+            //m_dbConnection.Close();
 
             return result;
         }
@@ -281,6 +304,7 @@ namespace Inventory.EntityClass
             //}
             //return false;
         }
+
         public int Insert(SQLDAL dal)
         {
 
@@ -427,6 +451,7 @@ namespace Inventory.EntityClass
             //DAL.CommitTransaction();
             //return result;
         }
+
         public static string RandomMaPhieu()
         {
             DateTime today = DateTime.Today;

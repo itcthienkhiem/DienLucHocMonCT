@@ -153,6 +153,8 @@ namespace Inventory.EntityClass
                 return 0;
         }
 
+        
+
         public string getSL_from_MaVatTu(string Ma_vat_tu, string ID_Kho)
         {
             return getAllVT(ID_kho, Ma_vat_tu).ToString();
