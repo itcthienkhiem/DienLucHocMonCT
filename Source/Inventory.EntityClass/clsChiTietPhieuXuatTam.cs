@@ -180,28 +180,63 @@ namespace Inventory.EntityClass
 
         public DataTable getAll_toGrid(string maPhieu)
         {
-            if (m_dbConnection.State == ConnectionState.Closed)
-                m_dbConnection.Open();
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from ctpxt in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                                  join kho in help.ent.DM_Kho on ctpxt.ID_kho equals kho.ID_kho
+                                  join vt in help.ent.DM_Vat_Tu on ctpxt.Ma_vat_tu equals vt.Ma_vat_tu
+                                  join dvt in help.ent.DM_Don_vi_tinh on vt.ID_Don_vi_tinh equals dvt.ID_Don_vi_tinh
+                                  join cl in help.ent.Chat_luong on ctpxt.Id_chat_luong equals cl.Id_chat_luong
 
-            DataTable dt = new DataTable();
+                                  where ctpxt.Ma_phieu_xuat_tam == maPhieu
+                                  select new
+                                  {
+                                      ctpxt.ID_chi_tiet_phieu_xuat_tam,
+                                      ctpxt.Ma_vat_tu,
+                                      vt.Ten_vat_tu,
+                                      ctpxt.ID_kho,
+                                      kho.Ten_kho,
+                                      dvt.Ten_don_vi_tinh,
+                                      ctpxt.So_luong_de_nghi,
+                                      ctpxt.So_luong_thuc_xuat,
+                                      ctpxt.Da_duyet_xuat_vat_tu,
+                                      ctpxt.So_luong_hoan_nhap,
+                                      ctpxt.So_luong_giu_lai,
+                                      ctpxt.Da_duyet_hoan_nhap_giu_lai,
+                                      ctpxt.Id_chat_luong,
+                                      cl.Loai_chat_luong
+                                  }).ToList();
 
-            string sql = "SELECT Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu,DM_Vat_Tu.Ten_vat_tu,Chi_tiet_Phieu_Xuat_Tam.ID_kho,DM_Kho.Ten_kho,Chi_tiet_Phieu_Xuat_Tam.So_luong_de_nghi,Chi_tiet_Phieu_Xuat_Tam.So_luong_thuc_xuat,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_xuat_vat_tu,Chi_tiet_Phieu_Xuat_Tam.So_luong_hoan_nhap,Chi_tiet_Phieu_Xuat_Tam.So_luong_giu_lai,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_hoan_nhap_giu_lai,DM_Don_vi_tinh.Ten_don_vi_tinh,Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong,Chat_luong.Loai_chat_luong FROM Chi_tiet_Phieu_Xuat_Tam ";
-            sql += "join DM_Vat_Tu on DM_Vat_Tu.Ma_vat_tu =Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu ";
-            sql += "join DM_Don_vi_tinh on DM_vat_tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
-            sql += "join DM_Kho on Chi_tiet_Phieu_Xuat_Tam.ID_kho=DM_Kho.ID_kho ";
-            sql += "join Chat_luong on Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong=Chat_luong.Id_chat_luong ";
-            sql += "WHERE Chi_tiet_Phieu_Xuat_Tam.Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+                //Chat_luong.Loai_chat_luong FROM Chi_tiet_Phieu_Xuat_Tam ";
+                dbcxtransaction.Commit();
 
-            SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            command.CommandType = CommandType.Text;
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+            }
 
-            command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
-            SqlDataAdapter da = new SqlDataAdapter(command);
+            //if (m_dbConnection.State == ConnectionState.Closed)
+            //    m_dbConnection.Open();
 
-            da.Fill(dt);
+            //DataTable dt = new DataTable();
 
-            m_dbConnection.Close();
-            return dt;
+            //string sql = "SELECT Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu,DM_Vat_Tu.Ten_vat_tu,Chi_tiet_Phieu_Xuat_Tam.ID_kho,DM_Kho.Ten_kho,Chi_tiet_Phieu_Xuat_Tam.So_luong_de_nghi,Chi_tiet_Phieu_Xuat_Tam.So_luong_thuc_xuat,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_xuat_vat_tu,Chi_tiet_Phieu_Xuat_Tam.So_luong_hoan_nhap,Chi_tiet_Phieu_Xuat_Tam.So_luong_giu_lai,Chi_tiet_Phieu_Xuat_Tam.Da_duyet_hoan_nhap_giu_lai,DM_Don_vi_tinh.Ten_don_vi_tinh,Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong,Chat_luong.Loai_chat_luong FROM Chi_tiet_Phieu_Xuat_Tam ";
+            //sql += "join DM_Vat_Tu on DM_Vat_Tu.Ma_vat_tu =Chi_tiet_Phieu_Xuat_Tam.Ma_vat_tu ";
+            //sql += "join DM_Don_vi_tinh on DM_vat_tu.ID_Don_vi_tinh=DM_Don_vi_tinh.ID_Don_vi_tinh ";
+            //sql += "join DM_Kho on Chi_tiet_Phieu_Xuat_Tam.ID_kho=DM_Kho.ID_kho ";
+            //sql += "join Chat_luong on Chi_tiet_Phieu_Xuat_Tam.Id_chat_luong=Chat_luong.Id_chat_luong ";
+            //sql += "WHERE Chi_tiet_Phieu_Xuat_Tam.Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam ";
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.CommandType = CommandType.Text;
+
+            //command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+
+            //da.Fill(dt);
+
+            //m_dbConnection.Close();
+            //return dt;
         }
 
 

@@ -15,7 +15,8 @@ namespace Inventory.XuatTamVatTu
     /// <summary>
     /// In Processing
     /// [ ] Xử lý logic trên frm --> dc khoảng 60%
-    /// [ ] Cập nhật dữ liệu tồn sau khi xuất bình thường --> Đang làm...
+    /// [x] Cập nhật dữ liệu tồn sau khi xuất bình thường --> Đang làm...
+    /// [ ] Xử lý vấn đề nhiều loại VT trên cùng 1 grid --> in processing...
     /// 
     /// Setup
     /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
@@ -180,14 +181,18 @@ namespace Inventory.XuatTamVatTu
 
             //ToolTip1.Show(TaoMaPhieu(), this.cbMaVatTu, 0, 0, 2000);
 
-            clsChiTietPhieuXuatTam px = new clsChiTietPhieuXuatTam();
-            
-            ToolTip1.Show(px.getBool_DaDuyetXuat("1510280009", "002", 1, 1).ToString(), this.cbMaVatTu, 0, 0, 2000);
+            //clsChiTietPhieuXuatTam px = new clsChiTietPhieuXuatTam();
+
+            //ToolTip1.Show(px.getBool_DaDuyetXuat("1510280009", "002", 1, 1).ToString(), this.cbMaVatTu, 0, 0, 2000);
+
+            Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentRow.Index;
+            DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[selectedRowCount];
+
+            ToolTip1.Show(selectedRow.Cells["_ID_chi_tiet_phieu_xuat_tam"].Value.ToString(), this.cbMaVatTu, 0, 0, 2000);
         }
 
         public void frmChiTietPhieuXuatTam_Load(object sender, EventArgs e)
         {
-            
             //ToolTip1.SetToolTip(this.btnCheckNVGiuVT, "Hello");
         }
 
@@ -365,35 +370,6 @@ namespace Inventory.XuatTamVatTu
                         {
                             MessageBox.Show(ex.ToString());
                         }
-
-
-                        //if (phieuxuat.Insert_PhieuXuat() == 1)
-                        //{
-                        //    try
-                        //    {
-                        //        clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
-                        //        if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam) == 1)
-                        //        {
-                        //            MessageBox.Show("Bạn đã thêm thành công!");
-
-                        //            PanelButton.setClickSua();
-
-                        //            //PanelButton.ResetClickStatus();
-                        //            //PanelButton.ResetGridClickStatus();
-
-                        //            //PanelButton.ResetButton();
-
-                        //            //init_cbMaPhieuXuatTam();
-
-                        //            //ResetInputForm();
-                        //            //DisableControl_ForNew();
-                        //        }
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        MessageBox.Show(ex.ToString());
-                        //    }
-                        //}
                     }
                         catch (Exception ex)
                     {
@@ -423,49 +399,13 @@ namespace Inventory.XuatTamVatTu
                                 clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
                                 if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam, phieuxuat) == 1)
                                 {
-                                    MessageBox.Show("Bạn đã sửa thành công!");
-
-                                    //PanelButton.ResetClickStatus();
-                                    //PanelButton.ResetGridClickStatus();
-
-                                    //PanelButton.ResetButton();
-
-                                    //init_cbMaPhieuXuatTam();
-
-                                    //ResetInputForm();
-                                    //DisableControl_ForNew();
+                                    MessageBox.Show("Bạn đã cập nhật thành công!");
                                 }
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show(ex.ToString());
                             }
-
-                            //if (phieuxuat.Update_PhieuXuat() == 1)
-                            //{
-                            //    try
-                            //    {
-                            //        clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
-                            //        if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam) == 1)
-                            //        {
-                            //            MessageBox.Show("Bạn đã sửa thành công!");
-
-                            //            //PanelButton.ResetClickStatus();
-                            //            //PanelButton.ResetGridClickStatus();
-
-                            //            //PanelButton.ResetButton();
-
-                            //            //init_cbMaPhieuXuatTam();
-
-                            //            //ResetInputForm();
-                            //            //DisableControl_ForNew();
-                            //        }
-                            //    }
-                            //    catch (Exception ex)
-                            //    {
-                            //        MessageBox.Show(ex.ToString());
-                            //    }
-                            //}
                         }
                             catch (Exception ex)
                         {
@@ -646,16 +586,48 @@ namespace Inventory.XuatTamVatTu
             int ID_Kho = getIDKho();
 
             //Tạm thời vật tư a trong kho x ko dc add quá 2 lần. --> chưa giải quyết phần thiếu vật tư, xin thêm
-            DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select("Ma_vat_tu = \'" + cbMaVatTu.Text.Trim() + "\' AND ID_kho = \'" + ID_Kho + "\'");
+            //data.Select(string.Format("Ma_vat_tu='{0}'", selectedRow.Cells["_Ma_vat_tu"].Value.ToString()));
+            //DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select("Ma_vat_tu = \'" + cbMaVatTu.Text.Trim() + "\' AND ID_kho = \'" + ID_Kho + "\'");
+            DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong = '{2}' AND Da_duyet_xuat_vat_tu='FALSE'", ID_Kho, cbMaVatTu.Text.Trim(), cbChatLuong.SelectedValue.ToString()));
+            //DataRow[] chkMaVatTu = gridChiTietPhieuXuatTam.Select Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong = '{2}' AND Da_duyet_xuat_vat_tu='FALSE'", ID_Kho, cbMaVatTu.Text.Trim(), cbChatLuong.SelectedValue.ToString()));
 
             if (chkMaVatTu.Length != 0)
             {
-                MessageBox.Show("Vật tư bạn chọn, đã tồn tại!");
-                ResetGridInputForm();
+                //int index = dataTableChiTietPhieuXuatTam.Rows.IndexOf(chkMaVatTu[0]);
+                //MessageBox.Show("Vật tư bạn chọn đã tồn tại! Bạn có thể sửa lại!"); //Ten_vat_tu
+                DialogResult dialogResult = MessageBox.Show(string.Format("Vật tư mã = '{0}' đã tồn tại!\nBạn có muốn sửa lại không?", cbMaVatTu.Text), "Cảnh báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    for (int i = 0; i < gridChiTietPhieuXuatTam.Rows.Count; i++)
+                    {
+                        DataGridViewRow tmp_row = gridChiTietPhieuXuatTam.Rows[i];
+                        if (Int32.Parse(tmp_row.Cells["_ID_kho"].Value.ToString()) == ID_Kho && tmp_row.Cells["_Ma_vat_tu"].Value.ToString() == cbMaVatTu.Text.Trim() && Int32.Parse(tmp_row.Cells["_Id_chat_luong"].Value.ToString()) == Int32.Parse(cbChatLuong.SelectedValue.ToString()) && bool.Parse(tmp_row.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString()) == false)
+                        {
+                            //gridChiTietPhieuXuatTam.Rows[i].Selected = true;
+
+                            //col = 1, row = i
+                            gridChiTietPhieuXuatTam.CurrentCell = gridChiTietPhieuXuatTam[1,i];
+                            ResetGridInputForm();
+                            btnEdit_Click(btnEditRowInGrid, EventArgs.Empty);
+                            break;
+                        }
+                        else
+                        {
+                            //gridChiTietPhieuXuatTam.Rows[i].Selected = false;
+                        }
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                    ResetGridInputForm();
+                }
+
                 return;
             }
 
             DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();
+            dr["ID_chi_tiet_phieu_xuat_tam"] = curGridRow_ID;
             dr["Ma_vat_tu"] = cbMaVatTu.Text;
             dr["Ten_vat_tu"] = cbTenVatTu.Text;
             dr["ID_kho"] = ID_Kho;
@@ -690,6 +662,7 @@ namespace Inventory.XuatTamVatTu
         }
 
         Int32 curGridRow_Editing = -1;
+        Int32 curGridRow_ID = -1;
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
@@ -702,7 +675,6 @@ namespace Inventory.XuatTamVatTu
             {
                 if (gridChiTietPhieuXuatTam.Rows.Count > 0)
                 {
-
                     Int32 selectedRowCount = gridChiTietPhieuXuatTam.CurrentRow.Index;
                     DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[selectedRowCount];
 
@@ -719,6 +691,7 @@ namespace Inventory.XuatTamVatTu
                     PanelButton.Enable_btn_Luu_Huy_Luoi();
 
                     curGridRow_Editing = selectedRowCount;
+                    curGridRow_ID = Int32.Parse(selectedRow.Cells["_ID_chi_tiet_phieu_xuat_tam"].Value.ToString());
 
                     int ID_Kho = Int32.Parse(selectedRow.Cells["_ID_kho"].Value.ToString());
 
@@ -1119,6 +1092,7 @@ namespace Inventory.XuatTamVatTu
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();
+                dr["ID_chi_tiet_phieu_xuat_tam"] = dt.Rows[i]["ID_chi_tiet_phieu_xuat_tam"];
                 dr["Ma_vat_tu"] = dt.Rows[i]["Ma_vat_tu"];
                 dr["Ten_vat_tu"] = dt.Rows[i]["Ten_vat_tu"];
                 dr["Id_chat_luong"] = dt.Rows[i]["Id_chat_luong"];
@@ -1553,6 +1527,7 @@ namespace Inventory.XuatTamVatTu
         private void ResetGridInputForm()
         {
             EnableGridInputForm();
+            curGridRow_ID = -1;
             cbMuonVTTaiKho.SelectedIndex = -1;
             cbMaVatTu.SelectedIndex = -1;
             cbTenVatTu.SelectedIndex = -1;
