@@ -30,7 +30,8 @@ namespace Inventory.EntityClass
         public string Kho_nhan;
         public string Kho_xuat_ra;
         public bool Da_phan_kho;
-
+        public int ID_khoNhan;
+        public bool isGoiDau;
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
@@ -145,44 +146,34 @@ namespace Inventory.EntityClass
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            var entryPoint = help.ent.Phieu_Nhap_Kho.Where(
-        i => i.Ma_phieu_nhap == maPhieu
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                             join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                              join ls in help.ent.Loai_Phieu_Nhap on ep.ID_Loai_Phieu_Nhap equals ls.ID_Loai_Phieu_Nhap
+                             
+                             where ep.Ma_phieu_nhap == maPhieu
+            select new
+            {
+            ep.Ma_phieu_nhap,
+                             ep.Kho_nhan,
+            ep.Ngay_lap,
+            ep.Ly_do,
+            ep.So_hoa_don,
+            ep.Cong_trinh,
+            ep.Dia_Chi,
+            ep.ID_Loai_Phieu_Nhap,
+            ep.Kho_xuat_ra,
+            ep.Da_phan_kho,
+            ep.ID_phieu_nhap,
+            ep.ID_kho ,
+            e.Ten_kho,
+            ep.isGoiDau ,
+            ls.Ten_loai_phieu_nhap,
+                
+        }
 
         ).ToList();
-            DataTable table = new DataTable();
-            table.Columns.Add("Ma_phieu_nhap", typeof(string));
-            table.Columns.Add("kho_nhan", typeof(string));
-            table.Columns.Add("Ngay_lap", typeof(DateTime));
-            table.Columns.Add("Ly_do", typeof(string));
-            table.Columns.Add("So_hoa_don", typeof(string));
-            table.Columns.Add("Cong_trinh", typeof(string));
-            table.Columns.Add("Dia_Chi", typeof(string));
-            table.Columns.Add("ID_Loai_Phieu_Nhap", typeof(int));
-            table.Columns.Add("Kho_xuat_ra", typeof(string));
-            table.Columns.Add("Da_phan_kho", typeof(bool));
-            table.Columns.Add("ID_phieu_nhap", typeof(int));
-            entryPoint.ToList().ForEach((n) =>
-            {
-                DataRow row = table.NewRow();
-                row.SetField<string>("Ma_phieu_nhap", n.Ma_phieu_nhap);
-                row.SetField<string>("Kho_nhan", n.Kho_nhan);
-                row.SetField<DateTime?>("Ngay_lap", n.Ngay_lap.Value);
-                row.SetField<string>("Ly_do", n.Ly_do);
-                row.SetField<string>("So_hoa_don", n.So_hoa_don);
-                row.SetField<string>("Cong_trinh", n.Cong_trinh);
-                row.SetField<string>("Dia_Chi", n.Dia_Chi);
-                row.SetField<int?>("ID_Loai_Phieu_Nhap", n.ID_Loai_Phieu_Nhap);
-                row.SetField<string>("Kho_xuat_ra", n.Kho_xuat_ra);
-                //row.SetField<bool>("Da_phan_kho", n.Da_phan_kho);
-                row.SetField<int>("ID_phieu_nhap", n.ID_phieu_nhap);
-
-
-
-
-
-                table.Rows.Add(row);
-            });
-            return table;
+         
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
 
             //m_dbConnection.Open();
@@ -367,6 +358,8 @@ namespace Inventory.EntityClass
                         Kho_xuat_ra = this.Kho_xuat_ra,
                         Da_phan_kho = this.Da_phan_kho,
                      //   ID_phieu_nhap = this.ID_phieu_nhap,
+                         ID_kho = this.ID_khoNhan,
+                         isGoiDau = this.isGoiDau,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);
@@ -407,9 +400,10 @@ namespace Inventory.EntityClass
                         ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap ==null?0:this.ID_Loai_Phieu_Nhap,
                         Kho_xuat_ra = this.Kho_xuat_ra ?? "",
                         Da_phan_kho = this.Da_phan_kho==null?false:this.Da_phan_kho,
-                        
+                        ID_kho = this.ID_khoNhan,
                         Ngay_nhap_vat_tu = DateTime.Today,
                      //   ID_phieu_nhap = this.ID_phieu_nhap,
+                        isGoiDau = this.isGoiDau,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);

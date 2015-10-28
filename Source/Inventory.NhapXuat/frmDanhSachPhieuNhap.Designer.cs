@@ -52,8 +52,6 @@
             this.rdoChuaDuyet = new System.Windows.Forms.RadioButton();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.rdoAllGird = new System.Windows.Forms.RadioButton();
-            this.cbKhoNhanVatTu = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbbLoaiPhieu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
@@ -327,23 +325,6 @@
             this.rdoAllGird.Text = "Tất Cả";
             this.rdoAllGird.UseVisualStyleBackColor = true;
             // 
-            // cbKhoNhanVatTu
-            // 
-            this.cbKhoNhanVatTu.FormattingEnabled = true;
-            this.cbKhoNhanVatTu.Location = new System.Drawing.Point(469, 101);
-            this.cbKhoNhanVatTu.Name = "cbKhoNhanVatTu";
-            this.cbKhoNhanVatTu.Size = new System.Drawing.Size(213, 21);
-            this.cbKhoNhanVatTu.TabIndex = 58;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(408, 104);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 59;
-            this.label4.Text = "Kho Nhập";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -368,8 +349,6 @@
             this.ClientSize = new System.Drawing.Size(850, 458);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbbLoaiPhieu);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbKhoNhanVatTu);
             this.Controls.Add(this.rdoAllGird);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.rdoChuaDuyet);
@@ -410,8 +389,6 @@
         private System.Windows.Forms.RadioButton rdoAllGird;
         private System.Windows.Forms.Button btnDuyetPhieu;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbKhoNhanVatTu;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbbLoaiPhieu;
 
