@@ -323,7 +323,7 @@ namespace Inventory.NhapXuat
                 DatabaseHelper help = new DatabaseHelper();
                 help.ConnectDatabase();
                 string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
-                string setting = Properties.Settings.Default.PhieuNhap;
+                //string setting = Properties.Settings.Default.PhieuNhap;
 
                 using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                 {
@@ -337,29 +337,66 @@ namespace Inventory.NhapXuat
                             int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
 
                             DateTime ngayNhap = DateTime.Now;
-                            bool isGoiDau = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isGoiDau"].Value.ToString());
-                            if (isGoiDau == true)
+                            try
                             {
-                                clsVatTuGoiDauKy gdk = new clsVatTuGoiDauKy();
-                                
-                                gdk.ID_chat_luong = id_chat_luong;
-                                gdk.Ma_vat_tu = mavattu;
-                                gdk.So_Luong = soluong;
-                                gdk.ID_kho = idKho;
-                                if (gdk.CheckTonTaiSoDK() == true)
+                                bool isGoiDau = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isGoiDau"].Value.ToString());
+                                if (isGoiDau == true)
                                 {
-                                    MessageBox.Show("Vật tư này đã có trong vật tư gối đầu rồi, không thể duyệt gối đầu nữa!");
-                                    return;
-                                }
-                                if (gdk.Insert() == 0)
+                                    clsVatTuGoiDauKy gdk = new clsVatTuGoiDauKy();
 
+                                    gdk.ID_chat_luong = id_chat_luong;
+                                    gdk.Ma_vat_tu = mavattu;
+                                    gdk.So_Luong = soluong;
+                                    gdk.ID_kho = idKho;
+                                    if (gdk.CheckTonTaiSoDK() == true)
+                                    {
+                                        //nếu có cập nhật lại gối đầu 
+                                        DataTable temp = gdk.GetAll();
+                                        double sl =double.Parse( temp.Rows[0]["So_luong"].ToString());
+                                        gdk.ID_VT_Goi_Dau = int.Parse(temp.Rows[0]["ID_VT_Goi_Dau"].ToString());
+                                        gdk.So_Luong = gdk.So_Luong + sl;
+
+                                        gdk.Update();
+                                       // MessageBox.Show("Vật tư này đã có trong vật tư gối đầu rồi, không thể duyệt gối đầu nữa!");
+                                        //return;
+                                    }
+                                        //nếu chưa tồn tại tiến hành insert dòng mới 
+                                    else
+
+                                    if (gdk.Insert() == 0)
+                                    {
+                                        MessageBox.Show("Đã có lỗi xãy ra !");
+                                        return;
+                                    }
+
+                                }
+                                // nếu mã phiếu hoàn nhập thì trừ trong gói đầu
+                                if (TenLPN.Contains("T"))
                                 {
-                                    MessageBox.Show("Đã có lỗi xãy ra !");
-                                    return;
-                                }
+                                    clsVatTuGoiDauKy gdk = new clsVatTuGoiDauKy();
 
+                                    gdk.ID_chat_luong = id_chat_luong;
+                                    gdk.Ma_vat_tu = mavattu;
+                                  
+                                    gdk.ID_kho = idKho;
+                                   DataTable temp = gdk.GetAll();
+                                   double soluonght = double.Parse(temp.Rows[0]["So_luong"].ToString());
+                                   soluonght = soluonght - soluong;
+                                   gdk.So_Luong = soluonght;
+                                   gdk.ID_VT_Goi_Dau =int.Parse( temp.Rows[0]["ID_VT_Goi_Dau"].ToString());
+                                   if (gdk.Update() == 0)
+                                   {
+                                       MessageBox.Show("Đã có lỗi xãy ra trong quá trình cập nhật số lượng đầu kỳ!");
+                                       return;
+                                   }
+                                   MessageBox.Show("Hoàn nhập thành công!");
+                                   return; 
+
+                                }
                             }
-                            if (TenLPN.Contains(setting) == true)
+                            catch (Exception ex) { }
+
+                            if (TenLPN.Contains("X") == true)
                             {
 
                                 if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
@@ -379,6 +416,8 @@ namespace Inventory.NhapXuat
                                 {
                                     dbcxtransaction.Rollback();
                                 }
+
+
                             }
                     }
                        dbcxtransaction.Commit();

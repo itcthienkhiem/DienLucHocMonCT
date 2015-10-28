@@ -64,7 +64,13 @@ namespace Inventory.QuanLyTonDauKy
                         double slnt = double.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? double.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
                         double slxt = double.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? double.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
                         double sltt = double.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? double.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
-                        tkt = tkt + sltt + slnt - slxt;
+                        string getTen = new clsLoaiPhieuNhap().getTenLPN(int.Parse( tbcttk.Rows[0]["ID_Loai_Phieu_Nhap"].ToString()));
+                        if(getTen .Contains("X")){
+                            tkt = tkt + sltt + slnt - slxt;
+                        }
+
+                        else
+                            tkt = tkt + sltt + slnt - slxt;
                     }
                     DataTable tb = cttk.Search(tungay, denngay,search);
                    // DataView dv = tb.DefaultView;

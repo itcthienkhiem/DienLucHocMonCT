@@ -64,6 +64,12 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="clsPanelButton2.cs" />
+    <Compile Include="frmHoanNhapKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHoanNhapKho.Designer.cs">
+      <DependentUpon>frmHoanNhapKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="enumStatus.cs" />
     <Compile Include="frmChiTietNhanVatTu.cs">
       <SubType>Form</SubType>
@@ -82,12 +88,6 @@
     </Compile>
     <Compile Include="frmDanhSachVatTuTrongKho.Designer.cs">
       <DependentUpon>frmDanhSachVatTuTrongKho.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmHoanNhap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmHoanNhap.Designer.cs">
-      <DependentUpon>frmHoanNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNhapKho.cs">
       <SubType>Form</SubType>
@@ -120,6 +120,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmHoanNhapKho.resx">
+      <DependentUpon>frmHoanNhapKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChiTietNhanVatTu.resx">
       <DependentUpon>frmChiTietNhanVatTu.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,9 +131,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDanhSachVatTuTrongKho.resx">
       <DependentUpon>frmDanhSachVatTuTrongKho.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmHoanNhap.resx">
-      <DependentUpon>frmHoanNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNhapKho.resx">
       <DependentUpon>frmNhapKho.cs</DependentUpon>

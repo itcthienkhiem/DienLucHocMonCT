@@ -606,5 +606,28 @@ namespace Inventory
             frms.Clear();
             frms.Add(frm);
         }
+
+        private void thẻGóiĐầuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTheGoiDau frm = new frmTheGoiDau();
+            frm.Text = "Thẻ Gói Đầu  ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
     }
 }
