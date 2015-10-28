@@ -14,9 +14,10 @@ namespace Inventory.XuatTamVatTu
 {
     /// <summary>
     /// In Processing
-    /// [ ] Xử lý logic trên frm --> dc khoảng 60%
+    /// [.] Xử lý logic trên frm --> dc khoảng 60%
     /// [x] Cập nhật dữ liệu tồn sau khi xuất bình thường --> Đang làm...
-    /// [ ] Xử lý vấn đề nhiều loại VT trên cùng 1 grid --> in processing...
+    /// [.] Xử lý vấn đề nhiều loại VT trên cùng 1 grid --> in processing... --> 80%, check sau
+    /// [ ] Sửa lại phần cập nhật vào DB
     /// 
     /// Setup
     /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
@@ -364,6 +365,9 @@ namespace Inventory.XuatTamVatTu
                                 MessageBox.Show("Bạn đã thêm thành công!");
 
                                 PanelButton.setClickSua();
+                                ResetGridInputForm();
+                                dataTableChiTietPhieuXuatTam.Clear();
+                                SetDataToGrid();
                             }
                         }
                         catch (Exception ex)
@@ -400,6 +404,9 @@ namespace Inventory.XuatTamVatTu
                                 if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam, phieuxuat) == 1)
                                 {
                                     MessageBox.Show("Bạn đã cập nhật thành công!");
+                                    ResetGridInputForm();
+                                    dataTableChiTietPhieuXuatTam.Clear();
+                                    SetDataToGrid();
                                 }
                             }
                             catch (Exception ex)
