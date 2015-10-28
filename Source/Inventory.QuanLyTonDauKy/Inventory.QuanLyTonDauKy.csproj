@@ -59,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
+    <Compile Include="frmNoVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoVatTu.Designer.cs">
+      <DependentUpon>frmNoVatTu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTheGoiDau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmNoVatTu.resx">
+      <DependentUpon>frmNoVatTu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTheGoiDau.resx">
       <DependentUpon>frmTheGoiDau.cs</DependentUpon>
     </EmbeddedResource>

@@ -14,7 +14,7 @@ namespace Inventory.EntityClass
         public double So_luong;
         public int ID_ma_phieu;
         public DateTime Ngay_nhap;
-        public static DataTable GetAll()
+        public static DataTable GetAll(string mavt)
         {
             // lấy tất cả các phiếu nhập đã xác nhận và loại là hoàn nhập hoac nhap goi dau  lên
             DatabaseHelper help = new DatabaseHelper();
@@ -29,6 +29,7 @@ namespace Inventory.EntityClass
 
 
                           where d.Da_phan_kho == true && (d.isGoiDau == true || l.Ma_loai_phieu_nhap.Contains("T"))
+                          && ct.Ma_vat_tu .Contains(mavt)
                           select new
                           {
                               d.Ma_phieu_nhap,
@@ -46,5 +47,6 @@ namespace Inventory.EntityClass
                 return ds;
             }
         }
+
     }
 }
