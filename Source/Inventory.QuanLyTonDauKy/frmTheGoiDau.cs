@@ -109,7 +109,7 @@ namespace Inventory.QuanLyTonDauKy
         {
             try
             {
-                gridTonDauKy.DataSource =clsChiTietGoiDau .GetAll();
+                gridTonDauKy.DataSource =clsChiTietGoiDau .GetAll("");
             }
             catch (Exception ex) { }
         }
