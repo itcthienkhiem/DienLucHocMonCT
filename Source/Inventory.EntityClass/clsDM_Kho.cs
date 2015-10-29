@@ -135,7 +135,10 @@ namespace Inventory.EntityClass
                using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                {
                    var dm = (from d in help.ent.DM_Kho
-                             select d).ToList();
+                             select new { 
+                                d.ID_kho,
+                                d.Ten_kho
+                             }).ToList();
                    dbcxtransaction.Commit();
 
                    return Utilities.clsThamSoUtilities.ToDataTable(dm);
