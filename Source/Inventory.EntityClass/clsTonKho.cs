@@ -248,6 +248,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from d in help.ent.Ton_kho
                          join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                          where d.ID_kho == _ID_kho && d.So_luong > 0 && d.Ma_vat_tu == mavattu
+                       
                          select new
                          {
                              d.ID_ton_kho,
@@ -265,6 +266,31 @@ namespace Inventory.EntityClass
                     }
             };
             return 0;
+        }
+        public static DataTable getAllVT(int _ID_kho, string mavattu, int chatluong)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Ton_kho
+                                  join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                                  where d.ID_kho == _ID_kho && d.So_luong > 0 && d.Ma_vat_tu == mavattu
+                                  && d.Id_chat_luong == chatluong
+                                  select new
+                                  {
+                                      d.ID_ton_kho,
+                                      d.ID_kho,
+                                      d.Ma_vat_tu,
+                                      e.Ten_vat_tu,
+                                      d.So_luong,
+                                  }).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+            };
+            return null;
         }
         /// <summary>
         /// hàm tìm kiếm vật tư theo kho và chất lượng

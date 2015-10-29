@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.Models;
+using Inventory.BusinessClass;
 namespace Inventory.QuanLyTonDauKy
 {
     public partial class frmNoVatTu : Form
@@ -33,12 +34,12 @@ namespace Inventory.QuanLyTonDauKy
             PanelButton.setDelegateFormAction(frmAction);
 
             //enumButton dùng định danh button
-            PanelButton.AddButton(enumButton.Them, ref btnThem);
-            PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
-            PanelButton.AddButton(enumButton.Sua, ref btnSua);
-            PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
-            PanelButton.AddButton(enumButton.Luu, ref btnLuu);
-            PanelButton.AddButton(enumButton.Huy, ref btnHuy);
+            PanelButton.AddButton(enumButton.Them, ref btnTraNo);
+            //PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
+            //PanelButton.AddButton(enumButton.Sua, ref btnSua);
+            //PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
+            //PanelButton.AddButton(enumButton.Luu, ref btnLuu);
+            //PanelButton.AddButton(enumButton.Huy, ref btnHuy);
             PanelButton.AddButton(enumButton.Dong, ref btnDong);
 
             PanelButton.setButtonClickEvent(enumButton.Dong);
@@ -50,11 +51,11 @@ namespace Inventory.QuanLyTonDauKy
             PanelButton.setButtonStatus(enumButton.Luu, false);
             PanelButton.setButtonStatus(enumButton.Huy, false);
 
-            btnThem.Enabled = false;
-            btnXoa.Enabled = false;
-            btnSua.Enabled = false;
-            btnLuu.Enabled = false;
-            btnHuy.Enabled = false;
+            //btnTraNo.Enabled = false;
+            // btnXoa.Enabled = false;
+            //  btnSua.Enabled = false;
+            //  btnLuu.Enabled = false;
+            //   btnHuy.Enabled = false;
 
             initKhoNhap();
 
@@ -67,7 +68,7 @@ namespace Inventory.QuanLyTonDauKy
         private void initKhoNhap()
         {
             clsGiaoDienChung.initCombobox(cbKhoChoMuon, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-        //    clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
+            //    clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
             //clsDM_Kho dmKho = new clsDM_Kho();
             //cbKhoNhap.DisplayMember = "Ten_kho";
             //cbKhoNhap.ValueMember = "ID_kho";
@@ -138,12 +139,45 @@ namespace Inventory.QuanLyTonDauKy
 
         private void frmTheGoiDau_Load(object sender, EventArgs e)
         {
-//            gridKhoMuonVT.DataSource = clsKho_Muon_Vat_Tu.GetAll("");
+            //            gridKhoMuonVT.DataSource = clsKho_Muon_Vat_Tu.GetAll("");
         }
 
         private void btnXem_Click(object sender, EventArgs e)
         {
             gridKhoMuonVT.DataSource = clsKho_Muon_Vat_Tu.GetAll(cbKhoChoMuon.Text);
+        }
+
+        private void btnTraNo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 selectedRowCount = gridKhoMuonVT.CurrentCell.RowIndex;
+                DataGridViewRow SelectedRow = gridKhoMuonVT.Rows[selectedRowCount];
+              //  string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+
+
+                //  clsBusTraNo trano = new clsBusTraNo();
+                int idcl = int.Parse(SelectedRow.Cells["id_chat_luong"].Value.ToString());
+                int idkho = int.Parse(SelectedRow.Cells["id_kho"].Value.ToString());
+                int idKhoMuon = int.Parse(SelectedRow.Cells["id_kho_muon"].Value.ToString());
+                string mavt = SelectedRow.Cells["ma_vat_tu"].Value.ToString();
+                double sl = double.Parse(SelectedRow.Cells["so_luong"].Value.ToString());// số lượng nợ
+                string maphieu = SelectedRow.Cells["ma_phieu_xuat_tam"].Value.ToString();
+                string Ten_chat_luong = SelectedRow.Cells["Ten_chat_luong"].Value.ToString();
+                int id = int.Parse(SelectedRow.Cells["ID_kho_muon_vat_tu"].Value.ToString());
+                string tenvattu = SelectedRow.Cells["Ten_vat_tu"].Value.ToString();
+
+                //  string tenkho = int.Parse(SelectedRow.Cells["Ten_kho"].Value.ToString());
+                clsBusTraNo trano = new clsBusTraNo(mavt, tenvattu, idkho, idKhoMuon, Ten_chat_luong, idcl, sl,maphieu,id);
+                frmChiTietTraNo ct = new frmChiTietTraNo(trano,this);
+              
+                ct.Show();
+                LoadData();
+            }
+            catch (Exception ex)
+            { 
+            
+            }
         }
     }
 }

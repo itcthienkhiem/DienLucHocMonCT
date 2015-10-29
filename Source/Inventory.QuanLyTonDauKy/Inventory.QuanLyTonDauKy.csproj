@@ -59,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
+    <Compile Include="frmChiTietTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChiTietTraNo.Designer.cs">
+      <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNoVatTu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmChiTietTraNo.resx">
+      <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNoVatTu.resx">
       <DependentUpon>frmNoVatTu.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,6 +207,10 @@
     <None Include="Resources\Image1.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inventory.BusinessClass\Inventory.BusinessClass.csproj">
+      <Project>{fec106c6-d896-4451-aee8-314de950ddd2}</Project>
+      <Name>Inventory.BusinessClass</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.EntityClass\Inventory.EntityClass.csproj">
       <Project>{6240D286-DEB0-4A4C-B98E-EEFA5FAFCDD3}</Project>
       <Name>Inventory.EntityClass</Name>

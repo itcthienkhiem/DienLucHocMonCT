@@ -75,7 +75,23 @@ namespace Inventory.EntityClass
            }
            return dataCollection;
        }
-
+        public string get_TenKho( int idkho )
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho
+                          where d.ID_kho ==idkho
+                          select new
+                          {
+                              d.ID_kho,
+                              d.Ten_kho
+                          }).First();
+                dbcxtransaction.Commit();
+                return dm.Ten_kho;
+            }
+        }
 
         public DataTable getAll_TenKho()
         {
