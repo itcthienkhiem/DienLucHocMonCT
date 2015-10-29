@@ -44,27 +44,32 @@ namespace Inventory.QuanLyTonDauKy
         public void TraNo()
         { 
             //nếu số lượng trong kho < số lượng trả nợ thì báo lỗi
+            try
+            {
+                double sln = double.TryParse(txtSoLuongMuon.Text.ToString(), out sln) ? double.Parse(txtSoLuongMuon.Text) : 0;
+                double slt = double.TryParse(txtSoLuongTraNo.Text.ToString(), out slt) ? double.Parse(txtSoLuongTraNo.Text) : 0;
+                if (sln < slt)
+                {
+                    MessageBox.Show("Số lượng trả nợ phải nhỏ hơn hoặc bằng số lượng nợ");
+                    return;
+                }
+                trano.soluongtra = slt;
+                if (trano.Update() == 1)
+                {
+                    MessageBox.Show("Trả nợ thành công");
+                    f.LoadData();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Trả nợ thất bại, kiểm tra lại số lượng tồn trong kho");
+                //DataTable temp = clsTonKho.getAllVT(trano.ID_kho, trano.Ma_vat_tu, trano.ID_chat_luong);
 
-            double sln = double.TryParse(txtSoLuongMuon.Text.ToString(), out sln) ? double.Parse(txtSoLuongMuon.Text) : 0;
-            double slt = double.TryParse(txtSoLuongTraNo.Text.ToString(), out slt) ? double.Parse(txtSoLuongTraNo.Text) : 0;
-            if (sln < slt)
-            {
-                MessageBox.Show("Số lượng trả nợ phải nhỏ hơn hoặc bằng số lượng nợ");
-                return;
+                //  double sln = double.TryParse(txtSoLuongTraNo.Text);
             }
-            trano.soluongtra = slt;
-            if (trano.Update() == 1)
-            {
-                MessageBox.Show("Trả nợ thành công");
-                f.LoadData();
-                this.Close();
-            }
-            else
-                MessageBox.Show("Trả nợ thất bại, kiểm tra lại số lượng tồn trong kho");
-            //DataTable temp = clsTonKho.getAllVT(trano.ID_kho, trano.Ma_vat_tu, trano.ID_chat_luong);
+            catch (Exception ex)
+            { 
             
-          //  double sln = double.TryParse(txtSoLuongTraNo.Text);
-
+            }
         }
         private void frmChiTietTraNo_Load(object sender, EventArgs e)
         {
