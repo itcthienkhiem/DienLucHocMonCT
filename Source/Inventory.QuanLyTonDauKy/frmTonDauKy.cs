@@ -110,7 +110,7 @@ namespace Inventory.QuanLyTonDauKy
             {
                 gridTonDauKy.DataSource = TonDauKy.GetAll();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
 
         public void CloseForm()

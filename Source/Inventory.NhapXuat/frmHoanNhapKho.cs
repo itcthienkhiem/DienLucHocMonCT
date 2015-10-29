@@ -376,7 +376,7 @@ namespace Inventory.NhapXuat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
             return false;
         }
@@ -482,7 +482,7 @@ namespace Inventory.NhapXuat
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
                 }
             }
             else
@@ -525,7 +525,7 @@ namespace Inventory.NhapXuat
 
                 //cbMaVatTu_KeyDown(null, null);
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
 
 
@@ -582,7 +582,7 @@ namespace Inventory.NhapXuat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
 
@@ -657,7 +657,7 @@ namespace Inventory.NhapXuat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
 

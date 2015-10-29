@@ -32,7 +32,7 @@ namespace Inventory.QuanLyTonDauKy
                 txtKhoHienTai.Text = new clsDM_Kho().get_TenKho(trano.ID_kho);
                 txtKhoTraNo.Text = new clsDM_Kho().get_TenKho(trano.ID_kho_muon);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
         private void btnTraNo_Click(object sender, EventArgs e)
         {
@@ -67,8 +67,8 @@ namespace Inventory.QuanLyTonDauKy
                 //  double sln = double.TryParse(txtSoLuongTraNo.Text);
             }
             catch (Exception ex)
-            { 
-            
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
         private void frmChiTietTraNo_Load(object sender, EventArgs e)

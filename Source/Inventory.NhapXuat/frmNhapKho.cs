@@ -63,21 +63,28 @@ namespace Inventory.NhapXuat
 
         public frmNhapKho(enumStatus status, clsPhieuNhapKho phieunhap)
         {
-            InitializeComponent();
-
-            InitFormComponent();
-
-            //this.staTus = status;
-            PanelButton.setClickStatus((enumButton2)status);
-
-            //if (status == enumStatus.Sua || status == enumStatus.Xoa)
-            if (PanelButton.isClickSua() || PanelButton.isClickXoa())
+            try
             {
-                this.phieuNhapKho = phieunhap;
+                InitializeComponent();
 
-                DataTable chiTietPhieuNhap =(DataTable) new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
-                gridMaster.DataSource = chiTietPhieuNhap;
-                //chitiet.get
+                InitFormComponent();
+
+                //this.staTus = status;
+                PanelButton.setClickStatus((enumButton2)status);
+
+                //if (status == enumStatus.Sua || status == enumStatus.Xoa)
+                if (PanelButton.isClickSua() || PanelButton.isClickXoa())
+                {
+                    this.phieuNhapKho = phieunhap;
+
+                    DataTable chiTietPhieuNhap = (DataTable)new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieunhap.Ma_phieu_nhap);
+                    gridMaster.DataSource = chiTietPhieuNhap;
+                    //chitiet.get
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
 
@@ -191,7 +198,7 @@ namespace Inventory.NhapXuat
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
                         DAL.RollbackTransaction();
                     }
                     break;
@@ -276,7 +283,7 @@ namespace Inventory.NhapXuat
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
                             DAL.RollbackTransaction();
                         }
                         break;
@@ -376,7 +383,7 @@ namespace Inventory.NhapXuat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
             return false;
         }

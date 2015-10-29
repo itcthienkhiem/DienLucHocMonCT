@@ -175,8 +175,8 @@ namespace Inventory.QuanLyTonDauKy
                 LoadData();
             }
             catch (Exception ex)
-            { 
-            
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
     }

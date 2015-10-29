@@ -99,7 +99,7 @@ namespace Inventory.QuanLyTonDauKy
                     gridTheKho.DataSource = tb;
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
@@ -112,7 +112,7 @@ namespace Inventory.QuanLyTonDauKy
                 string tenDVT = dvt.getTenDVTTuMa(iddvt);
                 txtDVT.Text = tenDVT;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
             
         }
         private void comboBox_DropDown(object sender, EventArgs e)
@@ -122,7 +122,7 @@ namespace Inventory.QuanLyTonDauKy
                 ComboBox cbo = (ComboBox)sender;
                 cbo.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox_PreviewKeyDown);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
 
         }
 
@@ -134,7 +134,7 @@ namespace Inventory.QuanLyTonDauKy
                 cbo.PreviewKeyDown -= comboBox_PreviewKeyDown;
                 if (cbo.DroppedDown) cbo.Focus();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
