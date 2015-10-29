@@ -353,99 +353,115 @@ namespace Inventory.EntityClass
             //BeginTransaction
             SqlTransaction m_trans = null;
             SqlConnection m_conn = new SqlConnection(clsThamSoUtilities.connectionString);
-
-            if (m_conn.State == ConnectionState.Closed)
-                m_conn.Open();
-
-            m_trans = m_conn.BeginTransaction();
-
-            //Cập nhật phiếu xuất --> phần header
-            if (phieuxuat.CapNhapPhieuXuat(m_trans, m_conn) == -1)
+            try
             {
-                m_trans.Rollback();
-                m_conn.Close();
-                return -1;
-            }
+                if (m_conn.State == ConnectionState.Closed)
+                    m_conn.Open();
 
-            //Cập nhật phần chi tiết trên grid
+                m_trans = m_conn.BeginTransaction();
 
-            //B1: Get về dt vt theo mã phiếu có trong DB
-            DataTable old_dt = GetDataTable(maPhieu);
-            DataTable new_dt = dt.Copy();
-
-            //Cache tồn kho
-            DataTable dt_TonKho = getAll_Ton_kho(new_dt);
-
-            //Nếu mã phiếu này chưa có trong DB, thêm mới tất cả.
-            if (old_dt.Rows.Count == 0)
-            {
-                for (int i=0; i < new_dt.Rows.Count; i++)
-                {
-                    if (Insert_row(maPhieu, new_dt, i, dt_TonKho, m_trans, m_conn) == -1)
-                    {
-                        m_trans.Rollback();
-                        m_conn.Close();
-                        return -1;
-                    }
-                }
-
-                m_trans.Commit();
-                m_conn.Close();
-                return 1;
-            } //End Insert mới
-
-
-            //Nếu đã có trong DB, cập nhật theo table mới --> update cái đã có, insert cái chưa có
-            //Chuyển sang dùng ID để quyết định Insert hay Update
-            for (int i = 0; i < new_dt.Rows.Count; i++)
-            {
-                DataRow selectedRow = new_dt.Rows[i];
-                int id = Int32.Parse(selectedRow["ID_chi_tiet_phieu_xuat_tam"].ToString());
-                if ( id == -1)
-                {
-                    if (Insert_row(maPhieu, new_dt, i, dt_TonKho, m_trans, m_conn) == -1)
-                    {
-                        m_trans.Rollback();
-                        m_conn.Close();
-                        return -1;
-                    }
-                }
-                else
-                {
-                    DataRow[] KiemTra = old_dt.Select(string.Format("ID_chi_tiet_phieu_xuat_tam='{0}'", id));
-                    if (Update_row(maPhieu, new_dt, i, dt_TonKho, KiemTra[0], m_trans, m_conn) == -1)
-                    {
-                        m_trans.Rollback();
-                        m_conn.Close();
-                        return -1;
-                    }
-                    old_dt.Rows.Remove(KiemTra[0]);
-                }
-            }
-
-            //Xử lý Xóa row ko có trong table mới
-            if (old_dt.Rows.Count == 0)
-            {
-                m_trans.Commit();
-                m_conn.Close();
-
-                return 1;
-            }
-
-            for (int i = 0; i < old_dt.Rows.Count; i++)
-            {
-                if (Delete_row(old_dt, i, m_trans, m_conn) == -1)
+                //Cập nhật phiếu xuất --> phần header
+                if (phieuxuat.CapNhapPhieuXuat(m_trans, m_conn) == -1)
                 {
                     m_trans.Rollback();
                     m_conn.Close();
                     return -1;
                 }
+
+                //Cập nhật phần chi tiết trên grid
+
+                //B1: Get về dt vt theo mã phiếu có trong DB
+                DataTable old_dt = GetDataTable(maPhieu);
+                DataTable new_dt = dt.Copy();
+
+                //Cache tồn kho
+                DataTable dt_TonKho = getAll_Ton_kho(new_dt);
+
+                //Dùng cho xét nợ VT giữa các kho
+                int ID_Kho_Xuat = phieuxuat.ID_kho;
+
+                //Nếu mã phiếu này chưa có trong DB, thêm mới tất cả.
+                if (old_dt.Rows.Count == 0)
+                {
+                    for (int i = 0; i < new_dt.Rows.Count; i++)
+                    {
+                        if (Insert_row(maPhieu, ID_Kho_Xuat, new_dt, i, dt_TonKho, m_trans, m_conn) == -1)
+                        {
+                            m_trans.Rollback();
+                            m_conn.Close();
+                            return -1;
+                        }
+                    }
+
+                    m_trans.Commit();
+                    m_conn.Close();
+                    return 1;
+                } //End Insert mới
+
+
+                //Nếu đã có trong DB, cập nhật theo table mới --> update cái đã có, insert cái chưa có
+                //Chuyển sang dùng ID để quyết định Insert hay Update
+                for (int i = 0; i < new_dt.Rows.Count; i++)
+                {
+                    DataRow selectedRow = new_dt.Rows[i];
+                    int id = Int32.Parse(selectedRow["ID_chi_tiet_phieu_xuat_tam"].ToString());
+                    if (id == -1)
+                    {
+                        if (Insert_row(maPhieu, ID_Kho_Xuat, new_dt, i, dt_TonKho, m_trans, m_conn) == -1)
+                        {
+                            m_trans.Rollback();
+                            m_conn.Close();
+                            return -1;
+                        }
+                    }
+                    else
+                    {
+                        DataRow[] KiemTra = old_dt.Select(string.Format("ID_chi_tiet_phieu_xuat_tam='{0}'", id));
+                        if (Update_row(maPhieu, ID_Kho_Xuat, new_dt, i, dt_TonKho, KiemTra[0], m_trans, m_conn) == -1)
+                        {
+                            m_trans.Rollback();
+                            m_conn.Close();
+                            return -1;
+                        }
+                        old_dt.Rows.Remove(KiemTra[0]);
+                    }
+                }
+
+                //Xử lý Xóa row ko có trong table mới
+                if (old_dt.Rows.Count == 0)
+                {
+                    m_trans.Commit();
+                    m_conn.Close();
+
+                    return 1;
+                }
+
+                for (int i = 0; i < old_dt.Rows.Count; i++)
+                {
+                    if (Delete_row(old_dt, i, m_trans, m_conn) == -1)
+                    {
+                        m_trans.Rollback();
+                        m_conn.Close();
+                        return -1;
+                    }
+                }
+
+                m_trans.Commit();
+                m_conn.Close();
+
+                return 1;
             }
-
-            m_trans.Commit();
-            m_conn.Close();
-
-            return 1;
+            catch (Exception ex)
+            {
+                m_trans.Rollback();
+                return -1;
+            }
+            finally
+            {
+                if (m_conn.State != ConnectionState.Closed)
+                    m_conn.Close();
+            }
+            
         }
 
         public int Delete_row(DataTable dt, int row, SqlTransaction m_trans, SqlConnection m_conn)
@@ -478,9 +494,11 @@ namespace Inventory.EntityClass
         /// [ ] Nếu đã duyệt, thì trừ vào kho --> In processing...
         /// 
         /// </summary>
-        public int Insert_row(string maPhieu, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
+        public int Insert_row(string maPhieu, int ID_Kho_Xuat, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
         {
             bool bDa_duyet_xuat_vat_tu =  bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
+
+            int curID_kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
 
             if (m_conn.State == ConnectionState.Closed)
                 m_conn.Open();
@@ -494,7 +512,7 @@ namespace Inventory.EntityClass
 
             command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
             command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
-            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
+            command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = curID_kho;
             command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
             command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
             command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
@@ -505,23 +523,220 @@ namespace Inventory.EntityClass
 
             int result = command.ExecuteNonQuery();
 
-            //Xử lý cập nhật SL tồn, nếu đã duyệt VT.
-            //Nếu đã duyệt == true, và trong DB Đã Duyệt == false;
-            //&& getBool_DaDuyetXuat(maPhieu, dt, row) == false
+            if (result == -1)
+                return result;
+
+            //Trường hợp thêm 1 row mới, và row đó đã duyệt.
+            //1: Cập nhật tồn --> Chi tiết tồn
+            //2: Cập nhật nợ giữa các kho
+            //3: Cập nhật NV nợ VT
             if (bDa_duyet_xuat_vat_tu == true)
             {
-                int update_TonKho_result = update_TonKho(maPhieu, dt, row, dt_TonKho, m_trans, m_conn);
+                //Cập nhật vào Tồn Kho
+                int update_TonKho_result = update_TonKho(maPhieu, ID_Kho_Xuat, dt, row, dt_TonKho, m_trans, m_conn);
+
                 if (update_TonKho_result == -1)
-                {
-                    m_trans.Rollback();
-                    m_conn.Close();
-                    return -1;
-                }
-                else
                     return update_TonKho_result;
+
+                //Cập nhật vào Nợ giữa các kho
+                if (ID_Kho_Xuat != curID_kho)
+                {
+                    int update_KhoMuonVT_result = update_KhoMuonVT(maPhieu, ID_Kho_Xuat, dt, row, dt_TonKho, m_trans, m_conn);
+
+                    if (update_KhoMuonVT_result == -1)
+                        return update_KhoMuonVT_result;
+                }
             }
 
             return result;
+        }
+
+        
+        public int Update_row(string maPhieu, int ID_Kho_Xuat, DataTable dt, int row, DataTable dt_TonKho, DataRow KiemTra, SqlTransaction m_trans, SqlConnection m_conn)
+        {
+            //string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
+            //int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
+            //int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
+
+            bool bDa_duyet_xuat_vat_tu = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
+            bool bDa_duyet_xuat_in_DB = bool.Parse(KiemTra["Da_duyet_xuat_vat_tu"].ToString()); //getBool_DaDuyetXuat(maPhieu, sMaVT, iID_Kho, iID_ChatLuong);
+
+            int curID_kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
+
+            if (m_conn.State == ConnectionState.Closed)
+                m_conn.Open();
+
+            string sql = "";
+            SqlCommand command;
+
+            if (bDa_duyet_xuat_in_DB == true)
+            {
+                sql += "UPDATE Chi_Tiet_Phieu_Xuat_Tam ";
+                sql += "Set So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai=@So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai=@Da_duyet_hoan_nhap_giu_lai ";
+                sql += "WHERE ID_chi_tiet_phieu_xuat_tam=@ID_chi_tiet_phieu_xuat_tam";
+
+                command = new SqlCommand(sql, m_conn, m_trans);
+                command.CommandType = CommandType.Text;
+            }
+            else
+            {
+                sql += "UPDATE Chi_Tiet_Phieu_Xuat_Tam ";
+                sql += "Set Ma_vat_tu=@Ma_vat_tu,Id_chat_luong=@Id_chat_luong,ID_kho=@ID_kho, So_luong_de_nghi=@So_luong_de_nghi,So_luong_thuc_xuat=@So_luong_thuc_xuat,Da_duyet_xuat_vat_tu=@Da_duyet_xuat_vat_tu,So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai=@So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai=@Da_duyet_hoan_nhap_giu_lai ";
+                sql += "WHERE ID_chi_tiet_phieu_xuat_tam=@ID_chi_tiet_phieu_xuat_tam";
+
+                command = new SqlCommand(sql, m_conn, m_trans);
+                command.CommandType = CommandType.Text;
+
+                command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
+                command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
+                command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = curID_kho;
+                command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
+                command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
+                command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+                command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
+            }
+
+            //sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam AND Ma_vat_tu=@Ma_vat_tu AND Id_chat_luong=@Id_chat_luong AND ID_kho=@ID_kho";
+
+            command.Parameters.Add("@ID_chi_tiet_phieu_xuat_tam", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_chi_tiet_phieu_xuat_tam"].ToString());
+            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
+            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
+            command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
+            
+
+            int result = command.ExecuteNonQuery();
+
+            if (result == -1)
+                return result;
+
+            //Trường hợp thêm 1 row mới, và row đó đã duyệt.
+            //1: Cập nhật tồn --> Chi tiết tồn
+            //2: Cập nhật nợ giữa các kho
+            //3: Cập nhật NV nợ VT
+            if (bDa_duyet_xuat_vat_tu == true && bDa_duyet_xuat_in_DB == false)
+            {
+                //Cập nhật vào Tồn Kho
+                int update_TonKho_result = update_TonKho(maPhieu, ID_Kho_Xuat, dt, row, dt_TonKho, m_trans, m_conn);
+
+                if (update_TonKho_result == -1)
+                    return update_TonKho_result;
+
+                //Cập nhật vào Nợ giữa các kho
+                if (ID_Kho_Xuat != curID_kho)
+                {
+                    int update_KhoMuonVT_result = update_KhoMuonVT(maPhieu, ID_Kho_Xuat, dt, row, dt_TonKho, m_trans, m_conn);
+
+                    if (update_KhoMuonVT_result == -1)
+                        return update_KhoMuonVT_result;
+                }
+            }
+
+            return result;
+        }
+
+        private int update_TonKho(string maPhieu, int ID_Kho_Xuat, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
+        {
+            string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
+            int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
+            int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
+
+            //clsTonKho TonKho = new clsTonKho();
+            DataRow curRow = dt_TonKho.Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu = '{1}' AND Id_chat_luong = '{2}'", iID_Kho, sMaVT, iID_ChatLuong)).FirstOrDefault();
+            if (curRow == null)
+            {
+                return -1;
+            }
+            Double SL_TrongKho = Double.Parse(curRow["So_luong"].ToString());
+            Double SL_ConLai = SL_TrongKho - Double.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            curRow["So_luong"] = SL_ConLai;
+
+            string sql_UpdateTonKho = "";
+            sql_UpdateTonKho += "UPDATE Ton_kho ";
+            sql_UpdateTonKho += "Set So_luong=@So_luong ";
+            sql_UpdateTonKho += "WHERE Ma_vat_tu=@Ma_vat_tu AND Id_chat_luong=@Id_chat_luong AND ID_kho=@ID_kho";
+
+            SqlCommand command_UpdateTonKho = new SqlCommand(sql_UpdateTonKho, m_conn, m_trans);
+            command_UpdateTonKho.CommandType = CommandType.Text;
+
+            command_UpdateTonKho.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = sMaVT;
+            command_UpdateTonKho.Parameters.Add("@ID_kho", SqlDbType.Int).Value = iID_Kho;
+            command_UpdateTonKho.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = iID_ChatLuong;
+
+            command_UpdateTonKho.Parameters.Add("@So_luong", SqlDbType.Float).Value = SL_ConLai;
+
+            int result_UpdateTonKho = command_UpdateTonKho.ExecuteNonQuery();
+
+            // Cập nhật Chi Tiết Tồn
+            if (result_UpdateTonKho != -1)
+            {
+                int result_ChiTietTonKho = update_ChiTietTonKho(maPhieu, dt, row, dt_TonKho, m_trans, m_conn);
+                return result_ChiTietTonKho;
+            }
+            else 
+                return result_UpdateTonKho;
+        }
+
+        private int update_ChiTietTonKho(string maPhieu, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
+        {
+            string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
+            int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
+            int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
+
+            DataRow[] tk = dt_TonKho.Select(string.Format("ID_kho='{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong='{2}'", iID_Kho, sMaVT, iID_ChatLuong));
+            int ID_ton_kho = Int32.Parse(tk[0]["ID_ton_kho"].ToString());
+            //Sai SL, phải cập nhật sl vào cả table
+            Double So_luong = Double.Parse(tk[0]["So_luong"].ToString());
+
+            //string Ngay_thay_doi = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            bool Tang_Giam = false;
+
+            //sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (Ma_phieu_xuat_tam,Ma_vat_tu,ID_kho,So_luong_de_nghi,So_luong_thuc_xuat,Da_duyet_xuat_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai,Id_chat_luong) ";
+            //sql += "VALUES(@Ma_phieu_xuat_tam,@Ma_vat_tu,@ID_kho,@So_luong_de_nghi,@So_luong_thuc_xuat,@Da_duyet_xuat_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@Da_duyet_hoan_nhap_giu_lai,@Id_chat_luong)";
+
+
+            string sql_ChiTietTonKho = "";
+            sql_ChiTietTonKho += "INSERT INTO Chi_Tiet_Ton_Kho ";
+            sql_ChiTietTonKho += "(ID_Ton_kho, Ma_phieu, So_luong, Ngay_thay_doi, Tang_Giam) ";
+            sql_ChiTietTonKho += "VALUES(@ID_Ton_kho, @Ma_phieu, @So_luong, @Ngay_thay_doi, @Tang_Giam) ";
+
+            SqlCommand command_ChiTietTonKho = new SqlCommand(sql_ChiTietTonKho, m_conn, m_trans);
+            command_ChiTietTonKho.CommandType = CommandType.Text;
+
+            command_ChiTietTonKho.Parameters.Add("@ID_Ton_kho", SqlDbType.Int).Value = ID_ton_kho;
+            command_ChiTietTonKho.Parameters.Add("@Ma_phieu", SqlDbType.VarChar, 50).Value = maPhieu;
+            command_ChiTietTonKho.Parameters.Add("@So_luong", SqlDbType.Float).Value = So_luong;
+            command_ChiTietTonKho.Parameters.Add("@Ngay_thay_doi", SqlDbType.DateTime).Value = DateTime.Now;
+            command_ChiTietTonKho.Parameters.Add("@Tang_Giam", SqlDbType.Bit).Value = Tang_Giam;
+
+            int result_ChiTietTonKho = command_ChiTietTonKho.ExecuteNonQuery();
+
+            return result_ChiTietTonKho;
+        }
+
+        /// <summary>
+        /// Cập nhật khi kho xuất cho NV khác với kho chính.
+        /// </summary>
+        private int update_KhoMuonVT(string maPhieu, int ID_Kho_Xuat, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
+        {
+            string sql_KhoMuonVT = "";
+            sql_KhoMuonVT += "INSERT INTO Kho_muon_vat_tu ";
+            sql_KhoMuonVT += "(ID_Kho, ID_Kho_muon, Ma_vat_tu, Id_chat_luong, So_luong, Ma_phieu_xuat_tam, Da_tra) ";
+            sql_KhoMuonVT += "VALUES(@ID_Kho, @ID_Kho_muon, @Ma_vat_tu, @Id_chat_luong, @So_luong, @Ma_phieu_xuat_tam, @Da_tra) ";
+
+            SqlCommand command_KhoMuonVT = new SqlCommand(sql_KhoMuonVT, m_conn, m_trans);
+            command_KhoMuonVT.CommandType = CommandType.Text;
+
+            command_KhoMuonVT.Parameters.Add("@ID_Kho", SqlDbType.Int).Value = ID_Kho_Xuat;
+            command_KhoMuonVT.Parameters.Add("@ID_Kho_muon", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString()); ;
+            command_KhoMuonVT.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
+            command_KhoMuonVT.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
+            command_KhoMuonVT.Parameters.Add("@So_luong", SqlDbType.Float).Value = Double.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
+            command_KhoMuonVT.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
+            command_KhoMuonVT.Parameters.Add("@Da_tra", SqlDbType.Bit).Value = false;
+
+            int result_KhoMuonVT = command_KhoMuonVT.ExecuteNonQuery();
+
+            return result_KhoMuonVT;
         }
 
         //Chỉ dùng nội bộ, ko đóng connection
@@ -630,153 +845,6 @@ namespace Inventory.EntityClass
             //    return false;
         }
 
-        public int Update_row(string maPhieu, DataTable dt, int row, DataTable dt_TonKho, DataRow KiemTra, SqlTransaction m_trans, SqlConnection m_conn)
-        {
-            //string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
-            //int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-            //int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
-
-            bool bDa_duyet_xuat_vat_tu = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
-            bool bDa_duyet_xuat_in_DB = bool.Parse(KiemTra["Da_duyet_xuat_vat_tu"].ToString()); //getBool_DaDuyetXuat(maPhieu, sMaVT, iID_Kho, iID_ChatLuong);
-
-            if (m_conn.State == ConnectionState.Closed)
-                m_conn.Open();
-
-            string sql = "";
-            SqlCommand command;
-
-            if (bDa_duyet_xuat_in_DB == true)
-            {
-                sql += "UPDATE Chi_Tiet_Phieu_Xuat_Tam ";
-                sql += "Set So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai=@So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai=@Da_duyet_hoan_nhap_giu_lai ";
-                sql += "WHERE ID_chi_tiet_phieu_xuat_tam=@ID_chi_tiet_phieu_xuat_tam";
-
-                command = new SqlCommand(sql, m_conn, m_trans);
-                command.CommandType = CommandType.Text;
-            }
-            else
-            {
-                sql += "UPDATE Chi_Tiet_Phieu_Xuat_Tam ";
-                sql += "Set Ma_vat_tu=@Ma_vat_tu,Id_chat_luong=@Id_chat_luong,ID_kho=@ID_kho, So_luong_de_nghi=@So_luong_de_nghi,So_luong_thuc_xuat=@So_luong_thuc_xuat,Da_duyet_xuat_vat_tu=@Da_duyet_xuat_vat_tu,So_luong_hoan_nhap=@So_luong_hoan_nhap,So_luong_giu_lai=@So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai=@Da_duyet_hoan_nhap_giu_lai ";
-                sql += "WHERE ID_chi_tiet_phieu_xuat_tam=@ID_chi_tiet_phieu_xuat_tam";
-
-                command = new SqlCommand(sql, m_conn, m_trans);
-                command.CommandType = CommandType.Text;
-
-                command.Parameters.Add("@Ma_phieu_xuat_tam", SqlDbType.VarChar, 50).Value = maPhieu;
-                command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = dt.Rows[row]["Ma_vat_tu"].ToString();
-                command.Parameters.Add("@ID_kho", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-                command.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
-                command.Parameters.Add("@So_luong_de_nghi", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_de_nghi"].ToString());
-                command.Parameters.Add("@So_luong_thuc_xuat", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
-                command.Parameters.Add("@Da_duyet_xuat_vat_tu", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_xuat_vat_tu"].ToString());
-            }
-
-            //sql += "WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam AND Ma_vat_tu=@Ma_vat_tu AND Id_chat_luong=@Id_chat_luong AND ID_kho=@ID_kho";
-
-            command.Parameters.Add("@ID_chi_tiet_phieu_xuat_tam", SqlDbType.Int).Value = Int32.Parse(dt.Rows[row]["ID_chi_tiet_phieu_xuat_tam"].ToString());
-            command.Parameters.Add("@So_luong_hoan_nhap", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_hoan_nhap"].ToString());
-            command.Parameters.Add("@So_luong_giu_lai", SqlDbType.Float).Value = float.Parse(dt.Rows[row]["So_luong_giu_lai"].ToString());
-            command.Parameters.Add("@Da_duyet_hoan_nhap_giu_lai", SqlDbType.Bit).Value = bool.Parse(dt.Rows[row]["Da_duyet_hoan_nhap_giu_lai"].ToString());
-            
-
-            int result = command.ExecuteNonQuery();
-
-            //Xử lý cập nhật SL tồn, nếu đã duyệt VT.
-            //Nếu đã duyệt == true, và trong DB Đã Duyệt == false;
-            //&& getBool_DaDuyetXuat(maPhieu, dt, row) == false
-            if (bDa_duyet_xuat_vat_tu == true && bDa_duyet_xuat_in_DB  == false)
-            {
-                int update_TonKho_result = update_TonKho(maPhieu, dt, row, dt_TonKho, m_trans, m_conn);
-                if (update_TonKho_result == -1)
-                {
-                    m_trans.Rollback();
-                    m_conn.Close();
-                    return -1;
-                }
-                else
-                    return update_TonKho_result;
-            }
-            return result;
-        }
-
-        private int update_TonKho(string maPhieu, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
-        {
-            string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
-            int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-            int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
-
-            //clsTonKho TonKho = new clsTonKho();
-            DataRow curRow = dt_TonKho.Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu = '{1}' AND Id_chat_luong = '{2}'", iID_Kho, sMaVT, iID_ChatLuong)).FirstOrDefault();
-            if (curRow == null)
-            {
-                return -1;
-            }
-            Double SL_TrongKho = Double.Parse(curRow["So_luong"].ToString());
-            Double SL_ConLai = SL_TrongKho - Double.Parse(dt.Rows[row]["So_luong_thuc_xuat"].ToString());
-            curRow["So_luong"] = SL_ConLai;
-
-            string sql_UpdateTonKho = "";
-            sql_UpdateTonKho += "UPDATE Ton_kho ";
-            sql_UpdateTonKho += "Set So_luong=@So_luong ";
-            sql_UpdateTonKho += "WHERE Ma_vat_tu=@Ma_vat_tu AND Id_chat_luong=@Id_chat_luong AND ID_kho=@ID_kho";
-
-            SqlCommand command_UpdateTonKho = new SqlCommand(sql_UpdateTonKho, m_conn, m_trans);
-            command_UpdateTonKho.CommandType = CommandType.Text;
-
-            command_UpdateTonKho.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = sMaVT;
-            command_UpdateTonKho.Parameters.Add("@ID_kho", SqlDbType.Int).Value = iID_Kho;
-            command_UpdateTonKho.Parameters.Add("@Id_chat_luong", SqlDbType.Int).Value = iID_ChatLuong;
-            command_UpdateTonKho.Parameters.Add("@So_luong", SqlDbType.Float).Value = SL_ConLai;
-
-            int result_UpdateTonKho = command_UpdateTonKho.ExecuteNonQuery();
-
-            // Cập nhật Chi Tiết Tồn
-            if (result_UpdateTonKho != -1)
-            {
-                int result_ChiTietTonKho = update_ChiTietTonKho(maPhieu, dt, row, dt_TonKho, m_trans, m_conn);
-                return result_ChiTietTonKho;
-            }
-
-            return result_UpdateTonKho;
-        }
-
-        private int update_ChiTietTonKho(string maPhieu, DataTable dt, int row, DataTable dt_TonKho, SqlTransaction m_trans, SqlConnection m_conn)
-        {
-            string sMaVT = dt.Rows[row]["Ma_vat_tu"].ToString();
-            int iID_Kho = Int32.Parse(dt.Rows[row]["ID_kho"].ToString());
-            int iID_ChatLuong = Int32.Parse(dt.Rows[row]["Id_chat_luong"].ToString());
-
-            DataRow[] tk = dt_TonKho.Select(string.Format("ID_kho='{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong='{2}'", iID_Kho, sMaVT, iID_ChatLuong));
-            int ID_ton_kho = Int32.Parse(tk[0]["ID_ton_kho"].ToString());
-            //Sai SL, phải cập nhật sl vào cả table
-            Double So_luong = Double.Parse(tk[0]["So_luong"].ToString());
-
-            //string Ngay_thay_doi = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-            bool Tang_Giam = false;
-
-            //sql += "INSERT INTO Chi_Tiet_Phieu_xuat_tam (Ma_phieu_xuat_tam,Ma_vat_tu,ID_kho,So_luong_de_nghi,So_luong_thuc_xuat,Da_duyet_xuat_vat_tu,So_luong_hoan_nhap,So_luong_giu_lai,Da_duyet_hoan_nhap_giu_lai,Id_chat_luong) ";
-            //sql += "VALUES(@Ma_phieu_xuat_tam,@Ma_vat_tu,@ID_kho,@So_luong_de_nghi,@So_luong_thuc_xuat,@Da_duyet_xuat_vat_tu,@So_luong_hoan_nhap,@So_luong_giu_lai,@Da_duyet_hoan_nhap_giu_lai,@Id_chat_luong)";
-
-
-            string sql_ChiTietTonKho = "";
-            sql_ChiTietTonKho += "INSERT INTO Chi_Tiet_Ton_Kho ";
-            sql_ChiTietTonKho += "(ID_Ton_kho, Ma_phieu, So_luong, Ngay_thay_doi, Tang_Giam) ";
-            sql_ChiTietTonKho += "VALUES(@ID_Ton_kho, @Ma_phieu, @So_luong, @Ngay_thay_doi, @Tang_Giam) ";
-
-            SqlCommand command_ChiTietTonKho = new SqlCommand(sql_ChiTietTonKho, m_conn, m_trans);
-            command_ChiTietTonKho.CommandType = CommandType.Text;
-
-            command_ChiTietTonKho.Parameters.Add("@ID_Ton_kho", SqlDbType.Int).Value = ID_ton_kho;
-            command_ChiTietTonKho.Parameters.Add("@Ma_phieu", SqlDbType.VarChar, 50).Value = maPhieu;
-            command_ChiTietTonKho.Parameters.Add("@So_luong", SqlDbType.Float).Value = So_luong;
-            command_ChiTietTonKho.Parameters.Add("@Ngay_thay_doi", SqlDbType.DateTime).Value = DateTime.Now;
-            command_ChiTietTonKho.Parameters.Add("@Tang_Giam", SqlDbType.Bit).Value = Tang_Giam;
-
-            int result_ChiTietTonKho = command_ChiTietTonKho.ExecuteNonQuery();
-
-            return result_ChiTietTonKho;
-        }
 
         /// <summary>
         /// Bảng này dùng cache tồn kho của các VT có trong phiếu, lấy ID

@@ -16,7 +16,7 @@ namespace Inventory.EntityClass
     {
         //  public 
         public int? ID_Nhan_vien;
-        public int? ID_kho;
+        public int ID_kho;
         public string Ma_phieu_xuat_tam;
         public DateTime Ngay_xuat;
         public string Ly_do;

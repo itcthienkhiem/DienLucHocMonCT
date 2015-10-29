@@ -1508,7 +1508,7 @@ namespace Inventory.XuatTamVatTu
 
             //btnSave dùng lưu thay đổi vào lưới
             btnSaveGrid.Enabled = false;
-            btnCancel.Enabled = false;
+            btnCancel.Enabled = true;
 
             //Disable cả grid
             gridChiTietPhieuXuatTam.Enabled = true;
@@ -1599,6 +1599,11 @@ namespace Inventory.XuatTamVatTu
         private void chkboxXacNhanXuat_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chkBox = (CheckBox)sender;
+
+            if (chkBox.Checked == false)
+            {
+                return;
+            }
 
             //if (getDouble(txtSLDN) == 0)
             //{

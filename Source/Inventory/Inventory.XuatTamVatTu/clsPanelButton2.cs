@@ -221,7 +221,7 @@ namespace Inventory.XuatTamVatTu
                 if (btnEdit != null && getButtonStatus(enumButton2.SuaLuoi)) btnEdit.Enabled = true;
 
                 if (btnSave != null && getButtonStatus(enumButton2.LuuThayDoiVaoLuoi)) btnSave.Enabled = false;
-                if (btnCancel != null && getButtonStatus(enumButton2.HuySuaLuoi)) btnCancel.Enabled = false;
+                if (btnCancel != null && getButtonStatus(enumButton2.HuySuaLuoi)) btnCancel.Enabled = true;
             }
         }
 
@@ -459,14 +459,14 @@ namespace Inventory.XuatTamVatTu
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (!isGridClickNone())
-            {
-                ResetGridClickStatus();
+            //if (!isGridClickNone())
+            //{
+            ResetGridClickStatus();
 
-                ResetGridButton();
+            ResetGridButton();
 
-                frmAct.Invoke(enumFormAction2.ResetGridInputForm);
-            }
+            frmAct.Invoke(enumFormAction2.ResetGridInputForm);
+            //}
         }
 
         /*
