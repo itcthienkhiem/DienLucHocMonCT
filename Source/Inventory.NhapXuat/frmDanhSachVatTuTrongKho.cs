@@ -38,7 +38,10 @@ namespace Inventory.NhapXuat
                 gridTonKhoThuc.DataSource = clsTonKho.getAll(cbKho.Text, cbChatLuong.Text, cbTenVatTu.Text, cbMaVatTu.Text);
             }
             catch (Exception ex)
-            { 
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+
+
             }
 
         }

@@ -274,14 +274,14 @@ namespace Inventory.NhapXuat
             try
             {
                 if (rdoChuaDuyet.Checked == true)
-                    gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(false, cbbLoaiPhieu.SelectedValue.ToString());
+                    gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(false, cbbLoaiPhieu.Text.ToString());
                 else
                     if (rdoDaDuyet.Checked == true)
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(true, cbbLoaiPhieu.SelectedValue.ToString());
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(true, cbbLoaiPhieu.Text.ToString());
                     else
                         gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll();
                 this.gridDanhSachPhieuNhap.Refresh();
-                this.gridDanhSachPhieuNhap.Parent.Refresh();
+               // this.gridDanhSachPhieuNhap.Parent.Refresh();
             }
             catch (Exception ex)
             {

@@ -50,7 +50,7 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
-                              where ep.Da_phan_kho == status && ep.ID_Loai_Phieu_Nhap.ToString().Contains(value)
+                              where ep.Da_phan_kho .ToString().Contains( status.ToString()) && ep.ID_Loai_Phieu_Nhap.ToString().Contains(value)
 
                               select ep).ToList();
             // return entryPoint;
