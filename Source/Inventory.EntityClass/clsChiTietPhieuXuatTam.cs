@@ -204,7 +204,7 @@ namespace Inventory.EntityClass
                                       ctpxt.Da_duyet_xuat_vat_tu,
                                       ctpxt.So_luong_hoan_nhap,
                                       ctpxt.So_luong_giu_lai,
-                                      ctpxt.Da_duyet_hoan_nhap_giu_lai,
+                                      //ctpxt.Da_duyet_hoan_nhap_giu_lai,
                                       ctpxt.Id_chat_luong,
                                       cl.Loai_chat_luong
                                   }).ToList();

@@ -332,7 +332,7 @@ namespace Inventory.NhapXuat
                             //duyệt qua từng dòng insert chi tiết phiếu nhập vào
                             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
                             string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
-
+                         // số lượng hoàn nhập hay số lượng lãnh vật tư tùy vào ID loai phieu
                             double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
                             int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
 
@@ -380,6 +380,7 @@ namespace Inventory.NhapXuat
                                   
                                     gdk.ID_kho = idKho;
                                    DataTable temp = gdk.GetAll();
+                                    //số lượng gối đầu
                                    double soluonght = double.Parse(temp.Rows[0]["So_luong"].ToString());
                                    soluonght = soluonght - soluong;
                                    gdk.So_Luong = soluonght;

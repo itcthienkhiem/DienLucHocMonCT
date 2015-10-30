@@ -243,13 +243,17 @@ namespace Inventory.EntityClass
                         cttks.Ma_phieu = maphieu;
                         cttks.Ngay_xuat_chung_tu = entryPointPN.First().Ngay_lap;
                         cttks.Dien_giai = entryPointPN.First().Ly_do;
-                        if(LNP == true)
-                        cttks.SL_Nhap = soluong;
+                        if (LNP == true)
+                        {
+                            cttks.SL_Nhap = soluong;
+                            cttks.Loai_phieu = true;
+                        }
                         else
-                            cttks.SL_Xuat = soluong;
-
+                        {
+                            cttks.SL_Xuat = soluong; cttks.Loai_phieu = false;
+                        }
                        // cttks.SL_Ton = soluong;// nếu đây là dòng đầu tiên trong danh sách thì số lượng tồn = sl thực lãnh
-                        cttks.Loai_phieu = true;
+                        
                         cttks.Ngay_nhap_xuat = NgayNhap;
                         help.ent.Chi_tiet_the_kho.Add(cttks);
                         help.ent.SaveChanges();
