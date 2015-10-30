@@ -15,7 +15,7 @@ namespace Inventory.EntityClass
     public class clsPhieuXuatTamVatTu
     {
         //  public 
-        public int? ID_Nhan_vien;
+        public int ID_Nhan_vien;
         public int ID_kho;
         public string Ma_phieu_xuat_tam;
         public DateTime Ngay_xuat;

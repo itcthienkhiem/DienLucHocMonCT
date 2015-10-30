@@ -18,7 +18,12 @@ namespace Inventory.XuatTamVatTu
     /// [x] Cập nhật dữ liệu tồn sau khi xuất bình thường --> Đang làm...
     /// [.] Xử lý vấn đề nhiều loại VT trên cùng 1 grid --> in processing... --> 80%, check sau
     /// [.] Sửa lại phần cập nhật vào DB --> căn bản xong
-    /// [ ] Xử lý phần mượn vt giữa các kho
+    /// [x] Xử lý phần mượn vt giữa các kho
+    /// [ ] Xử lý tính toán SL thực xuất --> Tạm xong 50%
+    /// [ ] Xử lý trường hợp giữ lại VT
+    /// [ ] Xử lý đóng phiếu xuất.
+    /// [ ] Xử lý thêm vào thẻ kho
+    /// [ ] Phần hoàn nhập - giữa lại: Nếu đã giữ lại, thì khi trả nợ xong mới dc set duyệt hoàn nhập, hoặc hoàn nhập hết cái đang giữ.
     /// 
     /// Setup
     /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
@@ -282,6 +287,7 @@ namespace Inventory.XuatTamVatTu
 
         /// <summary>
         /// Btn chỉ hiện nếu nv đó còn đang giữ vt, khi click vào thì thông báo nv còn giữ lại vt.
+        /// Thực hiện Add những vt còn nợ vào grid
         /// </summary>
         private void btnCheckNVGiuVT_Click(object sender, EventArgs e)
         {
@@ -647,6 +653,8 @@ namespace Inventory.XuatTamVatTu
             //Chưa setup func, và có lẽ ko cần thiết
             //dr["So_luong"] = "0";
 
+            dr["So_luong_dang_giu"] = txtSLDangGiu.Text;
+
             dr["So_luong_de_nghi"] = txtSLDN.Text;
             dr["So_luong_thuc_xuat"] = txtSLTX.Text;
             dr["Da_duyet_xuat_vat_tu"] = chkboxXacNhanXuat.Checked;
@@ -654,7 +662,8 @@ namespace Inventory.XuatTamVatTu
             //Chưa cho sửa
             dr["So_luong_hoan_nhap"] = txtSLHN.Text;
             dr["So_luong_giu_lai"] = txtSLGL.Text;
-            dr["Da_duyet_hoan_nhap_giu_lai"] = chkboxXacNhanHoanNhapGiuLai.Checked;
+            dr["Da_duyet_hoan_nhap"] = chkboxXacNhanHoanNhap.Checked;
+            dr["Da_duyet_giu_lai"] = chkboxXacNhanGiuLai.Checked;
 
             //not use
             //dr["So_luong_su_dung"] = "0";
@@ -687,9 +696,10 @@ namespace Inventory.XuatTamVatTu
                     DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[selectedRowCount];
 
                     bool bXacNhanXuat = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
-                    bool bXacNhanHoanNhapGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                    bool bXacNhanHoanNhap = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
+                    bool bXacNhanGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
 
-                    if (bXacNhanXuat && bXacNhanHoanNhapGiuLai)
+                    if (bXacNhanXuat && bXacNhanHoanNhap)
                     {
                         MessageBox.Show("Bạn không thể sửa vật tư đã duyệt!");
                         return;
@@ -722,7 +732,7 @@ namespace Inventory.XuatTamVatTu
 
                     cbChatLuong.SelectedValue = Int32.Parse(selectedRow.Cells["_Id_chat_luong"].Value.ToString());
 
-                    
+                    txtSLDangGiu.Text = selectedRow.Cells["_So_luong_dang_giu"].Value.ToString();
 
                     txtSLDN.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
                     txtSLTX.Text = selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString();
@@ -731,7 +741,8 @@ namespace Inventory.XuatTamVatTu
 
                     txtSLHN.Text = selectedRow.Cells["_So_luong_hoan_nhap"].Value.ToString();
                     txtSLGL.Text = selectedRow.Cells["_So_luong_giu_lai"].Value.ToString();
-                    chkboxXacNhanHoanNhapGiuLai.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                    chkboxXacNhanGiuLai.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
+                    chkboxXacNhanHoanNhap.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
                 }
             }
             catch (Exception ex)
@@ -755,9 +766,11 @@ namespace Inventory.XuatTamVatTu
                 DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[selectedRowCount];
 
                 bool bXacNhanXuat = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
-                bool bXacNhanHoanNhapGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                //bool bXacNhanHoanNhapGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                //bool bXacNhanHoanNhap = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
+                //bool bXacNhanGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
 
-                if (bXacNhanXuat || bXacNhanHoanNhapGiuLai)
+                if (bXacNhanXuat)
                 {
                     MessageBox.Show("Bạn không thể xóa vật tư đã duyệt!");
                     return;
@@ -969,26 +982,6 @@ namespace Inventory.XuatTamVatTu
 
             txtSL.Text = SL.ToString();
 
-            ////B1:Check VT
-            //if (cbMaVatTu.SelectedIndex != -1)
-            //{
-            //    //Check Chất Lượng
-            //    if (cbChatLuong.SelectedIndex != -1)
-            //    {
-            //        //Check ID Kho
-
-            //        if (ID_kho >= 0)
-            //        {
-            //            string Ma_vat_tu = cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem); //cbMaVatTu.SelectedText.ToString(); //cbMaVatTu.Text.Trim().ToString();
-            //            int Id_chat_luong = Int32.Parse(cbChatLuong.SelectedValue.ToString());
-
-            //            clsTonKho TonKho = new clsTonKho();
-            //            Double SL = TonKho.getSL(Ma_vat_tu, ID_kho, Id_chat_luong);
-
-            //            txtSL.Text = SL.ToString();
-            //        }
-            //    }
-            //}
         }
 
 
@@ -1051,9 +1044,12 @@ namespace Inventory.XuatTamVatTu
                 DataGridViewRow selectedRow = gridChiTietPhieuXuatTam.Rows[i];
 
                 bool bXacNhanXuat = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
-                bool bXacNhanHoanNhapGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                //bool bXacNhanHoanNhapGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap_giu_lai"].Value.ToString());
+                bool bXacNhanHoanNhap = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
+                bool bXacNhanGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
 
-                if (bXacNhanXuat == false || bXacNhanHoanNhapGiuLai == false)
+
+                if (bXacNhanXuat == false || bXacNhanHoanNhap == false || bXacNhanGiuLai == false)
                 {
                     return false;
                 }
@@ -1107,12 +1103,14 @@ namespace Inventory.XuatTamVatTu
                 dr["Loai_chat_luong"] = dt.Rows[i]["Loai_chat_luong"];
                 dr["ID_kho"] = dt.Rows[i]["ID_kho"];
                 dr["Ten_kho"] = dt.Rows[i]["Ten_kho"];
+                dr["So_luong_dang_giu"] = dt.Rows[i]["So_luong_dang_giu"];
                 dr["So_luong_de_nghi"] = dt.Rows[i]["So_luong_de_nghi"];
                 dr["So_luong_thuc_xuat"] = dt.Rows[i]["So_luong_thuc_xuat"];
                 dr["Da_duyet_xuat_vat_tu"] = dt.Rows[i]["Da_duyet_xuat_vat_tu"];
                 dr["So_luong_hoan_nhap"] = dt.Rows[i]["So_luong_hoan_nhap"];
                 dr["So_luong_giu_lai"] = dt.Rows[i]["So_luong_giu_lai"];
-                dr["Da_duyet_hoan_nhap_giu_lai"] = dt.Rows[i]["Da_duyet_hoan_nhap_giu_lai"];
+                dr["Da_duyet_hoan_nhap"] = dt.Rows[i]["Da_duyet_hoan_nhap"];
+                dr["Da_duyet_giu_lai"] = dt.Rows[i]["Da_duyet_giu_lai"];
                 dr["Ten_don_vi_tinh"] = dt.Rows[i]["Ten_don_vi_tinh"];
                 dataTableChiTietPhieuXuatTam.Rows.Add(dr);
             }
@@ -1442,7 +1440,8 @@ namespace Inventory.XuatTamVatTu
             //SL Giữ lại phải ít hơn hoặc bằng SL Đề nghị
             txtSLGL.Enabled = false;
             txtSLHN.Enabled = false;
-            chkboxXacNhanHoanNhapGiuLai.Enabled = false;
+            chkboxXacNhanGiuLai.Enabled = false;
+            chkboxXacNhanHoanNhap.Enabled = false;
 
             btnAddToGrid.Enabled = false;
             btnDelRowInGrid.Enabled = false;
@@ -1500,7 +1499,8 @@ namespace Inventory.XuatTamVatTu
             //Khi thêm mới, ko xác nhận hoàn nhập
             txtSLGL.Enabled = false;
             txtSLHN.Enabled = false;
-            chkboxXacNhanHoanNhapGiuLai.Enabled = false;
+            chkboxXacNhanGiuLai.Enabled = false;
+            chkboxXacNhanHoanNhap.Enabled = false;
 
             btnAddToGrid.Enabled = true;
             btnDelRowInGrid.Enabled = true;
@@ -1544,13 +1544,16 @@ namespace Inventory.XuatTamVatTu
             chkboxEnableMuonVT.Checked = false;
             txtSL.Text = "-";
 
+            txtSLDangGiu.Text = "0";
+
             txtSLDN.Text = "0";
             txtSLTX.Text = "0";
             chkboxXacNhanXuat.Checked = false;
 
             txtSLGL.Text = "0";
             txtSLHN.Text = "0";
-            chkboxXacNhanHoanNhapGiuLai.Checked = false;
+            chkboxXacNhanHoanNhap.Checked = false;
+            chkboxXacNhanGiuLai.Enabled = false;
         }
 
         private void EnableGridInputForm()
@@ -1576,7 +1579,8 @@ namespace Inventory.XuatTamVatTu
             //Khi thêm mới, ko xác nhận hoàn nhập
             txtSLGL.Enabled = false;
             txtSLHN.Enabled = false;
-            chkboxXacNhanHoanNhapGiuLai.Enabled = false;
+            chkboxXacNhanHoanNhap.Enabled = false;
+            chkboxXacNhanGiuLai.Enabled = false;
         }
 
         public void CloseForm()
@@ -1633,29 +1637,14 @@ namespace Inventory.XuatTamVatTu
                 cbMuonVTTaiKho.Enabled = false;
                 chkboxEnableMuonVT.Enabled = false;
 
-                txtSLHN.Enabled = true;
-                txtSLGL.Enabled = true;
-                chkboxXacNhanHoanNhapGiuLai.Enabled = true;
+                //txtSLHN.Enabled = true;
+                //txtSLGL.Enabled = true;
+                //chkboxXacNhanHoanNhapGiuLai.Enabled = true;
 
                 chkboxXacNhanXuat.Enabled = false;
             }
 
             setSLVatTu();
-        }
-
-        /// <summary>
-        /// Cần ktra gia tri nhập vào
-        /// </summary>
-        private void chkboxXacNhanHoanNhapGiuLai_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox chkBox = (CheckBox)sender;
-
-            if (chkBox.Checked)
-            {
-                txtSLHN.Enabled = false;
-                txtSLGL.Enabled = false;
-                chkboxXacNhanHoanNhapGiuLai.Enabled = false;
-            }
         }
 
         /// <summary>
@@ -1713,6 +1702,25 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
-        
+        /// <summary>
+        /// Trước mắt SL TX sẽ bằng SL DN
+        /// </summary>
+        private void txtSLDN_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtSLDN_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtSoLuongDeNghi = (TextBox)sender;
+            double tmp;
+            if (Double.TryParse(txtSoLuongDeNghi.Text, out tmp) == true)
+            {
+                //Nếu ko có giữ vt đó thì lấy bằng SL thực xuất
+                //Nếu có nợ, thì lấy sldn - sl giữ
+                txtSLTX.Text = (tmp - Double.Parse(txtSLDangGiu.Text)).ToString();
+
+            }
+        }
     }
 }
