@@ -52,6 +52,7 @@ namespace Inventory.XuatTamVatTu
             PanelButton.ResetButton();
 
             LoadData();
+            InitCombo();
         }
         public void InitCombo()
         {
