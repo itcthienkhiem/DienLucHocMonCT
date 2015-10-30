@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -664,20 +664,20 @@ namespace Inventory.EntityClass
         {
             int curID_kho = Int32.Parse(new_dt.Rows[row]["ID_kho"].ToString());
 
-            //Cập nhật vào Tồn Kho
+                //Cập nhật vào Tồn Kho
             int update_TonKho_result = update_TonKho(row, m_trans, m_conn);
 
-            if (update_TonKho_result == -1)
-                return update_TonKho_result;
+                if (update_TonKho_result == -1)
+                    return update_TonKho_result;
 
-            //Cập nhật vào Nợ giữa các kho
-            if (ID_Kho_Xuat != curID_kho)
-            {
+                //Cập nhật vào Nợ giữa các kho
+                if (ID_Kho_Xuat != curID_kho)
+                {
                 int update_KhoMuonVT_result = update_KhoMuonVT(row, m_trans, m_conn);
 
-                if (update_KhoMuonVT_result == -1)
-                    return update_KhoMuonVT_result;
-            }
+                    if (update_KhoMuonVT_result == -1)
+                        return update_KhoMuonVT_result;
+                }
 
             //Cập nhật thẻ kho
             int update_ChiTietTheKho_result = update_ChiTietTheKho(row, m_trans, m_conn);
