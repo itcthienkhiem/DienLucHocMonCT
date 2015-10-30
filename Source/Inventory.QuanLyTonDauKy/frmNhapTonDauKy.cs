@@ -140,7 +140,7 @@ namespace Inventory.QuanLyTonDauKy
         /// </summary>
         public void LoadData()
         {
-            gridTonDauKy.DataSource = TonDauKy.GetAll();
+            gridTonDauKy.DataSource = TonDauKy.GetAll("");
         }
 
         public void CloseForm()
