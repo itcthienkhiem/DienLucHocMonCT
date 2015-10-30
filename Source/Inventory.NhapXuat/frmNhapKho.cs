@@ -168,10 +168,10 @@ namespace Inventory.NhapXuat
                                     chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                     chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
-                                    chitiet.So_luong_yeu_cau = double.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
-                                    chitiet.Don_gia = double.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                    chitiet.Thanh_tien = double.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+                                    chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                    chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                    chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                    chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                     chitiet.Da_duyet = false;
                                     
                                     chitiet.Insert(DAL);
@@ -257,10 +257,10 @@ namespace Inventory.NhapXuat
                                         chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                         chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                         chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
-                                        chitiet.So_luong_yeu_cau = double.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                        chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
-                                        chitiet.Don_gia = double.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                        chitiet.Thanh_tien = double.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+                                        chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                        chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                        chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                        chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                         chitiet.Da_duyet = false;
                                         chitiet.ID_Chat_luong = int .Parse(cbChatLuong.SelectedValue.ToString());
                                         if (chitiet.Insert(DAL) == 1)
@@ -1157,6 +1157,7 @@ namespace Inventory.NhapXuat
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
         {
+
 
             double number;
             try

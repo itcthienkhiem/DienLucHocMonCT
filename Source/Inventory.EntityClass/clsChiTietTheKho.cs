@@ -19,9 +19,9 @@ namespace Inventory.EntityClass
         public DateTime Ngay_xuat_chung_tu;
         public DateTime Ngay_nhap_xuat;
         public string Dien_giai;
-        public double SL_Nhap;
-        public double SL_Xuat;
-        public double SL_Ton;
+        public decimal SL_Nhap;
+        public decimal SL_Xuat;
+        public decimal SL_Ton;
         public bool Da_quyet_toan;
         public string Ghi_chu;
 

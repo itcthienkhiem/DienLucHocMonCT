@@ -46,8 +46,8 @@ namespace Inventory.QuanLyTonDauKy
             //nếu số lượng trong kho < số lượng trả nợ thì báo lỗi
             try
             {
-                double sln = double.TryParse(txtSoLuongMuon.Text.ToString(), out sln) ? double.Parse(txtSoLuongMuon.Text) : 0;
-                double slt = double.TryParse(txtSoLuongTraNo.Text.ToString(), out slt) ? double.Parse(txtSoLuongTraNo.Text) : 0;
+                decimal sln = decimal.TryParse(txtSoLuongMuon.Text.ToString(), out sln) ? decimal.Parse(txtSoLuongMuon.Text) : 0;
+                decimal slt = decimal.TryParse(txtSoLuongTraNo.Text.ToString(), out slt) ? decimal.Parse(txtSoLuongTraNo.Text) : 0;
                 if (sln < slt)
                 {
                     MessageBox.Show("Số lượng trả nợ phải nhỏ hơn hoặc bằng số lượng nợ");

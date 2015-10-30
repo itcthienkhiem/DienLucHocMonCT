@@ -18,10 +18,10 @@ namespace Inventory.EntityClass
         public string Ma_vat_tu;
         public int ID_Chat_luong;
         public string Don_vi;
-        public double? So_luong_yeu_cau;
-        public double? So_luong_thuc_lanh;
-        public double? Don_gia;
-        public double? Thanh_tien;
+        public decimal? So_luong_yeu_cau;
+        public decimal? So_luong_thuc_lanh;
+        public decimal? Don_gia;
+        public decimal? Thanh_tien;
         public int ID_Don_vi_tinh;
         public string Ten_DVT;
         public bool Da_duyet;

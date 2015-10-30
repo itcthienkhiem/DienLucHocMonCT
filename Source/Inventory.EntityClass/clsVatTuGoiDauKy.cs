@@ -12,7 +12,7 @@ namespace Inventory.EntityClass
     {
         public int ID_VT_Goi_Dau;
         public string Ma_vat_tu;
-        public double So_Luong;
+        public decimal So_Luong;
         public int ID_ky;
         public int ID_chat_luong;
         public int ID_kho;

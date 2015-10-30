@@ -14,7 +14,7 @@ namespace Inventory.EntityClass
         public int ID_ton_kho;
         public int ID_kho;
         public string Ma_vat_tu;
-        public double So_luong;
+        public decimal So_luong;
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
@@ -238,7 +238,7 @@ namespace Inventory.EntityClass
         /// <param name="_ID_kho"></param>
         /// <param name="mavattu"></param>
         /// <returns></returns>
-        public static double? getAllVT(int _ID_kho, string mavattu)
+        public static decimal? getAllVT(int _ID_kho, string mavattu)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -261,7 +261,7 @@ namespace Inventory.EntityClass
 
              foreach (var record in entryPoint)
                     {
-                        double? soluong = record.So_luong;
+                        decimal? soluong = record.So_luong;
                         return soluong;
                     }
             };

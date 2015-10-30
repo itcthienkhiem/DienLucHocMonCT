@@ -16,13 +16,13 @@ namespace Inventory.BusinessClass
      public string Ten_Chat_luong;
      public int ID_chat_luong;
     // public string Ma_vat_tu;
-     public double soluongtra;
-     public double soluongmuon;
+     public decimal soluongtra;
+     public decimal soluongmuon;
      public string Ma_vat_tu;
      public string Ten_vat_tu;
      public string Ma_phieu;
      public int idnvt;
-     public clsBusTraNo(string mvt, string tvt, int idkho, int idkhomuon, string tenchatluong, int idcl, double soluongmuon,string maphieu,int idnvt)
+     public clsBusTraNo(string mvt, string tvt, int idkho, int idkhomuon, string tenchatluong, int idcl, decimal soluongmuon, string maphieu, int idnvt)
      {
          this.idnvt = idnvt;
          this.Ma_vat_tu = mvt;
@@ -74,7 +74,7 @@ namespace Inventory.BusinessClass
                            select d).First();
                  // cập nhật lại số lượng
                  // số lượng tồn kho 
-                 double slKho = (double)dm.So_luong + soluongtra;
+                 decimal slKho = (decimal)dm.So_luong + soluongtra;
                  dm.So_luong = slKho;
                  help.ent.Ton_kho.Attach(dm);
                  help.ent.Entry(dm).State = EntityState.Modified;

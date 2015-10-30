@@ -161,7 +161,7 @@ namespace Inventory.QuanLyTonDauKy
                 int idkho = int.Parse(SelectedRow.Cells["id_kho"].Value.ToString());
                 int idKhoMuon = int.Parse(SelectedRow.Cells["id_kho_muon"].Value.ToString());
                 string mavt = SelectedRow.Cells["ma_vat_tu"].Value.ToString();
-                double sl = double.Parse(SelectedRow.Cells["so_luong"].Value.ToString());// số lượng nợ
+                decimal sl = decimal.Parse(SelectedRow.Cells["so_luong"].Value.ToString());// số lượng nợ
                 string maphieu = SelectedRow.Cells["ma_phieu_xuat_tam"].Value.ToString();
                 string Ten_chat_luong = SelectedRow.Cells["Ten_chat_luong"].Value.ToString();
                 int id = int.Parse(SelectedRow.Cells["ID_kho_muon_vat_tu"].Value.ToString());

@@ -66,7 +66,7 @@ namespace Inventory.NhapXuat
                     //  string soluong = SelectedRow.Cells["So_luong"].Value.ToString();
                     string tenvt = SelectedRow.Cells["Ten_vat_tu"].Value.ToString();
                     string tenkho = cbKhoNhanVatTu.Text;
-                    double soluong = double.Parse(SelectedRow.Cells["So_luong_thuc_lanh"].Value.ToString());
+                    decimal soluong = decimal.Parse(SelectedRow.Cells["So_luong_thuc_lanh"].Value.ToString());
                     //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString();
                     int idcl = int.Parse(SelectedRow.Cells["ID_chat_luong"].Value.ToString());
                     frmChiTietNhanVatTu ob = new frmChiTietNhanVatTu(this, maphieu, mavt, idKho, soluong, tenvt, tenkho, idcl);
@@ -96,7 +96,7 @@ namespace Inventory.NhapXuat
                        
                         string tenvt = gridDanhSachPhieuNhap.Rows[i].Cells["Ten_vat_tu"].Value.ToString();
                        // string tenkho = cbKhoNhanVatTu.Text;
-                        double soluong = double.Parse(gridDanhSachPhieuNhap.Rows[i].Cells["So_luong_thuc_lanh"].Value.ToString());
+                        decimal soluong = decimal.Parse(gridDanhSachPhieuNhap.Rows[i].Cells["So_luong_thuc_lanh"].Value.ToString());
                         int idcl = int.Parse(gridDanhSachPhieuNhap.Rows[i].Cells["ID_chat_luong"].Value.ToString());
 
                         clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();

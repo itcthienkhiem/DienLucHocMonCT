@@ -161,10 +161,10 @@ namespace Inventory.NhapXuat
                                     chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                     chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                     chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
-                                    chitiet.So_luong_yeu_cau = double.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                    chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
-                                    chitiet.Don_gia = double.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                    chitiet.Thanh_tien = double.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+                                    chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                    chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                    chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                    chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                     chitiet.Da_duyet = false;
                                     
                                     chitiet.Insert(DAL);
@@ -250,10 +250,10 @@ namespace Inventory.NhapXuat
                                         chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                         chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                         chitiet.ID_Chat_luong =int.Parse (dataTable1.Rows[i]["ID_Chat_luong"].ToString());
-                                        chitiet.So_luong_yeu_cau = double.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
-                                        chitiet.So_luong_thuc_lanh = double.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
-                                        chitiet.Don_gia = double.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
-                                        chitiet.Thanh_tien = double.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
+                                        chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                        chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                        chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                        chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                         chitiet.Da_duyet = false;
                                         chitiet.ID_Chat_luong = int .Parse(cbChatLuong.SelectedValue.ToString());
                                         if (chitiet.Insert(DAL) == 1)
@@ -1124,17 +1124,31 @@ namespace Inventory.NhapXuat
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+
+            double number;
+            try
             {
-                e.Handled = true;
+                number = double.Parse(txtSLYC.Text);
+                txtSLYC.BackColor = Color.White;
+            }
+            catch
+            {
+                txtSLYC.BackColor = Color.Red;
             }
         }
 
         private void txtSLTX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+
+            double number;
+            try
             {
-                e.Handled = true;
+                number = double.Parse(txtSLTX.Text);
+                txtSLTX.BackColor = Color.White;
+            }
+            catch
+            {
+                txtSLTX.BackColor = Color.Red;
             }
         }
 
@@ -1148,16 +1162,7 @@ namespace Inventory.NhapXuat
 
         private void txtSLYC_Validating(object sender, CancelEventArgs e)
         {
-            string errorMsg = "Số lượng yêu cầu ko đúng. Xin hãy nhập số!";
-            if ( txtSLYC.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txtSLYC.Select(0, txtSLYC.Text.Length);
 
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txtSLYC, errorMsg);
-            }
         }
 
         private void txtSLYC_Validated(object sender, EventArgs e)

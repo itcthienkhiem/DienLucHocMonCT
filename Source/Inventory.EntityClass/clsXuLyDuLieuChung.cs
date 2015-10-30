@@ -33,7 +33,7 @@ namespace Inventory.EntityClass
         /// <param name="NgayNhap"></param>
         /// <param name="ID_chat_luong"></param>
         /// <returns></returns>
-        public int InsertTonKho(DatabaseHelper help, string mavt, int idkho, double soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong, bool LNP)
+        public int InsertTonKho(DatabaseHelper help, string mavt, int idkho, decimal soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong, bool LNP)
         {
 
           
@@ -322,7 +322,7 @@ namespace Inventory.EntityClass
         /// hàm xữ lý thêm vật tư vào kho liên quan đến nhiều lớp, tính toán phức tạp
         /// </summary>
         /// <returns></returns>
-        public int InsertTonKho(string mavt, int idkho, double soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong)
+        public int InsertTonKho(string mavt, int idkho, decimal soluong, string maphieu, DateTime NgayNhap, int ID_chat_luong)
         {
 
             DatabaseHelper help = new DatabaseHelper();

@@ -333,7 +333,7 @@ namespace Inventory.NhapXuat
                             clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
                             string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
                          // số lượng hoàn nhập hay số lượng lãnh vật tư tùy vào ID loai phieu
-                            double soluong = double.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
+                            decimal soluong = decimal.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
                             int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
 
                             DateTime ngayNhap = DateTime.Now;
@@ -352,7 +352,7 @@ namespace Inventory.NhapXuat
                                     {
                                         //nếu có cập nhật lại gối đầu 
                                         DataTable temp = gdk.GetAll();
-                                        double sl =double.Parse( temp.Rows[0]["So_luong"].ToString());
+                                        decimal sl = decimal.Parse(temp.Rows[0]["So_luong"].ToString());
                                         gdk.ID_VT_Goi_Dau = int.Parse(temp.Rows[0]["ID_VT_Goi_Dau"].ToString());
                                         gdk.So_Luong = gdk.So_Luong + sl;
 
@@ -381,7 +381,7 @@ namespace Inventory.NhapXuat
                                     gdk.ID_kho = idKho;
                                    DataTable temp = gdk.GetAll();
                                     //số lượng gối đầu
-                                   double soluonght = double.Parse(temp.Rows[0]["So_luong"].ToString());
+                                   decimal soluonght = decimal.Parse(temp.Rows[0]["So_luong"].ToString());
                                    soluonght = soluonght - soluong;
                                    gdk.So_Luong = soluonght;
                                    gdk.ID_VT_Goi_Dau =int.Parse( temp.Rows[0]["ID_VT_Goi_Dau"].ToString());

@@ -294,7 +294,7 @@ namespace Inventory.NhapXuat
                         {
                             vt.Insert(help);
                         }
-                        ctpn.So_luong_thuc_lanh = double.Parse(So_luong_thuc_lanh);
+                        ctpn.So_luong_thuc_lanh = decimal.Parse(So_luong_thuc_lanh);
                         ctpn.Insert(help);
                         backgroundWorker1.ReportProgress(i);
                        // System.Threading.Thread.Sleep(100); 
