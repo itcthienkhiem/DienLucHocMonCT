@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -58,6 +58,8 @@
             this.dtNgayXuat = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkboxXacNhanGiuLai = new System.Windows.Forms.CheckBox();
+            this.chkboxXacNhanHoanNhap = new System.Windows.Forms.CheckBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtSLGL = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -73,6 +75,7 @@
             this.cbMuonVTTaiKho = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.txtSLDangGiu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelRowInGrid = new System.Windows.Forms.Button();
             this.btnSaveGrid = new System.Windows.Forms.Button();
@@ -83,6 +86,7 @@
             this.cbChatLuong = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.gridChiTietPhieuXuatTam = new System.Windows.Forms.DataGridView();
             this.dataSet1 = new System.Data.DataSet();
@@ -101,6 +105,8 @@
             this.Id_chat_luong = new System.Data.DataColumn();
             this.Loai_chat_luong = new System.Data.DataColumn();
             this.ID_chi_tiet_phieu_xuat_tam = new System.Data.DataColumn();
+            this.So_luong_dang_giu = new System.Data.DataColumn();
+            this.Da_duyet_giu_lai = new System.Data.DataColumn();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -126,10 +132,7 @@
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.btnCheckNVGiuVT = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.chkboxXacNhanGiuLai = new System.Windows.Forms.CheckBox();
-            this.chkboxXacNhanHoanNhap = new System.Windows.Forms.CheckBox();
-            this.So_luong_dang_giu = new System.Data.DataColumn();
-            this.Da_duyet_giu_lai = new System.Data.DataColumn();
+            this.ID_No_vat_tu = new System.Data.DataColumn();
             this._ID_chi_tiet_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +141,7 @@
             this._Ten_don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._ID_No_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._So_luong_dang_giu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._So_luong_de_nghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._So_luong_thuc_xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -146,8 +150,6 @@
             this._Da_duyet_hoan_nhap = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this._So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Da_duyet_giu_lai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.txtSLDangGiu = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -400,6 +402,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hoàn nhập - Giữ lại";
             // 
+            // chkboxXacNhanGiuLai
+            // 
+            this.chkboxXacNhanGiuLai.AutoSize = true;
+            this.chkboxXacNhanGiuLai.Location = new System.Drawing.Point(207, 23);
+            this.chkboxXacNhanGiuLai.Name = "chkboxXacNhanGiuLai";
+            this.chkboxXacNhanGiuLai.Size = new System.Drawing.Size(15, 14);
+            this.chkboxXacNhanGiuLai.TabIndex = 93;
+            this.chkboxXacNhanGiuLai.UseVisualStyleBackColor = true;
+            this.chkboxXacNhanGiuLai.CheckedChanged += new System.EventHandler(this.chkboxXacNhanGiuLai_CheckedChanged);
+            // 
+            // chkboxXacNhanHoanNhap
+            // 
+            this.chkboxXacNhanHoanNhap.AutoSize = true;
+            this.chkboxXacNhanHoanNhap.Location = new System.Drawing.Point(207, 52);
+            this.chkboxXacNhanHoanNhap.Name = "chkboxXacNhanHoanNhap";
+            this.chkboxXacNhanHoanNhap.Size = new System.Drawing.Size(15, 14);
+            this.chkboxXacNhanHoanNhap.TabIndex = 93;
+            this.chkboxXacNhanHoanNhap.UseVisualStyleBackColor = true;
+            this.chkboxXacNhanHoanNhap.CheckedChanged += new System.EventHandler(this.chkboxXacNhanHoanNhap_CheckedChanged);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -548,6 +570,16 @@
             this.label23.TabIndex = 89;
             this.label23.Text = "Xóa";
             // 
+            // txtSLDangGiu
+            // 
+            this.txtSLDangGiu.Location = new System.Drawing.Point(329, 85);
+            this.txtSLDangGiu.Name = "txtSLDangGiu";
+            this.txtSLDangGiu.ReadOnly = true;
+            this.txtSLDangGiu.Size = new System.Drawing.Size(90, 22);
+            this.txtSLDangGiu.TabIndex = 81;
+            this.txtSLDangGiu.Text = "0";
+            this.txtSLDangGiu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -652,6 +684,15 @@
             this.label28.TabIndex = 66;
             this.label28.Text = "Mượn vật tư tại kho";
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(329, 68);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(72, 14);
+            this.label34.TabIndex = 66;
+            this.label34.Text = "SL đang giữ";
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -665,8 +706,8 @@
             // 
             this.gridChiTietPhieuXuatTam.AllowUserToDeleteRows = false;
             this.gridChiTietPhieuXuatTam.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridChiTietPhieuXuatTam.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridChiTietPhieuXuatTam.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridChiTietPhieuXuatTam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -674,15 +715,15 @@
             this.gridChiTietPhieuXuatTam.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridChiTietPhieuXuatTam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridChiTietPhieuXuatTam.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridChiTietPhieuXuatTam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridChiTietPhieuXuatTam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridChiTietPhieuXuatTam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridChiTietPhieuXuatTam.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._ID_chi_tiet_phieu_xuat_tam,
@@ -693,6 +734,7 @@
             this._Ten_don_vi_tinh,
             this._ID_kho,
             this._Ten_kho,
+            this._ID_No_vat_tu,
             this._So_luong_dang_giu,
             this._So_luong_de_nghi,
             this._So_luong_thuc_xuat,
@@ -707,8 +749,8 @@
             this.gridChiTietPhieuXuatTam.Name = "gridChiTietPhieuXuatTam";
             this.gridChiTietPhieuXuatTam.ReadOnly = true;
             this.gridChiTietPhieuXuatTam.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridChiTietPhieuXuatTam.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridChiTietPhieuXuatTam.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridChiTietPhieuXuatTam.RowTemplate.Height = 30;
             this.gridChiTietPhieuXuatTam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridChiTietPhieuXuatTam.Size = new System.Drawing.Size(1209, 167);
@@ -738,7 +780,8 @@
             this.Loai_chat_luong,
             this.ID_chi_tiet_phieu_xuat_tam,
             this.So_luong_dang_giu,
-            this.Da_duyet_giu_lai});
+            this.Da_duyet_giu_lai,
+            this.ID_No_vat_tu});
             this.dataTableChiTietPhieuXuatTam.TableName = "TableChiTietPhieuXuatTam";
             // 
             // Ma_vat_tu
@@ -812,6 +855,17 @@
             this.ID_chi_tiet_phieu_xuat_tam.ColumnName = "ID_chi_tiet_phieu_xuat_tam";
             this.ID_chi_tiet_phieu_xuat_tam.DataType = typeof(int);
             this.ID_chi_tiet_phieu_xuat_tam.DefaultValue = -1;
+            // 
+            // So_luong_dang_giu
+            // 
+            this.So_luong_dang_giu.ColumnName = "So_luong_dang_giu";
+            this.So_luong_dang_giu.DataType = typeof(double);
+            this.So_luong_dang_giu.DefaultValue = 0D;
+            // 
+            // Da_duyet_giu_lai
+            // 
+            this.Da_duyet_giu_lai.ColumnName = "Da_duyet_giu_lai";
+            this.Da_duyet_giu_lai.DataType = typeof(bool);
             // 
             // txtDiaChi
             // 
@@ -1078,34 +1132,11 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // chkboxXacNhanGiuLai
+            // ID_No_vat_tu
             // 
-            this.chkboxXacNhanGiuLai.AutoSize = true;
-            this.chkboxXacNhanGiuLai.Location = new System.Drawing.Point(207, 23);
-            this.chkboxXacNhanGiuLai.Name = "chkboxXacNhanGiuLai";
-            this.chkboxXacNhanGiuLai.Size = new System.Drawing.Size(15, 14);
-            this.chkboxXacNhanGiuLai.TabIndex = 93;
-            this.chkboxXacNhanGiuLai.UseVisualStyleBackColor = true;
-            // 
-            // chkboxXacNhanHoanNhap
-            // 
-            this.chkboxXacNhanHoanNhap.AutoSize = true;
-            this.chkboxXacNhanHoanNhap.Location = new System.Drawing.Point(207, 52);
-            this.chkboxXacNhanHoanNhap.Name = "chkboxXacNhanHoanNhap";
-            this.chkboxXacNhanHoanNhap.Size = new System.Drawing.Size(15, 14);
-            this.chkboxXacNhanHoanNhap.TabIndex = 93;
-            this.chkboxXacNhanHoanNhap.UseVisualStyleBackColor = true;
-            // 
-            // So_luong_dang_giu
-            // 
-            this.So_luong_dang_giu.ColumnName = "So_luong_dang_giu";
-            this.So_luong_dang_giu.DataType = typeof(double);
-            this.So_luong_dang_giu.DefaultValue = 0D;
-            // 
-            // Da_duyet_giu_lai
-            // 
-            this.Da_duyet_giu_lai.ColumnName = "Da_duyet_giu_lai";
-            this.Da_duyet_giu_lai.DataType = typeof(bool);
+            this.ID_No_vat_tu.ColumnName = "ID_No_vat_tu";
+            this.ID_No_vat_tu.DataType = typeof(int);
+            this.ID_No_vat_tu.DefaultValue = -1;
             // 
             // _ID_chi_tiet_phieu_xuat_tam
             // 
@@ -1178,6 +1209,15 @@
             this._Ten_kho.ReadOnly = true;
             this._Ten_kho.Width = 64;
             // 
+            // _ID_No_vat_tu
+            // 
+            this._ID_No_vat_tu.DataPropertyName = "ID_No_vat_tu";
+            this._ID_No_vat_tu.HeaderText = "ID_No_vat_tu";
+            this._ID_No_vat_tu.Name = "_ID_No_vat_tu";
+            this._ID_No_vat_tu.ReadOnly = true;
+            this._ID_No_vat_tu.Visible = false;
+            this._ID_No_vat_tu.Width = 119;
+            // 
             // _So_luong_dang_giu
             // 
             this._So_luong_dang_giu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1191,8 +1231,8 @@
             // 
             this._So_luong_de_nghi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._So_luong_de_nghi.DataPropertyName = "So_luong_de_nghi";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this._So_luong_de_nghi.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this._So_luong_de_nghi.DefaultCellStyle = dataGridViewCellStyle3;
             this._So_luong_de_nghi.HeaderText = "SL Đề Nghị";
             this._So_luong_de_nghi.Name = "_So_luong_de_nghi";
             this._So_luong_de_nghi.ReadOnly = true;
@@ -1202,8 +1242,8 @@
             // 
             this._So_luong_thuc_xuat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._So_luong_thuc_xuat.DataPropertyName = "So_luong_thuc_xuat";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this._So_luong_thuc_xuat.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this._So_luong_thuc_xuat.DefaultCellStyle = dataGridViewCellStyle4;
             this._So_luong_thuc_xuat.HeaderText = "SL Thực Xuất";
             this._So_luong_thuc_xuat.Name = "_So_luong_thuc_xuat";
             this._So_luong_thuc_xuat.ReadOnly = true;
@@ -1222,8 +1262,8 @@
             // 
             this._So_luong_hoan_nhap.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._So_luong_hoan_nhap.DataPropertyName = "So_luong_hoan_nhap";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this._So_luong_hoan_nhap.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this._So_luong_hoan_nhap.DefaultCellStyle = dataGridViewCellStyle5;
             this._So_luong_hoan_nhap.HeaderText = "SL Hoàn Nhập";
             this._So_luong_hoan_nhap.Name = "_So_luong_hoan_nhap";
             this._So_luong_hoan_nhap.ReadOnly = true;
@@ -1241,8 +1281,8 @@
             // 
             this._So_luong_giu_lai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this._So_luong_giu_lai.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this._So_luong_giu_lai.DefaultCellStyle = dataGridViewCellStyle6;
             this._So_luong_giu_lai.HeaderText = "SL Giữ Lại";
             this._So_luong_giu_lai.Name = "_So_luong_giu_lai";
             this._So_luong_giu_lai.ReadOnly = true;
@@ -1255,25 +1295,6 @@
             this._Da_duyet_giu_lai.Name = "_Da_duyet_giu_lai";
             this._Da_duyet_giu_lai.ReadOnly = true;
             this._Da_duyet_giu_lai.Width = 89;
-            // 
-            // txtSLDangGiu
-            // 
-            this.txtSLDangGiu.Location = new System.Drawing.Point(329, 85);
-            this.txtSLDangGiu.Name = "txtSLDangGiu";
-            this.txtSLDangGiu.ReadOnly = true;
-            this.txtSLDangGiu.Size = new System.Drawing.Size(90, 22);
-            this.txtSLDangGiu.TabIndex = 81;
-            this.txtSLDangGiu.Text = "0";
-            this.txtSLDangGiu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(329, 68);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(72, 14);
-            this.label34.TabIndex = 66;
-            this.label34.Text = "SL đang giữ";
             // 
             // frmChiTietPhieuXuatTam
             // 
@@ -1418,6 +1439,8 @@
         private System.Windows.Forms.CheckBox chkboxXacNhanHoanNhap;
         private System.Data.DataColumn So_luong_dang_giu;
         private System.Data.DataColumn Da_duyet_giu_lai;
+        private System.Windows.Forms.TextBox txtSLDangGiu;
+        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.DataGridViewTextBoxColumn _ID_chi_tiet_phieu_xuat_tam;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Ten_vat_tu;
@@ -1426,6 +1449,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _Ten_don_vi_tinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn _ID_kho;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Ten_kho;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _ID_No_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_dang_giu;
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_de_nghi;
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_thuc_xuat;
@@ -1434,7 +1458,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn _Da_duyet_hoan_nhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn _So_luong_giu_lai;
         private System.Windows.Forms.DataGridViewCheckBoxColumn _Da_duyet_giu_lai;
-        private System.Windows.Forms.TextBox txtSLDangGiu;
-        private System.Windows.Forms.Label label34;
+        private System.Data.DataColumn ID_No_vat_tu;
     }
 }

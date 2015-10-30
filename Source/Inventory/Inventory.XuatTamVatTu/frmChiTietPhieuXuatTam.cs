@@ -24,6 +24,17 @@ namespace Inventory.XuatTamVatTu
     /// [ ] Xử lý đóng phiếu xuất.
     /// [ ] Xử lý thêm vào thẻ kho
     /// [ ] Phần hoàn nhập - giữa lại: Nếu đã giữ lại, thì khi trả nợ xong mới dc set duyệt hoàn nhập, hoặc hoàn nhập hết cái đang giữ.
+    /// [ ] Nếu NV còn nợ VT thì hiện 2 nút
+    ///     [ ] Trả nợ: Init vào grid những vt của NV đó còn đang giữ.
+    ///     [ ] Hoàn nhập lại --> chuyển qua frm xuất, thực hiện hoàn nhập.
+    /// [ ] Có 3 stt cần giải
+    ///     [ ] 1 là báo giữ VT --> chỉ cho edit 1 phần giữ lại rồi add vào
+    ///     [ ] 2 là phần hoàn nhập --> tương tự chỉ cho edit phần HN, nếu SL giữ lại  != 0, SL hoàn NV ko thể lớn hơn SL giữ lại, càng ko thể lớn hơn SLTX, sau khi Hn thì xóa nợ.
+    ///     [ ] 3 là phần xuất cho NV còn giữ VT, phải HN, hoặc dùng tiếp tất cả.
+    /// [ ] Nếu nợ VT
+    ///     [ ] Phải dùng tiếp hoặc hoàn nhập
+    ///     [ ] Cấm xóa dòng có nợ
+    ///     [ ] Không lưu nếu các dòng có nợ chưa duyệt xuất.
     /// 
     /// Setup
     /// [ ] Xuất cho nhân viên --> truyền vào ID Nhân Viên
@@ -136,6 +147,41 @@ namespace Inventory.XuatTamVatTu
 
             cbMaNhanVien.SelectedValue = ID_nhan_vien;
             cbMaNhanVien_SelectionChangeCommitted(cbMaNhanVien, EventArgs.Empty);
+        }
+
+        //Xử lý báo giữ lại VT
+        public frmChiTietPhieuXuatTam(string MaPhieXuatTam, enumButton2 stt)
+        {
+            InitializeComponent();
+            frm_init();
+
+            clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
+            if (pxt.CheckTonTaiSoDK(MaPhieXuatTam) == false)
+            {
+                MessageBox.Show("Mã phiếu xuất bạn chọn ko tồn tại!");
+                this.Close();
+            }
+                
+
+            cbMaPhieuXuatTam.Text = MaPhieXuatTam;
+            btnSua_Click(btnSua, EventArgs.Empty);
+
+            //tùy theo stt, setup frm
+            if (stt == enumButton2.BaoGiuLai)
+            {
+                PanelButton.setClickStatus(stt);
+                EnableControl_For_BaoGiuLai();
+            }
+            else if (stt == enumButton2.BaoHoanNhap)
+            {
+                PanelButton.setClickStatus(stt);
+                EnableControl_For_BaoHoanNhap();
+            }
+            else
+            {
+                MessageBox.Show("Xảy ra lỗi khởi tạo phiếu!");
+                this.Close();
+            }
         }
 
         private string TaoMaPhieu()
@@ -273,7 +319,8 @@ namespace Inventory.XuatTamVatTu
                     DisableControl_ForNew();
                     //ToolTip1.Show("DisableControl_ForNew();", this.cbMaPhieuXuatTam, 20, 20, 2000);
                     break;
-                case enumFormAction2.Huy:
+                case enumFormAction2.btnCancel:
+                    ResetGridInputForm();
                     break;
                 case enumFormAction2.Dong:
                     break;
@@ -285,15 +332,15 @@ namespace Inventory.XuatTamVatTu
             }
         }
 
-        /// <summary>
-        /// Btn chỉ hiện nếu nv đó còn đang giữ vt, khi click vào thì thông báo nv còn giữ lại vt.
-        /// Thực hiện Add những vt còn nợ vào grid
-        /// </summary>
-        private void btnCheckNVGiuVT_Click(object sender, EventArgs e)
+        
+        private void chkInitCB()
         {
-            //ToolTip1.Show("Nhân viên này còn đang giữ vật tư", this.cbTenNhanVien, 0, 0, 500);
+            if (Double.Parse(txtSLDangGiu.Text) > 0)
+            {
+                init_cbMaVatTu();
+                init_cbTenVatTu();
+            }
         }
-
         
 
         /// <summary>
@@ -557,7 +604,7 @@ namespace Inventory.XuatTamVatTu
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Move to top later
-            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
+            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua) || (PanelButton.getClickStatus() == enumButton2.BaoGiuLai) || (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap)))
             {
                 return;
             }
@@ -602,8 +649,10 @@ namespace Inventory.XuatTamVatTu
             //Tạm thời vật tư a trong kho x ko dc add quá 2 lần. --> chưa giải quyết phần thiếu vật tư, xin thêm
             //data.Select(string.Format("Ma_vat_tu='{0}'", selectedRow.Cells["_Ma_vat_tu"].Value.ToString()));
             //DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select("Ma_vat_tu = \'" + cbMaVatTu.Text.Trim() + "\' AND ID_kho = \'" + ID_Kho + "\'");
-            DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong = '{2}' AND Da_duyet_xuat_vat_tu='FALSE'", ID_Kho, cbMaVatTu.Text.Trim(), cbChatLuong.SelectedValue.ToString()));
             //DataRow[] chkMaVatTu = gridChiTietPhieuXuatTam.Select Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong = '{2}' AND Da_duyet_xuat_vat_tu='FALSE'", ID_Kho, cbMaVatTu.Text.Trim(), cbChatLuong.SelectedValue.ToString()));
+
+            DataRow[] chkMaVatTu = dataTableChiTietPhieuXuatTam.Select(string.Format("ID_kho = '{0}' AND Ma_vat_tu='{1}' AND Id_chat_luong = '{2}' AND Da_duyet_xuat_vat_tu='FALSE'", ID_Kho, cbMaVatTu.Text.Trim(), cbChatLuong.SelectedValue.ToString()));
+            
 
             if (chkMaVatTu.Length != 0)
             {
@@ -654,6 +703,7 @@ namespace Inventory.XuatTamVatTu
             //dr["So_luong"] = "0";
 
             dr["So_luong_dang_giu"] = txtSLDangGiu.Text;
+            dr["ID_No_vat_tu"] = curGridRow_ID_No_vat_tu;
 
             dr["So_luong_de_nghi"] = txtSLDN.Text;
             dr["So_luong_thuc_xuat"] = txtSLTX.Text;
@@ -669,6 +719,13 @@ namespace Inventory.XuatTamVatTu
             //dr["So_luong_su_dung"] = "0";
 
             dataTableChiTietPhieuXuatTam.Rows.Add(dr);
+
+            //if (Double.Parse(txtSLDangGiu.Text) > 0)
+            //{
+            //    init_cbMaVatTu();
+            //    init_cbTenVatTu();
+            //}
+
             ResetGridInputForm();
 
             //Khi đã add data của kho xuất rồi, thì đó là kho xuất chính, ko thể thay đổi nữa.
@@ -680,13 +737,30 @@ namespace Inventory.XuatTamVatTu
 
         Int32 curGridRow_Editing = -1;
         Int32 curGridRow_ID = -1;
+        Int32 curGridRow_ID_No_vat_tu = -1;
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua)))
+            if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
+            {
+                ToolTip1.Show("Bạn cần thêm VT vào lưới trước khi chỉnh sửa!", this.btnAddToGrid, 15, 15, 2000);
+                return;
+            }
+
+            //PanelButton.getClickStatus() == enumButton2.BaoGiuLai
+            if (!((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua) || (PanelButton.getClickStatus() == enumButton2.BaoGiuLai) || (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap) ))
                 return;
 
-            if (dataTableChiTietPhieuXuatTam.Rows.Count == 0)
-                return;
+            if (PanelButton.getClickStatus() == enumButton2.BaoGiuLai)
+            {
+                txtSLGL.Enabled = true;
+                chkboxXacNhanGiuLai.Enabled = true;
+            }
+
+            if (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap)
+            {
+                txtSLHN.Enabled = true;
+                chkboxXacNhanHoanNhap.Enabled = true;
+            }
 
             try
             {
@@ -705,11 +779,18 @@ namespace Inventory.XuatTamVatTu
                         return;
                     }
 
+                    if (!(PanelButton.getClickStatus() == enumButton2.BaoGiuLai) || (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap))
+                    {
+                        PanelButton.setGridClickEdit();
+                    }
+
                     PanelButton.setGridClickEdit();
+
                     PanelButton.Enable_btn_Luu_Huy_Luoi();
 
                     curGridRow_Editing = selectedRowCount;
                     curGridRow_ID = Int32.Parse(selectedRow.Cells["_ID_chi_tiet_phieu_xuat_tam"].Value.ToString());
+                    curGridRow_ID_No_vat_tu = Int32.Parse(selectedRow.Cells["_ID_No_vat_tu"].Value.ToString());
 
                     int ID_Kho = Int32.Parse(selectedRow.Cells["_ID_kho"].Value.ToString());
 
@@ -720,15 +801,30 @@ namespace Inventory.XuatTamVatTu
                         cbMuonVTTaiKho_SelectionChangeCommitted(cbMuonVTTaiKho, EventArgs.Empty);
                     }
 
-                    //clsDMVatTu vt = new clsDMVatTu();
-                    //cbMaVatTu.SelectedValue = vt.getID_Ma_Vat_Tu(selectedRow.Cells["_Ma_vat_tu"].Value.ToString());
-                    //cbMaVatTu.SelectedIndex = cbMaVatTu.Items.IndexOf(selectedRow.Cells["_Ma_vat_tu"].Value.ToString());
+                    Double sldg = Double.Parse(selectedRow.Cells["_So_luong_dang_giu"].Value.ToString());
 
-                    DataTable data = (DataTable) cbMaVatTu.DataSource;
-                    DataRow[] rows = data.Select(string.Format("Ma_vat_tu='{0}'", selectedRow.Cells["_Ma_vat_tu"].Value.ToString()));
-                    cbMaVatTu.SelectedValue = Int32.Parse(rows[0]["ID_Vat_tu"].ToString()); //data.Select() //FindIndex(p => p.DisplayValue == "SomeValue");
+                    if (sldg > 0)
+                    {
+                        init_cbMaVatTu_ALL();
+                        init_cbTenVatTu_ALL();
 
-                    this.cbMaVatTu_SelectionChangeCommitted((object)cbMaVatTu, EventArgs.Empty);
+                        DataTable data = (DataTable)cbMaVatTu.DataSource;
+                        DataRow[] rows = data.Select(string.Format("Ma_vat_tu='{0}'", selectedRow.Cells["_Ma_vat_tu"].Value.ToString()));
+                        cbMaVatTu.SelectedValue = Int32.Parse(rows[0]["ID_Vat_tu"].ToString()); //data.Select() //FindIndex(p => p.DisplayValue == "SomeValue");
+
+                        this.cbMaVatTu_SelectionChangeCommitted((object)cbMaVatTu, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        DataTable data = (DataTable)cbMaVatTu.DataSource;
+                        DataRow[] rows = data.Select(string.Format("Ma_vat_tu='{0}'", selectedRow.Cells["_Ma_vat_tu"].Value.ToString()));
+                        cbMaVatTu.SelectedValue = Int32.Parse(rows[0]["ID_Vat_tu"].ToString()); //data.Select() //FindIndex(p => p.DisplayValue == "SomeValue");
+
+                        this.cbMaVatTu_SelectionChangeCommitted((object)cbMaVatTu, EventArgs.Empty);
+                    }
+
+                    
+
 
                     cbChatLuong.SelectedValue = Int32.Parse(selectedRow.Cells["_Id_chat_luong"].Value.ToString());
 
@@ -743,6 +839,15 @@ namespace Inventory.XuatTamVatTu
                     txtSLGL.Text = selectedRow.Cells["_So_luong_giu_lai"].Value.ToString();
                     chkboxXacNhanGiuLai.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
                     chkboxXacNhanHoanNhap.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
+
+                    if (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap)
+                    {
+                        if (Double.Parse(txtSLGL.Text.ToString()) > 0)
+                        {
+                            txtSLHN.Text = txtSLHN.Text;
+                        }
+                        
+                    }
                 }
             }
             catch (Exception ex)
@@ -805,7 +910,7 @@ namespace Inventory.XuatTamVatTu
             try
             {
                 dataTableChiTietPhieuXuatTam.Rows.RemoveAt(curGridRow_Editing);
-                btnAdd_Click(this.btnSaveGrid, EventArgs.Empty);
+                btnAdd_Click(this.btnAddToGrid, EventArgs.Empty);
 
                 if (!PanelButton.isGridClickNone())
                 {
@@ -923,8 +1028,6 @@ namespace Inventory.XuatTamVatTu
                 reset_txtSL();
                 return;
             }
-
-
 
             if (Double.Parse(SoLuong.Text.Trim().ToString()) > 0)
             {
@@ -1103,6 +1206,7 @@ namespace Inventory.XuatTamVatTu
                 dr["Loai_chat_luong"] = dt.Rows[i]["Loai_chat_luong"];
                 dr["ID_kho"] = dt.Rows[i]["ID_kho"];
                 dr["Ten_kho"] = dt.Rows[i]["Ten_kho"];
+                dr["ID_No_vat_tu"] = -1;
                 dr["So_luong_dang_giu"] = dt.Rows[i]["So_luong_dang_giu"];
                 dr["So_luong_de_nghi"] = dt.Rows[i]["So_luong_de_nghi"];
                 dr["So_luong_thuc_xuat"] = dt.Rows[i]["So_luong_thuc_xuat"];
@@ -1220,6 +1324,23 @@ namespace Inventory.XuatTamVatTu
             cbMaVatTu.SelectedIndex = -1;
         }
 
+        private void init_cbMaVatTu_ALL()
+        {
+            cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDMVatTu vt = new clsDMVatTu();
+            AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
+
+            cbMaVatTu.AutoCompleteCustomSource = combData1;
+
+            cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbMaVatTu.ValueMember = "ID_Vat_tu";
+            cbMaVatTu.DisplayMember = "Ma_vat_tu";
+
+            cbMaVatTu.SelectedIndex = -1;
+        }
+
         /// <summary>
         /// Chia làm 2 hướng, init DS VT kho xuất chính, init theo DS VT theo kho mượn.
         /// </summary>
@@ -1274,6 +1395,24 @@ namespace Inventory.XuatTamVatTu
             cbTenVatTu.SelectedIndex = -1;
         }
 
+        private void init_cbTenVatTu_ALL()
+        {
+            cbTenVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbTenVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            clsDMVatTu vt = new clsDMVatTu();
+
+            AutoCompleteStringCollection combData1 = vt.getListTenVatTu();
+
+            cbTenVatTu.AutoCompleteCustomSource = combData1;
+
+            cbTenVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
+            cbTenVatTu.ValueMember = "ID_Vat_tu";
+            cbTenVatTu.DisplayMember = "Ten_vat_tu";
+
+            cbTenVatTu.SelectedIndex = -1;
+        }
+
         private void init_cbChatLuong()
         {
             cbChatLuong.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -1322,12 +1461,34 @@ namespace Inventory.XuatTamVatTu
             cbMaPhieuXuatTam.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Handles the SelectionChangeCommitted event of the cbTenNhanVien control.
+        /// </summary>
         private void cbTenNhanVien_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
             if ((comboBox.SelectedIndex != -1) && (cbMaNhanVien.SelectedValue != comboBox.SelectedValue))
             {
                 cbMaNhanVien.SelectedValue = comboBox.SelectedValue;
+            }
+
+            if ((comboBox.SelectedIndex != -1))
+            {
+                int ID_NV = Int32.Parse(comboBox.SelectedValue.ToString());
+
+                clsPhieuXuatTamVatTu ctpxt = new clsPhieuXuatTamVatTu();
+
+                if (ctpxt.chkNV_no_VT(ID_NV) == true)
+                {
+                    //MessageBox.Show("NV này còn nợ VT!");
+                    btnCheckNVGiuVT.Visible = true;
+                    ToolTip1.Show("Nhân viên này còn đang giữ vật tư!\nClick vào button để đưa danh sách VT còn đang nợ vào lưới!", this.btnCheckNVGiuVT, 15, 15, 5000);
+                }
+                else
+                {
+                    btnCheckNVGiuVT.Visible = false;
+                }
+
             }
         }
 
@@ -1534,8 +1695,15 @@ namespace Inventory.XuatTamVatTu
 
         private void ResetGridInputForm()
         {
-            EnableGridInputForm();
+            //Move to top later
+            if ((PanelButton.getClickStatus() == enumButton2.Them) || (PanelButton.getClickStatus() == enumButton2.Sua))
+            {
+                EnableGridInputForm();
+            }
+            
+
             curGridRow_ID = -1;
+            curGridRow_ID_No_vat_tu = -1;
             cbMuonVTTaiKho.SelectedIndex = -1;
             cbMaVatTu.SelectedIndex = -1;
             cbTenVatTu.SelectedIndex = -1;
@@ -1544,6 +1712,7 @@ namespace Inventory.XuatTamVatTu
             chkboxEnableMuonVT.Checked = false;
             txtSL.Text = "-";
 
+            chkInitCB();
             txtSLDangGiu.Text = "0";
 
             txtSLDN.Text = "0";
@@ -1553,7 +1722,19 @@ namespace Inventory.XuatTamVatTu
             txtSLGL.Text = "0";
             txtSLHN.Text = "0";
             chkboxXacNhanHoanNhap.Checked = false;
-            chkboxXacNhanGiuLai.Enabled = false;
+            chkboxXacNhanGiuLai.Checked = false;
+
+            if (PanelButton.getClickStatus() == enumButton2.BaoGiuLai)
+            {
+                txtSLGL.Enabled = false;
+                chkboxXacNhanGiuLai.Enabled = false;
+            }
+
+            if (PanelButton.getClickStatus() == enumButton2.BaoHoanNhap)
+            {
+                txtSLHN.Enabled = false;
+                chkboxXacNhanHoanNhap.Enabled = false;
+            }
         }
 
         private void EnableGridInputForm()
@@ -1581,6 +1762,12 @@ namespace Inventory.XuatTamVatTu
             txtSLHN.Enabled = false;
             chkboxXacNhanHoanNhap.Enabled = false;
             chkboxXacNhanGiuLai.Enabled = false;
+        } 
+
+        private void EnableGridInputForm_BaoGiuLai()
+        {
+            txtSLGL.Enabled = true;
+            chkboxXacNhanGiuLai.Enabled = true;
         }
 
         public void CloseForm()
@@ -1721,6 +1908,220 @@ namespace Inventory.XuatTamVatTu
                 txtSLTX.Text = (tmp - Double.Parse(txtSLDangGiu.Text)).ToString();
 
             }
+        }
+
+        /// <summary>
+        /// Enable các control, dùng lúc Báo Giữ Lại
+        /// </summary>
+        private void EnableControl_For_BaoGiuLai()
+        {
+            //Enable để nhập mã phiếu và check tồn tại, tránh trường hợp trùng mã phiếu
+            cbMaPhieuXuatTam.Enabled = false;
+            btnCheckMaPhieuXuat.Enabled = false;
+            //--------
+
+            cbTenNhanVien.Enabled = false;
+            cbMaNhanVien.Enabled = false;
+            dtNgayXuat.Enabled = false;
+            cbKhoXuat.Enabled = false;
+            txtLyDo.Enabled = false;
+            txtCongTrinh.Enabled = false;
+            txtDiaChi.Enabled = false;
+
+            //Khi bật, nếu đã thêm row vật tư từ kho khác, thì ko thể tắt
+            chkboxEnableMuonVT.Enabled = false;
+
+            //Chế độ mượn vật tư từ kho khác, tắt đến khi "chkboxEnableMuonVT" được bật
+            cbMuonVTTaiKho.Enabled = false;
+
+            //Control trên grid
+            cbMaVatTu.Enabled = false;
+            cbTenVatTu.Enabled = false;
+            cbChatLuong.Enabled = false;
+
+            //txtDVT, TxtSL (SL VT còn trong kho) mặc định luôn là ReadOnly, nên ko cần disable
+            txtDVT.Enabled = true;
+            //SL vật tư còn tồn trong kho, chỉ hoạt động khi chưa duyệt xuất vật tư.
+            txtSL.Enabled = true;
+            //-----------
+
+            txtSLDN.Enabled = false;
+
+            //SL Thực Xuất ko dc lớn hơn sl vt có trong kho
+            txtSLTX.Enabled = false;
+            chkboxXacNhanXuat.Enabled = false;
+
+            //Khi thêm mới, ko xác nhận hoàn nhập
+            txtSLGL.Enabled = false;
+            txtSLHN.Enabled = false;
+            chkboxXacNhanGiuLai.Enabled = false;
+            chkboxXacNhanHoanNhap.Enabled = false;
+
+            btnAddToGrid.Enabled = false;
+            btnDelRowInGrid.Enabled = false;
+            btnEditRowInGrid.Enabled = true;
+
+            //btnSave dùng lưu thay đổi vào lưới
+            btnSaveGrid.Enabled = false;
+            btnCancel.Enabled = true;
+
+            //Disable cả grid
+            gridChiTietPhieuXuatTam.Enabled = true;
+
+        }
+
+        private void chkboxXacNhanGiuLai_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkBox = (CheckBox)sender;
+
+            if (chkBox.Checked == false)
+            {
+                return;
+            }
+
+            if (chkBox.Checked == true)
+            {
+                txtSLGL.Enabled = false;
+                chkboxXacNhanGiuLai.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Enable các control, dùng lúc Báo Giữ Lại
+        /// </summary>
+        private void EnableControl_For_BaoHoanNhap()
+        {
+            //Enable để nhập mã phiếu và check tồn tại, tránh trường hợp trùng mã phiếu
+            cbMaPhieuXuatTam.Enabled = false;
+            btnCheckMaPhieuXuat.Enabled = false;
+            //--------
+
+            cbTenNhanVien.Enabled = false;
+            cbMaNhanVien.Enabled = false;
+            dtNgayXuat.Enabled = false;
+            cbKhoXuat.Enabled = false;
+            txtLyDo.Enabled = false;
+            txtCongTrinh.Enabled = false;
+            txtDiaChi.Enabled = false;
+
+            //Khi bật, nếu đã thêm row vật tư từ kho khác, thì ko thể tắt
+            chkboxEnableMuonVT.Enabled = false;
+
+            //Chế độ mượn vật tư từ kho khác, tắt đến khi "chkboxEnableMuonVT" được bật
+            cbMuonVTTaiKho.Enabled = false;
+
+            //Control trên grid
+            cbMaVatTu.Enabled = false;
+            cbTenVatTu.Enabled = false;
+            cbChatLuong.Enabled = false;
+
+            //txtDVT, TxtSL (SL VT còn trong kho) mặc định luôn là ReadOnly, nên ko cần disable
+            txtDVT.Enabled = true;
+            //SL vật tư còn tồn trong kho, chỉ hoạt động khi chưa duyệt xuất vật tư.
+            txtSL.Enabled = true;
+            //-----------
+
+            txtSLDN.Enabled = false;
+
+            //SL Thực Xuất ko dc lớn hơn sl vt có trong kho
+            txtSLTX.Enabled = false;
+            chkboxXacNhanXuat.Enabled = false;
+
+            //Khi thêm mới, ko xác nhận hoàn nhập
+            txtSLGL.Enabled = false;
+            txtSLHN.Enabled = false;
+            chkboxXacNhanGiuLai.Enabled = false;
+            chkboxXacNhanHoanNhap.Enabled = false;
+
+            btnAddToGrid.Enabled = false;
+            btnDelRowInGrid.Enabled = false;
+            btnEditRowInGrid.Enabled = true;
+
+            //btnSave dùng lưu thay đổi vào lưới
+            btnSaveGrid.Enabled = false;
+            btnCancel.Enabled = true;
+
+            //Disable cả grid
+            gridChiTietPhieuXuatTam.Enabled = true;
+
+        }
+
+        private void chkboxXacNhanHoanNhap_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkBox = (CheckBox)sender;
+
+            if (chkBox.Checked == false)
+            {
+                return;
+            }
+
+            if (chkBox.Checked == true)
+            {
+                chkboxXacNhanGiuLai.Checked = true;
+
+                txtSLGL.Enabled = false;
+                chkboxXacNhanGiuLai.Enabled = false;
+
+                txtSLHN.Enabled = false;
+                chkboxXacNhanHoanNhap.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Btn chỉ hiện nếu nv đó còn đang giữ vt, khi click vào thì thông báo nv còn giữ lại vt.
+        /// Thực hiện Add những vt còn nợ vào grid
+        /// </summary>
+        private void btnCheckNVGiuVT_Click(object sender, EventArgs e)
+        {
+            //ToolTip1.Show("Nhân viên này còn đang giữ vật tư", this.cbTenNhanVien, 0, 0, 500);
+
+            //clsChiTietPhieuXuatTam ChitTietPhieuXuat = new clsChiTietPhieuXuatTam();
+            //DataTable dt = ChitTietPhieuXuat.getAll_toGrid(cbMaPhieuXuatTam.Text.Trim());
+
+            int Ma_NV = Int32.Parse(cbTenNhanVien.SelectedValue.ToString());
+
+            clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
+            DataTable dt = pxt.GetAll_NV_no_VT(Ma_NV);
+
+            cbKhoXuat.SelectedValue = Int32.Parse(dt.Rows[0]["ID_kho"].ToString());
+            cbKhoXuat_SelectionChangeCommitted(cbKhoXuat, EventArgs.Empty);
+            //GetAll_NV_no_VT(int ID_NV)
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();
+                dr["ID_chi_tiet_phieu_xuat_tam"] = -1;
+
+                dr["Ma_vat_tu"] = dt.Rows[i]["Ma_vat_tu"];
+                dr["Ten_vat_tu"] = dt.Rows[i]["Ten_vat_tu"];
+
+                dr["Id_chat_luong"] = dt.Rows[i]["Id_chat_luong"];
+                dr["Loai_chat_luong"] = dt.Rows[i]["Loai_chat_luong"];
+
+                dr["ID_kho"] = dt.Rows[i]["ID_kho"];
+                dr["Ten_kho"] = dt.Rows[i]["Ten_kho"];
+
+                dr["ID_No_vat_tu"] = dt.Rows[i]["ID_No_vat_tu"];
+                dr["So_luong_dang_giu"] = dt.Rows[i]["So_luong_giu_lai"];
+
+                dr["So_luong_de_nghi"] = dt.Rows[i]["So_luong_giu_lai"]; 
+                dr["So_luong_thuc_xuat"] = 0;
+
+                dr["Da_duyet_xuat_vat_tu"] = true;
+                dr["So_luong_hoan_nhap"] = 0;
+                dr["So_luong_giu_lai"] = 0;
+                dr["Da_duyet_hoan_nhap"] = false;
+                dr["Da_duyet_giu_lai"] = false;
+                dr["Ten_don_vi_tinh"] = dt.Rows[i]["Ten_don_vi_tinh"];
+
+                dataTableChiTietPhieuXuatTam.Rows.Add(dr);
+            }
+
+            setup_cbKhoXuat();
+
+            btnCheckNVGiuVT.Visible = false;
+            cbMaNhanVien.Enabled = false;
+            cbTenNhanVien.Enabled = false;
         }
     }
 }

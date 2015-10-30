@@ -126,5 +126,65 @@ namespace Inventory.XuatTamVatTu
         {
             gridDanhSachPhieuXuatTam.DataSource = PhieuXuatTam.GetAll_DSPhieuXuat(cbbMNV.Text, cbbTenNV.Text);
         }
+
+        private void btnBaoGiuLai_Click(object sender, EventArgs e)
+        {
+            if (gridDanhSachPhieuXuatTam.RowCount == 0)
+            {
+                return;
+            }
+
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentRow.Index; // CurrentCell.RowIndex;
+            string MaPhieuXuat;
+
+            if (selectedRowCount >= 0)
+            {
+                MaPhieuXuat = gridDanhSachPhieuXuatTam.Rows[selectedRowCount].Cells["Ma_phieu_xuat_tam"].Value.ToString();
+                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam(MaPhieuXuat, enumButton2.BaoGiuLai);
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this.ParentForm;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+            }
+        }
+
+        private void btnBaoHoanNhap_Click(object sender, EventArgs e)
+        {
+            if (gridDanhSachPhieuXuatTam.RowCount == 0)
+            {
+                return;
+            }
+
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentRow.Index; // CurrentCell.RowIndex;
+            string MaPhieuXuat;
+
+            if (selectedRowCount >= 0)
+            {
+                MaPhieuXuat = gridDanhSachPhieuXuatTam.Rows[selectedRowCount].Cells["Ma_phieu_xuat_tam"].Value.ToString();
+                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam(MaPhieuXuat, enumButton2.BaoHoanNhap);
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this.ParentForm;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+            }
+        }
     }
 }

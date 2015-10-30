@@ -224,7 +224,6 @@ namespace Inventory.EntityClass
 
         public DataTable GetAll_DSPhieuXuat(string MaNV,string TenNV)
         {
-
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
@@ -248,6 +247,8 @@ namespace Inventory.EntityClass
 
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
+
+
 
 
 
@@ -281,12 +282,89 @@ namespace Inventory.EntityClass
             //return dt;
         }
 
+        public DataTable GetAll_NV_no_VT(int ID_NV)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from nvt in help.ent.No_vat_tu
+                          join pxt in help.ent.Phieu_Xuat_Tam_Vat_Tu on nvt.ID_nhan_vien equals pxt.ID_nhan_vien
+                          join vt in help.ent.DM_Vat_Tu on nvt.Ma_vat_tu equals vt.Ma_vat_tu
+                          join cl in help.ent.Chat_luong on nvt.Id_chat_luong equals cl.Id_chat_luong
+                          join kho in help.ent.DM_Kho on pxt.ID_kho equals kho.ID_kho
+                          join dvt in help.ent.DM_Don_vi_tinh on vt.ID_Don_vi_tinh equals dvt.ID_Don_vi_tinh
+                          where nvt.ID_nhan_vien == ID_NV && nvt.Da_tra == false
+                          select new
+                          {
+                              nvt.ID_No_vat_tu,
+                              nvt.Ma_vat_tu,
+                              vt.Ten_vat_tu,
+                              nvt.Id_chat_luong,
+                              cl.Loai_chat_luong,
+                              pxt.ID_kho,
+                              kho.Ten_kho,
+                              nvt.So_luong_giu_lai,
+                              dvt.Ten_don_vi_tinh
+                          }).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
+
 
         public bool CheckTonTaiSoDK()
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             bool has = help.ent.Phieu_Xuat_Tam_Vat_Tu.Any(cus => cus.Ma_phieu_xuat_tam == Ma_phieu_xuat_tam);
+            return has;
+
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM Phieu_xuat_tam_vat_tu WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
+        }
+
+        public bool CheckTonTaiSoDK(string maPhieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.Phieu_Xuat_Tam_Vat_Tu.Any(cus => cus.Ma_phieu_xuat_tam == maPhieu);
+            return has;
+
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM Phieu_xuat_tam_vat_tu WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
+        }
+
+        public bool chkNV_no_VT(int ID_NV)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            bool has = help.ent.No_vat_tu.Any(cus => cus.ID_nhan_vien == ID_NV && cus.Da_tra == false);
             return has;
 
             //m_dbConnection.Open();

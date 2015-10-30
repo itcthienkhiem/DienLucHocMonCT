@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Inventory.XuatTamVatTu
 {
-    public enum enumButton2 : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi, XoaLuoi, SuaLuoi, HuySuaLuoi, LuuThayDoiVaoLuoi };
+    public enum enumButton2 : byte { None = 0, Them, Xoa, Sua, LamMoi, Luu, Huy, Dong, ThemLuoi, XoaLuoi, SuaLuoi, HuySuaLuoi, LuuThayDoiVaoLuoi, BaoGiuLai, BaoHoanNhap };
 
-    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, disableInputForm, Huy, Dong, ResetGridInputForm };
+    public enum enumFormAction2 : byte { None = 0, LoadData, CloseForm, setFormData, ResetInputForm, disableInputForm, Huy, Dong, ResetGridInputForm, btnCancel };
 
     public delegate void FormActionDelegate2(enumFormAction2 val);
 
@@ -216,8 +216,12 @@ namespace Inventory.XuatTamVatTu
         {
             if (isGridClickNone())
             {
-                if (btnAdd != null && getButtonStatus(enumButton2.ThemLuoi)) btnAdd.Enabled = true;
-                if (btnDel != null && getButtonStatus(enumButton2.XoaLuoi)) btnDel.Enabled = true;
+                if (getClickStatus() != enumButton2.BaoGiuLai && getClickStatus() != enumButton2.BaoHoanNhap)
+                {
+                    if (btnAdd != null && getButtonStatus(enumButton2.ThemLuoi)) btnAdd.Enabled = true;
+                    if (btnDel != null && getButtonStatus(enumButton2.XoaLuoi)) btnDel.Enabled = true;
+                }
+
                 if (btnEdit != null && getButtonStatus(enumButton2.SuaLuoi)) btnEdit.Enabled = true;
 
                 if (btnSave != null && getButtonStatus(enumButton2.LuuThayDoiVaoLuoi)) btnSave.Enabled = false;
@@ -230,7 +234,7 @@ namespace Inventory.XuatTamVatTu
         /// </summary>
         public void Enable_btn_Luu_Huy_Luoi()
         {
-            if (isGridClickEdit())
+            if (isGridClickEdit() || getClickStatus() == enumButton2.BaoGiuLai || getClickStatus() == enumButton2.BaoHoanNhap)
             {
                 if (btnAdd != null && getButtonStatus(enumButton2.ThemLuoi)) btnAdd.Enabled = false;
                 if (btnDel != null && getButtonStatus(enumButton2.XoaLuoi)) btnDel.Enabled = false;
@@ -461,11 +465,14 @@ namespace Inventory.XuatTamVatTu
         {
             //if (!isGridClickNone())
             //{
-            ResetGridClickStatus();
+            if (getClickStatus() != enumButton2.BaoGiuLai || getClickStatus() != enumButton2.BaoHoanNhap)
+            {
+                ResetGridClickStatus();
+            }
 
             ResetGridButton();
 
-            frmAct.Invoke(enumFormAction2.ResetGridInputForm);
+            frmAct.Invoke(enumFormAction2.btnCancel);
             //}
         }
 
