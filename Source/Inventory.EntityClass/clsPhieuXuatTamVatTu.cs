@@ -222,7 +222,7 @@ namespace Inventory.EntityClass
             //return dt;
         }
 
-        public DataTable GetAll_DSPhieuXuat()
+        public DataTable GetAll_DSPhieuXuat(string MaNV,string TenNV)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -232,7 +232,7 @@ namespace Inventory.EntityClass
                 var dm = (from d in help.ent.Phieu_Xuat_Tam_Vat_Tu
                           join e in help.ent.DM_Nhan_Vien on d.ID_nhan_vien equals e.ID_nhan_vien
                           join k in help.ent.DM_Kho on d.ID_kho equals k.ID_kho
-
+                          where e.Ma_nhan_vien .Contains(MaNV)&& e.Ten_nhan_vien .Contains(TenNV)
                           select new
                           {
                               d.Ma_phieu_xuat_tam,
