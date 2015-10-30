@@ -47,6 +47,11 @@ namespace Inventory.EntityClass
                     #region "Thêm bảng tồn kho "
                     if (entryPoint.Count == 0)
                     {
+                        //nếu không có trong bảng tồn kho mà có phiếu hoàn nhập thì thông báo không cho hoàn nhập
+                        if (LNP == false)
+                        {
+                            return 0;
+                        }
                         //neu chưa có tiền hành lưu vật tư này vào kho với số lượng bằng số lượng nhập
                         Ton_kho entTonKho = new Ton_kho();
                         entTonKho.ID_kho = idkho;
@@ -63,7 +68,11 @@ namespace Inventory.EntityClass
                         cttk.Ma_phieu = maphieu;
                         cttk.So_luong = soluong;
                         cttk.Ngay_thay_doi = DateTime.Now;
+                        if(LNP == true)
                         cttk.Tang_Giam = true;//<-- set tang 
+                        else
+                            cttk.Tang_Giam = false;//<-- set tang 
+                       
                         help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
                         help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
@@ -234,7 +243,11 @@ namespace Inventory.EntityClass
                         cttks.Ma_phieu = maphieu;
                         cttks.Ngay_xuat_chung_tu = entryPointPN.First().Ngay_lap;
                         cttks.Dien_giai = entryPointPN.First().Ly_do;
+                        if(LNP == true)
                         cttks.SL_Nhap = soluong;
+                        else
+                            cttks.SL_Xuat = soluong;
+
                        // cttks.SL_Ton = soluong;// nếu đây là dòng đầu tiên trong danh sách thì số lượng tồn = sl thực lãnh
                         cttks.Loai_phieu = true;
                         cttks.Ngay_nhap_xuat = NgayNhap;
@@ -252,7 +265,10 @@ namespace Inventory.EntityClass
                         cttks.Ma_phieu = maphieu;
                         cttks.Ngay_xuat_chung_tu = entryPointPN[0].Ngay_lap;
                         cttks.Dien_giai = entryPointPN[0].Ly_do;
-                        cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                        if(LNP ==true)
+                            cttks.SL_Nhap = entryPointCT[0].So_luong_thuc_lanh;
+                        else
+                            cttks.SL_Xuat = soluong;
                         //tìm kiếm số lượng tồn trước đó
 
                         //sln danh sách các thẻ kho có

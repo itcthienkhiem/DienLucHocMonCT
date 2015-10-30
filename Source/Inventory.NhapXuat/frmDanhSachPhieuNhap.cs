@@ -389,8 +389,10 @@ namespace Inventory.NhapXuat
                                        MessageBox.Show("Đã có lỗi xãy ra trong quá trình cập nhật số lượng đầu kỳ!");
                                        return;
                                    }
-                                   MessageBox.Show("Hoàn nhập thành công!");
-                                   return; 
+                                    //sau đó trừ vào kho, thẻ kho 
+
+                               //    MessageBox.Show("Hoàn nhập thành công!");
+                               //    return; 
 
                                 }
                             }
