@@ -53,7 +53,13 @@ namespace Inventory.XuatTamVatTu
 
             LoadData();
         }
+        public void InitCombo()
+        {
+            clsGiaoDienChung.initCombobox(cbbMNV, new clsDM_NhanVien(), "Ma_nhan_vien", "ID_nhan_vien", "Ma_nhan_vien");
+            clsGiaoDienChung.initCombobox(cbbTenNV, new clsDM_NhanVien(), "Ten_nhan_vien", "ID_nhan_vien", "Ten_nhan_vien");
 
+           
+        }
         public void FormAction(enumFormAction2 frmAct)
         {
             switch (frmAct)
@@ -84,7 +90,7 @@ namespace Inventory.XuatTamVatTu
         /// </summary>
         public void LoadData()
         {
-            gridDanhSachPhieuXuatTam.DataSource = PhieuXuatTam.GetAll_DSPhieuXuat();
+            gridDanhSachPhieuXuatTam.DataSource = PhieuXuatTam.GetAll_DSPhieuXuat("","");
         }
 
         public void CloseForm()
@@ -113,6 +119,11 @@ namespace Inventory.XuatTamVatTu
         {
             //frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Them, "");
             //ChiTietPhieuXuatTam.Show();
+        }
+
+        private void btnLocLuoi_Click(object sender, EventArgs e)
+        {
+            gridDanhSachPhieuXuatTam.DataSource = PhieuXuatTam.GetAll_DSPhieuXuat(cbbMNV.Text, cbbTenNV.Text);
         }
     }
 }

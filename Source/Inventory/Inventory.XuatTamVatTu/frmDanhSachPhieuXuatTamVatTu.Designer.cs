@@ -354,6 +354,7 @@
             this.btnLocLuoi.TabIndex = 60;
             this.btnLocLuoi.Text = "Lọc";
             this.btnLocLuoi.UseVisualStyleBackColor = true;
+            this.btnLocLuoi.Click += new System.EventHandler(this.btnLocLuoi_Click);
             // 
             // frmDanhSachPhieuXuatTamVatTu
             // 
