@@ -434,6 +434,7 @@ namespace Inventory.XuatTamVatTu
                         MessageBox.Show(ex.ToString());
                     }
                     break;
+
                 case enumButton2.Sua:
                     {
                         try
@@ -472,8 +473,88 @@ namespace Inventory.XuatTamVatTu
                         {
                             MessageBox.Show(ex.ToString());
                         }
-                        break;
                     }
+                    break;
+                case enumButton2.BaoGiuLai:
+                    {
+                        try
+                        {
+                            //01: Thêm phiếu vào DS
+                            clsPhieuXuatTamVatTu phieuxuat = new clsPhieuXuatTamVatTu();
+
+                            phieuxuat.Ma_phieu_xuat_tam = cbMaPhieuXuatTam.Text.Trim();
+                            phieuxuat.ID_Nhan_vien = Int32.Parse(cbMaNhanVien.SelectedValue.ToString());
+                            phieuxuat.Ngay_xuat = dtNgayXuat.Value;
+
+                            phieuxuat.ID_kho = Int32.Parse(cbKhoXuat.SelectedValue.ToString());
+
+                            phieuxuat.Ly_do = txtLyDo.Text.Trim();
+                            phieuxuat.Cong_trinh = txtCongTrinh.Text.Trim();
+                            phieuxuat.Dia_chi = txtDiaChi.Text.Trim();
+                            phieuxuat.Da_duyet = bDaDuyetPhieuXuat();
+
+                            try
+                            {
+                                clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
+                                if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam, phieuxuat) == 1)
+                                {
+                                    MessageBox.Show("Bạn đã cập nhật thành công!");
+                                    ResetGridInputForm();
+                                    dataTableChiTietPhieuXuatTam.Clear();
+                                    SetDataToGrid();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                    break;
+                case enumButton2.BaoHoanNhap:
+                    {
+                        try
+                        {
+                            //01: Thêm phiếu vào DS
+                            clsPhieuXuatTamVatTu phieuxuat = new clsPhieuXuatTamVatTu();
+
+                            phieuxuat.Ma_phieu_xuat_tam = cbMaPhieuXuatTam.Text.Trim();
+                            phieuxuat.ID_Nhan_vien = Int32.Parse(cbMaNhanVien.SelectedValue.ToString());
+                            phieuxuat.Ngay_xuat = dtNgayXuat.Value;
+
+                            phieuxuat.ID_kho = Int32.Parse(cbKhoXuat.SelectedValue.ToString());
+
+                            phieuxuat.Ly_do = txtLyDo.Text.Trim();
+                            phieuxuat.Cong_trinh = txtCongTrinh.Text.Trim();
+                            phieuxuat.Dia_chi = txtDiaChi.Text.Trim();
+                            phieuxuat.Da_duyet = bDaDuyetPhieuXuat();
+
+                            try
+                            {
+                                clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
+                                if (ChiTietPhieuXuat.CapNhapChiTietPhieuXuat(dataTableChiTietPhieuXuatTam, phieuxuat.Ma_phieu_xuat_tam, phieuxuat) == 1)
+                                {
+                                    MessageBox.Show("Bạn đã cập nhật thành công!");
+                                    ResetGridInputForm();
+                                    dataTableChiTietPhieuXuatTam.Clear();
+                                    SetDataToGrid();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                    break;
             }
         }
 
@@ -2083,9 +2164,17 @@ namespace Inventory.XuatTamVatTu
             clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
             DataTable dt = pxt.GetAll_NV_no_VT(Ma_NV);
 
-            cbKhoXuat.SelectedValue = Int32.Parse(dt.Rows[0]["ID_kho"].ToString());
-            cbKhoXuat_SelectionChangeCommitted(cbKhoXuat, EventArgs.Empty);
+            //cbKhoXuat.SelectedValue = Int32.Parse(dt.Rows[0]["ID_kho"].ToString());
+            //cbKhoXuat_SelectionChangeCommitted(cbKhoXuat, EventArgs.Empty);
             //GetAll_NV_no_VT(int ID_NV)
+
+            DataTable dt2 = pxt.Get_NV_no_VT_IDKho(Ma_NV);
+
+            int IDKho = Int32.Parse(dt2.Rows[0]["ID_kho"].ToString());
+            string TenKho = dt2.Rows[0]["Ten_kho"].ToString();
+
+            cbKhoXuat.SelectedValue = IDKho;
+            cbKhoXuat_SelectionChangeCommitted(cbKhoXuat, EventArgs.Empty);
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -2098,8 +2187,8 @@ namespace Inventory.XuatTamVatTu
                 dr["Id_chat_luong"] = dt.Rows[i]["Id_chat_luong"];
                 dr["Loai_chat_luong"] = dt.Rows[i]["Loai_chat_luong"];
 
-                dr["ID_kho"] = dt.Rows[i]["ID_kho"];
-                dr["Ten_kho"] = dt.Rows[i]["Ten_kho"];
+                dr["ID_kho"] = IDKho;//dt.Rows[i]["ID_kho"];
+                dr["Ten_kho"] = TenKho; //dt.Rows[i]["Ten_kho"];
 
                 dr["ID_No_vat_tu"] = dt.Rows[i]["ID_No_vat_tu"];
                 dr["So_luong_dang_giu"] = dt.Rows[i]["So_luong_giu_lai"];

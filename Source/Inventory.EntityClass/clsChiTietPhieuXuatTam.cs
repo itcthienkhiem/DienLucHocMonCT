@@ -642,34 +642,35 @@ namespace Inventory.EntityClass
                 if (update_tableLienQuan_result == -1)
                     return update_tableLienQuan_result;
 
-                //Nhân viên giữ VT
-                bool bDaDuyetGiuLai = bool.Parse(new_dt.Rows[row]["Da_duyet_giu_lai"].ToString());
-                bool bDaDuyetGiuLai_in_DB = bool.Parse(KiemTra["Da_duyet_giu_lai"].ToString());
-                Double dSLGL = Double.Parse(new_dt.Rows[row]["So_luong_giu_lai"].ToString());
-                if (bDaDuyetGiuLai == true && bDaDuyetGiuLai_in_DB == false && dSLGL > 0)
-                {
-                    //Cập nhật nợ.
-                    if (update_NVNoVT(row, m_trans, m_conn) == -1)
-                        return -1;
-                }
+            }
 
-                //NV hoàn nhập VT
-                bool bDaDuyetHoanNhap = bool.Parse(new_dt.Rows[row]["Da_duyet_hoan_nhap"].ToString());
-                bool bDaDuyetHoanNhap_in_DB = bool.Parse(KiemTra["Da_duyet_hoan_nhap"].ToString());
-                Double dSLHN = Double.Parse(new_dt.Rows[row]["So_luong_hoan_nhap"].ToString());
-                if (bDaDuyetHoanNhap == true && bDaDuyetHoanNhap_in_DB == false && dSLHN > 0)
-                {
-                    //cập nhật kho + thẻ kho
-                    if (update_TonKho_HN(row, m_trans, m_conn) == -1)
-                        return -1;
-                    if (update_ChiTietTheKho_HN(row, m_trans, m_conn) == -1)
-                        return -1;
+            //Nhân viên giữ VT
+            bool bDaDuyetGiuLai = bool.Parse(new_dt.Rows[row]["Da_duyet_giu_lai"].ToString());
+            bool bDaDuyetGiuLai_in_DB = bool.Parse(KiemTra["Da_duyet_giu_lai"].ToString());
+            Double dSLGL = Double.Parse(new_dt.Rows[row]["So_luong_giu_lai"].ToString());
+            if (bDaDuyetGiuLai == true && bDaDuyetGiuLai_in_DB == false && dSLGL > 0)
+            {
+                //Cập nhật nợ.
+                if (update_NVNoVT(row, m_trans, m_conn) == -1)
+                    return -1;
+            }
 
-                    if (dSLGL == dSLHN)
-                    {
-                        if (update_NVNoVT_DaTra(row, m_trans, m_conn) == -1)
-                            return -1;
-                    }
+            //NV hoàn nhập VT
+            bool bDaDuyetHoanNhap = bool.Parse(new_dt.Rows[row]["Da_duyet_hoan_nhap"].ToString());
+            bool bDaDuyetHoanNhap_in_DB = bool.Parse(KiemTra["Da_duyet_hoan_nhap"].ToString());
+            Double dSLHN = Double.Parse(new_dt.Rows[row]["So_luong_hoan_nhap"].ToString());
+            if (bDaDuyetHoanNhap == true && bDaDuyetHoanNhap_in_DB == false && dSLHN > 0)
+            {
+                //cập nhật kho + thẻ kho
+                if (update_TonKho_HN(row, m_trans, m_conn) == -1)
+                    return -1;
+                if (update_ChiTietTheKho_HN(row, m_trans, m_conn) == -1)
+                    return -1;
+
+                if (dSLGL == dSLHN)
+                {
+                    if (update_NVNoVT_DaTra(row, m_trans, m_conn) == -1)
+                        return -1;
                 }
             }
 
@@ -946,7 +947,7 @@ namespace Inventory.EntityClass
             string sql_KhoMuonVT = "";
             sql_KhoMuonVT += "INSERT INTO No_vat_tu ";
             sql_KhoMuonVT += "(ID_nhan_vien, Ma_phieu_xuat_tam, Ma_vat_tu, Id_chat_luong, So_luong_giu_lai, Da_tra) ";
-            sql_KhoMuonVT += "VALUES(@ID_Kho, @ID_Kho_muon, @Ma_vat_tu, @Id_chat_luong, @So_luong, @Ma_phieu_xuat_tam, @Da_tra) ";
+            sql_KhoMuonVT += "VALUES(@ID_nhan_vien, @Ma_phieu_xuat_tam, @Ma_vat_tu, @Id_chat_luong, @So_luong_giu_lai, @Da_tra) ";
 
             SqlCommand command_KhoMuonVT = new SqlCommand(sql_KhoMuonVT, m_conn, m_trans);
             command_KhoMuonVT.CommandType = CommandType.Text;

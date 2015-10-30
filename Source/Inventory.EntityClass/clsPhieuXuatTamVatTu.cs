@@ -289,10 +289,10 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var dm = (from nvt in help.ent.No_vat_tu
-                          join pxt in help.ent.Phieu_Xuat_Tam_Vat_Tu on nvt.ID_nhan_vien equals pxt.ID_nhan_vien
+                          //join pxt in help.ent.Phieu_Xuat_Tam_Vat_Tu on nvt.ID_nhan_vien equals pxt.ID_nhan_vien
                           join vt in help.ent.DM_Vat_Tu on nvt.Ma_vat_tu equals vt.Ma_vat_tu
                           join cl in help.ent.Chat_luong on nvt.Id_chat_luong equals cl.Id_chat_luong
-                          join kho in help.ent.DM_Kho on pxt.ID_kho equals kho.ID_kho
+                          //join kho in help.ent.DM_Kho on pxt.ID_kho equals kho.ID_kho
                           join dvt in help.ent.DM_Don_vi_tinh on vt.ID_Don_vi_tinh equals dvt.ID_Don_vi_tinh
                           where nvt.ID_nhan_vien == ID_NV && nvt.Da_tra == false
                           select new
@@ -302,8 +302,8 @@ namespace Inventory.EntityClass
                               vt.Ten_vat_tu,
                               nvt.Id_chat_luong,
                               cl.Loai_chat_luong,
-                              pxt.ID_kho,
-                              kho.Ten_kho,
+                              //pxt.ID_kho,
+                              //kho.Ten_kho,
                               nvt.So_luong_giu_lai,
                               dvt.Ten_don_vi_tinh
                           }).ToList();
@@ -311,6 +311,68 @@ namespace Inventory.EntityClass
 
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
+        }
+
+        public DataTable Get_NV_no_VT_IDKho(int ID_NV)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from nvt in help.ent.No_vat_tu
+                          join pxt in help.ent.Phieu_Xuat_Tam_Vat_Tu on nvt.ID_nhan_vien equals pxt.ID_nhan_vien
+                          join kho in help.ent.DM_Kho on pxt.ID_kho equals kho.ID_kho
+                          where nvt.ID_nhan_vien == ID_NV && nvt.Da_tra == false
+                          select new
+                          {
+                              pxt.ID_kho,
+                              kho.Ten_kho
+
+                          }).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
+
+        public DataTable GetAll_NV_no_VT_v2(int ID_NV)
+        {
+            m_dbConnection.Open();
+
+            DataTable dt = new DataTable();
+            string sql = "";
+            sql += "SELECT ";
+            sql += "No_vat_tu.ID_No_vat_tu, ";
+            sql += "No_vat_tu.Ma_vat_tu, ";
+            //sql += "DM_Kho.Ten_kho, ";
+            //sql += "Phieu_Xuat_Tam_Vat_Tu.Ngay_xuat, ";
+            //sql += "Phieu_Xuat_Tam_Vat_Tu.Ly_do, ";
+            //sql += "Phieu_Xuat_Tam_Vat_Tu.Cong_trinh, ";
+            //sql += "Phieu_Xuat_Tam_Vat_Tu.Dia_chi ";
+            sql += "FROM No_vat_tu ";
+            sql += "INNER ";
+            sql += "JOIN DM_Vat_Tu ";
+            sql += "ON No_vat_tu.Ma_vat_tu=DM_Vat_Tu.Ma_vat_tu ";
+            sql += "INNER ";
+            sql += "JOIN Phieu_Xuat_Tam_Vat_Tu ";
+            sql += "ON Phieu_Xuat_Tam_Vat_Tu.ID_nhan_vien=No_vat_tu.ID_nhan_vien ";
+            sql += "INNER ";
+            sql += "JOIN Chat_luong ";
+            sql += "ON Chat_luong.Id_chat_luong=No_vat_tu.Id_chat_luong ";
+            sql += "INNER ";
+            sql += "JOIN DM_Don_vi_tinh ";
+            sql += "ON DM_Don_vi_tinh.ID_Don_vi_tinh=DM_Vat_Tu.ID_Don_vi_tinh ";
+            sql += "INNER ";
+            sql += "JOIN DM_Kho ";
+            sql += "ON DM_Kho.ID_kho=Phieu_Xuat_Tam_Vat_Tu.ID_kho ";
+            sql += "WHERE No_vat_tu.ID_nhan_vien=@ID_nhan_vien AND No_vat_tu.Da_tra = 'False'";
+
+            SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            da.Fill(dt);
+            m_dbConnection.Close();
+
+            return dt;
         }
 
 
