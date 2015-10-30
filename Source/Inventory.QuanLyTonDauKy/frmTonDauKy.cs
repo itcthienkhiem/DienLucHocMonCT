@@ -108,7 +108,7 @@ namespace Inventory.QuanLyTonDauKy
         {
             try
             {
-                gridTonDauKy.DataSource = TonDauKy.GetAll();
+                gridTonDauKy.DataSource = TonDauKy.GetAll("");
             }
             catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
@@ -126,7 +126,7 @@ namespace Inventory.QuanLyTonDauKy
 
             Int32 ID_Kho = Int32.Parse(c.SelectedValue.ToString());
 
-            gridTonDauKy.DataSource = TonDauKy.GetAll_By_IDKho(ID_Kho);
+            gridTonDauKy.DataSource = TonDauKy.GetAll(cbKhoNhap.Text);
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace Inventory.EntityClass
 
       //  SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
-        public DataTable GetAll()
+        public DataTable GetAll(string name)
         {
 
 
@@ -31,7 +31,7 @@ namespace Inventory.EntityClass
                           join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                           join f in help.ent.DM_Kho on d.ID_kho equals f.ID_kho
                           join gl in help.ent.Chat_luong on d.ID_chat_luong equals gl.Id_chat_luong
-
+                          where f.Ten_kho.Contains(name)
                           select new {
                             ten_kho = f.Ten_kho,
                             ten_vat_tu = e.Ten_vat_tu,
