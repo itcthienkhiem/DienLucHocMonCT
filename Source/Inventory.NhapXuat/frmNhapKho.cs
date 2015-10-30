@@ -1131,17 +1131,35 @@ namespace Inventory.NhapXuat
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+
+            double number;
+            try
             {
-                e.Handled = true;
+                number = double.Parse(txtSLYC.Text);
+                txtSLYC.BackColor = Color.White;
             }
+            catch
+            {
+                txtSLYC.BackColor = Color.Red;
+            }
+
+            //if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         private void txtSLTX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            double number;
+            try
             {
-                e.Handled = true;
+                number = double.Parse(txtSLTX.Text);
+                txtSLYC.BackColor = Color.White;
+            }
+            catch
+            {
+                txtSLTX.BackColor = Color.Red;
             }
         }
 
@@ -1155,16 +1173,7 @@ namespace Inventory.NhapXuat
 
         private void txtSLYC_Validating(object sender, CancelEventArgs e)
         {
-            string errorMsg = "Số lượng yêu cầu ko đúng. Xin hãy nhập số!";
-            if ( txtSLYC.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txtSLYC.Select(0, txtSLYC.Text.Length);
 
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txtSLYC, errorMsg);
-            }
         }
 
         private void txtSLYC_Validated(object sender, EventArgs e)
@@ -1179,16 +1188,7 @@ namespace Inventory.NhapXuat
 
         private void txtSLTX_Validating(object sender, CancelEventArgs e)
         {
-            string errorMsg = "Số lượng thực xuất ko đúng. Xin hãy nhập số!";
-            if ( txtSLTX.Text.Equals(String.Empty))
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                txtSLYC.Select(0, txtSLTX.Text.Length);
 
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txtSLTX, errorMsg);
-            }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
