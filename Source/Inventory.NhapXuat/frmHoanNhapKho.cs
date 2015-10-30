@@ -440,7 +440,7 @@ namespace Inventory.NhapXuat
         {
             sttaf = PanelButton.getClickStatus();
 
-            if ((int.Parse(txtSLYC.Text)) < 0 || (int.Parse(txtSLTX.Text)) < 0)
+            if ((double.Parse(txtSLYC.Text)) < 0 || (double.Parse(txtSLTX.Text)) < 0)
             {
                 MessageBox.Show("Số lượng vật tư không được phép giá trị âm !");
                 return;
@@ -472,7 +472,7 @@ namespace Inventory.NhapXuat
                     dr["ID_don_vi_tinh"] = temp.Rows[0]["ID_Don_vi_tinh"];
                     if (txtDonGia.Text == "")
                         txtDonGia.Text = "0";
-                    dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text)==0;
+                    dr["thanh_tien"] = double.Parse(txtDonGia.Text) * double.Parse(txtSLTX.Text) == 0;
 
                     dataTable1.Rows.Add(dr);
 
@@ -569,7 +569,7 @@ namespace Inventory.NhapXuat
                     if (txtDonGia.Text == "")
                         txtDonGia.Text = "0";
 
-                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
+                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value = double.Parse(txtDonGia.Text) * double.Parse(txtSLTX.Text);
                   
                     PanelButton.setClickStatus( sttaf);
                 }

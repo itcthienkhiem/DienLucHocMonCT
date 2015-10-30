@@ -391,11 +391,19 @@ namespace Inventory.NhapXuat
 
         private void gridMaster_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is DataGridViewComboBoxEditingControl)
+            try
             {
-                ((ComboBox)e.Control).DropDownStyle = ComboBoxStyle.DropDown;
-                ((ComboBox)e.Control).AutoCompleteSource = AutoCompleteSource.ListItems;
-                ((ComboBox)e.Control).AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+                if (e.Control is DataGridViewComboBoxEditingControl)
+                {
+                    ((ComboBox)e.Control).DropDownStyle = ComboBoxStyle.DropDown;
+                    ((ComboBox)e.Control).AutoCompleteSource = AutoCompleteSource.ListItems;
+                    ((ComboBox)e.Control).AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+
             }
         }
 
@@ -445,57 +453,65 @@ namespace Inventory.NhapXuat
         enumButton2 sttaf;
         private void btnGridAdd_Click(object sender, EventArgs e)
         {
-            sttaf = PanelButton.getClickStatus();
-
-            if ((int.Parse(txtSLYC.Text)) < 0 || (int.Parse(txtSLTX.Text)) < 0)
+            try
             {
-                MessageBox.Show("Số lượng vật tư không được phép giá trị âm !");
-                return;
-            }
-            
-            if (cbMaVatTu.Text == "" || cbTenVatTu.Text == ""||cbChatLuong .Text =="")
-            {
-                MessageBox.Show("Mã vật tư và tên vật tư không được rỗng, Chất lượng bắt buộc nhập !");
-                return;
-            }
+                sttaf = PanelButton.getClickStatus();
 
-            DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text);
-
-            if (result.Length == 0)
-            {
-                try
+                if ((double.Parse(txtSLYC.Text)) < 0 || (double.Parse(txtSLTX.Text)) < 0)
                 {
-                    DataRow dr = dataTable1.NewRow();
-                    dr["Ma_vat_tu"] = cbMaVatTu.Text;
-                    dr["ten_vat_tu"] = cbTenVatTu.Text;
-                    dr["Ten_don_vi_tinh"] = txtDVT.Text;
-                    dr["chat_luong"] = cbChatLuong.Text;
-                    dr["ID_chat_luong"] = cbChatLuong.SelectedValue;
-                    dr["so_luong_yeu_cau"] = txtSLYC.Text;
-                    dr["so_luong_thuc_lanh"] = txtSLTX.Text;
-                    dr["don_gia"] = txtDonGia.Text;
-                    clsDMVatTu vt = new clsDMVatTu();
-                    DataTable temp = vt.GetAll(cbMaVatTu.Text);
-                    dr["ID_don_vi_tinh"] = temp.Rows[0]["ID_Don_vi_tinh"];
-                    if (txtDonGia.Text == "")
-                        txtDonGia.Text = "0";
-                    dr["thanh_tien"] = int.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text)==0;
-
-                    dataTable1.Rows.Add(dr);
-
-                    ResetGridInputForm();
-                    PanelButton.setClickStatus(sttaf);
-
+                    MessageBox.Show("Số lượng vật tư không được phép giá trị âm !");
+                    return;
                 }
-                catch (Exception ex)
+
+                if (cbMaVatTu.Text == "" || cbTenVatTu.Text == "" || cbChatLuong.Text == "")
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Mã vật tư và tên vật tư không được rỗng, Chất lượng bắt buộc nhập !");
+                    return;
                 }
-            }
-            else
-                MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
 
-            // gridMaster.SelectedRows.
+                DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text);
+
+                if (result.Length == 0)
+                {
+                    try
+                    {
+                        DataRow dr = dataTable1.NewRow();
+                        dr["Ma_vat_tu"] = cbMaVatTu.Text;
+                        dr["ten_vat_tu"] = cbTenVatTu.Text;
+                        dr["Ten_don_vi_tinh"] = txtDVT.Text;
+                        dr["chat_luong"] = cbChatLuong.Text;
+                        dr["ID_chat_luong"] = cbChatLuong.SelectedValue;
+                        dr["so_luong_yeu_cau"] = txtSLYC.Text;
+                        dr["so_luong_thuc_lanh"] = txtSLTX.Text;
+                        dr["don_gia"] = txtDonGia.Text;
+                        clsDMVatTu vt = new clsDMVatTu();
+                        DataTable temp = vt.GetAll(cbMaVatTu.Text);
+                        dr["ID_don_vi_tinh"] = temp.Rows[0]["ID_Don_vi_tinh"];
+                        if (txtDonGia.Text == "")
+                            txtDonGia.Text = "0";
+                        dr["thanh_tien"] = double.Parse(txtDonGia.Text) * double.Parse(txtSLTX.Text) == 0;
+
+                        dataTable1.Rows.Add(dr);
+
+                        ResetGridInputForm();
+                        PanelButton.setClickStatus(sttaf);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
+
+                // gridMaster.SelectedRows.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+
+            }
         }
 
 
@@ -532,22 +548,32 @@ namespace Inventory.NhapXuat
 
                 //cbMaVatTu_KeyDown(null, null);
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+            }
         }
 
 
         private void gridMaster_MouseClick(object sender, MouseEventArgs e)
         {
-            if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi)
+            try
             {
-                Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
-                cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
-                if (cbMaVatTu.Text != "")
+                if (PanelButton.getClickStatus() == enumButton2.SuaLuoi || PanelButton.getClickStatus() == enumButton2.XoaLuoi)
                 {
-                    cbMaVatTu_KeyDown(null, null);
+                    Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
+                    cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
+                    if (cbMaVatTu.Text != "")
+                    {
+                        cbMaVatTu_KeyDown(null, null);
+                    }
+                    else
+                        ResetGridInputForm();
                 }
-                else
-                    ResetGridInputForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
 
@@ -576,7 +602,7 @@ namespace Inventory.NhapXuat
                     if (txtDonGia.Text == "")
                         txtDonGia.Text = "0";
 
-                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =int.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
+                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =double.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
                   
                     PanelButton.setClickStatus( sttaf);
                 }
@@ -1036,7 +1062,7 @@ namespace Inventory.NhapXuat
             txtXuatTaiKho.Text = "";
 
             txtMaPhieuNhap.Enabled = true;
-
+            txtDonGia.Text = "0";
             
             dataTable1.Clear();
         }
