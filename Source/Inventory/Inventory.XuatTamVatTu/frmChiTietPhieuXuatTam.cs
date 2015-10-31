@@ -121,6 +121,7 @@ namespace Inventory.XuatTamVatTu
 
         private void frm_init()
         {
+            button1.Visible = false;
             ToolTip1 = new System.Windows.Forms.ToolTip();
             errorProvider1 = new ErrorProvider();
             autoConfigFormControls = new AutoConfigFormControls(ref errorProvider1);
@@ -147,6 +148,7 @@ namespace Inventory.XuatTamVatTu
 
             cbMaNhanVien.SelectedValue = ID_nhan_vien;
             cbMaNhanVien_SelectionChangeCommitted(cbMaNhanVien, EventArgs.Empty);
+            cbTenNhanVien_SelectionChangeCommitted(cbTenNhanVien, EventArgs.Empty);
         }
 
         //Xử lý báo giữ lại VT

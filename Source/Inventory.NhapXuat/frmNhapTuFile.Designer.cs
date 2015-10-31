@@ -52,6 +52,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbLPN = new System.Windows.Forms.ComboBox();
             this.chbGoiDau = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbKhoNhan = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -299,11 +301,30 @@
             this.chbGoiDau.Text = "Phiếu gối đầu";
             this.chbGoiDau.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(619, 146);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.TabIndex = 69;
+            this.label8.Text = "Chọn Kho Nhận";
+            // 
+            // cbKhoNhan
+            // 
+            this.cbKhoNhan.FormattingEnabled = true;
+            this.cbKhoNhan.Location = new System.Drawing.Point(718, 143);
+            this.cbKhoNhan.Name = "cbKhoNhan";
+            this.cbKhoNhan.Size = new System.Drawing.Size(121, 21);
+            this.cbKhoNhan.TabIndex = 70;
+            // 
             // frmNhapTuFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 557);
+            this.Controls.Add(this.cbKhoNhan);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.chbGoiDau);
             this.Controls.Add(this.cbLPN);
             this.Controls.Add(this.label6);
@@ -351,5 +372,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbLPN;
         private System.Windows.Forms.CheckBox chbGoiDau;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbKhoNhan;
     }
 }

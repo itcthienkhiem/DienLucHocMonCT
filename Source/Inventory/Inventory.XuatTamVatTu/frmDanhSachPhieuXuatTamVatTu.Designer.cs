@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnBaoHoanNhap = new System.Windows.Forms.Button();
             this.btnBaoGiuLai = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnLocLuoi = new System.Windows.Forms.Button();
-            this.btnBaoHoanNhap = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuXuatTam)).BeginInit();
             this.SuspendLayout();
@@ -87,8 +87,18 @@
             this.pnlMenu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(944, 99);
+            this.pnlMenu.Size = new System.Drawing.Size(1082, 99);
             this.pnlMenu.TabIndex = 54;
+            // 
+            // btnBaoHoanNhap
+            // 
+            this.btnBaoHoanNhap.Location = new System.Drawing.Point(481, 13);
+            this.btnBaoHoanNhap.Name = "btnBaoHoanNhap";
+            this.btnBaoHoanNhap.Size = new System.Drawing.Size(108, 48);
+            this.btnBaoHoanNhap.TabIndex = 6;
+            this.btnBaoHoanNhap.Text = "Báo Hoàn Nhập";
+            this.btnBaoHoanNhap.UseVisualStyleBackColor = true;
+            this.btnBaoHoanNhap.Click += new System.EventHandler(this.btnBaoHoanNhap_Click);
             // 
             // btnBaoGiuLai
             // 
@@ -143,7 +153,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.BackgroundImage = global::Inventory.XuatTamVatTu.Properties.Resources.close_bmc;
             this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(872, 13);
+            this.btnDong.Location = new System.Drawing.Point(1010, 13);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(50, 50);
             this.btnDong.TabIndex = 2;
@@ -153,7 +163,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(880, 67);
+            this.label7.Location = new System.Drawing.Point(1018, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
@@ -244,6 +254,9 @@
             this.gridDanhSachPhieuXuatTam.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
             this.gridDanhSachPhieuXuatTam.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridDanhSachPhieuXuatTam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDanhSachPhieuXuatTam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuXuatTam.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -272,7 +285,7 @@
             this.gridDanhSachPhieuXuatTam.RowHeadersVisible = false;
             this.gridDanhSachPhieuXuatTam.RowTemplate.Height = 30;
             this.gridDanhSachPhieuXuatTam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuXuatTam.Size = new System.Drawing.Size(944, 435);
+            this.gridDanhSachPhieuXuatTam.Size = new System.Drawing.Size(1082, 435);
             this.gridDanhSachPhieuXuatTam.TabIndex = 55;
             // 
             // Ma_phieu_xuat_tam
@@ -370,21 +383,11 @@
             this.btnLocLuoi.UseVisualStyleBackColor = true;
             this.btnLocLuoi.Click += new System.EventHandler(this.btnLocLuoi_Click);
             // 
-            // btnBaoHoanNhap
-            // 
-            this.btnBaoHoanNhap.Location = new System.Drawing.Point(481, 13);
-            this.btnBaoHoanNhap.Name = "btnBaoHoanNhap";
-            this.btnBaoHoanNhap.Size = new System.Drawing.Size(108, 48);
-            this.btnBaoHoanNhap.TabIndex = 6;
-            this.btnBaoHoanNhap.Text = "Báo Hoàn Nhập";
-            this.btnBaoHoanNhap.UseVisualStyleBackColor = true;
-            this.btnBaoHoanNhap.Click += new System.EventHandler(this.btnBaoHoanNhap_Click);
-            // 
             // frmDanhSachPhieuXuatTamVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 587);
+            this.ClientSize = new System.Drawing.Size(1082, 587);
             this.Controls.Add(this.btnLocLuoi);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);

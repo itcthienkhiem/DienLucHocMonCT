@@ -388,8 +388,8 @@ namespace Inventory.EntityClass
             SqlTransaction m_trans = null;
 
             SqlConnection m_conn = new SqlConnection(clsThamSoUtilities.connectionString);
-            //try
-            //{
+            try
+            {
                 if (m_conn.State == ConnectionState.Closed)
                     m_conn.Open();
 
@@ -475,19 +475,19 @@ namespace Inventory.EntityClass
                 m_conn.Close();
 
                 return 1;
-            //}
-            //catch (Exception ex)
-            //{
-                
-            //    m_trans.Rollback();
-            //    return -1;
-            //    throw ex;
-            //}
-            //finally
-            //{
-            //    if (m_conn.State != ConnectionState.Closed)
-            //        m_conn.Close();
-            //}
+            }
+            catch (Exception ex)
+            {
+
+                m_trans.Rollback();
+                return -1;
+                throw ex;
+            }
+            finally
+            {
+                if (m_conn.State != ConnectionState.Closed)
+                    m_conn.Close();
+            }
         }
 
         public int Delete_row(int row, SqlTransaction m_trans, SqlConnection m_conn)
@@ -664,6 +664,7 @@ namespace Inventory.EntityClass
                 //cập nhật kho + thẻ kho
                 if (update_TonKho_HN(row, m_trans, m_conn) == -1)
                     return -1;
+
                 if (update_ChiTietTheKho_HN(row, m_trans, m_conn) == -1)
                     return -1;
 
@@ -841,11 +842,11 @@ namespace Inventory.EntityClass
             if (tk == null)
                 return 0;
 
-            int ID_The_Kho = Int32.Parse(tk[0]["ID_The_Kho"].ToString());
+            int ID_The_Kho = Int32.Parse(tk[0]["ID_The_Kho"].ToString()); //Int32.Parse(tk[0][0].ToString());
 
             //Sai SL, phải cập nhật sl vào cả table
             //Double So_luong = Double.Parse(tk[0]["So_luong"].ToString());
-            
+
             string sql_ChiTietTheKho = "";
             sql_ChiTietTheKho += "INSERT INTO Chi_tiet_the_kho ";
             sql_ChiTietTheKho += "(ID_The_Kho, Ma_phieu, ID_loai_phieu_nhap, Loai_phieu, Ngay_xuat_chung_tu, Ngay_nhap_xuat, SL_Nhap, SL_Xuat, SL_Ton) ";
@@ -886,15 +887,15 @@ namespace Inventory.EntityClass
             if (tk == null)
                 return 0;
 
-            int ID_The_Kho = Int32.Parse(tk[0]["ID_ton_kho"].ToString());
+            int ID_The_Kho = Int32.Parse(tk[0]["ID_ton_kho"].ToString()); //Int32.Parse(tk[0][0].ToString());
 
             //Sai SL, phải cập nhật sl vào cả table
-            Double So_luong = Double.Parse(tk[0]["So_luong"].ToString());
+            //Double So_luong = Double.Parse(tk[0]["So_luong"].ToString());
 
             string sql_ChiTietTheKho = "";
             sql_ChiTietTheKho += "INSERT INTO Chi_tiet_the_kho ";
             sql_ChiTietTheKho += "(ID_The_Kho, Ma_phieu, ID_loai_phieu_nhap, Loai_phieu, Ngay_xuat_chung_tu, Ngay_nhap_xuat, SL_Nhap, SL_Xuat, SL_Ton) ";
-            sql_ChiTietTheKho += "VALUES(@ID_The_Kho, @Ma_phieu, @Loai_phieu, @Ngay_xuat_chung_tu, @Ngay_nhap_xuat, @SL_Nhap, @SL_Xuat, @SL_Ton) ";
+            sql_ChiTietTheKho += "VALUES(@ID_The_Kho, @Ma_phieu, @ID_loai_phieu_nhap, @Loai_phieu, @Ngay_xuat_chung_tu, @Ngay_nhap_xuat, @SL_Nhap, @SL_Xuat, @SL_Ton) ";
 
             SqlCommand command_ChiTietTheKho = new SqlCommand(sql_ChiTietTheKho, m_conn, m_trans);
             command_ChiTietTheKho.CommandType = CommandType.Text;
@@ -1135,14 +1136,14 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                //var entryPoint = (from tk in help.ent.Ton_kho.AsQueryable<Ton_kho>()
-                //                  where lstVT.Contains(tk.Ma_vat_tu)
-                //                  select tk
-                //         ).ToList();
+                var entryPoint = (from tk in help.ent.Ton_kho.AsQueryable<Ton_kho>()
+                                  where lstVT.Contains(tk.Ma_vat_tu)
+                                  select tk
+                         ).ToList();
 
-                var entryPoint = help.ent.Ton_kho.AsQueryable<Ton_kho>()
-                                                 .Where(tk => lstVT.Contains(tk.Ma_vat_tu))
-                                                 .ToList();
+                //var entryPoint = help.ent.Ton_kho.AsQueryable<Ton_kho>()
+                //                                 .Where(tk => lstVT.Contains(tk.Ma_vat_tu))
+                //                                 .ToList();
 
                 DataTable tmp = Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
                 return tmp;
@@ -1169,14 +1170,14 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                //var entryPoint = (from tk in help.ent.Ton_kho.AsQueryable<Ton_kho>()
-                //                  where lstVT.Contains(tk.Ma_vat_tu)
-                //                  select tk
-                //         ).ToList();
+                var entryPoint = (from tk in help.ent.The_kho.AsQueryable<The_kho>()
+                                  where lstVT.Contains(tk.Ma_vat_tu)
+                                  select tk
+                         ).ToList();
 
-                var entryPoint = help.ent.The_kho.AsQueryable<The_kho>()
-                                                 .Where(tk => lstVT.Contains(tk.Ma_vat_tu))
-                                                 .ToList();
+                //var entryPoint = help.ent.The_kho.AsQueryable<The_kho>()
+                //                                 .Where(tk => lstVT.Contains(tk.Ma_vat_tu))
+                //                                 .ToList();
 
                 DataTable tmp = Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
                 return tmp;

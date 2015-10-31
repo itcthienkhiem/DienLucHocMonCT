@@ -58,35 +58,41 @@ namespace Inventory.QuanLyTonDauKy
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
                     DataTable tbcttk = cttk.GetAllSLT(tungay,search);
                     //danh sách đã được sắp xếp tăng dần
-                    double tkt = 0;
+                    decimal tkt = 0;
                     for (int i = 0; i < tbcttk.Rows.Count; i++)
                     {
-                        double slnt = double.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? double.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
-                        double slxt = double.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? double.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
-                        double sltt = double.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? double.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
-                        string getTen = new clsLoaiPhieuNhap().getTenLPN(int.Parse( tbcttk.Rows[0]["ID_Loai_Phieu_Nhap"].ToString()));
+                        decimal slnt = decimal.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? decimal.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
+                        decimal slxt = decimal.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
+                        decimal sltt = decimal.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? decimal.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
+                        //string getTen = new clsLoaiPhieuNhap().getTenLPN(int.Parse( tbcttk.Rows[0]["ID_Loai_Phieu_Nhap"].ToString()));
                        
                             tkt = tkt + sltt + slnt - slxt;
                     }
                     DataTable tb = cttk.Search(tungay, denngay,search);
-                   // DataView dv = tb.DefaultView;
+                    // DataView dv = tb.DefaultView;
                     //   Sort data
 
-                   // dv.Sort = "Ngay_nhap_xuat";
+                    // dv.Sort = "Ngay_nhap_xuat";
                     //   Convert back your sorted DataView to DataTable
-                   // tb = dv.ToTable();
-                    double sln = double.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ?  double.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
-                    double slx = double.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
+                    // tb = dv.ToTable();
+                    if (tb.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Chưa có trong chi tiết thẻ kho");
+                        return;
+                    
+                    }
+                    decimal sln = decimal.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
+                    decimal slx = decimal.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
 
-                    double slt = double.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? double.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
-                    double tontruoc = tkt;
-                    double tonhientai = sln - slx + tontruoc;
+                    decimal slt = decimal.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? decimal.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
+                    decimal tontruoc = tkt;
+                    decimal tonhientai = sln - slx + tontruoc;
                     tontruoc = tonhientai;
                     tb.Rows[0]["SL_ton"] = tonhientai;   
                     for (int i = 1; i < tb.Rows.Count; i++)
                     {
-                        sln = double.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? double.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
-                        slx = double.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? double.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
+                        sln = decimal.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
+                        slx = decimal.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
                          tonhientai=tontruoc + sln - slx;
                          tontruoc = tonhientai;
                          tb.Rows[i]["SL_ton"] = tonhientai;   

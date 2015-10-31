@@ -250,7 +250,7 @@ namespace Inventory.NhapXuat
                             LPN.Ma_LPN = Loai_PN;
                             
                             pnk.ID_Loai_Phieu_Nhap = LPN.GetFirst(help);
-
+                            pnk.ID_khoNhan =(int) cbKhoNhan.SelectedValue;
                             if (pnk.Insert(help) == 0)
                             {
                                 dbcxtransaction.Rollback();
@@ -340,7 +340,7 @@ namespace Inventory.NhapXuat
         private void frmNhapTuFile_Load(object sender, EventArgs e)
         {
             clsGiaoDienChung.initCombobox(cbLPN, new clsLoaiPhieuNhap(), "Ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "Ma_loai_phieu_nhap");
-       
+            clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
         }
     }
 }
