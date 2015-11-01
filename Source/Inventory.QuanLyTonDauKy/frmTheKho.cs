@@ -63,10 +63,10 @@ namespace Inventory.QuanLyTonDauKy
                     {
                         decimal slnt = decimal.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? decimal.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
                         decimal slxt = decimal.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
-                        decimal sltt = decimal.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? decimal.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
+                       // decimal sltt = decimal.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? decimal.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
                         //string getTen = new clsLoaiPhieuNhap().getTenLPN(int.Parse( tbcttk.Rows[0]["ID_Loai_Phieu_Nhap"].ToString()));
                        
-                            tkt = tkt + sltt + slnt - slxt;
+                            tkt = tkt +  slnt - slxt;
                     }
                     DataTable tb = cttk.Search(tungay, denngay,search);
                     // DataView dv = tb.DefaultView;
@@ -81,15 +81,19 @@ namespace Inventory.QuanLyTonDauKy
                         return;
                     
                     }
-                    decimal sln = decimal.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
-                    decimal slx = decimal.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
+                    decimal sln=0;
+                    decimal slx = 0;
+                    decimal tonhientai = 0;
 
-                    decimal slt = decimal.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? decimal.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
+                //    decimal sln = decimal.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
+                //    decimal slx = decimal.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
+
+                   // decimal slt = decimal.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? decimal.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
                     decimal tontruoc = tkt;
-                    decimal tonhientai = sln - slx + tontruoc;
-                    tontruoc = tonhientai;
-                    tb.Rows[0]["SL_ton"] = tonhientai;   
-                    for (int i = 1; i < tb.Rows.Count; i++)
+                //    decimal tonhientai = sln - slx + tontruoc;
+                 //   tontruoc = tonhientai;
+                 //   tb.Rows[0]["SL_ton"] = tonhientai;   
+                    for (int i = 0; i < tb.Rows.Count; i++)
                     {
                         sln = decimal.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
                         slx = decimal.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
