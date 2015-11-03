@@ -20,7 +20,7 @@ namespace Inventory.NhapXuat
     /// [ ] 
     /// [ ] 
     /// </summary>
-    public partial class frmNhapKho : Form
+    public partial class frmNhapKhoToTrinh : Form
     {
 
        // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
@@ -29,7 +29,7 @@ namespace Inventory.NhapXuat
         //  DataTable data = new DataTable();
 
 
-        public frmNhapKho()
+        public frmNhapKhoToTrinh()
         {
             InitializeComponent();
 
@@ -42,7 +42,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         /// <param name="stt">enumButton2</param>
         /// <param name="Ma_Phieu_Nhap">str Mã phiếu nhập.</param>
-        public frmNhapKho(enumButton2 stt, string Ma_Phieu_Nhap)
+        public frmNhapKhoToTrinh(enumButton2 stt, string Ma_Phieu_Nhap)
         {
             InitializeComponent();
 
@@ -61,7 +61,7 @@ namespace Inventory.NhapXuat
             }
         }
 
-        public frmNhapKho(enumStatus status, clsPhieuNhapKho phieunhap)
+        public frmNhapKhoToTrinh(enumStatus status, clsPhieuNhapKho phieunhap)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace Inventory.NhapXuat
                 MessageBox.Show("Mã phiếu bắt buộc nhập!");
                 return;
             }
-            if (cbKhoNhan.Text == "" || cbLoaiPhieuNhan.Text == "")
+            if (cbKhoNhan.Text == "" )
             {
                 MessageBox.Show("Chưa nhập kho hoặc mã phiếu");
                 return;
@@ -140,12 +140,12 @@ namespace Inventory.NhapXuat
                             phieunhap.Kho_nhan = cbKhoNhan.Text;
                             phieunhap.Kho_xuat_ra = txtXuatTaiKho.Text;
                             phieunhap.Da_phan_kho = false;
-                            if (cbLoaiPhieuNhan.Text == "")
-                            {
-                                MessageBox.Show("Loại phiếu nhập bắt buộc nhập");
-                                return;
-                            }
-                            phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
+                            //if (cbLoaiPhieuNhan.Text == "")
+                            //{
+                            //    MessageBox.Show("Loại phiếu nhập bắt buộc nhập");
+                            //    return;
+                            //}
+                          //  phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
                        //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             phieunhap.Dia_chi = txtDiaChi.Text;
@@ -154,7 +154,7 @@ namespace Inventory.NhapXuat
                             //  phieunhap.So_hoa_don = txt
                             phieunhap.Cong_trinh = txtCongTrinh.Text;
                             phieunhap.Da_phan_kho = false;
-                            phieunhap.isGoiDau = chbNGD.Checked;
+                          //  phieunhap.isGoiDau = chbNGD.Checked;
                             phieunhap.ID_khoNhan =(int) cbKhoNhan.SelectedValue;
                             if (phieunhap.Insert(DAL) == 1)
                             {
@@ -215,14 +215,14 @@ namespace Inventory.NhapXuat
                              
                                 // phieunhap.
 
-                                phieunhap.ID_Loai_Phieu_Nhap = Int32.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
+                              //  phieunhap.ID_Loai_Phieu_Nhap = Int32.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
                                 phieunhap.Ly_do = txtLyDo.Text;
                                 phieunhap.Ngay_lap = dtNgayNhap.Value;
-                                phieunhap.So_hoa_don = txtSoHD.Text;
+                           //     phieunhap.So_hoa_don = txtSoHD.Text;
                                 phieunhap.Cong_trinh = txtCongTrinh.Text;
-                                phieunhap.isGoiDau = chbNGD.Checked;
+                              //  phieunhap.isGoiDau = chbNGD.Checked;
                                 phieunhap.ID_khoNhan =(int) cbKhoNhan.SelectedValue;
                                 DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
                                 Phieu_Nhap_Kho nk = new Phieu_Nhap_Kho();
@@ -241,7 +241,7 @@ namespace Inventory.NhapXuat
                                 nk.Ly_do = phieunhap.Ly_do;
                                 nk.Ngay_lap = phieunhap.Ngay_lap;
                                 nk.So_hoa_don = phieunhap.So_hoa_don;
-                                nk.isGoiDau = chbNGD.Checked;
+                              //  nk.isGoiDau = chbNGD.Checked;
                                 if (phieunhap.Update(nk) == 1)
                                 {
 
@@ -337,8 +337,8 @@ namespace Inventory.NhapXuat
                     txtCongTrinh.Text = tb.Rows[0]["cong_trinh"].ToString();
                     cbKhoNhan.Text = tb.Rows[0]["Ten_kho"].ToString();
                     txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
-                    cbLoaiPhieuNhan.SelectedValue = tb.Rows[0]["ID_Loai_Phieu_Nhap"].ToString();
-                    chbNGD.Checked =bool.Parse( tb.Rows[0]["isGoiDau"].ToString());
+                 //   cbLoaiPhieuNhan.SelectedValue = tb.Rows[0]["ID_Loai_Phieu_Nhap"].ToString();
+                 //   chbNGD.Checked =bool.Parse( tb.Rows[0]["isGoiDau"].ToString());
                     clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                     DataTable vChiTiet = (DataTable)chitiet.GetAll(txtMaPhieuNhap.Text);
                     for (int i = 0; i < vChiTiet.Rows.Count; i++)
@@ -912,7 +912,7 @@ namespace Inventory.NhapXuat
             initTenVatTu();
             initChatLuong();
             ///
-            clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
+            //clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
             //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
@@ -1020,7 +1020,7 @@ namespace Inventory.NhapXuat
             txtDonGia.Enabled = _status;
             txtXuatTaiKho.Enabled = _status;
             cbKhoNhan.Enabled = _status;
-            txtSoHD.Enabled = _status;
+          //  txtSoHD.Enabled = _status;
           //  txtSLYC.Enabled = _status;
             //txtMaPhieuNhap.Enabled = _status;
 

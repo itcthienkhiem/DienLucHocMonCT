@@ -1,6 +1,6 @@
 ﻿namespace Inventory.NhapXuat
 {
-    partial class frmNhapKho
+    partial class frmNhapKhoToTrinh
     {
         /// <summary>
         /// Required designer variable.
