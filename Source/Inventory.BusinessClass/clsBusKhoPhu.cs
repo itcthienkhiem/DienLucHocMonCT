@@ -10,7 +10,7 @@ namespace Inventory.BusinessClass
 {
    public class clsBusKhoPhu
     {
-       public int Insert(clsKhoPhu kp , clsChi_Tiet_Kho_Phu ctkp)
+       public int Insert(clsToTrinh kp , clsChi_Tiet_To_Trinh ctkp)
        { 
          DatabaseHelper help = new DatabaseHelper();
              help.ConnectDatabase();

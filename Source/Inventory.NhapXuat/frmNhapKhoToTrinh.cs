@@ -135,7 +135,7 @@ namespace Inventory.NhapXuat
                         help.ConnectDatabase();
                         using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                         {
-                            clsKhoPhu phieunhap = new clsKhoPhu();
+                            clsToTrinh phieunhap = new clsToTrinh();
                             phieunhap.ID_kho_chinh = (int)cbKhoNhan.SelectedValue;
                             phieunhap.So_chung_tu = txtMaPhieu.Text;
                             phieunhap.Ly_do = txtLyDo.Text;
@@ -149,7 +149,7 @@ namespace Inventory.NhapXuat
                                 //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieuNhap.ID_phieu_nhap);
                                 for (int i = 0; i < dataTable1.Rows.Count; i++)
                                 {
-                                    clsChi_Tiet_Kho_Phu chitiet = new clsChi_Tiet_Kho_Phu();
+                                    clsChi_Tiet_To_Trinh chitiet = new clsChi_Tiet_To_Trinh();
                                     //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(gridMaster.Rows[i].Cells["ID_chi_tiet_phieu_nhap"].ToString());
                                     chitiet.Ma_vat_tu = (txtMaPhieu.Text);
                                     chitiet.ID_don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
@@ -177,7 +177,7 @@ namespace Inventory.NhapXuat
                                 enableInputForm();
 
                                 PanelButton.ResetButton();
-                                id_kho_phu = phieunhap.ID_kho_phu;
+                                id_kho_phu = phieunhap.ID_to_trinh;
                             }
                             else
                                 DAL.RollbackTransaction();
@@ -200,8 +200,8 @@ namespace Inventory.NhapXuat
                         {
                             try
                             {
-                                clsKhoPhu phieunhap = new clsKhoPhu();
-                                phieunhap .ID_kho_phu = 
+                                clsToTrinh phieunhap = new clsToTrinh();
+                          
                                 phieunhap.ID_kho_chinh =(int) cbKhoNhan.SelectedValue;
                                 {
 
@@ -215,9 +215,9 @@ namespace Inventory.NhapXuat
                                     phieunhap.Ten_phieu = txtTenPhieu.Text;
 
                                  //   DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
-                                    Kho_phu nk = new Kho_phu();
+                                    To_trinh nk = new To_trinh();
 
-                                    nk.ID_kho_chinh = phieunhap.ID_kho_chinh;
+                                    nk.ID_to_trinh = phieunhap.ID_to_trinh;
 
 
                                     nk.So_chung_tu = phieunhap.So_chung_tu;
@@ -229,15 +229,15 @@ namespace Inventory.NhapXuat
                                     if (phieunhap.Update(nk) == 1)
                                     {
 
-                                        clsChi_Tiet_Kho_Phu pn = new clsChi_Tiet_Kho_Phu();
-                                        pn.ID_kho_phu =id_kho_phu;
+                                        clsChi_Tiet_To_Trinh pn = new clsChi_Tiet_To_Trinh();
+                                        pn.ID_to_trinh =id_kho_phu;
 
-                                        pn.Delete(help,pn.ID_kho_phu);
+                                        pn.Delete(help, pn.ID_to_trinh);
                                         for (int i = 0; i < dataTable1.Rows.Count; i++)
                                         {
 
-                                            clsChi_Tiet_Kho_Phu chitiet = new clsChi_Tiet_Kho_Phu();
-                                            chitiet.ID_kho_phu =id_kho_phu;
+                                            clsChi_Tiet_To_Trinh chitiet = new clsChi_Tiet_To_Trinh();
+                                            chitiet.ID_to_trinh = id_kho_phu;
                                             chitiet.ID_don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                             chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                             chitiet.ID_chat_luong = int.Parse(dataTable1.Rows[i]["ID_Chat_luong"].ToString());
