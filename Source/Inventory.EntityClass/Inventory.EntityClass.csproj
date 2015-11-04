@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AutoClosingMessageBox.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="clsBu_Tru_No_Phieu.cs" />
     <Compile Include="clsChiTietGoiDau.cs" />
     <Compile Include="clsChiTietPhieuXuatTam.cs" />
     <Compile Include="clsChiTietTheKho.cs" />

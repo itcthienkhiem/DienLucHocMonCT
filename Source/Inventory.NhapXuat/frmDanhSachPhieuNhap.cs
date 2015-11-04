@@ -103,9 +103,9 @@ namespace Inventory.NhapXuat
         /// </summary>
         public void LoadData()
         {
-            gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll();
+            gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null,"");
             //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-            clsGiaoDienChung.initCombobox(cbbLoaiPhieu, new clsLoaiPhieuNhap(), "Ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "Ma_loai_phieu_nhap");
+             clsGiaoDienChung.initCombobox(cbbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
 
         }
 
@@ -274,12 +274,12 @@ namespace Inventory.NhapXuat
             try
             {
                 if (rdoChuaDuyet.Checked == true)
-                    gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(false, cbbLoaiPhieu.Text.ToString());
+                    gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(false,cbbKho.Text);
                 else
                     if (rdoDaDuyet.Checked == true)
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll(true, cbbLoaiPhieu.Text.ToString());
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(true, cbbKho.Text);
                     else
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.GetAll();
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, cbbKho.Text);
                 this.gridDanhSachPhieuNhap.Refresh();
                 // this.gridDanhSachPhieuNhap.Parent.Refresh();
             }
@@ -300,35 +300,56 @@ namespace Inventory.NhapXuat
         {
             try
             {
-               
-
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-                //   DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
-                //  string mavt = SelectedRow.Cells["Ma_vat_tu"].Value.ToString
                 string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString();
+                int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
+                int ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
                 bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
                 if (Da_phan_kho == true)
                 {
                     MessageBox.Show("Phiếu này đã duyệt và phân kho ");
                     return;
-
                 }
-
-                int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-                int ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
-                clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
-                LPN.ID_LPN = ID_loai_phieu_nhap;
                 // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
                 DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
                 DatabaseHelper help = new DatabaseHelper();
                 help.ConnectDatabase();
+                //nếu phiếu này là cấn trừ 
+                //hiển thị form cấn trừ nợ cho vật tư 
+               // bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
+                
+
+
+
+
+
                 bool? isNhapNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNhapNgoai"].Value.ToString());
+                if (isNhapNgoai == true)
+                {
+                    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+                    {
+                        for (int i = 0; i < tb.Rows.Count; i++)
+                        {
+                            clsXuLyDuLieuChung dc = new clsXuLyDuLieuChung();
+                            string mavattu = tb.Rows[i]["ma_vat_tu"].ToString();
+                            decimal soluong = decimal.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
+                            int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
+                            DateTime ngayNhap = DateTime.Now;
+                            if (dc.InsertTonKho(help, mavattu, idKho, soluong, maphieu, ngayNhap, id_chat_luong, true) == 0)
+                            {
+                                dbcxtransaction.Rollback();
+                            }
 
-
-
+                        }
+                        MessageBox.Show("Bạn đã xác nhận thành công ");
+                        dbcxtransaction.Commit();
+                        LoadData();
+                    }
+                    return;
+                }
+                clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
+                LPN.ID_LPN = ID_loai_phieu_nhap;
                 string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
-                //string setting = Properties.Settings.Default.PhieuNhap;
-
                 using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                 {
                     for (int i = 0; i < tb.Rows.Count; i++)
@@ -339,7 +360,6 @@ namespace Inventory.NhapXuat
                         // số lượng hoàn nhập hay số lượng lãnh vật tư tùy vào ID loai phieu
                         decimal soluong = decimal.Parse(tb.Rows[i]["so_luong_thuc_lanh"].ToString());
                         int id_chat_luong = int.Parse(tb.Rows[i]["Id_chat_luong"].ToString());
-
                         DateTime ngayNhap = DateTime.Now;
                         try
                         {
@@ -347,7 +367,6 @@ namespace Inventory.NhapXuat
                             if (isGoiDau == true)
                             {
                                 clsVatTuGoiDauKy gdk = new clsVatTuGoiDauKy();
-
                                 gdk.ID_chat_luong = id_chat_luong;
                                 gdk.Ma_vat_tu = mavattu;
                                 gdk.So_Luong = soluong;
@@ -359,10 +378,7 @@ namespace Inventory.NhapXuat
                                     decimal sl = decimal.Parse(temp.Rows[0]["So_luong"].ToString());
                                     gdk.ID_VT_Goi_Dau = int.Parse(temp.Rows[0]["ID_VT_Goi_Dau"].ToString());
                                     gdk.So_Luong = gdk.So_Luong + sl;
-
                                     gdk.Update();
-                                    // MessageBox.Show("Vật tư này đã có trong vật tư gối đầu rồi, không thể duyệt gối đầu nữa!");
-                                    //return;
                                 }
                                 //nếu chưa tồn tại tiến hành insert dòng mới 
                                 else
@@ -437,11 +453,9 @@ namespace Inventory.NhapXuat
                 }
 
 
-                try
-                {
+            
                     LoadData();
-                }
-                catch (Exception ex) { }
+              
             }
             catch (Exception ex)
             {

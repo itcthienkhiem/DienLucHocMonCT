@@ -51,10 +51,26 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
-                              // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
-                              where ep.Da_phan_kho .ToString().Contains( status.ToString()) && ep.ID_Loai_Phieu_Nhap.ToString().Contains(value)
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                              where ep.Da_phan_kho.ToString().Contains(status.ToString()) && ep.ID_Loai_Phieu_Nhap.ToString().Contains(value)
 
-                              select ep).ToList();
+                              select new
+                              {
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  e.Ten_kho,
+                                  ep.isGoiDau,
+                              }).ToList();
             // return entryPoint;
 
 
@@ -88,9 +104,25 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
 
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
-                              // join e in help.ent.DM_Kho on this.ID_kho equals e.ID_kho
-                            
-                              select ep).ToList();
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+
+                              select new
+                              {
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  e.Ten_kho,
+                                  ep.isGoiDau,
+                              }).ToList();
             // return entryPoint;
 
          
@@ -156,6 +188,71 @@ namespace Inventory.EntityClass
             if (entryPoint.Count == 0)
                 return false;// chua co phan tu nao da duyet trong danh sach
             return true;
+        }
+        public DataTable SearchDSPN(bool? status, string ten_kho)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+            if (status == null)
+            {
+                var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                                  join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                                  where e.Ten_kho.Contains(ten_kho) 
+                                  select new
+                                  {
+                                     ma_phieu = ep.Ma_phieu_nhap,
+                                      ep.Kho_nhan,
+                                    ngay_lap=  ep.Ngay_lap,
+                                    ly_do=  ep.Ly_do,
+                                      ep.So_hoa_don,
+                                      ep.Cong_trinh,
+                                      ep.Dia_Chi,
+                                      ep.ID_Loai_Phieu_Nhap,
+                                      ep.Kho_xuat_ra,
+                                      ep.Da_phan_kho,
+                                      ep.ID_phieu_nhap,
+                                      ep.ID_kho,
+                                     Ten_kho= e.Ten_kho,
+                                    isGoiDau =  ep.isGoiDau,
+                                   isCanTru=   ep.isCanTru,
+                                   isNhapNgoai=   ep.isNhapNgoai,
+
+                                  }
+
+           ).ToList();
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+            }
+            else
+            {
+               var  entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                              where e.Ten_kho.Contains(ten_kho) && ep.Da_phan_kho == status
+                              select new
+                              {
+                                  ma_phieu = ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ngay_lap = ep.Ngay_lap,
+                                  ly_do = ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  Ten_kho = e.Ten_kho,
+                                  isGoiDau = ep.isGoiDau,
+                                  isCanTru = ep.isCanTru,
+                                  isNhapNgoai = ep.isNhapNgoai,
+
+                              }
+
+           ).ToList();
+               return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+            }
+         
         }
 
         public DataTable GetAll(string maPhieu)
@@ -421,7 +518,7 @@ namespace Inventory.EntityClass
                      //   ID_phieu_nhap = this.ID_phieu_nhap,
                         isGoiDau = this.isGoiDau,
                         isNhapNgoai = this.isNhapNgoai,
-                        isCanTru = this.isCanTru;
+                        isCanTru = this.isCanTru,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);

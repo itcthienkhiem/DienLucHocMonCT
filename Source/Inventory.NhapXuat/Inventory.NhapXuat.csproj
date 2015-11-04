@@ -64,6 +64,12 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="clsPanelButton2.cs" />
+    <Compile Include="frmBuTruPhieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuTruPhieu.Designer.cs">
+      <DependentUpon>frmBuTruPhieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNhapKhoToTrinh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmBuTruPhieu.resx">
+      <DependentUpon>frmBuTruPhieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNhapKhoToTrinh.resx">
       <DependentUpon>frmNhapKhoToTrinh.cs</DependentUpon>
     </EmbeddedResource>
