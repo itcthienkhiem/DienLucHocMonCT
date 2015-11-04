@@ -273,7 +273,7 @@ namespace Inventory.EntityClass
 
 
         }
-        public int Insert(SQLDAL DAL)
+        public int Insert()
         {
 
             // insert

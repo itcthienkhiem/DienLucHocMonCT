@@ -31,6 +31,8 @@ namespace Inventory.EntityClass
         public string Kho_xuat_ra;
         public bool Da_phan_kho;
         public int ID_khoNhan;
+        public bool isNhapNgoai;
+        public bool isCanTru;
         public bool isGoiDau;
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
@@ -59,7 +61,21 @@ namespace Inventory.EntityClass
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
         }
+        public static int? GetMaxValue()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
 
+            var maxEntity = help.ent.Phieu_Nhap_Kho.OrderByDescending(x => x.ID_phieu_nhap).FirstOrDefault();
+            // return entryPoint;
+
+
+
+            if (maxEntity == null)
+                return null;
+            return maxEntity.ID_phieu_nhap;
+
+        }
         /// <summary>
         /// Get tất cả dữ liệu từ CSDL, dùng cho Grid 
         /// 
@@ -404,6 +420,8 @@ namespace Inventory.EntityClass
                         Ngay_nhap_vat_tu = DateTime.Today,
                      //   ID_phieu_nhap = this.ID_phieu_nhap,
                         isGoiDau = this.isGoiDau,
+                        isNhapNgoai = this.isNhapNgoai,
+                        isCanTru = this.isCanTru;
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);

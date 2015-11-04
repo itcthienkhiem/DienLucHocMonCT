@@ -34,8 +34,12 @@ namespace Inventory.Utilities
         {
             var st = new StackTrace(ex, true);
             // Get the top stack frame
+            string temp = st.ToString() + " \n ";
+          
+            // Get the top stack frame
+           
 
-            return st.ToString() + " \n ";
+            return temp;
         }
 
        

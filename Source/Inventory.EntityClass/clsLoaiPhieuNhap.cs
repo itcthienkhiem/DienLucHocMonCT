@@ -40,6 +40,8 @@ namespace Inventory.EntityClass
           }
 
       }
+
+
       /// <summary>
       /// hàm get tên từ ID
       /// </summary>
@@ -54,6 +56,7 @@ namespace Inventory.EntityClass
                     select new { 
                     d.Ten_loai_phieu_nhap,
                     }).First();
+         
           return dm.Ten_loai_phieu_nhap;
       }
       public override System.Data.DataTable GetAllData()

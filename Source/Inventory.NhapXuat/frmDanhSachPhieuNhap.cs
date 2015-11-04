@@ -322,6 +322,10 @@ namespace Inventory.NhapXuat
                 DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
                 DatabaseHelper help = new DatabaseHelper();
                 help.ConnectDatabase();
+                bool? isNhapNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNhapNgoai"].Value.ToString());
+
+
+
                 string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
                 //string setting = Properties.Settings.Default.PhieuNhap;
 
@@ -441,7 +445,7 @@ namespace Inventory.NhapXuat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
 
