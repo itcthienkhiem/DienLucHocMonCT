@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using Inventory.Models;
+using System.Data;
 
 namespace Inventory.EntityClass
 {
@@ -16,9 +17,20 @@ namespace Inventory.EntityClass
        public decimal So_luong_can_tru;
 
        public int ID;
-       public void GetAll() { 
-       
-        
+       public static DataTable GetAll()
+       {
+           DatabaseHelper help = new DatabaseHelper();
+           //help.ent.Configuration.LazyLoadingEnabled = false;
+           help.ConnectDatabase();
+           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+           {
+               var dm = (from d in help.ent.Can_tru_no_nhap_ngoai
+                         select d).ToList();
+               dbcxtransaction.Commit();
+
+               return Utilities.clsThamSoUtilities.ToDataTable(dm);
+
+           }
        }
 
        public int CheckTonTaiSoDK()

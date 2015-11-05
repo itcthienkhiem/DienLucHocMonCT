@@ -65,6 +65,18 @@
     <Compile Include="frmChiTietTraNo.Designer.cs">
       <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDanhSachPhieuNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhSachPhieuNo.Designer.cs">
+      <DependentUpon>frmDanhSachPhieuNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanhSachTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhSachTraNo.Designer.cs">
+      <DependentUpon>frmDanhSachTraNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNoVatTu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmChiTietTraNo.resx">
       <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhSachPhieuNo.resx">
+      <DependentUpon>frmDanhSachPhieuNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhSachTraNo.resx">
+      <DependentUpon>frmDanhSachTraNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoVatTu.resx">
       <DependentUpon>frmNoVatTu.cs</DependentUpon>

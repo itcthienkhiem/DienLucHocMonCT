@@ -675,5 +675,51 @@ namespace Inventory
             frms.Clear();
             frms.Add(frm);
         }
+
+        private void danhSáchPhiếuNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDanhSachPhieuNo frm = new frmDanhSachPhieuNo();
+            frm.Text = "Thẻ Gói Đầu  ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
+
+        private void chiTiếtTrảNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDanhSachTraNo frm = new frmDanhSachTraNo();
+            frm.Text = "Thẻ Gói Đầu  ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+            for (int i = 0; i < frms.Count; i++)
+                frms[i].Close();
+            frms.Clear();
+            frms.Add(frm);
+        }
     }
 }

@@ -125,6 +125,37 @@ namespace Inventory.EntityClass
                               }).ToList();
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
         }
+        public static DataTable GetAllPhieuNo()
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                              where ep.isNhapNgoai ==true
+                              select new
+                              {
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  e.Ten_kho,
+                                  ep.isGoiDau,
+                                  ep.isCanTru,
+                                  ep.isNhapNgoai,
+                              }).ToList();
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+        }
+
         public static bool KTVTChuaDuyet(string ma_Phieunhap)
         {
 
