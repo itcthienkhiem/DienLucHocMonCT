@@ -107,6 +107,21 @@ namespace Inventory.EntityClass
             return 0;
 
         }
+        public static Chi_Tiet_Phieu_Nhap_Vat_Tu getChitiet(int id )
+        { 
+               DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+                          where d.ID_chi_tiet_phieu_nhap_vat_tu == id
+                          select d).FirstOrDefault();
+                return dm;
+            }
+        
+        }
+
+
         /// <summary>
         /// ham kiem tra co vat tu nao da duyet trong phieu nhap chua 
         /// </summary>
@@ -154,7 +169,7 @@ namespace Inventory.EntityClass
                                   Ma_vat_tu = ep.Ma_vat_tu,
                                   Ten_vat_tu = u.Ten_vat_tu,
                                   Ten_don_vi_tinh = e.Ten_don_vi_tinh,
-                                  Chatluong = f.Loai_chat_luong,
+                                  Chat_luong = f.Loai_chat_luong,
                                   ID_Chat_luong = f.Id_chat_luong,
                                   So_luong_yeu_cau = ep.So_luong_yeu_cau,
                                   So_luong_thuc_lanh = ep.So_luong_thuc_lanh,
@@ -382,7 +397,30 @@ namespace Inventory.EntityClass
 
 
         }
+        public static int Update(DatabaseHelper help, Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
+        {
 
+         
+            int temp = 0;
+          
+            {
+                using (var context = help.ent)
+                {
+                    context.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(pn);
+                    context.Entry(pn).State = EntityState.Modified;
+                    temp = help.ent.SaveChanges();
+                  
+
+                }
+
+
+            }
+            return temp;
+
+
+
+
+        }
         public int Delete(Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
         {
             DatabaseHelper help = new DatabaseHelper();

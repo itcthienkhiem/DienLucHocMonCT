@@ -25,7 +25,7 @@ namespace Inventory.EntityClass
         public string So_hoa_don;
         public string Dia_chi;
         public string Cong_trinh;
-        public int ID_Loai_Phieu_Nhap;
+        public int? ID_Loai_Phieu_Nhap;
         public int ID_phieu_nhap;
         public string Kho_nhan;
         public string Kho_xuat_ra;
@@ -254,7 +254,38 @@ namespace Inventory.EntityClass
             }
          
         }
+        public DataTable GetAllPhieuNo(string maPhieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                         
 
+                              where ep.Ma_phieu_nhap == maPhieu
+                              select new
+                              {
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  e.Ten_kho,
+                                  ep.isGoiDau,
+                              
+                              }
+
+        ).ToList();
+
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+        }
         public DataTable GetAll(string maPhieu)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -510,7 +541,7 @@ namespace Inventory.EntityClass
                         So_hoa_don = this.So_hoa_don ?? "",
                         Cong_trinh = this.Cong_trinh ?? "",
                         Dia_Chi = this.Dia_chi ?? "",
-                        ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap ==null?0:this.ID_Loai_Phieu_Nhap,
+                        ID_Loai_Phieu_Nhap = this.ID_Loai_Phieu_Nhap ==null?null:this.ID_Loai_Phieu_Nhap,
                         Kho_xuat_ra = this.Kho_xuat_ra ?? "",
                         Da_phan_kho = this.Da_phan_kho==null?false:this.Da_phan_kho,
                         ID_kho = this.ID_khoNhan,
