@@ -443,10 +443,17 @@ namespace Inventory.NhapXuat
             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
             DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
             string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
-           
+            //string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
+            bool isNhapNgoai = (bool)SelectedRow.Cells["isNhapNgoai"].Value;
+            if (isNhapNgoai == true)
+            {
+                frmNhapKhoToTrinh frmTT = new frmNhapKhoToTrinh(enumButton2.None, strMaPhieuNhap);
+                frmTT.Show();
+            }
+            else{
             frmNhapKho nhapkho = new frmNhapKho(enumButton2.None, strMaPhieuNhap);
             nhapkho.Show();
-        }
+        }}
 
 
     }

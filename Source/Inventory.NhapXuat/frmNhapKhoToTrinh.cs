@@ -59,6 +59,12 @@ namespace Inventory.NhapXuat
             {
                 btnThem_Click(this, EventArgs.Empty);
             }
+            else
+                if (stt == enumButton2.None)
+                {
+                    txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+                    button2_Click(this, EventArgs.Empty);
+                }
         }
 
         public frmNhapKhoToTrinh(enumStatus status, clsPhieuNhapKho phieunhap)
@@ -350,7 +356,7 @@ namespace Inventory.NhapXuat
                 if (clsNhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text) == true)
                 {
 
-                    DataTable tb = clsNhap.GetAll(txtMaPhieuNhap.Text.Trim());
+                    DataTable tb = clsNhap.GetAllPhieuNo(txtMaPhieuNhap.Text.Trim());
                     // dtNgayNhap.Text = tb.Rows[0]["Ngay_nhap"].ToString();
                     dtNgayNhap.CustomFormat = "dd-MM-yyyy";
                     dtNgayNhap.Value = Convert.ToDateTime(tb.Rows[0]["Ngay_lap"].ToString());
@@ -376,7 +382,6 @@ namespace Inventory.NhapXuat
                         //  dr["don_vi_tinh"] = vChiTiet.Rows[i]["don_vi_tinh"].ToString() ;
                        // dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
                         dr["ID_chat_luong"] = vChiTiet.Rows[i]["ID_chat_luong"].ToString();
-                        dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
                         dr["so_luong_thuc_lanh"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
                         dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
                         dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
