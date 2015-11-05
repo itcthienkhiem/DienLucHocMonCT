@@ -399,24 +399,29 @@ namespace Inventory.EntityClass
         }
         public static int Update(DatabaseHelper help, Chi_Tiet_Phieu_Nhap_Vat_Tu pn)
         {
-
-         
-            int temp = 0;
-          
+            try
             {
-                using (var context = help.ent)
+
+
                 {
-                    context.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(pn);
-                    context.Entry(pn).State = EntityState.Modified;
-                    temp = help.ent.SaveChanges();
-                  
+                   
+                    {
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(pn);
+                        help.ent.Entry(pn).State = EntityState.Modified;
+                        help.ent.SaveChanges();
+
+
+                    }
+
 
                 }
-
-
+                return 1;
             }
-            return temp;
+            catch (Exception ex)
+            {
 
+                return 0;
+            }
 
 
 

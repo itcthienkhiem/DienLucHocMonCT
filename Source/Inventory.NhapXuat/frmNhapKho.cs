@@ -59,6 +59,12 @@ namespace Inventory.NhapXuat
             {
                 btnThem_Click(this, EventArgs.Empty);
             }
+            else
+                if (stt == enumButton2.None)
+                {
+                    txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+                    button2_Click(this, EventArgs.Empty);
+                }
         }
 
         public frmNhapKho(enumStatus status, clsPhieuNhapKho phieunhap)

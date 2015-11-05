@@ -68,6 +68,16 @@ namespace Inventory.NhapXuat
 
         private void btnCanTru_Click(object sender, EventArgs e)
         {
+
+         
+            Phieu_Nhap_Kho phieunhapno = clsPhieuNhapKho.GetPhieuNhap(cbbPhieuNo.Text);
+
+            if (phieunhapno.Da_phan_kho == false)
+            {
+                MessageBox.Show("Phiếu nợ này chưa được xác nhận, vui lòng xác nhận phiếu nợ trước khi cấn trừ!");
+                return;
+            }
+
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction()){
@@ -182,13 +192,18 @@ namespace Inventory.NhapXuat
         {
             string maphieu = txtMaPhieuNhap.Text;
             clsPhieuNhapKho pnk = new clsPhieuNhapKho();
-            Phieu_Nhap_Kho pn = pnk.GetPhieuNhap(maphieu);
-            pn.isCanTru = false;
-            if (pnk.Update(pn) == 1)
+            Phieu_Nhap_Kho pn = clsPhieuNhapKho.GetPhieuNhap(maphieu);
+            
+            if (pn.isCanTru == true)
             {
-                MessageBox.Show("Chuyển đổi thành công trạng thái phiếu! Bây giờ có thể xác nhận phiếu nhập này");
-                dspn.LoadData();
+                pn.isCanTru = false;
+                if (pnk.Update(pn) == 1)
+                {
+                    MessageBox.Show("Chuyển đổi thành công trạng thái phiếu! Bây giờ có thể xác nhận phiếu nhập này");
+                    dspn.LoadData();
+                }
             }
+
         }
 
     }

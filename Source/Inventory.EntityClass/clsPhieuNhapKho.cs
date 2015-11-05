@@ -123,57 +123,8 @@ namespace Inventory.EntityClass
                                   e.Ten_kho,
                                   ep.isGoiDau,
                               }).ToList();
-            // return entryPoint;
-
-         
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
-
-
-
-            //m_dbConnection.Open();
-
-            //DataTable dt = new DataTable();
-            ////string sql = "SELECT * FROM DM_Vat_Tu";
-            //string sql = "";
-            //sql += "SELECT ";
-            //sql +=      "Phieu_Nhap_Kho.Ma_phieu_nhap, ";
-            //sql +=      "DM_Kho.Ten_kho, ";
-            //sql +=      "Phieu_Nhap_Kho.Ngay_lap, ";
-            //sql +=      "Phieu_Nhap_Kho.Ly_do, ";
-            //sql +=      "Phieu_Nhap_Kho.So_hoa_don, ";
-            //sql +=      "Phieu_Nhap_Kho.Cong_trinh, ";
-            //sql += "Phieu_Nhap_Kho.Dia_Chi,DM_Kho.ID_kho ";
-            //sql += "FROM Phieu_Nhap_Kho ";
-            //sql += "INNER ";
-            //sql +=      "JOIN DM_Kho ";
-            //sql +=      "ON Phieu_Nhap_Kho.ID_kho=DM_Kho.ID_kho";
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-            //m_dbConnection.Close();
-
-            //return dt;
         }
-
-
-
-        // End GetAll
-
-        //public DataTable GetAll()
-        //{
-        //    m_dbConnection.Open();
-        //    DataTable dt = new DataTable();
-
-        //    string sql = "SELECT * FROM Phieu_Nhap_Kho ";
-
-        //    SqlCommand command = new SqlCommand(sql, m_dbConnection);
-        //    SqlDataAdapter da = new SqlDataAdapter(command);
-        //    da.Fill(dt);
-        //    m_dbConnection.Close();
-        //    return dt;
-        //}
-
         public static bool KTVTChuaDuyet(string ma_Phieunhap)
         {
 
@@ -309,6 +260,7 @@ namespace Inventory.EntityClass
             ep.Da_phan_kho,
             ep.ID_phieu_nhap,
             ep.ID_kho ,
+            ep.isCanTru ,
             e.Ten_kho,
             ep.isGoiDau ,
             ls.Ten_loai_phieu_nhap,
@@ -318,19 +270,18 @@ namespace Inventory.EntityClass
         ).ToList();
          
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+        }
+        public static Phieu_Nhap_Kho GetPhieuNhap(string maPhieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                             where ep.Ma_phieu_nhap .Equals(maPhieu)
+                            select ep
 
+        ).FirstOrDefault();
 
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
-
-            //string sql = "SELECT * FROM Phieu_Nhap_Kho WHERE Ma_phieu_nhap=@Ma_phieu_nhap";
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", maPhieu));
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-
-            //m_dbConnection.Close();
-            //return dt;
+            return entryPoint;
         }
 
         public DataTable GetChiTietPhieuNhap(string Ma_phieu_nhap)
@@ -677,5 +628,7 @@ namespace Inventory.EntityClass
             //return result;
         }
 
+
+      
     }
 }

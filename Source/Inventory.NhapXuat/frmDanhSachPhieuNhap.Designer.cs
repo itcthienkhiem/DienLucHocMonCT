@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isGoiDau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isNhapNgoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isCanTru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnTruNo = new System.Windows.Forms.Button();
+            this.btnDuyetPhieu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnHuy = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnThem = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLamMoi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSua = new System.Windows.Forms.Label();
             this.rdoDaDuyet = new System.Windows.Forms.RadioButton();
@@ -54,16 +56,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbbKho = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnTruNo = new System.Windows.Forms.Button();
-            this.btnDuyetPhieu = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kho_xuat_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isNhapNgoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnChiTiet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,31 +82,39 @@
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToDeleteRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridDanhSachPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDanhSachPhieuNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuNhap.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_phieu,
+            this.So_hoa_don,
+            this.Cong_trinh,
+            this.Dia_chi,
+            this.ID_loai_phieu_nhap,
+            this.Kho_xuat_ra,
+            this.ID_phieu_nhap,
+            this.ID_kho,
             this.Ten_kho,
             this.ngay_lap,
             this.Ly_do,
-            this.isGoiDau,
             this.isNhapNgoai,
-            this.isCanTru});
+            this.isCanTru,
+            this.isGoiDau,
+            this.Da_phan_kho});
             this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(1, 193);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
@@ -112,64 +128,15 @@
             this.gridDanhSachPhieuNhap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridgridDanhSachPhieuNhap_CellClick);
             this.gridDanhSachPhieuNhap.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDanhSachPhieuNhap_CellContentClick);
             // 
-            // Ma_phieu
-            // 
-            this.Ma_phieu.DataPropertyName = "Ma_phieu";
-            this.Ma_phieu.HeaderText = "Mã phiếu";
-            this.Ma_phieu.Name = "Ma_phieu";
-            this.Ma_phieu.ReadOnly = true;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            // 
-            // ngay_lap
-            // 
-            this.ngay_lap.DataPropertyName = "ngay_lap";
-            this.ngay_lap.HeaderText = "Ngày lập";
-            this.ngay_lap.Name = "ngay_lap";
-            this.ngay_lap.ReadOnly = true;
-            // 
-            // Ly_do
-            // 
-            this.Ly_do.DataPropertyName = "Ly_do";
-            this.Ly_do.HeaderText = "Lý do";
-            this.Ly_do.Name = "Ly_do";
-            this.Ly_do.ReadOnly = true;
-            // 
-            // isGoiDau
-            // 
-            this.isGoiDau.DataPropertyName = "isGoiDau";
-            this.isGoiDau.HeaderText = "Gối đầu";
-            this.isGoiDau.Name = "isGoiDau";
-            this.isGoiDau.ReadOnly = true;
-            // 
-            // isNhapNgoai
-            // 
-            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
-            this.isNhapNgoai.HeaderText = "Nhập ngoài";
-            this.isNhapNgoai.Name = "isNhapNgoai";
-            this.isNhapNgoai.ReadOnly = true;
-            // 
-            // isCanTru
-            // 
-            this.isCanTru.DataPropertyName = "isCanTru";
-            this.isCanTru.HeaderText = "Cấn trừ";
-            this.isCanTru.Name = "isCanTru";
-            this.isCanTru.ReadOnly = true;
-            // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.btnChiTiet);
             this.pnlMenu.Controls.Add(this.label8);
             this.pnlMenu.Controls.Add(this.btnTruNo);
             this.pnlMenu.Controls.Add(this.btnDuyetPhieu);
             this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.btnHuy);
             this.pnlMenu.Controls.Add(this.label2);
-            this.pnlMenu.Controls.Add(this.btnLuu);
             this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
@@ -189,6 +156,37 @@
             this.pnlMenu.TabIndex = 53;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(425, 61);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 14);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Trừ nợ";
+            // 
+            // btnTruNo
+            // 
+            this.btnTruNo.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Calendar;
+            this.btnTruNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTruNo.Location = new System.Drawing.Point(424, 12);
+            this.btnTruNo.Name = "btnTruNo";
+            this.btnTruNo.Size = new System.Drawing.Size(50, 50);
+            this.btnTruNo.TabIndex = 8;
+            this.btnTruNo.UseVisualStyleBackColor = true;
+            this.btnTruNo.Click += new System.EventHandler(this.btnTruNo_Click);
+            // 
+            // btnDuyetPhieu
+            // 
+            this.btnDuyetPhieu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.up_bmc;
+            this.btnDuyetPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDuyetPhieu.Location = new System.Drawing.Point(363, 12);
+            this.btnDuyetPhieu.Name = "btnDuyetPhieu";
+            this.btnDuyetPhieu.Size = new System.Drawing.Size(50, 50);
+            this.btnDuyetPhieu.TabIndex = 6;
+            this.btnDuyetPhieu.UseVisualStyleBackColor = true;
+            this.btnDuyetPhieu.Click += new System.EventHandler(this.btnDuyetPhieu_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -197,6 +195,17 @@
             this.label1.Size = new System.Drawing.Size(74, 14);
             this.label1.TabIndex = 7;
             this.label1.Text = "Duyệt Phiếu";
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
+            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHuy.Location = new System.Drawing.Point(297, 12);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(50, 50);
+            this.btnHuy.TabIndex = 4;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.EnabledChanged += new System.EventHandler(this.btnHuy_EnabledChanged);
             // 
             // label2
             // 
@@ -210,11 +219,23 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(251, 62);
+            this.label10.Location = new System.Drawing.Point(238, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 14);
+            this.label10.Size = new System.Drawing.Size(46, 14);
             this.label10.TabIndex = 3;
-            this.label10.Text = "Save";
+            this.label10.Text = "Chi tiết";
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
+            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDong.Location = new System.Drawing.Point(788, 12);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(50, 50);
+            this.btnDong.TabIndex = 2;
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // label7
             // 
@@ -225,6 +246,17 @@
             this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 3;
             this.label7.Text = "Đóng";
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
+            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThem.Location = new System.Drawing.Point(9, 10);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(50, 50);
+            this.btnThem.TabIndex = 2;
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label6
             // 
@@ -243,6 +275,40 @@
             this.label5.Size = new System.Drawing.Size(39, 14);
             this.label5.TabIndex = 3;
             this.label5.Text = "Thêm";
+            // 
+            // btnSua
+            // 
+            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
+            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSua.Location = new System.Drawing.Point(129, 10);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(50, 50);
+            this.btnSua.TabIndex = 2;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_omc;
+            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnXoa.Location = new System.Drawing.Point(69, 10);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(50, 50);
+            this.btnXoa.TabIndex = 2;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.EnabledChanged += new System.EventHandler(this.btnXoa_EnabledChanged);
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
+            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLamMoi.Location = new System.Drawing.Point(185, 10);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
+            this.btnLamMoi.TabIndex = 2;
+            this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // label3
             // 
@@ -335,115 +401,132 @@
             this.cbbKho.Size = new System.Drawing.Size(213, 21);
             this.cbbKho.TabIndex = 62;
             // 
-            // label8
+            // Ma_phieu
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(425, 61);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 14);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Trừ nợ";
+            this.Ma_phieu.DataPropertyName = "Ma_phieu";
+            this.Ma_phieu.HeaderText = "Mã phiếu";
+            this.Ma_phieu.Name = "Ma_phieu";
+            this.Ma_phieu.ReadOnly = true;
             // 
-            // btnTruNo
+            // So_hoa_don
             // 
-            this.btnTruNo.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Calendar;
-            this.btnTruNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTruNo.Location = new System.Drawing.Point(424, 12);
-            this.btnTruNo.Name = "btnTruNo";
-            this.btnTruNo.Size = new System.Drawing.Size(50, 50);
-            this.btnTruNo.TabIndex = 8;
-            this.btnTruNo.UseVisualStyleBackColor = true;
-            this.btnTruNo.Click += new System.EventHandler(this.btnTruNo_Click);
+            this.So_hoa_don.DataPropertyName = "So_hoa_don";
+            this.So_hoa_don.HeaderText = "So_hoa_don";
+            this.So_hoa_don.Name = "So_hoa_don";
+            this.So_hoa_don.ReadOnly = true;
+            this.So_hoa_don.Visible = false;
             // 
-            // btnDuyetPhieu
+            // Cong_trinh
             // 
-            this.btnDuyetPhieu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.up_bmc;
-            this.btnDuyetPhieu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDuyetPhieu.Location = new System.Drawing.Point(363, 12);
-            this.btnDuyetPhieu.Name = "btnDuyetPhieu";
-            this.btnDuyetPhieu.Size = new System.Drawing.Size(50, 50);
-            this.btnDuyetPhieu.TabIndex = 6;
-            this.btnDuyetPhieu.UseVisualStyleBackColor = true;
-            this.btnDuyetPhieu.Click += new System.EventHandler(this.btnDuyetPhieu_Click);
+            this.Cong_trinh.DataPropertyName = "Cong_trinh";
+            this.Cong_trinh.HeaderText = "Công trình";
+            this.Cong_trinh.Name = "Cong_trinh";
+            this.Cong_trinh.ReadOnly = true;
+            this.Cong_trinh.Visible = false;
             // 
-            // btnHuy
+            // Dia_chi
             // 
-            this.btnHuy.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
-            this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Location = new System.Drawing.Point(297, 12);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(50, 50);
-            this.btnHuy.TabIndex = 4;
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.EnabledChanged += new System.EventHandler(this.btnHuy_EnabledChanged);
+            this.Dia_chi.DataPropertyName = "Dia_chi";
+            this.Dia_chi.HeaderText = "Địa chỉ";
+            this.Dia_chi.Name = "Dia_chi";
+            this.Dia_chi.ReadOnly = true;
             // 
-            // btnLuu
+            // ID_loai_phieu_nhap
             // 
-            this.btnLuu.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.save_bmc;
-            this.btnLuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLuu.Location = new System.Drawing.Point(241, 12);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(50, 50);
-            this.btnLuu.TabIndex = 2;
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.EnabledChanged += new System.EventHandler(this.btnLuu_EnabledChanged);
+            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.ReadOnly = true;
+            this.ID_loai_phieu_nhap.Visible = false;
             // 
-            // btnDong
+            // Kho_xuat_ra
             // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.close_bmc;
-            this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDong.Location = new System.Drawing.Point(788, 12);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(50, 50);
-            this.btnDong.TabIndex = 2;
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            this.Kho_xuat_ra.DataPropertyName = "Kho_xuat_ra";
+            this.Kho_xuat_ra.HeaderText = "Kho xuất ra";
+            this.Kho_xuat_ra.Name = "Kho_xuat_ra";
+            this.Kho_xuat_ra.ReadOnly = true;
             // 
-            // btnThem
+            // ID_phieu_nhap
             // 
-            this.btnThem.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.addFile_omc;
-            this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThem.Location = new System.Drawing.Point(9, 10);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(50, 50);
-            this.btnThem.TabIndex = 2;
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            this.ID_phieu_nhap.DataPropertyName = "ID_phieu_nhap";
+            this.ID_phieu_nhap.HeaderText = "ID_phieu_nhap";
+            this.ID_phieu_nhap.Name = "ID_phieu_nhap";
+            this.ID_phieu_nhap.ReadOnly = true;
+            this.ID_phieu_nhap.Visible = false;
             // 
-            // btnSua
+            // ID_kho
             // 
-            this.btnSua.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.edit_gmc;
-            this.btnSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSua.Location = new System.Drawing.Point(129, 10);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(50, 50);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            this.ID_kho.DataPropertyName = "ID_kho";
+            this.ID_kho.HeaderText = "ID_kho";
+            this.ID_kho.Name = "ID_kho";
+            this.ID_kho.ReadOnly = true;
+            this.ID_kho.Visible = false;
             // 
-            // btnXoa
+            // Ten_kho
             // 
-            this.btnXoa.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.cancel_omc;
-            this.btnXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXoa.Location = new System.Drawing.Point(69, 10);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(50, 50);
-            this.btnXoa.TabIndex = 2;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.EnabledChanged += new System.EventHandler(this.btnXoa_EnabledChanged);
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
             // 
-            // btnLamMoi
+            // ngay_lap
             // 
-            this.btnLamMoi.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.refresh_omc;
-            this.btnLamMoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLamMoi.Location = new System.Drawing.Point(185, 10);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(50, 50);
-            this.btnLamMoi.TabIndex = 2;
-            this.btnLamMoi.UseVisualStyleBackColor = true;
-            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
+            this.ngay_lap.DataPropertyName = "ngay_lap";
+            this.ngay_lap.HeaderText = "Ngày lập";
+            this.ngay_lap.Name = "ngay_lap";
+            this.ngay_lap.ReadOnly = true;
+            // 
+            // Ly_do
+            // 
+            this.Ly_do.DataPropertyName = "Ly_do";
+            this.Ly_do.HeaderText = "Lý do";
+            this.Ly_do.Name = "Ly_do";
+            this.Ly_do.ReadOnly = true;
+            // 
+            // isNhapNgoai
+            // 
+            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
+            this.isNhapNgoai.HeaderText = "Nhập ngoài";
+            this.isNhapNgoai.Name = "isNhapNgoai";
+            this.isNhapNgoai.ReadOnly = true;
+            // 
+            // isCanTru
+            // 
+            this.isCanTru.DataPropertyName = "isCanTru";
+            this.isCanTru.HeaderText = "Cấn trừ";
+            this.isCanTru.Name = "isCanTru";
+            this.isCanTru.ReadOnly = true;
+            this.isCanTru.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isCanTru.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isGoiDau
+            // 
+            this.isGoiDau.DataPropertyName = "isGoiDau";
+            this.isGoiDau.HeaderText = "Gối đầu";
+            this.isGoiDau.Name = "isGoiDau";
+            this.isGoiDau.ReadOnly = true;
+            this.isGoiDau.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isGoiDau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Da_phan_kho
+            // 
+            this.Da_phan_kho.DataPropertyName = "Da_phan_kho";
+            this.Da_phan_kho.HeaderText = "Đã xác nhận";
+            this.Da_phan_kho.Name = "Da_phan_kho";
+            this.Da_phan_kho.ReadOnly = true;
+            this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnChiTiet
+            // 
+            this.btnChiTiet.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Comment;
+            this.btnChiTiet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnChiTiet.Location = new System.Drawing.Point(241, 10);
+            this.btnChiTiet.Name = "btnChiTiet";
+            this.btnChiTiet.Size = new System.Drawing.Size(50, 50);
+            this.btnChiTiet.TabIndex = 10;
+            this.btnChiTiet.UseVisualStyleBackColor = true;
+            this.btnChiTiet.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // frmDanhSachPhieuNhap
             // 
@@ -470,7 +553,6 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label7;
@@ -491,15 +573,24 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbbKho;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnTruNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn So_hoa_don;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cong_trinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dia_chi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_loai_phieu_nhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kho_xuat_ra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_phieu_nhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_kho;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_kho;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngay_lap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ly_do;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isGoiDau;
         private System.Windows.Forms.DataGridViewTextBoxColumn isNhapNgoai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isCanTru;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnTruNo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isCanTru;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isGoiDau;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Da_phan_kho;
+        private System.Windows.Forms.Button btnChiTiet;
 
     }
 }

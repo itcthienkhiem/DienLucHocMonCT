@@ -41,33 +41,17 @@ namespace Inventory.NhapXuat
         {
             InitializeComponent();
             phieuNhap = new clsPhieuNhapKho();
-
             //Init cls Button
             PanelButton = new clsPanelButton();
-
             frmAction = new FormActionDelegate(FormAction);
             PanelButton.setDelegateFormAction(frmAction);
-
             // btnXoa.Enabled = false;
-            btnLuu.Enabled = false;
+            //btnXemChiTiet.Enabled = false;
             btnHuy.Enabled = false;
-
             //enumButton dùng định danh button
-
-            //PanelButton.AddButton(enumButton.Xoa, ref btnXoa);
-            //PanelButton.AddButton(enumButton.Luu, ref btnLuu);
-            //PanelButton.AddButton(enumButton.Huy, ref btnHuy);
-
-            //PanelButton.AddButton(enumButton.Them, ref btnThem);
-            //PanelButton.AddButton(enumButton.Sua, ref btnSua);
-
-
-
             PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
             PanelButton.AddButton(enumButton.Dong, ref btnDong);
-
             PanelButton.ResetButton();
-
             LoadData();
         }
 
@@ -139,44 +123,16 @@ namespace Inventory.NhapXuat
         /// </summary>
         private void btnSua_Click(object sender, EventArgs e)
         {
-            /*Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-
-            clsPhieuNhapKho phieuNhap = new clsPhieuNhapKho();
-            //phieuNhap.ID_phieu_nhap =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_phieu_nhap"].Value.ToString());
-            phieuNhap.ID_kho =int.Parse( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-            phieuNhap.Ngay_lap =DateTime.Parse( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ngay_lap"].Value.ToString());
-            phieuNhap.Ly_do =( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ly_do"].Value.ToString());
-            phieuNhap.So_hoa_don =( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["So_hoa_don"].Value.ToString());
-            */
-
-            //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieuNhap.ID_phieu_nhap);
-            //for(int i =0;i<chiTietPhieuNhap.Rows.Count;i++)
-            //{
-            //    clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            //    chitiet.ID_chi_tiet_phieu_nhap=int.Parse( chiTietPhieuNhap.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString());
-            //    chitiet.ID_phieu_nhap=int.Parse( chiTietPhieuNhap.Rows[i]["ID_phieu_nhap"].ToString());
-            //    chitiet.ID_vat_tu=int.Parse( chiTietPhieuNhap.Rows[i]["ID_vat_tu"].ToString());
-            //    chitiet.Chat_luong=( chiTietPhieuNhap.Rows[i]["Chat_luong"].ToString());
-            //    chitiet.So_luong_yeu_cau=int.Parse( chiTietPhieuNhap.Rows[i]["So_luong_yeu_cau"].ToString());
-            //    chitiet.So_luong_thuc_nhap=int.Parse( chiTietPhieuNhap.Rows[i]["So_luong_thuc_nhap"].ToString());
-            //    phieuNhap.lstChiTietPhieuNhap.Add(chitiet);
-            //}
-
-            //  int id_PhieuNhap =int.Parse( gridMaster.Rows[selectedRowCount].Cells["ID_phieu_nhap"].Value.ToString());
-
-            //  DataTable tbChiTiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(id_PhieuNhap);
-
+          
             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
             DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
-            string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_nhap"].Value.ToString();
+            string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
             if (clsPhieuNhapKho.KTVTChuaDuyet(strMaPhieuNhap) == true)// phieu nay da duyet 
             {
                 MessageBox.Show("Phiếu nhập này đã được phân vào kho, không thể xóa");
                 return;
             }
-            //frmNhapKho nhapkho = new frmNhapKho(enumStatus.Sua,phieuNhap);
-            //nhapkho.Show();
-
+          
             frmNhapKho nhapkho = new frmNhapKho(enumButton2.Sua, strMaPhieuNhap);
             nhapkho.Show();
         }
@@ -237,10 +193,10 @@ namespace Inventory.NhapXuat
                 // clsChi_Tiet_Phieu_Nhap_Vat_Tu pnvt = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                 //do something
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-                string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString());
+                string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString());
                 if (clsPhieuNhapKho.KTVTChuaDuyet(maphieu) == true)// phieu nay da duyet 
                 {
-                    MessageBox.Show("Phiếu nhập này đã được phân vào kho, không thể xóa");
+                    MessageBox.Show("Phiếu nhập này đã được xác nhận, không thể xóa");
                     return;
                 }
 
@@ -480,6 +436,16 @@ namespace Inventory.NhapXuat
                 butru.Show();
                 return;
             }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
+            string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
+           
+            frmNhapKho nhapkho = new frmNhapKho(enumButton2.None, strMaPhieuNhap);
+            nhapkho.Show();
         }
 
 
