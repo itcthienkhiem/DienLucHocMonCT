@@ -161,7 +161,7 @@ namespace Inventory.NhapXuat
                                 //    MessageBox.Show("Loại phiếu nhập bắt buộc nhập");
                                 //    return;
                                 //}
-                                //  phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
+                                  phieunhap.ID_Loai_Phieu_Nhap = null;
                                 //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;

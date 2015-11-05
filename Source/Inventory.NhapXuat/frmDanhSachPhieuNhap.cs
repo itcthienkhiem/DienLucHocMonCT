@@ -301,9 +301,9 @@ namespace Inventory.NhapXuat
             try
             {
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-                string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu_nhap"].Value.ToString();
+                string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
                 int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-                int ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
+              
                 bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
                 if (Da_phan_kho == true)
                 {
@@ -347,9 +347,10 @@ namespace Inventory.NhapXuat
                     }
                     return;
                 }
+                int? ID_loai_phieu_nhap = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value.ToString());
                 clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
-                LPN.ID_LPN = ID_loai_phieu_nhap;
-                string TenLPN = LPN.getTenLPN(ID_loai_phieu_nhap);
+                LPN.ID_LPN =(int) ID_loai_phieu_nhap;
+                string TenLPN = LPN.getTenLPN((int)ID_loai_phieu_nhap);
                 using (var dbcxtransaction = help.ent.Database.BeginTransaction())
                 {
                     for (int i = 0; i < tb.Rows.Count; i++)
