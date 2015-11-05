@@ -32,62 +32,66 @@ namespace Inventory.NhapXuat
             InitializeComponent();
             Load_Data();
         }
-        DataTable tbVatTu;
+       // DataTable tbVatTu;
         string maphieu;
-        public frmBuTruPhieu(frmNhapKho nk, DataTable tbVatTu, string maphieu)
+        public frmBuTruPhieu(frmNhapKho nk, string maphieu)
         {
             InitializeComponent();
             this.maphieu = maphieu;
             this.nk = nk;
-            this.tbVatTu = tbVatTu;
+         
             Load_Data();
         }
         public void Load_Data()
         {
-
+            dtPhieuNhap.Rows.Clear();
+             clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
             clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
-
-
-            for (int i = 0; i < tbVatTu.Rows.Count; i++)
-            {
-
-                DataRow dr = dtPhieuNhap.NewRow(); //.NewRow();
-                dr["Ma_vat_tu"] = tbVatTu.Rows[i]["Ma_vat_tu"].ToString();
-                dr["ten_vat_tu"] = tbVatTu.Rows[i]["ten_vat_tu"].ToString();
-
-                dr["chat_luong"] = tbVatTu.Rows[i]["chat_luong"].ToString();
-                dr["ID_chat_luong"] = tbVatTu.Rows[i]["id_chat_luong"].ToString();
-
-                dr["so_luong_thuc_lanh"] = tbVatTu.Rows[i]["so_luong_thuc_lanh"].ToString();
-                dtPhieuNhap.Rows.Add(dr);
-            }
             txtMaPhieuNhap.Text = maphieu;
+           
+            dtPhieuNhap = pn.GetAll(txtMaPhieuNhap.Text);
+            //for (int i = 0; i < tbVatTu.Rows.Count; i++)
+            //{
 
+            //    DataRow dr = dtPhieuNhap.NewRow(); //.NewRow();
+            //    dr["Ma_vat_tu"] = tbVatTu.Rows[i]["Ma_vat_tu"].ToString();
+            //    dr["ten_vat_tu"] = tbVatTu.Rows[i]["ten_vat_tu"].ToString();
+
+            //    dr["chat_luong"] = tbVatTu.Rows[i]["chat_luong"].ToString();
+            //    dr["ID_chat_luong"] = tbVatTu.Rows[i]["id_chat_luong"].ToString();
+
+            //    dr["so_luong_thuc_lanh"] = tbVatTu.Rows[i]["so_luong_thuc_lanh"].ToString();
+            //    dtPhieuNhap.Rows.Add(dr);
+            //}
+           
+            
             //lấy danh sách các phiếu nhập kho dạng nợ
             //   Load_DataNo();
         }
-        DataTable tbVatTuNo;
+      //  DataTable tbVatTuNo;
 
         private void Load_DataNo()
         {
             clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            tbVatTuNo = pn.GetAll(cbbPhieuNo.GetItemText(this.cbbPhieuNo.SelectedItem));
-            dtPhieuNhapNo.Rows.Clear();
-            for (int i = 0; i < tbVatTuNo.Rows.Count; i++)
-            {
+            dtPhieuNhapNo = pn.GetAll(cbbPhieuNo.GetItemText(this.cbbPhieuNo.SelectedItem));
 
-                DataRow dr = dtPhieuNhapNo.NewRow(); //.NewRow();
-                dr["Ma_vat_tu"] = tbVatTuNo.Rows[i]["Ma_vat_tu"].ToString();
-                dr["ten_vat_tu"] = tbVatTuNo.Rows[i]["ten_vat_tu"].ToString();
+            //tbVatTuNo = pn.GetAll(cbbPhieuNo.GetItemText(this.cbbPhieuNo.SelectedItem));
+            //dtPhieuNhapNo.Rows.Clear();
+            //for (int i = 0; i < tbVatTuNo.Rows.Count; i++)
+            //{
 
-                dr["chat_luong"] = tbVatTuNo.Rows[i]["chat_luong"].ToString();
-                dr["ID_chat_luong"] = tbVatTuNo.Rows[i]["id_chat_luong"].ToString();
+            //    DataRow dr = dtPhieuNhapNo.NewRow(); //.NewRow();
+            //    dr["Ma_vat_tu"] = tbVatTuNo.Rows[i]["Ma_vat_tu"].ToString();
+            //    dr["ten_vat_tu"] = tbVatTuNo.Rows[i]["ten_vat_tu"].ToString();
 
-                dr["so_luong_thuc_lanh"] = tbVatTuNo.Rows[i]["so_luong_thuc_lanh"].ToString();
-                dr["ID_chi_tiet_phieu_nhap"] = tbVatTuNo.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString();
+            //    dr["chat_luong"] = tbVatTuNo.Rows[i]["chat_luong"].ToString();
+            //    dr["ID_chat_luong"] = tbVatTuNo.Rows[i]["id_chat_luong"].ToString();
 
-                dtPhieuNhapNo.Rows.Add(dr);
-            }
+            //    dr["so_luong_thuc_lanh"] = tbVatTuNo.Rows[i]["so_luong_thuc_lanh"].ToString();
+            //    dr["ID_chi_tiet_phieu_nhap"] = tbVatTuNo.Rows[i]["ID_chi_tiet_phieu_nhap"].ToString();
+
+            //    dtPhieuNhapNo.Rows.Add(dr);
+            //}
         }
 
         private void cbbPhieuNo_SelectionChangeCommitted(object sender, EventArgs e)

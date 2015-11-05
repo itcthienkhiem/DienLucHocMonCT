@@ -109,22 +109,7 @@ namespace Inventory.NhapXuat
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (rdoBuTruPhieu.Checked == true)
-            { 
-                //thực hiện bù trừ phiếu
-                DialogResult result1 = MessageBox.Show("Bạn có chắc chắn thực hiện việc cấn trừ nợ không?",
-     "Cảnh báo",
-     MessageBoxButtons.YesNo);
-                if (result1 == DialogResult.Yes)
-                { 
-                //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
-                    frmBuTruPhieu frm = new frmBuTruPhieu(this,dataTable1,txtMaPhieuNhap.Text);
-                    frm.Show();
-                }
-
-
-
-            }
+         
 
             if (txtMaPhieuNhap.Text.Trim() == "")
             {
@@ -167,6 +152,22 @@ namespace Inventory.NhapXuat
                                     return;
                                 }
                                 phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
+                                   if (rdoBuTruPhieu.Checked == true)
+                                    { 
+                                        //thực hiện bù trừ phiếu
+                                        DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
+                                                         "Cảnh báo",
+                                                         MessageBoxButtons.YesNo);
+                                                                    if (result1 == DialogResult.Yes)
+                                                                    { 
+                                                                    //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
+                                                                        phieunhap.isCanTru = true;
+                    
+                                                                    }
+
+
+
+                                                                }
                                 //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
@@ -176,7 +177,7 @@ namespace Inventory.NhapXuat
                                 phieunhap.Cong_trinh = txtCongTrinh.Text;
                                 phieunhap.Da_phan_kho = false;
                                 phieunhap.isGoiDau = rdoNhapGoiDau.Checked;
-                                phieunhap.isCanTru = rdoBuTruPhieu.Checked;
+                               // phieunhap.isCanTru = rdoBuTruPhieu.Checked;
                                 phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
                                 if (phieunhap.Insert(help) == 1)
                                 {
@@ -269,6 +270,24 @@ namespace Inventory.NhapXuat
                                     nk.Ngay_lap = phieunhap.Ngay_lap;
                                     nk.So_hoa_don = phieunhap.So_hoa_don;
                                     nk.isGoiDau = rdoNhapGoiDau.Checked;
+                                    if (rdoBuTruPhieu.Checked == true)
+                                    {
+                                        //thực hiện bù trừ phiếu
+                                        DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
+                                                         "Cảnh báo",
+                                                         MessageBoxButtons.YesNo);
+                                        if (result1 == DialogResult.Yes)
+                                        {
+                                            //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
+                                            phieunhap.isCanTru = true;
+
+
+                                        }
+
+
+
+                                    }
+                                    nk.isGoiDau = rdoBuTruPhieu.Checked;
                                     if (phieunhap.Update(nk) == 1)
                                     {
 

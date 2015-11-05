@@ -35,11 +35,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtMaPhieuNhap = new System.Windows.Forms.TextBox();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_luong_thuc_lanh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataSet1 = new System.Data.DataSet();
             this.dtPhieuNhap = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -67,6 +62,13 @@
             this.Ten_vat_tu_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chat_luong_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.so_luong_thuc_lanh_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataColumn12 = new System.Data.DataColumn();
+            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.so_luong_thuc_lanh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPhieuNhap)).BeginInit();
@@ -116,6 +118,7 @@
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
+            this.dataGridViewTextBoxColumn1,
             this.Ten_vat_tu,
             this.ID_chat_luong,
             this.so_luong_thuc_lanh,
@@ -133,41 +136,6 @@
             this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(780, 273);
             this.gridDanhSachPhieuNhap.TabIndex = 53;
             // 
-            // Ma_vat_tu
-            // 
-            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
-            this.Ma_vat_tu.Name = "Ma_vat_tu";
-            this.Ma_vat_tu.ReadOnly = true;
-            // 
-            // Ten_vat_tu
-            // 
-            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
-            this.Ten_vat_tu.HeaderText = "Ten_vat_tu";
-            this.Ten_vat_tu.Name = "Ten_vat_tu";
-            this.Ten_vat_tu.ReadOnly = true;
-            // 
-            // ID_chat_luong
-            // 
-            this.ID_chat_luong.DataPropertyName = "ID_chat_luong";
-            this.ID_chat_luong.HeaderText = "ID_chat_luong";
-            this.ID_chat_luong.Name = "ID_chat_luong";
-            this.ID_chat_luong.ReadOnly = true;
-            // 
-            // so_luong_thuc_lanh
-            // 
-            this.so_luong_thuc_lanh.DataPropertyName = "so_luong_thuc_lanh";
-            this.so_luong_thuc_lanh.HeaderText = "Số lượng";
-            this.so_luong_thuc_lanh.Name = "so_luong_thuc_lanh";
-            this.so_luong_thuc_lanh.ReadOnly = true;
-            // 
-            // chat_luong
-            // 
-            this.chat_luong.DataPropertyName = "chat_luong";
-            this.chat_luong.HeaderText = "chat_luong";
-            this.chat_luong.Name = "chat_luong";
-            this.chat_luong.ReadOnly = true;
-            // 
             // dataSet1
             // 
             this.dataSet1.DataSetName = "NewDataSet";
@@ -181,7 +149,8 @@
             this.dataColumn2,
             this.dataColumn3,
             this.dataColumn4,
-            this.dataColumn5});
+            this.dataColumn5,
+            this.dataColumn12});
             this.dtPhieuNhap.TableName = "dtPhieuNhap";
             // 
             // dataColumn1
@@ -378,6 +347,53 @@
             this.so_luong_thuc_lanh_no.Name = "so_luong_thuc_lanh_no";
             this.so_luong_thuc_lanh_no.ReadOnly = true;
             // 
+            // dataColumn12
+            // 
+            this.dataColumn12.ColumnName = "ID_chi_tiet_phieu_nhap";
+            // 
+            // Ma_vat_tu
+            // 
+            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
+            this.Ma_vat_tu.Name = "Ma_vat_tu";
+            this.Ma_vat_tu.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_chi_tiet_phieu_nhap";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID_chi_tiet_phieu_nhap";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // Ten_vat_tu
+            // 
+            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
+            this.Ten_vat_tu.HeaderText = "Ten_vat_tu";
+            this.Ten_vat_tu.Name = "Ten_vat_tu";
+            this.Ten_vat_tu.ReadOnly = true;
+            // 
+            // ID_chat_luong
+            // 
+            this.ID_chat_luong.DataPropertyName = "ID_chat_luong";
+            this.ID_chat_luong.HeaderText = "ID_chat_luong";
+            this.ID_chat_luong.Name = "ID_chat_luong";
+            this.ID_chat_luong.ReadOnly = true;
+            // 
+            // so_luong_thuc_lanh
+            // 
+            this.so_luong_thuc_lanh.DataPropertyName = "so_luong_thuc_lanh";
+            this.so_luong_thuc_lanh.HeaderText = "Số lượng";
+            this.so_luong_thuc_lanh.Name = "so_luong_thuc_lanh";
+            this.so_luong_thuc_lanh.ReadOnly = true;
+            // 
+            // chat_luong
+            // 
+            this.chat_luong.DataPropertyName = "chat_luong";
+            this.chat_luong.HeaderText = "chat_luong";
+            this.chat_luong.Name = "chat_luong";
+            this.chat_luong.ReadOnly = true;
+            // 
             // frmBuTruPhieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,11 +439,6 @@
         private System.Data.DataColumn dataColumn3;
         private System.Data.DataColumn dataColumn4;
         private System.Data.DataColumn dataColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_chat_luong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_luong_thuc_lanh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn chat_luong;
         private System.Data.DataSet dataSet2;
         private System.Data.DataTable dtPhieuNhapNo;
         private System.Data.DataColumn dataColumn6;
@@ -442,5 +453,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn chat_luong_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn so_luong_thuc_lanh_no;
         private System.Data.DataColumn dataColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_chat_luong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn so_luong_thuc_lanh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn chat_luong;
+        private System.Data.DataColumn dataColumn12;
     }
 }
