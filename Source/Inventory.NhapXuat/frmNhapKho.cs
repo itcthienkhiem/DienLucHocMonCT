@@ -23,7 +23,7 @@ namespace Inventory.NhapXuat
     public partial class frmNhapKho : Form
     {
 
-       // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
+        // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
 
         //    Dictionary<string, clsDMVatTu> DicTen = new Dictionary<string, clsDMVatTu>();
         //  DataTable data = new DataTable();
@@ -97,7 +97,7 @@ namespace Inventory.NhapXuat
                 PanelButton.setClickThem();
 
                 PanelButton.Enable_btn_Luu_Huy();
-                
+
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
@@ -109,7 +109,7 @@ namespace Inventory.NhapXuat
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-         
+
 
             if (txtMaPhieuNhap.Text.Trim() == "")
             {
@@ -152,22 +152,22 @@ namespace Inventory.NhapXuat
                                     return;
                                 }
                                 phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
-                                   if (rdoBuTruPhieu.Checked == true)
-                                    { 
-                                        //thực hiện bù trừ phiếu
-                                        DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
-                                                         "Cảnh báo",
-                                                         MessageBoxButtons.YesNo);
-                                                                    if (result1 == DialogResult.Yes)
-                                                                    { 
-                                                                    //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
-                                                                        phieunhap.isCanTru = true;
-                    
-                                                                    }
+                                if (rdoBuTruPhieu.Checked == true)
+                                {
+                                    //thực hiện bù trừ phiếu
+                                    DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
+                                                     "Cảnh báo",
+                                                     MessageBoxButtons.YesNo);
+                                    if (result1 == DialogResult.Yes)
+                                    {
+                                        //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
+                                        phieunhap.isCanTru = true;
+
+                                    }
 
 
 
-                                                                }
+                                }
                                 //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
@@ -177,7 +177,7 @@ namespace Inventory.NhapXuat
                                 phieunhap.Cong_trinh = txtCongTrinh.Text;
                                 phieunhap.Da_phan_kho = false;
                                 phieunhap.isGoiDau = rdoNhapGoiDau.Checked;
-                               // phieunhap.isCanTru = rdoBuTruPhieu.Checked;
+                                // phieunhap.isCanTru = rdoBuTruPhieu.Checked;
                                 phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
                                 if (phieunhap.Insert(help) == 1)
                                 {
@@ -337,7 +337,7 @@ namespace Inventory.NhapXuat
                         break;
                     }
                 #endregion
-                    
+
             }
         }
 
@@ -356,7 +356,7 @@ namespace Inventory.NhapXuat
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
                 btnHuy.Enabled = true;
-               // MessageBox.Show("Mã phiếu nhập không tồn tại trong csdl!");
+                // MessageBox.Show("Mã phiếu nhập không tồn tại trong csdl!");
             }
         }
 
@@ -398,7 +398,7 @@ namespace Inventory.NhapXuat
                         disableInputForm();
                         MessageBox.Show("Phiếu nhập này chứa vật tư đã phân vào kho, không thể chỉnh sữa thông tin.");
                         return false;
-                        
+
                     }
                     return true;
                 }
@@ -432,13 +432,13 @@ namespace Inventory.NhapXuat
             }
         }
 
-        
+
 
         private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 cbMaVatTu_SelectionChangeCommitted(sender, e);
-     
+
 
         }
 
@@ -448,10 +448,10 @@ namespace Inventory.NhapXuat
             {
 
                 cbTenVatTu_SelectionChangeCommitted(sender, e);
-              
+
             }
         }
-        
+
 
         enumButton2 sttaf;
         private void btnGridAdd_Click(object sender, EventArgs e)
@@ -518,7 +518,7 @@ namespace Inventory.NhapXuat
         }
 
 
-        
+
 
         private void frmNhapKho_Load(object sender, EventArgs e)
         {
@@ -605,9 +605,9 @@ namespace Inventory.NhapXuat
                     if (txtDonGia.Text == "")
                         txtDonGia.Text = "0";
 
-                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value =double.Parse( txtDonGia.Text)*int.Parse(txtSLTX.Text);
-                  
-                    PanelButton.setClickStatus( sttaf);
+                    gridMaster.Rows[selectedRowCount].Cells["thanh_tien"].Value = double.Parse(txtDonGia.Text) * int.Parse(txtSLTX.Text);
+
+                    PanelButton.setClickStatus(sttaf);
                 }
                 if (PanelButton.getClickStatus() == enumButton2.XoaLuoi)
                 {
@@ -637,8 +637,8 @@ namespace Inventory.NhapXuat
         {
 
         }
-        
-        
+
+
         DataTable tbAff;
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -655,7 +655,7 @@ namespace Inventory.NhapXuat
             {
                 PanelButton.setClickSua();
                 PanelButton.Enable_btn_Luu_Huy();
-               
+
                 enableInputForm();
 
                 txtMaPhieuNhap.Enabled = false;
@@ -689,7 +689,7 @@ namespace Inventory.NhapXuat
                 txtDVT.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
                 cbTenVatTu.Text = gridMaster.Rows[selectedRowCount].Cells["ten_don_vi_tinh"].Value.ToString();
                 //PanelButton.setClickStatus(sttaf);
-           //     cbMaVatTu_KeyDown(null, null);
+                //     cbMaVatTu_KeyDown(null, null);
             }
             catch (Exception ex)
             {
@@ -704,12 +704,12 @@ namespace Inventory.NhapXuat
 
         //private void btnHuy_Click(object sender, EventArgs e)
         //{
-            
+
         //    btnThem.Enabled = true;
         //    btnSua.Enabled = true;
         //    btnXoa.Enabled = true;
         //    btnLamMoi.Enabled = true;
-            
+
 
         //    setStatus(false);
         //    ResetText();
@@ -905,11 +905,11 @@ namespace Inventory.NhapXuat
 
             //Init cho combobox Kho Nhập
             initKhoNhap();
-           // var temp = new clsDMVatTu().GetAll();
-            
-            
+            // var temp = new clsDMVatTu().GetAll();
+
+
             //Init cho combobox Ma vat tu, Ten vat tu
-          //  Dic = GetDict(new clsDMVatTu().GetAll());
+            //  Dic = GetDict(new clsDMVatTu().GetAll());
 
             initMaVatTu();
             initTenVatTu();
@@ -920,7 +920,7 @@ namespace Inventory.NhapXuat
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-           
+
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
         }
@@ -935,14 +935,14 @@ namespace Inventory.NhapXuat
             clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
         }
 
-      
+
 
         /// <summary>
         /// Initializes --> combobox kho nhap.
         /// </summary>
         private void initKhoNhap()
         {
-         //   clsDM_Kho dmKho = new clsDM_Kho();
+            //   clsDM_Kho dmKho = new clsDM_Kho();
             //cbKhoNhap.DisplayMember = "Ten_kho";
             //cbKhoNhap.ValueMember = "ID_kho";
 
@@ -963,7 +963,7 @@ namespace Inventory.NhapXuat
         /// Initializes --> combobox ten vat tu.
         /// </summary>
 
-       
+
 
         public void FormAction(enumFormAction2 frmAct)
         {
@@ -1024,7 +1024,7 @@ namespace Inventory.NhapXuat
             txtXuatTaiKho.Enabled = _status;
             cbKhoNhan.Enabled = _status;
             txtSoHD.Enabled = _status;
-          //  txtSLYC.Enabled = _status;
+            //  txtSLYC.Enabled = _status;
             //txtMaPhieuNhap.Enabled = _status;
 
         }
@@ -1057,7 +1057,7 @@ namespace Inventory.NhapXuat
         public void ResetInputForm()
         {
             ResetGridInputForm();
-            
+
             txtMaPhieuNhap.Text = "";
             txtDiaChi.Text = "";
             txtCongTrinh.Text = "";
@@ -1066,7 +1066,7 @@ namespace Inventory.NhapXuat
 
             txtMaPhieuNhap.Enabled = true;
             txtDonGia.Text = "0";
-            
+
             dataTable1.Clear();
         }
 
@@ -1119,7 +1119,7 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
                 //DataRowView dtv = c.Items[c.SelectedIndex] as DataRowView ;
-                
+
                 string Ma_Vat_Tu = c.Text.ToString();
 
                 clsDMVatTu vattu = new clsDMVatTu();

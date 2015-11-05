@@ -317,11 +317,16 @@ namespace Inventory.NhapXuat
                 //nếu phiếu này là cấn trừ 
                 //hiển thị form cấn trừ nợ cho vật tư 
                // bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
-                
-
-
-
-
+                try
+                {
+                    bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
+                    if (isCanTru == true)
+                    {
+                        MessageBox.Show("Phiếu này đang ở trạng thái chưa bù trừ nợ, vui lòng thực hiện chức năng bù trừ nợ trước! ");
+                        return;
+                    }
+                }
+                catch (Exception ex) { }
 
                 bool? isNhapNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNhapNgoai"].Value.ToString());
                 if (isNhapNgoai == true)
@@ -461,6 +466,19 @@ namespace Inventory.NhapXuat
             catch (Exception ex)
             {
                 MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
+            }
+        }
+
+        private void btnTruNo_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+            string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
+            bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
+            if (isCanTru == true)
+            {
+                frmBuTruPhieu butru = new frmBuTruPhieu(this,maphieu);
+                butru.Show();
+                return;
             }
         }
 
