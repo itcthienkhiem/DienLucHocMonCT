@@ -31,6 +31,7 @@ namespace Inventory.QuanLyNguoiDung
             clsUser user = new clsUser();
             if (user.checkPasswd(username, hash)==true)
             {
+                Utilities.clsThamSoUtilities.isSectionLogin = true;
                 MessageBox.Show("Bạn đã đăng nhập thành công!");
                 this.Close();
             }

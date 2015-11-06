@@ -32,12 +32,12 @@ namespace Inventory
             splashthread.Start();
 
             InitializeComponent();
-           
+
             //lapToolStripMenuItem_Click(null, null);
-         
-            
+
+
             //   DatabaseHelper help = new DatabaseHelper();
-         //   help. ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
+            //   help. ConnectDatabase(@"KHIEM-PC\SQLEXPRESS", "sa", "2051990", "QLKhoDienLuc");
             //Entities.ent = help.db;
         }
 
@@ -56,177 +56,195 @@ namespace Inventory
 
         private void danhMụcKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDMKho frm = new frmDMKho();
-            frm.Text = "Danh mục kho";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDMKho frm = new frmDMKho();
+                frm.Text = "Danh mục kho";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
-
         private void danhMụcVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDMVatTu frm = new frmDMVatTu();
-            frm.Text = "Danh mục vật tư";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDMVatTu frm = new frmDMVatTu();
+                frm.Text = "Danh mục vật tư";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void quảnLýNhậpKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            frmNhapKho frm = new frmNhapKho("PN");
-            frm.Text = "Màn hình nhập vật tư";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmNhapKho frm = new frmNhapKho("PN");
+                frm.Text = "Màn hình nhập vật tư";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void danhSáchPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            frmDanhSachPhieuNhap frm = new frmDanhSachPhieuNhap();
-            frm.Text = "Danh sách phiếu nhập vật tư";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDanhSachPhieuNhap frm = new frmDanhSachPhieuNhap();
+                frm.Text = "Danh sách phiếu nhập vật tư";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void menuDMDonViTinh_Click(object sender, EventArgs e)
         {
-            frmDMDonViTinh frm = new frmDMDonViTinh();
-            frm.Text = "Danh mục đơn vị tính";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDMDonViTinh frm = new frmDMDonViTinh();
+                frm.Text = "Danh mục đơn vị tính";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void menuDMNhanVien_Click(object sender, EventArgs e)
         {
-            frmDMNhanVien frm = new frmDMNhanVien();
-            frm.Text = "Danh mục nhân viên";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDMNhanVien frm = new frmDMNhanVien();
+                frm.Text = "Danh mục nhân viên";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void lậpPhieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void MenuItemTonDauKy_Click(object sender, EventArgs e)
         {
-            frmTonDauKy frm = new frmTonDauKy();
-            frm.Text = "Quản lý tồn đầu kỳ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmTonDauKy frm = new frmTonDauKy();
+                frm.Text = "Quản lý tồn đầu kỳ";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void giớiThiệuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,40 +255,16 @@ namespace Inventory
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
-            //backgroundWorker1.RunWorkerAsync();
-            //SplashScreen.UdpateStatusText("Loading Items!!!");
-            //Thread.Sleep(1000);
-            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Success);
-            //Thread.Sleep(1000);
-            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Warning);
-
-            //Thread.Sleep(1000);
-            //SplashScreen.UdpateStatusTextWithStatus("waiting...", TypeOfMessage.Error);
-            //Thread.Sleep(1000);
-            //SplashScreen.UdpateStatusText("Testing Default Message Color");
-            //Thread.Sleep(1000);
-            //SplashScreen.UdpateStatusText("Items Loaded..");
-            //Thread.Sleep(500);
-
-            //this.Show();
-            //SplashScreen.CloseSplashScreen();
-            //this.Activate();
-            //frmKetNoi kn = new frmKetNoi();
-
-            //Thread splashthread = new Thread(new ThreadStart(Show));
-            //splashthread.IsBackground = true;
-            //splashthread.Start();
-
-
 
             DocFileCauHinh();
+
         }
 
-        private  void DocFileCauHinh()
+        private void DocFileCauHinh()
         {
             try
             {
-
+              
                 XmlDocument XmlDoc = new XmlDocument();
                 //Loading the Config file
                 XmlDoc.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
@@ -301,7 +295,19 @@ namespace Inventory
                         {
 
                         }
-                        return;
+
+                    }
+                    if (xElement.Name == "appSettings")
+                    {
+                        bool temp = bool.Parse(xElement.ChildNodes.Item(0).Attributes[1].Value);
+                        if (temp == true)
+                        {
+                            frmDangNhap frm = new frmDangNhap();
+                            frm.MdiParent = this;
+                            // Display the new form.
+                            frm.Show();
+                            return;
+                        }
                     }
                 }
                 //writing the connection string in config file
@@ -315,8 +321,8 @@ namespace Inventory
             }
         }
         public void CheckConnectionString()
-        { 
-            
+        {
+
         }
         public void Show()
         {
@@ -325,119 +331,133 @@ namespace Inventory
         }
         private void lapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
-            frm.Text = "Xuất vật tư cho nhân viên";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
+                frm.Text = "Xuất vật tư cho nhân viên";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void MenuItemDSPhieuXuatTamUng_Click(object sender, EventArgs e)
         {
-            frmDanhSachPhieuXuatTamVatTu frm = new frmDanhSachPhieuXuatTamVatTu();
-            frm.Text = "Danh sách phiếu xuất vật tư cho nhân viên";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmDanhSachPhieuXuatTamVatTu frm = new frmDanhSachPhieuXuatTamVatTu();
+                frm.Text = "Danh sách phiếu xuất vật tư cho nhân viên";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
                 }
 
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show(); 
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
 
         private void MenuItemNhapTonDauKy_Click(object sender, EventArgs e)
         {
-            frmNhapTonDauKy frm = new frmNhapTonDauKy();
-            frm.Text = "Nhập tồn đầu kỳ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
+                frmNhapTonDauKy frm = new frmNhapTonDauKy();
+                frm.Text = "Nhập tồn đầu kỳ";
+
+                foreach (Form f in this.MdiChildren)
                 {
-                    f.Activate();
-                    return;
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
                 }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
             }
-
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
         }
-
         private void phânKhoVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVatTuPhanKho frm = new frmVatTuPhanKho();
-            frm.Text = "Nhập tồn đầu kỳ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmVatTuPhanKho frm = new frmVatTuPhanKho();
+                frm.Text = "Nhập tồn đầu kỳ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDanhSachVatTuTrongKho frm = new frmDanhSachVatTuTrongKho();
-            frm.Text = "Nhập tồn thực trong kho";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmDanhSachVatTuTrongKho frm = new frmDanhSachVatTuTrongKho();
+                frm.Text = "Nhập tồn thực trong kho";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void danhSáchVậtTưChưaPhânVàoKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -452,117 +472,132 @@ namespace Inventory
 
         private void MenuItemXuatVTChoNhanVien_Click(object sender, EventArgs e)
         {
-            frmXuatTamVatTuChoNhanVien frm = new frmXuatTamVatTuChoNhanVien();
-            frm.Text = "Xuất tạm vật tư cho nhân viên";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmXuatTamVatTuChoNhanVien frm = new frmXuatTamVatTuChoNhanVien();
+                frm.Text = "Xuất tạm vật tư cho nhân viên";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void danhMụcLoạiPhiếuNhậpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDMLoaiPhieuNhap frm = new frmDMLoaiPhieuNhap();
-            frm.Text = "Loại phiếu nhập ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmDMLoaiPhieuNhap frm = new frmDMLoaiPhieuNhap();
+                frm.Text = "Loại phiếu nhập ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void thẻKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTheKho frm = new frmTheKho();
-            frm.Text = "Thẻ kho ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmTheKho frm = new frmTheKho();
+                frm.Text = "Thẻ kho ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void nhậpKhoTừFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNhapTuFile frm = new frmNhapTuFile();
-            frm.Text = "Nhập từ file  ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmNhapTuFile frm = new frmNhapTuFile();
+                frm.Text = "Nhập từ file  ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void danhMụcChấtLượngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDMChatLuong frm = new frmDMChatLuong();
-            frm.Text = "Chất lượng   ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmDMChatLuong frm = new frmDMChatLuong();
+                frm.Text = "Chất lượng   ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -587,140 +622,158 @@ namespace Inventory
 
         private void quảnLýHoànTrảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNhapKho frm = new frmNhapKho("HN");
-            frm.Text = "Hoàn nhập";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmNhapKho frm = new frmNhapKho("HN");
+                frm.Text = "Hoàn nhập";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void thẻGóiĐầuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTheGoiDau frm = new frmTheGoiDau();
-            frm.Text = "Thẻ Gói Đầu  ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmTheGoiDau frm = new frmTheGoiDau();
+                frm.Text = "Thẻ Gói Đầu  ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void khoNợVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNoVatTu frm = new frmNoVatTu();
-            frm.Text = "Nợ vật tư  ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmNoVatTu frm = new frmNoVatTu();
+                frm.Text = "Nợ vật tư  ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void nhậpKhoTừTờTrìnhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh();
-            frm.Text = "Nhập kho tờ trình , biên bản ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh();
+                frm.Text = "Nhập kho tờ trình , biên bản ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void danhSáchPhiếuNợToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDanhSachPhieuNo frm = new frmDanhSachPhieuNo();
-            frm.Text = "Thẻ Gói Đầu  ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmDanhSachPhieuNo frm = new frmDanhSachPhieuNo();
+                frm.Text = "Danh sách phiêu nơ ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void chiTiếtTrảNợToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDanhSachTraNo frm = new frmDanhSachTraNo();
-            frm.Text = "Danh sách trả nợ phiếu nhập  ";
-
-            foreach (Form f in this.MdiChildren)
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                if (f.Name == frm.Name)
-                {
-                    f.Activate();
-                    return;
-                }
-            }
+                frmDanhSachTraNo frm = new frmDanhSachTraNo();
+                frm.Text = "Danh sách trả nợ phiếu nhập  ";
 
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-            for (int i = 0; i < frms.Count; i++)
-                frms[i].Close();
-            frms.Clear();
-            frms.Add(frm);
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
         }
 
         private void đăngNhậpToolStripMenuItem_Click(object sender, EventArgs e)

@@ -47,6 +47,8 @@ namespace Inventory.DanhMuc
                 {
                     //setting the coonection string
                     xElement.LastChild.Attributes[1].Value = con;
+                    
+
                 }
             }
             //writing the connection string in config file
