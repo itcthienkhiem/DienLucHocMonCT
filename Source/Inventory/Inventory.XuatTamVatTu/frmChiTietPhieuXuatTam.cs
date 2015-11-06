@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.NhapXuat;
 using Inventory.Utilities;
+using Inventory.Report;
 
 namespace Inventory.XuatTamVatTu
 {
@@ -2213,6 +2214,36 @@ namespace Inventory.XuatTamVatTu
             btnCheckNVGiuVT.Visible = false;
             cbMaNhanVien.Enabled = false;
             cbTenNhanVien.Enabled = false;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (cbMaPhieuXuatTam.Text.Equals(string.Empty))
+            {
+                return;
+            }
+
+            clsChiTietPhieuXuatTam chitiet_pxt = new clsChiTietPhieuXuatTam();
+
+            if (chitiet_pxt.isHasDuplicateRow(cbMaPhieuXuatTam.Text) == false)
+            {
+                return;
+            }
+
+            frmReport_phieu_xuat_tam_vat_tu frm = new frmReport_phieu_xuat_tam_vat_tu(cbMaPhieuXuatTam.Text);
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this.ParentForm;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }

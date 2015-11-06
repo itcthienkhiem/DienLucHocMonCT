@@ -108,65 +108,86 @@ namespace Inventory.EntityClass
 
            }
        }
-       // End GetAll
+        // End GetAll
 
-       /// <summary>
-       /// Get tất cả DonViTInh
-       /// </summary>
-       /// <returns>DataTable</returns>
-       //public void GetDonViTinh1()
-       //{
+        /// <summary>
+        /// Get tất cả dữ liệu từ CSDL, dùng cho Grid
+        /// </summary>
+        /// <returns>DataTable</returns>
+        public string Get_TenNV(int ID_NV)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                string dm = (from d in help.ent.DM_Nhan_Vien
+                         where d.ID_nhan_vien == ID_NV
+                         select d.Ten_nhan_vien
+                         ).SingleOrDefault();
+                dbcxtransaction.Commit();
 
-       //    dicKho.Clear();
-       //    DatabaseHelper help = new DatabaseHelper();
-       //    help.ConnectDatabase();
-       //    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-       //    {
-       //        var dm = from d in help.ent.DM_Kho
-       //                 select new
-       //                 {
-       //                     d.ID_kho,
-       //                     d.Ten_kho,
-       //                     d.Trang_thai,
-                            
+                return dm;
+            }
+        }
+        // End GetAll
 
-       //                 };
-       //        dbcxtransaction.Commit();
-       //     //   dicKho =  dm.ToDictionary(x=>x,x=>x);
+        /// <summary>
+        /// Get tất cả DonViTInh
+        /// </summary>
+        /// <returns>DataTable</returns>
+        //public void GetDonViTinh1()
+        //{
 
-       //        var res = dm.ToDictionary(x => x, x => x);
-       //      //  dicKho = res;
-       //    }
+        //    dicKho.Clear();
+        //    DatabaseHelper help = new DatabaseHelper();
+        //    help.ConnectDatabase();
+        //    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+        //    {
+        //        var dm = from d in help.ent.DM_Kho
+        //                 select new
+        //                 {
+        //                     d.ID_kho,
+        //                     d.Ten_kho,
+        //                     d.Trang_thai,
 
 
-       //    //m_dbConnection.Open();
-       //    //dicKho.Clear();
+        //                 };
+        //        dbcxtransaction.Commit();
+        //     //   dicKho =  dm.ToDictionary(x=>x,x=>x);
 
-       //    //DataTable dt = new DataTable();
-       //    //string sql = "SELECT * FROM DM_Kho";
+        //        var res = dm.ToDictionary(x => x, x => x);
+        //      //  dicKho = res;
+        //    }
 
-       //    //SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-       //    //SqlDataReader reader = command.ExecuteReader();
-       //    //while (reader.Read())
-       //    //{
-       //    //    int ID_kho = reader.GetInt32(0);
-       //    //    string Ten_kho = reader.GetString(1);
+        //    //m_dbConnection.Open();
+        //    //dicKho.Clear();
 
-       //    //    dicKho.Add(Ten_kho, ID_kho);
-       //    //}
+        //    //DataTable dt = new DataTable();
+        //    //string sql = "SELECT * FROM DM_Kho";
 
-       //    //m_dbConnection.Close();
+        //    //SqlCommand command = new SqlCommand(sql, m_dbConnection);
 
-       //    //return dt;
-       //}
-       // End GetAll
+        //    //SqlDataReader reader = command.ExecuteReader();
+        //    //while (reader.Read())
+        //    //{
+        //    //    int ID_kho = reader.GetInt32(0);
+        //    //    string Ten_kho = reader.GetString(1);
 
-       /// <summary>
-       /// Kiểm tra trùng lập trước khi ADD
-       /// </summary>
-       /// <returns></returns>
-       public bool Checkduplicaterows()
+        //    //    dicKho.Add(Ten_kho, ID_kho);
+        //    //}
+
+        //    //m_dbConnection.Close();
+
+        //    //return dt;
+        //}
+        // End GetAll
+
+        /// <summary>
+        /// Kiểm tra trùng lập trước khi ADD
+        /// </summary>
+        /// <returns></returns>
+        public bool Checkduplicaterows()
        {
 
 

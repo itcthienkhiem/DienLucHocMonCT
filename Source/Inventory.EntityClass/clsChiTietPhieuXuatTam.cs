@@ -26,6 +26,94 @@ namespace Inventory.EntityClass
 
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
+        public DataTable GetChiTietPhieuXuatTam(string Ma_phieu_nhap)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                int i = 1;
+                var entryPoint = (from ctpxt in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                                  join kho in help.ent.DM_Kho on ctpxt.ID_kho equals kho.ID_kho
+                                  join vt in help.ent.DM_Vat_Tu on ctpxt.Ma_vat_tu equals vt.Ma_vat_tu
+                                  join dvt in help.ent.DM_Don_vi_tinh on vt.ID_Don_vi_tinh equals dvt.ID_Don_vi_tinh
+                                  join cl in help.ent.Chat_luong on ctpxt.Id_chat_luong equals cl.Id_chat_luong
+
+                                  where ctpxt.Ma_phieu_xuat_tam == Ma_phieu_nhap
+
+                                  select new
+                                  {
+                                      vt.Ten_vat_tu,
+                                      kho.Ten_kho,
+                                      dvt.Ten_don_vi_tinh,
+                                      ctpxt.So_luong_dang_giu,
+                                      ctpxt.So_luong_de_nghi,
+                                      ctpxt.So_luong_thuc_xuat,
+                                      ctpxt.So_luong_hoan_nhap,
+                                      ctpxt.So_luong_giu_lai,
+                                      cl.Loai_chat_luong
+                                  });//.ToList();
+                dbcxtransaction.Commit();
+
+                var entryPoint2 = entryPoint.AsEnumerable() // Client-side from here on
+                    .Select((chitiet_pxt, index) => new
+                    {
+                        Stt = index + 1,
+                        chitiet_pxt.Ten_vat_tu,
+                        chitiet_pxt.Ten_kho,
+                        chitiet_pxt.Ten_don_vi_tinh,
+                        chitiet_pxt.So_luong_dang_giu,
+                        chitiet_pxt.So_luong_de_nghi,
+                        chitiet_pxt.So_luong_thuc_xuat,
+                        chitiet_pxt.So_luong_hoan_nhap,
+                        chitiet_pxt.So_luong_giu_lai,
+                        chitiet_pxt.Loai_chat_luong
+                    }).ToList();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint2);
+            }
+
+
+            //return GetAll(Ma_phieu_nhap);
+            //return table;
+
+            //m_dbConnection.Open();
+
+            //DataTable dt = new DataTable();
+            ////string sql = "SELECT * FROM DM_Vat_Tu";
+            ////SELECT ROW_NUMBER() OVER (ORDER BY Ma_phieu_nhap) AS rn, * FROM Chi_Tiet_Phieu_Nhap_Vat_Tu
+
+            //string sql = "";
+            //sql += "SELECT ";
+            //sql += "" + "ROW_NUMBER() OVER (ORDER BY Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap) AS Stt, ";
+            //sql += "" + "DM_Vat_Tu.Ma_vat_tu, ";
+            //sql += "" + "DM_Vat_Tu.Ten_vat_tu, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Chat_luong, ";
+            //sql += "" + "DM_Don_vi_tinh.Ten_don_vi_tinh, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_yeu_cau, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.So_luong_thuc_lanh, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Don_gia, ";
+            //sql += "" + "Chi_Tiet_Phieu_Nhap_Vat_Tu.Thanh_tien ";
+            //sql += "FROM Chi_Tiet_Phieu_Nhap_Vat_Tu ";
+            //sql += "INNER ";
+            //sql += "" + "JOIN DM_Vat_Tu ";
+            //sql += "" + "ON DM_Vat_Tu.Ma_vat_tu=Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_vat_tu ";
+            //sql += "INNER ";
+            //sql += "" + "JOIN DM_Don_vi_tinh ";
+            //sql += "" + "ON DM_Don_vi_tinh.ID_Don_vi_tinh=Chi_Tiet_Phieu_Nhap_Vat_Tu.ID_Don_vi_tinh ";
+            //sql += "WHERE Chi_Tiet_Phieu_Nhap_Vat_Tu.Ma_phieu_nhap=@Ma_phieu_nhap";
+
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_nhap", Ma_phieu_nhap));
+
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //return dt;
+
+        }
+
 
         public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
         {

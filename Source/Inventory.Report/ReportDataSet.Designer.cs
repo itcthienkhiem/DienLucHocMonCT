@@ -1407,13 +1407,15 @@ namespace Inventory.Report {
             
             private global::System.Data.DataColumn columnTen_don_vi_tinh;
             
-            private global::System.Data.DataColumn columnSo_luong_de_nghi;
+            private global::System.Data.DataColumn columnSo_luong_dang_giu;
             
-            private global::System.Data.DataColumn columnSo_luong_thuc_xuat;
+            private global::System.Data.DataColumn columnSo_luong_de_nghi;
             
             private global::System.Data.DataColumn columnSo_luong_hoan_nhap;
             
             private global::System.Data.DataColumn columnSo_luong_giu_lai;
+            
+            private global::System.Data.DataColumn columnLoai_chat_luong;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1474,17 +1476,17 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn So_luong_de_nghiColumn {
+            public global::System.Data.DataColumn So_luong_dang_giuColumn {
                 get {
-                    return this.columnSo_luong_de_nghi;
+                    return this.columnSo_luong_dang_giu;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn So_luong_thuc_xuatColumn {
+            public global::System.Data.DataColumn So_luong_de_nghiColumn {
                 get {
-                    return this.columnSo_luong_thuc_xuat;
+                    return this.columnSo_luong_de_nghi;
                 }
             }
             
@@ -1501,6 +1503,14 @@ namespace Inventory.Report {
             public global::System.Data.DataColumn So_luong_giu_laiColumn {
                 get {
                     return this.columnSo_luong_giu_lai;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Loai_chat_luongColumn {
+                get {
+                    return this.columnLoai_chat_luong;
                 }
             }
             
@@ -1541,16 +1551,17 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Chi_Tiet_Phieu_Xuat_TamRow AddChi_Tiet_Phieu_Xuat_TamRow(string Stt, string Ten_vat_tu, string Ten_don_vi_tinh, string So_luong_de_nghi, string So_luong_thuc_xuat, string So_luong_hoan_nhap, string So_luong_giu_lai) {
+            public Chi_Tiet_Phieu_Xuat_TamRow AddChi_Tiet_Phieu_Xuat_TamRow(int Stt, string Ten_vat_tu, string Ten_don_vi_tinh, decimal So_luong_dang_giu, decimal So_luong_de_nghi, decimal So_luong_hoan_nhap, decimal So_luong_giu_lai, string Loai_chat_luong) {
                 Chi_Tiet_Phieu_Xuat_TamRow rowChi_Tiet_Phieu_Xuat_TamRow = ((Chi_Tiet_Phieu_Xuat_TamRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Stt,
                         Ten_vat_tu,
                         Ten_don_vi_tinh,
+                        So_luong_dang_giu,
                         So_luong_de_nghi,
-                        So_luong_thuc_xuat,
                         So_luong_hoan_nhap,
-                        So_luong_giu_lai};
+                        So_luong_giu_lai,
+                        Loai_chat_luong};
                 rowChi_Tiet_Phieu_Xuat_TamRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowChi_Tiet_Phieu_Xuat_TamRow);
                 return rowChi_Tiet_Phieu_Xuat_TamRow;
@@ -1576,29 +1587,34 @@ namespace Inventory.Report {
                 this.columnStt = base.Columns["Stt"];
                 this.columnTen_vat_tu = base.Columns["Ten_vat_tu"];
                 this.columnTen_don_vi_tinh = base.Columns["Ten_don_vi_tinh"];
+                this.columnSo_luong_dang_giu = base.Columns["So_luong_dang_giu"];
                 this.columnSo_luong_de_nghi = base.Columns["So_luong_de_nghi"];
-                this.columnSo_luong_thuc_xuat = base.Columns["So_luong_thuc_xuat"];
                 this.columnSo_luong_hoan_nhap = base.Columns["So_luong_hoan_nhap"];
                 this.columnSo_luong_giu_lai = base.Columns["So_luong_giu_lai"];
+                this.columnLoai_chat_luong = base.Columns["Loai_chat_luong"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnStt = new global::System.Data.DataColumn("Stt", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnStt = new global::System.Data.DataColumn("Stt", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStt);
                 this.columnTen_vat_tu = new global::System.Data.DataColumn("Ten_vat_tu", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTen_vat_tu);
                 this.columnTen_don_vi_tinh = new global::System.Data.DataColumn("Ten_don_vi_tinh", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTen_don_vi_tinh);
-                this.columnSo_luong_de_nghi = new global::System.Data.DataColumn("So_luong_de_nghi", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnSo_luong_dang_giu = new global::System.Data.DataColumn("So_luong_dang_giu", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSo_luong_dang_giu);
+                this.columnSo_luong_de_nghi = new global::System.Data.DataColumn("So_luong_de_nghi", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSo_luong_de_nghi);
-                this.columnSo_luong_thuc_xuat = new global::System.Data.DataColumn("So_luong_thuc_xuat", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSo_luong_thuc_xuat);
-                this.columnSo_luong_hoan_nhap = new global::System.Data.DataColumn("So_luong_hoan_nhap", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnSo_luong_hoan_nhap = new global::System.Data.DataColumn("So_luong_hoan_nhap", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSo_luong_hoan_nhap);
-                this.columnSo_luong_giu_lai = new global::System.Data.DataColumn("So_luong_giu_lai", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnSo_luong_giu_lai = new global::System.Data.DataColumn("So_luong_giu_lai", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSo_luong_giu_lai);
+                this.columnLoai_chat_luong = new global::System.Data.DataColumn("Loai_chat_luong", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLoai_chat_luong);
+                this.columnStt.AutoIncrementSeed = -1;
+                this.columnStt.AutoIncrementStep = -1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2410,10 +2426,10 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Stt {
+            public int Stt {
                 get {
                     try {
-                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.SttColumn]));
+                        return ((int)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.SttColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Stt\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is DBNull.", e);
@@ -2459,10 +2475,27 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string So_luong_de_nghi {
+            public decimal So_luong_dang_giu {
                 get {
                     try {
-                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_de_nghiColumn]));
+                        return ((decimal)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_dang_giuColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'So_luong_dang_giu\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_dang_giuColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal So_luong_de_nghi {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_de_nghiColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'So_luong_de_nghi\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is DBN" +
@@ -2476,27 +2509,10 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string So_luong_thuc_xuat {
+            public decimal So_luong_hoan_nhap {
                 get {
                     try {
-                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_thuc_xuatColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'So_luong_thuc_xuat\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_thuc_xuatColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string So_luong_hoan_nhap {
-                get {
-                    try {
-                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_hoan_nhapColumn]));
+                        return ((decimal)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_hoan_nhapColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'So_luong_hoan_nhap\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is D" +
@@ -2510,10 +2526,10 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string So_luong_giu_lai {
+            public decimal So_luong_giu_lai {
                 get {
                     try {
-                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_giu_laiColumn]));
+                        return ((decimal)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_giu_laiColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'So_luong_giu_lai\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is DBN" +
@@ -2522,6 +2538,23 @@ namespace Inventory.Report {
                 }
                 set {
                     this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_giu_laiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Loai_chat_luong {
+                get {
+                    try {
+                        return ((string)(this[this.tableChi_Tiet_Phieu_Xuat_Tam.Loai_chat_luongColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Loai_chat_luong\' in table \'Chi_Tiet_Phieu_Xuat_Tam\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableChi_Tiet_Phieu_Xuat_Tam.Loai_chat_luongColumn] = value;
                 }
             }
             
@@ -2563,6 +2596,18 @@ namespace Inventory.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSo_luong_dang_giuNull() {
+                return this.IsNull(this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_dang_giuColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSo_luong_dang_giuNull() {
+                this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_dang_giuColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSo_luong_de_nghiNull() {
                 return this.IsNull(this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_de_nghiColumn);
             }
@@ -2571,18 +2616,6 @@ namespace Inventory.Report {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSo_luong_de_nghiNull() {
                 this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_de_nghiColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSo_luong_thuc_xuatNull() {
-                return this.IsNull(this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_thuc_xuatColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSo_luong_thuc_xuatNull() {
-                this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_thuc_xuatColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2607,6 +2640,18 @@ namespace Inventory.Report {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSo_luong_giu_laiNull() {
                 this[this.tableChi_Tiet_Phieu_Xuat_Tam.So_luong_giu_laiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLoai_chat_luongNull() {
+                return this.IsNull(this.tableChi_Tiet_Phieu_Xuat_Tam.Loai_chat_luongColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLoai_chat_luongNull() {
+                this[this.tableChi_Tiet_Phieu_Xuat_Tam.Loai_chat_luongColumn] = global::System.Convert.DBNull;
             }
         }
         
