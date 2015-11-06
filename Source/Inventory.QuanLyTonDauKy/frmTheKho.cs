@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
+using Inventory.Report;
 namespace Inventory.QuanLyTonDauKy
 {
     /// <summary>
@@ -55,6 +56,7 @@ namespace Inventory.QuanLyTonDauKy
                 {
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
                     DataTable tbcttk = cttk.GetAllSLT(tungay,search);
+
                     //danh sách đã được sắp xếp tăng dần tính sl trươc
                     decimal tkt = 0;
                     for (int i = 0; i < tbcttk.Rows.Count; i++)
@@ -154,6 +156,34 @@ namespace Inventory.QuanLyTonDauKy
             }
             catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
             
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            DataTable tmp = getTableDataGrid();
+            if (tmp.Rows.Count == 0 || tmp == null)
+            {
+                return;
+            }
+
+            string ma_vt = cbMaVatTu.Text;
+            string ten_vt = txtTenVatTu.Text;
+            string dvt = txtDVT.Text;
+
+            frmReport_The_kho frm = new frmReport_The_kho(tmp, ma_vt, ten_vt, dvt);
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+
+            frm.MdiParent = this.ParentForm;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }
