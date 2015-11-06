@@ -577,6 +577,23 @@ namespace Inventory.NhapXuat
                 MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
         }
+        private void initVatTuData()
+        {
+            Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
+            string Ma_Vat_Tu = cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem);
+
+            clsDMVatTu vattu = new clsDMVatTu();
+
+            string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
+
+            cbTenVatTu.Text = Ten_Vat_Tu;
+
+            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+            txtDonGia.Text = gridMaster.Rows[selectedRowCount].Cells["Don_gia"].Value.ToString();// tb.Rows[0]["Don_gia"].ToString();
+            cbChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value.ToString();
+        }
 
 
         private void gridMaster_MouseClick(object sender, MouseEventArgs e)
@@ -589,7 +606,7 @@ namespace Inventory.NhapXuat
                     cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                     if (cbMaVatTu.Text != "")
                     {
-                        cbMaVatTu_KeyDown(null, null);
+                        initVatTuData();
                     }
                     else
                         ResetGridInputForm();
@@ -1140,8 +1157,8 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
                 //DataRowView dtv = c.Items[c.SelectedIndex] as DataRowView ;
-                
-                string Ma_Vat_Tu = c.Text.ToString();
+
+                string Ma_Vat_Tu = c.GetItemText(c.SelectedItem);
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
@@ -1163,7 +1180,7 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
 
-                string Ten_Vat_Tu = c.Text.ToString();
+                string Ten_Vat_Tu = c.GetItemText(c.SelectedItem);
 
                 clsDMVatTu vattu = new clsDMVatTu();
 

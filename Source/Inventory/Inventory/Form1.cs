@@ -104,7 +104,7 @@ namespace Inventory
         private void quảnLýNhậpKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            frmNhapKho frm = new frmNhapKho();
+            frmNhapKho frm = new frmNhapKho("PN");
             frm.Text = "Màn hình nhập vật tư";
 
             foreach (Form f in this.MdiChildren)
@@ -586,8 +586,8 @@ namespace Inventory
 
         private void quảnLýHoànTrảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmHoanNhapKho frm = new frmHoanNhapKho();
-            frm.Text = "Hoàn nhập  ";
+            frmNhapKho frm = new frmNhapKho("HN");
+            frm.Text = "Hoàn nhập";
 
             foreach (Form f in this.MdiChildren)
             {
@@ -633,7 +633,7 @@ namespace Inventory
         private void khoNợVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmNoVatTu frm = new frmNoVatTu();
-            frm.Text = "Thẻ Gói Đầu  ";
+            frm.Text = "Nợ vật tư  ";
 
             foreach (Form f in this.MdiChildren)
             {
@@ -656,7 +656,7 @@ namespace Inventory
         private void nhậpKhoTừTờTrìnhToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh();
-            frm.Text = "Thẻ Gói Đầu  ";
+            frm.Text = "Nhập kho tờ trình , biên bản ";
 
             foreach (Form f in this.MdiChildren)
             {
@@ -702,7 +702,7 @@ namespace Inventory
         private void chiTiếtTrảNợToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDanhSachTraNo frm = new frmDanhSachTraNo();
-            frm.Text = "Thẻ Gói Đầu  ";
+            frm.Text = "Danh sách trả nợ phiếu nhập  ";
 
             foreach (Form f in this.MdiChildren)
             {

@@ -190,6 +190,11 @@ namespace Inventory.NhapXuat
         string Loai_PN;
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
+            if (txtTenDuongDan.Text == "")
+            {
+                MessageBox.Show("Bạn chưa nhập đường dẫn file");
+                return;
+            }
             try
             {
                  Loai_PN = cbLPN.Text;
@@ -212,9 +217,6 @@ namespace Inventory.NhapXuat
         /// </summary>
         public void ChuyenDoi()
         {
-            //    Progressbar.Value=0;
-            //  countLabel = tb.Rows.Count.ToString();
-         //   
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             // insert
@@ -231,24 +233,21 @@ namespace Inventory.NhapXuat
                         string Ma_vat_tu = tb.Rows[i]["column5"].ToString();
                         string Ten_vat_tu = tb.Rows[i]["column6"].ToString();
                         string Chat_luong = tb.Rows[i]["column7"].ToString();
-
                         string DVT = tb.Rows[i]["column8"].ToString();
                         string So_luong_thuc_lanh = tb.Rows[i]["column9"].ToString();
                         string Don_gia = tb.Rows[i]["column10"].ToString();
                         string Thanh_tien = tb.Rows[i]["column11"].ToString();
-                    // tb.Rows[i]["column12"].ToString()??"XD";
-                        //kiểm tra xem dòng đó có trùng với phiếu nhận trong bảng pn chưa     
                         clsPhieuNhapKho pnk = new clsPhieuNhapKho();
                         if (pnk.CheckTonTaiSoDK(Ma_phieu_nhap, help) == false)
                         {
                             pnk.Ma_phieu_nhap = Ma_phieu_nhap;
-                            pnk.isGoiDau = chbGoiDau.Checked;
+                            pnk.isGoiDau = rdoPhieuGoiDau.Checked;
+                            pnk.isCanTru = rdoBuTru.Checked;
                             pnk.Ngay_lap = Ngay_lap;
                             pnk.Kho_nhan = Kho_nhan;
                             pnk.Ly_do = Ly_do;
                             clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
                             LPN.Ma_LPN = Loai_PN;
-                            
                             pnk.ID_Loai_Phieu_Nhap = LPN.GetFirst(help);
                             pnk.ID_khoNhan =(int) cbKhoNhan.SelectedValue;
                             if (pnk.Insert(help) == 0)
@@ -269,19 +268,11 @@ namespace Inventory.NhapXuat
                         {
 
                             DMDVT.Ten_don_vi_tinh = DVT;
-
-                            //  DMDVT.ID_Don_vi_tinh = ctpn.ID_Don_vi_tinh;
-
                             if (DMDVT.hasDuplicateRow(help) == false)
                             {
                                 //nếu chưa có thì insert dòng mới 
                                 DMDVT.Insert(help);
                             }
-
-
-
-
-
                             //tiến hành insert 5000 dòng dữ liệu từ phiếu nhập
                         }
                         ctpn.ID_Don_vi_tinh = DMDVT.getMATuTen(DVT, help);
@@ -297,11 +288,6 @@ namespace Inventory.NhapXuat
                         ctpn.So_luong_thuc_lanh = decimal.Parse(So_luong_thuc_lanh);
                         ctpn.Insert(help);
                         backgroundWorker1.ReportProgress(i);
-                       // System.Threading.Thread.Sleep(100); 
-                        // Simulate long task 
-
-                        //  queryRunningThread.Abort();
-
                     }
                     dbcxtransaction.Commit();
                     backgroundWorker1.ReportProgress(0);
@@ -311,7 +297,6 @@ namespace Inventory.NhapXuat
                 {
                     dbcxtransaction.Rollback();  // Get stack trace for the exception with source file information
                     MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
-
                     return;
 
                 }
@@ -322,8 +307,6 @@ namespace Inventory.NhapXuat
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             ChuyenDoi();
-            // Your background task goes here 
-
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)

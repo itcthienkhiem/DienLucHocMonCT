@@ -64,9 +64,9 @@
             this.thẻKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khoNợVậtTưToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhSáchPhiếuNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chiTiếtTrảNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chiTiếtTrảNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,8 +205,8 @@
             this.danhSáchPhiếuNhậpToolStripMenuItem,
             this.nhậpKhoTừTờTrìnhToolStripMenuItem});
             this.quảnLýKhoToolStripMenuItem.Name = "quảnLýKhoToolStripMenuItem";
-            this.quảnLýKhoToolStripMenuItem.Size = new System.Drawing.Size(130, 23);
-            this.quảnLýKhoToolStripMenuItem.Text = "Quản Lý Nhập - Xuất";
+            this.quảnLýKhoToolStripMenuItem.Size = new System.Drawing.Size(118, 23);
+            this.quảnLýKhoToolStripMenuItem.Text = "Nhập - Hoàn nhập";
             // 
             // quảnLýNhậpKhoToolStripMenuItem
             // 
@@ -343,6 +343,13 @@
             this.danhSáchPhiếuNợToolStripMenuItem.Text = "Danh Sách Phiếu Nợ";
             this.danhSáchPhiếuNợToolStripMenuItem.Click += new System.EventHandler(this.danhSáchPhiếuNợToolStripMenuItem_Click);
             // 
+            // chiTiếtTrảNợToolStripMenuItem
+            // 
+            this.chiTiếtTrảNợToolStripMenuItem.Name = "chiTiếtTrảNợToolStripMenuItem";
+            this.chiTiếtTrảNợToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.chiTiếtTrảNợToolStripMenuItem.Text = "Chi Tiết Trả Nợ";
+            this.chiTiếtTrảNợToolStripMenuItem.Click += new System.EventHandler(this.chiTiếtTrảNợToolStripMenuItem_Click);
+            // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
@@ -354,13 +361,6 @@
             this.giớiThiệuToolStripMenuItem.Size = new System.Drawing.Size(70, 23);
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
-            // 
-            // chiTiếtTrảNợToolStripMenuItem
-            // 
-            this.chiTiếtTrảNợToolStripMenuItem.Name = "chiTiếtTrảNợToolStripMenuItem";
-            this.chiTiếtTrảNợToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.chiTiếtTrảNợToolStripMenuItem.Text = "Chi Tiết Trả Nợ";
-            this.chiTiếtTrảNợToolStripMenuItem.Click += new System.EventHandler(this.chiTiếtTrảNợToolStripMenuItem_Click);
             // 
             // MDIMain
             // 

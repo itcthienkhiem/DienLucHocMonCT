@@ -86,10 +86,11 @@
             // 
             // txtTenVatTu
             // 
-            this.txtTenVatTu.Location = new System.Drawing.Point(359, 210);
+            this.txtTenVatTu.Location = new System.Drawing.Point(359, 174);
             this.txtTenVatTu.Multiline = true;
             this.txtTenVatTu.Name = "txtTenVatTu";
-            this.txtTenVatTu.Size = new System.Drawing.Size(427, 64);
+            this.txtTenVatTu.ReadOnly = true;
+            this.txtTenVatTu.Size = new System.Drawing.Size(427, 100);
             this.txtTenVatTu.TabIndex = 3;
             // 
             // txtDiaDiem
@@ -97,6 +98,7 @@
             this.txtDiaDiem.Location = new System.Drawing.Point(136, 226);
             this.txtDiaDiem.Multiline = true;
             this.txtDiaDiem.Name = "txtDiaDiem";
+            this.txtDiaDiem.ReadOnly = true;
             this.txtDiaDiem.Size = new System.Drawing.Size(187, 43);
             this.txtDiaDiem.TabIndex = 8;
             // 
@@ -149,16 +151,15 @@
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(187, 21);
             this.cbMaVatTu.TabIndex = 50;
-            this.cbMaVatTu.DropDown += new System.EventHandler(this.comboBox_DropDown);
+            this.cbMaVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbMaVatTu_SelectionChangeCommitted_1);
             this.cbMaVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbMaVatTu_KeyDown);
-            this.cbMaVatTu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbMaVatTu_MouseDown);
-            this.cbMaVatTu.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_PreviewKeyDown);
             // 
             // txtDVT
             // 
             this.txtDVT.Location = new System.Drawing.Point(814, 255);
             this.txtDVT.Multiline = true;
             this.txtDVT.Name = "txtDVT";
+            this.txtDVT.ReadOnly = true;
             this.txtDVT.Size = new System.Drawing.Size(187, 34);
             this.txtDVT.TabIndex = 52;
             // 

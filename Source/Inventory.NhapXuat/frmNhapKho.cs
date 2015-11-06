@@ -28,11 +28,12 @@ namespace Inventory.NhapXuat
         //    Dictionary<string, clsDMVatTu> DicTen = new Dictionary<string, clsDMVatTu>();
         //  DataTable data = new DataTable();
 
-
-        public frmNhapKho()
+        string loaiphieu = "";
+        public frmNhapKho(string lp)
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            this.loaiphieu = lp;
             //Setup một số component
             InitFormComponent();
         }
@@ -394,6 +395,7 @@ namespace Inventory.NhapXuat
                         dr["so_luong_yeu_cau"] = vChiTiet.Rows[i]["so_luong_yeu_cau"].ToString();
                         dr["so_luong_thuc_lanh"] = vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString();
                         dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
+                        dr["chat_luong"] = vChiTiet.Rows[i]["chat_luong"].ToString();
                         dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
                         dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
                         dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
@@ -574,7 +576,8 @@ namespace Inventory.NhapXuat
                     cbMaVatTu.Text = (gridMaster.Rows[selectedRowCount].Cells["ma_vat_tu"].Value.ToString());
                     if (cbMaVatTu.Text != "")
                     {
-                        cbMaVatTu_KeyDown(null, null);
+
+                        initVatTuData();
                     }
                     else
                         ResetGridInputForm();
@@ -584,6 +587,24 @@ namespace Inventory.NhapXuat
             {
                 MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex));
             }
+        }
+
+        private void initVatTuData()
+        {
+            Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
+            string Ma_Vat_Tu = cbMaVatTu.GetItemText(cbMaVatTu.SelectedItem);
+
+            clsDMVatTu vattu = new clsDMVatTu();
+
+            string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
+
+            cbTenVatTu.Text = Ten_Vat_Tu;
+
+            DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+            txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+            txtDonGia.Text = gridMaster.Rows[selectedRowCount].Cells["Don_gia"].Value.ToString();// tb.Rows[0]["Don_gia"].ToString();
+            cbChatLuong.Text = gridMaster.Rows[selectedRowCount].Cells["chat_luong"].Value.ToString();
         }
 
 
@@ -678,12 +699,10 @@ namespace Inventory.NhapXuat
 
             try
             {
-                Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
 
-                //string ma_vat_tu = dataTable1.Rows[
+                Int32 selectedRowCount = gridMaster.CurrentCell.RowIndex;
                 if (dataTable1.Rows.Count == 0 || selectedRowCount >= dataTable1.Rows.Count)
                     return;
-                //staTus = enumStatus.XoaLuoi;
                 PanelButton.setClickStatus(enumButton2.XoaLuoi);
                 btnDel.Enabled = false;
                 btnAdd.Enabled = false;
@@ -881,54 +900,41 @@ namespace Inventory.NhapXuat
 
             frmAction = new FormActionDelegate2(FormAction);
             PanelButton.setDelegateFormAction(frmAction);
-
             PanelButton.AddButton(enumButton2.Them, ref btnThem);
             PanelButton.AddButton(enumButton2.Xoa, ref btnXoa);
             PanelButton.AddButton(enumButton2.Sua, ref btnSua);
             PanelButton.AddButton(enumButton2.LamMoi, ref btnLamMoi);
             PanelButton.AddButton(enumButton2.Luu, ref btnLuu);
             PanelButton.AddButton(enumButton2.Huy, ref btnHuy);
-
             PanelButton.AddButton(enumButton2.Dong, ref btnDong);
-
-
-            //PanelButton.setButtonClickEvent(enumButton2.Them);
-            //PanelButton.setButtonClickEvent(enumButton2.Xoa);
-            //PanelButton.setButtonClickEvent(enumButton2.Sua);
-            //PanelButton.setButtonClickEvent(enumButton2.LamMoi);
-            //PanelButton.setButtonClickEvent(enumButton2.Luu);
-
             PanelButton.setButtonClickEvent(enumButton2.Huy);
             PanelButton.setButtonClickEvent(enumButton2.Dong);
-
             PanelButton.AddButton(enumButton2.Dong, ref btnDong);
-
             //Ko dùng nút xóa
             PanelButton.setButtonStatus(enumButton2.Xoa, false);
             PanelButton.setButtonStatus(enumButton2.LamMoi, false);
             btnXoa.Enabled = false;
             btnLamMoi.Enabled = false;
-
             //Init cho combobox Kho Nhập
             initKhoNhap();
-            // var temp = new clsDMVatTu().GetAll();
-
-
-            //Init cho combobox Ma vat tu, Ten vat tu
-            //  Dic = GetDict(new clsDMVatTu().GetAll());
-
             initMaVatTu();
             initTenVatTu();
             initChatLuong();
-            ///
-            clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuNhap(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
-            //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
-            //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
-            //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
+            if(loaiphieu.Equals ("HN"))
+            clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuD(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
+            else
+                clsGiaoDienChung.initCombobox(cbLoaiPhieuNhan, new clsLoaiPhieuX(), "ma_loai_phieu_nhap", "ID_loai_phieu_nhap", "ma_loai_phieu_nhap");
+           
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
+            if (this.loaiphieu .Equals("HN"))
+            {
+                lbSLHN.Text = "Số lượng hoàn nhập";
+                rdoBuTruPhieu.Enabled = false;
+                rdoNhapGoiDau.Enabled = false;
+
+            }
         }
 
         private void initChatLuong()
@@ -1126,7 +1132,7 @@ namespace Inventory.NhapXuat
                 ComboBox c = (ComboBox)sender;
                 //DataRowView dtv = c.Items[c.SelectedIndex] as DataRowView ;
 
-                string Ma_Vat_Tu = c.Text.ToString();
+                string Ma_Vat_Tu = c.GetItemText(c.SelectedItem);
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
@@ -1148,7 +1154,7 @@ namespace Inventory.NhapXuat
             {
                 ComboBox c = (ComboBox)sender;
 
-                string Ten_Vat_Tu = c.Text.ToString();
+                string Ten_Vat_Tu= c.GetItemText(c.SelectedItem);
 
                 clsDMVatTu vattu = new clsDMVatTu();
 
@@ -1230,6 +1236,29 @@ namespace Inventory.NhapXuat
         private void btnHuy_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbMaVatTu_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboBox c = (ComboBox)sender;
+                //DataRowView dtv = c.Items[c.SelectedIndex] as DataRowView ;
+
+                string Ma_Vat_Tu = c.GetItemText(c.SelectedItem);
+
+                clsDMVatTu vattu = new clsDMVatTu();
+
+                string Ten_Vat_Tu = vattu.getTenVatTu(Ma_Vat_Tu);
+
+                cbTenVatTu.Text = Ten_Vat_Tu;
+
+                DataTable tb = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+                txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
+                txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
 

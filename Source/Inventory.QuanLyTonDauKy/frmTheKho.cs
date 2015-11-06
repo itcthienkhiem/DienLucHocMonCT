@@ -30,15 +30,7 @@ namespace Inventory.QuanLyTonDauKy
 
             cbMaVatTu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
             clsDMVatTu vt = new clsDMVatTu();
-            //AutoCompleteStringCollection combData1 = vt.getListMaVatTu();
-
-            //cbMaVatTu.AutoCompleteCustomSource = combData1;
-
-            //cbMaVatTu.DataSource = vt.getAll_Ma_Ten_VatTu();
-            //cbMaVatTu.ValueMember = "ID_Vat_tu";
-            //cbMaVatTu.DisplayMember = "Ma_vat_tu";
             clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
             clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
 
@@ -63,18 +55,9 @@ namespace Inventory.QuanLyTonDauKy
                     {
                         decimal slnt = decimal.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? decimal.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
                         decimal slxt = decimal.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
-                       // decimal sltt = decimal.TryParse(tbcttk.Rows[0]["SL_ton"].ToString(), out sltt) ? decimal.Parse(tbcttk.Rows[0]["SL_ton"].ToString()) : 0;
-                        //string getTen = new clsLoaiPhieuNhap().getTenLPN(int.Parse( tbcttk.Rows[0]["ID_Loai_Phieu_Nhap"].ToString()));
-                       
                             tkt = tkt +  slnt - slxt;
                     }
                     DataTable tb = cttk.Search(tungay, denngay,search);
-                    // DataView dv = tb.DefaultView;
-                    //   Sort data
-
-                    // dv.Sort = "Ngay_nhap_xuat";
-                    //   Convert back your sorted DataView to DataTable
-                    // tb = dv.ToTable();
                     if (tb.Rows.Count == 0)
                     {
                         MessageBox.Show("Chưa có trong chi tiết thẻ kho");
@@ -84,15 +67,7 @@ namespace Inventory.QuanLyTonDauKy
                     decimal sln=0;
                     decimal slx = 0;
                     decimal tonhientai = 0;
-
-                //    decimal sln = decimal.TryParse(tb.Rows[0]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[0]["SL_nhap"].ToString()):0;
-                //    decimal slx = decimal.TryParse(tb.Rows[0]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[0]["SL_xuat"].ToString()) : 0;
-
-                   // decimal slt = decimal.TryParse(tb.Rows[0]["SL_ton"].ToString(), out slt) ? decimal.Parse(tb.Rows[0]["SL_ton"].ToString()) : 0;
                     decimal tontruoc = tkt;
-                //    decimal tonhientai = sln - slx + tontruoc;
-                 //   tontruoc = tonhientai;
-                 //   tb.Rows[0]["SL_ton"] = tonhientai;   
                     for (int i = 0; i < tb.Rows.Count; i++)
                     {
                         sln = decimal.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
@@ -111,7 +86,9 @@ namespace Inventory.QuanLyTonDauKy
         {
             try
             {
-                DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.Text);
+                DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.GetItemText(this.cbMaVatTu.SelectedItem));// cbMaVatTu.Text);
+                if (table.Rows.Count == 0)
+                    return;
                 txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
                 int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
                 clsDM_DonViTinh dvt = new clsDM_DonViTinh();
@@ -123,24 +100,12 @@ namespace Inventory.QuanLyTonDauKy
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
-            try
-            {
-                ComboBox cbo = (ComboBox)sender;
-                cbo.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox_PreviewKeyDown);
-            }
-            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
 
         }
 
         private void comboBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            try
-            {
-                ComboBox cbo = (ComboBox)sender;
-                cbo.PreviewKeyDown -= comboBox_PreviewKeyDown;
-                if (cbo.DroppedDown) cbo.Focus();
-            }
-            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
+
         }
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
@@ -163,6 +128,24 @@ namespace Inventory.QuanLyTonDauKy
         {
             
             Search(dtTuNgay.Value , dtDenNgay.Value);
+        }
+
+        private void cbMaVatTu_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.GetItemText(this.cbMaVatTu.SelectedItem));// cbMaVatTu.Text);
+                if (table.Rows.Count == 0)
+                    return;
+                txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
+                int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
+                clsDM_DonViTinh dvt = new clsDM_DonViTinh();
+                string tenDVT = dvt.getTenDVTTuMa(iddvt);
+                txtDVT.Text = tenDVT;
+            }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
+            
         }
     }
 }

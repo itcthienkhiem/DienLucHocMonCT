@@ -105,7 +105,7 @@
             this.cbMaVatTu = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txtDonGia = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lbSLHN = new System.Windows.Forms.Label();
             this.txtSLTX = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtSLYC = new System.Windows.Forms.TextBox();
@@ -703,7 +703,7 @@
             this.panel1.Controls.Add(this.cbMaVatTu);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.txtDonGia);
-            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.lbSLHN);
             this.panel1.Controls.Add(this.txtSLTX);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.txtSLYC);
@@ -827,6 +827,7 @@
             this.cbTenVatTu.Name = "cbTenVatTu";
             this.cbTenVatTu.Size = new System.Drawing.Size(148, 22);
             this.cbTenVatTu.TabIndex = 79;
+            this.cbTenVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbTenVatTu_SelectionChangeCommitted);
             this.cbTenVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbTenVatTu_KeyDown);
             // 
             // cbMaVatTu
@@ -838,6 +839,7 @@
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(101, 22);
             this.cbMaVatTu.TabIndex = 78;
+            this.cbMaVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbMaVatTu_SelectionChangeCommitted_1);
             this.cbMaVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbMaVatTu_KeyDown);
             // 
             // label20
@@ -859,14 +861,14 @@
             this.txtDonGia.TabIndex = 77;
             this.txtDonGia.Text = "0";
             // 
-            // label19
+            // lbSLHN
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(475, 11);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(114, 14);
-            this.label19.TabIndex = 74;
-            this.label19.Text = "Số lượng thực xuất";
+            this.lbSLHN.AutoSize = true;
+            this.lbSLHN.Location = new System.Drawing.Point(475, 11);
+            this.lbSLHN.Name = "lbSLHN";
+            this.lbSLHN.Size = new System.Drawing.Size(114, 14);
+            this.lbSLHN.TabIndex = 74;
+            this.lbSLHN.Text = "Số lượng thực xuất";
             // 
             // txtSLTX
             // 
@@ -1096,7 +1098,7 @@
         private System.Windows.Forms.TextBox txtSLYC;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtDonGia;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lbSLHN;
         private System.Windows.Forms.TextBox txtSLTX;
         private System.Windows.Forms.ComboBox cbTenVatTu;
         private System.Windows.Forms.ComboBox cbMaVatTu;
