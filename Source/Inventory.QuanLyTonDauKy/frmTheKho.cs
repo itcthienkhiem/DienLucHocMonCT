@@ -39,6 +39,12 @@ namespace Inventory.QuanLyTonDauKy
 
 
         }
+
+        public DataTable getTableDataGrid()
+        {
+            DataTable tb =(DataTable) gridTheKho.DataSource;
+            return tb;
+        }
         private void Search(DateTime tungay,DateTime denngay)
         {
             try
@@ -49,7 +55,7 @@ namespace Inventory.QuanLyTonDauKy
                 {
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
                     DataTable tbcttk = cttk.GetAllSLT(tungay,search);
-                    //danh sách đã được sắp xếp tăng dần
+                    //danh sách đã được sắp xếp tăng dần tính sl trươc
                     decimal tkt = 0;
                     for (int i = 0; i < tbcttk.Rows.Count; i++)
                     {
@@ -57,6 +63,7 @@ namespace Inventory.QuanLyTonDauKy
                         decimal slxt = decimal.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
                             tkt = tkt +  slnt - slxt;
                     }
+                    //chua so luong hien tai
                     DataTable tb = cttk.Search(tungay, denngay,search);
                     if (tb.Rows.Count == 0)
                     {
