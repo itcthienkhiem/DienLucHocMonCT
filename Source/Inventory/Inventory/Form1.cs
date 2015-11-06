@@ -16,6 +16,7 @@ using Inventory.Models;
 using SplashScreenThreaded;
 using System.Threading;
 using System.Xml;
+using Inventory.QuanLyNguoiDung;
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -720,6 +721,20 @@ namespace Inventory
                 frms[i].Close();
             frms.Clear();
             frms.Add(frm);
+        }
+
+        private void đăngNhậpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDangNhap frm = new frmDangNhap();
+            frm.Text = "Đăng nhập  ";
+            frm.Show();
+        }
+
+        private void quảnTrịNgườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuanTriNguoiDung frm = new frmQuanTriNguoiDung();
+            frm.Text = "Quản lý người dùng  ";
+            frm.Show();
         }
     }
 }

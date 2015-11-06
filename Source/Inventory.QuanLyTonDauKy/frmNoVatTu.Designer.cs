@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.gridKhoMuonVT = new System.Windows.Forms.DataGridView();
+            this.ID_kho_muon_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Kho_muon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbKhoChoMuon = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnXem = new System.Windows.Forms.Button();
@@ -41,13 +48,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnTraNo = new System.Windows.Forms.Button();
-            this.ID_kho_muon_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_Kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_Kho_muon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridKhoMuonVT)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -66,22 +66,22 @@
             this.gridKhoMuonVT.AllowUserToAddRows = false;
             this.gridKhoMuonVT.AllowUserToDeleteRows = false;
             this.gridKhoMuonVT.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridKhoMuonVT.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridKhoMuonVT.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridKhoMuonVT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridKhoMuonVT.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridKhoMuonVT.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridKhoMuonVT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridKhoMuonVT.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridKhoMuonVT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridKhoMuonVT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_kho_muon_vat_tu,
@@ -101,6 +101,55 @@
             this.gridKhoMuonVT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridKhoMuonVT.Size = new System.Drawing.Size(885, 301);
             this.gridKhoMuonVT.TabIndex = 48;
+            // 
+            // ID_kho_muon_vat_tu
+            // 
+            this.ID_kho_muon_vat_tu.DataPropertyName = "ID_kho_muon_vat_tu";
+            this.ID_kho_muon_vat_tu.HeaderText = "ID";
+            this.ID_kho_muon_vat_tu.Name = "ID_kho_muon_vat_tu";
+            this.ID_kho_muon_vat_tu.ReadOnly = true;
+            // 
+            // ID_Kho
+            // 
+            this.ID_Kho.DataPropertyName = "ID_Kho";
+            this.ID_Kho.HeaderText = "ID_Kho";
+            this.ID_Kho.Name = "ID_Kho";
+            this.ID_Kho.ReadOnly = true;
+            // 
+            // ID_Kho_muon
+            // 
+            this.ID_Kho_muon.DataPropertyName = "ID_Kho_muon";
+            this.ID_Kho_muon.HeaderText = "ID_Kho_muon";
+            this.ID_Kho_muon.Name = "ID_Kho_muon";
+            this.ID_Kho_muon.ReadOnly = true;
+            // 
+            // Ma_vat_tu
+            // 
+            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
+            this.Ma_vat_tu.Name = "Ma_vat_tu";
+            this.Ma_vat_tu.ReadOnly = true;
+            // 
+            // Ma_phieu_xuat_tam
+            // 
+            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.HeaderText = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.ReadOnly = true;
+            // 
+            // Id_chat_luong
+            // 
+            this.Id_chat_luong.DataPropertyName = "Id_chat_luong";
+            this.Id_chat_luong.HeaderText = "Id_chat_luong";
+            this.Id_chat_luong.Name = "Id_chat_luong";
+            this.Id_chat_luong.ReadOnly = true;
+            // 
+            // Ten_chat_luong
+            // 
+            this.Ten_chat_luong.DataPropertyName = "Ten_chat_luong";
+            this.Ten_chat_luong.HeaderText = "Ten_chat_luong";
+            this.Ten_chat_luong.Name = "Ten_chat_luong";
+            this.Ten_chat_luong.ReadOnly = true;
             // 
             // cbKhoChoMuon
             // 
@@ -123,7 +172,7 @@
             // 
             // btnXem
             // 
-            this.btnXem.Location = new System.Drawing.Point(268, 91);
+            this.btnXem.Location = new System.Drawing.Point(268, 98);
             this.btnXem.Name = "btnXem";
             this.btnXem.Size = new System.Drawing.Size(75, 36);
             this.btnXem.TabIndex = 66;
@@ -194,55 +243,6 @@
             this.btnTraNo.Text = "Trả nợ";
             this.btnTraNo.UseVisualStyleBackColor = true;
             this.btnTraNo.Click += new System.EventHandler(this.btnTraNo_Click);
-            // 
-            // ID_kho_muon_vat_tu
-            // 
-            this.ID_kho_muon_vat_tu.DataPropertyName = "ID_kho_muon_vat_tu";
-            this.ID_kho_muon_vat_tu.HeaderText = "ID";
-            this.ID_kho_muon_vat_tu.Name = "ID_kho_muon_vat_tu";
-            this.ID_kho_muon_vat_tu.ReadOnly = true;
-            // 
-            // ID_Kho
-            // 
-            this.ID_Kho.DataPropertyName = "ID_Kho";
-            this.ID_Kho.HeaderText = "ID_Kho";
-            this.ID_Kho.Name = "ID_Kho";
-            this.ID_Kho.ReadOnly = true;
-            // 
-            // ID_Kho_muon
-            // 
-            this.ID_Kho_muon.DataPropertyName = "ID_Kho_muon";
-            this.ID_Kho_muon.HeaderText = "ID_Kho_muon";
-            this.ID_Kho_muon.Name = "ID_Kho_muon";
-            this.ID_Kho_muon.ReadOnly = true;
-            // 
-            // Ma_vat_tu
-            // 
-            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
-            this.Ma_vat_tu.Name = "Ma_vat_tu";
-            this.Ma_vat_tu.ReadOnly = true;
-            // 
-            // Ma_phieu_xuat_tam
-            // 
-            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.HeaderText = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.ReadOnly = true;
-            // 
-            // Id_chat_luong
-            // 
-            this.Id_chat_luong.DataPropertyName = "Id_chat_luong";
-            this.Id_chat_luong.HeaderText = "Id_chat_luong";
-            this.Id_chat_luong.Name = "Id_chat_luong";
-            this.Id_chat_luong.ReadOnly = true;
-            // 
-            // Ten_chat_luong
-            // 
-            this.Ten_chat_luong.DataPropertyName = "Ten_chat_luong";
-            this.Ten_chat_luong.HeaderText = "Ten_chat_luong";
-            this.Ten_chat_luong.Name = "Ten_chat_luong";
-            this.Ten_chat_luong.ReadOnly = true;
             // 
             // frmNoVatTu
             // 

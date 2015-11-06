@@ -87,7 +87,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         public void LoadData()
         {
-            gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null,"");
+            gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null,"",rdoNhapNgoai.Checked,rdoPhieuNo.Checked);
             //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
              clsGiaoDienChung.initCombobox(cbbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
 
@@ -230,12 +230,12 @@ namespace Inventory.NhapXuat
             try
             {
                 if (rdoChuaDuyet.Checked == true)
-                    gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(false,cbbKho.Text);
+                    gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(false, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
                 else
                     if (rdoDaDuyet.Checked == true)
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(true, cbbKho.Text);
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(true, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
                     else
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, cbbKho.Text);
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
                 this.gridDanhSachPhieuNhap.Refresh();
                 // this.gridDanhSachPhieuNhap.Parent.Refresh();
             }
