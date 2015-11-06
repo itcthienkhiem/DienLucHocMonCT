@@ -98,9 +98,7 @@
     <EmbeddedResource Include="frmReport_Phieu_Nhap_Kho.resx">
       <DependentUpon>frmReport_Phieu_Nhap_Kho.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Report_Nhap_Kho.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="Report_Nhap_Kho.rdlc" />
     <EmbeddedResource Include="frmReport_phieu_xuat_tam_vat_tu.resx">
       <DependentUpon>frmReport_phieu_xuat_tam_vat_tu.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,7 +118,10 @@
   <PropertyGroup>
     <PreBuildEvent>xcopy "$(ProjectDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
 xcopy "$(ProjectDir)Report_xuat_tam_vat_tu.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
-xcopy "$(ProjectDir)Report_The_kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y</PreBuildEvent>
+xcopy "$(ProjectDir)Report_The_kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
+xcopy "$(ProjectDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y
+xcopy "$(ProjectDir)Report_xuat_tam_vat_tu.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y
+xcopy "$(ProjectDir)Report_The_kho.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
