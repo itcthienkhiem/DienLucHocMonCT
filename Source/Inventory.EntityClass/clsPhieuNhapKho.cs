@@ -171,7 +171,7 @@ namespace Inventory.EntityClass
                 return false;// chua co phan tu nao da duyet trong danh sach
             return true;
         }
-        public DataTable SearchDSPN(bool? status, string ten_kho)
+        public DataTable SearchDSPN(bool? status, string ten_kho, bool nhapngoai,bool cantru)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
@@ -181,6 +181,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                                   join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                   where e.Ten_kho.Contains(ten_kho) 
+                                  && ep.isNhapNgoai == nhapngoai && ep.isCanTru  == cantru
                                   select new
                                   {
                                      ma_phieu = ep.Ma_phieu_nhap,

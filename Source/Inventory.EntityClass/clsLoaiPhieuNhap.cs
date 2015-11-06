@@ -92,36 +92,7 @@ namespace Inventory.EntityClass
           }
           return dataCollection;
       }
-      //public static object getAll()
-      //{
-
-      //    DatabaseHelper help = new DatabaseHelper();
-      //    help.ConnectDatabase();
-      //    using (var dbcxtransaction = help.ent.Database.BeginTransaction())
-      //    {
-      //        var dm = from d in help.ent.Loai_Phieu_Nhap
-      //                 select new
-      //                 {
-      //                     d.ID_Loai_Phieu_Nhap,
-      //                     d.Ma_loai_phieu_nhap,
-      //                     d.Ten_loai_phieu_nhap,
-      //                 };
-      //        dbcxtransaction.Commit();
-      //        return (object)dm.ToList();
-      //    }
-
-
-
-      //}
-
-      //public bool CheckTonTaiSoDK()
-      //{
-      //    DatabaseHelper help = new DatabaseHelper();
-      //    help.ConnectDatabase();
-      //    bool has = help.ent.Loai_Phieu_Nhap.Any(cus => cus.Ma_loai_phieu_nhap== Ma_LPN);
-      //    return has;
-
-      //}
+   
       public int Insert()
       {
 
@@ -151,26 +122,6 @@ namespace Inventory.EntityClass
               }
           }
 
-          //DatabaseHelper help = new DatabaseHelper();
-          //help.ConnectDatabase();
-          //// insert
-          //try
-          //{
-          //    var t = new Loai_Phieu_Nhap //Make sure you have a table called test in DB
-          //    {
-          //        ID_kho = this.ID_kho,
-          //        Ten_kho = this.Ten_kho,                   // ID = Guid.NewGuid(),
-          //    };
-
-          //    help.ent.Loai_Phieu_Nhap.Add(t);
-          //    help.ent.SaveChanges();
-          //    return 1;
-          //}
-          //catch (Exception ex)
-          //{
-          //    return 0;
-
-          //}
 
 
       }
@@ -217,5 +168,81 @@ namespace Inventory.EntityClass
 
 
 
+  }
+  public class clsLoaiPhieuX : ObjecEntity
+  {
+      public override DataTable GetAllData()
+      {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        where d.Ten_loai_phieu_nhap .Contains ("X")
+                        select d).ToList();
+              dbcxtransaction.Commit();
+
+              return Utilities.clsThamSoUtilities.ToDataTable(dm);
+          }
+      }
+      public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
+      {
+          System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        where d.Ten_loai_phieu_nhap.Contains("X")
+                        select d).ToList();
+              dbcxtransaction.Commit();
+              DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+              foreach (DataRow row in ds.Rows)
+              {
+                  dataCollection.Add(row[TenCot].ToString());
+              }
+          }
+          return dataCollection;
+      }
+  }
+  public class clsLoaiPhieuD : ObjecEntity
+  {
+      public override DataTable GetAllData()
+      {
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        where d.Ten_loai_phieu_nhap.Contains("T")
+                        select d).ToList();
+              dbcxtransaction.Commit();
+
+              return Utilities.clsThamSoUtilities.ToDataTable(dm);
+          }
+      }
+      public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
+      {
+          System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+
+          DatabaseHelper help = new DatabaseHelper();
+          help.ConnectDatabase();
+          using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+          {
+              var dm = (from d in help.ent.Loai_Phieu_Nhap
+                        where d.Ten_loai_phieu_nhap.Contains("D")
+                        select d).ToList();
+              dbcxtransaction.Commit();
+              DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+              foreach (DataRow row in ds.Rows)
+              {
+                  dataCollection.Add(row[TenCot].ToString());
+              }
+          }
+          return dataCollection;
+      }
   }
 }

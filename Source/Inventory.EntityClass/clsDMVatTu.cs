@@ -395,6 +395,7 @@ namespace Inventory.EntityClass
 
             var entryPoint = (from ep in help.ent.DM_Vat_Tu
                               join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
+                              
                               where ep.Ma_vat_tu.Equals(MaVatTu)//cau lenh where
                               select new
                               {
