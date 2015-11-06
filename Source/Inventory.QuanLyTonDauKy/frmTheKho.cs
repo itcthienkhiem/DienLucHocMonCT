@@ -81,7 +81,8 @@ namespace Inventory.QuanLyTonDauKy
                         slx = decimal.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
                          tonhientai=tontruoc + sln - slx;
                          tontruoc = tonhientai;
-                         tb.Rows[i]["SL_ton"] = tonhientai;   
+                         tb.Rows[i]["SL_ton"] = tonhientai;
+                         tb.Rows[i]["STT"] = i + 1;
                     }
 
                     gridTheKho.DataSource = tb;
