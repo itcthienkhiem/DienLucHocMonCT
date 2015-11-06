@@ -52,6 +52,19 @@
             this.label11 = new System.Windows.Forms.Label();
             this.dtDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_chi_tiet_the_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ngay_xuat_chung_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dien_giai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ngay_nhap_xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL_Nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL_Xuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SL_Ton = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Da_quyet_toan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Loai_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_The_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +146,20 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridTheKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridTheKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTheKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT,
+            this.Ma_phieu,
+            this.ID_chi_tiet_the_kho,
+            this.ID_loai_phieu_nhap,
+            this.Ngay_xuat_chung_tu,
+            this.Dien_giai,
+            this.Ngay_nhap_xuat,
+            this.SL_Nhap,
+            this.SL_Xuat,
+            this.SL_Ton,
+            this.Da_quyet_toan,
+            this.Loai_phieu,
+            this.ID_The_kho});
             this.gridTheKho.Location = new System.Drawing.Point(4, 307);
             this.gridTheKho.MultiSelect = false;
             this.gridTheKho.Name = "gridTheKho";
@@ -291,6 +318,104 @@
             this.label12.TabIndex = 78;
             this.label12.Text = "Mã vật tư";
             // 
+            // STT
+            // 
+            this.STT.DataPropertyName = "STT";
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            // 
+            // Ma_phieu
+            // 
+            this.Ma_phieu.DataPropertyName = "Ma_phieu";
+            this.Ma_phieu.HeaderText = "Mã phiếu";
+            this.Ma_phieu.Name = "Ma_phieu";
+            this.Ma_phieu.ReadOnly = true;
+            // 
+            // ID_chi_tiet_the_kho
+            // 
+            this.ID_chi_tiet_the_kho.DataPropertyName = "ID_chi_tiet_the_kho";
+            this.ID_chi_tiet_the_kho.HeaderText = "ID_chi_tiet_the_kho";
+            this.ID_chi_tiet_the_kho.Name = "ID_chi_tiet_the_kho";
+            this.ID_chi_tiet_the_kho.ReadOnly = true;
+            this.ID_chi_tiet_the_kho.Visible = false;
+            // 
+            // ID_loai_phieu_nhap
+            // 
+            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.ReadOnly = true;
+            this.ID_loai_phieu_nhap.Visible = false;
+            // 
+            // Ngay_xuat_chung_tu
+            // 
+            this.Ngay_xuat_chung_tu.DataPropertyName = "Ngay_xuat_chung_tu";
+            this.Ngay_xuat_chung_tu.HeaderText = "Ngày, tháng";
+            this.Ngay_xuat_chung_tu.Name = "Ngay_xuat_chung_tu";
+            this.Ngay_xuat_chung_tu.ReadOnly = true;
+            // 
+            // Dien_giai
+            // 
+            this.Dien_giai.DataPropertyName = "Dien_giai";
+            this.Dien_giai.HeaderText = "Diễn giải";
+            this.Dien_giai.Name = "Dien_giai";
+            this.Dien_giai.ReadOnly = true;
+            // 
+            // Ngay_nhap_xuat
+            // 
+            this.Ngay_nhap_xuat.DataPropertyName = "Ngay_nhap_xuat";
+            this.Ngay_nhap_xuat.HeaderText = "Ngày nhập, xuất";
+            this.Ngay_nhap_xuat.Name = "Ngay_nhap_xuat";
+            this.Ngay_nhap_xuat.ReadOnly = true;
+            // 
+            // SL_Nhap
+            // 
+            this.SL_Nhap.DataPropertyName = "SL_Nhap";
+            this.SL_Nhap.HeaderText = "SL Nhập";
+            this.SL_Nhap.Name = "SL_Nhap";
+            this.SL_Nhap.ReadOnly = true;
+            // 
+            // SL_Xuat
+            // 
+            this.SL_Xuat.DataPropertyName = "SL_Xuat";
+            this.SL_Xuat.HeaderText = "SL Xuất";
+            this.SL_Xuat.Name = "SL_Xuat";
+            this.SL_Xuat.ReadOnly = true;
+            // 
+            // SL_Ton
+            // 
+            this.SL_Ton.DataPropertyName = "SL_Ton";
+            this.SL_Ton.HeaderText = "SL Tồn";
+            this.SL_Ton.Name = "SL_Ton";
+            this.SL_Ton.ReadOnly = true;
+            // 
+            // Da_quyet_toan
+            // 
+            this.Da_quyet_toan.DataPropertyName = "Da_quyet_toan";
+            this.Da_quyet_toan.HeaderText = "Da_quyet_toan";
+            this.Da_quyet_toan.Name = "Da_quyet_toan";
+            this.Da_quyet_toan.ReadOnly = true;
+            this.Da_quyet_toan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_quyet_toan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Da_quyet_toan.Visible = false;
+            // 
+            // Loai_phieu
+            // 
+            this.Loai_phieu.DataPropertyName = "Loai_phieu";
+            this.Loai_phieu.HeaderText = "Loai_phieu";
+            this.Loai_phieu.Name = "Loai_phieu";
+            this.Loai_phieu.ReadOnly = true;
+            this.Loai_phieu.Visible = false;
+            // 
+            // ID_The_kho
+            // 
+            this.ID_The_kho.DataPropertyName = "ID_The_kho";
+            this.ID_The_kho.HeaderText = "ID_The_kho";
+            this.ID_The_kho.Name = "ID_The_kho";
+            this.ID_The_kho.ReadOnly = true;
+            this.ID_The_kho.Visible = false;
+            // 
             // frmTheKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,5 +473,18 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DateTimePicker dtDenNgay;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_chi_tiet_the_kho;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_loai_phieu_nhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ngay_xuat_chung_tu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dien_giai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ngay_nhap_xuat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SL_Nhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SL_Xuat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SL_Ton;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Da_quyet_toan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Loai_phieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_The_kho;
     }
 }
