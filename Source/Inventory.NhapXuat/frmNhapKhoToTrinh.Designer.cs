@@ -110,6 +110,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtXuatTaiKho = new System.Windows.Forms.TextBox();
             this.cbKhoNhan = new System.Windows.Forms.ComboBox();
+            this.cbMuonNo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -619,7 +620,7 @@
             this.txtDiaChi.Location = new System.Drawing.Point(429, 134);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(302, 123);
+            this.txtDiaChi.Size = new System.Drawing.Size(302, 97);
             this.txtDiaChi.TabIndex = 61;
             // 
             // button2
@@ -894,11 +895,23 @@
             this.cbKhoNhan.Size = new System.Drawing.Size(198, 22);
             this.cbKhoNhan.TabIndex = 85;
             // 
+            // cbMuonNo
+            // 
+            this.cbMuonNo.AutoSize = true;
+            this.cbMuonNo.Location = new System.Drawing.Point(440, 237);
+            this.cbMuonNo.Name = "cbMuonNo";
+            this.cbMuonNo.Size = new System.Drawing.Size(75, 18);
+            this.cbMuonNo.TabIndex = 86;
+            this.cbMuonNo.Text = "Mượn nợ";
+            this.cbMuonNo.UseVisualStyleBackColor = true;
+            this.cbMuonNo.CheckedChanged += new System.EventHandler(this.cbMuonNo_CheckedChanged);
+            // 
             // frmNhapKhoToTrinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 685);
+            this.Controls.Add(this.cbMuonNo);
             this.Controls.Add(this.cbKhoNhan);
             this.Controls.Add(this.txtXuatTaiKho);
             this.Controls.Add(this.label14);
@@ -1013,5 +1026,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Don_gia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Thanh_tien;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Chat_Luong;
+        private System.Windows.Forms.CheckBox cbMuonNo;
     }
 }

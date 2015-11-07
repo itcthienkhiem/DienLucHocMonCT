@@ -1609,10 +1609,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(IsNothing(Fields!SL_Nhap.Value),"0",Fields!SL_Nhap.Value)</Value>
+                              <Value>=IIF(IsNothing(Fields!SL_Nhap.Value),0,Fields!SL_Nhap.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>14pt</FontSize>
+                                <Format>f2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1634,6 +1635,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1645,10 +1647,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(IsNothing(Fields!SL_Xuat.Value),"0",Fields!SL_Xuat.Value)</Value>
+                              <Value>=IIF(IsNothing(Fields!SL_Xuat.Value),0,Fields!SL_Xuat.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>14pt</FontSize>
+                                <Format>f2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1681,10 +1684,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=IIF(IsNothing(Fields!SL_Ton.Value),"0",Fields!SL_Ton.Value)</Value>
+                              <Value>=IIF(IsNothing(Fields!SL_Ton.Value),0,Fields!SL_Ton.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>14pt</FontSize>
+                                <Format>f2</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1806,7 +1810,7 @@
         <Top>3.91542in</Top>
         <Left>0.47917in</Left>
         <Height>1.23958in</Height>
-        <Width>10.82167in</Width>
+        <Width>10.82169in</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>

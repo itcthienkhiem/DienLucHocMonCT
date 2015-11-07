@@ -107,13 +107,18 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
-                txtMaPhieuNhap.Text = RandomMaPhieu();
+                txtMaPhieuNhap.Text = RandomMaPhieu("TT");
+                if (cbMuonNo.Checked == true)
+                {
+                    cbMuonNo.Text = RandomMaPhieu("MN");
+                }
+
                 //txtXuatTaiKho.Enabled = true;
             }
 
         }
 
-        public string RandomMaPhieu()
+        public string RandomMaPhieu(string loaiphieu)
         {
             string year = DateTime.Now.ToString("yy");
             string month = DateTime.Now.ToString("MM");
@@ -121,11 +126,11 @@ namespace Inventory.NhapXuat
             int? maxid = clsPhieuNhapKho.GetMaxValue();
               string maphieu= "";
             if(maxid ==null)
-                 maphieu = "TT" + year + month + "0000";
+                maphieu = loaiphieu + year + month + "0000";
 
             else
 
-                 maphieu = "TT" + year + month + ((int)(maxid)).ToString("0000");
+                maphieu = loaiphieu + year + month + ((int)(maxid)).ToString("0000");
             return maphieu;
         }
         private void btnLuu_Click(object sender, EventArgs e)
@@ -1262,6 +1267,12 @@ namespace Inventory.NhapXuat
         private void btnHuy_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbMuonNo_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbMuonNo.Checked ==true)
+            txtMaPhieuNhap.Text = RandomMaPhieu("MN");
         }
 
 
