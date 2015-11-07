@@ -303,6 +303,20 @@ namespace Inventory.EntityClass
          
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
         }
+        public static Phieu_Nhap_Kho GetPhieuNhap( DatabaseHelper help,string maPhieu)
+        {
+          
+
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              where ep.Ma_phieu_nhap.Equals(maPhieu)
+                              select ep
+
+        ).FirstOrDefault();
+
+            return entryPoint;
+        }
+
+
         public static Phieu_Nhap_Kho GetPhieuNhap(string maPhieu)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -578,8 +592,28 @@ namespace Inventory.EntityClass
         //int result = command.ExecuteNonQuery();
         //dal.CommitTransaction();
 
-       
 
+        public int Update(  DatabaseHelper help,Phieu_Nhap_Kho nk)
+        {
+
+            int temp = 0;
+            {
+              
+                {
+                    help.ent.Phieu_Nhap_Kho.Attach(nk);
+                    help.ent.Entry(nk).State = EntityState.Modified;
+                    temp = help.ent.SaveChanges();
+                   
+
+                }
+
+                // dbcxtransaction.Commit();
+            }
+            return temp;
+
+
+
+        }
         public int Update(Phieu_Nhap_Kho nk)
         {
 

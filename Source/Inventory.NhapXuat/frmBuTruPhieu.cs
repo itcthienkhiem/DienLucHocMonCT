@@ -183,14 +183,23 @@ namespace Inventory.NhapXuat
         {
             string maphieu = txtMaPhieuNhap.Text;
             clsPhieuNhapKho pnk = new clsPhieuNhapKho();
-            Phieu_Nhap_Kho pn = clsPhieuNhapKho.GetPhieuNhap(maphieu);
-            if (pn.isCanTru == true)
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
-                pn.isCanTru = false;
-                if (pnk.Update(pn) == 1)
+                Phieu_Nhap_Kho pn = clsPhieuNhapKho.GetPhieuNhap(help, maphieu);
+                if (pn.isCanTru == true)
                 {
-                    MessageBox.Show("Chuyển đổi thành công trạng thái phiếu! Bây giờ có thể xác nhận phiếu nhập này");
-                    dspn.LoadData();
+                    pn.isCanTru = false;
+                    if (pnk.Update(help, pn) == 1)
+                    {
+                        dbcxtransaction.Commit();
+                        MessageBox.Show("Chuyển đổi thành công trạng thái phiếu! Bây giờ có thể xác nhận phiếu nhập này");
+                        dspn.LoadData();
+                      
+                    }
+                    else
+                        dbcxtransaction.Rollback();
                 }
             }
 
