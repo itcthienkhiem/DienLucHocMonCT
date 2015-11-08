@@ -134,7 +134,7 @@ namespace Inventory.EntityClass
                     help.ent.SaveChanges();
                     //neu no la phieu no 
                     //thi xoa phieu no xong reset lai so luong trong phieu tra no 
-                    var filterCTTN = help.ent.Can_tru_no_nhap_ngoai.Where(o => o.Ma_phieu_nhap_no == pnk.Ma_phieu_nhap_no);
+                    var filterCTTN = help.ent.Can_tru_no_nhap_ngoai.Where(o => o.Ma_phieu_nhap_no == pnk.Ma_phieu_nhap);
                     help.ent.Can_tru_no_nhap_ngoai.RemoveRange(filterCTNN);
                     help.ent.SaveChanges();
                     
