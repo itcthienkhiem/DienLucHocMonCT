@@ -77,6 +77,7 @@
     <Compile Include="clsTonKho.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="clsVatTuGoiDauKy.cs" />
+    <Compile Include="clsXoaPhieuNhap.cs" />
     <Compile Include="clsXuatVatTuChoNhanVien.cs" />
     <Compile Include="clsXuLyDuLieuChung.cs" />
     <Compile Include="ObjecEntity.cs" />
