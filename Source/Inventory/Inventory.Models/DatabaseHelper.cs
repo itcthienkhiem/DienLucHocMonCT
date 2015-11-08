@@ -12,7 +12,7 @@ namespace Inventory.Models
         //    //Entities db = new Entities();
         //    //return db.Database.SqlQuery<DateTime>("SELECT GetDate()").First();
         //}
-
+       
         public static List<T> ExcuteSql<T>(string sql, Dictionary<string, object> filters)
         {
             QLKhoDienLucEntities db = new QLKhoDienLucEntities();

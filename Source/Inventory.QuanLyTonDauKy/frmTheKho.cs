@@ -99,7 +99,7 @@ namespace Inventory.QuanLyTonDauKy
                 DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.GetItemText(this.cbMaVatTu.SelectedItem));// cbMaVatTu.Text);
                 if (table.Rows.Count == 0)
                     return;
-                txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
+                cbTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
                 int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
                 clsDM_DonViTinh dvt = new clsDM_DonViTinh();
                 string tenDVT = dvt.getTenDVTTuMa(iddvt);
@@ -136,7 +136,8 @@ namespace Inventory.QuanLyTonDauKy
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            
+            if (cbChatLuong.Text == "")
+                MessageBox.Show("Chưa chọn chất lượng");
             Search(dtTuNgay.Value , dtDenNgay.Value);
         }
 
@@ -148,7 +149,7 @@ namespace Inventory.QuanLyTonDauKy
                 DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.GetItemText(this.cbMaVatTu.SelectedItem));// cbMaVatTu.Text);
                 if (table.Rows.Count == 0)
                     return;
-                txtTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
+                cbTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
                 int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
                 clsDM_DonViTinh dvt = new clsDM_DonViTinh();
                 string tenDVT = dvt.getTenDVTTuMa(iddvt);
@@ -167,7 +168,7 @@ namespace Inventory.QuanLyTonDauKy
             }
 
             string ma_vt = cbMaVatTu.Text;
-            string ten_vt = txtTenVatTu.Text;
+            string ten_vt = cbTenVatTu.Text;
             string dvt = txtDVT.Text;
 
             frmReport_The_kho frm = new frmReport_The_kho(tmp, ma_vt, ten_vt, dvt);

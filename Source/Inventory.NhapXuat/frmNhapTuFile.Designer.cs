@@ -33,8 +33,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.txtTenDuongDan = new System.Windows.Forms.TextBox();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.cbChonSheet = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
@@ -52,7 +50,6 @@
             this.cbLPN = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbKhoNhan = new System.Windows.Forms.ComboBox();
-            this.rdoBuTru = new System.Windows.Forms.RadioButton();
             this.rdoPhieuGoiDau = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
@@ -105,32 +102,6 @@
             this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(963, 346);
             this.gridDanhSachPhieuNhap.TabIndex = 53;
             this.gridDanhSachPhieuNhap.Sorted += new System.EventHandler(this.gridDanhSachPhieuNhap_Sorted);
-            // 
-            // cbChonSheet
-            // 
-            this.cbChonSheet.FormattingEnabled = true;
-            this.cbChonSheet.Items.AddRange(new object[] {
-            "Sheet0",
-            "Sheet1",
-            "Sheet2",
-            "Sheet3",
-            "Sheet4",
-            "Sheet5",
-            "Sheet6",
-            "Sheet7"});
-            this.cbChonSheet.Location = new System.Drawing.Point(80, 24);
-            this.cbChonSheet.Name = "cbChonSheet";
-            this.cbChonSheet.Size = new System.Drawing.Size(121, 21);
-            this.cbChonSheet.TabIndex = 54;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 55;
-            this.label1.Text = "Chọn sheet";
             // 
             // label2
             // 
@@ -266,7 +237,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(213, 22);
+            this.label6.Location = new System.Drawing.Point(229, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 66;
@@ -275,7 +246,7 @@
             // cbLPN
             // 
             this.cbLPN.FormattingEnabled = true;
-            this.cbLPN.Location = new System.Drawing.Point(312, 19);
+            this.cbLPN.Location = new System.Drawing.Point(328, 19);
             this.cbLPN.Name = "cbLPN";
             this.cbLPN.Size = new System.Drawing.Size(121, 21);
             this.cbLPN.TabIndex = 67;
@@ -283,7 +254,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(213, 52);
+            this.label8.Location = new System.Drawing.Point(3, 26);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 13);
             this.label8.TabIndex = 69;
@@ -292,21 +263,10 @@
             // cbKhoNhan
             // 
             this.cbKhoNhan.FormattingEnabled = true;
-            this.cbKhoNhan.Location = new System.Drawing.Point(312, 46);
+            this.cbKhoNhan.Location = new System.Drawing.Point(102, 20);
             this.cbKhoNhan.Name = "cbKhoNhan";
             this.cbKhoNhan.Size = new System.Drawing.Size(121, 21);
             this.cbKhoNhan.TabIndex = 70;
-            // 
-            // rdoBuTru
-            // 
-            this.rdoBuTru.AutoSize = true;
-            this.rdoBuTru.Location = new System.Drawing.Point(119, 50);
-            this.rdoBuTru.Name = "rdoBuTru";
-            this.rdoBuTru.Size = new System.Drawing.Size(82, 17);
-            this.rdoBuTru.TabIndex = 71;
-            this.rdoBuTru.TabStop = true;
-            this.rdoBuTru.Text = "Phiếu bù trừ";
-            this.rdoBuTru.UseVisualStyleBackColor = true;
             // 
             // rdoPhieuGoiDau
             // 
@@ -323,9 +283,6 @@
             // 
             this.groupBox1.Controls.Add(this.cbLPN);
             this.groupBox1.Controls.Add(this.rdoPhieuGoiDau);
-            this.groupBox1.Controls.Add(this.cbChonSheet);
-            this.groupBox1.Controls.Add(this.rdoBuTru);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnThem);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbKhoNhan);
@@ -368,8 +325,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox txtTenDuongDan;
         private System.Windows.Forms.DataGridView gridDanhSachPhieuNhap;
-        private System.Windows.Forms.ComboBox cbChonSheet;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThem;
@@ -387,7 +342,6 @@
         private System.Windows.Forms.ComboBox cbLPN;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbKhoNhan;
-        private System.Windows.Forms.RadioButton rdoBuTru;
         private System.Windows.Forms.RadioButton rdoPhieuGoiDau;
         private System.Windows.Forms.GroupBox groupBox1;
     }

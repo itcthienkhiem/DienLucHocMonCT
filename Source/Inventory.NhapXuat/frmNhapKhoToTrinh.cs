@@ -35,8 +35,33 @@ namespace Inventory.NhapXuat
 
             //Setup một số component
             InitFormComponent();
+            rdoMuonNo.Visible = false;
+            rdoChoMuonNo.Visible = false;
+            lbHeader.Text = "Màn hình Nhập Tờ Trình - Biên Bản";
         }
+        public bool isChoMuon = false;
+        public frmNhapKhoToTrinh(string no)
+        {
+            InitializeComponent();
 
+            //Setup một số component
+            InitFormComponent();
+
+          
+         
+            txtMaPhieuNhap.Enabled = false;
+            if (no.Equals("muonno"))
+            {
+                lbHeader.Text = "Màn hình Mượn Ngoài"; rdoMuonNo.Checked = true; rdoChoMuonNo.Enabled = false;
+            }
+            else
+            { 
+
+                lbHeader.Text = "Màn hình Cho Mượn Ngoài"; rdoChoMuonNo.Checked = true; rdoMuonNo.Enabled = false;
+                isChoMuon = rdoChoMuonNo.Checked;
+
+            }
+        }
         /// <summary>
         /// Call form theo tham số.
         /// </summary>
@@ -108,11 +133,15 @@ namespace Inventory.NhapXuat
                 enableInputForm();
                 ResetInputForm();
                 txtMaPhieuNhap.Text = RandomMaPhieu("TT");
-                if (cbMuonNo.Checked == true)
+                if (rdoMuonNo.Checked == true)
                 {
-                    cbMuonNo.Text = RandomMaPhieu("MN");
+                    txtMaPhieuNhap.Text = RandomMaPhieu("MN");
                 }
-
+                if (rdoChoMuonNo.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("CMN");
+                }
+                txtMaPhieuNhap.Enabled = false;
                 //txtXuatTaiKho.Enabled = true;
             }
 
@@ -183,6 +212,9 @@ namespace Inventory.NhapXuat
                                 phieunhap.Da_phan_kho = false;
                                 //  phieunhap.isGoiDau = chbNGD.Checked;
                                 phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
+                                if (rdoChoMuonNo.Checked == true)
+                                    phieunhap.isChoMuonNgoai = true;
+                              
                                 phieunhap.isNhapNgoai = true;
                                 if (phieunhap.Insert(help) == 1)
                                 {
@@ -274,6 +306,9 @@ namespace Inventory.NhapXuat
                                     nk.Ly_do = phieunhap.Ly_do;
                                     nk.Ngay_lap = phieunhap.Ngay_lap;
                                     nk.So_hoa_don = phieunhap.So_hoa_don;
+                                    if (rdoChoMuonNo.Checked == true)
+                                        nk.isChoMuonNgoai = true;
+                                   
                                     nk.isNhapNgoai = true;
                                     //  nk.isGoiDau = chbNGD.Checked;
                                     if (phieunhap.Update(nk) == 1)
@@ -1271,7 +1306,7 @@ namespace Inventory.NhapXuat
 
         private void cbMuonNo_CheckedChanged(object sender, EventArgs e)
         {
-            if(cbMuonNo.Checked ==true)
+            if (rdoMuonNo.Checked == true)
             txtMaPhieuNhap.Text = RandomMaPhieu("MN");
         }
 

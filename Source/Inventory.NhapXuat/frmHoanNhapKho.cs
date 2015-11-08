@@ -102,6 +102,7 @@ namespace Inventory.NhapXuat
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            
             if (txtMaPhieuNhap.Text.Trim() == "")
             {
                 MessageBox.Show("Mã phiếu bắt buộc nhập!");
@@ -112,7 +113,12 @@ namespace Inventory.NhapXuat
                 MessageBox.Show("Chưa nhập kho hoặc mã phiếu");
                 return;
             }
-
+            clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true) ;
+            {
+                MessageBox.Show("mã phiếu đã bị trùng");
+                return;
+            }
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
 

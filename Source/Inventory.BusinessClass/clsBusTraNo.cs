@@ -80,17 +80,17 @@ namespace Inventory.BusinessClass
                  help.ent.Entry(dm).State = EntityState.Modified;
                  help.ent.SaveChanges();
                  //cập nhật chi tiết tồn kho 
-                 var t = new Chi_Tiet_Ton_Kho //Make sure you have a table called test in DB
-                 {
-                     ID_Ton_kho = dm.ID_ton_kho,
-                     Ma_phieu = this.Ma_phieu,                   // ID = Guid.NewGuid(),
-                     So_luong = this.soluongtra,
-                     Ngay_thay_doi = DateTime.Now,
-                     Tang_Giam = true,
-                     Ly_do = "Trả vật tư từ kho mượn nợ",
-                 };
+                 //var t = new Chi_Tiet_Ton_Kho //Make sure you have a table called test in DB
+                 //{
+                 //    ID_Ton_kho = dm.ID_ton_kho,
+                 //    Ma_phieu = this.Ma_phieu,                   // ID = Guid.NewGuid(),
+                 //    So_luong = this.soluongtra,
+                 //    Ngay_thay_doi = DateTime.Now,
+                 //    Tang_Giam = true,
+                 //    Ly_do = "Trả vật tư từ kho mượn nợ",
+                 //};
 
-                 help.ent.Chi_Tiet_Ton_Kho.Add(t);
+                 //help.ent.Chi_Tiet_Ton_Kho.Add(t);
                  help.ent.SaveChanges();
 
 

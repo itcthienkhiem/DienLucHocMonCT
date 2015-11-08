@@ -28,18 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMaPhieuNhap = new System.Windows.Forms.TextBox();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbbPhieuNo = new System.Windows.Forms.ComboBox();
-            this.btnCanTru = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +47,11 @@
             this.ID_don_vi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_DVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_Don_Vi_Tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbbPhieuNo = new System.Windows.Forms.ComboBox();
+            this.btnCanTru = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridNhapNo = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,19 +96,19 @@
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToDeleteRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridDanhSachPhieuNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuNhap.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -133,56 +133,6 @@
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(780, 273);
             this.gridDanhSachPhieuNhap.TabIndex = 53;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Mã phiếu nợ";
-            // 
-            // cbbPhieuNo
-            // 
-            this.cbbPhieuNo.FormattingEnabled = true;
-            this.cbbPhieuNo.Location = new System.Drawing.Point(153, 40);
-            this.cbbPhieuNo.Name = "cbbPhieuNo";
-            this.cbbPhieuNo.Size = new System.Drawing.Size(156, 21);
-            this.cbbPhieuNo.TabIndex = 55;
-            this.cbbPhieuNo.SelectionChangeCommitted += new System.EventHandler(this.cbbPhieuNo_SelectionChangeCommitted);
-            this.cbbPhieuNo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbbPhieuNo_MouseDown);
-            // 
-            // btnCanTru
-            // 
-            this.btnCanTru.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Tag;
-            this.btnCanTru.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCanTru.Location = new System.Drawing.Point(364, 3);
-            this.btnCanTru.Name = "btnCanTru";
-            this.btnCanTru.Size = new System.Drawing.Size(59, 52);
-            this.btnCanTru.TabIndex = 56;
-            this.btnCanTru.UseVisualStyleBackColor = true;
-            this.btnCanTru.Click += new System.EventHandler(this.btnCanTru_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.gridDanhSachPhieuNhap);
-            this.groupBox1.Location = new System.Drawing.Point(1, 67);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(789, 303);
-            this.groupBox1.TabIndex = 58;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh sách vật tư trong phiếu nhập";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.gridNhapNo);
-            this.groupBox2.Location = new System.Drawing.Point(3, 376);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(784, 291);
-            this.groupBox2.TabIndex = 59;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Danh sách vật tư trong phiếu nợ";
             // 
             // Ma_vat_tu
             // 
@@ -275,24 +225,74 @@
             this.Ten_Don_Vi_Tinh.ReadOnly = true;
             this.Ten_Don_Vi_Tinh.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(68, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Mã phiếu nợ";
+            // 
+            // cbbPhieuNo
+            // 
+            this.cbbPhieuNo.FormattingEnabled = true;
+            this.cbbPhieuNo.Location = new System.Drawing.Point(153, 40);
+            this.cbbPhieuNo.Name = "cbbPhieuNo";
+            this.cbbPhieuNo.Size = new System.Drawing.Size(156, 21);
+            this.cbbPhieuNo.TabIndex = 55;
+            this.cbbPhieuNo.SelectionChangeCommitted += new System.EventHandler(this.cbbPhieuNo_SelectionChangeCommitted);
+            this.cbbPhieuNo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbbPhieuNo_MouseDown);
+            // 
+            // btnCanTru
+            // 
+            this.btnCanTru.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Tag;
+            this.btnCanTru.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCanTru.Location = new System.Drawing.Point(364, 3);
+            this.btnCanTru.Name = "btnCanTru";
+            this.btnCanTru.Size = new System.Drawing.Size(59, 52);
+            this.btnCanTru.TabIndex = 56;
+            this.btnCanTru.UseVisualStyleBackColor = true;
+            this.btnCanTru.Click += new System.EventHandler(this.btnCanTru_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gridDanhSachPhieuNhap);
+            this.groupBox1.Location = new System.Drawing.Point(1, 67);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(789, 303);
+            this.groupBox1.TabIndex = 58;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Danh sách vật tư trong phiếu nhập";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.gridNhapNo);
+            this.groupBox2.Location = new System.Drawing.Point(3, 376);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(784, 291);
+            this.groupBox2.TabIndex = 59;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Danh sách vật tư trong phiếu nợ";
+            // 
             // gridNhapNo
             // 
             this.gridNhapNo.AllowUserToAddRows = false;
             this.gridNhapNo.AllowUserToDeleteRows = false;
             this.gridNhapNo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridNhapNo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridNhapNo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridNhapNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridNhapNo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNhapNo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNhapNo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridNhapNo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridNhapNo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -418,6 +418,7 @@
             this.btnLuu.Size = new System.Drawing.Size(58, 54);
             this.btnLuu.TabIndex = 60;
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Visible = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // label2
@@ -428,6 +429,7 @@
             this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 54;
             this.label2.Text = "Chuyển trạng thái phiếu";
+            this.label2.Visible = false;
             // 
             // label3
             // 

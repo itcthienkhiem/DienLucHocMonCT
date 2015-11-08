@@ -34,10 +34,30 @@ namespace Inventory.NhapXuat
 
             InitializeComponent();
             this.loaiphieu = lp;
+
             //Setup một số component
             InitFormComponent();
+            if(loaiphieu.Equals("PN"))
+                lbHeader.Text="Màn hình Nhập Kho";
+            if(loaiphieu.Equals("HN"))
+                lbHeader.Text="Màn hình Hoàn Nhập";
         }
+        //public frmNhapKho(string lp)
+        //{
 
+        //    InitializeComponent();
+        //    this.loaiphieu = lp;
+
+        //    //Setup một số component
+        //    InitFormComponent();
+        //    if (loaiphieu.Equals("PN"))
+        //        lbHeader.Text = "Màn hình Nhập Kho";
+        //    if (loaiphieu.Equals("HN"))
+        //        lbHeader.Text = "Màn hình Hoàn Nhập";
+        //    rdoNhapGoiDau.Checked = true;
+        //    rdoNone.Enabled = false;
+        //    rdoBuTruPhieu.Enabled = false;
+        //}
         /// <summary>
         /// Call form theo tham số.
         /// </summary>
@@ -131,7 +151,12 @@ namespace Inventory.NhapXuat
 
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-
+            clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true) ;
+            {
+                MessageBox.Show("mã phiếu đã bị trùng");
+                return;
+            }
             //switch (staTus)
             switch (PanelButton.getClickStatus())
             {
@@ -159,22 +184,7 @@ namespace Inventory.NhapXuat
                                     return;
                                 }
                                 phieunhap.ID_Loai_Phieu_Nhap = int.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
-                                if (rdoBuTruPhieu.Checked == true)
-                                {
-                                    //thực hiện bù trừ phiếu
-                                    DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
-                                                     "Cảnh báo",
-                                                     MessageBoxButtons.YesNo);
-                                    if (result1 == DialogResult.Yes)
-                                    {
-                                        //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
-                                        phieunhap.isCanTru = true;
-
-                                    }
-
-
-
-                                }
+                            
                                 //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
@@ -186,6 +196,7 @@ namespace Inventory.NhapXuat
                                 phieunhap.isGoiDau = rdoNhapGoiDau.Checked;
                                 // phieunhap.isCanTru = rdoBuTruPhieu.Checked;
                                 phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
+                              
                                 if (phieunhap.Insert(help) == 1)
                                 {
 
@@ -257,7 +268,7 @@ namespace Inventory.NhapXuat
                                     phieunhap.So_hoa_don = txtSoHD.Text;
                                     phieunhap.Cong_trinh = txtCongTrinh.Text;
                                     phieunhap.isGoiDau = rdoNhapGoiDau.Checked;
-                                    phieunhap.isCanTru = rdoBuTruPhieu.Checked;
+                                    phieunhap.isCanTru =false;
                                     phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
                                     DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
                                     Phieu_Nhap_Kho nk = new Phieu_Nhap_Kho();
@@ -277,24 +288,7 @@ namespace Inventory.NhapXuat
                                     nk.Ngay_lap = phieunhap.Ngay_lap;
                                     nk.So_hoa_don = phieunhap.So_hoa_don;
                                     nk.isGoiDau = rdoNhapGoiDau.Checked;
-                                    if (rdoBuTruPhieu.Checked == true)
-                                    {
-                                        //thực hiện bù trừ phiếu
-                                        DialogResult result1 = MessageBox.Show("Phiếu này chắc chắn thực hiện việc cấn trừ nợ không?",
-                                                         "Cảnh báo",
-                                                         MessageBoxButtons.YesNo);
-                                        if (result1 == DialogResult.Yes)
-                                        {
-                                            //hiển thị form cho người dùng chọn mã phiếu cấn trừ ?
-                                            phieunhap.isCanTru = true;
-
-
-                                        }
-
-
-
-                                    }
-                                    nk.isGoiDau = rdoBuTruPhieu.Checked;
+                                  
                                     if (phieunhap.Update(nk) == 1)
                                     {
 
@@ -931,7 +925,7 @@ namespace Inventory.NhapXuat
             if (this.loaiphieu .Equals("HN"))
             {
                 lbSLHN.Text = "Số lượng hoàn nhập";
-                rdoBuTruPhieu.Enabled = false;
+                //rdoBuTruPhieu.Enabled = false;
                 rdoNhapGoiDau.Enabled = false;
 
             }

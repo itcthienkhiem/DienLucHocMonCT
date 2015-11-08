@@ -35,7 +35,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_can_tru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ma_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ma_phieu_nhap_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,7 @@
             this.dataGridViewTextBoxColumn1,
             this.Ma_vat_tu,
             this.Ten_vat_tu,
-            this.So_luong,
+            this.So_luong_can_tru,
             this.Ma_phieu_nhap,
             this.Ma_phieu_nhap_no,
             this.ID_chat_luong});
@@ -107,12 +107,12 @@
             this.Ten_vat_tu.Name = "Ten_vat_tu";
             this.Ten_vat_tu.ReadOnly = true;
             // 
-            // So_luong
+            // So_luong_can_tru
             // 
-            this.So_luong.DataPropertyName = "So_luong";
-            this.So_luong.HeaderText = "Số lượng";
-            this.So_luong.Name = "So_luong";
-            this.So_luong.ReadOnly = true;
+            this.So_luong_can_tru.DataPropertyName = "So_luong_can_tru";
+            this.So_luong_can_tru.HeaderText = "Số lượng";
+            this.So_luong_can_tru.Name = "So_luong_can_tru";
+            this.So_luong_can_tru.ReadOnly = true;
             // 
             // Ma_phieu_nhap
             // 
@@ -155,7 +155,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn So_luong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_can_tru;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu_nhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu_nhap_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_chat_luong;

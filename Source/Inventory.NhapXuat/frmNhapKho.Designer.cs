@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.gridMaster = new System.Windows.Forms.DataGridView();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,10 +117,10 @@
             this.label29 = new System.Windows.Forms.Label();
             this.txtXuatTaiKho = new System.Windows.Forms.TextBox();
             this.cbKhoNhan = new System.Windows.Forms.ComboBox();
-            this.rdoBuTruPhieu = new System.Windows.Forms.RadioButton();
             this.rdoNhapGoiDau = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdoNone = new System.Windows.Forms.RadioButton();
+            this.lbHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
@@ -142,24 +142,23 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.gridMaster.AutoGenerateColumns = false;
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -178,11 +177,11 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMaster.Size = new System.Drawing.Size(1017, 280);
+            this.gridMaster.Size = new System.Drawing.Size(1017, 355);
             this.gridMaster.TabIndex = 51;
             this.gridMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridMaster_MouseClick);
             // 
@@ -557,7 +556,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 109);
+            this.label9.Location = new System.Drawing.Point(5, 195);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 14);
             this.label9.TabIndex = 48;
@@ -566,7 +565,7 @@
             // txtMaPhieuNhap
             // 
             this.txtMaPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtMaPhieuNhap.Location = new System.Drawing.Point(90, 105);
+            this.txtMaPhieuNhap.Location = new System.Drawing.Point(90, 191);
             this.txtMaPhieuNhap.Name = "txtMaPhieuNhap";
             this.txtMaPhieuNhap.Size = new System.Drawing.Size(156, 22);
             this.txtMaPhieuNhap.TabIndex = 49;
@@ -575,7 +574,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 137);
+            this.label4.Location = new System.Drawing.Point(5, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 14);
             this.label4.TabIndex = 52;
@@ -584,7 +583,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 165);
+            this.label8.Location = new System.Drawing.Point(5, 251);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 14);
             this.label8.TabIndex = 54;
@@ -593,7 +592,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(473, 104);
+            this.label11.Location = new System.Drawing.Point(473, 190);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 14);
             this.label11.TabIndex = 56;
@@ -602,7 +601,7 @@
             // txtLyDo
             // 
             this.txtLyDo.Enabled = false;
-            this.txtLyDo.Location = new System.Drawing.Point(580, 104);
+            this.txtLyDo.Location = new System.Drawing.Point(580, 190);
             this.txtLyDo.Name = "txtLyDo";
             this.txtLyDo.Size = new System.Drawing.Size(199, 22);
             this.txtLyDo.TabIndex = 57;
@@ -610,7 +609,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(473, 137);
+            this.label12.Location = new System.Drawing.Point(473, 223);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(64, 14);
             this.label12.TabIndex = 58;
@@ -619,7 +618,7 @@
             // txtCongTrinh
             // 
             this.txtCongTrinh.Enabled = false;
-            this.txtCongTrinh.Location = new System.Drawing.Point(580, 137);
+            this.txtCongTrinh.Location = new System.Drawing.Point(580, 223);
             this.txtCongTrinh.Name = "txtCongTrinh";
             this.txtCongTrinh.Size = new System.Drawing.Size(199, 22);
             this.txtCongTrinh.TabIndex = 59;
@@ -627,7 +626,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(470, 168);
+            this.label13.Location = new System.Drawing.Point(470, 254);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(101, 14);
             this.label13.TabIndex = 60;
@@ -636,14 +635,14 @@
             // txtDiaChi
             // 
             this.txtDiaChi.Enabled = false;
-            this.txtDiaChi.Location = new System.Drawing.Point(580, 165);
+            this.txtDiaChi.Location = new System.Drawing.Point(580, 251);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(199, 22);
             this.txtDiaChi.TabIndex = 61;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(253, 102);
+            this.button2.Location = new System.Drawing.Point(253, 188);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(36, 25);
             this.button2.TabIndex = 62;
@@ -680,10 +679,10 @@
             // 
             // txtDVT
             // 
-            this.txtDVT.Location = new System.Drawing.Point(281, 25);
+            this.txtDVT.Location = new System.Drawing.Point(326, 25);
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.ReadOnly = true;
-            this.txtDVT.Size = new System.Drawing.Size(79, 22);
+            this.txtDVT.Size = new System.Drawing.Size(34, 22);
             this.txtDVT.TabIndex = 71;
             // 
             // panel1
@@ -712,7 +711,7 @@
             this.panel1.Controls.Add(this.txtDVT);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.gridMaster);
-            this.panel1.Location = new System.Drawing.Point(0, 273);
+            this.panel1.Location = new System.Drawing.Point(0, 359);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1598, 334);
             this.panel1.TabIndex = 72;
@@ -823,9 +822,9 @@
             this.cbTenVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbTenVatTu.Enabled = false;
             this.cbTenVatTu.FormattingEnabled = true;
-            this.cbTenVatTu.Location = new System.Drawing.Point(122, 25);
+            this.cbTenVatTu.Location = new System.Drawing.Point(111, 25);
             this.cbTenVatTu.Name = "cbTenVatTu";
-            this.cbTenVatTu.Size = new System.Drawing.Size(148, 22);
+            this.cbTenVatTu.Size = new System.Drawing.Size(209, 22);
             this.cbTenVatTu.TabIndex = 79;
             this.cbTenVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbTenVatTu_SelectionChangeCommitted);
             this.cbTenVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbTenVatTu_KeyDown);
@@ -835,7 +834,7 @@
             this.cbMaVatTu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbMaVatTu.Enabled = false;
             this.cbMaVatTu.FormattingEnabled = true;
-            this.cbMaVatTu.Location = new System.Drawing.Point(14, 25);
+            this.cbMaVatTu.Location = new System.Drawing.Point(4, 25);
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(101, 22);
             this.cbMaVatTu.TabIndex = 78;
@@ -857,6 +856,7 @@
             this.txtDonGia.Enabled = false;
             this.txtDonGia.Location = new System.Drawing.Point(595, 25);
             this.txtDonGia.Name = "txtDonGia";
+            this.txtDonGia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDonGia.Size = new System.Drawing.Size(97, 22);
             this.txtDonGia.TabIndex = 77;
             this.txtDonGia.Text = "0";
@@ -876,6 +876,7 @@
             this.txtSLTX.Enabled = false;
             this.txtSLTX.Location = new System.Drawing.Point(475, 25);
             this.txtSLTX.Name = "txtSLTX";
+            this.txtSLTX.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSLTX.Size = new System.Drawing.Size(114, 22);
             this.txtSLTX.TabIndex = 75;
             this.txtSLTX.Text = "0";
@@ -896,6 +897,7 @@
             this.txtSLYC.Enabled = false;
             this.txtSLYC.Location = new System.Drawing.Point(366, 25);
             this.txtSLYC.Name = "txtSLYC";
+            this.txtSLYC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSLYC.Size = new System.Drawing.Size(103, 22);
             this.txtSLYC.TabIndex = 73;
             this.txtSLYC.Text = "0";
@@ -906,7 +908,7 @@
             this.dtNgayNhap.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dtNgayNhap.CustomFormat = "dd/MM/yyyy";
             this.dtNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtNgayNhap.Location = new System.Drawing.Point(91, 133);
+            this.dtNgayNhap.Location = new System.Drawing.Point(91, 219);
             this.dtNgayNhap.Name = "dtNgayNhap";
             this.dtNgayNhap.Size = new System.Drawing.Size(198, 22);
             this.dtNgayNhap.TabIndex = 73;
@@ -914,7 +916,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(5, 192);
+            this.label14.Location = new System.Drawing.Point(5, 278);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 14);
             this.label14.TabIndex = 75;
@@ -923,7 +925,7 @@
             // txtSoHD
             // 
             this.txtSoHD.Enabled = false;
-            this.txtSoHD.Location = new System.Drawing.Point(579, 194);
+            this.txtSoHD.Location = new System.Drawing.Point(579, 280);
             this.txtSoHD.Name = "txtSoHD";
             this.txtSoHD.Size = new System.Drawing.Size(199, 22);
             this.txtSoHD.TabIndex = 76;
@@ -931,7 +933,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(473, 197);
+            this.label27.Location = new System.Drawing.Point(473, 283);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(70, 14);
             this.label27.TabIndex = 77;
@@ -940,7 +942,7 @@
             // cbLoaiPhieuNhan
             // 
             this.cbLoaiPhieuNhan.FormattingEnabled = true;
-            this.cbLoaiPhieuNhan.Location = new System.Drawing.Point(579, 224);
+            this.cbLoaiPhieuNhan.Location = new System.Drawing.Point(579, 310);
             this.cbLoaiPhieuNhan.Name = "cbLoaiPhieuNhan";
             this.cbLoaiPhieuNhan.Size = new System.Drawing.Size(199, 22);
             this.cbLoaiPhieuNhan.TabIndex = 80;
@@ -948,7 +950,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(473, 227);
+            this.label29.Location = new System.Drawing.Point(473, 313);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(93, 14);
             this.label29.TabIndex = 81;
@@ -957,7 +959,7 @@
             // txtXuatTaiKho
             // 
             this.txtXuatTaiKho.Enabled = false;
-            this.txtXuatTaiKho.Location = new System.Drawing.Point(90, 160);
+            this.txtXuatTaiKho.Location = new System.Drawing.Point(90, 246);
             this.txtXuatTaiKho.Name = "txtXuatTaiKho";
             this.txtXuatTaiKho.Size = new System.Drawing.Size(199, 22);
             this.txtXuatTaiKho.TabIndex = 82;
@@ -965,21 +967,10 @@
             // cbKhoNhan
             // 
             this.cbKhoNhan.FormattingEnabled = true;
-            this.cbKhoNhan.Location = new System.Drawing.Point(91, 189);
+            this.cbKhoNhan.Location = new System.Drawing.Point(91, 275);
             this.cbKhoNhan.Name = "cbKhoNhan";
             this.cbKhoNhan.Size = new System.Drawing.Size(198, 22);
             this.cbKhoNhan.TabIndex = 85;
-            // 
-            // rdoBuTruPhieu
-            // 
-            this.rdoBuTruPhieu.AutoSize = true;
-            this.rdoBuTruPhieu.Location = new System.Drawing.Point(166, 21);
-            this.rdoBuTruPhieu.Name = "rdoBuTruPhieu";
-            this.rdoBuTruPhieu.Size = new System.Drawing.Size(94, 18);
-            this.rdoBuTruPhieu.TabIndex = 89;
-            this.rdoBuTruPhieu.TabStop = true;
-            this.rdoBuTruPhieu.Text = "Bù trừ phiếu";
-            this.rdoBuTruPhieu.UseVisualStyleBackColor = true;
             // 
             // rdoNhapGoiDau
             // 
@@ -996,8 +987,7 @@
             // 
             this.groupBox1.Controls.Add(this.rdoNone);
             this.groupBox1.Controls.Add(this.rdoNhapGoiDau);
-            this.groupBox1.Controls.Add(this.rdoBuTruPhieu);
-            this.groupBox1.Location = new System.Drawing.Point(10, 217);
+            this.groupBox1.Location = new System.Drawing.Point(10, 303);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(294, 50);
             this.groupBox1.TabIndex = 90;
@@ -1015,11 +1005,21 @@
             this.rdoNone.Text = "None";
             this.rdoNone.UseVisualStyleBackColor = true;
             // 
+            // lbHeader
+            // 
+            this.lbHeader.AutoSize = true;
+            this.lbHeader.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHeader.Location = new System.Drawing.Point(415, 119);
+            this.lbHeader.Name = "lbHeader";
+            this.lbHeader.Size = new System.Drawing.Size(0, 39);
+            this.lbHeader.TabIndex = 91;
+            // 
             // frmNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 685);
+            this.Controls.Add(this.lbHeader);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbKhoNhan);
             this.Controls.Add(this.txtXuatTaiKho);
@@ -1148,9 +1148,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Thanh_tien;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Chat_Luong;
         private System.Windows.Forms.ComboBox cbKhoNhan;
-        private System.Windows.Forms.RadioButton rdoBuTruPhieu;
         private System.Windows.Forms.RadioButton rdoNhapGoiDau;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoNone;
+        private System.Windows.Forms.Label lbHeader;
     }
 }

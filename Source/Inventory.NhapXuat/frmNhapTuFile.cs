@@ -98,9 +98,9 @@ namespace Inventory.NhapXuat
             //  DataSet result = excelReader.AsDataSet();
             //  ChuanHoaDuLieu(result);
             //  gridDanhSachPhieuNhap.DataSource = ChuanHoaDuLieu(result);
-            gridDanhSachPhieuNhap.DataSource = result.Tables[cbChonSheet.SelectedIndex];
+            gridDanhSachPhieuNhap.DataSource = result.Tables[0];
             this.gridDanhSachPhieuNhap.Sort(this.gridDanhSachPhieuNhap.Columns["column1"], ListSortDirection.Ascending);
-            tb = result.Tables[cbChonSheet.SelectedIndex].Copy();
+            tb = result.Tables[0].Copy();
 
 
             DataView dv = tb.DefaultView;
@@ -161,11 +161,7 @@ namespace Inventory.NhapXuat
         {
             try
             {
-                if (cbChonSheet.Text == "")
-                {
-                    MessageBox.Show("Bạn chưa chọn sheet hiển thị!");
-                    return;
-                }
+              
                 FileStream stream = File.Open(txtTenDuongDan.Text, FileMode.Open, FileAccess.Read);
 
                 //lấy định dạng 
@@ -188,6 +184,7 @@ namespace Inventory.NhapXuat
             this.Close();
         }
         string Loai_PN;
+        int idkho=0;
         private void btnChuyenDoi_Click(object sender, EventArgs e)
         {
             if (txtTenDuongDan.Text == "")
@@ -200,6 +197,7 @@ namespace Inventory.NhapXuat
                  Loai_PN = cbLPN.Text;
                 Progressbar.Maximum = tb.Rows.Count;
                 backgroundWorker1.RunWorkerAsync();
+               idkho= (int)cbKhoNhan.SelectedValue;
                 //Thread queryRunningThread = new Thread(new ThreadStart(ChuyenDoi));
                 //queryRunningThread.Name = "ProcessLoop";
                 //queryRunningThread.IsBackground = true;
@@ -242,14 +240,14 @@ namespace Inventory.NhapXuat
                         {
                             pnk.Ma_phieu_nhap = Ma_phieu_nhap;
                             pnk.isGoiDau = rdoPhieuGoiDau.Checked;
-                            pnk.isCanTru = rdoBuTru.Checked;
+                            pnk.isCanTru = false;
                             pnk.Ngay_lap = Ngay_lap;
                             pnk.Kho_nhan = Kho_nhan;
                             pnk.Ly_do = Ly_do;
                             clsLoaiPhieuNhap LPN = new clsLoaiPhieuNhap();
                             LPN.Ma_LPN = Loai_PN;
                             pnk.ID_Loai_Phieu_Nhap = LPN.GetFirst(help);
-                            pnk.ID_khoNhan =(int) cbKhoNhan.SelectedValue;
+                            pnk.ID_khoNhan = idkho;
                             if (pnk.Insert(help) == 0)
                             {
                                 dbcxtransaction.Rollback();

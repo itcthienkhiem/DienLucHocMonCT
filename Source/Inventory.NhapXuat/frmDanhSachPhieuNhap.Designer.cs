@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnChiTietBuTru = new System.Windows.Forms.Button();
             this.btnChiTiet = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.btnTruNo = new System.Windows.Forms.Button();
@@ -55,8 +57,11 @@
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.rdoAllGird = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoPhieuNo = new System.Windows.Forms.RadioButton();
+            this.rdoNhapNgoai = new System.Windows.Forms.RadioButton();
             this.cbbKho = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.rdoTraNo = new System.Windows.Forms.RadioButton();
             this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,10 +77,7 @@
             this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.rdoNhapNgoai = new System.Windows.Forms.RadioButton();
-            this.rdoPhieuNo = new System.Windows.Forms.RadioButton();
-            this.btnChiTietBuTru = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.isChoMuonNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -118,7 +120,8 @@
             this.isNhapNgoai,
             this.isCanTru,
             this.isGoiDau,
-            this.Da_phan_kho});
+            this.Da_phan_kho,
+            this.isChoMuonNgoai});
             this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(1, 193);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
@@ -161,6 +164,26 @@
             this.pnlMenu.Size = new System.Drawing.Size(1026, 92);
             this.pnlMenu.TabIndex = 53;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(485, 62);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(138, 14);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Chi tiết trả bù trừ phiếu";
+            // 
+            // btnChiTietBuTru
+            // 
+            this.btnChiTietBuTru.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Document;
+            this.btnChiTietBuTru.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnChiTietBuTru.Location = new System.Drawing.Point(524, 12);
+            this.btnChiTietBuTru.Name = "btnChiTietBuTru";
+            this.btnChiTietBuTru.Size = new System.Drawing.Size(50, 50);
+            this.btnChiTietBuTru.TabIndex = 11;
+            this.btnChiTietBuTru.UseVisualStyleBackColor = true;
+            this.btnChiTietBuTru.Click += new System.EventHandler(this.btnChiTietBuTru_Click);
             // 
             // btnChiTiet
             // 
@@ -389,6 +412,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdoTraNo);
             this.groupBox1.Controls.Add(this.rdoPhieuNo);
             this.groupBox1.Controls.Add(this.rdoNhapNgoai);
             this.groupBox1.Controls.Add(this.cbbKho);
@@ -402,6 +426,26 @@
             this.groupBox1.Size = new System.Drawing.Size(1017, 89);
             this.groupBox1.TabIndex = 62;
             this.groupBox1.TabStop = false;
+            // 
+            // rdoPhieuNo
+            // 
+            this.rdoPhieuNo.AutoSize = true;
+            this.rdoPhieuNo.Location = new System.Drawing.Point(360, 72);
+            this.rdoPhieuNo.Name = "rdoPhieuNo";
+            this.rdoPhieuNo.Size = new System.Drawing.Size(67, 17);
+            this.rdoPhieuNo.TabIndex = 65;
+            this.rdoPhieuNo.Text = "Phiếu nợ";
+            this.rdoPhieuNo.UseVisualStyleBackColor = true;
+            // 
+            // rdoNhapNgoai
+            // 
+            this.rdoNhapNgoai.AutoSize = true;
+            this.rdoNhapNgoai.Location = new System.Drawing.Point(246, 72);
+            this.rdoNhapNgoai.Name = "rdoNhapNgoai";
+            this.rdoNhapNgoai.Size = new System.Drawing.Size(108, 17);
+            this.rdoNhapNgoai.TabIndex = 64;
+            this.rdoNhapNgoai.Text = "Phiếu nhập ngoài";
+            this.rdoNhapNgoai.UseVisualStyleBackColor = true;
             // 
             // cbbKho
             // 
@@ -419,6 +463,16 @@
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 63;
             this.label4.Text = "Kho";
+            // 
+            // rdoTraNo
+            // 
+            this.rdoTraNo.AutoSize = true;
+            this.rdoTraNo.Location = new System.Drawing.Point(433, 72);
+            this.rdoTraNo.Name = "rdoTraNo";
+            this.rdoTraNo.Size = new System.Drawing.Size(58, 17);
+            this.rdoTraNo.TabIndex = 66;
+            this.rdoTraNo.Text = "Trả Nợ";
+            this.rdoTraNo.UseVisualStyleBackColor = true;
             // 
             // Ma_phieu
             // 
@@ -538,44 +592,14 @@
             this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // rdoNhapNgoai
+            // isChoMuonNgoai
             // 
-            this.rdoNhapNgoai.AutoSize = true;
-            this.rdoNhapNgoai.Location = new System.Drawing.Point(246, 72);
-            this.rdoNhapNgoai.Name = "rdoNhapNgoai";
-            this.rdoNhapNgoai.Size = new System.Drawing.Size(108, 17);
-            this.rdoNhapNgoai.TabIndex = 64;
-            this.rdoNhapNgoai.Text = "Phiếu nhập ngoài";
-            this.rdoNhapNgoai.UseVisualStyleBackColor = true;
-            // 
-            // rdoPhieuNo
-            // 
-            this.rdoPhieuNo.AutoSize = true;
-            this.rdoPhieuNo.Location = new System.Drawing.Point(360, 72);
-            this.rdoPhieuNo.Name = "rdoPhieuNo";
-            this.rdoPhieuNo.Size = new System.Drawing.Size(67, 17);
-            this.rdoPhieuNo.TabIndex = 65;
-            this.rdoPhieuNo.Text = "Phiếu nợ";
-            this.rdoPhieuNo.UseVisualStyleBackColor = true;
-            // 
-            // btnChiTietBuTru
-            // 
-            this.btnChiTietBuTru.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Document;
-            this.btnChiTietBuTru.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnChiTietBuTru.Location = new System.Drawing.Point(524, 12);
-            this.btnChiTietBuTru.Name = "btnChiTietBuTru";
-            this.btnChiTietBuTru.Size = new System.Drawing.Size(50, 50);
-            this.btnChiTietBuTru.TabIndex = 11;
-            this.btnChiTietBuTru.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(485, 62);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(138, 14);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Chi tiết trả bù trừ phiếu";
+            this.isChoMuonNgoai.DataPropertyName = "isChoMuonNgoai";
+            this.isChoMuonNgoai.HeaderText = "Cho Mượn Nợ";
+            this.isChoMuonNgoai.Name = "isChoMuonNgoai";
+            this.isChoMuonNgoai.ReadOnly = true;
+            this.isChoMuonNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isChoMuonNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // frmDanhSachPhieuNhap
             // 
@@ -625,6 +649,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnTruNo;
         private System.Windows.Forms.Button btnChiTiet;
+        private System.Windows.Forms.RadioButton rdoNhapNgoai;
+        private System.Windows.Forms.RadioButton rdoPhieuNo;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnChiTietBuTru;
+        private System.Windows.Forms.RadioButton rdoTraNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_hoa_don;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cong_trinh;
@@ -640,10 +669,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCanTru;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGoiDau;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Da_phan_kho;
-        private System.Windows.Forms.RadioButton rdoNhapNgoai;
-        private System.Windows.Forms.RadioButton rdoPhieuNo;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnChiTietBuTru;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isChoMuonNgoai;
 
     }
 }

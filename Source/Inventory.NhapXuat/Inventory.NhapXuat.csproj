@@ -223,6 +223,10 @@
       <Project>{6240D286-DEB0-4A4C-B98E-EEFA5FAFCDD3}</Project>
       <Name>Inventory.EntityClass</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Inventory.QuanLyTonDauKy\Inventory.QuanLyTonDauKy.csproj">
+      <Project>{2e4fe390-1e18-4479-b07d-0e83d3735c9a}</Project>
+      <Name>Inventory.QuanLyTonDauKy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.Report\Inventory.Report.csproj">
       <Project>{96444DAC-3070-4943-B9C9-3C005311F249}</Project>
       <Name>Inventory.Report</Name>

@@ -308,6 +308,7 @@ namespace Inventory
                             frm.Show();
                             return;
                         }
+                        Utilities.clsThamSoUtilities.isSectionLogin = true;
                     }
                 }
                 //writing the connection string in config file
@@ -788,6 +789,90 @@ namespace Inventory
             frmQuanTriNguoiDung frm = new frmQuanTriNguoiDung();
             frm.Text = "Quản lý người dùng  ";
             frm.Show();
+        }
+
+        private void mượnNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("muonno");
+                frm.Text = "Nhâp Mượn Nợ Kho Khác  ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
+        }
+
+        private void trảNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("chomuonno");
+                frm.Text = "Nhâp Trả Nợ Kho Khác  ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmNhapKho frm = new frmNhapKho("PN");
+                frm.Text = "Màn hình nhập vật tư";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                for (int i = 0; i < frms.Count; i++)
+                    frms[i].Close();
+                frms.Clear();
+                frms.Add(frm);
+            }
+        }
+
+        private void nhậpGốiĐầuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtTenVatTu = new System.Windows.Forms.TextBox();
             this.txtDiaDiem = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gridTheKho = new System.Windows.Forms.DataGridView();
@@ -54,6 +53,8 @@
             this.txtDVT = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnDong = new System.Windows.Forms.Button();
@@ -65,8 +66,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.dtDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
+            this.cbTenVatTu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +75,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(488, 112);
+            this.label1.Location = new System.Drawing.Point(423, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 33);
             this.label1.TabIndex = 0;
@@ -93,24 +93,15 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(493, 158);
+            this.label3.Location = new System.Drawing.Point(428, 139);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "TÊN VÀ QUY CÁCH VẬT TƯ";
             // 
-            // txtTenVatTu
-            // 
-            this.txtTenVatTu.Location = new System.Drawing.Point(359, 174);
-            this.txtTenVatTu.Multiline = true;
-            this.txtTenVatTu.Name = "txtTenVatTu";
-            this.txtTenVatTu.ReadOnly = true;
-            this.txtTenVatTu.Size = new System.Drawing.Size(427, 100);
-            this.txtTenVatTu.TabIndex = 3;
-            // 
             // txtDiaDiem
             // 
-            this.txtDiaDiem.Location = new System.Drawing.Point(136, 226);
+            this.txtDiaDiem.Location = new System.Drawing.Point(28, 197);
             this.txtDiaDiem.Multiline = true;
             this.txtDiaDiem.Name = "txtDiaDiem";
             this.txtDiaDiem.ReadOnly = true;
@@ -120,7 +111,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 247);
+            this.label5.Location = new System.Drawing.Point(31, 181);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 7;
@@ -273,27 +264,28 @@
             // 
             // cbMaVatTu
             // 
+            this.cbMaVatTu.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMaVatTu.FormattingEnabled = true;
-            this.cbMaVatTu.Location = new System.Drawing.Point(814, 210);
+            this.cbMaVatTu.Location = new System.Drawing.Point(794, 124);
             this.cbMaVatTu.Name = "cbMaVatTu";
-            this.cbMaVatTu.Size = new System.Drawing.Size(187, 21);
+            this.cbMaVatTu.Size = new System.Drawing.Size(207, 50);
             this.cbMaVatTu.TabIndex = 50;
             this.cbMaVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbMaVatTu_SelectionChangeCommitted_1);
             this.cbMaVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbMaVatTu_KeyDown);
             // 
             // txtDVT
             // 
-            this.txtDVT.Location = new System.Drawing.Point(814, 255);
+            this.txtDVT.Location = new System.Drawing.Point(794, 198);
             this.txtDVT.Multiline = true;
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.ReadOnly = true;
-            this.txtDVT.Size = new System.Drawing.Size(187, 34);
+            this.txtDVT.Size = new System.Drawing.Size(207, 34);
             this.txtDVT.TabIndex = 52;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(828, 239);
+            this.label6.Location = new System.Drawing.Point(808, 182);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 51;
@@ -313,6 +305,26 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(1093, 95);
             this.pnlMenu.TabIndex = 53;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackgroundImage = global::Inventory.QuanLyTonDauKy.Properties.Resources.printOut_omc;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.Location = new System.Drawing.Point(78, 12);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(58, 54);
+            this.btnPrint.TabIndex = 97;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(89, 69);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(32, 14);
+            this.label35.TabIndex = 98;
+            this.label35.Text = "Print";
             // 
             // btnHuy
             // 
@@ -359,7 +371,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(75, 202);
+            this.label8.Location = new System.Drawing.Point(32, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 55;
@@ -367,10 +379,11 @@
             // 
             // cbChatLuong
             // 
+            this.cbChatLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbChatLuong.FormattingEnabled = true;
-            this.cbChatLuong.Location = new System.Drawing.Point(136, 199);
+            this.cbChatLuong.Location = new System.Drawing.Point(29, 127);
             this.cbChatLuong.Name = "cbChatLuong";
-            this.cbChatLuong.Size = new System.Drawing.Size(187, 21);
+            this.cbChatLuong.Size = new System.Drawing.Size(187, 47);
             this.cbChatLuong.TabIndex = 56;
             // 
             // dtTuNgay
@@ -378,7 +391,7 @@
             this.dtTuNgay.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dtTuNgay.CustomFormat = "dd/MM/yyyy";
             this.dtTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTuNgay.Location = new System.Drawing.Point(136, 275);
+            this.dtTuNgay.Location = new System.Drawing.Point(353, 233);
             this.dtTuNgay.Name = "dtTuNgay";
             this.dtTuNgay.Size = new System.Drawing.Size(187, 20);
             this.dtTuNgay.TabIndex = 74;
@@ -386,7 +399,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(72, 281);
+            this.label10.Location = new System.Drawing.Point(289, 239);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 75;
@@ -395,7 +408,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(356, 277);
+            this.label11.Location = new System.Drawing.Point(546, 235);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 13);
             this.label11.TabIndex = 77;
@@ -406,7 +419,7 @@
             this.dtDenNgay.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dtDenNgay.CustomFormat = "dd/MM/yyyy";
             this.dtDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDenNgay.Location = new System.Drawing.Point(415, 275);
+            this.dtDenNgay.Location = new System.Drawing.Point(605, 233);
             this.dtDenNgay.Name = "dtDenNgay";
             this.dtDenNgay.Size = new System.Drawing.Size(187, 20);
             this.dtDenNgay.TabIndex = 76;
@@ -414,37 +427,27 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(828, 186);
+            this.label12.Location = new System.Drawing.Point(791, 98);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 78;
             this.label12.Text = "Mã vật tư";
             // 
-            // btnPrint
+            // cbTenVatTu
             // 
-            this.btnPrint.BackgroundImage = global::Inventory.QuanLyTonDauKy.Properties.Resources.printOut_omc;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint.Location = new System.Drawing.Point(78, 12);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(58, 54);
-            this.btnPrint.TabIndex = 97;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(89, 69);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(32, 14);
-            this.label35.TabIndex = 98;
-            this.label35.Text = "Print";
+            this.cbTenVatTu.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTenVatTu.FormattingEnabled = true;
+            this.cbTenVatTu.Location = new System.Drawing.Point(261, 165);
+            this.cbTenVatTu.Name = "cbTenVatTu";
+            this.cbTenVatTu.Size = new System.Drawing.Size(466, 50);
+            this.cbTenVatTu.TabIndex = 79;
             // 
             // frmTheKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1093, 553);
+            this.Controls.Add(this.cbTenVatTu);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dtDenNgay);
@@ -459,7 +462,6 @@
             this.Controls.Add(this.gridTheKho);
             this.Controls.Add(this.txtDiaDiem);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtTenVatTu);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -478,7 +480,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTenVatTu;
         private System.Windows.Forms.TextBox txtDiaDiem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView gridTheKho;
@@ -512,5 +513,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_The_kho;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ComboBox cbTenVatTu;
     }
 }

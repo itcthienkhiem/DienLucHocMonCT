@@ -233,7 +233,7 @@ namespace Inventory.EntityClass
           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Loai_Phieu_Nhap
-                        where d.Ten_loai_phieu_nhap.Contains("D")
+                        where d.Ten_loai_phieu_nhap.Contains("T")
                         select d).ToList();
               dbcxtransaction.Commit();
               DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);

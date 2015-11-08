@@ -909,9 +909,9 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(5, 192);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 14);
+            this.label14.Size = new System.Drawing.Size(90, 14);
             this.label14.TabIndex = 75;
-            this.label14.Text = "Kho hoàn trả";
+            this.label14.Text = "Kho hoàn nhâp";
             // 
             // txtSoHD
             // 

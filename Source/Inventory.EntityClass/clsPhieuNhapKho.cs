@@ -34,6 +34,8 @@ namespace Inventory.EntityClass
         public bool isNhapNgoai;
         public bool isCanTru;
         public bool isGoiDau;
+        public bool isChoMuonNgoai;
+
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
@@ -181,7 +183,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                                   join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                   where e.Ten_kho.Contains(ten_kho) 
-                                  && ep.isNhapNgoai == nhapngoai && ep.isCanTru  == cantru
+                                  && ep.isNhapNgoai == nhapngoai && ep.isCanTru  == cantru && ep.isDelete ==false
                                   select new
                                   {
                                      ma_phieu = ep.Ma_phieu_nhap,
@@ -200,7 +202,7 @@ namespace Inventory.EntityClass
                                     isGoiDau =  ep.isGoiDau,
                                    isCanTru=   ep.isCanTru,
                                    isNhapNgoai=   ep.isNhapNgoai,
-
+                                     isChoMuonNgoai = ep.isChoMuonNgoai,
                                   }
 
            ).ToList();
@@ -210,7 +212,7 @@ namespace Inventory.EntityClass
             {
                var  entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
-                              where e.Ten_kho.Contains(ten_kho) && ep.Da_phan_kho == status
+                                  where e.Ten_kho.Contains(ten_kho) && ep.Da_phan_kho == status && ep.isDelete == false
                               select new
                               {
                                   ma_phieu = ep.Ma_phieu_nhap,
@@ -229,7 +231,7 @@ namespace Inventory.EntityClass
                                   isGoiDau = ep.isGoiDau,
                                   isCanTru = ep.isCanTru,
                                   isNhapNgoai = ep.isNhapNgoai,
-
+                                  isChoMuonNgoai =ep.isChoMuonNgoai,
                               }
 
            ).ToList();
@@ -547,6 +549,7 @@ namespace Inventory.EntityClass
                         isGoiDau = this.isGoiDau,
                         isNhapNgoai = this.isNhapNgoai,
                         isCanTru = this.isCanTru,
+                        isChoMuonNgoai = this.isChoMuonNgoai,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);
