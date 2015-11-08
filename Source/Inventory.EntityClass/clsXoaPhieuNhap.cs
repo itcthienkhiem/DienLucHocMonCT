@@ -18,12 +18,20 @@ namespace Inventory.EntityClass
     /// </summary>
     public class clsXoaPhieuNhap
     {
-        public int XoaPhieu(Phieu_Nhap_Kho pnk)
+        /// <summary>
+        /// hàm này thực hiện xóa các phiếu nhập, tờ trình, gối đầu
+        /// </summary>
+        /// <param name="pnk"></param>
+        /// <returns></returns>
+        public int XoaPhieu(string maphieu)
         {
+
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
+                var query = help.ent.Phieu_Nhap_Kho.Where(o => o.Ma_phieu_nhap == maphieu);
+                Phieu_Nhap_Kho pnk = query.FirstOrDefault();
 
                 //lay danh sach phieu nhap
                 //var dm = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
@@ -43,6 +51,11 @@ namespace Inventory.EntityClass
                 //if (dm == null || dm.Count == 0)
                 {//kiem tra so luong ton trong kho > so luong xoa thi moi duoc xoa
 
+                //neu phieu nay da can tru no thi ko cho xoa 
+                    var filterCTTN = help.ent.Can_tru_no_nhap_ngoai.Where(o => o.Ma_phieu_nhap_no == pnk.Ma_phieu_nhap);
+                    if (filterCTTN.Count() != 0)//neu la phieu da duoc tra no thi ko dc xoa
+
+                        return 0 ;
                     var vt = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
                             
                               
@@ -134,11 +147,16 @@ namespace Inventory.EntityClass
                     help.ent.SaveChanges();
                     //neu no la phieu no 
                     //thi xoa phieu no xong reset lai so luong trong phieu tra no 
-                    var filterCTTN = help.ent.Can_tru_no_nhap_ngoai.Where(o => o.Ma_phieu_nhap_no == pnk.Ma_phieu_nhap);
-                    help.ent.Can_tru_no_nhap_ngoai.RemoveRange(filterCTNN);
+                    var filterCTPN = help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Where(o => o.Ma_phieu_nhap == pnk.Ma_phieu_nhap);
+                    //van de phat sinh khi xoa phieu no 
+                    //reset lai so luong phieu nhap va tien hanh xac nhan lai 
+                    //thuc hien tra lai so luong da can tru, so luong se duoc chuyen ve cho 2 phieu kia trong thẻ kho
+                    help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.RemoveRange(filterCTPN);
+                    help.ent.SaveChanges();
+
+                    help.ent.Phieu_Nhap_Kho.RemoveRange(query);
                     help.ent.SaveChanges();
                     
-
                 }
                 // chua co chung tu xuat
                 //thuc hien thao tac xoa phieu 

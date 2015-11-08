@@ -194,6 +194,10 @@ namespace Inventory.NhapXuat
                 //do something
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
                 string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString());
+                clsXoaPhieuNhap xoaphieu = new clsXoaPhieuNhap();
+
+                xoaphieu.XoaPhieu(maphieu);
+
                 if (clsPhieuNhapKho.KTVTChuaDuyet(maphieu) == true)// phieu nay da duyet 
                 {
                     MessageBox.Show("Phiếu nhập này đã được xác nhận, không thể xóa");
