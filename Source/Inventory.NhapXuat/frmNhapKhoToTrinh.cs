@@ -164,6 +164,7 @@ namespace Inventory.NhapXuat
         }
         private void btnLuu_Click(object sender, EventArgs e)
         {
+
             if (txtMaPhieuNhap.Text.Trim() == "")
             {
                 MessageBox.Show("Mã phiếu bắt buộc nhập!");

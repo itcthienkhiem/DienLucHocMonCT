@@ -32,10 +32,11 @@ namespace Inventory.EntityClass
         public bool Da_phan_kho;
         public int ID_khoNhan;
         public bool isNhapNgoai;
-        public bool isCanTru;
-        public bool isGoiDau;
-        public bool isChoMuonNgoai;
-
+        public bool isCanTru = false;
+        public bool isGoiDau=false;
+        public bool isChoMuonNgoai = false;
+        public bool isDaTraNo = false;
+        public DateTime ngay_xac_nhan = DateTime.Now;
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
@@ -203,6 +204,7 @@ namespace Inventory.EntityClass
                                    isCanTru=   ep.isCanTru,
                                    isNhapNgoai=   ep.isNhapNgoai,
                                      isChoMuonNgoai = ep.isChoMuonNgoai,
+                                     ngay_xac_nhan = ep.ngay_xac_nhan,
                                   }
 
            ).ToList();
@@ -232,6 +234,7 @@ namespace Inventory.EntityClass
                                   isCanTru = ep.isCanTru,
                                   isNhapNgoai = ep.isNhapNgoai,
                                   isChoMuonNgoai =ep.isChoMuonNgoai,
+                                  ngay_xac_nhan = ep.ngay_xac_nhan,
                               }
 
            ).ToList();
@@ -545,11 +548,12 @@ namespace Inventory.EntityClass
                         Da_phan_kho = this.Da_phan_kho==null?false:this.Da_phan_kho,
                         ID_kho = this.ID_khoNhan,
                         Ngay_nhap_vat_tu = DateTime.Today,
-                     //   ID_phieu_nhap = this.ID_phieu_nhap,
                         isGoiDau = this.isGoiDau,
                         isNhapNgoai = this.isNhapNgoai,
                         isCanTru = this.isCanTru,
                         isChoMuonNgoai = this.isChoMuonNgoai,
+                        isDaTraNo = this.isDaTraNo,
+                        ngay_xac_nhan = this.ngay_xac_nhan,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);

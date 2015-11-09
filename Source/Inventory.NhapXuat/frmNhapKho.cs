@@ -152,7 +152,7 @@ namespace Inventory.NhapXuat
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
             clsPhieuNhapKho pnk = new clsPhieuNhapKho();
-            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true) ;
+            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true) 
             {
                 MessageBox.Show("mã phiếu đã bị trùng");
                 return;

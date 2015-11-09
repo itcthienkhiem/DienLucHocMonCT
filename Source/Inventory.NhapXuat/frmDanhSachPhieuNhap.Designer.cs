@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,11 +58,11 @@
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.rdoAllGird = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoTraNo = new System.Windows.Forms.RadioButton();
             this.rdoPhieuNo = new System.Windows.Forms.RadioButton();
             this.rdoNhapNgoai = new System.Windows.Forms.RadioButton();
             this.cbbKho = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.rdoTraNo = new System.Windows.Forms.RadioButton();
             this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,6 +79,7 @@
             this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isChoMuonNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngay_xac_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,22 +90,22 @@
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToDeleteRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridDanhSachPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDanhSachPhieuNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuNhap.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_phieu,
@@ -121,7 +123,8 @@
             this.isCanTru,
             this.isGoiDau,
             this.Da_phan_kho,
-            this.isChoMuonNgoai});
+            this.isChoMuonNgoai,
+            this.ngay_xac_nhan});
             this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(1, 193);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
@@ -427,6 +430,16 @@
             this.groupBox1.TabIndex = 62;
             this.groupBox1.TabStop = false;
             // 
+            // rdoTraNo
+            // 
+            this.rdoTraNo.AutoSize = true;
+            this.rdoTraNo.Location = new System.Drawing.Point(433, 72);
+            this.rdoTraNo.Name = "rdoTraNo";
+            this.rdoTraNo.Size = new System.Drawing.Size(58, 17);
+            this.rdoTraNo.TabIndex = 66;
+            this.rdoTraNo.Text = "Trả Nợ";
+            this.rdoTraNo.UseVisualStyleBackColor = true;
+            // 
             // rdoPhieuNo
             // 
             this.rdoPhieuNo.AutoSize = true;
@@ -463,16 +476,6 @@
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 63;
             this.label4.Text = "Kho";
-            // 
-            // rdoTraNo
-            // 
-            this.rdoTraNo.AutoSize = true;
-            this.rdoTraNo.Location = new System.Drawing.Point(433, 72);
-            this.rdoTraNo.Name = "rdoTraNo";
-            this.rdoTraNo.Size = new System.Drawing.Size(58, 17);
-            this.rdoTraNo.TabIndex = 66;
-            this.rdoTraNo.Text = "Trả Nợ";
-            this.rdoTraNo.UseVisualStyleBackColor = true;
             // 
             // Ma_phieu
             // 
@@ -601,6 +604,16 @@
             this.isChoMuonNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.isChoMuonNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // ngay_xac_nhan
+            // 
+            this.ngay_xac_nhan.DataPropertyName = "ngay_xac_nhan";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngay_xac_nhan.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngay_xac_nhan.HeaderText = "Ngày xác nhận";
+            this.ngay_xac_nhan.Name = "ngay_xac_nhan";
+            this.ngay_xac_nhan.ReadOnly = true;
+            // 
             // frmDanhSachPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,6 +684,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGoiDau;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Da_phan_kho;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isChoMuonNgoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_xac_nhan;
 
     }
 }

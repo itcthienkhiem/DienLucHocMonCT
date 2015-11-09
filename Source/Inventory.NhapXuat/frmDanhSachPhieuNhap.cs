@@ -181,6 +181,7 @@ namespace Inventory.NhapXuat
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+
             Xoa();
             LoadData();
 
@@ -195,6 +196,14 @@ namespace Inventory.NhapXuat
                 //do something
                 Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
                 string maphieu = (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString());
+                DateTime ngayxacnhan =DateTime.Parse (gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ngay_xac_nhan"].Value.ToString());
+
+                if (ngayxacnhan < DateTime.Now.AddDays(-10))
+                {
+                    MessageBox.Show("Phiếu này đã xác nhận vượt quá số ngày qui định, xóa thất bại");
+
+                    return;
+                }
                 int temp = 0;
                 clsXoaPhieuNhap xoaphieu = new clsXoaPhieuNhap();
                 if (!String.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["id_loai_phieu_nhap"].Value.ToString()))
@@ -208,6 +217,7 @@ namespace Inventory.NhapXuat
                         if (lpn.getTenLPN((int)loaiphieu).Contains("T"))
                             temp = xoaphieu.XoaPhieuHoanNhap(maphieu);
                         else
+                            // xóa phiếu xuất
                             temp = xoaphieu.XoaPhieu(maphieu);
                         if (temp == 0)
                         {
@@ -223,8 +233,13 @@ namespace Inventory.NhapXuat
                 }
                 else
                 {
-
-                    temp = xoaphieu.XoaPhieu(maphieu);
+                    bool isChoMuonNgoai =bool.Parse( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isChoMuonNgoai"].Value.ToString());
+                    if (isChoMuonNgoai == true)
+                    {
+                        temp = xoaphieu.XoaPhieuChoMuonNo(maphieu);
+                    }
+                   else
+                        temp = xoaphieu.XoaPhieu(maphieu);
                     if (temp == 0)
                     {
                         MessageBox.Show("Không thể xóa phiếu này ! Vui lòng kiểm tra lại thông tin");
@@ -509,6 +524,31 @@ namespace Inventory.NhapXuat
         {
             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
             string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
+            // phieu hoan nhap thi ko thuc hien thao tac tru no T
+            // phieu to trinh - bien ban ko thuc hien tru no tuc la nhap ngoai
+            //phieu goi dau ko tru no 
+            try {
+                bool isGoiDau =bool.Parse( gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isGoiDau"].Value.ToString());
+                if (isGoiDau == true)
+                {
+                    MessageBox.Show("Phiếu gối đầu không thể trừ nợ");
+                    return;
+                }
+                bool isNhapNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNhapNgoai"].Value.ToString());
+                if (isNhapNgoai == true)
+                {
+                    MessageBox.Show("Phiếu nhập từ tờ trình, biên bản không thể trừ nợ");
+                    return;
+                }
+                bool isChoMuonNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isChoMuonNgoai"].Value.ToString());
+                if (isChoMuonNgoai == true)
+                {
+                    MessageBox.Show("Phiếu nhập mượn nợ, cho mượn nợ không thể trừ nợ");
+                    return;
+                }
+            }
+            catch (Exception ex) {  }
+
             //bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
            // if (isCanTru == true)
             {

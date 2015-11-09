@@ -83,6 +83,7 @@ namespace Inventory.NhapXuat
                     {
                         for (int i = 0; i < dtPhieuNhapNo.Rows.Count; i++)
                         {
+                            #region"Tra no"
                             int id_no = int.Parse(dtPhieuNhapNo.Rows[i]["ID_chi_tiet_phieu_nhap_vat_tu"].ToString());
                             decimal soluongno = decimal.Parse(dtPhieuNhapNo.Rows[i]["so_luong_thuc_lanh"].ToString());
                             if (soluongno > 0)
@@ -161,8 +162,23 @@ namespace Inventory.NhapXuat
                                     }
                                 }
                             }
-
+                            #endregion
                         }
+                     
+                        for (int i = 0; i < dtPhieuNhapNo.Rows.Count; i++)
+                        {
+                            int id_no = int.Parse(dtPhieuNhapNo.Rows[i]["ID_chi_tiet_phieu_nhap_vat_tu"].ToString());
+                            decimal soluongno = decimal.Parse(dtPhieuNhapNo.Rows[i]["so_luong_thuc_lanh"].ToString());
+                            if (soluongno > 0)
+                            {
+                                dbcxtransaction.Commit();
+                                return;
+                            }
+                        }
+                        phieunhapno.isDaTraNo = true;
+                        clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+                        if (pnk.Update(phieunhapno) == 0)
+                            dbcxtransaction.Rollback();
                         dbcxtransaction.Commit();
                         MessageBox.Show("Cấn trừ thành công!");
                     }

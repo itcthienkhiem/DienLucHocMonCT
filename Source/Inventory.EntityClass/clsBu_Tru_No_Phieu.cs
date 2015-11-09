@@ -17,7 +17,7 @@ namespace Inventory.EntityClass
           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Phieu_Nhap_Kho
-                        where d.isNhapNgoai ==true
+                        where d.isNhapNgoai ==true &&d.isDaTraNo == false
                         select new
                         {
                             d.ID_phieu_nhap,
