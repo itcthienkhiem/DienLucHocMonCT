@@ -67,6 +67,10 @@ namespace Inventory.QuanLyTonDauKy
         private void initKhoNhap()
         {
             clsGiaoDienChung.initCombobox(cbKhoNhap, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_vat_tu", "Ten_vat_tu");
+            clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_vat_tu", "Ma_vat_tu");
+            clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
+
             //clsDM_Kho dmKho = new clsDM_Kho();
             //cbKhoNhap.DisplayMember = "Ten_kho";
             //cbKhoNhap.ValueMember = "ID_kho";
@@ -108,7 +112,7 @@ namespace Inventory.QuanLyTonDauKy
         {
             try
             {
-                gridTonDauKy.DataSource = TonDauKy.GetAll("");
+                gridTonDauKy.DataSource = TonDauKy.GetAll(cbKhoNhap.Text, cbMaVatTu.Text, cbTenVatTu.Text, cbChatLuong.Text);
             }
             catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
         }
@@ -126,13 +130,58 @@ namespace Inventory.QuanLyTonDauKy
 
             Int32 ID_Kho = Int32.Parse(c.SelectedValue.ToString());
 
-            gridTonDauKy.DataSource = TonDauKy.GetAll(cbKhoNhap.Text);
+            gridTonDauKy.DataSource = TonDauKy.GetAll(cbKhoNhap.Text, cbMaVatTu.Text, cbTenVatTu.Text, cbChatLuong.Text);
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             cbKhoNhap.SelectedIndex = -1;
             LoadData();
+        }
+
+        private void btnXem_Click(object sender, EventArgs e)
+        {
+            gridTonDauKy.DataSource = TonDauKy.GetAll(cbKhoNhap.Text,cbMaVatTu.Text,cbTenVatTu.Text,cbChatLuong.Text);
+        }
+
+        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable table = new clsDMVatTu().getThongTinTuMaVT(cbMaVatTu.GetItemText(this.cbMaVatTu.SelectedItem));// cbMaVatTu.Text);
+                if (table.Rows.Count == 0)
+                    return;
+                cbTenVatTu.Text = table.Rows[0]["ten_vat_tu"].ToString();
+            }
+            catch (Exception ex) { MessageBox.Show(Utilities.clsThamSoUtilities.COException(ex)); }
+            
+        }
+
+        private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cbMaVatTu_SelectedIndexChanged(sender, e);
+        }
+
+        private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clsDMVatTu vattu = new clsDMVatTu();
+            string Ma_Vat_Tu = vattu.getMaVatTu(cbTenVatTu.GetItemText(this.cbTenVatTu.SelectedItem));
+
+            cbMaVatTu.Text = Ma_Vat_Tu;
+
+            DataTable table = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+
+            if (table.Rows.Count == 0)
+                return;
+            cbMaVatTu.Text = table.Rows[0]["ma_vat_tu"].ToString();
+          
+          
+        }
+
+        private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cbTenVatTu_SelectedIndexChanged(sender, e);
         }
     }
 }

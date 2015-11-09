@@ -183,7 +183,7 @@ namespace Inventory.EntityClass
                 var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                                   join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                   where e.Ten_kho.Contains(ten_kho) 
-                                  && ep.isNhapNgoai == nhapngoai && ep.isCanTru  == cantru && ep.isDelete ==false
+                                  && ep.isNhapNgoai == nhapngoai && ep.isCanTru  == cantru
                                   select new
                                   {
                                      ma_phieu = ep.Ma_phieu_nhap,
@@ -212,7 +212,7 @@ namespace Inventory.EntityClass
             {
                var  entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
-                                  where e.Ten_kho.Contains(ten_kho) && ep.Da_phan_kho == status && ep.isDelete == false
+                                  where e.Ten_kho.Contains(ten_kho) && ep.Da_phan_kho == status 
                               select new
                               {
                                   ma_phieu = ep.Ma_phieu_nhap,

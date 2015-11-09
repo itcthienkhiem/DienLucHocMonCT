@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -122,22 +122,22 @@
             this.gridTheKho.AllowUserToAddRows = false;
             this.gridTheKho.AllowUserToDeleteRows = false;
             this.gridTheKho.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridTheKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridTheKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gridTheKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridTheKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridTheKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTheKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTheKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.gridTheKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTheKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
@@ -270,6 +270,7 @@
             this.cbMaVatTu.Name = "cbMaVatTu";
             this.cbMaVatTu.Size = new System.Drawing.Size(207, 50);
             this.cbMaVatTu.TabIndex = 50;
+            this.cbMaVatTu.SelectedIndexChanged += new System.EventHandler(this.cbMaVatTu_SelectedIndexChanged);
             this.cbMaVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbMaVatTu_SelectionChangeCommitted_1);
             this.cbMaVatTu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbMaVatTu_KeyDown);
             // 
@@ -441,6 +442,8 @@
             this.cbTenVatTu.Name = "cbTenVatTu";
             this.cbTenVatTu.Size = new System.Drawing.Size(466, 50);
             this.cbTenVatTu.TabIndex = 79;
+            this.cbTenVatTu.SelectedIndexChanged += new System.EventHandler(this.cbTenVatTu_SelectedIndexChanged);
+            this.cbTenVatTu.SelectionChangeCommitted += new System.EventHandler(this.cbTenVatTu_SelectionChangeCommitted);
             // 
             // frmTheKho
             // 
@@ -467,6 +470,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmTheKho";
             this.Text = "frmTheKho";
+            this.Load += new System.EventHandler(this.frmTheKho_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridTheKho)).EndInit();
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();

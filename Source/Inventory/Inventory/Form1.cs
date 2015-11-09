@@ -439,7 +439,7 @@ namespace Inventory
         {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmDanhSachVatTuTrongKho frm = new frmDanhSachVatTuTrongKho();
+                frmTonKho frm = new frmTonKho();
                 frm.Text = "Nhập tồn thực trong kho";
 
                 foreach (Form f in this.MdiChildren)

@@ -33,6 +33,7 @@ namespace Inventory.QuanLyTonDauKy
             cbMaVatTu.AutoCompleteSource = AutoCompleteSource.CustomSource;
             clsDMVatTu vt = new clsDMVatTu();
             clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_Vat_tu", "Ma_vat_tu");
+            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "ID_Vat_tu", "Ten_vat_tu");
             clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
 
             cbMaVatTu.SelectedIndex = -1;
@@ -185,6 +186,41 @@ namespace Inventory.QuanLyTonDauKy
             frm.MdiParent = this.ParentForm;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            clsDMVatTu vattu = new clsDMVatTu();
+            string Ma_Vat_Tu = vattu.getMaVatTu(cbTenVatTu.GetItemText(this.cbTenVatTu.SelectedItem));
+
+            cbMaVatTu.Text = Ma_Vat_Tu;
+
+            DataTable table = vattu.getData_By_MaVatTu(Ma_Vat_Tu);
+
+          
+            if (table.Rows.Count == 0)
+                return;
+            cbMaVatTu.Text = table.Rows[0]["ma_vat_tu"].ToString();
+            int iddvt = int.Parse(table.Rows[0]["ID_don_vi_tinh"].ToString());
+            clsDM_DonViTinh dvt = new clsDM_DonViTinh();
+            string tenDVT = dvt.getTenDVTTuMa(iddvt);
+            txtDVT.Text = tenDVT;
+        }
+
+        private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbTenVatTu_SelectionChangeCommitted(sender, e);
+        }
+
+        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbMaVatTu_SelectionChangeCommitted_1(sender, e);
+        }
+
+        private void frmTheKho_Load(object sender, EventArgs e)
+        {
+
+            dtTuNgay.Value = DateTime.Now.AddDays(-10);
         }
     }
 }

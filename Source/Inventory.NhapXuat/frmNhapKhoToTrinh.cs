@@ -1211,7 +1211,7 @@ namespace Inventory.NhapXuat
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) {  }
         }
 
         private void cbTenVatTu_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1233,7 +1233,7 @@ namespace Inventory.NhapXuat
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { }
         }
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
@@ -1308,6 +1308,16 @@ namespace Inventory.NhapXuat
         {
             if (rdoMuonNo.Checked == true)
             txtMaPhieuNhap.Text = RandomMaPhieu("MN");
+        }
+
+        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbMaVatTu_SelectionChangeCommitted(sender, e);
+        }
+
+        private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbTenVatTu_SelectionChangeCommitted(sender, e);
         }
 
 

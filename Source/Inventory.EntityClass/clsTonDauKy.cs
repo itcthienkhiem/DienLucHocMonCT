@@ -16,7 +16,42 @@ namespace Inventory.EntityClass
         { }
 
       //  SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
+        public DataTable GetAll(string name, string mavattu, string tenvattu, string TenChatLuong)
+        {
 
+               DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Vat_Tu_Goi_Dau_Ky
+                          join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                          join f in help.ent.DM_Kho on d.ID_kho equals f.ID_kho
+                          join gl in help.ent.Chat_luong on d.ID_chat_luong equals gl.Id_chat_luong
+
+
+                          where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(name)&& e.Ten_vat_tu .Contains(tenvattu)
+                          && e.Ma_vat_tu.Contains(mavattu) 
+                          group d by new { d.Ma_vat_tu, e.Ten_vat_tu , f.Ten_kho,gl.Loai_chat_luong} into gs
+                          let TotalPoints = gs.Sum(m => m.So_Luong)
+                          orderby TotalPoints descending
+
+                          select new
+                          {
+                              ten_kho = gs.Key.Ten_kho,
+
+                            
+
+                              Chat_luong = gs.Key.Loai_chat_luong,
+
+                              Ma_vat_tu = gs.Key.Ma_vat_tu,
+                              ten_vat_tu = gs.Key.Ten_vat_tu,
+                              so_luong = TotalPoints
+                          }).ToList();
+                dbcxtransaction.Commit();
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+       
+        }
         public DataTable GetAll(string name)
         {
 

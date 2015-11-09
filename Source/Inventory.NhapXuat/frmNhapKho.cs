@@ -1161,7 +1161,7 @@ namespace Inventory.NhapXuat
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) {  }
         }
 
         private void txtSLYC_KeyPress(object sender, KeyPressEventArgs e)
@@ -1252,7 +1252,17 @@ namespace Inventory.NhapXuat
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { }
+        }
+
+        private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbMaVatTu_SelectionChangeCommitted_1(sender, e);
+        }
+
+        private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbTenVatTu_SelectionChangeCommitted(sender, e);
         }
 
 

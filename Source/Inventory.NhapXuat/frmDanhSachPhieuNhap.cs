@@ -543,6 +543,11 @@ namespace Inventory.NhapXuat
             phieuno.Show();
         }
 
+        private void frmDanhSachPhieuNhap_Load(object sender, EventArgs e)
+        {
+        
+        }
+
 
     }
 }

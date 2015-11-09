@@ -61,7 +61,7 @@ namespace Inventory.NhapXuat
         {
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Open excel File";
-            theDialog.Filter = "xlsx files|*.xlsx";
+            theDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
             theDialog.InitialDirectory = @"C:\";
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
@@ -255,37 +255,38 @@ namespace Inventory.NhapXuat
                                 return;
                             }
 
-                        }
-                        clsChi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-                        ctpn.Ma_vat_tu = Ma_vat_tu;
-                        ctpn.Ma_phieu_nhap = Ma_phieu_nhap;
-                        ctpn.ID_Chat_luong = Chat_luong.Contains("mới") ? 1 : 2;
-                        //kiểm tra xem vật tư đã có trong csdl chưa nếu chưa thêm vào 
-                        clsDM_DonViTinh DMDVT = new clsDM_DonViTinh();
-                        if (ctpn.CheckTonTaiSoDK(help)==false)
-                        {
 
-                            DMDVT.Ten_don_vi_tinh = DVT;
-                            if (DMDVT.hasDuplicateRow(help) == false)
+                            clsChi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+                            ctpn.Ma_vat_tu = Ma_vat_tu;
+                            ctpn.Ma_phieu_nhap = Ma_phieu_nhap;
+                            ctpn.ID_Chat_luong = Chat_luong.Contains("mới") ? 1 : 2;
+                            //kiểm tra xem vật tư đã có trong csdl chưa nếu chưa thêm vào 
+                            clsDM_DonViTinh DMDVT = new clsDM_DonViTinh();
+                            if (ctpn.CheckTonTaiSoDK(help) == false)
                             {
-                                //nếu chưa có thì insert dòng mới 
-                                DMDVT.Insert(help);
+
+                                DMDVT.Ten_don_vi_tinh = DVT;
+                                if (DMDVT.hasDuplicateRow(help) == false)
+                                {
+                                    //nếu chưa có thì insert dòng mới 
+                                    DMDVT.Insert(help);
+                                }
+                                //tiến hành insert 5000 dòng dữ liệu từ phiếu nhập
                             }
-                            //tiến hành insert 5000 dòng dữ liệu từ phiếu nhập
+                            ctpn.ID_Don_vi_tinh = DMDVT.getMATuTen(DVT, help);
+                            //kiểm tra mã vật tư đã tồn tại chưa trong CSDL
+                            clsDMVatTu vt = new clsDMVatTu();
+                            vt.Ma_vat_tu = Ma_vat_tu;
+                            vt.Ten_vat_tu = Ten_vat_tu;
+                            vt.ID_Don_vi_tinh = ctpn.ID_Don_vi_tinh;
+                            if (vt.KiemTraTrungMa(help) == false)
+                            {
+                                vt.Insert(help);
+                            }
+                            ctpn.So_luong_thuc_lanh = decimal.Parse(So_luong_thuc_lanh);
+                            ctpn.Insert(help);
+                            backgroundWorker1.ReportProgress(i);
                         }
-                        ctpn.ID_Don_vi_tinh = DMDVT.getMATuTen(DVT, help);
-                        //kiểm tra mã vật tư đã tồn tại chưa trong CSDL
-                        clsDMVatTu vt = new clsDMVatTu();
-                        vt.Ma_vat_tu = Ma_vat_tu;
-                        vt.Ten_vat_tu = Ten_vat_tu;
-                        vt.ID_Don_vi_tinh = ctpn.ID_Don_vi_tinh;
-                        if (vt.KiemTraTrungMa(help) == false)
-                        {
-                            vt.Insert(help);
-                        }
-                        ctpn.So_luong_thuc_lanh = decimal.Parse(So_luong_thuc_lanh);
-                        ctpn.Insert(help);
-                        backgroundWorker1.ReportProgress(i);
                     }
                     dbcxtransaction.Commit();
                     backgroundWorker1.ReportProgress(0);
