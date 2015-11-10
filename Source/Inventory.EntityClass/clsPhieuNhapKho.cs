@@ -225,7 +225,7 @@ namespace Inventory.EntityClass
         ///  lay danh sach phieu no da duoc duyet 
         /// </summary>
         /// <returns></returns>
-        public static DataTable GetAllPhieuNoDaDuyet(string maphieu)
+        public static bool GetAllPhieuNoDaDuyet(string maphieu)
         {
 
             DatabaseHelper help = new DatabaseHelper();
@@ -243,10 +243,13 @@ namespace Inventory.EntityClass
 
               for (int i = 0; i < entryPointPN.Count; i++)
               {
-                  string ma_vat_tu = "";
+                  string ma_vat_tu = entryPointPN[i].Ma_vat_tu;
                   var entryPointCT = (from ep in help.ent.Phieu_Nhap_Kho
                                     join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                                      join f in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals f.Ma_phieu_nhap
                                     where ep.isNhapNgoai == true && ep.Da_phan_kho == true && ep.isCanTru == false
+
+                                    && f.Ma_vat_tu == ma_vat_tu
                                     select new
                                     {
                                         ep.Ma_phieu_nhap,
@@ -266,8 +269,11 @@ namespace Inventory.EntityClass
                                         ep.isCanTru,
                                         ep.isNhapNgoai,
                                     }).ToList();
+                  if (entryPointCT!=null)
+                      return true;
+
               }
-              return Utilities.clsThamSoUtilities.ToDataTable(entryPointPN);
+              return false;
         }
 
         public static bool KTVTChuaDuyet(string ma_Phieunhap)
