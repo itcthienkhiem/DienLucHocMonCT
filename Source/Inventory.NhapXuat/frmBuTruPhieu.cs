@@ -37,12 +37,14 @@ namespace Inventory.NhapXuat
         DataTable dtPhieuNhap;
         DataTable dtPhieuNhapNo;
         frmDanhSachPhieuNhap dspn;
-        public frmBuTruPhieu(frmDanhSachPhieuNhap dspn, string maphieu)
+        public string LoaiPhieu = "";
+        public frmBuTruPhieu(frmDanhSachPhieuNhap dspn, string maphieu , string loaiPhieu)
         {
             InitializeComponent();
             this.maphieu = maphieu;
             Load_Data();
             this.dspn = dspn;
+            this.LoaiPhieu = loaiPhieu;
         }
         public void Load_Data()
         {

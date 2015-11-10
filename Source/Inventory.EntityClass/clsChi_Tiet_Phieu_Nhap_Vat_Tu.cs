@@ -143,7 +143,7 @@ namespace Inventory.EntityClass
             return true;
         }
 
-
+       
         /// <summary>
         /// Lấy dữ liệu theo "Mã phiếu nhập"
         /// - Trả về Data để set lên frm

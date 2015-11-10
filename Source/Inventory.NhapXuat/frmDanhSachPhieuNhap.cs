@@ -308,37 +308,21 @@ namespace Inventory.NhapXuat
 
         private void btnDuyetPhieu_Click(object sender, EventArgs e)
         {
+           
             XuLyNhap_Phieu();
             //  string soluong = SelectedRow.Cells["So_luong"].Value.ToString();
 
         }
-
-        private void XuLyNhap_Phieu()
+        public void CheckPhieuNo ()
         {
-            try
-            {
-                Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
-                string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
-                int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-
-                bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
-
-
-                if (Da_phan_kho == true)
+          int? ID_Check = null;
+          Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+          string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
+                try
                 {
-                    MessageBox.Show("Phiếu này đã duyệt và phân kho ");
-                    return;
+                   ID_Check = (int?)gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value ?? null;
                 }
-                //neu phieu nhap la XD thi co cac truong hop sau 
-                // kiem ttra xem danh sach vat tu trong danh sach phieu nhap la nhap ngoai va no la nhap tu to trinh hoac MN ko ?
-                // neu trong to tinh co vat tu trung voi vat tu phieu nhap 
-                // thi nguoi dung tien hanh chuyen qua man hinh tra no 
-                DatabaseHelper help = new DatabaseHelper();
-                help.ConnectDatabase();
-
-
-                int? ID_Check = (int?)gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value;
-
+                catch (Exception ex) { }
                 clsLoaiPhieuNhap lpn = new clsLoaiPhieuNhap();
                 if (ID_Check != null)
                 {
@@ -357,12 +341,38 @@ namespace Inventory.NhapXuat
     MessageBoxIcon.Question);
                             if (result2 == DialogResult.Yes)
                             {
-                                frmBuTruPhieu butru = new frmBuTruPhieu();
+                                frmBuTruPhieu butru = new frmBuTruPhieu(this,maphieu,"");
                                 butru.Show();
+                                return;
                             }
                         }
                     }
                 }
+        }
+        private void XuLyNhap_Phieu()
+        {
+            try
+            {
+                Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+                string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
+                int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
+
+                bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
+
+
+                if (Da_phan_kho == true)
+                {
+                    MessageBox.Show("Phiếu này đã duyệt và phân kho ");
+                    return;
+                }
+                CheckPhieuNo();
+                //neu phieu nhap la XD thi co cac truong hop sau 
+                // kiem ttra xem danh sach vat tu trong danh sach phieu nhap la nhap ngoai va no la nhap tu to trinh hoac MN ko ?
+                // neu trong to tinh co vat tu trung voi vat tu phieu nhap 
+                // thi nguoi dung tien hanh chuyen qua man hinh tra no 
+                DatabaseHelper help = new DatabaseHelper();
+                help.ConnectDatabase();
+              
 
                 // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
                 DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
@@ -599,7 +609,7 @@ namespace Inventory.NhapXuat
             //bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());
             // if (isCanTru == true)
             {
-                frmBuTruPhieu butru = new frmBuTruPhieu(this, maphieu);
+                frmBuTruPhieu butru = new frmBuTruPhieu(this, maphieu,"");
                 butru.Show();
                 return;
             }
