@@ -144,7 +144,8 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
-                txtMaPhieuNhap.Text = RandomMaPhieu("TT");
+                if(isLoaiPhieu == "TT")
+                        txtMaPhieuNhap.Text = RandomMaPhieu("TT");
                 if (rdoMuonNo.Checked == true)
                 {
                     txtMaPhieuNhap.Text = RandomMaPhieu("MN");

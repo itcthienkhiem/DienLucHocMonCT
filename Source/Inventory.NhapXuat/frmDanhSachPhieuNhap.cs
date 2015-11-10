@@ -333,16 +333,36 @@ namespace Inventory.NhapXuat
                     // kiem ttra xem danh sach vat tu trong danh sach phieu nhap la nhap ngoai va no la nhap tu to trinh hoac MN ko ?
                     // neu trong to tinh co vat tu trung voi vat tu phieu nhap 
                     // thi nguoi dung tien hanh chuyen qua man hinh tra no 
-                int? ID_loai_phieu_nhap = (int?)gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value;
-                clsLoaiPhieuNhap lpn = new clsLoaiPhieuNhap();
-                if(ID_loai_phieu_nhap !=null)
-                    lpn.getTenLPN((int)ID_loai_phieu_nhap);
+                DatabaseHelper help = new DatabaseHelper();
+                help.ConnectDatabase();
 
+
+                int? ID_Check = (int?)gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value;
+
+                clsLoaiPhieuNhap lpn = new clsLoaiPhieuNhap();
+                if (ID_Check != null)
+                {
+
+                    string name = lpn.getTenLPN((int)ID_Check);
+                    if (name.First().ToString() == "X")
+                    { 
+                        // lay danh sach nhung phieu nhap ngoai,tu to trinh va muon ngoai chua thuc hien tra no 
+                        clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+                        DataTable temp = clsPhieuNhapKho.GetAllPhieuNoDaDuyet(maphieu);
+                        if (temp != null)
+                        {
+                            DialogResult result2 = MessageBox.Show("Bạn ",
+    "Important Query",
+    MessageBoxButtons.YesNoCancel,
+    MessageBoxIcon.Question);
+
+                        }
+                    }
+                }
 
                 // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
                 DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
-                DatabaseHelper help = new DatabaseHelper();
-                help.ConnectDatabase();
+              
                 //nếu phiếu này là cấn trừ 
                 //hiển thị form cấn trừ nợ cho vật tư 
                 // bool? isCanTru = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isCanTru"].Value.ToString());

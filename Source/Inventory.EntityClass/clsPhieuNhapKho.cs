@@ -80,6 +80,8 @@ namespace Inventory.EntityClass
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
 
         }
+
+
         public static int? GetMaxValue()
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -128,6 +130,67 @@ namespace Inventory.EntityClass
                               }).ToList();
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
         }
+
+
+        /// <summary>
+        /// ham xu ly thong tin neu phieu nhap vao la X thi tien hanh kiem tra xem co ton tai phieu no nao co soluong 
+        /// </summary>
+        /// <returns></returns>
+        public static bool XuLyKiemTraPhieuNhapLaX(string maphieu)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals e.Ma_phieu_nhap
+                              where ep.Ma_phieu_nhap == maphieu
+                              select new { 
+                                e.Ma_vat_tu,
+                                e.So_luong_thuc_lanh,
+
+                              }).FirstOrDefault();
+            if (entryPoint != null)
+            {
+                var entryPointNo = (from ep in help.ent.Phieu_Nhap_Kho
+                                  join e in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals e.Ma_phieu_nhap
+                                  where ep.isNhapNgoai == true && ep.isCanTru == false  
+                                  select new
+                                  {
+
+                                      e.Ma_vat_tu,
+                                      e.So_luong_thuc_lanh,
+
+                                  }).FirstOrDefault();
+            }
+
+
+
+                              //join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                              //where ep.isNhapNgoai == true
+                              //select new
+                              //{
+                              //    ep.Ma_phieu_nhap,
+                              //    ep.Kho_nhan,
+                              //    ep.Ngay_lap,
+                              //    ep.Ly_do,
+                              //    ep.So_hoa_don,
+                              //    ep.Cong_trinh,
+                              //    ep.Dia_Chi,
+                              //    ep.ID_Loai_Phieu_Nhap,
+                              //    ep.Kho_xuat_ra,
+                              //    ep.Da_phan_kho,
+                              //    ep.ID_phieu_nhap,
+                              //    ep.ID_kho,
+                              //    e.Ten_kho,
+                              //    ep.isGoiDau,
+                              //    ep.isCanTru,
+                              //    ep.isNhapNgoai,
+                              //}).ToList();
+            return true;
+        }
+        
+
         public static DataTable GetAllPhieuNo()
         {
 
@@ -158,6 +221,54 @@ namespace Inventory.EntityClass
                               }).ToList();
             return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
         }
+        /// <summary>
+        ///  lay danh sach phieu no da duoc duyet 
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetAllPhieuNoDaDuyet(string maphieu)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+              var entryPointPN = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals e.Ma_phieu_nhap
+                              where ep.Ma_phieu_nhap == maphieu
+                                      select new {
+            e.Ma_vat_tu ,
+            e.So_luong_thuc_lanh,
+        }
+                                      ).ToList();
+
+
+
+              for (int i = 0; i < entryPointPN.Count; i++)
+              {
+                  string ma_vat_tu = "";
+                  var entryPointCT = (from ep in help.ent.Phieu_Nhap_Kho
+                                    join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                                    where ep.isNhapNgoai == true && ep.Da_phan_kho == true && ep.isCanTru == false
+                                    select new
+                                    {
+                                        ep.Ma_phieu_nhap,
+                                        ep.Kho_nhan,
+                                        ep.Ngay_lap,
+                                        ep.Ly_do,
+                                        ep.So_hoa_don,
+                                        ep.Cong_trinh,
+                                        ep.Dia_Chi,
+                                        ep.ID_Loai_Phieu_Nhap,
+                                        ep.Kho_xuat_ra,
+                                        ep.Da_phan_kho,
+                                        ep.ID_phieu_nhap,
+                                        ep.ID_kho,
+                                        e.Ten_kho,
+                                        ep.isGoiDau,
+                                        ep.isCanTru,
+                                        ep.isNhapNgoai,
+                                    }).ToList();
+              }
+              return Utilities.clsThamSoUtilities.ToDataTable(entryPointPN);
+        }
 
         public static bool KTVTChuaDuyet(string ma_Phieunhap)
         {
@@ -185,6 +296,7 @@ namespace Inventory.EntityClass
                                   join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                   where e.Ten_kho.Contains(ten_kho)
                                   && ep.isNhapNgoai.ToString().Contains(nhapngoai) && ep.isCanTru.ToString().Contains(cantru)
+
                                   select new
                                   {
                                      ma_phieu = ep.Ma_phieu_nhap,
@@ -241,6 +353,59 @@ namespace Inventory.EntityClass
                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
             }
          
+        }
+
+        /// <summary>
+        /// ham nay lay len danh sach cac phieu nhap chua phan kho 
+        /// chua can tru 
+        /// gom 2 loai : phieu tu to trinh va phieu tu muon ngoai 
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="ten_kho"></param>
+        /// <param name="nhapngoai"></param>
+        /// <param name="cantru"></param>
+        /// <returns></returns>
+        public DataTable SearchDSPN( string ten_kho, string nhapngoai, string cantru)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+
+        
+            {
+                var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                                  join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                                  where e.Ten_kho.Contains(ten_kho)
+                                  && ep.isNhapNgoai.ToString().Contains(nhapngoai) && ep.isCanTru.ToString().Contains(cantru)
+                                  && ep.Da_phan_kho == false
+
+                                  select new
+                                  {
+                                      ma_phieu = ep.Ma_phieu_nhap,
+                                      ep.Kho_nhan,
+                                      ngay_lap = ep.Ngay_lap,
+                                      ly_do = ep.Ly_do,
+                                      ep.So_hoa_don,
+                                      ep.Cong_trinh,
+                                      ep.Dia_Chi,
+                                      ep.ID_Loai_Phieu_Nhap,
+                                      ep.Kho_xuat_ra,
+                                      ep.Da_phan_kho,
+                                      ep.ID_phieu_nhap,
+                                      ep.ID_kho,
+                                      Ten_kho = e.Ten_kho,
+                                      isGoiDau = ep.isGoiDau,
+                                      isCanTru = ep.isCanTru,
+                                      isNhapNgoai = ep.isNhapNgoai,
+                                      isChoMuonNgoai = ep.isChoMuonNgoai,
+                                      ngay_xac_nhan = ep.ngay_xac_nhan,
+                                  }
+
+           ).ToList();
+                return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+            }
+          
+              
+
         }
         public DataTable GetAllPhieuNo(string maPhieu)
         {
