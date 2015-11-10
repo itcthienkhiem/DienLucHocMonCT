@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.txtTenDuongDan = new System.Windows.Forms.TextBox();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
@@ -50,8 +50,8 @@
             this.cbLPN = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbKhoNhan = new System.Windows.Forms.ComboBox();
-            this.rdoPhieuGoiDau = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoPhieuGoiDau = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,22 +74,22 @@
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToDeleteRows = false;
             this.gridDanhSachPhieuNhap.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDanhSachPhieuNhap.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridDanhSachPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDanhSachPhieuNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridDanhSachPhieuNhap.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDanhSachPhieuNhap.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridDanhSachPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(-2, 212);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
@@ -268,21 +268,10 @@
             this.cbKhoNhan.Size = new System.Drawing.Size(121, 21);
             this.cbKhoNhan.TabIndex = 70;
             // 
-            // rdoPhieuGoiDau
-            // 
-            this.rdoPhieuGoiDau.AutoSize = true;
-            this.rdoPhieuGoiDau.Location = new System.Drawing.Point(50, 50);
-            this.rdoPhieuGoiDau.Name = "rdoPhieuGoiDau";
-            this.rdoPhieuGoiDau.Size = new System.Drawing.Size(63, 17);
-            this.rdoPhieuGoiDau.TabIndex = 72;
-            this.rdoPhieuGoiDau.TabStop = true;
-            this.rdoPhieuGoiDau.Text = "Gối đầu";
-            this.rdoPhieuGoiDau.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbLPN);
             this.groupBox1.Controls.Add(this.rdoPhieuGoiDau);
+            this.groupBox1.Controls.Add(this.cbLPN);
             this.groupBox1.Controls.Add(this.btnThem);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbKhoNhan);
@@ -295,6 +284,16 @@
             this.groupBox1.TabIndex = 73;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chức năng";
+            // 
+            // rdoPhieuGoiDau
+            // 
+            this.rdoPhieuGoiDau.AutoSize = true;
+            this.rdoPhieuGoiDau.Location = new System.Drawing.Point(60, 52);
+            this.rdoPhieuGoiDau.Name = "rdoPhieuGoiDau";
+            this.rdoPhieuGoiDau.Size = new System.Drawing.Size(64, 17);
+            this.rdoPhieuGoiDau.TabIndex = 71;
+            this.rdoPhieuGoiDau.Text = "Gối đầu";
+            this.rdoPhieuGoiDau.UseVisualStyleBackColor = true;
             // 
             // frmNhapTuFile
             // 
@@ -342,7 +341,7 @@
         private System.Windows.Forms.ComboBox cbLPN;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbKhoNhan;
-        private System.Windows.Forms.RadioButton rdoPhieuGoiDau;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox rdoPhieuGoiDau;
     }
 }

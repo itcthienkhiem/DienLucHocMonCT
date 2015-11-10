@@ -52,6 +52,8 @@ namespace Inventory
             frm.MdiParent = this;
             // Display the new form.
             frm.Show();
+         
+
         }
 
         private void danhMụcKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,7 +61,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMKho frm = new frmDMKho();
-                frm.Text = "Danh mục kho";
+                frm.Name = "Danh mục kho";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -74,10 +76,8 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
+              
             }
         }
         private void danhMụcVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMVatTu frm = new frmDMVatTu();
-                frm.Text = "Danh mục vật tư";
+                frm.Name = "Danh mục vật tư";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -100,10 +100,8 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+            
+              
             }
         }
 
@@ -112,7 +110,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKho frm = new frmNhapKho("PN");
-                frm.Text = "Màn hình nhập vật tư";
+                frm.Name = "Màn hình nhập vật tư";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -127,10 +125,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -139,7 +134,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDanhSachPhieuNhap frm = new frmDanhSachPhieuNhap();
-                frm.Text = "Danh sách phiếu nhập vật tư";
+                frm.Name = "Danh sách phiếu nhập vật tư";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -154,10 +149,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
@@ -166,7 +158,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMDonViTinh frm = new frmDMDonViTinh();
-                frm.Text = "Danh mục đơn vị tính";
+                frm.Name = "Danh mục đơn vị tính";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -181,10 +173,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
             }
         }
 
@@ -193,7 +182,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMNhanVien frm = new frmDMNhanVien();
-                frm.Text = "Danh mục nhân viên";
+                frm.Name = "Danh mục nhân viên";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -208,10 +197,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
             }
         }
 
@@ -225,7 +211,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmTonDauKy frm = new frmTonDauKy();
-                frm.Text = "Quản lý tồn đầu kỳ";
+                frm.Name = "Quản lý tồn đầu kỳ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -240,10 +226,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+                
             }
         }
 
@@ -335,7 +318,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam();
-                frm.Text = "Xuất vật tư cho nhân viên";
+                frm.Name = "Xuất vật tư cho nhân viên";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -350,10 +333,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
@@ -362,7 +342,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDanhSachPhieuXuatTamVatTu frm = new frmDanhSachPhieuXuatTamVatTu();
-                frm.Text = "Danh sách phiếu xuất vật tư cho nhân viên";
+                frm.Name = "Danh sách phiếu xuất vật tư cho nhân viên";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -377,10 +357,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -389,7 +366,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapTonDauKy frm = new frmNhapTonDauKy();
-                frm.Text = "Nhập tồn đầu kỳ";
+                frm.Name = "Nhập tồn đầu kỳ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -403,36 +380,33 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
         private void phânKhoVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
-            {
-                frmVatTuPhanKho frm = new frmVatTuPhanKho();
-                frm.Text = "Nhập tồn đầu kỳ";
+            //if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            //{
+            //    frmVatTuPhanKho frm = new frmVatTuPhanKho();
+            //    frm.Name = "Nhập tồn đầu kỳ";
 
-                foreach (Form f in this.MdiChildren)
-                {
-                    if (f.Name == frm.Name)
-                    {
-                        f.Activate();
-                        return;
-                    }
-                }
+            //    foreach (Form f in this.MdiChildren)
+            //    {
+            //        if (f.Name == frm.Name)
+            //        {
+            //            f.Activate();
+            //            return;
+            //        }
+            //    }
 
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
-            }
+            //    frm.MdiParent = this;
+            //    frm.WindowState = FormWindowState.Maximized;
+            //    frm.Show();
+            //    for (int i = 0; i < frms.Count; i++)
+            //        frms[i].Close();
+            //    
+            //    frms.Add(frm);
+            //}
         }
 
         private void danhSáchVậtTưTồnThựcTrongKhoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -440,7 +414,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmTonKho frm = new frmTonKho();
-                frm.Text = "Nhập tồn thực trong kho";
+                frm.Name = "Nhập tồn thực trong kho";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -454,10 +428,8 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
+              
             }
         }
 
@@ -476,7 +448,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmXuatTamVatTuChoNhanVien frm = new frmXuatTamVatTuChoNhanVien();
-                frm.Text = "Xuất tạm vật tư cho nhân viên";
+                frm.Name = "Xuất tạm vật tư cho nhân viên";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -490,10 +462,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -502,7 +471,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMLoaiPhieuNhap frm = new frmDMLoaiPhieuNhap();
-                frm.Text = "Loại phiếu nhập ";
+                frm.Name = "Loại phiếu nhập ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -516,10 +485,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
             }
         }
 
@@ -528,7 +494,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmTheKho frm = new frmTheKho();
-                frm.Text = "Thẻ kho ";
+                frm.Name = "Thẻ kho ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -542,10 +508,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+                
             }
         }
 
@@ -554,7 +517,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapTuFile frm = new frmNhapTuFile();
-                frm.Text = "Nhập từ file  ";
+                frm.Name = "Nhập từ file  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -568,10 +531,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -580,7 +540,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDMChatLuong frm = new frmDMChatLuong();
-                frm.Text = "Chất lượng   ";
+                frm.Name = "Chất lượng   ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -594,10 +554,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
@@ -626,7 +583,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKho frm = new frmNhapKho("HN");
-                frm.Text = "Hoàn nhập";
+                frm.Name = "Hoàn nhập";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -640,10 +597,8 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+                
+               
             }
         }
 
@@ -652,7 +607,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmTheGoiDau frm = new frmTheGoiDau();
-                frm.Text = "Thẻ Gói Đầu  ";
+                frm.Name = "Thẻ Gói Đầu  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -666,10 +621,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -678,7 +630,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNoVatTu frm = new frmNoVatTu();
-                frm.Text = "Nợ vật tư  ";
+                frm.Name = "Nợ vật tư  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -692,10 +644,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -704,7 +653,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh();
-                frm.Text = "Nhập kho tờ trình , biên bản ";
+                frm.Name = "Nhập kho tờ trình , biên bản ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -718,10 +667,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
@@ -730,7 +676,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDanhSachPhieuNo frm = new frmDanhSachPhieuNo();
-                frm.Text = "Danh sách phiêu nơ ";
+                frm.Name = "Danh sách phiêu nơ ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -744,10 +690,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
@@ -756,7 +699,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmDanhSachTraNo frm = new frmDanhSachTraNo();
-                frm.Text = "Danh sách trả nợ phiếu nhập  ";
+                frm.Name = "Danh sách trả nợ phiếu nhập  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -770,24 +713,21 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+              
             }
         }
 
         private void đăngNhậpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDangNhap frm = new frmDangNhap();
-            frm.Text = "Đăng nhập  ";
+            frm.Name = "Đăng nhập  ";
             frm.Show();
         }
 
         private void quảnTrịNgườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmQuanTriNguoiDung frm = new frmQuanTriNguoiDung();
-            frm.Text = "Quản lý người dùng  ";
+            frm.Name = "Quản lý người dùng  ";
             frm.Show();
         }
 
@@ -796,7 +736,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("muonno");
-                frm.Text = "Nhâp Mượn Nợ Kho Khác  ";
+                frm.Name = "Nhâp Mượn Nợ Kho Khác  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -810,10 +750,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -822,7 +759,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("chomuonno");
-                frm.Text = "Nhâp Trả Nợ Kho Khác  ";
+                frm.Name = "Nhâp Trả Nợ Kho Khác  ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -836,10 +773,7 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+               
             }
         }
 
@@ -848,7 +782,7 @@ namespace Inventory
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
                 frmNhapKho frm = new frmNhapKho("PN");
-                frm.Text = "Màn hình nhập vật tư";
+                frm.Name = "Màn hình nhập vật tư";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -863,16 +797,52 @@ namespace Inventory
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Show();
-                for (int i = 0; i < frms.Count; i++)
-                    frms[i].Close();
-                frms.Clear();
-                frms.Add(frm);
+             
             }
         }
 
         private void nhậpGốiĐầuToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmNhapKho frm = new frmNhapKho("GD");
+            frm.Name = "Màn hình nhập gối đầu";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.Name == frm.Name)
+                {
+                    f.Activate();
+                    return;
+                }
+
+            }
+
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
            
+        }
+
+        private void lậpPhiếuTrảNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("trano");
+                frm.Name = "Lập Phiếu Trả Nợ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
         }
     }
 }

@@ -13,13 +13,14 @@ namespace Inventory.NhapXuat
     public partial class frmChiTietNhanVatTu : Form
     {
        // public event EventHandler<TextEventArgs> NewTextChanged;
-        public frmVatTuPhanKho f;
+        public frmVatTuChoMuon f;
         string maphieu;
         string mavattu;
         int idKho;
         decimal soluong;
+        
         int id_chatluong;
-        public frmChiTietNhanVatTu(frmVatTuPhanKho f, string maphieu, string mavattu, int idKho, decimal soluong, string tenvt, string tenkho, int id_chatluong)
+        public frmChiTietNhanVatTu(frmVatTuChoMuon f, string maphieu, string mavattu, int idKho, decimal soluong, string tenvt, string tenkho, int id_chatluong)
         {
             InitializeComponent();
             this.f = f;
@@ -66,6 +67,11 @@ namespace Inventory.NhapXuat
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmChiTietNhanVatTu_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtSoLuongTra;
         }
     }
 }

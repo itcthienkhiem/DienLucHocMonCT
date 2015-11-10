@@ -48,7 +48,7 @@ namespace Inventory.NhapXuat
             PanelButton.setDelegateFormAction(frmAction);
             // btnXoa.Enabled = false;
             //btnXemChiTiet.Enabled = false;
-            btnHuy.Enabled = false;
+        
             //enumButton dùng định danh button
             PanelButton.AddButton(enumButton.LamMoi, ref btnLamMoi);
             PanelButton.AddButton(enumButton.Dong, ref btnDong);
@@ -88,7 +88,7 @@ namespace Inventory.NhapXuat
         /// </summary>
         public void LoadData()
         {
-            gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, "", rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
+            gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, "", "", "");
             //       clsGiaoDienChung.initCombobox(cbKhoNhanVatTu, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             clsGiaoDienChung.initCombobox(cbbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
 
@@ -140,7 +140,10 @@ namespace Inventory.NhapXuat
 
         private void gridgridDanhSachPhieuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+            //DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
+            //string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
+            //gridMaster.DataSource = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(strMaPhieuNhap);
         }
 
         /**
@@ -288,12 +291,12 @@ namespace Inventory.NhapXuat
             try
             {
                 if (rdoChuaDuyet.Checked == true)
-                    gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(false, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
+                    gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(false, cbbKho.Text, rdoNhapNgoai.Checked.ToString(), false.ToString());
                 else
                     if (rdoDaDuyet.Checked == true)
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(true, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(true, cbbKho.Text, rdoNhapNgoai.Checked.ToString(), false.ToString());
                     else
-                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, cbbKho.Text, rdoNhapNgoai.Checked, rdoPhieuNo.Checked);
+                        gridDanhSachPhieuNhap.DataSource = phieuNhap.SearchDSPN(null, cbbKho.Text, rdoNhapNgoai.Checked.ToString(), false.ToString());
                 this.gridDanhSachPhieuNhap.Refresh();
                 // this.gridDanhSachPhieuNhap.Parent.Refresh();
             }
@@ -319,11 +322,23 @@ namespace Inventory.NhapXuat
                 int idKho = int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
 
                 bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
+
+
                 if (Da_phan_kho == true)
                 {
                     MessageBox.Show("Phiếu này đã duyệt và phân kho ");
                     return;
                 }
+                //neu phieu nhap la XD thi co cac truong hop sau 
+                    // kiem ttra xem danh sach vat tu trong danh sach phieu nhap la nhap ngoai va no la nhap tu to trinh hoac MN ko ?
+                    // neu trong to tinh co vat tu trung voi vat tu phieu nhap 
+                    // thi nguoi dung tien hanh chuyen qua man hinh tra no 
+                int? ID_loai_phieu_nhap = (int?)gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_loai_phieu_nhap"].Value;
+                clsLoaiPhieuNhap lpn = new clsLoaiPhieuNhap();
+                if(ID_loai_phieu_nhap !=null)
+                    lpn.getTenLPN((int)ID_loai_phieu_nhap);
+
+
                 // lấy tất cả danh sách các vật tư có mã phiếu nhập đó
                 DataTable tb = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(maphieu);
                 DatabaseHelper help = new DatabaseHelper();
@@ -524,6 +539,13 @@ namespace Inventory.NhapXuat
         {
             Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
             string maphieu = gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Ma_phieu"].Value.ToString();
+            bool Da_phan_kho = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["Da_phan_kho"].Value.ToString());
+            if (Da_phan_kho == true)
+            {
+                MessageBox.Show("Phiếu nhập đã xác nhận không trừ nợ được");
+                return;
+
+            }
             // phieu hoan nhap thi ko thuc hien thao tac tru no T
             // phieu to trinh - bien ban ko thuc hien tru no tuc la nhap ngoai
             //phieu goi dau ko tru no 
@@ -585,7 +607,35 @@ namespace Inventory.NhapXuat
 
         private void frmDanhSachPhieuNhap_Load(object sender, EventArgs e)
         {
-        
+
+        }
+
+        private void btnPhieuNo_Click(object sender, EventArgs e)
+        {
+            rdoNhapNgoai.Checked = true;
+            btnTimKiem_Click(sender, e);
+        }
+
+        private void gridDanhSachPhieuNhap_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 selectedRowCount = gridDanhSachPhieuNhap.CurrentCell.RowIndex;
+                DataGridViewRow SelectedRow = gridDanhSachPhieuNhap.Rows[selectedRowCount];
+                string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu"].Value.ToString();
+                gridMaster.DataSource = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(strMaPhieuNhap);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+
         }
 
 

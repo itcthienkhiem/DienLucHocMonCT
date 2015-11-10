@@ -37,10 +37,21 @@ namespace Inventory.NhapXuat
 
             //Setup một số component
             InitFormComponent();
-            if(loaiphieu.Equals("PN"))
-                lbHeader.Text="Màn hình Nhập Kho";
-            if(loaiphieu.Equals("HN"))
-                lbHeader.Text="Màn hình Hoàn Nhập";
+            if (loaiphieu.Equals("PN"))
+            {
+                rdoNone.Checked = true;
+                lbHeader.Text = "Màn hình Nhập Kho";
+            }
+            if (loaiphieu.Equals("HN"))
+            {
+                rdoNone.Checked = true;
+                lbHeader.Text = "Màn hình Hoàn Nhập";
+            }
+            if (loaiphieu.Equals("GD"))
+            {
+                lbHeader.Text = "Màn hình Nhập Gối Đầu";
+                rdoNhapGoiDau.Checked = true;
+            }
         }
         //public frmNhapKho(string lp)
         //{

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplashScreenThreaded", "Spl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.QuanLyNguoiDung", "Inventory.QuanLyNguoiDung\Inventory.QuanLyNguoiDung.csproj", "{9A8B577E-64DA-4BA2-8BC9-7BFF9F3F2C3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.UserControls", "Inventory.UserControls\Inventory.UserControls.csproj", "{69648D07-37B2-43FB-81F9-D42196583549}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,16 @@ Global
 		{9A8B577E-64DA-4BA2-8BC9-7BFF9F3F2C3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9A8B577E-64DA-4BA2-8BC9-7BFF9F3F2C3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9A8B577E-64DA-4BA2-8BC9-7BFF9F3F2C3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69648D07-37B2-43FB-81F9-D42196583549}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -113,11 +113,11 @@
     <Compile Include="frmNhapTuFile.Designer.cs">
       <DependentUpon>frmNhapTuFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVatTuPhanKho.cs">
+    <Compile Include="frmVatTuChoMuon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVatTuPhanKho.Designer.cs">
-      <DependentUpon>frmVatTuPhanKho.cs</DependentUpon>
+    <Compile Include="frmVatTuChoMuon.Designer.cs">
+      <DependentUpon>frmVatTuChoMuon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -156,8 +156,8 @@
     <EmbeddedResource Include="frmNhapTuFile.resx">
       <DependentUpon>frmNhapTuFile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVatTuPhanKho.resx">
-      <DependentUpon>frmVatTuPhanKho.cs</DependentUpon>
+    <EmbeddedResource Include="frmVatTuChoMuon.resx">
+      <DependentUpon>frmVatTuChoMuon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -238,6 +238,10 @@
     <ProjectReference Include="..\Inventory\Inventory.Models\Inventory.Models.csproj">
       <Project>{af07e61b-f4a5-4b74-b131-4ec8add3aa72}</Project>
       <Name>Inventory.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inventory\Inventory.UserControls\Inventory.UserControls.csproj">
+      <Project>{69648d07-37b2-43fb-81f9-d42196583549}</Project>
+      <Name>Inventory.UserControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

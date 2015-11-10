@@ -38,8 +38,10 @@ namespace Inventory.NhapXuat
             rdoMuonNo.Visible = false;
             rdoChoMuonNo.Visible = false;
             lbHeader.Text = "Màn hình Nhập Tờ Trình - Biên Bản";
+            isLoaiPhieu = "TT";
         }
         public bool isChoMuon = false;
+        public string isLoaiPhieu = "";
         public frmNhapKhoToTrinh(string no)
         {
             InitializeComponent();
@@ -52,14 +54,24 @@ namespace Inventory.NhapXuat
             txtMaPhieuNhap.Enabled = false;
             if (no.Equals("muonno"))
             {
+                isLoaiPhieu = "MN";
                 lbHeader.Text = "Màn hình Mượn Ngoài"; rdoMuonNo.Checked = true; rdoChoMuonNo.Enabled = false;
             }
-            else
-            { 
-
+           
+            if(no.Equals("chomuonno"))
+            {
+                isLoaiPhieu = "CMN";
                 lbHeader.Text = "Màn hình Cho Mượn Ngoài"; rdoChoMuonNo.Checked = true; rdoMuonNo.Enabled = false;
                 isChoMuon = rdoChoMuonNo.Checked;
 
+            }
+            if (no.Equals("trano"))
+            {
+                isLoaiPhieu = "TN";
+                lbHeader.Text = "Màn hình Lập Phiếu Trả Nợ"; rdoChoMuonNo.Checked = false; rdoMuonNo.Enabled = false;
+                  rdoTraNo.Visible = true;
+                  rdoTraNo.Checked = true;
+                
             }
         }
         /// <summary>
@@ -141,6 +153,10 @@ namespace Inventory.NhapXuat
                 {
                     txtMaPhieuNhap.Text = RandomMaPhieu("CMN");
                 }
+                if (rdoTraNo.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("TN");
+                }
                 txtMaPhieuNhap.Enabled = false;
                 //txtXuatTaiKho.Enabled = true;
             }
@@ -217,6 +233,8 @@ namespace Inventory.NhapXuat
                                     phieunhap.isChoMuonNgoai = true;
                               
                                 phieunhap.isNhapNgoai = true;
+                                
+
                                 if (phieunhap.Insert(help) == 1)
                                 {
 
