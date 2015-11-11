@@ -232,6 +232,26 @@ namespace Inventory.EntityClass
             }
         }
 
+        public decimal checkSLTonChoMuon(int id_kho, string mavattu, int idcl, decimal sl)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Ton_kho
+                                  join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                                  where d.ID_kho == id_kho && d.Ma_vat_tu == mavattu
+                                  select new
+                                  {
+                                      d.So_luong,
+                                  }).FirstOrDefault();
+                if (entryPoint != null && entryPoint.So_luong >= sl)
+                    return (decimal) entryPoint.So_luong;
+                
+                return 0;
+            }
+        }
+
         /// <summary>
         /// ham nay lay danh sach cac vat tu trong kho co ma kho va ma vat tu can tim de + them vat tu vao kho
         /// </summary>

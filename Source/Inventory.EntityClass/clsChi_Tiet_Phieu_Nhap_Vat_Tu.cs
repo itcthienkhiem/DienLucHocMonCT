@@ -9,6 +9,7 @@ using Inventory.Utilities;
 using Inventory.Models;
 using System.Linq;
 using System.Data.Entity;
+using System.Collections;
 namespace Inventory.EntityClass
 {
     public class clsChi_Tiet_Phieu_Nhap_Vat_Tu
@@ -216,6 +217,193 @@ namespace Inventory.EntityClass
 
 
         }
+
+        public DataTable GetAllVatTuChoTamUngHoanUng()
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+
+
+                                  join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                                  join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
+                                  join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
+                                  where f.isNhapNgoai == true && f.isChoMuonNgoai == true && f.Da_phan_kho == true && f.isChoMuonNgoai == true
+
+                                     group d by new { d.Ma_vat_tu, e.Ten_vat_tu ,g.Loai_chat_luong} into gs
+                          let TotalPoints = gs.Sum(m => m.So_luong_thuc_lanh)
+                          orderby TotalPoints descending
+
+
+                                  select new
+                                  {
+                                     
+                                     ma_vat_tu = gs.Key.Ma_vat_tu ,
+                                     gs.Key.Ten_vat_tu,
+                                   Loai_chat_luong=  gs.Key.Loai_chat_luong ,
+                                    So_luong_tam_ung =  TotalPoints,
+
+
+                                  }).ToList();
+
+                dbcxtransaction.Commit();
+                DataTable temp =  Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+
+
+                var entryPoint2 = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
+
+
+                                  join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                                  join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
+                                  join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
+                                  where f.isNhapNgoai == true  && f.Da_phan_kho == true && f.isTraNo ==true
+
+                                  group d by new { d.Ma_vat_tu, e.Ten_vat_tu, g.Loai_chat_luong } into gs
+                                  let TotalPoints = gs.Sum(m => m.So_luong_thuc_lanh)
+                                  orderby TotalPoints descending
+
+
+                                  select new
+                                  {
+                                     
+                                      ma_vat_tu = gs.Key.Ma_vat_tu,
+                                      gs.Key.Ten_vat_tu,
+                                      Loai_chat_luong = gs.Key.Loai_chat_luong,
+                                      So_luong_hoan_ung = TotalPoints,
+
+                                  }).ToList();
+
+
+                DataTable temp2 = Utilities.clsThamSoUtilities.ToDataTable(entryPoint2);
+                DataTable sum = new DataTable();
+                sum = temp.Copy();
+              
+
+                sum.Columns.Add("So_luong_Hoan_Ung", typeof(decimal));
+                sum.Columns["So_luong_Hoan_Ung"].DefaultValue = 0;
+                sum.Columns.Add("So_luong_Con_Lai", typeof(decimal));
+
+                for (int i = 0; i < temp2.Rows.Count; i++)
+                {
+                 
+                    for(int j=0;j< sum .Rows.Count ;j++)
+                        if (sum.Rows[j]["ma_vat_tu"].ToString().Equals(temp2.Rows[i]["ma_vat_tu"].ToString()) && sum.Rows[j]["Loai_chat_luong"].ToString().Equals(temp2.Rows[i]["Loai_chat_luong"].ToString()))
+                        {
+
+                            sum.Rows[j]["So_luong_hoan_ung"] = temp2.Rows[i]["So_luong_hoan_ung"];
+                            decimal total = decimal.Parse(sum.Rows[j]["So_luong_tam_ung"].ToString()) - decimal.Parse(sum.Rows[j]["So_luong_hoan_ung"].ToString());
+                            sum.Rows[j]["So_luong_Con_Lai"] = total;
+                        }
+                        else
+                        {
+                            try
+                            {
+                                decimal.Parse(sum.Rows[j]["So_luong_hoan_ung"].ToString());
+                                decimal.Parse(sum.Rows[j]["So_luong_Con_Lai"].ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                sum.Rows[j]["So_luong_hoan_ung"] = 0;
+                                sum.Rows[j]["So_luong_Con_Lai"] =decimal.Parse( sum.Rows[j]["So_luong_tam_ung"].ToString()) +decimal.Parse( sum.Rows[j]["So_luong_hoan_ung"].ToString());
+
+                            }
+                        }
+                   
+                }
+              
+                return sum;
+            }
+            
+        }
+        public DataTable myJoinMethod(DataTable LeftTable, DataTable RightTable,
+            String LeftPrimaryColumn, String RightPrimaryColumn)
+        {
+            //first create the datatable columns 
+            DataSet mydataSet = new DataSet();
+            mydataSet.Tables.Add("  ");
+            DataTable myDataTable = mydataSet.Tables[0];
+
+            //add left table columns 
+            DataColumn[] dcLeftTableColumns = new DataColumn[LeftTable.Columns.Count];
+            LeftTable.Columns.CopyTo(dcLeftTableColumns, 0);
+
+            foreach (DataColumn LeftTableColumn in dcLeftTableColumns)
+            {
+                if (!myDataTable.Columns.Contains(LeftTableColumn.ToString()))
+                    myDataTable.Columns.Add(LeftTableColumn.ToString());
+            }
+
+            //now add right table columns 
+            DataColumn[] dcRightTableColumns = new DataColumn[RightTable.Columns.Count];
+            RightTable.Columns.CopyTo(dcRightTableColumns, 0);
+
+            foreach (DataColumn RightTableColumn in dcRightTableColumns)
+            {
+                if (!myDataTable.Columns.Contains(RightTableColumn.ToString()))
+                {
+                    if (RightTableColumn.ToString() != RightPrimaryColumn)
+                        myDataTable.Columns.Add(RightTableColumn.ToString());
+                }
+            }
+
+            //add left-table data to mytable 
+            foreach (DataRow LeftTableDataRows in LeftTable.Rows)
+            {
+                myDataTable.ImportRow(LeftTableDataRows);
+            }
+
+            ArrayList var = new ArrayList(); //this variable holds the id's which have joined 
+
+            ArrayList LeftTableIDs = new ArrayList();
+            LeftTableIDs = this.DataSetToArrayList(0, LeftTable);
+
+            //import righttable which having not equal Id's with lefttable 
+            foreach (DataRow rightTableDataRows in RightTable.Rows)
+            {
+                if (LeftTableIDs.Contains(rightTableDataRows[0]))
+                {
+                    string wherecondition = "[" + myDataTable.Columns[0].ColumnName + "]='"
+                            + rightTableDataRows[0].ToString() + "'";
+                    DataRow[] dr = myDataTable.Select(wherecondition);
+                    int iIndex = myDataTable.Rows.IndexOf(dr[0]);
+
+                    foreach (DataColumn dc in RightTable.Columns)
+                    {
+                        if (dc.Ordinal != 0)
+                            myDataTable.Rows[iIndex][dc.ColumnName.ToString().Trim()] =
+                    rightTableDataRows[dc.ColumnName.ToString().Trim()].ToString();
+                    }
+                }
+                else
+                {
+                    int count = myDataTable.Rows.Count;
+                    DataRow row = myDataTable.NewRow();
+                    row[0] = rightTableDataRows[0].ToString();
+                    myDataTable.Rows.Add(row);
+                    foreach (DataColumn dc in RightTable.Columns)
+                    {
+                        if (dc.Ordinal != 0)
+                            myDataTable.Rows[count][dc.ColumnName.ToString().Trim()] =
+                    rightTableDataRows[dc.ColumnName.ToString().Trim()].ToString();
+                    }
+                }
+            }
+
+            return myDataTable;
+        }
+        public ArrayList DataSetToArrayList(int ColumnIndex, DataTable dataTable)
+        {
+            ArrayList output = new ArrayList();
+
+            foreach (DataRow row in dataTable.Rows)
+                output.Add(row[ColumnIndex]);
+
+            return output;
+        } 
+
         public DataTable GetAllVatTuChoMuonNo()
         {
 

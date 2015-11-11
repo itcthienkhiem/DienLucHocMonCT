@@ -62,6 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
+    <Compile Include="frmTamUngHoanUngKhoKhac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTamUngHoanUngKhoKhac.Designer.cs">
+      <DependentUpon>frmTamUngHoanUngKhoKhac.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmChiTietTraNo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmTamUngHoanUngKhoKhac.resx">
+      <DependentUpon>frmTamUngHoanUngKhoKhac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChiTietTraNo.resx">
       <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
     </EmbeddedResource>

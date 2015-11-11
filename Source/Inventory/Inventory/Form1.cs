@@ -844,5 +844,28 @@ namespace Inventory
 
             }
         }
+
+        private void danhSáchVậtTưĐãTạmỨngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmTamUngHoanUngKhoKhac frm = new frmTamUngHoanUngKhoKhac();
+                frm.Name = "Danh sách phiêu nơ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
     }
 }

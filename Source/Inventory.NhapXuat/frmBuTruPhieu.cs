@@ -42,23 +42,39 @@ namespace Inventory.NhapXuat
         {
             InitializeComponent();
             this.maphieu = maphieu;
-            Load_Data();
+           
             this.dspn = dspn;
             this.LoaiPhieu = loaiPhieu;
+            Load_Data();
         }
         public void Load_Data()
         {
             clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
-            clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
             txtMaPhieuNhap.Text = maphieu;
             dtPhieuNhap = pn.GetAll(txtMaPhieuNhap.Text);
             gridDanhSachPhieuNhap.DataSource = dtPhieuNhap;
+            if (LoaiPhieu == "TN")
+            {
+               
+                clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu_TraNo(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
+               
+                return;
+            }
+
+        
+            clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
+          
         }
 
 
         private void Load_DataNo()
         {
+
+           
+             
             clsChi_Tiet_Phieu_Nhap_Vat_Tu pn = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
+
+
             dtPhieuNhapNo = pn.GetAll(cbbPhieuNo.GetItemText(this.cbbPhieuNo.SelectedItem));
             gridNhapNo.DataSource = dtPhieuNhapNo;
         }
@@ -173,6 +189,7 @@ namespace Inventory.NhapXuat
                             decimal soluongno = decimal.Parse(dtPhieuNhapNo.Rows[i]["so_luong_thuc_lanh"].ToString());
                             if (soluongno > 0)
                             {
+
                                 dbcxtransaction.Commit();
                                 return;
                             }
@@ -221,6 +238,14 @@ namespace Inventory.NhapXuat
                 }
             }
 
+        }
+
+        private void btnDuyet_Click(object sender, EventArgs e)
+        {
+            dspn.LoadInitGridMaster();
+
+            dspn.XuLy();
+            this.Close();
         }
 
     }
