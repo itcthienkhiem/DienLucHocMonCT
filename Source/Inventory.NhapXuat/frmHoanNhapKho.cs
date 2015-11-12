@@ -466,7 +466,13 @@ namespace Inventory.NhapXuat
                 MessageBox.Show("Mã vật tư và tên vật tư không được rỗng, Chất lượng bắt buộc nhập !");
                 return;
             }
-
+            clsTonKho checkton = new clsTonKho();
+            decimal tempsl = checkton.checkSLTonChoMuon((int)cbKhoNhan.SelectedValue, cbMaVatTu.Text, (int)cbChatLuong.SelectedValue, int.Parse(txtSLTX.Text));
+            if (tempsl == 0)
+            {
+                MessageBox.Show("Số lượng vật tư mượn phải nhỏ hơn số lượng trong kho, hoặc kho không có vật tư này!Kiểm tra lại tồn Kho");
+                return;
+            }
             DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text);
 
             if (result.Length == 0)
