@@ -592,8 +592,6 @@ namespace Inventory.XuatTamVatTu
 
         private bool checkSoLuongXuat()
         {
-            //bool flag = true;
-
             if (getDouble(txtSLDN) == 0)
             {
                 ToolTip1.Show("Số lượng đề nghị không thể bằng 0!", this.txtSLDN, 20, 20, 1500);
@@ -615,6 +613,12 @@ namespace Inventory.XuatTamVatTu
             if (getDouble(txtSLTX) < 0)
             {
                 ToolTip1.Show("Số lượng thực xuất không thể là số âm!", this.txtSLTX, 20, 20, 1500);
+                return false;
+            }
+
+            if (getDouble(txtSLTX) > getDouble(txtSL))
+            {
+                ToolTip1.Show("Bạn không thể xuất nhiều hơn số lượng vật tư có trong kho!", this.txtSLTX, 20, 20, 1500);
                 return false;
             }
 
