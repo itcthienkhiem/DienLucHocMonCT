@@ -169,7 +169,7 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var filteredData = (from d in help.ent.Chi_tiet_the_kho
-                                    where d.ID_The_Kho == id_the_kho && EntityFunctions.TruncateTime(d.Ngay_xuat_chung_tu) < EntityFunctions.TruncateTime(tungay)
+                                    where d.ID_The_Kho == id_the_kho 
                                     orderby d.Ngay_xuat_chung_tu
                                     select d)
                     .ToList();

@@ -40,9 +40,7 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataTable1 = new System.Data.DataTable();
             this.dataSet1 = new System.Data.DataSet();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Loai_Chat_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.So_luong_tam_ung = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +48,7 @@
             this.So_luong_con_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataColumn5
@@ -107,17 +103,6 @@
             this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
             this.dataTable1});
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.gridDanhSachPhieuNhap);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(904, 436);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Danh sách phiếu nợ";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // gridDanhSachPhieuNhap
             // 
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
@@ -146,7 +131,7 @@
             this.So_luong_tam_ung,
             this.So_luong_hoan_ung,
             this.So_luong_con_lai});
-            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(6, 46);
+            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(10, 12);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
             this.gridDanhSachPhieuNhap.ReadOnly = true;
@@ -157,47 +142,38 @@
             this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(902, 426);
             this.gridDanhSachPhieuNhap.TabIndex = 146;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(0, -3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(912, 462);
-            this.tabControl1.TabIndex = 147;
-            // 
             // Ma_vat_tu
             // 
             this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Mã vật tư";
             this.Ma_vat_tu.Name = "Ma_vat_tu";
             this.Ma_vat_tu.ReadOnly = true;
             // 
             // Loai_Chat_luong
             // 
             this.Loai_Chat_luong.DataPropertyName = "Loai_Chat_luong";
-            this.Loai_Chat_luong.HeaderText = "Chat_luong";
+            this.Loai_Chat_luong.HeaderText = "Chất lượng";
             this.Loai_Chat_luong.Name = "Loai_Chat_luong";
             this.Loai_Chat_luong.ReadOnly = true;
             // 
             // So_luong_tam_ung
             // 
             this.So_luong_tam_ung.DataPropertyName = "So_luong_tam_ung";
-            this.So_luong_tam_ung.HeaderText = "So_luong_no";
+            this.So_luong_tam_ung.HeaderText = "Số lượng nợ";
             this.So_luong_tam_ung.Name = "So_luong_tam_ung";
             this.So_luong_tam_ung.ReadOnly = true;
             // 
             // So_luong_hoan_ung
             // 
             this.So_luong_hoan_ung.DataPropertyName = "So_luong_hoan_ung";
-            this.So_luong_hoan_ung.HeaderText = "So_luong_da_tra";
+            this.So_luong_hoan_ung.HeaderText = "Số lượng đã trả";
             this.So_luong_hoan_ung.Name = "So_luong_hoan_ung";
             this.So_luong_hoan_ung.ReadOnly = true;
             // 
             // So_luong_con_lai
             // 
             this.So_luong_con_lai.DataPropertyName = "So_luong_con_lai";
-            this.So_luong_con_lai.HeaderText = "So_luong_con_no_lai";
+            this.So_luong_con_lai.HeaderText = "Số lượng nợ còn lại";
             this.So_luong_con_lai.Name = "So_luong_con_lai";
             this.So_luong_con_lai.ReadOnly = true;
             // 
@@ -206,15 +182,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 456);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.gridDanhSachPhieuNhap);
             this.Name = "frmTamUngHoanUngKhoKhac";
             this.Text = "frmDanhSachPhieuNo";
             this.Load += new System.EventHandler(this.frmTamUngHoanUngKhoKhac_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).EndInit();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,9 +205,7 @@
         private System.Data.DataColumn dataColumn1;
         private System.Data.DataTable dataTable1;
         private System.Data.DataSet dataSet1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridDanhSachPhieuNhap;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Loai_Chat_luong;
         private System.Windows.Forms.DataGridViewTextBoxColumn So_luong_tam_ung;

@@ -60,33 +60,37 @@ namespace Inventory.QuanLyTonDauKy
 
                     //danh sách đã được sắp xếp tăng dần tính sl trươc
                     decimal tkt = 0;
+                    decimal tonhientai = 0;
+                    decimal tontruoc = tkt;
                     for (int i = 0; i < tbcttk.Rows.Count; i++)
                     {
-                        decimal slnt = decimal.TryParse(tbcttk.Rows[0]["SL_nhap"].ToString(), out slnt) ? decimal.Parse(tbcttk.Rows[0]["SL_nhap"].ToString()) : 0;
-                        decimal slxt = decimal.TryParse(tbcttk.Rows[0]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[0]["SL_xuat"].ToString()) : 0;
-                            tkt = tkt +  slnt - slxt;
+                        decimal slnt = decimal.TryParse(tbcttk.Rows[i]["SL_nhap"].ToString(), out slnt) ? decimal.Parse(tbcttk.Rows[i]["SL_nhap"].ToString()) : 0;
+                        decimal slxt = decimal.TryParse(tbcttk.Rows[i]["SL_xuat"].ToString(), out slxt) ? decimal.Parse(tbcttk.Rows[i]["SL_xuat"].ToString()) : 0;
+                        tonhientai = tontruoc + slnt - slxt;
+                        tontruoc = tonhientai;
+                        tbcttk.Rows[i]["SL_ton"] = tonhientai;
+                        tbcttk.Rows[i]["STT"] = i + 1;
+                    }
+                    for (int i = 0; i < tbcttk.Rows.Count; i++)
+                    {
+                        string item = tbcttk.Rows[i]["ngay_xuat_chung_tu"].ToString();
+                        DateTime ngay_xuat_ct = DateTime.Parse(item);
+                        if (ngay_xuat_ct < tungay||ngay_xuat_ct >denngay) {
+                            tbcttk.Rows.RemoveAt(i);
+                        }
+
                     }
                     //chua so luong hien tai
-                    DataTable tb = cttk.Search(tungay, denngay,search);
+                    DataTable tb = tbcttk;
                     if (tb.Rows.Count == 0)
                     {
                         MessageBox.Show("Chưa có trong chi tiết thẻ kho");
                         return;
                     
                     }
-                    decimal sln=0;
-                    decimal slx = 0;
-                    decimal tonhientai = 0;
-                    decimal tontruoc = tkt;
-                    for (int i = 0; i < tb.Rows.Count; i++)
-                    {
-                        sln = decimal.TryParse(tb.Rows[i]["SL_nhap"].ToString(), out sln) ? decimal.Parse(tb.Rows[i]["SL_nhap"].ToString()) : 0;
-                        slx = decimal.TryParse(tb.Rows[i]["SL_xuat"].ToString(), out slx) ? decimal.Parse(tb.Rows[i]["SL_xuat"].ToString()) : 0;
-                         tonhientai=tontruoc + sln - slx;
-                         tontruoc = tonhientai;
-                         tb.Rows[i]["SL_ton"] = tonhientai;
-                         tb.Rows[i]["STT"] = i + 1;
-                    }
+                   
+                  
+                  
 
                     gridTheKho.DataSource = tb;
                 }

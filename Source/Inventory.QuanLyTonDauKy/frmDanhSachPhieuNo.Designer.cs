@@ -40,7 +40,6 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataTable1 = new System.Data.DataTable();
             this.dataSet1 = new System.Data.DataSet();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
             this.Ma_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kho_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,12 +57,9 @@
             this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataColumn5
@@ -118,17 +114,6 @@
             this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
             this.dataTable1});
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.gridDanhSachPhieuNhap);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(904, 436);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Danh sách phiếu nợ";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // gridDanhSachPhieuNhap
             // 
             this.gridDanhSachPhieuNhap.AllowUserToAddRows = false;
@@ -168,7 +153,7 @@
             this.isCanTru,
             this.isGoiDau,
             this.Da_phan_kho});
-            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(6, 46);
+            this.gridDanhSachPhieuNhap.Location = new System.Drawing.Point(-4, 12);
             this.gridDanhSachPhieuNhap.MultiSelect = false;
             this.gridDanhSachPhieuNhap.Name = "gridDanhSachPhieuNhap";
             this.gridDanhSachPhieuNhap.ReadOnly = true;
@@ -176,7 +161,7 @@
             this.gridDanhSachPhieuNhap.RowHeadersVisible = false;
             this.gridDanhSachPhieuNhap.RowTemplate.Height = 30;
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(980, 426);
+            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(1075, 433);
             this.gridDanhSachPhieuNhap.TabIndex = 146;
             // 
             // Ma_phieu_nhap
@@ -304,28 +289,17 @@
             this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(0, -3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(912, 462);
-            this.tabControl1.TabIndex = 147;
-            // 
             // frmDanhSachPhieuNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 456);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(1019, 463);
+            this.Controls.Add(this.gridDanhSachPhieuNhap);
             this.Name = "frmDanhSachPhieuNo";
             this.Text = "frmDanhSachPhieuNo";
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).EndInit();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -342,7 +316,6 @@
         private System.Data.DataColumn dataColumn1;
         private System.Data.DataTable dataTable1;
         private System.Data.DataSet dataSet1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridDanhSachPhieuNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_phieu_nhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kho_nhan;
@@ -360,6 +333,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCanTru;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGoiDau;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Da_phan_kho;
-        private System.Windows.Forms.TabControl tabControl1;
     }
 }
