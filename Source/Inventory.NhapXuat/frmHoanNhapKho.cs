@@ -1075,27 +1075,27 @@ namespace Inventory.NhapXuat
         private void btnPrint_Click(object sender, EventArgs e)
         {
             //dataTable1.Clear();
-            clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
-            clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
+            //clsPhieuNhapKho clsNhap = new clsPhieuNhapKho();
+            //clsNhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
 
-            if (!txtMaPhieuNhap.Text.Trim().Equals(String.Empty) && clsNhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text) == true)
-            {
-                frmReport_Phieu_Nhap_Kho frm = new frmReport_Phieu_Nhap_Kho(txtMaPhieuNhap.Text.Trim());
-                frm.Text = "Report Phiếu Nhập Kho";
+            //if (!txtMaPhieuNhap.Text.Trim().Equals(String.Empty) && clsNhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text) == true)
+            //{
+            //    frmReport_Phieu_Nhap_Kho frm = new frmReport_Phieu_Nhap_Kho(txtMaPhieuNhap.Text.Trim());
+            //    frm.Text = "Report Phiếu Nhập Kho";
 
-                foreach (Form f in this.MdiChildren)
-                {
-                    if (f.Name == frm.Name)
-                    {
-                        f.Activate();
-                        return;
-                    }
-                }
+            //    foreach (Form f in this.MdiChildren)
+            //    {
+            //        if (f.Name == frm.Name)
+            //        {
+            //            f.Activate();
+            //            return;
+            //        }
+            //    }
 
-                frm.MdiParent = this.ParentForm;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-            }
+            //    frm.MdiParent = this.ParentForm;
+            //    frm.WindowState = FormWindowState.Maximized;
+            //    frm.Show();
+            //}
         }
 
         private void cbMaVatTu_SelectionChangeCommitted(object sender, EventArgs e)

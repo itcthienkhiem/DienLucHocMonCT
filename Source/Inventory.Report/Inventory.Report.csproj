@@ -53,12 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="frmReport_Phieu_Nhap_Kho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReport_Phieu_Nhap_Kho.Designer.cs">
-      <DependentUpon>frmReport_Phieu_Nhap_Kho.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmReport_phieu_xuat_tam_vat_tu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,10 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmReport_Phieu_Nhap_Kho.resx">
-      <DependentUpon>frmReport_Phieu_Nhap_Kho.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report_Nhap_Kho.rdlc" />
     <EmbeddedResource Include="frmReport_phieu_xuat_tam_vat_tu.resx">
       <DependentUpon>frmReport_phieu_xuat_tam_vat_tu.cs</DependentUpon>
     </EmbeddedResource>

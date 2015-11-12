@@ -1248,8 +1248,6 @@ namespace Inventory.XuatTamVatTu
             return true;
         }
 
-        
-
         private void SetDataToForm()
         {
             clsPhieuXuatTamVatTu PhieuXuat = new clsPhieuXuatTamVatTu();
