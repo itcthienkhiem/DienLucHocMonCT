@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,11 +11,11 @@ using Inventory.Report;
 namespace Inventory.QuanLyTonDauKy
 {
     /// <summary>
-    /// XỮ LÝ THẺ KHO 
-    /// LOAD: LẤY DANH SÁCH CÁC MÃ VẬT TƯ CÓ TRONG THẺ KHO 
-    /// LOAD THÔNG TIN THẺ KHO CÓ TRONG KHO = TỔNG CÁC THẺ KHO HIỆN TẠI.
-    /// LẤY THONG TIN THẺ KHO VÀ CHI TIẾT THẺ KHO TƯƠNG ỨNG VỚI MÃ TÍNH TOÁN LẠI CỘT TỒN KHO 
-    /// THÔNG TIN TRÊN LƯỚI SẮP XẾP THEO THỜI GIAN 
+    /// X? LÝ TH? KHO 
+    /// LOAD: L?Y DANH SÁCH CÁC MÃ V?T TU CÓ TRONG TH? KHO 
+    /// LOAD THÔNG TIN TH? KHO CÓ TRONG KHO = T?NG CÁC TH? KHO HI?N T?I.
+    /// L?Y THONG TIN TH? KHO VÀ CHI TI?T TH? KHO TUONG ?NG V?I MÃ TÍNH TOÁN L?I C?T T?N KHO 
+    /// THÔNG TIN TRÊN LU?I S?P X?P THEO TH?I GIAN 
     /// 
     /// </summary>
     public partial class frmTheKho : Form
@@ -58,7 +58,7 @@ namespace Inventory.QuanLyTonDauKy
                     clsChiTietTheKho cttk = new clsChiTietTheKho();
                     DataTable tbcttk = cttk.GetAllSLT(tungay,search);
 
-                    //danh sách đã được sắp xếp tăng dần tính sl trươc
+                    //danh sách dã du?c s?p x?p tang d?n tính sl truoc
                     decimal tkt = 0;
                     decimal tonhientai = 0;
                     decimal tontruoc = tkt;
@@ -69,8 +69,9 @@ namespace Inventory.QuanLyTonDauKy
                         tonhientai = tontruoc + slnt - slxt;
                         tontruoc = tonhientai;
                         tbcttk.Rows[i]["SL_ton"] = tonhientai;
-                        tbcttk.Rows[i]["STT"] = i + 1;
+                    
                     }
+                   
                     for (int i = 0; i < tbcttk.Rows.Count; i++)
                     {
                         string item = tbcttk.Rows[i]["ngay_xuat_chung_tu"].ToString();
@@ -78,13 +79,19 @@ namespace Inventory.QuanLyTonDauKy
                         if (ngay_xuat_ct < tungay||ngay_xuat_ct >denngay) {
                             tbcttk.Rows.RemoveAt(i);
                         }
-
+                       
+                    }
+                    int stt = 0;
+                    for (int i = 0; i < tbcttk.Rows.Count; i++)
+                    {
+                        tbcttk.Rows[i]["STT"] = stt + 1;
+                        stt++;
                     }
                     //chua so luong hien tai
                     DataTable tb = tbcttk;
                     if (tb.Rows.Count == 0)
                     {
-                        MessageBox.Show("Chưa có trong chi tiết thẻ kho");
+                        MessageBox.Show("Chua có trong chi ti?t th? kho");
                         return;
                     
                     }
@@ -142,7 +149,7 @@ namespace Inventory.QuanLyTonDauKy
         private void btnHuy_Click(object sender, EventArgs e)
         {
             if (cbChatLuong.Text == "")
-                MessageBox.Show("Chưa chọn chất lượng");
+                MessageBox.Show("Chua ch?n ch?t lu?ng");
             Search(dtTuNgay.Value , dtDenNgay.Value);
         }
 
