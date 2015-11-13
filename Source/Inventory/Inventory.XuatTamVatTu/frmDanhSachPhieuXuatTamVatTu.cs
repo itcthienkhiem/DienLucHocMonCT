@@ -186,5 +186,22 @@ namespace Inventory.XuatTamVatTu
                 frm.Show();
             }
         }
+        public void LoadInitGridMaster()
+        {
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+            string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+         //   bool daduyet = bool.Parse(SelectedRow.Cells["Da_phan_kho"].Value.ToString());
+
+            gridMaster.DataSource = new clsChiTietPhieuXuatTam().getAll_toGrid(strMaPhieuNhap);
+        }
+        private void gridDanhSachPhieuXuatTam_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadInitGridMaster();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
     }
 }
