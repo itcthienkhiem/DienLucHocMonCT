@@ -861,7 +861,13 @@ namespace Inventory.XuatTamVatTu
                     bool bXacNhanHoanNhap = bool.Parse(selectedRow.Cells["_Da_duyet_hoan_nhap"].Value.ToString());
                     bool bXacNhanGiuLai = bool.Parse(selectedRow.Cells["_Da_duyet_giu_lai"].Value.ToString());
 
-                    if (bXacNhanXuat && bXacNhanHoanNhap)
+                    //if (bXacNhanXuat && bXacNhanHoanNhap)
+                    //{
+                    //    MessageBox.Show("Bạn không thể sửa vật tư đã duyệt!");
+                    //    return;
+                    //}
+
+                    if (bXacNhanXuat == true && PanelButton.getClickStatus() != enumButton2.BaoHoanNhap && PanelButton.getClickStatus() != enumButton2.BaoGiuLai)
                     {
                         MessageBox.Show("Bạn không thể sửa vật tư đã duyệt!");
                         return;
@@ -921,7 +927,10 @@ namespace Inventory.XuatTamVatTu
                     txtSLDN.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
                     txtSLTX.Text = selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString();
 
+                    txtSL.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
+
                     chkboxXacNhanXuat.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
+                    txtSL.Text = "-";
 
                     txtSLHN.Text = selectedRow.Cells["_So_luong_hoan_nhap"].Value.ToString();
                     txtSLGL.Text = selectedRow.Cells["_So_luong_giu_lai"].Value.ToString();
