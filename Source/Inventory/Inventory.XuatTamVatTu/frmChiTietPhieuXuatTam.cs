@@ -353,7 +353,10 @@ namespace Inventory.XuatTamVatTu
         /// </summary>
         private void btnThem_Click(object sender, EventArgs e)
         {
-            cbMaPhieuXuatTam.Text = TaoMaPhieu();
+            if (cbMaPhieuXuatTam.Text.Trim().Equals(string.Empty))
+            {
+                cbMaPhieuXuatTam.Text = TaoMaPhieu();
+            }
 
             //Nếu cbMaPhieuXuatTam đã có thì báo lỗi --> đề nghị nhập lại --> ko cho thêm
             if (cbMaPhieuXuatTam.Text.Trim().Equals(string.Empty))
@@ -921,16 +924,19 @@ namespace Inventory.XuatTamVatTu
 
 
                     cbChatLuong.SelectedValue = Int32.Parse(selectedRow.Cells["_Id_chat_luong"].Value.ToString());
+                    cbChatLuong_SelectionChangeCommitted(cbChatLuong, EventArgs.Empty);
 
                     txtSLDangGiu.Text = selectedRow.Cells["_So_luong_dang_giu"].Value.ToString();
 
                     txtSLDN.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
                     txtSLTX.Text = selectedRow.Cells["_So_luong_thuc_xuat"].Value.ToString();
 
-                    txtSL.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
+                    
+
+                    //txtSL.Text = selectedRow.Cells["_So_luong_de_nghi"].Value.ToString();
 
                     chkboxXacNhanXuat.Checked = bool.Parse(selectedRow.Cells["_Da_duyet_xuat_vat_tu"].Value.ToString());
-                    txtSL.Text = "-";
+                    //txtSL.Text = "-";
 
                     txtSLHN.Text = selectedRow.Cells["_So_luong_hoan_nhap"].Value.ToString();
                     txtSLGL.Text = selectedRow.Cells["_So_luong_giu_lai"].Value.ToString();
@@ -1774,6 +1780,8 @@ namespace Inventory.XuatTamVatTu
 
         public void ResetInputForm()
         {
+            init_cbMaPhieuXuatTam();
+            cbMaPhieuXuatTam.Text = "";
             cbMaPhieuXuatTam.SelectedIndex = -1;
 
             cbTenNhanVien.SelectedIndex = -1;
@@ -2255,6 +2263,26 @@ namespace Inventory.XuatTamVatTu
             frm.MdiParent = this.ParentForm;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void cbMaVatTu_KeyDown(object sender, KeyEventArgs e)
+        {
+            cbMaVatTu_SelectionChangeCommitted(sender, e);
+        }
+
+        private void cbTenVatTu_KeyDown(object sender, KeyEventArgs e)
+        {
+            cbTenVatTu_SelectionChangeCommitted(sender, e);
+        }
+
+        private void cbTenNhanVien_KeyDown(object sender, KeyEventArgs e)
+        {
+            cbTenNhanVien_SelectionChangeCommitted(sender, e);
+        }
+
+        private void cbMaNhanVien_KeyDown(object sender, KeyEventArgs e)
+        {
+            cbMaNhanVien_SelectionChangeCommitted(sender, e);
         }
     }
 }

@@ -30,11 +30,29 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
+            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kho_xuat_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isNhapNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isChoMuonNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngay_xac_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isTraNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.btnPhieuNo = new System.Windows.Forms.Button();
@@ -77,24 +95,6 @@
             this.Thanh_tien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Don_gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_dvt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kho_xuat_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isNhapNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isChoMuonNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ngay_xac_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isTraNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -149,11 +149,156 @@
             this.gridDanhSachPhieuNhap.RowHeadersVisible = false;
             this.gridDanhSachPhieuNhap.RowTemplate.Height = 30;
             this.gridDanhSachPhieuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(1025, 354);
+            this.gridDanhSachPhieuNhap.Size = new System.Drawing.Size(1025, 263);
             this.gridDanhSachPhieuNhap.TabIndex = 52;
             this.gridDanhSachPhieuNhap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridgridDanhSachPhieuNhap_CellClick);
             this.gridDanhSachPhieuNhap.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDanhSachPhieuNhap_CellContentClick);
             this.gridDanhSachPhieuNhap.SelectionChanged += new System.EventHandler(this.gridDanhSachPhieuNhap_SelectionChanged);
+            // 
+            // Ma_phieu
+            // 
+            this.Ma_phieu.DataPropertyName = "Ma_phieu";
+            this.Ma_phieu.HeaderText = "Mã phiếu";
+            this.Ma_phieu.Name = "Ma_phieu";
+            this.Ma_phieu.ReadOnly = true;
+            // 
+            // So_hoa_don
+            // 
+            this.So_hoa_don.DataPropertyName = "So_hoa_don";
+            this.So_hoa_don.HeaderText = "So_hoa_don";
+            this.So_hoa_don.Name = "So_hoa_don";
+            this.So_hoa_don.ReadOnly = true;
+            this.So_hoa_don.Visible = false;
+            // 
+            // Cong_trinh
+            // 
+            this.Cong_trinh.DataPropertyName = "Cong_trinh";
+            this.Cong_trinh.HeaderText = "Công trình";
+            this.Cong_trinh.Name = "Cong_trinh";
+            this.Cong_trinh.ReadOnly = true;
+            this.Cong_trinh.Visible = false;
+            // 
+            // Dia_chi
+            // 
+            this.Dia_chi.DataPropertyName = "Dia_chi";
+            this.Dia_chi.HeaderText = "Địa chỉ";
+            this.Dia_chi.Name = "Dia_chi";
+            this.Dia_chi.ReadOnly = true;
+            // 
+            // ID_loai_phieu_nhap
+            // 
+            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.ReadOnly = true;
+            this.ID_loai_phieu_nhap.Visible = false;
+            // 
+            // Kho_xuat_ra
+            // 
+            this.Kho_xuat_ra.DataPropertyName = "Kho_xuat_ra";
+            this.Kho_xuat_ra.HeaderText = "Kho xuất ra";
+            this.Kho_xuat_ra.Name = "Kho_xuat_ra";
+            this.Kho_xuat_ra.ReadOnly = true;
+            // 
+            // ID_phieu_nhap
+            // 
+            this.ID_phieu_nhap.DataPropertyName = "ID_phieu_nhap";
+            this.ID_phieu_nhap.HeaderText = "ID_phieu_nhap";
+            this.ID_phieu_nhap.Name = "ID_phieu_nhap";
+            this.ID_phieu_nhap.ReadOnly = true;
+            this.ID_phieu_nhap.Visible = false;
+            // 
+            // ID_kho
+            // 
+            this.ID_kho.DataPropertyName = "ID_kho";
+            this.ID_kho.HeaderText = "ID_kho";
+            this.ID_kho.Name = "ID_kho";
+            this.ID_kho.ReadOnly = true;
+            this.ID_kho.Visible = false;
+            // 
+            // Ten_kho
+            // 
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
+            // 
+            // ngay_lap
+            // 
+            this.ngay_lap.DataPropertyName = "ngay_lap";
+            this.ngay_lap.HeaderText = "Ngày lập";
+            this.ngay_lap.Name = "ngay_lap";
+            this.ngay_lap.ReadOnly = true;
+            // 
+            // Ly_do
+            // 
+            this.Ly_do.DataPropertyName = "Ly_do";
+            this.Ly_do.HeaderText = "Lý do";
+            this.Ly_do.Name = "Ly_do";
+            this.Ly_do.ReadOnly = true;
+            // 
+            // isNhapNgoai
+            // 
+            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
+            this.isNhapNgoai.HeaderText = "Nhập ngoài";
+            this.isNhapNgoai.Name = "isNhapNgoai";
+            this.isNhapNgoai.ReadOnly = true;
+            this.isNhapNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isNhapNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isCanTru
+            // 
+            this.isCanTru.DataPropertyName = "isCanTru";
+            this.isCanTru.HeaderText = "Cấn trừ";
+            this.isCanTru.Name = "isCanTru";
+            this.isCanTru.ReadOnly = true;
+            this.isCanTru.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isCanTru.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isGoiDau
+            // 
+            this.isGoiDau.DataPropertyName = "isGoiDau";
+            this.isGoiDau.HeaderText = "Gối đầu";
+            this.isGoiDau.Name = "isGoiDau";
+            this.isGoiDau.ReadOnly = true;
+            this.isGoiDau.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isGoiDau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Da_phan_kho
+            // 
+            this.Da_phan_kho.DataPropertyName = "Da_phan_kho";
+            this.Da_phan_kho.HeaderText = "Đã xác nhận";
+            this.Da_phan_kho.Name = "Da_phan_kho";
+            this.Da_phan_kho.ReadOnly = true;
+            this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isChoMuonNgoai
+            // 
+            this.isChoMuonNgoai.DataPropertyName = "isChoMuonNgoai";
+            this.isChoMuonNgoai.HeaderText = "Cho Mượn Nợ";
+            this.isChoMuonNgoai.Name = "isChoMuonNgoai";
+            this.isChoMuonNgoai.ReadOnly = true;
+            this.isChoMuonNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isChoMuonNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ngay_xac_nhan
+            // 
+            this.ngay_xac_nhan.DataPropertyName = "ngay_xac_nhan";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngay_xac_nhan.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngay_xac_nhan.HeaderText = "Ngày xác nhận";
+            this.ngay_xac_nhan.Name = "ngay_xac_nhan";
+            this.ngay_xac_nhan.ReadOnly = true;
+            // 
+            // isTraNo
+            // 
+            this.isTraNo.DataPropertyName = "isTraNo";
+            this.isTraNo.HeaderText = "isTraNo";
+            this.isTraNo.Name = "isTraNo";
+            this.isTraNo.ReadOnly = true;
+            this.isTraNo.Visible = false;
             // 
             // pnlMenu
             // 
@@ -513,7 +658,7 @@
             this.Don_gia,
             this.Ten_dvt});
             this.gridMaster.DataMember = "Table1";
-            this.gridMaster.Location = new System.Drawing.Point(1, 567);
+            this.gridMaster.Location = new System.Drawing.Point(1, 462);
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -521,7 +666,7 @@
             this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMaster.Size = new System.Drawing.Size(1017, 341);
+            this.gridMaster.Size = new System.Drawing.Size(1017, 446);
             this.gridMaster.TabIndex = 63;
             // 
             // Ma_vat_tu
@@ -626,156 +771,11 @@
             this.Ten_dvt.ReadOnly = true;
             this.Ten_dvt.Width = 101;
             // 
-            // Ma_phieu
-            // 
-            this.Ma_phieu.DataPropertyName = "Ma_phieu";
-            this.Ma_phieu.HeaderText = "Mã phiếu";
-            this.Ma_phieu.Name = "Ma_phieu";
-            this.Ma_phieu.ReadOnly = true;
-            // 
-            // So_hoa_don
-            // 
-            this.So_hoa_don.DataPropertyName = "So_hoa_don";
-            this.So_hoa_don.HeaderText = "So_hoa_don";
-            this.So_hoa_don.Name = "So_hoa_don";
-            this.So_hoa_don.ReadOnly = true;
-            this.So_hoa_don.Visible = false;
-            // 
-            // Cong_trinh
-            // 
-            this.Cong_trinh.DataPropertyName = "Cong_trinh";
-            this.Cong_trinh.HeaderText = "Công trình";
-            this.Cong_trinh.Name = "Cong_trinh";
-            this.Cong_trinh.ReadOnly = true;
-            this.Cong_trinh.Visible = false;
-            // 
-            // Dia_chi
-            // 
-            this.Dia_chi.DataPropertyName = "Dia_chi";
-            this.Dia_chi.HeaderText = "Địa chỉ";
-            this.Dia_chi.Name = "Dia_chi";
-            this.Dia_chi.ReadOnly = true;
-            // 
-            // ID_loai_phieu_nhap
-            // 
-            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.ReadOnly = true;
-            this.ID_loai_phieu_nhap.Visible = false;
-            // 
-            // Kho_xuat_ra
-            // 
-            this.Kho_xuat_ra.DataPropertyName = "Kho_xuat_ra";
-            this.Kho_xuat_ra.HeaderText = "Kho xuất ra";
-            this.Kho_xuat_ra.Name = "Kho_xuat_ra";
-            this.Kho_xuat_ra.ReadOnly = true;
-            // 
-            // ID_phieu_nhap
-            // 
-            this.ID_phieu_nhap.DataPropertyName = "ID_phieu_nhap";
-            this.ID_phieu_nhap.HeaderText = "ID_phieu_nhap";
-            this.ID_phieu_nhap.Name = "ID_phieu_nhap";
-            this.ID_phieu_nhap.ReadOnly = true;
-            this.ID_phieu_nhap.Visible = false;
-            // 
-            // ID_kho
-            // 
-            this.ID_kho.DataPropertyName = "ID_kho";
-            this.ID_kho.HeaderText = "ID_kho";
-            this.ID_kho.Name = "ID_kho";
-            this.ID_kho.ReadOnly = true;
-            this.ID_kho.Visible = false;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            // 
-            // ngay_lap
-            // 
-            this.ngay_lap.DataPropertyName = "ngay_lap";
-            this.ngay_lap.HeaderText = "Ngày lập";
-            this.ngay_lap.Name = "ngay_lap";
-            this.ngay_lap.ReadOnly = true;
-            // 
-            // Ly_do
-            // 
-            this.Ly_do.DataPropertyName = "Ly_do";
-            this.Ly_do.HeaderText = "Lý do";
-            this.Ly_do.Name = "Ly_do";
-            this.Ly_do.ReadOnly = true;
-            // 
-            // isNhapNgoai
-            // 
-            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
-            this.isNhapNgoai.HeaderText = "Nhập ngoài";
-            this.isNhapNgoai.Name = "isNhapNgoai";
-            this.isNhapNgoai.ReadOnly = true;
-            this.isNhapNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isNhapNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isCanTru
-            // 
-            this.isCanTru.DataPropertyName = "isCanTru";
-            this.isCanTru.HeaderText = "Cấn trừ";
-            this.isCanTru.Name = "isCanTru";
-            this.isCanTru.ReadOnly = true;
-            this.isCanTru.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isCanTru.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isGoiDau
-            // 
-            this.isGoiDau.DataPropertyName = "isGoiDau";
-            this.isGoiDau.HeaderText = "Gối đầu";
-            this.isGoiDau.Name = "isGoiDau";
-            this.isGoiDau.ReadOnly = true;
-            this.isGoiDau.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isGoiDau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Da_phan_kho
-            // 
-            this.Da_phan_kho.DataPropertyName = "Da_phan_kho";
-            this.Da_phan_kho.HeaderText = "Đã xác nhận";
-            this.Da_phan_kho.Name = "Da_phan_kho";
-            this.Da_phan_kho.ReadOnly = true;
-            this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isChoMuonNgoai
-            // 
-            this.isChoMuonNgoai.DataPropertyName = "isChoMuonNgoai";
-            this.isChoMuonNgoai.HeaderText = "Cho Mượn Nợ";
-            this.isChoMuonNgoai.Name = "isChoMuonNgoai";
-            this.isChoMuonNgoai.ReadOnly = true;
-            this.isChoMuonNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isChoMuonNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ngay_xac_nhan
-            // 
-            this.ngay_xac_nhan.DataPropertyName = "ngay_xac_nhan";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngay_xac_nhan.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ngay_xac_nhan.HeaderText = "Ngày xác nhận";
-            this.ngay_xac_nhan.Name = "ngay_xac_nhan";
-            this.ngay_xac_nhan.ReadOnly = true;
-            // 
-            // isTraNo
-            // 
-            this.isTraNo.DataPropertyName = "isTraNo";
-            this.isTraNo.HeaderText = "isTraNo";
-            this.isTraNo.Name = "isTraNo";
-            this.isTraNo.ReadOnly = true;
-            this.isTraNo.Visible = false;
-            // 
             // frmDanhSachPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 882);
+            this.ClientSize = new System.Drawing.Size(1026, 741);
             this.Controls.Add(this.gridMaster);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pnlMenu);

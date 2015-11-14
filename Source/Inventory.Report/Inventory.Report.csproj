@@ -69,7 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportDataSet.cs">
       <DependentUpon>ReportDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -108,10 +107,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
-xcopy "$(ProjectDir)Report_xuat_tam_vat_tu.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
+    <PreBuildEvent>xcopy "$(ProjectDir)Report_xuat_tam_vat_tu.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
 xcopy "$(ProjectDir)Report_The_kho.rdlc" "$(SolutionDir)Inventory\bin\Debug\" /s /i /y
-xcopy "$(ProjectDir)Report_Nhap_Kho.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y
 xcopy "$(ProjectDir)Report_xuat_tam_vat_tu.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y
 xcopy "$(ProjectDir)Report_The_kho.rdlc" "$(SolutionDir)Inventory\bin\Release\" /s /i /y</PreBuildEvent>
   </PropertyGroup>
