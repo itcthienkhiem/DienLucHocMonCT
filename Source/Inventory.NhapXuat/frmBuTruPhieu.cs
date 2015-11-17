@@ -24,7 +24,7 @@ namespace Inventory.NhapXuat
     /// 
     /// 
     /// </summary>
-    public partial class frmBuTruPhieu : Form
+    public partial class frmBuTruPhieu : DevExpress.XtraEditors.XtraForm
     {
 
         public frmBuTruPhieu()

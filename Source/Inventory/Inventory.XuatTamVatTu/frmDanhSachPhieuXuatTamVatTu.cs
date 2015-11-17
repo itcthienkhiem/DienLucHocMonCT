@@ -11,7 +11,7 @@ using Inventory.EntityClass;
 
 namespace Inventory.XuatTamVatTu
 {
-    public partial class frmDanhSachPhieuXuatTamVatTu : Form
+    public partial class frmDanhSachPhieuXuatTamVatTu : DevExpress.XtraEditors.XtraForm
     {
         FormActionDelegate2 frmAction;
         clsPanelButton2 PanelButton;

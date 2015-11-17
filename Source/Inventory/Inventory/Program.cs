@@ -15,7 +15,7 @@ namespace Inventory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MDIMain());
+            Application.Run(new DXMain());
         }
     }
 }

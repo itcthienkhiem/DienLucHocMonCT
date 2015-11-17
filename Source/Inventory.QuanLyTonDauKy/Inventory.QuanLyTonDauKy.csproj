@@ -37,6 +37,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Inventory\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
@@ -62,62 +66,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
-    <Compile Include="frmTamUngHoanUngKhoKhac.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmTamUngHoanUngKhoKhac.cs" />
     <Compile Include="frmTamUngHoanUngKhoKhac.Designer.cs">
       <DependentUpon>frmTamUngHoanUngKhoKhac.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmChiTietTraNo.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmChiTietTraNo.cs" />
     <Compile Include="frmChiTietTraNo.Designer.cs">
       <DependentUpon>frmChiTietTraNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhSachPhieuNo.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmDanhSachPhieuNo.cs" />
     <Compile Include="frmDanhSachPhieuNo.Designer.cs">
       <DependentUpon>frmDanhSachPhieuNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhSachTraNo.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmDanhSachTraNo.cs" />
     <Compile Include="frmDanhSachTraNo.Designer.cs">
       <DependentUpon>frmDanhSachTraNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNoVatTu.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmNoVatTu.cs" />
     <Compile Include="frmNoVatTu.Designer.cs">
       <DependentUpon>frmNoVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTheGoiDau.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmTheGoiDau.cs" />
     <Compile Include="frmTheGoiDau.Designer.cs">
       <DependentUpon>frmTheGoiDau.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNhapTonDauKy.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmNhapTonDauKy.cs" />
     <Compile Include="frmNhapTonDauKy.Designer.cs">
       <DependentUpon>frmNhapTonDauKy.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTheKho.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmTheKho.cs" />
     <Compile Include="frmTheKho.Designer.cs">
       <DependentUpon>frmTheKho.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTonDauKy.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmTonDauKy.cs" />
     <Compile Include="frmTonDauKy.Designer.cs">
       <DependentUpon>frmTonDauKy.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XtraForm1.cs" />
+    <Compile Include="XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmTamUngHoanUngKhoKhac.resx">
       <DependentUpon>frmTamUngHoanUngKhoKhac.cs</DependentUpon>
     </EmbeddedResource>

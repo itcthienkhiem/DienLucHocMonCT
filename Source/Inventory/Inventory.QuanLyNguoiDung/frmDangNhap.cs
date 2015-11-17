@@ -11,7 +11,7 @@ using Inventory.EntityClass;
 using Inventory.Utilities;
 namespace Inventory.QuanLyNguoiDung
 {
-    public partial class frmDangNhap : Form
+    public partial class frmDangNhap : DevExpress.XtraEditors.XtraForm
     {
         public frmDangNhap()
         {

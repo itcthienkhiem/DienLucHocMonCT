@@ -10,7 +10,7 @@ using Inventory.Models;
 using Inventory.EntityClass;
 namespace Inventory.NhapXuat
 {
-    public partial class frmChiTietNhanVatTu : Form
+    public partial class frmChiTietNhanVatTu : DevExpress.XtraEditors.XtraForm
     {
        // public event EventHandler<TextEventArgs> NewTextChanged;
         public frmVatTuChoMuon f;

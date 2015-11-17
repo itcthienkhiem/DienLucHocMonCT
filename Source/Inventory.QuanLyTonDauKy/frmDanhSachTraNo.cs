@@ -12,7 +12,7 @@ using Inventory.BusinessClass;
 
 namespace Inventory.QuanLyTonDauKy
 {
-    public partial class frmDanhSachTraNo : Form
+    public partial class frmDanhSachTraNo : DevExpress.XtraEditors.XtraForm
     {
         public frmDanhSachTraNo()
         {

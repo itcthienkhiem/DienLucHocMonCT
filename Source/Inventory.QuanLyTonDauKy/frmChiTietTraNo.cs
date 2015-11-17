@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Inventory.BusinessClass;
 namespace Inventory.QuanLyTonDauKy
 {
-    public partial class frmChiTietTraNo : Form
+    public partial class frmChiTietTraNo : DevExpress.XtraEditors.XtraForm
     {
         frmNoVatTu f;
         public frmChiTietTraNo()

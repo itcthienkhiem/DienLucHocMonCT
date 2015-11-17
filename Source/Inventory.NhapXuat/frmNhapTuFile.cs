@@ -15,7 +15,7 @@ using System.Threading;
 using System.Diagnostics;
 namespace Inventory.NhapXuat
 {
-    public partial class frmNhapTuFile : Form
+    public partial class frmNhapTuFile : DevExpress.XtraEditors.XtraForm
     {
 
         public frmNhapTuFile()

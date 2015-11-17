@@ -24,7 +24,7 @@ namespace Inventory.DanhMuc
     /// * Problem
     /// - Button nên có 2 màu, 1 enable, 1 Disable
     /// </summary>
-    public partial class frmDMVatTu : Form
+    public partial class frmDMVatTu : DevExpress.XtraEditors.XtraForm
     {
         //enumStatus status = enumStatus.None;
         clsDMVatTu DM_VatTu = new clsDMVatTu();

@@ -26,7 +26,7 @@ namespace Inventory.DanhMuc
     /// [ ] Chức năng sửa: Chọn nhiều dòng? SỬa 1 lúc nhiều dòng? Sửa trên lưới, cập nhật sau, 1 lúc.
     /// [ ] Chức năng Xóa, xóa nhiều line 1 lúc? Lúc hỏi, bạn có muốn xóa line a, b?
     /// </summary>
-    public partial class frmDMDonViTinh : Form
+    public partial class frmDMDonViTinh : DevExpress.XtraEditors.XtraForm
     {
         FormActionDelegate frmAction;
 

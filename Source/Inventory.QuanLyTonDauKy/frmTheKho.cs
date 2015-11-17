@@ -18,7 +18,7 @@ namespace Inventory.QuanLyTonDauKy
     /// THÔNG TIN TRÊN LU?I S?P X?P THEO TH?I GIAN 
     /// 
     /// </summary>
-    public partial class frmTheKho : Form
+    public partial class frmTheKho : DevExpress.XtraEditors.XtraForm
     {
         public frmTheKho()
         {

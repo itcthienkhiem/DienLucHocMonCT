@@ -11,7 +11,7 @@ using Inventory.Report;
 using Inventory.Models;
 namespace Inventory.NhapXuat
 {
-    public partial class frmVatTuChoMuon : Form
+    public partial class frmVatTuChoMuon : DevExpress.XtraEditors.XtraForm
     {
         public frmVatTuChoMuon()
         {

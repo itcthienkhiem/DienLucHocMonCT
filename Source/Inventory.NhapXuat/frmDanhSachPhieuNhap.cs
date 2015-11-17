@@ -31,7 +31,7 @@ namespace Inventory.NhapXuat
     /// [ ] Khi Frm chi tiết -> close() -> refesh.
     /// [ ] Sửa -> Gọi DS frm Chi Tiết
     /// </summary>
-    public partial class frmDanhSachPhieuNhap : Form
+    public partial class frmDanhSachPhieuNhap : DevExpress.XtraEditors.XtraForm
     {
         FormActionDelegate frmAction;
         clsPanelButton PanelButton;

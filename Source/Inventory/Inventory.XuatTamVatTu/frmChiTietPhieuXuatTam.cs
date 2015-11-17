@@ -92,7 +92,7 @@ namespace Inventory.XuatTamVatTu
     /// 
     /// ToolTip1.Show("Nhân viên này còn đang giữ vật tư", this.cbTenNhanVien, 15, 15, 1500);
     /// </summary>
-    public partial class frmChiTietPhieuXuatTam : Form
+    public partial class frmChiTietPhieuXuatTam : DevExpress.XtraEditors.XtraForm
     {
         //------------ New --------------
         FormActionDelegate2 frmAction;

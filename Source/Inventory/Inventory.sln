@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.QuanLyNguoiDung",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.UserControls", "Inventory.UserControls\Inventory.UserControls.csproj", "{69648D07-37B2-43FB-81F9-D42196583549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Devexpress.Main", "Inventory.Devexpress.Main\Inventory.Devexpress.Main.csproj", "{5910F174-DD63-4AEC-805A-F3EACDC01C3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,16 @@ Global
 		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69648D07-37B2-43FB-81F9-D42196583549}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69648D07-37B2-43FB-81F9-D42196583549}.Release|x86.ActiveCfg = Release|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5910F174-DD63-4AEC-805A-F3EACDC01C3A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

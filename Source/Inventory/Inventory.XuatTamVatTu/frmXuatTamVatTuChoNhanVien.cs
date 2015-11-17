@@ -24,7 +24,7 @@ namespace Inventory.XuatTamVatTu
     /// Dự kiến:
     /// [ ] Dùng 2 grid --> loại
     /// </summary>
-    public partial class frmXuatTamVatTuChoNhanVien : Form
+    public partial class frmXuatTamVatTuChoNhanVien : DevExpress.XtraEditors.XtraForm
     {
         FormActionDelegate2 frmAction;
         clsPanelButton2 PanelButton;

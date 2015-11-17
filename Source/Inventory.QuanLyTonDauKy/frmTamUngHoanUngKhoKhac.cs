@@ -11,7 +11,7 @@ using Inventory.Models;
 using Inventory.BusinessClass;
 namespace Inventory.QuanLyTonDauKy
 {
-    public partial class frmTamUngHoanUngKhoKhac : Form
+    public partial class frmTamUngHoanUngKhoKhac : DevExpress.XtraEditors.XtraForm
     {
         public frmTamUngHoanUngKhoKhac()
         {

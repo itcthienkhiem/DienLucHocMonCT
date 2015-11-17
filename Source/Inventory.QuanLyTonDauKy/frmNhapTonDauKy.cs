@@ -10,7 +10,7 @@ using Inventory.EntityClass;
 using Inventory.Models;
 namespace Inventory.QuanLyTonDauKy
 {
-    public partial class frmNhapTonDauKy : Form
+    public partial class frmNhapTonDauKy : DevExpress.XtraEditors.XtraForm
     {
         clsTonDauKy TonDauKy;
 

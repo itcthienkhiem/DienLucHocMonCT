@@ -22,7 +22,7 @@ namespace Inventory.DanhMuc
     /// [ ] Bỏ tính năng xóa trực tiếp, chuyển dùng biến trạng thái True == Deleted | False.
     /// [ ] ?
     /// </summary>
-    public partial class frmDMKho : Form
+    public partial class frmDMKho : DevExpress.XtraEditors.XtraForm
     {
         FormActionDelegate frmAction;
 

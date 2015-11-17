@@ -17,6 +17,7 @@ using SplashScreenThreaded;
 using System.Threading;
 using System.Xml;
 using Inventory.QuanLyNguoiDung;
+using Inventory.Devexpress;
 namespace Inventory
 {
     public partial class MDIMain : Form
@@ -866,6 +867,11 @@ namespace Inventory
                 frm.Show();
 
             }
+        }
+
+        private void devexpressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

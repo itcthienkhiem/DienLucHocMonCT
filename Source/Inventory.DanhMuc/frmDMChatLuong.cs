@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace Inventory.DanhMuc
 {
-    public partial class frmDMChatLuong : Form
+    public partial class frmDMChatLuong : DevExpress.XtraEditors.XtraForm
     {
          FormActionDelegate frmAction;
 

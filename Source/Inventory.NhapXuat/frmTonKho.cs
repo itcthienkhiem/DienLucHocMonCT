@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Inventory.EntityClass;
 namespace Inventory.NhapXuat
 {
-    public partial class frmTonKho : Form
+    public partial class frmTonKho : DevExpress.XtraEditors.XtraForm
     {
         public frmTonKho()
         {

@@ -10,7 +10,7 @@ using Inventory.EntityClass;
 using Inventory.Utilities;
 namespace Inventory.QuanLyNguoiDung
 {
-    public partial class frmQuanTriNguoiDung : Form
+    public partial class frmQuanTriNguoiDung : DevExpress.XtraEditors.XtraForm
     {
         public frmQuanTriNguoiDung()
         {

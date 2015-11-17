@@ -11,7 +11,7 @@ using Inventory.Models;
 using Inventory.BusinessClass;
 namespace Inventory.QuanLyTonDauKy
 {
-    public partial class frmNoVatTu : Form
+    public partial class frmNoVatTu : DevExpress.XtraEditors.XtraForm
     {
         clsTonDauKy TonDauKy;
 

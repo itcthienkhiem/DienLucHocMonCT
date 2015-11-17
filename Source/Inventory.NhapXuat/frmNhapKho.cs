@@ -20,7 +20,7 @@ namespace Inventory.NhapXuat
     /// [ ] 
     /// [ ] 
     /// </summary>
-    public partial class frmNhapKho : Form
+    public partial class frmNhapKho : DevExpress.XtraEditors.XtraForm
     {
 
         // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();

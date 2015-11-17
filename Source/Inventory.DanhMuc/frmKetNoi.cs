@@ -14,8 +14,9 @@ using Inventory.Models;
 using System.Xml;
 namespace Inventory.DanhMuc
 {
-    public partial class frmKetNoi : Form
+    public partial class frmKetNoi : DevExpress.XtraEditors.XtraForm
     {
+    
         clsThongTinKetNoi ketnoi = null;
         public frmKetNoi()
         {

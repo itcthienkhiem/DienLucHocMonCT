@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
@@ -52,21 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton2.cs" />
-    <Compile Include="frmChiTietPhieuXuatTam.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmChiTietPhieuXuatTam.cs" />
     <Compile Include="frmChiTietPhieuXuatTam.Designer.cs">
       <DependentUpon>frmChiTietPhieuXuatTam.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhSachPhieuXuatTamVatTu.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmDanhSachPhieuXuatTamVatTu.cs" />
     <Compile Include="frmDanhSachPhieuXuatTamVatTu.Designer.cs">
       <DependentUpon>frmDanhSachPhieuXuatTamVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmXuatTamVatTuChoNhanVien.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmXuatTamVatTuChoNhanVien.cs" />
     <Compile Include="frmXuatTamVatTuChoNhanVien.Designer.cs">
       <DependentUpon>frmXuatTamVatTuChoNhanVien.cs</DependentUpon>
     </Compile>

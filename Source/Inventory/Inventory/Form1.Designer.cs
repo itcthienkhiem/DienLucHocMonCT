@@ -74,6 +74,7 @@
             this.danhSáchVậtTưĐãTạmỨngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devexpressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,8 @@
             this.toolStripSeparator4,
             this.quảnLýKhoToolStripMenuItem1,
             this.toolStripSeparator8,
-            this.giớiThiệuToolStripMenuItem});
+            this.giớiThiệuToolStripMenuItem,
+            this.devexpressToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -425,6 +427,13 @@
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
             // 
+            // devexpressToolStripMenuItem
+            // 
+            this.devexpressToolStripMenuItem.Name = "devexpressToolStripMenuItem";
+            this.devexpressToolStripMenuItem.Size = new System.Drawing.Size(77, 23);
+            this.devexpressToolStripMenuItem.Text = "Devexpress";
+            this.devexpressToolStripMenuItem.Click += new System.EventHandler(this.devexpressToolStripMenuItem_Click);
+            // 
             // MDIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -498,6 +507,7 @@
         private System.Windows.Forms.ToolStripMenuItem nhậpGốiĐầuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lậpPhiếuTrảNợToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem danhSáchVậtTưĐãTạmỨngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devexpressToolStripMenuItem;
     }
 }
 
