@@ -68,40 +68,58 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="clsPanelButton2.cs" />
-    <Compile Include="frmBuTruPhieu.cs" />
+    <Compile Include="frmBuTruPhieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBuTruPhieu.Designer.cs">
       <DependentUpon>frmBuTruPhieu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNhapKhoToTrinh.cs" />
+    <Compile Include="frmNhapKhoToTrinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNhapKhoToTrinh.Designer.cs">
       <DependentUpon>frmNhapKhoToTrinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHoanNhapKho.cs" />
+    <Compile Include="frmHoanNhapKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmHoanNhapKho.Designer.cs">
       <DependentUpon>frmHoanNhapKho.cs</DependentUpon>
     </Compile>
     <Compile Include="enumStatus.cs" />
-    <Compile Include="frmChiTietNhanVatTu.cs" />
+    <Compile Include="frmChiTietNhanVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChiTietNhanVatTu.Designer.cs">
       <DependentUpon>frmChiTietNhanVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhSachPhieuNhap.cs" />
+    <Compile Include="frmDanhSachPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDanhSachPhieuNhap.Designer.cs">
       <DependentUpon>frmDanhSachPhieuNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTonKho.cs" />
+    <Compile Include="frmTonKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTonKho.Designer.cs">
       <DependentUpon>frmTonKho.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNhapKho.cs" />
+    <Compile Include="frmNhapKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNhapKho.Designer.cs">
       <DependentUpon>frmNhapKho.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNhapTuFile.cs" />
+    <Compile Include="frmNhapTuFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNhapTuFile.Designer.cs">
       <DependentUpon>frmNhapTuFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVatTuChoMuon.cs" />
+    <Compile Include="frmVatTuChoMuon.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmVatTuChoMuon.Designer.cs">
       <DependentUpon>frmVatTuChoMuon.cs</DependentUpon>
     </Compile>
@@ -116,7 +134,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="XtraForm1.cs" />
+    <Compile Include="XtraForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>

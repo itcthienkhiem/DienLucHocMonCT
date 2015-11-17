@@ -446,7 +446,7 @@ namespace Inventory
         {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("trano");
+                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("tranongoai");
                 frm.Name = "Lập Phiếu Trả Nợ ";
 
                 foreach (Form f in this.MdiChildren)

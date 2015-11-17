@@ -430,25 +430,6 @@ MessageBoxIcon.Question);
                         }
                     }
                 }
-      //          bool isTraNo = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isTraNo"].Value.ToString());
-      //          if (isTraNo == true)
-      //          {
-      //              bool co_phieu_no = clsPhieuNhapKho.CheckGetAllPhieuChoMuon(maphieu);
-      //              if (co_phieu_no == true)
-      //              {
-
-      //                  DialogResult result2 = MessageBox.Show("Bạn có phiếu đang nợ vui lòng thực hiện trừ nợ trước khi duyệt phiếu ",
-      //"Cảnh báo",
-      //MessageBoxButtons.YesNoCancel,
-      //MessageBoxIcon.Question);
-      //                  if (result2 == DialogResult.Yes)
-      //                  {
-      //                      frmBuTruPhieu butru = new frmBuTruPhieu(this, maphieu, "TN");
-      //                      butru.Show();
-      //                      return;
-      //                  }
-      //              }
-      //          }
 
                 if (CheckPhieuNo() == true)
                     return;

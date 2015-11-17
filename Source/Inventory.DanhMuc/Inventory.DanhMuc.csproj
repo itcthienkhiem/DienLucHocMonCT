@@ -61,15 +61,21 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="enumStatus.cs" />
-    <Compile Include="frmDMChatLuong.cs" />
+    <Compile Include="frmDMChatLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDMChatLuong.Designer.cs">
       <DependentUpon>frmDMChatLuong.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDMDonViTinh.cs" />
+    <Compile Include="frmDMDonViTinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDMDonViTinh.Designer.cs">
       <DependentUpon>frmDMDonViTinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDMKho.cs" />
+    <Compile Include="frmDMKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDMKho.Designer.cs">
       <DependentUpon>frmDMKho.cs</DependentUpon>
     </Compile>
@@ -79,15 +85,21 @@
     <Compile Include="frmDMNhanVien.Designer.cs">
       <DependentUpon>frmDMNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDMVatTu.cs" />
+    <Compile Include="frmDMVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDMVatTu.Designer.cs">
       <DependentUpon>frmDMVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKetNoi.cs" />
+    <Compile Include="frmKetNoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmKetNoi.Designer.cs">
       <DependentUpon>frmKetNoi.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDMLoaiPhieuNhap.cs" />
+    <Compile Include="frmDMLoaiPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDMLoaiPhieuNhap.Designer.cs">
       <DependentUpon>frmDMLoaiPhieuNhap.cs</DependentUpon>
     </Compile>
@@ -97,7 +109,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="frmDevDMVatTu.cs" />
+    <Compile Include="frmDevDMVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDevDMVatTu.Designer.cs">
       <DependentUpon>frmDevDMVatTu.cs</DependentUpon>
     </Compile>

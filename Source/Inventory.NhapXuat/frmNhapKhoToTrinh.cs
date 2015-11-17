@@ -49,6 +49,7 @@ namespace Inventory.NhapXuat
             //Setup một số component
             InitFormComponent();
 
+
           
          
             txtMaPhieuNhap.Enabled = false;
@@ -65,9 +66,9 @@ namespace Inventory.NhapXuat
                 isChoMuon = rdoChoMuonNo.Checked;
 
             }
-            if (no.Equals("trano"))
+            if (no.Equals("tranongoai"))
             {
-                isLoaiPhieu = "TN";
+                isLoaiPhieu = "TNN";
                 lbHeader.Text = "Màn hình Lập Phiếu Trả Nợ"; rdoChoMuonNo.Checked = false; rdoMuonNo.Enabled = false;
                   rdoTraNo.Visible = true;
                   rdoTraNo.Checked = true;
@@ -156,7 +157,7 @@ namespace Inventory.NhapXuat
                 }
                 if (rdoTraNo.Checked == true)
                 {
-                    txtMaPhieuNhap.Text = RandomMaPhieu("TN");
+                    txtMaPhieuNhap.Text = RandomMaPhieu("TNN");
                 }
                 txtMaPhieuNhap.Enabled = false;
                 //txtXuatTaiKho.Enabled = true;
@@ -238,7 +239,7 @@ namespace Inventory.NhapXuat
                                 {
                                     phieunhap.isToTrinh = true;
                                 }
-                                if (isLoaiPhieu == "TN")
+                                if (isLoaiPhieu == "TNN")
                                     phieunhap.isTraNo = true;
                                 if (phieunhap.Insert(help) == 1)
                                 {
@@ -322,7 +323,7 @@ namespace Inventory.NhapXuat
                                     {
                                         phieunhap.isToTrinh = true;
                                     }
-                                    if (isLoaiPhieu == "TN")
+                                    if (isLoaiPhieu == "TNN")
                                         phieunhap.isTraNo = true;
                                     //  phieunhap.isGoiDau = chbNGD.Checked;
                                     phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;

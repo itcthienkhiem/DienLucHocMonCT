@@ -56,15 +56,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsPanelButton2.cs" />
-    <Compile Include="frmChiTietPhieuXuatTam.cs" />
+    <Compile Include="frmChiTietPhieuXuatTam.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChiTietPhieuXuatTam.Designer.cs">
       <DependentUpon>frmChiTietPhieuXuatTam.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDanhSachPhieuXuatTamVatTu.cs" />
+    <Compile Include="frmDanhSachPhieuXuatTamVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDanhSachPhieuXuatTamVatTu.Designer.cs">
       <DependentUpon>frmDanhSachPhieuXuatTamVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmXuatTamVatTuChoNhanVien.cs" />
+    <Compile Include="frmXuatTamVatTuChoNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmXuatTamVatTuChoNhanVien.Designer.cs">
       <DependentUpon>frmXuatTamVatTuChoNhanVien.cs</DependentUpon>
     </Compile>
