@@ -55,6 +55,28 @@ namespace Inventory.EntityClass
                      return dm.ID;
 
        }
+
+       public int CheckTonTaiSoDK(string str )
+       {
+
+
+
+           DatabaseHelper help = new DatabaseHelper();
+           help.ConnectDatabase();
+
+           var dm = (from d in help.ent.Can_tru_no_nhap_ngoai
+                     where d.Ma_phieu_nhap == str ||
+                     d.Ma_phieu_nhap_no == str 
+                     select new
+                     {
+                         d.ID,
+                     }).SingleOrDefault();
+
+           if (dm == null)
+               return -1;
+           return dm.ID;
+
+       }
        public int Insert(DatabaseHelper help)
        {
              

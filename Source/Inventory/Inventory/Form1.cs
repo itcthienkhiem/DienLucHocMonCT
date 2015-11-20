@@ -735,7 +735,7 @@ namespace Inventory
         {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("muonno");
+                frmMuonTraNo frm = new frmMuonTraNo("muonno");
                 frm.Name = "Nhâp Mượn Nợ Kho Khác  ";
 
                 foreach (Form f in this.MdiChildren)
@@ -758,7 +758,7 @@ namespace Inventory
         {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("chomuonno");
+                frmMuonTraNo frm = new frmMuonTraNo("chomuonno");
                 frm.Name = "Nhâp Trả Nợ Kho Khác  ";
 
                 foreach (Form f in this.MdiChildren)
@@ -824,10 +824,15 @@ namespace Inventory
 
         private void lậpPhiếuTrảNợToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void danhSáchVậtTưĐãTạmỨngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmNhapKhoToTrinh frm = new frmNhapKhoToTrinh("trano");
-                frm.Name = "Lập Phiếu Trả Nợ ";
+                frmTamUngHoanUngKhoKhac frm = new frmTamUngHoanUngKhoKhac();
+                frm.Name = "Danh sách phiêu nơ ";
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -845,12 +850,106 @@ namespace Inventory
             }
         }
 
-        private void danhSáchVậtTưĐãTạmỨngToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mượnNợToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (Utilities.clsThamSoUtilities.isSectionLogin == true)
             {
-                frmTamUngHoanUngKhoKhac frm = new frmTamUngHoanUngKhoKhac();
-                frm.Name = "Danh sách phiêu nơ ";
+                frmMuonTraNo frm = new frmMuonTraNo("KCMN");
+                frm.Name = "Lập Phiếu Kho Chính Mượn Nợ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
+
+        private void trảNợToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmMuonTraNo frm = new frmMuonTraNo("KCTN");
+                frm.Name = "Lập Phiếu Kho Chính Trả Nợ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
+
+        private void mượnNợToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmMuonTraNo frm = new frmMuonTraNo("KNMN");
+                frm.Name = "Lập Phiếu Kho Ngoài Mượn Nợ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
+
+        private void trảNợToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmMuonTraNo frm = new frmMuonTraNo("KNTN");
+                frm.Name = "Lập Phiếu Kho Ngoài Trả Nợ ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
+
+        private void danhMụcKhoNgoàiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmDMKhoNgoai frm = new frmDMKhoNgoai();
+                frm.Name = "DM kho ngoài ";
 
                 foreach (Form f in this.MdiChildren)
                 {

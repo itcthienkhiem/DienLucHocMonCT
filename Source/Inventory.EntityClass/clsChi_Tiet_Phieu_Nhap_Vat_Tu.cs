@@ -231,7 +231,7 @@ namespace Inventory.EntityClass
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
                                   join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
-                                  where f.isNhapNgoai == true && f.isChoMuonNgoai == true && f.Da_phan_kho == true && f.isChoMuonNgoai == true
+                                  where f.isNhapNgoai == true && f.isKNMN == true && f.Da_phan_kho == true
 
                                      group d by new { d.Ma_vat_tu, e.Ten_vat_tu ,g.Loai_chat_luong} into gs
                           let TotalPoints = gs.Sum(m => m.So_luong_thuc_lanh)
@@ -259,7 +259,7 @@ namespace Inventory.EntityClass
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
                                   join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
-                                  where f.isNhapNgoai == true  && f.Da_phan_kho == true && f.isTraNo ==true
+                                  where f.isNhapNgoai == true  && f.Da_phan_kho == true && f.isKNTN ==true
 
                                   group d by new { d.Ma_vat_tu, e.Ten_vat_tu, g.Loai_chat_luong } into gs
                                   let TotalPoints = gs.Sum(m => m.So_luong_thuc_lanh)
@@ -417,7 +417,7 @@ namespace Inventory.EntityClass
                                   join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
                                   join f in help.ent.Phieu_Nhap_Kho on d.Ma_phieu_nhap equals f.Ma_phieu_nhap
                                   join g in help.ent.Chat_luong on d.Id_chat_luong equals g.Id_chat_luong
-                                  where f.isNhapNgoai == true&& f.isChoMuonNgoai ==true && f.Da_phan_kho ==true
+                                  where f.isNhapNgoai == true && f.isKNMN == true && f.Da_phan_kho == true
                                   select new
                                   {
                                       d.ID_chi_tiet_phieu_nhap_vat_tu,
@@ -636,5 +636,6 @@ namespace Inventory.EntityClass
             return help.ent.SaveChanges();
 
         }
+
     }
 }

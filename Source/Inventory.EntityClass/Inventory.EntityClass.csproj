@@ -67,6 +67,7 @@
     <Compile Include="clsDM_Kho.cs" />
     <Compile Include="clsDM_NhanVien.cs" />
     <Compile Include="clsGiaoDienChung.cs" />
+    <Compile Include="clsDMKhoNgoai.cs" />
     <Compile Include="clsKho_Muon_Vat_Tu.cs" />
     <Compile Include="clsLoaiPhieuNhap.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />

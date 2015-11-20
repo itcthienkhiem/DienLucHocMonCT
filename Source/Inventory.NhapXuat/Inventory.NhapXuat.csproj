@@ -64,6 +64,12 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="clsPanelButton2.cs" />
+    <Compile Include="frmMuonTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMuonTraNo.Designer.cs">
+      <DependentUpon>frmMuonTraNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBuTruPhieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,12 +81,6 @@
     </Compile>
     <Compile Include="frmNhapKhoToTrinh.Designer.cs">
       <DependentUpon>frmNhapKhoToTrinh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmHoanNhapKho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmHoanNhapKho.Designer.cs">
-      <DependentUpon>frmHoanNhapKho.cs</DependentUpon>
     </Compile>
     <Compile Include="enumStatus.cs" />
     <Compile Include="frmChiTietNhanVatTu.cs">
@@ -130,16 +130,26 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="XuLy\BienBanToTrinh.cs" />
+    <Compile Include="XuLy\DiMuonNo.cs" />
+    <Compile Include="XuLy\DiTraNo.cs" />
+    <Compile Include="XuLy\GoiDau.cs" />
+    <Compile Include="XuLy\KhoKhacTraNo.cs" />
+    <Compile Include="XuLy\PhieuBase.cs" />
+    <Compile Include="XuLy\PhieuHoanNhap.cs" />
+    <Compile Include="XuLy\PhieuKhoKhacMuon.cs" />
+    <Compile Include="XuLy\PhieuKhoKhacTraNo.cs" />
+    <Compile Include="XuLy\PhieuNhap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmMuonTraNo.resx">
+      <DependentUpon>frmMuonTraNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBuTruPhieu.resx">
       <DependentUpon>frmBuTruPhieu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNhapKhoToTrinh.resx">
       <DependentUpon>frmNhapKhoToTrinh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmHoanNhapKho.resx">
-      <DependentUpon>frmHoanNhapKho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmChiTietNhanVatTu.resx">
       <DependentUpon>frmChiTietNhanVatTu.cs</DependentUpon>
@@ -367,6 +377,7 @@
   <ItemGroup>
     <None Include="Resources\Bookmark.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

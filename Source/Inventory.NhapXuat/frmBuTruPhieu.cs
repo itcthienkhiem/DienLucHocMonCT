@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Inventory.EntityClass;
 using Inventory.Models;
+using Inventory.NhapXuat.XuLy;
 
 namespace Inventory.NhapXuat
 {
@@ -53,13 +54,7 @@ namespace Inventory.NhapXuat
             txtMaPhieuNhap.Text = maphieu;
             dtPhieuNhap = pn.GetAll(txtMaPhieuNhap.Text);
             gridDanhSachPhieuNhap.DataSource = dtPhieuNhap;
-            if (LoaiPhieu == "TN")
-            {
-               
-                clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu_TraNo(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
-               
-                return;
-            }
+            
 
         
             clsGiaoDienChung.initCombobox(cbbPhieuNo, new clsBu_Tru_No_Phieu(), "Ma_phieu_nhap", "ID_phieu_nhap", "Ma_phieu_nhap");
@@ -244,7 +239,12 @@ namespace Inventory.NhapXuat
         {
             dspn.LoadInitGridMaster();
 
-            dspn.XuLy();
+            string maphieu = txtMaPhieuNhap.Text;
+            clsPhieuNhapKho pn = new clsPhieuNhapKho();
+            int idphieu = pn.GetIDPhieu(maphieu);
+            PhieuNhap pnk = new PhieuNhap();
+            pnk.Insert(idphieu);
+            dspn.LoadData();
             this.Close();
         }
 

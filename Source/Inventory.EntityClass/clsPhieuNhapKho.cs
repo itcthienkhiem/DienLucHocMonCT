@@ -34,10 +34,13 @@ namespace Inventory.EntityClass
         public bool isNhapNgoai;
         public bool isCanTru = false;
         public bool isGoiDau=false;
-        public bool isChoMuonNgoai = false;
+        public bool isKNMN = false;
         public bool isDaTraNo = false;
         public bool isToTrinh = false;
-        public bool isTraNo = false;
+        public bool isKNTN = false;
+        public string Ten_kho_muon;
+        public bool isKCTN = false;
+        public bool isKCMN = false;
 
         public DateTime ngay_xac_nhan = DateTime.Now;
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
@@ -46,6 +49,16 @@ namespace Inventory.EntityClass
         public clsPhieuNhapKho()
         {
         }
+
+        public int GetIDPhieu(string maphieu )
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho where ep.Ma_phieu_nhap.Equals(maphieu) select new { ep.ID_phieu_nhap}).FirstOrDefault();
+            return entryPoint.ID_phieu_nhap;
+        }
+
         /// <summary>
         /// lấy tất cả danh sách theo điều kiện đã duyệt hay chưa duyệt 
         /// </summary>
@@ -251,7 +264,7 @@ namespace Inventory.EntityClass
                                     join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                     join f in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals f.Ma_phieu_nhap
                                     where ep.isNhapNgoai == true && ep.Da_phan_kho == true && ep.isCanTru == false
-                                    && ep.isChoMuonNgoai == true 
+                                    && ep.isKNMN == true 
                                     && f.Ma_vat_tu == ma_vat_tu && f.So_luong_thuc_lanh >0
                                     select new
                                     {
@@ -271,7 +284,7 @@ namespace Inventory.EntityClass
                                         ep.isGoiDau,
                                         ep.isCanTru,
                                         ep.isNhapNgoai,
-                                        ep.isTraNo,
+                                        ep.isKNTN,
                                     }).ToList();
                 if (entryPointCT != null && entryPointCT.Count >0 )
                     return true;
@@ -306,8 +319,8 @@ namespace Inventory.EntityClass
                   var entryPointCT = (from ep in help.ent.Phieu_Nhap_Kho
                                     join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                                       join f in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu on ep.Ma_phieu_nhap equals f.Ma_phieu_nhap
-                                    where ep.isNhapNgoai == true && ep.Da_phan_kho == true && ep.isCanTru == false 
-                                    && ep.isChoMuonNgoai == false && ep.isTraNo == false
+                                    where ep.Da_phan_kho == true && ep.isCanTru == false 
+                                    && ep.isToTrinh == true
                                     && f.Ma_vat_tu == ma_vat_tu && f.So_luong_thuc_lanh > 0
                                     select new
                                     {
@@ -327,7 +340,7 @@ namespace Inventory.EntityClass
                                         ep.isGoiDau,
                                         ep.isCanTru,
                                         ep.isNhapNgoai,
-                                        ep.isTraNo,
+                                        ep.isKNTN,
                                     }).ToList();
                   if (entryPointCT != null && entryPointCT.Count > 0)
                       return true;
@@ -381,9 +394,13 @@ namespace Inventory.EntityClass
                                     isGoiDau =  ep.isGoiDau,
                                    isCanTru=   ep.isCanTru,
                                    isNhapNgoai=   ep.isNhapNgoai,
-                                     isChoMuonNgoai = ep.isChoMuonNgoai,
+                                     isKNMN = ep.isKNMN,
                                      ngay_xac_nhan = ep.ngay_xac_nhan,
-                                     isTraNo = ep.isTraNo,
+                                     isKNTN = ep.isKNTN,
+                                     isKCMN = ep.isKCMN,
+                                     isKCTN = ep.isKCTN,
+                                     isToTrinh = ep.isToTrinh,
+
                                   }
 
            ).ToList();
@@ -412,9 +429,12 @@ namespace Inventory.EntityClass
                                   isGoiDau = ep.isGoiDau,
                                   isCanTru = ep.isCanTru,
                                   isNhapNgoai = ep.isNhapNgoai,
-                                  isChoMuonNgoai =ep.isChoMuonNgoai,
+                                  isKNMN = ep.isKNMN,
                                   ngay_xac_nhan = ep.ngay_xac_nhan,
-                                  isTraNo = ep.isTraNo,
+                                  isKNTN = ep.isKNTN,
+                                  isKCMN = ep.isKCMN,
+                                  isKCTN = ep.isKCTN,
+                                  isToTrinh = ep.isToTrinh,
                               }
 
            ).ToList();
@@ -464,7 +484,7 @@ namespace Inventory.EntityClass
                                       isGoiDau = ep.isGoiDau,
                                       isCanTru = ep.isCanTru,
                                       isNhapNgoai = ep.isNhapNgoai,
-                                      isChoMuonNgoai = ep.isChoMuonNgoai,
+                                      isChoMuonNgoai = ep.isKNMN,
                                       ngay_xac_nhan = ep.ngay_xac_nhan,
                                   }
 
@@ -531,7 +551,11 @@ namespace Inventory.EntityClass
                                   ep.ID_kho,
                                   e.Ten_kho,
                                   ep.isGoiDau,
-                              
+                                  ep.Ten_kho_muon ,
+                                  ep.isKNTN,
+                                  ep.isKNMN,
+                                  ep.isKCMN,
+                                  ep.isKCTN,
                               }
 
         ).ToList();
@@ -815,11 +839,14 @@ namespace Inventory.EntityClass
                         isGoiDau = this.isGoiDau,
                         isNhapNgoai = this.isNhapNgoai,
                         isCanTru = this.isCanTru,
-                        isChoMuonNgoai = this.isChoMuonNgoai,
+                        isKNMN = this.isKNMN,
                         isDaTraNo = this.isDaTraNo,
+                        isKNTN = this.isKNTN,
                         ngay_xac_nhan = this.ngay_xac_nhan,
                         isToTrinh = this.isToTrinh,
-                        isTraNo = this.isTraNo ,
+                        isKCTN = this.isKCTN,
+                        isKCMN = this.isKCMN,
+                        Ten_kho_muon = this.Ten_kho_muon,
                     };
 
                     help.ent.Phieu_Nhap_Kho.Add(t);
@@ -918,6 +945,16 @@ namespace Inventory.EntityClass
             //   help.ent.Database.BeginTransaction();
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
+                var recordsToDeleteCT = (from c in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu where c.Ma_phieu_nhap == ma_phieu select c).ToList<Chi_Tiet_Phieu_Nhap_Vat_Tu>();
+                if (recordsToDeleteCT.Count > 0)
+                {
+                    foreach (var record in recordsToDeleteCT)
+                    {
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Attach(record);
+                        help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
                 var recordsToDelete = (from c in help.ent.Phieu_Nhap_Kho where c.Ma_phieu_nhap == ma_phieu select c).ToList<Phieu_Nhap_Kho>();
                 if (recordsToDelete.Count > 0)
                 {

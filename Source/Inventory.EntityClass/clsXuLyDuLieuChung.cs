@@ -62,19 +62,19 @@ namespace Inventory.EntityClass
                         help.ent.SaveChanges();
 
 
-                        //buoc 2: them 1 dong vao ban chi tiet ton kho voi ma, so luong, kho tuong tung
-                        Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
-                        cttk.ID_Ton_kho = entTonKho.ID_ton_kho;
-                        cttk.Ma_phieu = maphieu;
-                        cttk.So_luong = soluong;
-                        cttk.Ngay_thay_doi = DateTime.Now;
-                        if(LNP == true)
-                        cttk.Tang_Giam = true;//<-- set tang 
-                        else
-                            cttk.Tang_Giam = false;//<-- set tang 
+                        ////buoc 2: them 1 dong vao ban chi tiet ton kho voi ma, so luong, kho tuong tung
+                        //Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
+                        //cttk.ID_Ton_kho = entTonKho.ID_ton_kho;
+                        //cttk.Ma_phieu = maphieu;
+                        //cttk.So_luong = soluong;
+                        //cttk.Ngay_thay_doi = DateTime.Now;
+                        //if(LNP == true)
+                        //cttk.Tang_Giam = true;//<-- set tang 
+                        //else
+                        //    cttk.Tang_Giam = false;//<-- set tang 
                        
-                        help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
-                        help.ent.SaveChanges();
+                        //help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
+                        //help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();                    
                         //cập nhật trạng thái phiếu nhập
@@ -156,18 +156,18 @@ namespace Inventory.EntityClass
                         help.ent.SaveChanges();
 
                         //buoc 2: them 1 dong vao ban chi tiet ton kho voi ma, so luong, kho tuong tung
-                        Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
-                        cttk.ID_Ton_kho = stud.ID_ton_kho;
-                        cttk.Ma_phieu = maphieu;
-                        cttk.So_luong = stud.So_luong;
+                        //Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
+                        //cttk.ID_Ton_kho = stud.ID_ton_kho;
+                        //cttk.Ma_phieu = maphieu;
+                        //cttk.So_luong = stud.So_luong;
 
-                        cttk.Ngay_thay_doi = DateTime.Now;
-                        if(LNP == true)
-                            cttk.Tang_Giam = true;//<-- set tang 
-                        else
-                            cttk.Tang_Giam = false;
-                        help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
-                        help.ent.SaveChanges();
+                        //cttk.Ngay_thay_doi = DateTime.Now;
+                        //if(LNP == true)
+                        //    cttk.Tang_Giam = true;//<-- set tang 
+                        //else
+                        //    cttk.Tang_Giam = false;
+                        //help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
+                        //help.ent.SaveChanges();
                         //cập nhật lại trạng thái phiếu nhập 
                         //var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 
@@ -348,14 +348,14 @@ namespace Inventory.EntityClass
 
 
                         //buoc 2: them 1 dong vao ban chi tiet ton kho voi ma, so luong, kho tuong tung
-                        Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
-                        cttk.ID_Ton_kho = entTonKho.ID_ton_kho;
-                        cttk.Ma_phieu = maphieu;
-                        cttk.So_luong = soluong;
-                        cttk.Ngay_thay_doi = DateTime.Now;
-                        cttk.Tang_Giam = true;//<-- set tang 
-                        help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
-                        help.ent.SaveChanges();
+                        //Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
+                        //cttk.ID_Ton_kho = entTonKho.ID_ton_kho;
+                        //cttk.Ma_phieu = maphieu;
+                        //cttk.So_luong = soluong;
+                        //cttk.Ngay_thay_doi = DateTime.Now;
+                        //cttk.Tang_Giam = true;//<-- set tang 
+                        //help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
+                        //help.ent.SaveChanges();
                         //buoc 3 : sau khi them vao bang chi tiet ton kho thi cap nhat lai trang thai phieu nhap
                         //Chi_Tiet_Phieu_Nhap_Vat_Tu ctpn = new Chi_Tiet_Phieu_Nhap_Vat_Tu();
                         var entryPointCT = (from d in help.ent.Chi_Tiet_Phieu_Nhap_Vat_Tu
@@ -460,15 +460,15 @@ namespace Inventory.EntityClass
                         help.ent.SaveChanges();
 
                         //buoc 2: them 1 dong vao ban chi tiet ton kho voi ma, so luong, kho tuong tung
-                        Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
-                        cttk.ID_Ton_kho = stud.ID_ton_kho;
-                        cttk.Ma_phieu = maphieu;
-                        cttk.So_luong = stud.So_luong;
+                        //Chi_Tiet_Ton_Kho cttk = new Chi_Tiet_Ton_Kho();
+                        //cttk.ID_Ton_kho = stud.ID_ton_kho;
+                        //cttk.Ma_phieu = maphieu;
+                        //cttk.So_luong = stud.So_luong;
                         
-                        cttk.Ngay_thay_doi = DateTime.Now;
-                        cttk.Tang_Giam = true;//<-- set tang 
-                        help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
-                        help.ent.SaveChanges();
+                        //cttk.Ngay_thay_doi = DateTime.Now;
+                        //cttk.Tang_Giam = true;//<-- set tang 
+                        //help.ent.Chi_Tiet_Ton_Kho.Add(cttk);
+                        //help.ent.SaveChanges();
                         //cập nhật lại trạng thái phiếu nhập 
                         var entryPointPN = (from d in help.ent.Phieu_Nhap_Kho
 

@@ -19,7 +19,7 @@ namespace Inventory.EntityClass
           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Phieu_Nhap_Kho
-                        where d.isNhapNgoai ==true  &&d.isDaTraNo == false  && d.Da_phan_kho == true && d.isChoMuonNgoai == false
+                        where d.isDaTraNo == false  && d.Da_phan_kho == true && d.isToTrinh == true
                         select new
                         {
                             d.ID_phieu_nhap,
@@ -62,7 +62,7 @@ namespace Inventory.EntityClass
           using (var dbcxtransaction = help.ent.Database.BeginTransaction())
           {
               var dm = (from d in help.ent.Phieu_Nhap_Kho
-                        where d.isNhapNgoai == true && d.isDaTraNo == false && d.Da_phan_kho == true && d.isChoMuonNgoai == true
+                        where d.isNhapNgoai == true && d.isDaTraNo == false && d.Da_phan_kho == true && d.isKNMN == true
                       
                         select new
                         {

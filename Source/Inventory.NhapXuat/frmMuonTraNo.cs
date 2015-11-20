@@ -20,7 +20,7 @@ namespace Inventory.NhapXuat
     /// [ ] 
     /// [ ] 
     /// </summary>
-    public partial class frmNhapKhoToTrinh : Form
+    public partial class frmMuonTraNo : Form
     {
 
        // Dictionary<string, clsDMVatTu> Dic = new Dictionary<string, clsDMVatTu>();
@@ -29,23 +29,72 @@ namespace Inventory.NhapXuat
         //  DataTable data = new DataTable();
 
 
-        public frmNhapKhoToTrinh()
+        public frmMuonTraNo()
         {
             InitializeComponent();
 
             //Setup một số component
             InitFormComponent();
-           
+            rdoKCMuonNo.Visible = false;
+            rdoKNMN.Visible = false;
             lbHeader.Text = "Màn hình Nhập Tờ Trình - Biên Bản";
-        
+            isLoaiPhieu = "TT";
         }
-    
+        public bool isChoMuon = false;
+        public string isLoaiPhieu = "";
+        public frmMuonTraNo(string no)
+        {
+            InitializeComponent();
+
+            //Setup một số component
+            InitFormComponent();
+
+            txtMaPhieuNhap.Enabled = false;
+          
+            if(no.Equals("KCMN"))
+            {
+                  isLoaiPhieu = "KCMN";
+                  lbHeader.Text = "Màn hình Lập Phiếu Kho Chính Mượn Nợ";
+                  rdoKCMuonNo.Checked = true;
+                    rdoKNMN.Checked = false;
+                    rdoKCTN.Checked = false;
+                  rdoKNTN.Checked = false;
+            }
+            if (no.Equals("KCTN"))
+            {
+                isLoaiPhieu = "KCTN";
+                lbHeader.Text = "Màn hình Lập Phiếu Kho Chính Trả Nợ";
+                rdoKCTN.Checked = true;
+                rdoKNMN.Checked = false;
+                rdoKCMuonNo.Checked = false;
+                rdoKNTN.Checked = false;
+            }
+            if (no.Equals("KNMN"))
+            {
+                isLoaiPhieu = "KNMN";
+                lbHeader.Text = "Màn hình Lập Phiếu Kho Ngoài Mượn Nợ";
+                rdoKCTN.Checked = false;
+                rdoKNMN.Checked = true;
+
+                rdoKCMuonNo.Checked = false;
+                rdoKNTN.Checked = false;
+            }
+            if (no.Equals("KNTN"))
+            {
+                isLoaiPhieu = "KNTN";
+                lbHeader.Text = "Màn hình Lập Phiếu Kho Ngoài Trả Nợ";
+                rdoKCTN.Checked = false;
+                rdoKNMN.Checked = false;
+                rdoKCMuonNo.Checked = false;
+                rdoKNTN.Checked = true;
+            }
+        }
         /// <summary>
         /// Call form theo tham số.
         /// </summary>
         /// <param name="stt">enumButton2</param>
         /// <param name="Ma_Phieu_Nhap">str Mã phiếu nhập.</param>
-        public frmNhapKhoToTrinh(enumButton2 stt, string Ma_Phieu_Nhap)
+        public frmMuonTraNo(enumButton2 stt, string Ma_Phieu_Nhap)
         {
             InitializeComponent();
 
@@ -70,7 +119,7 @@ namespace Inventory.NhapXuat
                 }
         }
 
-        public frmNhapKhoToTrinh(enumStatus status, clsPhieuNhapKho phieunhap)
+        public frmMuonTraNo(enumStatus status, clsPhieuNhapKho phieunhap)
         {
             try
             {
@@ -110,10 +159,25 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
-                
+               
+                if (rdoKCMuonNo.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("KCMN");
+                }
+                if (rdoKCTN.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("KCTN");
+                }
+                if (rdoKNMN.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("KNMN");
+                }
+                if (rdoKNTN.Checked == true)
+                {
+                    txtMaPhieuNhap.Text = RandomMaPhieu("KNTN");
+                }
                 txtMaPhieuNhap.Enabled = false;
                 //txtXuatTaiKho.Enabled = true;
-                txtMaPhieuNhap.Text = RandomMaPhieu("TT");
             }
 
         }
@@ -164,24 +228,29 @@ namespace Inventory.NhapXuat
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             if (!phieunhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text))
                             {
-                                // phieunhap.
+                             
                                 phieunhap.Kho_nhan = cbKhoNhan.Text;
                                 phieunhap.Kho_xuat_ra = txtXuatTaiKho.Text;
                                 phieunhap.Da_phan_kho = false;
-                             
+                               
                                   phieunhap.ID_Loai_Phieu_Nhap = null;
-                                //     phieunhap.ID_kho = Int32.Parse(cbKhoNhap.SelectedValue.ToString());
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 phieunhap.Dia_chi = txtDiaChi.Text;
                                 phieunhap.Ly_do = txtLyDo.Text;
                                 phieunhap.Ngay_lap = dtNgayNhap.Value;
-                                //  phieunhap.So_hoa_don = txt
                                 phieunhap.Cong_trinh = txtCongTrinh.Text;
                                 phieunhap.Da_phan_kho = false;
-                                //  phieunhap.isGoiDau = chbNGD.Checked;
                                 phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
-                                phieunhap.isToTrinh = true;
+                                if (rdoKNMN.Checked == true)
+                                    phieunhap.isKNMN = true;
+                                if (rdoKNTN.Checked == true)
+                                    phieunhap.isKNTN = true;
+                                if (rdoKCTN.Checked == true)
+                                    phieunhap.isKCTN = true;
+                                if (rdoKCMuonNo.Checked == true)
+                                    phieunhap.isKCMN = true;
                                 phieunhap.isNhapNgoai = true;
+                                phieunhap.Ten_kho_muon = cbKhoNgoai.Text;
                                 if (phieunhap.Insert(help) == 1)
                                 {
 
@@ -255,9 +324,23 @@ namespace Inventory.NhapXuat
                                     phieunhap.Ngay_lap = dtNgayNhap.Value;
                                     //     phieunhap.So_hoa_don = txtSoHD.Text;
                                     phieunhap.Cong_trinh = txtCongTrinh.Text;
+                                   
+                                    //if (rdoKNMN.Checked == true)
+                                    //    phieunhap.isChoMuonNgoai = true;
 
-                                    phieunhap.isToTrinh = true;
+                                 
+                                    if (rdoKNMN.Checked == true)
+                                        phieunhap.isKNMN = true;
+                                    if (rdoKNTN.Checked == true)
+                                        phieunhap.isKNTN = true;
+                                    if (rdoKCTN.Checked == true)
+                                        phieunhap.isKCTN = true;
+                                    if (rdoKCMuonNo.Checked == true)
+                                        phieunhap.isKCMN = true;
+
                                     phieunhap.isNhapNgoai = true;
+                                    //if (isLoaiPhieu == "TN")
+                                    //    phieunhap.isTraNo = true;
                                     //  phieunhap.isGoiDau = chbNGD.Checked;
                                     phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
                                     DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
@@ -273,14 +356,19 @@ namespace Inventory.NhapXuat
                                     nk.Kho_nhan = phieunhap.Kho_nhan;
                                     nk.ID_kho = phieunhap.ID_khoNhan;
                                     nk.Kho_xuat_ra = phieunhap.Kho_xuat_ra;
-                                    nk.isKNTN = phieunhap.isKNTN;
+                                  //  nk.isKNTN = phieunhap.isTraNo;
                                     nk.isToTrinh = phieunhap.isToTrinh;
-
-                                    //     nk.ID_Loai_Phieu_Nhap = phieunhap.ID_Loai_Phieu_Nhap;
                                     nk.Ly_do = phieunhap.Ly_do;
                                     nk.Ngay_lap = phieunhap.Ngay_lap;
                                     nk.So_hoa_don = phieunhap.So_hoa_don;
-                                  
+                                    if (rdoKNMN.Checked == true)
+                                        nk.isKNMN = true;
+                                    if (isLoaiPhieu == "TT")
+                                    {
+                                        phieunhap.isToTrinh = true;
+                                    }
+                                   // if (isLoaiPhieu == "TN")
+                                   //     phieunhap.isTraNo = true;
                                     nk.isNhapNgoai = true;
                                     //  nk.isGoiDau = chbNGD.Checked;
                                     if (phieunhap.Update(nk) == 1)
@@ -381,6 +469,12 @@ namespace Inventory.NhapXuat
                     txtDiaChi.Text = tb.Rows[0]["Dia_chi"].ToString();
                  //   cbLoaiPhieuNhan.SelectedValue = tb.Rows[0]["ID_Loai_Phieu_Nhap"].ToString();
                  //   chbNGD.Checked =bool.Parse( tb.Rows[0]["isGoiDau"].ToString());
+                    cbKhoNgoai.Text = tb.Rows[0]["Ten_kho_muon"].ToString();
+                    rdoKCMuonNo.Checked =bool.Parse( tb.Rows[0]["isKCMN"].ToString());
+                    rdoKCTN.Checked = bool.Parse(tb.Rows[0]["isKCTN"].ToString());
+                    rdoKNMN.Checked = bool.Parse(tb.Rows[0]["isKNMN"].ToString());
+                    rdoKNTN.Checked = bool.Parse(tb.Rows[0]["isKNTN"].ToString());
+
                     clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                     DataTable vChiTiet = (DataTable)chitiet.GetAll(txtMaPhieuNhap.Text);
                     for (int i = 0; i < vChiTiet.Rows.Count; i++)
@@ -513,16 +607,16 @@ namespace Inventory.NhapXuat
                     MessageBox.Show("Mã vật tư và tên vật tư không được rỗng, Chất lượng bắt buộc nhập !");
                     return;
                 }
-                //if (isLoaiPhieu == "CMN")
-                //{
-                //    clsTonKho checkton = new clsTonKho();
-                //    decimal temp = checkton.checkSLTonChoMuon((int)cbKhoNhan.SelectedValue, cbMaVatTu.Text, (int)cbChatLuong.SelectedValue, int.Parse(txtSLTX.Text));
-                //    if ( temp== 0)
-                //    {
-                //        MessageBox.Show("Số lượng vật tư mượn phải nhỏ hơn số lượng trong kho, hoặc kho không có vật tư này!Kiểm tra lại tồn Kho");
-                //        return;
-                //    }
-                //}
+                if (isLoaiPhieu == "KNMN" || isLoaiPhieu == "KCTN")
+                {
+                    clsTonKho checkton = new clsTonKho();
+                    decimal temp = checkton.checkSLTonChoMuon((int)cbKhoNhan.SelectedValue, cbMaVatTu.Text, (int)cbChatLuong.SelectedValue, int.Parse(txtSLTX.Text));
+                    if (temp < int.Parse(txtSLTX.Text))
+                    {
+                        MessageBox.Show("Số lượng vật tư mượn phải nhỏ hơn số lượng trong kho,Không thể cho mượn đối với vật tư này!Số lượng còn lại trong kho:  "+ temp );
+                        return;
+                    }
+                }
 
 
 
@@ -940,7 +1034,7 @@ namespace Inventory.NhapXuat
         /// txtChatLuong
         /// 
         /// </summary>
-        private void InitFormComponent()
+        private void  InitFormComponent()
         {
             //Init cls Button
             PanelButton = new clsPanelButton2();
@@ -992,7 +1086,8 @@ namespace Inventory.NhapXuat
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
-            
+            clsGiaoDienChung.initCombobox(cbKhoNgoai, new clsDMKhoNgoai(), "Ten_kho_muon", "ID", "Ten_kho_muon");
+           
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
         }
@@ -1300,8 +1395,8 @@ namespace Inventory.NhapXuat
 
         private void cbMuonNo_CheckedChanged(object sender, EventArgs e)
         {
-      
-         
+            if (rdoKCMuonNo.Checked == true)
+            txtMaPhieuNhap.Text = RandomMaPhieu("MN");
         }
 
         private void cbMaVatTu_SelectedIndexChanged(object sender, EventArgs e)
@@ -1312,11 +1407,6 @@ namespace Inventory.NhapXuat
         private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbTenVatTu_SelectionChangeCommitted(sender, e);
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
         }
 
 

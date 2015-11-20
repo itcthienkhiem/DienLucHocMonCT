@@ -245,10 +245,10 @@ namespace Inventory.EntityClass
                                   {
                                       d.So_luong,
                                   }).FirstOrDefault();
-                if (entryPoint != null && entryPoint.So_luong >= sl)
+                
                     return (decimal) entryPoint.So_luong;
                 
-                return 0;
+               
             }
         }
 
