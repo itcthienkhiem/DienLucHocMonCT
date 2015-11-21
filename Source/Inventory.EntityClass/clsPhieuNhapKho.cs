@@ -698,7 +698,42 @@ namespace Inventory.EntityClass
 
             //return dt;
         }
+        public DataTable GetThongTinPhieuMuonNo(string Ma_phieu_nhap)
+        {
 
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
+                              join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
+                            
+                              where ep.Ma_phieu_nhap == Ma_phieu_nhap
+                              select new
+                              {
+                                  ep.Ma_phieu_nhap,
+                                  ep.Kho_nhan,
+                                  ep.Ngay_lap,
+                                  ep.Ly_do,
+                                  ep.So_hoa_don,
+                                  ep.Cong_trinh,
+                                  ep.Dia_Chi,
+                                  ep.ID_Loai_Phieu_Nhap,
+                                  ep.Kho_xuat_ra,
+                                  ep.Da_phan_kho,
+                                  ep.ID_phieu_nhap,
+                                  ep.ID_kho,
+                                  ep.isCanTru,
+                                  e.Ten_kho,
+                                  ep.isGoiDau,
+                                 
+
+                              }
+
+        ).ToList();
+
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
+
+          
+        }
 
         //public bool CheckTonTaiSoDK()
         //{

@@ -130,6 +130,8 @@ namespace Inventory.NhapXuat
         clsPhieuNhapKho phieuNhapKho = new clsPhieuNhapKho();
         private void btnThem_Click(object sender, EventArgs e)
         {
+
+
             if (PanelButton.isClickNone())
             {
                 PanelButton.setClickThem();
@@ -139,6 +141,10 @@ namespace Inventory.NhapXuat
                 //reset for input
                 enableInputForm();
                 ResetInputForm();
+                cbChatLuong.SelectedIndex = 0;
+                cbKhoNhan.SelectedIndex = 0;
+                cbLoaiPhieuNhan.SelectedIndex = 0;
+
                 //txtXuatTaiKho.Enabled = true;
             }
 
@@ -162,12 +168,7 @@ namespace Inventory.NhapXuat
 
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            clsPhieuNhapKho pnk = new clsPhieuNhapKho();
-            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true)
-            {
-                MessageBox.Show("mã phiếu đã bị trùng");
-                return;
-            }
+           
             //switch (staTus)
             switch (PanelButton.getClickStatus())
             {
@@ -180,7 +181,12 @@ namespace Inventory.NhapXuat
                         {
 
                             // insert
-
+                            clsPhieuNhapKho pnk = new clsPhieuNhapKho();
+                            if (pnk.CheckTonTaiSoDK(txtMaPhieuNhap.Text.Trim()) == true)
+                            {
+                                MessageBox.Show("mã phiếu đã bị trùng");
+                                return;
+                            }
                             clsPhieuNhapKho phieunhap = new clsPhieuNhapKho();
                             phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                             if (!phieunhap.CheckTonTaiSoDK(txtMaPhieuNhap.Text))
@@ -488,10 +494,10 @@ namespace Inventory.NhapXuat
                     return;
                 }
 
-                //DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text +"ID_CHAT_LUONG"+cbChatLuong.SelectedValue);
+                     DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text +" and ID_chat_luong =" +cbChatLuong.SelectedValue );
 
-                //if (result.Length == 0)
-               // {
+                if (result.Length == 0)
+                {
                     try
                     {
                         DataRow dr = dataTable1.NewRow();
@@ -520,9 +526,9 @@ namespace Inventory.NhapXuat
                     {
                         MessageBox.Show(ex.Message);
                     }
-                //}
-                //else
-                //    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
+                }
+                else
+                    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
 
                 // gridMaster.SelectedRows.
             }
@@ -540,13 +546,18 @@ namespace Inventory.NhapXuat
         {
             // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
             //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
-            if (loaiphieu == "PN")
-            {
-                rdoNhapGoiDau.Checked = false;
-                rdoNhapGoiDau.Visible = false;
-            }
+       
+            //this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);
+            //this.txtSLYC.GotFocus += new EventHandler(textBox_GotFocus);
         }
+        void textBox_GotFocus(object sender, EventArgs e)
+        {
 
+            TextBox tb = (TextBox)sender;
+            tb.Focus();
+            tb.SelectAll();
+            //throw new NotImplementedException(); 
+        }  
         private void btnGridEdit_Click(object sender, EventArgs e)
         {
             try
@@ -1092,6 +1103,7 @@ namespace Inventory.NhapXuat
             txtDonGia.Text = "0";
 
             dataTable1.Clear();
+           
         }
 
         public void ResetInputFormForCheck()
@@ -1205,9 +1217,11 @@ namespace Inventory.NhapXuat
 
         private void txtSLTX_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             double number;
             try
             {
+               
                 number = double.Parse(txtSLTX.Text);
                 txtSLTX.BackColor = Color.White;
             }
@@ -1281,6 +1295,22 @@ namespace Inventory.NhapXuat
         private void cbTenVatTu_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbTenVatTu_SelectionChangeCommitted(sender, e);
+        }
+
+        private void txtSLYC_TextChanged(object sender, EventArgs e)
+        {
+            txtSLTX.Text = txtSLYC.Text;
+        }
+
+        private void txtSLTX_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtSLTX.SelectAll();
+       //     txtSLTX.Focus();
+        }
+
+        private void txtSLYC_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtSLYC.SelectAll();
         }
 
 

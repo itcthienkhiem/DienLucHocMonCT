@@ -114,6 +114,9 @@ namespace Inventory.NhapXuat
                 txtMaPhieuNhap.Enabled = false;
                 //txtXuatTaiKho.Enabled = true;
                 txtMaPhieuNhap.Text = RandomMaPhieu("TT");
+                cbChatLuong.SelectedIndex = 0;
+                cbKhoNhan.SelectedIndex = 0;
+                
             }
 
         }
@@ -246,26 +249,18 @@ namespace Inventory.NhapXuat
                                 phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                 {
 
-                                    // phieunhap.
-
-                                    //  phieunhap.ID_Loai_Phieu_Nhap = Int32.Parse(cbLoaiPhieuNhan.SelectedValue.ToString());
                                     phieunhap.Ma_phieu_nhap = txtMaPhieuNhap.Text;
                                     phieunhap.Dia_chi = txtDiaChi.Text;
                                     phieunhap.Ly_do = txtLyDo.Text;
                                     phieunhap.Ngay_lap = dtNgayNhap.Value;
-                                    //     phieunhap.So_hoa_don = txtSoHD.Text;
                                     phieunhap.Cong_trinh = txtCongTrinh.Text;
-
                                     phieunhap.isToTrinh = true;
                                     phieunhap.isNhapNgoai = true;
-                                    //  phieunhap.isGoiDau = chbNGD.Checked;
                                     phieunhap.ID_khoNhan = (int)cbKhoNhan.SelectedValue;
-                                    DataTable temp = phieunhap.GetThongTinPhieuNhap(phieunhap.Ma_phieu_nhap);
+                                    DataTable temp = phieunhap.GetThongTinPhieuMuonNo(phieunhap.Ma_phieu_nhap);
                                     Phieu_Nhap_Kho nk = new Phieu_Nhap_Kho();
-
                                     nk.Ma_phieu_nhap = phieunhap.Ma_phieu_nhap;
                                     nk.ID_phieu_nhap = int.Parse(temp.Rows[0]["ID_phieu_nhap"].ToString());
-
                                     nk.Cong_trinh = phieunhap.Cong_trinh;
                                     nk.Da_phan_kho = phieunhap.Da_phan_kho;
                                     nk.Dia_Chi = phieunhap.Dia_chi;
@@ -275,14 +270,10 @@ namespace Inventory.NhapXuat
                                     nk.Kho_xuat_ra = phieunhap.Kho_xuat_ra;
                                     nk.isKNTN = phieunhap.isKNTN;
                                     nk.isToTrinh = phieunhap.isToTrinh;
-
-                                    //     nk.ID_Loai_Phieu_Nhap = phieunhap.ID_Loai_Phieu_Nhap;
                                     nk.Ly_do = phieunhap.Ly_do;
                                     nk.Ngay_lap = phieunhap.Ngay_lap;
                                     nk.So_hoa_don = phieunhap.So_hoa_don;
-                                  
                                     nk.isNhapNgoai = true;
-                                    //  nk.isGoiDau = chbNGD.Checked;
                                     if (phieunhap.Update(nk) == 1)
                                     {
 
@@ -298,7 +289,6 @@ namespace Inventory.NhapXuat
                                             chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
                                             chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
                                             chitiet.ID_Chat_luong = int.Parse(dataTable1.Rows[i]["ID_Chat_luong"].ToString());
-                                            chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
                                             chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
                                             chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
                                             chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
@@ -313,7 +303,6 @@ namespace Inventory.NhapXuat
 
                                         PanelButton.ResetClickStatus();
 
-                                        //setInputComponentStatus(true);
                                         enableInputForm();
 
                                         PanelButton.ResetButton();
@@ -527,10 +516,10 @@ namespace Inventory.NhapXuat
 
 
 
-                //DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text);
+                DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text +" and ID_chat_luong =" +cbChatLuong.SelectedValue );
 
-                //if (result.Length == 0)
-                //{
+                if (result.Length == 0)
+                {
                     try
                     {
                         DataRow dr = dataTable1.NewRow();
@@ -559,9 +548,9 @@ namespace Inventory.NhapXuat
                     {
                         MessageBox.Show(ex.Message);
                     }
-                //}
-                //else
-                //    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
+                }
+                else
+                    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
 
                 // gridMaster.SelectedRows.
             }
@@ -579,9 +568,16 @@ namespace Inventory.NhapXuat
         {
             // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
             //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
+            this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);
+           
 
         }
-
+        void textBox_GotFocus(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.SelectAll();
+            //throw new NotImplementedException(); 
+        }  
         private void btnGridEdit_Click(object sender, EventArgs e)
         {
             try
@@ -1317,6 +1313,11 @@ namespace Inventory.NhapXuat
         private void label18_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSLTX_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtSLTX.SelectAll();
         }
 
 
