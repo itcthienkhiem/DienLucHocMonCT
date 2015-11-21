@@ -826,7 +826,7 @@ namespace Inventory.EntityClass
             // Cập nhật Chi Tiết Tồn
             if (result_UpdateTonKho != -1)
             {
-                int result_ChiTietTonKho = update_ChiTietTonKho(row, m_trans, m_conn, false);
+                int result_ChiTietTonKho = 1; // update_ChiTietTonKho(row, m_trans, m_conn, false);
                 return result_ChiTietTonKho;
             }
             else 
@@ -872,7 +872,7 @@ namespace Inventory.EntityClass
             if (result_UpdateTonKho != -1)
                 return result_UpdateTonKho;
 
-            int result_ChiTietTonKho_HN = update_ChiTietTonKho(row, m_trans, m_conn, true);
+            int result_ChiTietTonKho_HN = 1; // update_ChiTietTonKho(row, m_trans, m_conn, true);
             if (result_ChiTietTonKho_HN != -1)
                 return result_ChiTietTonKho_HN;
 

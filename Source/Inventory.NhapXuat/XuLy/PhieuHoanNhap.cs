@@ -34,6 +34,7 @@ namespace Inventory.NhapXuat.XuLy
                     string maphieu = entryPointCTPN[i].Ma_phieu_nhap;
                     decimal sl = (decimal)entryPointCTPN[i].So_luong_thuc_lanh;
                     DateTime ngay_xuat = (DateTime)pnk.Ngay_lap;
+                    DateTime ngay_nhap_xuat = DateTime.Now;
                     string dien_giai = pnk.Ly_do;
                     var entryPoint = (from d in help.ent.Ton_kho
 
@@ -76,7 +77,7 @@ namespace Inventory.NhapXuat.XuLy
                     cttk.Ngay_xuat_chung_tu = ngay_xuat;
                     cttk.Dien_giai = dien_giai;
                     cttk.SL_Xuat = sl;
-
+                    cttk.Ngay_nhap_xuat = ngay_nhap_xuat;
                     cttk.ID_loai_phieu_nhap = pnk.ID_Loai_Phieu_Nhap;
                     
                     help.ent.Chi_tiet_the_kho.Add(cttk);

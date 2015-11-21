@@ -61,11 +61,11 @@ namespace Inventory.NhapXuat.XuLy
 
                                         where d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
                                         select d).FirstOrDefault();
-                    
 
-                    if (entryPointTK == null)
-                    {
                         The_kho tk = new The_kho();
+                        if (entryPointTK == null)
+                    {
+                       
                         tk.Ma_vat_tu = mavattu;
                         tk.Dia_diem = "";
                         tk.Don_vi = "";
@@ -78,7 +78,7 @@ namespace Inventory.NhapXuat.XuLy
                       
                     }
                     Chi_tiet_the_kho cttk = new Chi_tiet_the_kho();
-                    cttk.ID_The_Kho = entryPointTK.ID_The_Kho;
+                    cttk.ID_The_Kho = tk.ID_The_Kho;
                     cttk.Ma_phieu = maphieu;
                     cttk.Ngay_xuat_chung_tu = ngay_xuat;
                     cttk.Dien_giai = dien_giai;
@@ -127,7 +127,8 @@ namespace Inventory.NhapXuat.XuLy
                        string maphieu = entryPointCTPN[i].Ma_phieu_nhap;
                        decimal sl = (decimal)entryPointCTPN[i].So_luong_thuc_lanh;
                        DateTime ngay_xuat = (DateTime)pnk.Ngay_lap;
-                       string dien_giai = pnk.Ly_do;
+                        DateTime ngay_nhap_xuat = DateTime.Now;
+                        string dien_giai = pnk.Ly_do;
                        var entryPoint = (from d in help.ent.Ton_kho
 
                                          where d.ID_kho == pnk.ID_kho && d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
@@ -154,15 +155,15 @@ namespace Inventory.NhapXuat.XuLy
                                            where d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
                                            select d).FirstOrDefault();
 
-
-                       if (entryPointTK == null)
+                        The_kho tk = new The_kho();
+                        if (entryPointTK == null)
                        {
-                           The_kho tk = new The_kho();
+                           
                            tk.Ma_vat_tu = mavattu;
                            tk.Dia_diem = "";
                            tk.Don_vi = "";
                            tk.Id_chat_luong = idcl;
-
+                            
                            help.ent.The_kho.Add(tk);
                            help.ent.SaveChanges();
 
@@ -170,8 +171,9 @@ namespace Inventory.NhapXuat.XuLy
 
                        }
                        Chi_tiet_the_kho cttk = new Chi_tiet_the_kho();
-                       cttk.ID_The_Kho = entryPointTK.ID_The_Kho;
+                       cttk.ID_The_Kho = tk.ID_The_Kho;
                        cttk.Ma_phieu = maphieu;
+                        cttk.Ngay_nhap_xuat = ngay_nhap_xuat;
                        cttk.Ngay_xuat_chung_tu = ngay_xuat;
                        cttk.Dien_giai = dien_giai;
                        cttk.SL_Nhap = sl;

@@ -41,6 +41,7 @@ namespace Inventory.NhapXuat.XuLy
                             string maphieu = entryPointCTPN[i].Ma_phieu_nhap;
                             decimal sl = (decimal)entryPointCTPN[i].So_luong_thuc_lanh;
                             DateTime ngay_xuat = (DateTime)pnk.Ngay_lap;
+                       
                             string dien_giai = pnk.Ly_do;
                             var entryPointGD = (from d in help.ent.Vat_Tu_Goi_Dau_Ky
 

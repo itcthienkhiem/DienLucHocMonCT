@@ -488,10 +488,10 @@ namespace Inventory.NhapXuat
                     return;
                 }
 
-                DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text);
+                //DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text +"ID_CHAT_LUONG"+cbChatLuong.SelectedValue);
 
-                if (result.Length == 0)
-                {
+                //if (result.Length == 0)
+               // {
                     try
                     {
                         DataRow dr = dataTable1.NewRow();
@@ -520,9 +520,9 @@ namespace Inventory.NhapXuat
                     {
                         MessageBox.Show(ex.Message);
                     }
-                }
-                else
-                    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
+                //}
+                //else
+                //    MessageBox.Show("Đã tồn tại mã vật tư này rồi !");
 
                 // gridMaster.SelectedRows.
             }
