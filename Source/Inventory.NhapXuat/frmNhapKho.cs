@@ -1313,6 +1313,39 @@ namespace Inventory.NhapXuat
             txtSLYC.SelectAll();
         }
 
+        private void contextRemove_Click(object sender, EventArgs e)
+        {
+            if (!this.gridMaster.Rows[this.rowIndex].IsNewRow)
+            {
+
+                this.gridMaster.Rows.RemoveAt(this.rowIndex);
+
+            }
+        }
+        private int rowIndex = 0;
+        private void gridMaster_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                this.gridMaster.Rows[e.RowIndex].Selected = true;
+
+                this.rowIndex = e.RowIndex;
+
+                this.gridMaster.CurrentCell = this.gridMaster.Rows[e.RowIndex].Cells[1];
+
+                this.contextRemove.Show(this.gridMaster, e.Location);
+
+                contextRemove.Show(Cursor.Position);
+
+            }
+        }
+
+        private void contextRemove_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
 
 
     }

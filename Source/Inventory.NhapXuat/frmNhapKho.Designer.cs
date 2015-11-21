@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.gridMaster = new System.Windows.Forms.DataGridView();
             this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,12 +122,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdoNone = new System.Windows.Forms.RadioButton();
             this.lbHeader = new System.Windows.Forms.Label();
+            this.contextRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextRemove.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -142,8 +146,8 @@
             // 
             this.gridMaster.AllowUserToDeleteRows = false;
             this.gridMaster.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -151,15 +155,15 @@
             this.gridMaster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMaster.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma_vat_tu,
@@ -178,12 +182,13 @@
             this.gridMaster.Name = "gridMaster";
             this.gridMaster.ReadOnly = true;
             this.gridMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridMaster.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMaster.RowTemplate.Height = 30;
             this.gridMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMaster.Size = new System.Drawing.Size(1017, 275);
             this.gridMaster.TabIndex = 51;
+            this.gridMaster.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMaster_CellMouseUp);
             this.gridMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridMaster_MouseClick);
             // 
             // Ma_vat_tu
@@ -738,6 +743,7 @@
             this.btnDel.Size = new System.Drawing.Size(45, 29);
             this.btnDel.TabIndex = 86;
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Visible = false;
             this.btnDel.Click += new System.EventHandler(this.btnGridDel_Click);
             // 
             // btnSaveGrid
@@ -745,7 +751,7 @@
             this.btnSaveGrid.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_save;
             this.btnSaveGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSaveGrid.Enabled = false;
-            this.btnSaveGrid.Location = new System.Drawing.Point(962, 21);
+            this.btnSaveGrid.Location = new System.Drawing.Point(909, 18);
             this.btnSaveGrid.Name = "btnSaveGrid";
             this.btnSaveGrid.Size = new System.Drawing.Size(55, 29);
             this.btnSaveGrid.TabIndex = 84;
@@ -757,7 +763,7 @@
             this.btnEdit.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.button_modify;
             this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(910, 21);
+            this.btnEdit.Location = new System.Drawing.Point(857, 18);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(45, 29);
             this.btnEdit.TabIndex = 83;
@@ -767,7 +773,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(973, 4);
+            this.label25.Location = new System.Drawing.Point(920, 1);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(28, 14);
             this.label25.TabIndex = 81;
@@ -776,7 +782,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(917, 4);
+            this.label24.Location = new System.Drawing.Point(864, 1);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(28, 14);
             this.label24.TabIndex = 81;
@@ -790,6 +796,7 @@
             this.label23.Size = new System.Drawing.Size(27, 14);
             this.label23.TabIndex = 81;
             this.label23.Text = "Xóa";
+            this.label23.Visible = false;
             // 
             // label22
             // 
@@ -1023,6 +1030,21 @@
             this.lbHeader.Size = new System.Drawing.Size(0, 39);
             this.lbHeader.TabIndex = 91;
             // 
+            // contextRemove
+            // 
+            this.contextRemove.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextRemove.Name = "contextRemove";
+            this.contextRemove.Size = new System.Drawing.Size(95, 26);
+            this.contextRemove.Opening += new System.ComponentModel.CancelEventHandler(this.contextRemove_Opening);
+            this.contextRemove.Click += new System.EventHandler(this.contextRemove_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
+            this.toolStripMenuItem1.Text = "Xóa";
+            // 
             // frmNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1064,6 +1086,7 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.contextRemove.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1161,5 +1184,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoNone;
         private System.Windows.Forms.Label lbHeader;
+        private System.Windows.Forms.ContextMenuStrip contextRemove;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

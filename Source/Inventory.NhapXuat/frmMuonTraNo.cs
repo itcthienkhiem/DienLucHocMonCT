@@ -669,6 +669,20 @@ namespace Inventory.NhapXuat
             }
         }
 
+        private void contextRemove_Click(object sender, EventArgs e)
+        {
+            if (!this.gridMaster.Rows[this.rowIndex].IsNewRow)
+            {
+
+                this.gridMaster.Rows.RemoveAt(this.rowIndex);
+
+            }
+        }
+        private int rowIndex = 0;
+        private void gridMaster_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
 
         
 
