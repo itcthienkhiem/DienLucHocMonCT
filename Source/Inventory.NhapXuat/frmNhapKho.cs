@@ -130,7 +130,7 @@ namespace Inventory.NhapXuat
         clsPhieuNhapKho phieuNhapKho = new clsPhieuNhapKho();
         private void btnThem_Click(object sender, EventArgs e)
         {
-
+           
 
             if (PanelButton.isClickNone())
             {
@@ -1344,6 +1344,14 @@ namespace Inventory.NhapXuat
         private void contextRemove_Opening(object sender, CancelEventArgs e)
         {
 
+        }
+     
+        private void gridMaster_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+          
+        }
+        private void ChangeCellToComboBox(int iRowIndex)
+        {
         }
 
 
