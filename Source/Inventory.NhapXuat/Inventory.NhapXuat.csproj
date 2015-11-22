@@ -145,6 +145,7 @@
     <Compile Include="XuLy\DiTraNo.cs" />
     <Compile Include="XuLy\GoiDau.cs" />
     <Compile Include="XuLy\KhoKhacTraNo.cs" />
+    <Compile Include="XuLy\KhoNgoai.cs" />
     <Compile Include="XuLy\PhieuBase.cs" />
     <Compile Include="XuLy\PhieuHoanNhap.cs" />
     <Compile Include="XuLy\PhieuKhoKhacMuon.cs" />

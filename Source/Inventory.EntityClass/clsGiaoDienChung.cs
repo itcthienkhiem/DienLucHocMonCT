@@ -34,5 +34,41 @@ namespace Inventory.EntityClass
            catch (Exception ex) {  }
 
        }
+       public static void initComboboxNotHaveKhoNgoai(ComboBox cbb, ObjecEntity entCls, string tencot, string ValueMember, string DisplayMember)
+       {
+           try
+           {
+               cbb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+               cbb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+               AutoCompleteStringCollection combData1 = entCls.getListToComboboxNotHaveKhoNgoai(tencot);// new AutoCompleteStringCollection();
+
+               cbb.AutoCompleteCustomSource = combData1;
+               cbb.DataSource = entCls.GetAllData();
+               cbb.DisplayMember = DisplayMember;
+               cbb.ValueMember = ValueMember;
+               cbb.SelectedIndex = -1;
+           }
+           catch (Exception ex) { }
+
+       }
+       public static void initComboboxHaveKhoNgoai(ComboBox cbb, ObjecEntity entCls, string tencot, string ValueMember, string DisplayMember)
+       {
+           try
+           {
+               cbb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+               cbb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+               AutoCompleteStringCollection combData1 = entCls.getListToComboboxHaveKhoNgoai(tencot);// new AutoCompleteStringCollection();
+
+               cbb.AutoCompleteCustomSource = combData1;
+               cbb.DataSource = entCls.GetAllData();
+               cbb.DisplayMember = DisplayMember;
+               cbb.ValueMember = ValueMember;
+               cbb.SelectedIndex = -1;
+           }
+           catch (Exception ex) { }
+
+       }
     }
 }

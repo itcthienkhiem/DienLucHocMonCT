@@ -22,7 +22,46 @@ namespace Inventory.EntityClass
 
         }
 
-     
+        public override System.Windows.Forms.AutoCompleteStringCollection getListToComboboxNotHaveKhoNgoai(string TenCot)
+        {
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho
+                          where d.isKhoNgoai ==false
+                          select d).ToList();
+                dbcxtransaction.Commit();
+                DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+                foreach (DataRow row in ds.Rows)
+                {
+                    dataCollection.Add(row[TenCot].ToString());
+                }
+            }
+            return dataCollection;
+        }
+        public override System.Windows.Forms.AutoCompleteStringCollection getListToComboboxHaveKhoNgoai(string TenCot)
+        {
+            System.Windows.Forms.AutoCompleteStringCollection dataCollection = new System.Windows.Forms.AutoCompleteStringCollection();
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho
+                          where d.isKhoNgoai == true
+                          select d).ToList();
+                dbcxtransaction.Commit();
+                DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
+                foreach (DataRow row in ds.Rows)
+                {
+                    dataCollection.Add(row[TenCot].ToString());
+                }
+            }
+            return dataCollection;
+        }
 
         public override System.Windows.Forms.AutoCompleteStringCollection getListToCombobox(string TenCot)
         {
@@ -33,6 +72,7 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var dm = (from d in help.ent.DM_Kho
+
                           select d).ToList();
                 dbcxtransaction.Commit();
                 DataTable ds = Utilities.clsThamSoUtilities.ToDataTable(dm);
@@ -100,7 +140,26 @@ namespace Inventory.EntityClass
             }
         }
 
-      
+        public  DataTable GetDataARow(int id)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            //help.ent.Configuration.LazyLoadingEnabled = false;
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho
+                          where d.ID_kho == id
+                          select new
+                          {
+                              d.ID_kho,
+                              d.Ten_kho,
+                              d.isKhoNgoai,
+                          }).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
 
         public bool CheckTonTaiSoDK()
         {

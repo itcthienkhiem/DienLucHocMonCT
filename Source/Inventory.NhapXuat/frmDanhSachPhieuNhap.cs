@@ -388,6 +388,26 @@ MessageBoxIcon.Question);
                 bool isKNTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString());
                 bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
                 bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
+                int ID_Kho = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString()) ? 0 : int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
+                bool isKhoNgoai =bool.Parse( new clsDM_Kho().GetDataARow(ID_Kho).Rows[0]["isKhoNgoai"].ToString());
+                if (isKhoNgoai == true)
+                {
+                    if (idloaiphieu != -1)
+                    {
+                        clsLoaiPhieuNhap lpn = new clsLoaiPhieuNhap();
+                        if (lpn.getTenLPN(idloaiphieu).Equals("XD"))
+                        {
+                            KhoNgoai pn = new KhoNgoai();
+
+                            if (pn.Insert(idphieu) == 1)
+                            {
+                                MessageBox.Show("Đã xác nhận thành công!"); return;
+
+                            }
+                        }
+                    }
+                   
+                }
                 if (isToTrinh == true)
                 {
                     BienBanToTrinh BBTT = new BienBanToTrinh();
@@ -462,6 +482,7 @@ MessageBoxIcon.Question);
                     if (lpn.getTenLPN(idloaiphieu).Equals("XD"))
                     {
                         PhieuNhap pn = new PhieuNhap();
+                        
                         if (pn.Insert(idphieu) == 1)
                         {
                             MessageBox.Show("Đã xác nhận thành công!"); return;

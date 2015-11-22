@@ -9,12 +9,12 @@ namespace Inventory.NhapXuat.XuLy
     {
         public override int Insert(int id)
         {
-            PhieuNhap pn = new PhieuNhap();
+            KhoNgoai pn = new KhoNgoai();
             return pn.Insert(id);
         }
         public override int BoDuyet(int id)
         {
-            PhieuNhap pn = new PhieuNhap();
+            KhoNgoai pn = new KhoNgoai();
             return pn.BoDuyet(id);
 
         }

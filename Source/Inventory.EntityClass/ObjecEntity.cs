@@ -10,6 +10,8 @@ namespace Inventory.EntityClass
    public class ObjecEntity
     {
        //tổng quát hóa
+       public virtual AutoCompleteStringCollection getListToComboboxNotHaveKhoNgoai(string TenCot) { return null; }
+       public virtual AutoCompleteStringCollection getListToComboboxHaveKhoNgoai(string TenCot) { return null; }
        public virtual AutoCompleteStringCollection getListToCombobox(string TenCot) { return null; }
        public virtual DataTable GetAllData() { return null; }
        public virtual bool KiemTraTrungMa() { return false; }

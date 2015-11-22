@@ -59,6 +59,8 @@ namespace Inventory.NhapXuat
                   rdoKNMN.Checked = false;
                   rdoKCTN.Checked = false;
                   rdoKNTN.Checked = false;
+                  clsGiaoDienChung.initComboboxHaveKhoNgoai(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+                  return;
             }
             if (no.Equals("KCTN"))
             {
@@ -88,6 +90,7 @@ namespace Inventory.NhapXuat
                 rdoKCMuonNo.Checked = false;
                 rdoKNTN.Checked = true;
             }
+            clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
         }
         /// <summary>
         /// Call form theo tham số.
@@ -1112,7 +1115,7 @@ namespace Inventory.NhapXuat
             //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
-            clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+           
             clsGiaoDienChung.initCombobox(cbKhoNgoai, new clsDMKhoNgoai(), "Ten_kho_muon", "ID", "Ten_kho_muon");
            
             PanelButton.ResetClickStatus();

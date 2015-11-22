@@ -1014,7 +1014,7 @@ namespace Inventory.NhapXuat
             //cbLoaiPhieuNhan.DataSource = clsLoaiPhieuNhap.getAll();
             //cbLoaiPhieuNhan.ValueMember = "ID_loai_phieu_nhap";
             //cbLoaiPhieuNhan.DisplayMember= "ma_loai_phieu_nhap";
-            clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            clsGiaoDienChung.initComboboxNotHaveKhoNgoai(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             
             PanelButton.ResetClickStatus();
             PanelButton.ResetButton();
