@@ -56,8 +56,8 @@ namespace Inventory.NhapXuat
                   isLoaiPhieu = "KCMN";
                   lbHeader.Text = "Màn hình Lập Phiếu Kho Chính Mượn Nợ";
                   rdoKCMuonNo.Checked = true;
-                    rdoKNMN.Checked = false;
-                    rdoKCTN.Checked = false;
+                  rdoKNMN.Checked = false;
+                  rdoKCTN.Checked = false;
                   rdoKNTN.Checked = false;
             }
             if (no.Equals("KCTN"))

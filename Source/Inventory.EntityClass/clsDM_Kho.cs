@@ -15,6 +15,8 @@ namespace Inventory.EntityClass
     {
         public int ID_kho;
         public string Ten_kho;
+        public bool isKhoNgoai=false;
+
         public clsDM_Kho()
         {
 
@@ -89,7 +91,8 @@ namespace Inventory.EntityClass
                           select new
                           {
                               d.ID_kho,
-                              d.Ten_kho
+                              d.Ten_kho,
+                              d.isKhoNgoai ,
                           }).ToList();
                 dbcxtransaction.Commit();
 
@@ -121,6 +124,7 @@ namespace Inventory.EntityClass
                     {
                         ID_kho = this.ID_kho,
                         Ten_kho = this.Ten_kho,                   // ID = Guid.NewGuid(),
+                        isKhoNgoai = this.isKhoNgoai,
                     };
 
                     help.ent.DM_Kho.Add(t);

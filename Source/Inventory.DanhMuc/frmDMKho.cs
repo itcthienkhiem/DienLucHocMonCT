@@ -164,7 +164,7 @@ namespace Inventory.DanhMuc
                 case enumButton.Them:
                     {
                         DM_Kho1.Ten_kho = txtTenKho.Text.Trim();
-
+                        DM_Kho1.isKhoNgoai = cbKhoNgoai.Checked;
                         if (!DM_Kho1.CheckTonTaiSoDK())
                         {
                             if (DM_Kho1.Insert() == 1)
@@ -195,7 +195,7 @@ namespace Inventory.DanhMuc
                 case enumButton.Xoa:
                         {
                             DM_Kho1.Ten_kho = txtTenKho.Text;
-
+                            DM_Kho1.isKhoNgoai = cbKhoNgoai.Checked;
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
                             DM_Kho1.ID_kho = int.Parse(gridDMKho.Rows[selectedRowCount].Cells["id_kho"].Value.ToString());
 
@@ -233,7 +233,7 @@ namespace Inventory.DanhMuc
                         {
                             DM_Kho1 = new clsDM_Kho();
                             DM_Kho1.Ten_kho = txtTenKho.Text;
-
+                            DM_Kho1.isKhoNgoai = cbKhoNgoai.Checked;
                             Int32 selectedRowCount = gridDMKho.CurrentCell.RowIndex;
 
                             if (selectedRowCount >= 0)
@@ -276,6 +276,7 @@ namespace Inventory.DanhMuc
             if (selectedRowCount >= 0 && PanelButton.isClickXoa() || PanelButton.isClickSua())
             {
                 txtTenKho.Text = gridDMKho.Rows[selectedRowCount].Cells["Ten_kho"].Value.ToString();
+                cbKhoNgoai.Checked =bool.Parse( gridDMKho.Rows[selectedRowCount].Cells["isKhoNgoai"].Value.ToString());
             }
             // txtTenKho.Text = cell.Value.ToString();
         }

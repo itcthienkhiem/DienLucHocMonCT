@@ -39,19 +39,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblSua = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.gridDMKho = new System.Windows.Forms.DataGridView();
-            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnHuy = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
+            this.lblSua = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.gridDMKho = new System.Windows.Forms.DataGridView();
+            this.cbKhoNgoai = new System.Windows.Forms.CheckBox();
+            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isKhoNgoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDMKho)).BeginInit();
             this.SuspendLayout();
@@ -144,87 +146,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Lưu ý: Ô màu vàng bắt buộc phải nhập";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Hủy bỏ";
-            // 
-            // lblSua
-            // 
-            this.lblSua.AutoSize = true;
-            this.lblSua.Location = new System.Drawing.Point(140, 61);
-            this.lblSua.Name = "lblSua";
-            this.lblSua.Size = new System.Drawing.Size(28, 14);
-            this.lblSua.TabIndex = 3;
-            this.lblSua.Text = "Sửa";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 102);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 14);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "Tên kho";
-            // 
-            // gridDMKho
-            // 
-            this.gridDMKho.AllowUserToAddRows = false;
-            this.gridDMKho.AllowUserToDeleteRows = false;
-            this.gridDMKho.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridDMKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridDMKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridDMKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridDMKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridDMKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID_kho,
-            this.Ten_kho});
-            this.gridDMKho.Location = new System.Drawing.Point(9, 133);
-            this.gridDMKho.MultiSelect = false;
-            this.gridDMKho.Name = "gridDMKho";
-            this.gridDMKho.ReadOnly = true;
-            this.gridDMKho.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.gridDMKho.RowHeadersVisible = false;
-            this.gridDMKho.RowTemplate.Height = 30;
-            this.gridDMKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDMKho.Size = new System.Drawing.Size(760, 208);
-            this.gridDMKho.TabIndex = 47;
-            this.gridDMKho.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDMKho_CellClick);
-            // 
-            // ID_kho
-            // 
-            this.ID_kho.DataPropertyName = "ID_kho";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID_kho.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ID_kho.HeaderText = "ID";
-            this.ID_kho.Name = "ID_kho";
-            this.ID_kho.ReadOnly = true;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            this.Ten_kho.Width = 120;
-            // 
             // btnHuy
             // 
             this.btnHuy.BackgroundImage = global::Inventory.DanhMuc.Properties.Resources.close_bmc;
@@ -234,6 +155,15 @@
             this.btnHuy.Size = new System.Drawing.Size(50, 50);
             this.btnHuy.TabIndex = 4;
             this.btnHuy.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(302, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 14);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Hủy bỏ";
             // 
             // btnLuu
             // 
@@ -300,11 +230,102 @@
             this.btnLamMoi.TabIndex = 2;
             this.btnLamMoi.UseVisualStyleBackColor = true;
             // 
+            // lblSua
+            // 
+            this.lblSua.AutoSize = true;
+            this.lblSua.Location = new System.Drawing.Point(140, 61);
+            this.lblSua.Name = "lblSua";
+            this.lblSua.Size = new System.Drawing.Size(28, 14);
+            this.lblSua.TabIndex = 3;
+            this.lblSua.Text = "Sửa";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 102);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 14);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Tên kho";
+            // 
+            // gridDMKho
+            // 
+            this.gridDMKho.AllowUserToAddRows = false;
+            this.gridDMKho.AllowUserToDeleteRows = false;
+            this.gridDMKho.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridDMKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridDMKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridDMKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridDMKho.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridDMKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridDMKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDMKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_kho,
+            this.Ten_kho,
+            this.isKhoNgoai});
+            this.gridDMKho.Location = new System.Drawing.Point(9, 133);
+            this.gridDMKho.MultiSelect = false;
+            this.gridDMKho.Name = "gridDMKho";
+            this.gridDMKho.ReadOnly = true;
+            this.gridDMKho.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gridDMKho.RowHeadersVisible = false;
+            this.gridDMKho.RowTemplate.Height = 30;
+            this.gridDMKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridDMKho.Size = new System.Drawing.Size(760, 208);
+            this.gridDMKho.TabIndex = 47;
+            this.gridDMKho.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDMKho_CellClick);
+            // 
+            // cbKhoNgoai
+            // 
+            this.cbKhoNgoai.AutoSize = true;
+            this.cbKhoNgoai.Location = new System.Drawing.Point(298, 102);
+            this.cbKhoNgoai.Name = "cbKhoNgoai";
+            this.cbKhoNgoai.Size = new System.Drawing.Size(84, 18);
+            this.cbKhoNgoai.TabIndex = 48;
+            this.cbKhoNgoai.Text = "isKhoNgoai";
+            this.cbKhoNgoai.UseVisualStyleBackColor = true;
+            // 
+            // ID_kho
+            // 
+            this.ID_kho.DataPropertyName = "ID_kho";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID_kho.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ID_kho.HeaderText = "ID";
+            this.ID_kho.Name = "ID_kho";
+            this.ID_kho.ReadOnly = true;
+            // 
+            // Ten_kho
+            // 
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
+            this.Ten_kho.Width = 120;
+            // 
+            // isKhoNgoai
+            // 
+            this.isKhoNgoai.DataPropertyName = "isKhoNgoai";
+            this.isKhoNgoai.HeaderText = "Kho Ngoài";
+            this.isKhoNgoai.Name = "isKhoNgoai";
+            this.isKhoNgoai.ReadOnly = true;
+            // 
             // frmDMKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 353);
+            this.Controls.Add(this.cbKhoNgoai);
             this.Controls.Add(this.gridDMKho);
             this.Controls.Add(this.txtTenKho);
             this.Controls.Add(this.pnlMenu);
@@ -344,7 +365,9 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.CheckBox cbKhoNgoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_kho;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_kho;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isKhoNgoai;
     }
 }
