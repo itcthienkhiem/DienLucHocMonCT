@@ -69,7 +69,32 @@ namespace Inventory.NhapXuat
                     button2_Click(this, EventArgs.Empty);
                 }
         }
+        frmDanhSachPhieuNhap ds = null;
+        public frmNhapKhoToTrinh(enumButton2 stt, string Ma_Phieu_Nhap,frmDanhSachPhieuNhap pn )
+        {
+            InitializeComponent();
 
+            //Setup một số component
+            InitFormComponent();
+
+            if (stt == enumButton2.Sua)
+            {
+                txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+
+                btnSua_Click(this, EventArgs.Empty);
+            }
+            else if (stt == enumButton2.Them)
+            {
+                btnThem_Click(this, EventArgs.Empty);
+            }
+            else
+                if (stt == enumButton2.None)
+                {
+                    txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+                    button2_Click(this, EventArgs.Empty);
+                }
+            this.ds = pn;
+        }
         public frmNhapKhoToTrinh(enumStatus status, clsPhieuNhapKho phieunhap)
         {
             try
@@ -317,6 +342,7 @@ namespace Inventory.NhapXuat
                                 dbcxtransaction.Rollback();
                             }
                         }
+                        this.ds.LoadData();
                         break;
                     }
                 #endregion
@@ -596,7 +622,8 @@ namespace Inventory.NhapXuat
             // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
             //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
             this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);
-           
+            cbKhoNhan.SelectedIndex = 0;
+            cbChatLuong.SelectedIndex = 0;
 
         }
         void textBox_GotFocus(object sender, EventArgs e)

@@ -139,7 +139,45 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
+        public override DataTable GetAllDataHasNotKhoNgoai()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            //help.ent.Configuration.LazyLoadingEnabled = false;
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho
+                          where d.isKhoNgoai == false 
+                          select new
+                          {
+                              d.ID_kho,
+                              d.Ten_kho,
+                              d.isKhoNgoai,
+                          }).ToList();
+                dbcxtransaction.Commit();
 
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
+        public override DataTable GetAllDataHasKhoNgoai()
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            //help.ent.Configuration.LazyLoadingEnabled = false;
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.DM_Kho where d.isKhoNgoai == true
+                          select new
+                          {
+                              d.ID_kho,
+                              d.Ten_kho,
+                              d.isKhoNgoai,
+                          }).ToList();
+                dbcxtransaction.Commit();
+
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
         public  DataTable GetDataARow(int id)
         {
             DatabaseHelper help = new DatabaseHelper();

@@ -91,6 +91,9 @@ namespace Inventory.NhapXuat
                 rdoKNTN.Checked = true;
             }
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            cbKhoNgoai.SelectedIndex = 0;
+
+            cbKhoNhan.SelectedIndex = 0;
         }
         /// <summary>
         /// Call form theo tham số.
@@ -121,7 +124,32 @@ namespace Inventory.NhapXuat
                     button2_Click(this, EventArgs.Empty);
                 }
         }
+        frmDanhSachPhieuNhap ds=null;
+        public frmMuonTraNo(enumButton2 stt, string Ma_Phieu_Nhap,frmDanhSachPhieuNhap pn)
+        {
+            InitializeComponent();
 
+            //Setup một số component
+            InitFormComponent();
+
+            if (stt == enumButton2.Sua)
+            {
+                txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+
+                btnSua_Click(this, EventArgs.Empty);
+            }
+            else if (stt == enumButton2.Them)
+            {
+                btnThem_Click(this, EventArgs.Empty);
+            }
+            else
+                if (stt == enumButton2.None)
+                {
+                    txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+                    button2_Click(this, EventArgs.Empty);
+                }
+            this.ds = pn;
+        }
         public frmMuonTraNo(enumStatus status, clsPhieuNhapKho phieunhap)
         {
             try
@@ -425,6 +453,7 @@ namespace Inventory.NhapXuat
                                 dbcxtransaction.Rollback();
                             }
                         }
+                        this.ds.LoadData();
                         break;
                     }
                 #endregion
@@ -695,6 +724,8 @@ namespace Inventory.NhapXuat
 
         private void frmNhapKho_Load(object sender, EventArgs e)
         {
+            cbChatLuong.SelectedIndex = 0;
+
             // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
             //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
             this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);

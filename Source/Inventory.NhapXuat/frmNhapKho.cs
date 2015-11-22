@@ -54,21 +54,7 @@ namespace Inventory.NhapXuat
             }
         }
         //public frmNhapKho(string lp)
-        //{
-
-        //    InitializeComponent();
-        //    this.loaiphieu = lp;
-
-        //    //Setup một số component
-        //    InitFormComponent();
-        //    if (loaiphieu.Equals("PN"))
-        //        lbHeader.Text = "Màn hình Nhập Kho";
-        //    if (loaiphieu.Equals("HN"))
-        //        lbHeader.Text = "Màn hình Hoàn Nhập";
-        //    rdoNhapGoiDau.Checked = true;
-        //    rdoNone.Enabled = false;
-        //    rdoBuTruPhieu.Enabled = false;
-        //}
+        frmDanhSachPhieuNhap ds = null;
         /// <summary>
         /// Call form theo tham số.
         /// </summary>
@@ -97,6 +83,32 @@ namespace Inventory.NhapXuat
                     txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
                     button2_Click(this, EventArgs.Empty);
                 }
+          
+        }
+        public frmNhapKho(enumButton2 stt, string Ma_Phieu_Nhap, frmDanhSachPhieuNhap dspn)
+        {
+            InitializeComponent();
+
+            //Setup một số component
+            InitFormComponent();
+
+            if (stt == enumButton2.Sua)
+            {
+                txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+
+                btnSua_Click(this, EventArgs.Empty);
+            }
+            else if (stt == enumButton2.Them)
+            {
+                btnThem_Click(this, EventArgs.Empty);
+            }
+            else
+                if (stt == enumButton2.None)
+                {
+                    txtMaPhieuNhap.Text = Ma_Phieu_Nhap;
+                    button2_Click(this, EventArgs.Empty);
+                }
+            this.ds = dspn;
         }
 
         public frmNhapKho(enumStatus status, clsPhieuNhapKho phieunhap)
@@ -130,7 +142,7 @@ namespace Inventory.NhapXuat
         clsPhieuNhapKho phieuNhapKho = new clsPhieuNhapKho();
         private void btnThem_Click(object sender, EventArgs e)
         {
-            gridMaster.SelectionMode = DataGridViewSelectionMode.FullRowSelect;    
+            //gridMaster.SelectionMode = DataGridViewSelectionMode.FullRowSelect;    
 
             if (PanelButton.isClickNone())
             {
@@ -218,18 +230,18 @@ namespace Inventory.NhapXuat
                                 {
 
                                     //DataTable chiTietPhieuNhap = new clsChi_Tiet_Phieu_Nhap_Vat_Tu().GetAll(phieuNhap.ID_phieu_nhap);
-                                    for (int i = 0; i < gridMaster.Rows.Count; i++)
+                                    for (int i = 0; i < dataTable1.Rows.Count; i++)
                                     {
                                         clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                                         //    chitiet.ID_chi_tiet_phieu_nhap = int.Parse(gridMaster.Rows[i].Cells["ID_chi_tiet_phieu_nhap"].ToString());
                                         chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
-                                        chitiet.ID_Don_vi_tinh = int.Parse(gridMaster.Rows[i].Cells["ID_Don_vi_tinh"].ToString());
-                                        chitiet.Ma_vat_tu = (gridMaster.Rows[i].Cells["Ma_vat_tu"].ToString());
-                                        chitiet.ID_Chat_luong = int.Parse(gridMaster.Rows[i].Cells["ID_Chat_luong"].ToString());
-                                        chitiet.So_luong_yeu_cau = decimal.Parse(gridMaster.Rows[i].Cells["So_luong_yeu_cau"].ToString());
-                                        chitiet.So_luong_thuc_lanh = decimal.Parse(gridMaster.Rows[i].Cells["so_luong_thuc_lanh"].ToString());
-                                        chitiet.Don_gia = decimal.Parse(gridMaster.Rows[i].Cells["Don_gia"].ToString());
-                                        chitiet.Thanh_tien = decimal.Parse(gridMaster.Rows[i].Cells["Thanh_tien"].ToString());
+                                        chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
+                                        chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
+                                        chitiet.ID_Chat_luong = int.Parse(dataTable1.Rows[i]["ID_Chat_luong"].ToString());
+                                        chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                        chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                        chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                        chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                         chitiet.Da_duyet = false;
 
                                         if (chitiet.Insert(help) == 0)
@@ -316,20 +328,20 @@ namespace Inventory.NhapXuat
                                         pn.Ma_phieu_nhap = phieunhap.Ma_phieu_nhap;
 
                                         pn.remove(pn.Ma_phieu_nhap);
-                                        for (int i = 0; i < gridMaster.Rows.Count; i++)
+                                        for (int i = 0; i < dataTable1 .Rows.Count; i++)
                                         {
 
                                             clsChi_Tiet_Phieu_Nhap_Vat_Tu chitiet = new clsChi_Tiet_Phieu_Nhap_Vat_Tu();
                                             chitiet.Ma_phieu_nhap = (txtMaPhieuNhap.Text);
-                                            chitiet.ID_Don_vi_tinh = int.Parse(gridMaster.Rows[i].Cells["ID_Don_vi_tinh"].ToString());
-                                            chitiet.Ma_vat_tu = (gridMaster.Rows[i].Cells["Ma_vat_tu"].ToString());
-                                            chitiet.ID_Chat_luong = int.Parse(gridMaster.Rows[i].Cells["ID_Chat_luong"].ToString());
-                                            chitiet.So_luong_yeu_cau = decimal.Parse(gridMaster.Rows[i].Cells["So_luong_yeu_cau"].ToString());
-                                            chitiet.So_luong_thuc_lanh = decimal.Parse(gridMaster.Rows[i].Cells["so_luong_thuc_lanh"].ToString());
-                                            chitiet.Don_gia = decimal.Parse(gridMaster.Rows[i].Cells["Don_gia"].ToString());
-                                            chitiet.Thanh_tien = decimal.Parse(gridMaster.Rows[i].Cells["Thanh_tien"].ToString());
+                                            chitiet.ID_Don_vi_tinh = int.Parse(dataTable1.Rows[i]["ID_Don_vi_tinh"].ToString());
+                                            chitiet.Ma_vat_tu = (dataTable1.Rows[i]["Ma_vat_tu"].ToString());
+                                            chitiet.ID_Chat_luong = int.Parse(dataTable1.Rows[i]["ID_Chat_luong"].ToString());
+                                            chitiet.So_luong_yeu_cau = decimal.Parse(dataTable1.Rows[i]["So_luong_yeu_cau"].ToString());
+                                            chitiet.So_luong_thuc_lanh = decimal.Parse(dataTable1.Rows[i]["so_luong_thuc_lanh"].ToString());
+                                            chitiet.Don_gia = decimal.Parse(dataTable1.Rows[i]["Don_gia"].ToString());
+                                            chitiet.Thanh_tien = decimal.Parse(dataTable1.Rows[i]["Thanh_tien"].ToString());
                                             chitiet.Da_duyet = false;
-                                            chitiet.ID_Chat_luong = int.Parse(cbChatLuong.SelectedValue.ToString());
+                                            chitiet.ID_Chat_luong = int.Parse(dataTable1.Rows[i]["Id_chat_luong"].ToString());
                                             if (chitiet.Insert(help) == 0)
                                                 dbcxtransaction.Rollback();
 
@@ -355,6 +367,7 @@ namespace Inventory.NhapXuat
                                 dbcxtransaction.Rollback();
                             }
                         }
+                        this.ds.LoadData();
                         break;
                     }
                 #endregion
@@ -402,7 +415,7 @@ namespace Inventory.NhapXuat
                     DataTable vChiTiet = (DataTable)chitiet.GetAll(txtMaPhieuNhap.Text);
                     for (int i = 0; i < vChiTiet.Rows.Count; i++)
                     {
-                        DataRow dr =((DataTable) gridMaster.DataSource).NewRow();
+                        DataRow dr =dataTable1.NewRow();
                         dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
                         dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
                         dr["ID_chat_luong"] = vChiTiet.Rows[i]["ID_chat_luong"].ToString();
@@ -413,7 +426,7 @@ namespace Inventory.NhapXuat
                         dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString();// int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
                         dr["Ten_Don_vi_tinh"] = vChiTiet.Rows[i]["ten_don_vi_tinh"].ToString();
                         dr["ID_Don_vi_tinh"] = vChiTiet.Rows[i]["ID_don_vi_tinh"].ToString();
-                        gridMaster.Rows.Add(dr);
+                        dataTable1.Rows.Add(dr);
                     }
                     if (clsChi_Tiet_Phieu_Nhap_Vat_Tu.KTVTChuaDuyet(clsNhap.Ma_phieu_nhap) == true)
                     {
@@ -494,13 +507,13 @@ namespace Inventory.NhapXuat
                     return;
                 }
 
-                     DataRow[] result = ((DataTable) gridMaster.DataSource).Select("Ma_vat_tu =" + cbMaVatTu.Text +" and ID_chat_luong =" +cbChatLuong.SelectedValue );
+                DataRow[] result = dataTable1.Select("Ma_vat_tu =" + cbMaVatTu.Text + " and ID_chat_luong =" + cbChatLuong.SelectedValue);
 
                 if (result.Length == 0)
                 {
                     try
                     {
-                        DataRow dr = ((DataTable)gridMaster.DataSource).NewRow();
+                        DataRow dr = dataTable1.NewRow();
                         dr["Ma_vat_tu"] = cbMaVatTu.Text;
                         dr["ten_vat_tu"] = cbTenVatTu.Text;
                         dr["Ten_don_vi_tinh"] = txtDVT.Text;
@@ -516,7 +529,7 @@ namespace Inventory.NhapXuat
                             txtDonGia.Text = "0";
                         dr["thanh_tien"] = double.Parse(txtDonGia.Text) * double.Parse(txtSLTX.Text) == 0;
 
-                        gridMaster.Rows.Add(dr);
+                        dataTable1.Rows.Add(dr);
 
                         ResetGridInputForm();
                         PanelButton.setClickStatus(sttaf);
@@ -544,6 +557,9 @@ namespace Inventory.NhapXuat
 
         private void frmNhapKho_Load(object sender, EventArgs e)
         {
+            cbKhoNhan.SelectedIndex = 0;
+            cbLoaiPhieuNhan.SelectedIndex = 0;
+            cbChatLuong.SelectedIndex = 0;
             // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
             //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
        
@@ -692,7 +708,7 @@ namespace Inventory.NhapXuat
         DataTable tbAff;
         private void btnSua_Click(object sender, EventArgs e)
         {
-            gridMaster.Rows .Clear();
+            dataTable1.Rows.Clear();
             //kiem tra ma phieu nhap xem co vat tu nao trung ko? neu co thì chỉ hiển thị thông tin và ko cho cập nhật
 
             if (txtMaPhieuNhap.Text == "")
@@ -711,7 +727,7 @@ namespace Inventory.NhapXuat
                 txtMaPhieuNhap.Enabled = false;
             }
 
-            tbAff = ((DataTable) gridMaster.DataSource).Copy();
+            tbAff = dataTable1.Copy();
         }
 
         private void btnGridDel_Click(object sender, EventArgs e)
@@ -855,7 +871,7 @@ namespace Inventory.NhapXuat
 
                 for (int i = 0; i < vChiTiet.Rows.Count; i++)
                 {
-                    DataRow dr =((DataTable) gridMaster.DataSource).NewRow();
+                    DataRow dr = dataTable1.NewRow();
 
                     dr["ma_vat_tu"] = vChiTiet.Rows[i]["ma_vat_tu"].ToString();
                     dr["Ten_vat_tu"] = vChiTiet.Rows[i]["Ten_vat_tu"].ToString();
@@ -867,7 +883,7 @@ namespace Inventory.NhapXuat
                     dr["don_gia"] = vChiTiet.Rows[i]["don_gia"].ToString();
                     dr["Thanh_tien"] = vChiTiet.Rows[i]["thanh_tien"].ToString(); // int.Parse(vChiTiet.Rows[i]["don_gia"].ToString()) * int.Parse(vChiTiet.Rows[i]["so_luong_thuc_lanh"].ToString());
 
-                    gridMaster.Rows.Add(dr);
+                    dataTable1.Rows.Add(dr);
                 }
                 return true;
             }
@@ -1102,7 +1118,7 @@ namespace Inventory.NhapXuat
             txtMaPhieuNhap.Enabled = true;
             txtDonGia.Text = "0";
 
-            gridMaster.Rows.Clear();
+            dataTable1.Rows.Clear();
            
         }
 
@@ -1119,7 +1135,7 @@ namespace Inventory.NhapXuat
             txtMaPhieuNhap.Enabled = true;
 
 
-            gridMaster.Rows. Clear();
+            dataTable1.Rows.Clear();
         }
 
 

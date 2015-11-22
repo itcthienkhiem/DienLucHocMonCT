@@ -190,7 +190,7 @@ namespace Inventory.NhapXuat
             bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
             if (isToTrinh == false && isKNTN == false && isKNMN == false && isKCMN == false && isKCTN == false)
             {
-                frmNhapKho nhapkho = new frmNhapKho(enumButton2.Sua, strMaPhieuNhap);
+                frmNhapKho nhapkho = new frmNhapKho(enumButton2.Sua, strMaPhieuNhap,this);
                 nhapkho.Show();
                 return;
             }
@@ -198,13 +198,13 @@ namespace Inventory.NhapXuat
             {
                 if (isToTrinh == true)
                 {
-                    frmNhapKhoToTrinh totrinh = new frmNhapKhoToTrinh(enumButton2.Sua, strMaPhieuNhap);
+                    frmNhapKhoToTrinh totrinh = new frmNhapKhoToTrinh(enumButton2.Sua, strMaPhieuNhap,this);
                     totrinh.Show();
                     return;
                 }
                 else
                 {
-                    frmMuonTraNo muontra = new frmMuonTraNo(enumButton2.Sua, strMaPhieuNhap);
+                    frmMuonTraNo muontra = new frmMuonTraNo(enumButton2.Sua, strMaPhieuNhap,this);
                     muontra.Show();
                     return;
                 }
