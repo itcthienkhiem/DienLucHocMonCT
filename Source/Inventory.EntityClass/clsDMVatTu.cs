@@ -294,51 +294,29 @@ namespace Inventory.EntityClass
         /// </summary>
         /// <param name="MaVatTu"></param>
         /// <returns></returns>
-        public string getTenVatTu(string MaVatTu)
+     
+        public DataTable getTenVatTuData(string Tenvattu)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
-            var temp = help.ent.DM_Vat_Tu.Where(
-        i => i.Ma_vat_tu == MaVatTu
 
-        );
-            string name = "";
-            temp.ToList().ForEach((n) =>
-         {
-             name = n.Ten_vat_tu;
+            var entryPoint = (from ep in help.ent.DM_Vat_Tu
+                              join e in help.ent.DM_Don_vi_tinh on ep.ID_Don_vi_tinh equals e.ID_Don_vi_tinh
 
-         });
-            return name;
+                              where ep.Ten_vat_tu.Equals(Tenvattu)//cau lenh where
+                              select new
+                              {
+                                  ID_vat_tu = ep.ID_Vat_tu,
+                                  Ma_vat_tu = ep.Ma_vat_tu,
+                                  Ten_vat_tu = ep.Ten_vat_tu,
+                                  Ten_don_vi_tinh = e.Ten_don_vi_tinh,
+                                  Mo_ta = ep.Mo_ta,
+                                  Don_gia = ep.Don_gia,
+                                  id_don_vi_tinh = ep.ID_Don_vi_tinh,
 
-
-
-
-            ////Mở
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
-
-            ////Chuẩn bị
-            //string sql = "";
-            //sql += "SELECT Ten_vat_tu FROM DM_Vat_Tu ";
-            //sql += "WHERE Ma_vat_tu=@Ma_vat_tu";
-
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
-
-            //command.Parameters.Add("@Ma_vat_tu", SqlDbType.VarChar, 50).Value = MaVatTu;
-
-            //command.CommandType = CommandType.Text;
-
-            ////Run
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-
-            ////Đóng
-            //m_dbConnection.Close();
-
-            //return dt.Rows[0]["Ten_vat_tu"].ToString();
-
+                              }).ToList();
+            return Utilities.clsThamSoUtilities.ToDataTable(entryPoint);
         }
-
         public string getMaVatTu(string TenVatTu)
         {
 
@@ -357,32 +335,28 @@ namespace Inventory.EntityClass
             });
             return name;
 
-            ////Mở
-            //m_dbConnection.Open();
-            //DataTable dt = new DataTable();
+           
+        }
+        public string getTenVatTu(string MaVatTu)
+        {
 
-            ////Chuẩn bị
-            //string sql = "";
-            //sql += "SELECT Ma_vat_tu FROM DM_Vat_Tu ";
-            //sql += "WHERE Ten_vat_tu=@Ten_vat_tu";
 
-            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            var temp = help.ent.DM_Vat_Tu.Where(
+        i => i.Ma_vat_tu == MaVatTu
 
-            //command.Parameters.Add("@Ten_vat_tu", SqlDbType.NVarChar, 50).Value = TenVatTu;
+        ).ToList();
+            string name = "";
+            temp.ToList().ForEach((n) =>
+            {
+                name = n.Ma_vat_tu;
 
-            //command.CommandType = CommandType.Text;
+            });
+            return name;
 
-            ////Run
-            //SqlDataAdapter da = new SqlDataAdapter(command);
-            //da.Fill(dt);
-
-            ////Đóng
-            //m_dbConnection.Close();
-
-            //return dt.Rows[0]["Ma_vat_tu"].ToString();
 
         }
-
         /// <summary>
         /// Trả về Mã, tên, dvt, don gia
         /// </summary>

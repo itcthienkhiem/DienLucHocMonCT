@@ -74,7 +74,20 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
+        public int getIDChatLuong(string tencl)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Chat_luong
+                          where d.Loai_chat_luong .Equals( tencl)
+                          select d).FirstOrDefault();
+            
 
+                return dm.Id_chat_luong;
+            }
+        }
         public int Insert()
         {
 

@@ -182,9 +182,13 @@ namespace Inventory.NhapXuat
                 cbKhoNgoai.SelectedIndex = 0;
                 
                 //txtXuatTaiKho.Enabled = true;
+
+           
             }
 
         }
+
+
 
         public string RandomMaPhieu(string loaiphieu)
         {
