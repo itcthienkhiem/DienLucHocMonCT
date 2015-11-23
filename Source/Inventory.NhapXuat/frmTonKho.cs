@@ -18,7 +18,7 @@ namespace Inventory.NhapXuat
 
         private void frmDanhSachVatTuTrongKho_Load(object sender, EventArgs e)
         {
-            clsGiaoDienChung.initCombobox(cbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+            clsGiaoDienChung.initComboboxNotHaveKhoNgoai(cbKho, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             clsGiaoDienChung.initCombobox(cbChatLuong, new clsDMChatLuong(), "Loai_chat_luong", "ID_chat_luong", "Loai_chat_luong");
            clsGiaoDienChung.initCombobox(cbTenVatTu, new clsDMVatTu(), "Ten_vat_tu", "Ma_vat_tu", "Ten_vat_tu");
             clsGiaoDienChung.initCombobox(cbMaVatTu, new clsDMVatTu(), "Ma_vat_tu", "ID_vat_tu", "Ma_vat_tu");

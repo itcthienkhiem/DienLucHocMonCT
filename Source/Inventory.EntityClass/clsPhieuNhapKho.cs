@@ -504,6 +504,7 @@ namespace Inventory.EntityClass
             var entryPoint = (from ep in help.ent.Phieu_Nhap_Kho
                               join e in help.ent.DM_Kho on ep.ID_kho equals e.ID_kho
                               where ep.isNhapNgoai == true
+                              && ep.isToTrinh == false
                               select new
                               {
                                   ep.Ma_phieu_nhap,

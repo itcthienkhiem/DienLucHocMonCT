@@ -389,7 +389,8 @@ MessageBoxIcon.Question);
                 bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
                 bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
                 int ID_Kho = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString()) ? 0 : int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-                bool isKhoNgoai =bool.Parse( new clsDM_Kho().GetDataARow(ID_Kho).Rows[0]["isKhoNgoai"].ToString());
+                 bool isKhoNgoai =  new clsDM_Kho().GetDataARow(ID_Kho);
+              
                 if (isKhoNgoai == true)
                 {
                     if (idloaiphieu != -1)

@@ -30,24 +30,39 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridDanhSachPhieuNhap = new System.Windows.Forms.DataGridView();
+            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isToTrinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kho_xuat_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isNhapNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngay_xac_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isKNMN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isKNTN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isKCMN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isKCTN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBoDuyet = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnPhieuNo = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnChiTietBuTru = new System.Windows.Forms.Button();
-            this.btnChiTiet = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.btnTruNo = new System.Windows.Forms.Button();
             this.btnDuyetPhieu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.btnDong = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
@@ -79,27 +94,6 @@
             this.Thanh_tien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Don_gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_dvt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_phieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isToTrinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_hoa_don = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_loai_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kho_xuat_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_phieu_nhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ly_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isNhapNgoai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCanTru = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isGoiDau = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Da_phan_kho = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ngay_xac_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isKNMN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isKNTN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isKCMN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isKCTN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuNhap)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -163,20 +157,190 @@
             this.gridDanhSachPhieuNhap.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDanhSachPhieuNhap_CellContentClick);
             this.gridDanhSachPhieuNhap.SelectionChanged += new System.EventHandler(this.gridDanhSachPhieuNhap_SelectionChanged);
             // 
+            // Ma_phieu
+            // 
+            this.Ma_phieu.DataPropertyName = "Ma_phieu";
+            this.Ma_phieu.HeaderText = "Mã phiếu";
+            this.Ma_phieu.Name = "Ma_phieu";
+            this.Ma_phieu.ReadOnly = true;
+            // 
+            // isToTrinh
+            // 
+            this.isToTrinh.DataPropertyName = "isToTrinh";
+            this.isToTrinh.HeaderText = "isToTrinh";
+            this.isToTrinh.Name = "isToTrinh";
+            this.isToTrinh.ReadOnly = true;
+            this.isToTrinh.Visible = false;
+            // 
+            // So_hoa_don
+            // 
+            this.So_hoa_don.DataPropertyName = "So_hoa_don";
+            this.So_hoa_don.HeaderText = "So_hoa_don";
+            this.So_hoa_don.Name = "So_hoa_don";
+            this.So_hoa_don.ReadOnly = true;
+            this.So_hoa_don.Visible = false;
+            // 
+            // Cong_trinh
+            // 
+            this.Cong_trinh.DataPropertyName = "Cong_trinh";
+            this.Cong_trinh.HeaderText = "Công trình";
+            this.Cong_trinh.Name = "Cong_trinh";
+            this.Cong_trinh.ReadOnly = true;
+            this.Cong_trinh.Visible = false;
+            // 
+            // Dia_chi
+            // 
+            this.Dia_chi.DataPropertyName = "Dia_chi";
+            this.Dia_chi.HeaderText = "Địa chỉ";
+            this.Dia_chi.Name = "Dia_chi";
+            this.Dia_chi.ReadOnly = true;
+            // 
+            // ID_loai_phieu_nhap
+            // 
+            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
+            this.ID_loai_phieu_nhap.ReadOnly = true;
+            this.ID_loai_phieu_nhap.Visible = false;
+            // 
+            // Kho_xuat_ra
+            // 
+            this.Kho_xuat_ra.DataPropertyName = "Kho_xuat_ra";
+            this.Kho_xuat_ra.HeaderText = "Kho xuất ra";
+            this.Kho_xuat_ra.Name = "Kho_xuat_ra";
+            this.Kho_xuat_ra.ReadOnly = true;
+            // 
+            // ID_phieu_nhap
+            // 
+            this.ID_phieu_nhap.DataPropertyName = "ID_phieu_nhap";
+            this.ID_phieu_nhap.HeaderText = "ID_phieu_nhap";
+            this.ID_phieu_nhap.Name = "ID_phieu_nhap";
+            this.ID_phieu_nhap.ReadOnly = true;
+            this.ID_phieu_nhap.Visible = false;
+            // 
+            // ID_kho
+            // 
+            this.ID_kho.DataPropertyName = "ID_kho";
+            this.ID_kho.HeaderText = "ID_kho";
+            this.ID_kho.Name = "ID_kho";
+            this.ID_kho.ReadOnly = true;
+            this.ID_kho.Visible = false;
+            // 
+            // Ten_kho
+            // 
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
+            // 
+            // ngay_lap
+            // 
+            this.ngay_lap.DataPropertyName = "ngay_lap";
+            this.ngay_lap.HeaderText = "Ngày lập";
+            this.ngay_lap.Name = "ngay_lap";
+            this.ngay_lap.ReadOnly = true;
+            // 
+            // Ly_do
+            // 
+            this.Ly_do.DataPropertyName = "Ly_do";
+            this.Ly_do.HeaderText = "Lý do";
+            this.Ly_do.Name = "Ly_do";
+            this.Ly_do.ReadOnly = true;
+            // 
+            // isNhapNgoai
+            // 
+            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
+            this.isNhapNgoai.HeaderText = "Nhập ngoài";
+            this.isNhapNgoai.Name = "isNhapNgoai";
+            this.isNhapNgoai.ReadOnly = true;
+            this.isNhapNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isNhapNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isCanTru
+            // 
+            this.isCanTru.DataPropertyName = "isCanTru";
+            this.isCanTru.HeaderText = "Cấn trừ";
+            this.isCanTru.Name = "isCanTru";
+            this.isCanTru.ReadOnly = true;
+            this.isCanTru.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isCanTru.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // isGoiDau
+            // 
+            this.isGoiDau.DataPropertyName = "isGoiDau";
+            this.isGoiDau.HeaderText = "Gối đầu";
+            this.isGoiDau.Name = "isGoiDau";
+            this.isGoiDau.ReadOnly = true;
+            this.isGoiDau.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isGoiDau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Da_phan_kho
+            // 
+            this.Da_phan_kho.DataPropertyName = "Da_phan_kho";
+            this.Da_phan_kho.HeaderText = "Đã xác nhận";
+            this.Da_phan_kho.Name = "Da_phan_kho";
+            this.Da_phan_kho.ReadOnly = true;
+            this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ngay_xac_nhan
+            // 
+            this.ngay_xac_nhan.DataPropertyName = "ngay_xac_nhan";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngay_xac_nhan.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngay_xac_nhan.HeaderText = "Ngày xác nhận";
+            this.ngay_xac_nhan.Name = "ngay_xac_nhan";
+            this.ngay_xac_nhan.ReadOnly = true;
+            // 
+            // isKNMN
+            // 
+            this.isKNMN.DataPropertyName = "isKNMN";
+            this.isKNMN.HeaderText = "isKNMN";
+            this.isKNMN.Name = "isKNMN";
+            this.isKNMN.ReadOnly = true;
+            this.isKNMN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isKNMN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isKNMN.Visible = false;
+            // 
+            // isKNTN
+            // 
+            this.isKNTN.DataPropertyName = "isKNTN";
+            this.isKNTN.HeaderText = "isKNTN";
+            this.isKNTN.Name = "isKNTN";
+            this.isKNTN.ReadOnly = true;
+            this.isKNTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isKNTN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isKNTN.Visible = false;
+            // 
+            // isKCMN
+            // 
+            this.isKCMN.DataPropertyName = "isKCMN";
+            this.isKCMN.HeaderText = "isKCMN";
+            this.isKCMN.Name = "isKCMN";
+            this.isKCMN.ReadOnly = true;
+            this.isKCMN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isKCMN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isKCMN.Visible = false;
+            // 
+            // isKCTN
+            // 
+            this.isKCTN.DataPropertyName = "isKCTN";
+            this.isKCTN.HeaderText = "isKCTN";
+            this.isKCTN.Name = "isKCTN";
+            this.isKCTN.ReadOnly = true;
+            this.isKCTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isKCTN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isKCTN.Visible = false;
+            // 
             // pnlMenu
             // 
             this.pnlMenu.Controls.Add(this.label2);
             this.pnlMenu.Controls.Add(this.btnBoDuyet);
-            this.pnlMenu.Controls.Add(this.label11);
-            this.pnlMenu.Controls.Add(this.btnPhieuNo);
-            this.pnlMenu.Controls.Add(this.label9);
-            this.pnlMenu.Controls.Add(this.btnChiTietBuTru);
-            this.pnlMenu.Controls.Add(this.btnChiTiet);
             this.pnlMenu.Controls.Add(this.label8);
             this.pnlMenu.Controls.Add(this.btnTruNo);
             this.pnlMenu.Controls.Add(this.btnDuyetPhieu);
             this.pnlMenu.Controls.Add(this.label1);
-            this.pnlMenu.Controls.Add(this.label10);
             this.pnlMenu.Controls.Add(this.btnDong);
             this.pnlMenu.Controls.Add(this.label7);
             this.pnlMenu.Controls.Add(this.btnThem);
@@ -215,62 +379,10 @@
             this.btnBoDuyet.UseVisualStyleBackColor = true;
             this.btnBoDuyet.Click += new System.EventHandler(this.btnBoDuyet_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(799, 60);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(168, 14);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Danh sách phiếu nợ kho khác";
-            // 
-            // btnPhieuNo
-            // 
-            this.btnPhieuNo.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Database;
-            this.btnPhieuNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPhieuNo.Location = new System.Drawing.Point(838, 10);
-            this.btnPhieuNo.Name = "btnPhieuNo";
-            this.btnPhieuNo.Size = new System.Drawing.Size(50, 50);
-            this.btnPhieuNo.TabIndex = 13;
-            this.btnPhieuNo.UseVisualStyleBackColor = true;
-            this.btnPhieuNo.Click += new System.EventHandler(this.btnPhieuNo_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(649, 62);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 14);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Chi tiết bù trừ";
-            // 
-            // btnChiTietBuTru
-            // 
-            this.btnChiTietBuTru.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Document;
-            this.btnChiTietBuTru.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnChiTietBuTru.Location = new System.Drawing.Point(671, 12);
-            this.btnChiTietBuTru.Name = "btnChiTietBuTru";
-            this.btnChiTietBuTru.Size = new System.Drawing.Size(50, 50);
-            this.btnChiTietBuTru.TabIndex = 11;
-            this.btnChiTietBuTru.UseVisualStyleBackColor = true;
-            this.btnChiTietBuTru.Click += new System.EventHandler(this.btnChiTietBuTru_Click);
-            // 
-            // btnChiTiet
-            // 
-            this.btnChiTiet.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Comment;
-            this.btnChiTiet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnChiTiet.Location = new System.Drawing.Point(744, 12);
-            this.btnChiTiet.Name = "btnChiTiet";
-            this.btnChiTiet.Size = new System.Drawing.Size(50, 50);
-            this.btnChiTiet.TabIndex = 10;
-            this.btnChiTiet.UseVisualStyleBackColor = true;
-            this.btnChiTiet.Visible = false;
-            this.btnChiTiet.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(597, 61);
+            this.label8.Location = new System.Drawing.Point(388, 61);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 14);
             this.label8.TabIndex = 9;
@@ -280,7 +392,7 @@
             // 
             this.btnTruNo.BackgroundImage = global::Inventory.NhapXuat.Properties.Resources.Calendar;
             this.btnTruNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTruNo.Location = new System.Drawing.Point(596, 12);
+            this.btnTruNo.Location = new System.Drawing.Point(387, 12);
             this.btnTruNo.Name = "btnTruNo";
             this.btnTruNo.Size = new System.Drawing.Size(50, 50);
             this.btnTruNo.TabIndex = 8;
@@ -306,16 +418,6 @@
             this.label1.Size = new System.Drawing.Size(74, 14);
             this.label1.TabIndex = 7;
             this.label1.Text = "Duyệt Phiếu";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(741, 64);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 14);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Chi tiết";
-            this.label10.Visible = false;
             // 
             // btnDong
             // 
@@ -654,182 +756,6 @@
             this.Ten_dvt.ReadOnly = true;
             this.Ten_dvt.Width = 101;
             // 
-            // Ma_phieu
-            // 
-            this.Ma_phieu.DataPropertyName = "Ma_phieu";
-            this.Ma_phieu.HeaderText = "Mã phiếu";
-            this.Ma_phieu.Name = "Ma_phieu";
-            this.Ma_phieu.ReadOnly = true;
-            // 
-            // isToTrinh
-            // 
-            this.isToTrinh.DataPropertyName = "isToTrinh";
-            this.isToTrinh.HeaderText = "isToTrinh";
-            this.isToTrinh.Name = "isToTrinh";
-            this.isToTrinh.ReadOnly = true;
-            this.isToTrinh.Visible = false;
-            // 
-            // So_hoa_don
-            // 
-            this.So_hoa_don.DataPropertyName = "So_hoa_don";
-            this.So_hoa_don.HeaderText = "So_hoa_don";
-            this.So_hoa_don.Name = "So_hoa_don";
-            this.So_hoa_don.ReadOnly = true;
-            this.So_hoa_don.Visible = false;
-            // 
-            // Cong_trinh
-            // 
-            this.Cong_trinh.DataPropertyName = "Cong_trinh";
-            this.Cong_trinh.HeaderText = "Công trình";
-            this.Cong_trinh.Name = "Cong_trinh";
-            this.Cong_trinh.ReadOnly = true;
-            this.Cong_trinh.Visible = false;
-            // 
-            // Dia_chi
-            // 
-            this.Dia_chi.DataPropertyName = "Dia_chi";
-            this.Dia_chi.HeaderText = "Địa chỉ";
-            this.Dia_chi.Name = "Dia_chi";
-            this.Dia_chi.ReadOnly = true;
-            // 
-            // ID_loai_phieu_nhap
-            // 
-            this.ID_loai_phieu_nhap.DataPropertyName = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.HeaderText = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.Name = "ID_loai_phieu_nhap";
-            this.ID_loai_phieu_nhap.ReadOnly = true;
-            this.ID_loai_phieu_nhap.Visible = false;
-            // 
-            // Kho_xuat_ra
-            // 
-            this.Kho_xuat_ra.DataPropertyName = "Kho_xuat_ra";
-            this.Kho_xuat_ra.HeaderText = "Kho xuất ra";
-            this.Kho_xuat_ra.Name = "Kho_xuat_ra";
-            this.Kho_xuat_ra.ReadOnly = true;
-            // 
-            // ID_phieu_nhap
-            // 
-            this.ID_phieu_nhap.DataPropertyName = "ID_phieu_nhap";
-            this.ID_phieu_nhap.HeaderText = "ID_phieu_nhap";
-            this.ID_phieu_nhap.Name = "ID_phieu_nhap";
-            this.ID_phieu_nhap.ReadOnly = true;
-            this.ID_phieu_nhap.Visible = false;
-            // 
-            // ID_kho
-            // 
-            this.ID_kho.DataPropertyName = "ID_kho";
-            this.ID_kho.HeaderText = "ID_kho";
-            this.ID_kho.Name = "ID_kho";
-            this.ID_kho.ReadOnly = true;
-            this.ID_kho.Visible = false;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            // 
-            // ngay_lap
-            // 
-            this.ngay_lap.DataPropertyName = "ngay_lap";
-            this.ngay_lap.HeaderText = "Ngày lập";
-            this.ngay_lap.Name = "ngay_lap";
-            this.ngay_lap.ReadOnly = true;
-            // 
-            // Ly_do
-            // 
-            this.Ly_do.DataPropertyName = "Ly_do";
-            this.Ly_do.HeaderText = "Lý do";
-            this.Ly_do.Name = "Ly_do";
-            this.Ly_do.ReadOnly = true;
-            // 
-            // isNhapNgoai
-            // 
-            this.isNhapNgoai.DataPropertyName = "isNhapNgoai";
-            this.isNhapNgoai.HeaderText = "Nhập ngoài";
-            this.isNhapNgoai.Name = "isNhapNgoai";
-            this.isNhapNgoai.ReadOnly = true;
-            this.isNhapNgoai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isNhapNgoai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isCanTru
-            // 
-            this.isCanTru.DataPropertyName = "isCanTru";
-            this.isCanTru.HeaderText = "Cấn trừ";
-            this.isCanTru.Name = "isCanTru";
-            this.isCanTru.ReadOnly = true;
-            this.isCanTru.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isCanTru.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // isGoiDau
-            // 
-            this.isGoiDau.DataPropertyName = "isGoiDau";
-            this.isGoiDau.HeaderText = "Gối đầu";
-            this.isGoiDau.Name = "isGoiDau";
-            this.isGoiDau.ReadOnly = true;
-            this.isGoiDau.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isGoiDau.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Da_phan_kho
-            // 
-            this.Da_phan_kho.DataPropertyName = "Da_phan_kho";
-            this.Da_phan_kho.HeaderText = "Đã xác nhận";
-            this.Da_phan_kho.Name = "Da_phan_kho";
-            this.Da_phan_kho.ReadOnly = true;
-            this.Da_phan_kho.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Da_phan_kho.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ngay_xac_nhan
-            // 
-            this.ngay_xac_nhan.DataPropertyName = "ngay_xac_nhan";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngay_xac_nhan.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ngay_xac_nhan.HeaderText = "Ngày xác nhận";
-            this.ngay_xac_nhan.Name = "ngay_xac_nhan";
-            this.ngay_xac_nhan.ReadOnly = true;
-            // 
-            // isKNMN
-            // 
-            this.isKNMN.DataPropertyName = "isKNMN";
-            this.isKNMN.HeaderText = "isKNMN";
-            this.isKNMN.Name = "isKNMN";
-            this.isKNMN.ReadOnly = true;
-            this.isKNMN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isKNMN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isKNMN.Visible = false;
-            // 
-            // isKNTN
-            // 
-            this.isKNTN.DataPropertyName = "isKNTN";
-            this.isKNTN.HeaderText = "isKNTN";
-            this.isKNTN.Name = "isKNTN";
-            this.isKNTN.ReadOnly = true;
-            this.isKNTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isKNTN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isKNTN.Visible = false;
-            // 
-            // isKCMN
-            // 
-            this.isKCMN.DataPropertyName = "isKCMN";
-            this.isKCMN.HeaderText = "isKCMN";
-            this.isKCMN.Name = "isKCMN";
-            this.isKCMN.ReadOnly = true;
-            this.isKCMN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isKCMN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isKCMN.Visible = false;
-            // 
-            // isKCTN
-            // 
-            this.isKCTN.DataPropertyName = "isKCTN";
-            this.isKCTN.HeaderText = "isKCTN";
-            this.isKCTN.Name = "isKCTN";
-            this.isKCTN.ReadOnly = true;
-            this.isKCTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isKCTN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isKCTN.Visible = false;
-            // 
             // frmDanhSachPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -856,7 +782,6 @@
 
         private System.Windows.Forms.DataGridView gridDanhSachPhieuNhap;
         private System.Windows.Forms.Panel pnlMenu;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnThem;
@@ -878,12 +803,7 @@
         private System.Windows.Forms.ComboBox cbbKho;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnTruNo;
-        private System.Windows.Forms.Button btnChiTiet;
         private System.Windows.Forms.RadioButton rdoNhapNgoai;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnChiTietBuTru;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnPhieuNo;
         private System.Windows.Forms.DataGridView gridMaster;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ma_vat_tu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ten_vat_tu;

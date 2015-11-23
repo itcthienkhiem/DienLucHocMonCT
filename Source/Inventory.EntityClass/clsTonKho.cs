@@ -231,7 +231,21 @@ namespace Inventory.EntityClass
                 return true;
             }
         }
+        public decimal checkKho_VatTu(int idkho, string mavattu,int idcl)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var entryPoint = (from d in help.ent.Ton_kho
 
+                                  where d.ID_kho == idkho && d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
+                                  select new { d.So_luong }).FirstOrDefault();
+                if (entryPoint==null )
+                    return 0;
+                return (decimal) entryPoint.So_luong;
+            }
+        }
         public decimal checkSLTonChoMuon(int id_kho, string mavattu, int idcl, decimal sl)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -331,7 +345,7 @@ namespace Inventory.EntityClass
 
 
                           where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(TenKho)&& e.Ten_vat_tu .Contains(tenvt)
-                          && e.Ma_vat_tu.Contains(mavt) 
+                          && e.Ma_vat_tu.Contains(mavt)  && f.isKhoNgoai == false
                           group d by new { d.Ma_vat_tu, e.Ten_vat_tu } into gs
                           let TotalPoints = gs.Sum(m => m.So_luong)
                           orderby TotalPoints descending
@@ -347,6 +361,38 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
+        public static DataTable getAllKhoNgoai(string TenKho, string TenChatLuong, string tenvt, string mavt)
+        {
+
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Ton_kho
+                          join e in help.ent.DM_Vat_Tu on d.Ma_vat_tu equals e.Ma_vat_tu
+                          join f in help.ent.DM_Kho on d.ID_kho equals f.ID_kho
+                          join gl in help.ent.Chat_luong on d.Id_chat_luong equals gl.Id_chat_luong
+
+
+                          where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(TenKho) && e.Ten_vat_tu.Contains(tenvt)
+                          && e.Ma_vat_tu.Contains(mavt) && f.isKhoNgoai == true
+                          group d by new { d.Ma_vat_tu, e.Ten_vat_tu } into gs
+                          let TotalPoints = gs.Sum(m => m.So_luong)
+                          orderby TotalPoints descending
+
+                          select new
+                          {
+
+                              Ma_vat_tu = gs.Key.Ma_vat_tu,
+                              ten_vat_tu = gs.Key.Ten_vat_tu,
+                              so_luong = TotalPoints
+                          }).ToList();
+                dbcxtransaction.Commit();
+                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+            }
+        }
+
+
         public static object getAll(int _ID_kho)
         {
 

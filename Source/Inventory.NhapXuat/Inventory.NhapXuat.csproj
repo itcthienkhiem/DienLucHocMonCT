@@ -68,6 +68,12 @@
   <ItemGroup>
     <Compile Include="clsPanelButton.cs" />
     <Compile Include="clsPanelButton2.cs" />
+    <Compile Include="frmTonKhoKhoNgoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTonKhoKhoNgoai.Designer.cs">
+      <DependentUpon>frmTonKhoKhoNgoai.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     <Compile Include="XuLy\PhieuNhap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmTonKhoKhoNgoai.resx">
+      <DependentUpon>frmTonKhoKhoNgoai.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

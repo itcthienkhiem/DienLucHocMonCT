@@ -80,6 +80,7 @@ namespace Inventory.NhapXuat
 
                 rdoKCMuonNo.Checked = false;
                 rdoKNTN.Checked = false;
+
             }
             if (no.Equals("KNTN"))
             {
@@ -89,6 +90,8 @@ namespace Inventory.NhapXuat
                 rdoKNMN.Checked = false;
                 rdoKCMuonNo.Checked = false;
                 rdoKNTN.Checked = true;
+                clsGiaoDienChung.initComboboxHaveKhoNgoai(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
+                 
             }
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             cbKhoNgoai.SelectedIndex = 0;
@@ -211,7 +214,7 @@ namespace Inventory.NhapXuat
                 cbChatLuong.SelectedIndex = 0;
                 cbKhoNhan.SelectedIndex = 0;
                 cbKhoNgoai.SelectedIndex = 0;
-                
+                cbChatLuong.SelectedIndex = 0;
                 //txtXuatTaiKho.Enabled = true;
 
            
@@ -1360,6 +1363,7 @@ namespace Inventory.NhapXuat
 
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+                txtSoLuongTon.Text = new clsTonKho().checkKho_VatTu((int)cbKhoNhan.SelectedValue, cbMaVatTu.Text, (int)cbChatLuong.SelectedValue).ToString();
             }
             catch (Exception ex) {  }
         }
@@ -1382,6 +1386,8 @@ namespace Inventory.NhapXuat
 
                 txtDVT.Text = tb.Rows[0]["Ten_don_vi_tinh"].ToString();
                 txtDonGia.Text = tb.Rows[0]["Don_gia"].ToString();
+                txtSoLuongTon.Text = new clsTonKho().checkKho_VatTu((int)cbKhoNhan.SelectedValue, cbMaVatTu.Text, (int)cbChatLuong.SelectedValue).ToString();
+           
             }
             catch (Exception ex) { }
         }

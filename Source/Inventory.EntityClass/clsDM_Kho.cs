@@ -147,7 +147,7 @@ namespace Inventory.EntityClass
             using (var dbcxtransaction = help.ent.Database.BeginTransaction())
             {
                 var dm = (from d in help.ent.DM_Kho
-                          where d.isKhoNgoai == false 
+                          where d.isKhoNgoai == false ||d.isKhoNgoai == null
                           select new
                           {
                               d.ID_kho,
@@ -178,7 +178,7 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
-        public  DataTable GetDataARow(int id)
+        public  bool GetDataARow(int id)
         {
             DatabaseHelper help = new DatabaseHelper();
             //help.ent.Configuration.LazyLoadingEnabled = false;
@@ -192,10 +192,11 @@ namespace Inventory.EntityClass
                               d.ID_kho,
                               d.Ten_kho,
                               d.isKhoNgoai,
-                          }).ToList();
+                          }).FirstOrDefault();
                 dbcxtransaction.Commit();
-
-                return Utilities.clsThamSoUtilities.ToDataTable(dm);
+                if (dm ==null || dm.isKhoNgoai == null)
+                    return false;
+                return (bool)dm.isKhoNgoai;
             }
         }
 

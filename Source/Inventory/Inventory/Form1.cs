@@ -969,8 +969,75 @@ namespace Inventory
 
         private void test1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 f = new Form1();
-            f.Show();
+            
+        }
+
+        private void mượnNợToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            mượnNợToolStripMenuItem1_Click(sender, e);
+
+        }
+
+        private void trảNợToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            trảNợToolStripMenuItem1_Click(sender, e);
+
+        }
+
+        private void mượnNợToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            
+            mượnNợToolStripMenuItem2_Click(sender, e);
+
+        }
+
+        private void trảNợToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            trảNợToolStripMenuItem2_Click(sender, e);
+        }
+
+        private void ợVậtTưToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            khoNợVậtTưToolStripMenuItem_Click(sender, e);
+        }
+
+        private void nợVậtTưGiữaCácKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            khoNợVậtTưToolStripMenuItem_Click(sender, e);
+        }
+
+        private void danhSáchCácLầnMượnNợToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            danhSáchPhiếuNợToolStripMenuItem_Click(sender, e);
+        }
+
+        private void chiTiếtCácLầnMượnTrảToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            danhSáchVậtTưĐãTạmỨngToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tồnKhoKhoNgoàiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmTonKhoKhoNgoai frm = new frmTonKhoKhoNgoai();
+                frm.Name = "Tồn Kho Ngoài";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+
         }
     }
 }
