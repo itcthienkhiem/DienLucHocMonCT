@@ -106,9 +106,12 @@ namespace Inventory.XuatTamVatTu
                 Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
                 DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
                 string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
-
-                //frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(enumButton2.Sua, Ma_phieu_xuat_tam);
-                //ChiTietPhieuXuatTam.Show();
+                bool Daduyet = bool.Parse(SelectedRow.Cells["Da_duyet"].Value.ToString());
+                if (Daduyet == false)
+                {
+                    frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(Ma_phieu_xuat_tam, enumButton2.Sua);
+                    ChiTietPhieuXuatTam.Show();
+                }
             }
             catch (Exception ex)
             {

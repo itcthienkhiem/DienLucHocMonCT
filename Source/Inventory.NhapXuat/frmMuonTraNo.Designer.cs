@@ -82,6 +82,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtDVT = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtSoLuongTon = new System.Windows.Forms.TextBox();
             this.cbChatLuong = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -107,8 +109,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.contextRemove = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtSoLuongTon = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
             this.btnSaveGrid = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -617,6 +617,23 @@
             this.panel1.Size = new System.Drawing.Size(1598, 344);
             this.panel1.TabIndex = 72;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(664, 7);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(79, 14);
+            this.label27.TabIndex = 89;
+            this.label27.Text = "Số lượng tồn";
+            // 
+            // txtSoLuongTon
+            // 
+            this.txtSoLuongTon.Enabled = false;
+            this.txtSoLuongTon.Location = new System.Drawing.Point(655, 24);
+            this.txtSoLuongTon.Name = "txtSoLuongTon";
+            this.txtSoLuongTon.Size = new System.Drawing.Size(100, 22);
+            this.txtSoLuongTon.TabIndex = 88;
+            // 
             // cbChatLuong
             // 
             this.cbChatLuong.FormattingEnabled = true;
@@ -860,23 +877,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
             this.toolStripMenuItem1.Text = "Xóa";
-            // 
-            // txtSoLuongTon
-            // 
-            this.txtSoLuongTon.Enabled = false;
-            this.txtSoLuongTon.Location = new System.Drawing.Point(655, 24);
-            this.txtSoLuongTon.Name = "txtSoLuongTon";
-            this.txtSoLuongTon.Size = new System.Drawing.Size(100, 22);
-            this.txtSoLuongTon.TabIndex = 88;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(664, 7);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(79, 14);
-            this.label27.TabIndex = 89;
-            this.label27.Text = "Số lượng tồn";
             // 
             // btnDel
             // 

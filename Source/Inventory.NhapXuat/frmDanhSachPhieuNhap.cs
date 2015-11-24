@@ -188,6 +188,13 @@ namespace Inventory.NhapXuat
             bool isKNTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString());
             bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
             bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
+            bool isNVMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString());
+            if (isNVMN == true)
+            {
+                frmNhanVienMuaNgoai nvmn = new frmNhanVienMuaNgoai(enumButton2.Sua, strMaPhieuNhap, this);
+                nvmn.Show();
+                return;
+            }
             if (isToTrinh == false && isKNTN == false && isKNMN == false && isKCMN == false && isKCTN == false)
             {
                 frmNhapKho nhapkho = new frmNhapKho(enumButton2.Sua, strMaPhieuNhap,this);
@@ -388,8 +395,11 @@ MessageBoxIcon.Question);
                 bool isKNTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString());
                 bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
                 bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
+                bool isNVMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString());
+                
                 int ID_Kho = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString()) ? 0 : int.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["ID_kho"].Value.ToString());
-                 bool isKhoNgoai =  new clsDM_Kho().GetDataARow(ID_Kho);
+               
+                bool isKhoNgoai =  new clsDM_Kho().GetDataARow(ID_Kho);
               
                 if (isKhoNgoai == true)
                 {
@@ -408,6 +418,16 @@ MessageBoxIcon.Question);
                         }
                     }
                    
+                }
+                if (isNVMN == true)
+                {
+                    KhoNgoai pn = new KhoNgoai();
+
+                    if (pn.Insert(idphieu) == 1)
+                    {
+                        MessageBox.Show("Đã xác nhận thành công!"); return;
+
+                    }
                 }
                 if (isToTrinh == true)
                 {
@@ -751,16 +771,21 @@ MessageBoxIcon.Question);
                     MessageBox.Show("Phiếu gối đầu không thể trừ nợ");
                     return;
                 }
-                bool isNhapNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNhapNgoai"].Value.ToString());
-                if (isNhapNgoai == true)
+                bool isToTrinh = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isToTrinh"].Value.ToString());
+                if (isToTrinh == true)
                 {
                     MessageBox.Show("Phiếu nhập từ tờ trình, biên bản không thể trừ nợ");
                     return;
                 }
-                bool isChoMuonNgoai = bool.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isChoMuonNgoai"].Value.ToString());
-                if (isChoMuonNgoai == true)
+               
+                bool isKNMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNMN"].Value.ToString());
+                bool isKNTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString());
+                bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
+                bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
+                if (isKNMN == true || isKNTN == true || isKCMN == true || isKCTN == true)
                 {
-                    MessageBox.Show("Phiếu nhập mượn nợ, cho mượn nợ không thể trừ nợ");
+                    MessageBox.Show("Phiếu nhập mượn nợ tờ trình, không thể trừ vật tư trong kho chính!");
+
                     return;
                 }
             }
@@ -881,6 +906,14 @@ MessageBoxIcon.Question);
                 bool isKNTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKNTN"].Value.ToString());
                 bool isKCMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCMN"].Value.ToString());
                 bool isKCTN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isKCTN"].Value.ToString());
+                bool isNVMN = string.IsNullOrEmpty(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString()) ? false : Boolean.Parse(gridDanhSachPhieuNhap.Rows[selectedRowCount].Cells["isNVMN"].Value.ToString());
+                if (isNVMN == true)
+                {
+                    KhoNgoai kn = new KhoNgoai();
+                   if( kn.BoDuyet(idphieu)==1)
+                       MessageBox.Show("Bỏ duyệt thành công!");
+                    return;
+                }
                 if (CheckTruNo(maphieu) != -1)
                 {
                     MessageBox.Show("Phiếu này đã thực hiện trừ nợ không thể bỏ duyệt được!");

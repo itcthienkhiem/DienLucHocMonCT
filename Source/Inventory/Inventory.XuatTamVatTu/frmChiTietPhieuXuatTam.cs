@@ -180,6 +180,12 @@ namespace Inventory.XuatTamVatTu
                 PanelButton.setClickStatus(stt);
                 EnableControl_For_BaoHoanNhap();
             }
+            if (stt == enumButton2.Sua || stt == enumButton2.Xoa)
+            {
+                PanelButton.setClickStatus(stt);
+            EnableControl_ForNew();
+
+            }
             else
             {
                 MessageBox.Show("Xảy ra lỗi khởi tạo phiếu!");

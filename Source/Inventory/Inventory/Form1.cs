@@ -1039,5 +1039,53 @@ namespace Inventory
             }
 
         }
+
+        private void khoPhụToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mượnNợToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            mượnNợToolStripMenuItem1_Click(sender, e);
+        }
+
+        private void trảNợToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            trảNợToolStripMenuItem1_Click(sender, e);
+        }
+
+        private void mượnNợToolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            mượnNợToolStripMenuItem2_Click(sender, e);
+        }
+
+        private void trảNợToolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            trảNợToolStripMenuItem2_Click(sender, e);
+        }
+
+        private void nhậpNgoàiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utilities.clsThamSoUtilities.isSectionLogin == true)
+            {
+                frmNhanVienMuaNgoai frm = new frmNhanVienMuaNgoai("NVMN");
+                frm.Name = "Lập Phiếu Kho Nhân Viên Mua Ngoài ";
+
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f.Name == frm.Name)
+                    {
+                        f.Activate();
+                        return;
+                    }
+                }
+
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+
+            }
+        }
     }
 }

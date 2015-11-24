@@ -41,7 +41,7 @@ namespace Inventory.EntityClass
         public string Ten_kho_muon;
         public bool isKCTN = false;
         public bool isKCMN = false;
-
+        public bool isNVMN = false;
         public DateTime ngay_xac_nhan = DateTime.Now;
         public List<clsChi_Tiet_Phieu_Nhap_Vat_Tu> lstChiTietPhieuNhap = new List<clsChi_Tiet_Phieu_Nhap_Vat_Tu>();
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
@@ -400,6 +400,7 @@ namespace Inventory.EntityClass
                                      isKCMN = ep.isKCMN,
                                      isKCTN = ep.isKCTN,
                                      isToTrinh = ep.isToTrinh,
+                                     isNVMN = ep.isNVMN,
 
                                   }
 
@@ -435,6 +436,7 @@ namespace Inventory.EntityClass
                                   isKCMN = ep.isKCMN,
                                   isKCTN = ep.isKCTN,
                                   isToTrinh = ep.isToTrinh,
+                                  isNVMN = ep.isNVMN,
                               }
 
            ).ToList();
@@ -882,6 +884,7 @@ namespace Inventory.EntityClass
                         isToTrinh = this.isToTrinh,
                         isKCTN = this.isKCTN,
                         isKCMN = this.isKCMN,
+                        isNVMN = this.isNVMN,
                         Ten_kho_muon = this.Ten_kho_muon,
                     };
 

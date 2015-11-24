@@ -241,7 +241,7 @@ namespace Inventory.EntityClass
                               d.Ly_do,
                               d.Cong_trinh,
                               d.Dia_chi,
-
+                              d.Da_duyet,
                           }).ToList();
                 dbcxtransaction.Commit();
 

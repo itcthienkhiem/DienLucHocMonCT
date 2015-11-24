@@ -80,7 +80,7 @@ namespace Inventory.NhapXuat
 
                 rdoKCMuonNo.Checked = false;
                 rdoKNTN.Checked = false;
-
+           
             }
             if (no.Equals("KNTN"))
             {
@@ -90,8 +90,20 @@ namespace Inventory.NhapXuat
                 rdoKNMN.Checked = false;
                 rdoKCMuonNo.Checked = false;
                 rdoKNTN.Checked = true;
+              
                 clsGiaoDienChung.initComboboxHaveKhoNgoai(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
                  
+            }
+            if(no .Equals("NVMN"))
+            {
+                isLoaiPhieu = "NVMN";
+                lbHeader.Text = "Màn hình Lập Phiếu Nhập Từ Nhân Viên Mua Ngoài";
+                 rdoKCTN.Checked = false;
+                rdoKNMN.Checked = false;
+                rdoKCMuonNo.Checked = false;
+                rdoKNTN.Checked = false;
+             
+                clsGiaoDienChung.initComboboxHaveKhoNgoai(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             }
             clsGiaoDienChung.initCombobox(cbKhoNhan, new clsDM_Kho(), "Ten_kho", "ID_kho", "Ten_kho");
             cbKhoNgoai.SelectedIndex = 0;
@@ -210,6 +222,7 @@ namespace Inventory.NhapXuat
                 {
                     txtMaPhieuNhap.Text = RandomMaPhieu("KNTN");
                 }
+               
                 txtMaPhieuNhap.Enabled = false;
                 cbChatLuong.SelectedIndex = 0;
                 cbKhoNhan.SelectedIndex = 0;
@@ -291,6 +304,7 @@ namespace Inventory.NhapXuat
                                     phieunhap.isKCTN = true;
                                 if (rdoKCMuonNo.Checked == true)
                                     phieunhap.isKCMN = true;
+                               
                                 phieunhap.isNhapNgoai = true;
                                 phieunhap.Ten_kho_muon = cbKhoNgoai.Text;
                                 if (phieunhap.Insert(help) == 1)
@@ -379,7 +393,7 @@ namespace Inventory.NhapXuat
                                         phieunhap.isKCTN = true;
                                     if (rdoKCMuonNo.Checked == true)
                                         phieunhap.isKCMN = true;
-
+                                   
                                     phieunhap.isNhapNgoai = true;
                                     //if (isLoaiPhieu == "TN")
                                     //    phieunhap.isTraNo = true;
@@ -407,7 +421,7 @@ namespace Inventory.NhapXuat
                                     nk.isKNTN = phieunhap.isKNTN;
                                     nk.isKCTN = phieunhap.isKCTN;
                                     nk.isKCMN = phieunhap.isKCMN;
-
+                                    nk.isNVMN = phieunhap.isNVMN;
                                    
                                
                                     nk.isNhapNgoai = true;

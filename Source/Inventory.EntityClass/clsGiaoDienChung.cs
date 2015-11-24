@@ -44,7 +44,7 @@ namespace Inventory.EntityClass
                AutoCompleteStringCollection combData1 = entCls.getListToComboboxNotHaveKhoNgoai(tencot);// new AutoCompleteStringCollection();
 
                cbb.AutoCompleteCustomSource = combData1;
-               cbb.DataSource = entCls.GetAllHasNotData();
+               cbb.DataSource = entCls.GetAllDataHasNotKhoNgoai();
                cbb.DisplayMember = DisplayMember;
                cbb.ValueMember = ValueMember;
                cbb.SelectedIndex = -1;

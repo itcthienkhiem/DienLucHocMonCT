@@ -619,12 +619,15 @@ namespace Inventory.NhapXuat
 
         private void frmNhapKho_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
-            //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
-            this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);
-            cbKhoNhan.SelectedIndex = 0;
-            cbChatLuong.SelectedIndex = 0;
-
+            try
+            {
+                // TODO: This line of code loads data into the 'qLKhoDienLucDataSet.DM_Vat_Tu' table. You can move, or remove it, as needed.
+                //     this.dM_Vat_TuTableAdapter.Fill(this.qLKhoDienLucDataSet.DM_Vat_Tu);
+                this.txtSLTX.GotFocus += new EventHandler(textBox_GotFocus);
+                cbKhoNhan.SelectedIndex = 0;
+                cbChatLuong.SelectedIndex = 0;
+            }
+            catch (Exception ex) { }
         }
         void textBox_GotFocus(object sender, EventArgs e)
         {
