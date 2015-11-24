@@ -194,8 +194,18 @@ namespace Inventory.XuatTamVatTu
             Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
             DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
             string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
-         //   bool daduyet = bool.Parse(SelectedRow.Cells["Da_phan_kho"].Value.ToString());
+            bool daduyet = bool.Parse(SelectedRow.Cells["da_duyet"].Value.ToString());
+            if (daduyet == true)
+            {
+                btnXoa.Enabled = false;
+                btnSua.Enabled = false;
 
+            }
+            else
+            {
+                btnXoa.Enabled = true;
+                btnSua.Enabled = true;
+            }
             gridMaster.DataSource = new clsChiTietPhieuXuatTam().getAll_toGrid(strMaPhieuNhap);
         }
         private void gridDanhSachPhieuXuatTam_SelectionChanged(object sender, EventArgs e)
@@ -203,8 +213,20 @@ namespace Inventory.XuatTamVatTu
             try
             {
                 LoadInitGridMaster();
+
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void frmDanhSachPhieuXuatTamVatTu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
