@@ -591,6 +591,38 @@ namespace Inventory.EntityClass
             //DAL.CommitTransaction();
             //return result;
         }
+        public int Delete(string maphieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            //   help.ent.Database.BeginTransaction();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var recordsToDeleteCT = (from c in help.ent.Chi_Tiet_Phieu_Xuat_Tam where c.Ma_phieu_xuat_tam == maphieu select c).ToList<Chi_Tiet_Phieu_Xuat_Tam>();
+                if (recordsToDeleteCT.Count > 0)
+                {
+                    foreach (var record in recordsToDeleteCT)
+                    {
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Attach(record);
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
+                var recordsToDelete = (from c in help.ent.Phieu_Xuat_Tam_Vat_Tu where c.Ma_phieu_xuat_tam == maphieu select c).ToList<Phieu_Xuat_Tam_Vat_Tu>();
+                if (recordsToDelete.Count > 0)
+                {
+                    foreach (var record in recordsToDelete)
+                    {
+                        help.ent.Phieu_Xuat_Tam_Vat_Tu.Attach(record);
+                        help.ent.Phieu_Xuat_Tam_Vat_Tu.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
+                dbcxtransaction.Commit();
+                return 1;
+            }
+            return 0;
+        }
 
         public static string RandomMaPhieu()
         {

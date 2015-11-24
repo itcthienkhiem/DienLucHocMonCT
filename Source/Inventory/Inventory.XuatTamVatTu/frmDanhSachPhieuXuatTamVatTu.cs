@@ -237,20 +237,30 @@ namespace Inventory.XuatTamVatTu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
-            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
-            string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
-            bool Daduyet = bool.Parse(SelectedRow.Cells["Da_duyet"].Value.ToString());
-            if (Daduyet == false)
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu xuất này không", "Cảnh  báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
-                if (pxt.Delete(Ma_phieu_xuat_tam) == 1)
+                Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+                DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+                string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+                bool Daduyet = bool.Parse(SelectedRow.Cells["Da_duyet"].Value.ToString());
+                if (Daduyet == false)
                 {
-                    MessageBox.Show("Bạn đã xóa thành công !");
-                    return;
+                    clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
+                    if (pxt.Delete(Ma_phieu_xuat_tam) == 1)
+                    {
+                        MessageBox.Show("Bạn đã xóa thành công !");
+                        LoadData();
+                        return;
 
+                    }
                 }
             }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+           
         }
     }
 }
