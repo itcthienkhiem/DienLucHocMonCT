@@ -228,5 +228,29 @@ namespace Inventory.XuatTamVatTu
         {
 
         }
+
+        private void btnBoDuyet_Click(object sender, EventArgs e)
+        {
+
+            LoadData();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+            string Ma_phieu_xuat_tam = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
+            bool Daduyet = bool.Parse(SelectedRow.Cells["Da_duyet"].Value.ToString());
+            if (Daduyet == false)
+            {
+                clsPhieuXuatTamVatTu pxt = new clsPhieuXuatTamVatTu();
+                if (pxt.Delete(Ma_phieu_xuat_tam) == 1)
+                {
+                    MessageBox.Show("Bạn đã xóa thành công !");
+                    return;
+
+                }
+            }
+        }
     }
 }

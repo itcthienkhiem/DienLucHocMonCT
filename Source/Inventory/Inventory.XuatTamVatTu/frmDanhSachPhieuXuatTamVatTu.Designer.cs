@@ -86,6 +86,7 @@
             this.Cong_trinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dia_Chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Da_duyet = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnBoDuyet = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDanhSachPhieuXuatTam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridMaster)).BeginInit();
@@ -93,6 +94,7 @@
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.btnBoDuyet);
             this.pnlMenu.Controls.Add(this.btnBaoHoanNhap);
             this.pnlMenu.Controls.Add(this.btnBaoGiuLai);
             this.pnlMenu.Controls.Add(this.btnHuy);
@@ -119,7 +121,7 @@
             // 
             // btnBaoHoanNhap
             // 
-            this.btnBaoHoanNhap.Location = new System.Drawing.Point(481, 13);
+            this.btnBaoHoanNhap.Location = new System.Drawing.Point(669, 15);
             this.btnBaoHoanNhap.Name = "btnBaoHoanNhap";
             this.btnBaoHoanNhap.Size = new System.Drawing.Size(108, 48);
             this.btnBaoHoanNhap.TabIndex = 6;
@@ -129,7 +131,7 @@
             // 
             // btnBaoGiuLai
             // 
-            this.btnBaoGiuLai.Location = new System.Drawing.Point(367, 13);
+            this.btnBaoGiuLai.Location = new System.Drawing.Point(555, 15);
             this.btnBaoGiuLai.Name = "btnBaoGiuLai";
             this.btnBaoGiuLai.Size = new System.Drawing.Size(108, 48);
             this.btnBaoGiuLai.TabIndex = 6;
@@ -245,6 +247,7 @@
             this.btnXoa.Size = new System.Drawing.Size(50, 50);
             this.btnXoa.TabIndex = 2;
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLamMoi
             // 
@@ -645,6 +648,16 @@
             this.Da_duyet.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Da_duyet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // btnBoDuyet
+            // 
+            this.btnBoDuyet.Location = new System.Drawing.Point(441, 15);
+            this.btnBoDuyet.Name = "btnBoDuyet";
+            this.btnBoDuyet.Size = new System.Drawing.Size(108, 48);
+            this.btnBoDuyet.TabIndex = 7;
+            this.btnBoDuyet.Text = "Bỏ Duyệt Phiếu";
+            this.btnBoDuyet.UseVisualStyleBackColor = true;
+            this.btnBoDuyet.Click += new System.EventHandler(this.btnBoDuyet_Click);
+            // 
             // frmDanhSachPhieuXuatTamVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -725,5 +738,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cong_trinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dia_Chi;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Da_duyet;
+        private System.Windows.Forms.Button btnBoDuyet;
     }
 }
