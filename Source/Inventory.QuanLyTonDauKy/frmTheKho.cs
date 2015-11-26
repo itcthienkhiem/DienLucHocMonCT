@@ -233,5 +233,10 @@ namespace Inventory.QuanLyTonDauKy
 
             dtTuNgay.Value = DateTime.Now.AddDays(-10);
         }
+
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

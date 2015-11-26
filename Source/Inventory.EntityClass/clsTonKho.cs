@@ -345,7 +345,7 @@ namespace Inventory.EntityClass
 
 
                           where gl.Loai_chat_luong.Contains(TenChatLuong) && f.Ten_kho.Contains(TenKho)&& e.Ten_vat_tu .Contains(tenvt)
-                          && e.Ma_vat_tu.Contains(mavt)  && f.isKhoNgoai == false
+                          && e.Ma_vat_tu.Contains(mavt)  && (f.isKhoNgoai == false || f.isKhoNgoai ==null)
                           group d by new { d.Ma_vat_tu, e.Ten_vat_tu } into gs
                           let TotalPoints = gs.Sum(m => m.So_luong)
                           orderby TotalPoints descending

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory.EntityClass;
+using Inventory.XuatTamVatTu.DuyetPhieu;
 
 namespace Inventory.XuatTamVatTu
 {
@@ -22,6 +23,42 @@ namespace Inventory.XuatTamVatTu
         {
             InitializeComponent();
 
+            PhieuXuatTam = new clsPhieuXuatTamVatTu();
+
+            //Init cls Button
+            PanelButton = new clsPanelButton2();
+
+            frmAction = new FormActionDelegate2(FormAction);
+            PanelButton.setDelegateFormAction(frmAction);
+
+            PanelButton.AddButton(enumButton2.Them, ref btnThem);
+            PanelButton.AddButton(enumButton2.Xoa, ref btnXoa);
+            PanelButton.AddButton(enumButton2.Sua, ref btnSua);
+            PanelButton.AddButton(enumButton2.LamMoi, ref btnLamMoi);
+            PanelButton.AddButton(enumButton2.Luu, ref btnLuu);
+            PanelButton.AddButton(enumButton2.Huy, ref btnHuy);
+
+            PanelButton.AddButton(enumButton2.Dong, ref btnDong);
+
+            PanelButton.setButtonClickEvent(enumButton2.Dong);
+            PanelButton.setButtonClickEvent(enumButton2.LamMoi);
+
+            PanelButton.setButtonStatus(enumButton2.Xoa, false);
+            PanelButton.setButtonStatus(enumButton2.Luu, false);
+            PanelButton.setButtonStatus(enumButton2.Huy, false);
+            btnXoa.Enabled = false;
+            btnLuu.Enabled = false;
+            btnHuy.Enabled = false;
+
+            PanelButton.ResetButton();
+
+            LoadData();
+            InitCombo();
+        }
+         public frmDanhSachPhieuXuatTamVatTu(string maphieu)
+        {
+            InitializeComponent();
+             this.maphieu =maphieu;
             PhieuXuatTam = new clsPhieuXuatTamVatTu();
 
             //Init cls Button
@@ -109,7 +146,7 @@ namespace Inventory.XuatTamVatTu
                 bool Daduyet = bool.Parse(SelectedRow.Cells["Da_duyet"].Value.ToString());
                 if (Daduyet == false)
                 {
-                    frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(Ma_phieu_xuat_tam, enumButton2.Sua);
+                    frmChiTietPhieuXuatTam ChiTietPhieuXuatTam = new frmChiTietPhieuXuatTam(Ma_phieu_xuat_tam, enumButton2.Sua,this);
                     ChiTietPhieuXuatTam.Show();
                 }
             }
@@ -143,7 +180,7 @@ namespace Inventory.XuatTamVatTu
             if (selectedRowCount >= 0)
             {
                 MaPhieuXuat = gridDanhSachPhieuXuatTam.Rows[selectedRowCount].Cells["Ma_phieu_xuat_tam"].Value.ToString();
-                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam(MaPhieuXuat, enumButton2.BaoGiuLai);
+                frmChiTietPhieuXuatTam frm = new frmChiTietPhieuXuatTam( MaPhieuXuat, enumButton2.BaoGiuLai,this);
 
                 foreach (Form f in this.MdiChildren)
                 {
@@ -199,12 +236,20 @@ namespace Inventory.XuatTamVatTu
             {
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
-
+                btnDuyetPhieu.Enabled = false;
+                btnBoDuyet.Enabled = true;
+                btnBaoHoanNhap.Enabled = true;
+                btnBaoGiuLai.Enabled = true;
             }
             else
             {
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
+                btnDuyetPhieu.Enabled = true;
+                btnBoDuyet.Enabled = false;
+                btnBaoHoanNhap.Enabled = false;
+                btnBaoGiuLai.Enabled = false ;
+                
             }
             gridMaster.DataSource = new clsChiTietPhieuXuatTam().getAll_toGrid(strMaPhieuNhap);
         }
@@ -223,16 +268,51 @@ namespace Inventory.XuatTamVatTu
         {
 
         }
-
+        public string maphieu="";
         private void frmDanhSachPhieuXuatTamVatTu_Load(object sender, EventArgs e)
         {
+            if (maphieu != "")
+            {
+                // chon tren luoi trung voi ma phieu 
+                gridDanhSachPhieuXuatTam.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                try
+                {
+                    int index = 0;
+                    foreach (DataGridViewRow row in gridDanhSachPhieuXuatTam.Rows)
+                    {
+                        index++;
+                        if (row.Cells["Ma_phieu_xuat_tam"].Value.ToString().Equals(maphieu))
+                        {
 
+                            row.Selected = true;
+
+                            gridDanhSachPhieuXuatTam.FirstDisplayedScrollingRowIndex = index - 1;
+                            gridDanhSachPhieuXuatTam.CurrentCell = gridDanhSachPhieuXuatTam.Rows[index - 1].Cells["Ma_phieu_xuat_tam"];
+                            gridDanhSachPhieuXuatTam.Update();
+
+                            LoadInitGridMaster();
+                            break;
+                        }
+                    }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
         }
 
         private void btnBoDuyet_Click(object sender, EventArgs e)
         {
-
-            LoadData();
+            clsDuyetPhieu duyetphieu = new clsDuyetPhieu();
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+            int ID_phieu_xuat_tam = int.Parse(SelectedRow.Cells["ID_phieu_xuat_tam"].Value.ToString());
+            if (duyetphieu.BoDuyet(ID_phieu_xuat_tam) == 1)
+            {
+                MessageBox.Show("Bạn đã bỏ duyệt thành công !");
+                LoadData();
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -261,6 +341,25 @@ namespace Inventory.XuatTamVatTu
                 //do something else
             }
            
+        }
+
+        private void btnDuyetPhieu_Click(object sender, EventArgs e)
+        {
+            clsDuyetPhieu duyetphieu = new clsDuyetPhieu();
+              Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+                DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+                int  ID_phieu_xuat_tam =int.Parse( SelectedRow.Cells["ID_phieu_xuat_tam"].Value.ToString());
+                if (duyetphieu.Insert(ID_phieu_xuat_tam) == 1)
+                {
+                    MessageBox.Show("Duyệt thành công!");
+                    LoadData();
+                }
+
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

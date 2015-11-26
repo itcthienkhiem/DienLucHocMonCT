@@ -18,12 +18,14 @@ namespace Inventory.EntityClass
         public string Ma_phieu_xuat_tam_no;
 
         public string Ma_vat_tu;
-        public int So_luong_de_nghi;
-        public int So_luong_hoan_nhap;
-        public int So_luong_giu_lai;
-        public int so_luong_thuc_lanh;
+        public decimal So_luong_de_nghi;
+        public decimal So_luong_hoan_nhap;
+        public decimal So_luong_giu_lai;
+        public decimal so_luong_thuc_lanh;
         public int Id_chat_luong;
-
+        public int ID_kho;
+        public decimal So_luong_dang_giu;
+        public int ID_chi_tiet_phieu_xuat_tam;
         SqlConnection m_dbConnection = new SqlConnection(clsThamSoUtilities.connectionString);
 
         public DataTable GetChiTietPhieuXuatTam(string Ma_phieu_nhap)
@@ -1355,7 +1357,53 @@ namespace Inventory.EntityClass
 
             //return result;
         }
+       
 
+        public int Update( DatabaseHelper help,Chi_Tiet_Phieu_Xuat_Tam ctxt)
+        {
+            
+            int temp = 0;
+          
+            {
+          
+                {
+                    help.ent.Chi_Tiet_Phieu_Xuat_Tam.Attach(ctxt);
+                    help.ent.Entry(ctxt).State = EntityState.Modified;
+                    temp = help.ent.SaveChanges();
+                  
+
+                }
+            }
+            return temp;
+        }
+        public int Insert(DatabaseHelper help)
+        {
+
+            
+
+            {
+                Chi_Tiet_Phieu_Xuat_Tam ctpxt = new Chi_Tiet_Phieu_Xuat_Tam();
+                ctpxt.Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam ;
+                ctpxt.Ma_vat_tu = this.Ma_vat_tu;
+                ctpxt.ID_kho = this.ID_kho;
+                ctpxt.Id_chat_luong = this.Id_chat_luong;
+                ctpxt.ID_chi_tiet_phieu_xuat_tam = this.ID_chi_tiet_phieu_xuat_tam;
+
+                ctpxt.So_luong_dang_giu = this.So_luong_dang_giu;
+                ctpxt.So_luong_de_nghi = this.So_luong_de_nghi;
+                ctpxt.So_luong_hoan_nhap = this.So_luong_hoan_nhap;
+                ctpxt.So_luong_thuc_xuat = this.so_luong_thuc_lanh;
+                ctpxt.So_luong_giu_lai = this.So_luong_giu_lai;
+
+
+                help.ent.Chi_Tiet_Phieu_Xuat_Tam.Add(ctpxt);
+                return     help.ent.SaveChanges();
+                   
+
+               
+            }
+            
+        }
         public int Update(Chi_Tiet_Phieu_Xuat_Tam ctxt)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -1433,6 +1481,18 @@ namespace Inventory.EntityClass
                 //return result;
             }
 
+        }
+       
+        public Chi_Tiet_Phieu_Xuat_Tam TimKiem(DatabaseHelper help, string p, string mavt, int idcl)
+        {
+
+            var dm = (from d in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                      where d.Ma_phieu_xuat_tam.Equals(p) && d.Ma_vat_tu.Equals(mavt) && d.Id_chat_luong.ToString().Equals(idcl.ToString())
+                      select d).FirstOrDefault();
+
+
+
+            return dm;
         }
     }
 }

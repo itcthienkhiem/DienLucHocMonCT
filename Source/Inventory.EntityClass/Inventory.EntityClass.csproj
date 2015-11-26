@@ -70,6 +70,7 @@
     <Compile Include="clsDMKhoNgoai.cs" />
     <Compile Include="clsKho_Muon_Vat_Tu.cs" />
     <Compile Include="clsLoaiPhieuNhap.cs" />
+    <Compile Include="clsNoVatTu.cs" />
     <Compile Include="clsPhieuNhapKho.cs" />
     <Compile Include="clsPhieuXuatTamVatTu.cs" />
     <Compile Include="clsTheKho.cs" />

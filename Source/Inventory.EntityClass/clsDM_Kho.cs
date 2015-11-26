@@ -178,6 +178,7 @@ namespace Inventory.EntityClass
                 return Utilities.clsThamSoUtilities.ToDataTable(dm);
             }
         }
+
         public  bool GetDataARow(int id)
         {
             DatabaseHelper help = new DatabaseHelper();

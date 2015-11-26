@@ -23,8 +23,10 @@ namespace Inventory.EntityClass
         public string Cong_trinh;
         public string Dia_chi;
         public DateTime Ngay_lap;
-
+        public bool isGiuLai = false;
+        public bool isHoanNhap = false;
         public bool Da_duyet = false;
+        public int ID_phieu_xuat_tam;
         public clsPhieuXuatTamVatTu()
         {
         }
@@ -68,7 +70,123 @@ namespace Inventory.EntityClass
             //m_dbConnection.Close();
             // return dt;
         }
+        public int Insert()
+        {
+            try
+            {
+                DatabaseHelper help = new DatabaseHelper();
+                help.ConnectDatabase();
+                using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+                {
+                    var item = new Phieu_Xuat_Tam_Vat_Tu();
+                    item.ID_kho = this.ID_kho;
+                    item.ID_nhan_vien = this.ID_Nhan_vien;
+                    item.isGiuLai = this.isGiuLai;
+                    item.isHoanNhap = this.isHoanNhap;
+                    item.Ly_do = this.Ly_do;
+                    item.Cong_trinh = this.Cong_trinh;
+                    item.Dia_chi = this.Dia_chi;
+                    item.Ngay_xuat = this.Ngay_xuat;
+                    item.Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam;
+                    item.Da_duyet = this.Da_duyet;
 
+
+                    help.ent.Phieu_Xuat_Tam_Vat_Tu.Add(item);
+                    help.ent.SaveChanges();
+                    dbcxtransaction.Commit();
+                    return 1;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
+        }
+        public int TimMaPhieu(string maphieu)
+        {
+            DatabaseHelper help = new DatabaseHelper();
+            help.ConnectDatabase();
+            using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+            {
+                var dm = (from d in help.ent.Phieu_Xuat_Tam_Vat_Tu
+                          where d.Ma_phieu_xuat_tam == maphieu
+                          select d).FirstOrDefault();
+                if (dm == null)
+                    return -1;
+                return dm.ID_phieu_xuat_tam;
+            }
+        }
+        public int Insert(DatabaseHelper help)
+        {
+            var item = new Phieu_Xuat_Tam_Vat_Tu();
+            item.ID_kho = this.ID_kho;
+            item.ID_nhan_vien = this.ID_Nhan_vien;
+            item.isGiuLai = this.isGiuLai;
+            item.isHoanNhap = this.isHoanNhap;
+            item.Ly_do = this.Ly_do;
+            item.Cong_trinh = this.Cong_trinh;
+            item.Dia_chi = this.Dia_chi;
+            item.Ngay_xuat = this.Ngay_xuat;
+            item.Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam;
+            item.Da_duyet = this.Da_duyet;
+            item.ID_phieu_xuat_tam = this.ID_phieu_xuat_tam;
+            help.ent.Phieu_Xuat_Tam_Vat_Tu.Add(item);
+          
+           return  help.ent.SaveChanges();
+        }
+        public int Update(DatabaseHelper help)
+        {
+            try
+            {
+                  {
+                    var item = new Phieu_Xuat_Tam_Vat_Tu();
+                    item.ID_kho = this.ID_kho;
+                    item.ID_nhan_vien = this.ID_Nhan_vien;
+                    item.isGiuLai = this.isGiuLai;
+                    item.isHoanNhap = this.isHoanNhap;
+                    item.Ly_do = this.Ly_do;
+                    item.Cong_trinh = this.Cong_trinh;
+                    item.Dia_chi = this.Dia_chi;
+                    item.Ngay_xuat = this.Ngay_xuat;
+                    item.Ma_phieu_xuat_tam = this.Ma_phieu_xuat_tam;
+                    item.Da_duyet = this.Da_duyet;
+                    item.ID_phieu_xuat_tam = this.ID_phieu_xuat_tam;
+                    help.ent.Phieu_Xuat_Tam_Vat_Tu.Attach(item);
+                    help.ent.Entry(item).State = EntityState.Modified;
+                    help.ent.SaveChanges();
+                    var ctpxt = new Chi_Tiet_Phieu_Xuat_Tam();
+                    var dm = (from d in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                              where d.Ma_phieu_xuat_tam == item.Ma_phieu_xuat_tam
+                              select d
+                                  ).ToList();
+                    if (dm == null)
+                    {
+                       
+                        return 1;
+                    }
+                    for (int i = 0; i < dm.Count; i++)
+                    {
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Attach(dm[i]);
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Remove(dm[i]);
+                        help.ent.SaveChanges();
+                    }
+
+
+                  
+                    return 1;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
+        }
         public DataTable GetAll_byMaPhieu(string maPhieu)
         {
             m_dbConnection.Open();
@@ -222,7 +340,7 @@ namespace Inventory.EntityClass
             //return dt;
         }
 
-        public DataTable GetAll_DSPhieuXuat(string MaNV,string TenNV)
+        public DataTable GetAll_DSPhieuXuat(string MaNV, string TenNV)
         {
             DatabaseHelper help = new DatabaseHelper();
             help.ConnectDatabase();
@@ -231,7 +349,7 @@ namespace Inventory.EntityClass
                 var dm = (from d in help.ent.Phieu_Xuat_Tam_Vat_Tu
                           join e in help.ent.DM_Nhan_Vien on d.ID_nhan_vien equals e.ID_nhan_vien
                           join k in help.ent.DM_Kho on d.ID_kho equals k.ID_kho
-                          where e.Ma_nhan_vien .Contains(MaNV)&& e.Ten_nhan_vien .Contains(TenNV)
+                          where e.Ma_nhan_vien.Contains(MaNV) && e.Ten_nhan_vien.Contains(TenNV)
                           select new
                           {
                               d.Ma_phieu_xuat_tam,
@@ -242,6 +360,7 @@ namespace Inventory.EntityClass
                               d.Cong_trinh,
                               d.Dia_chi,
                               d.Da_duyet,
+                              d.ID_phieu_xuat_tam,
                           }).ToList();
                 dbcxtransaction.Commit();
 
@@ -398,7 +517,27 @@ namespace Inventory.EntityClass
             //}
             //return false;
         }
+        public bool CheckTonTaiSoDK(DatabaseHelper help ,string maPhieu)
+        {
+           
+            bool has = help.ent.Phieu_Xuat_Tam_Vat_Tu.Any(cus => cus.Ma_phieu_xuat_tam == maPhieu);
+            return has;
 
+            //m_dbConnection.Open();
+            //DataTable dt = new DataTable();
+            //string sql = "SELECT * FROM Phieu_xuat_tam_vat_tu WHERE Ma_phieu_xuat_tam=@Ma_phieu_xuat_tam";
+            //SqlCommand command = new SqlCommand(sql, m_dbConnection);
+            //command.Parameters.Add(new SqlParameter("@Ma_phieu_xuat_tam", Ma_phieu_xuat_tam));
+            //SqlDataAdapter da = new SqlDataAdapter(command);
+            //da.Fill(dt);
+            //m_dbConnection.Close();
+
+            //if (dt.Rows.Count > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
+        }
         public bool CheckTonTaiSoDK(string maPhieu)
         {
             DatabaseHelper help = new DatabaseHelper();
@@ -623,7 +762,35 @@ namespace Inventory.EntityClass
             }
             return 0;
         }
+        public int Delete(DatabaseHelper help, string maphieu)
+        {
 
+            {
+                var recordsToDeleteCT = (from c in help.ent.Chi_Tiet_Phieu_Xuat_Tam where c.Ma_phieu_xuat_tam == maphieu select c).ToList<Chi_Tiet_Phieu_Xuat_Tam>();
+                if (recordsToDeleteCT.Count > 0)
+                {
+                    foreach (var record in recordsToDeleteCT)
+                    {
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Attach(record);
+                        help.ent.Chi_Tiet_Phieu_Xuat_Tam.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
+                var recordsToDelete = (from c in help.ent.Phieu_Xuat_Tam_Vat_Tu where c.Ma_phieu_xuat_tam == maphieu select c).ToList<Phieu_Xuat_Tam_Vat_Tu>();
+                if (recordsToDelete.Count > 0)
+                {
+                    foreach (var record in recordsToDelete)
+                    {
+                        help.ent.Phieu_Xuat_Tam_Vat_Tu.Attach(record);
+                        help.ent.Phieu_Xuat_Tam_Vat_Tu.Remove(record);
+                    }
+                }
+                help.ent.SaveChanges();
+
+                return 1;
+            }
+            return 0;
+        }
         public static string RandomMaPhieu()
         {
             DateTime today = DateTime.Today;
@@ -638,7 +805,7 @@ namespace Inventory.EntityClass
             help.ConnectDatabase();
             var showPiece = (help.ent.Chi_Tiet_Phieu_Xuat_Tam
                .FirstOrDefault(p => p.Ma_phieu_xuat_tam == help.ent.Chi_Tiet_Phieu_Xuat_Tam.Max(x => x.Ma_phieu_xuat_tam)));
-            if (showPiece!=null&& showPiece.Ma_phieu_xuat_tam.Contains(day + "." + month + "." + year))
+            if (showPiece != null && showPiece.Ma_phieu_xuat_tam.Contains(day + "." + month + "." + year))
             {
                 string[] temp = showPiece.Ma_phieu_xuat_tam.Split('.');
                 int value = int.Parse(temp[temp.Length]) + 1;

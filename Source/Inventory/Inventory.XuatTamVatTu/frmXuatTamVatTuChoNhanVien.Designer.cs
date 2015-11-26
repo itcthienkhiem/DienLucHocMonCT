@@ -32,6 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridNhanVienNoVatTu = new System.Windows.Forms.DataGridView();
+            this.ID_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Da_tra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Da_tra_text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -54,16 +64,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbMaNhanVien = new System.Windows.Forms.ComboBox();
             this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
-            this.ID_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_phieu_xuat_tam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ma_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_vat_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ten_kho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.So_luong_giu_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Da_tra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Da_tra_text = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridNhanVienNoVatTu)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.gbGrid.SuspendLayout();
@@ -107,8 +107,85 @@
             this.gridNhanVienNoVatTu.RowHeadersVisible = false;
             this.gridNhanVienNoVatTu.RowTemplate.Height = 30;
             this.gridNhanVienNoVatTu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridNhanVienNoVatTu.Size = new System.Drawing.Size(922, 134);
+            this.gridNhanVienNoVatTu.Size = new System.Drawing.Size(922, 307);
             this.gridNhanVienNoVatTu.TabIndex = 62;
+            // 
+            // ID_nhan_vien
+            // 
+            this.ID_nhan_vien.DataPropertyName = "ID_nhan_vien";
+            this.ID_nhan_vien.HeaderText = "ID Nhân Viên";
+            this.ID_nhan_vien.Name = "ID_nhan_vien";
+            this.ID_nhan_vien.ReadOnly = true;
+            this.ID_nhan_vien.Visible = false;
+            // 
+            // Ma_nhan_vien
+            // 
+            this.Ma_nhan_vien.DataPropertyName = "Ma_nhan_vien";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Ma_nhan_vien.HeaderText = "Mã nhân viên";
+            this.Ma_nhan_vien.Name = "Ma_nhan_vien";
+            this.Ma_nhan_vien.ReadOnly = true;
+            // 
+            // Ten_nhan_vien
+            // 
+            this.Ten_nhan_vien.DataPropertyName = "Ten_nhan_vien";
+            this.Ten_nhan_vien.HeaderText = "Tên nhân viên";
+            this.Ten_nhan_vien.Name = "Ten_nhan_vien";
+            this.Ten_nhan_vien.ReadOnly = true;
+            this.Ten_nhan_vien.Width = 160;
+            // 
+            // Ma_phieu_xuat_tam
+            // 
+            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.HeaderText = "Mã phiếu xuất tạm";
+            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
+            this.Ma_phieu_xuat_tam.ReadOnly = true;
+            // 
+            // Ma_vat_tu
+            // 
+            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
+            this.Ma_vat_tu.HeaderText = "Mã vật tư";
+            this.Ma_vat_tu.Name = "Ma_vat_tu";
+            this.Ma_vat_tu.ReadOnly = true;
+            // 
+            // Ten_vat_tu
+            // 
+            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
+            this.Ten_vat_tu.HeaderText = "Tên vật tư";
+            this.Ten_vat_tu.Name = "Ten_vat_tu";
+            this.Ten_vat_tu.ReadOnly = true;
+            // 
+            // Ten_kho
+            // 
+            this.Ten_kho.DataPropertyName = "Ten_kho";
+            this.Ten_kho.HeaderText = "Tên kho";
+            this.Ten_kho.Name = "Ten_kho";
+            this.Ten_kho.ReadOnly = true;
+            // 
+            // So_luong_giu_lai
+            // 
+            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
+            this.So_luong_giu_lai.HeaderText = "Số lượng giữ lại";
+            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
+            this.So_luong_giu_lai.ReadOnly = true;
+            // 
+            // Da_tra
+            // 
+            this.Da_tra.DataPropertyName = "Da_tra";
+            this.Da_tra.HeaderText = "Đã trả";
+            this.Da_tra.Name = "Da_tra";
+            this.Da_tra.ReadOnly = true;
+            this.Da_tra.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Da_tra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Da_tra.Visible = false;
+            // 
+            // Da_tra_text
+            // 
+            this.Da_tra_text.DataPropertyName = "Da_tra_text";
+            this.Da_tra_text.HeaderText = "Đã trả";
+            this.Da_tra_text.Name = "Da_tra_text";
+            this.Da_tra_text.ReadOnly = true;
             // 
             // label9
             // 
@@ -340,83 +417,6 @@
             this.cbTenNhanVien.Size = new System.Drawing.Size(196, 22);
             this.cbTenNhanVien.TabIndex = 79;
             this.cbTenNhanVien.SelectionChangeCommitted += new System.EventHandler(this.cbTenNhanVien_SelectionChangeCommitted);
-            // 
-            // ID_nhan_vien
-            // 
-            this.ID_nhan_vien.DataPropertyName = "ID_nhan_vien";
-            this.ID_nhan_vien.HeaderText = "ID Nhân Viên";
-            this.ID_nhan_vien.Name = "ID_nhan_vien";
-            this.ID_nhan_vien.ReadOnly = true;
-            this.ID_nhan_vien.Visible = false;
-            // 
-            // Ma_nhan_vien
-            // 
-            this.Ma_nhan_vien.DataPropertyName = "Ma_nhan_vien";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ma_nhan_vien.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.Ma_nhan_vien.Name = "Ma_nhan_vien";
-            this.Ma_nhan_vien.ReadOnly = true;
-            // 
-            // Ten_nhan_vien
-            // 
-            this.Ten_nhan_vien.DataPropertyName = "Ten_nhan_vien";
-            this.Ten_nhan_vien.HeaderText = "Tên nhân viên";
-            this.Ten_nhan_vien.Name = "Ten_nhan_vien";
-            this.Ten_nhan_vien.ReadOnly = true;
-            this.Ten_nhan_vien.Width = 160;
-            // 
-            // Ma_phieu_xuat_tam
-            // 
-            this.Ma_phieu_xuat_tam.DataPropertyName = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.HeaderText = "Mã phiếu xuất tạm";
-            this.Ma_phieu_xuat_tam.Name = "Ma_phieu_xuat_tam";
-            this.Ma_phieu_xuat_tam.ReadOnly = true;
-            // 
-            // Ma_vat_tu
-            // 
-            this.Ma_vat_tu.DataPropertyName = "Ma_vat_tu";
-            this.Ma_vat_tu.HeaderText = "Mã vật tư";
-            this.Ma_vat_tu.Name = "Ma_vat_tu";
-            this.Ma_vat_tu.ReadOnly = true;
-            // 
-            // Ten_vat_tu
-            // 
-            this.Ten_vat_tu.DataPropertyName = "Ten_vat_tu";
-            this.Ten_vat_tu.HeaderText = "Tên vật tư";
-            this.Ten_vat_tu.Name = "Ten_vat_tu";
-            this.Ten_vat_tu.ReadOnly = true;
-            // 
-            // Ten_kho
-            // 
-            this.Ten_kho.DataPropertyName = "Ten_kho";
-            this.Ten_kho.HeaderText = "Tên kho";
-            this.Ten_kho.Name = "Ten_kho";
-            this.Ten_kho.ReadOnly = true;
-            // 
-            // So_luong_giu_lai
-            // 
-            this.So_luong_giu_lai.DataPropertyName = "So_luong_giu_lai";
-            this.So_luong_giu_lai.HeaderText = "Số lượng giữ lại";
-            this.So_luong_giu_lai.Name = "So_luong_giu_lai";
-            this.So_luong_giu_lai.ReadOnly = true;
-            // 
-            // Da_tra
-            // 
-            this.Da_tra.DataPropertyName = "Da_tra";
-            this.Da_tra.HeaderText = "Đã trả";
-            this.Da_tra.Name = "Da_tra";
-            this.Da_tra.ReadOnly = true;
-            this.Da_tra.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Da_tra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Da_tra.Visible = false;
-            // 
-            // Da_tra_text
-            // 
-            this.Da_tra_text.DataPropertyName = "Da_tra_text";
-            this.Da_tra_text.HeaderText = "Đã trả";
-            this.Da_tra_text.Name = "Da_tra_text";
-            this.Da_tra_text.ReadOnly = true;
             // 
             // frmXuatTamVatTuChoNhanVien
             // 
