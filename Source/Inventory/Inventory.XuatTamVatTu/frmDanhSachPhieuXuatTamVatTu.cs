@@ -232,6 +232,7 @@ namespace Inventory.XuatTamVatTu
             DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
             string strMaPhieuNhap = SelectedRow.Cells["Ma_phieu_xuat_tam"].Value.ToString();
             bool daduyet = bool.Parse(SelectedRow.Cells["da_duyet"].Value.ToString());
+            bool dahoannhap = bool.Parse(SelectedRow.Cells["isHoanNhap"].Value.ToString());
             if (daduyet == true)
             {
                 btnXoa.Enabled = false;
@@ -251,6 +252,12 @@ namespace Inventory.XuatTamVatTu
                 btnBaoGiuLai.Enabled = false ;
                 
             }
+            if (dahoannhap == false)
+            {
+                btnBaoHoanNhap.Enabled = true;
+            }
+            else
+                btnBaoHoanNhap.Enabled = false;
             gridMaster.DataSource = new clsChiTietPhieuXuatTam().getAll_toGrid(strMaPhieuNhap);
         }
         private void gridDanhSachPhieuXuatTam_SelectionChanged(object sender, EventArgs e)
