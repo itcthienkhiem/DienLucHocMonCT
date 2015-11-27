@@ -148,7 +148,11 @@ namespace Inventory.XuatTamVatTu.DuyetPhieu
                                           select d).ToList();
                     if (entryPointCTPN.Count == 0)
                         return 1;
-                    
+
+                    var DMK = (from d in help.ent.DM_Kho
+                                        where d.ID_kho == pxk.ID_kho
+                                        select d).FirstOrDefault();
+                   
 
                     for (int i = 0; i < entryPointCTPN.Count; i++)
                     {
@@ -164,66 +168,78 @@ namespace Inventory.XuatTamVatTu.DuyetPhieu
 
                                           where d.ID_kho == pxk.ID_kho && d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
                                           select d).FirstOrDefault();
-                        var entryPointTK = (from d in help.ent.The_kho
-
-                                            where d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
-                                            select d).FirstOrDefault();
-                        if (id_kho_chinh != id_kho_muon)
-                        {
-                            Kho_muon_vat_tu khomuon = new Kho_muon_vat_tu();
-                            khomuon.ID_Kho = id_kho_chinh;
-                            khomuon.ID_Kho_muon = id_kho_muon;
-                            khomuon.Ma_vat_tu = mavattu;
-                            khomuon.Id_chat_luong = idcl;
-                            khomuon.So_luong = sl;
-                            khomuon.Ma_phieu_xuat_tam = maphieu;
-                            khomuon.Da_tra = false;
-                            help.ent.Kho_muon_vat_tu.Add(khomuon);
-                            help.ent.SaveChanges();
-                            entryPoint.So_luong = entryPoint.So_luong + sl;
-                            help.ent.Ton_kho.Attach(entryPoint);
-                            help.ent.Entry(entryPoint).State = EntityState.Modified;
-                            help.ent.SaveChanges();
-                            Chi_tiet_the_kho cttk = new Chi_tiet_the_kho();
-                            cttk.ID_The_Kho = entryPointTK.ID_The_Kho;
-                            cttk.Ma_phieu = maphieu;
-                            cttk.Ngay_xuat_chung_tu = ngay_xuat;
-                            cttk.Dien_giai = "Mượn vật tư kho khác ";
-                            cttk.SL_Nhap = sl;
-
-                            cttk.ID_loai_phieu_nhap = 0;
-
-                            help.ent.Chi_tiet_the_kho.Add(cttk);
-                            help.ent.SaveChanges();
-                        }
-
-                        if (entryPoint == null)
-                        {
-                            return 0;
-                        }
-                        else
+                        if (DMK.isKhoNgoai == true)
                         {
                             entryPoint.So_luong = entryPoint.So_luong - sl;
                             help.ent.Ton_kho.Attach(entryPoint);
                             help.ent.Entry(entryPoint).State = EntityState.Modified;
                             help.ent.SaveChanges();
+
                         }
-
-
-                        if (entryPointTK == null)
+                        else
                         {
-                            return 0;
+                            var entryPointTK = (from d in help.ent.The_kho
 
+                                                where d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
+                                                select d).FirstOrDefault();
+                            if (id_kho_chinh != id_kho_muon)
+                            {
+                                Kho_muon_vat_tu khomuon = new Kho_muon_vat_tu();
+                                khomuon.ID_Kho = id_kho_chinh;
+                                khomuon.ID_Kho_muon = id_kho_muon;
+                                khomuon.Ma_vat_tu = mavattu;
+                                khomuon.Id_chat_luong = idcl;
+                                khomuon.So_luong = sl;
+                                khomuon.Ma_phieu_xuat_tam = maphieu;
+                                khomuon.Da_tra = false;
+                                help.ent.Kho_muon_vat_tu.Add(khomuon);
+                                help.ent.SaveChanges();
+                                entryPoint.So_luong = entryPoint.So_luong + sl;
+                                help.ent.Ton_kho.Attach(entryPoint);
+                                help.ent.Entry(entryPoint).State = EntityState.Modified;
+                                help.ent.SaveChanges();
+                                Chi_tiet_the_kho cttk = new Chi_tiet_the_kho();
+                                cttk.ID_The_Kho = entryPointTK.ID_The_Kho;
+                                cttk.Ma_phieu = maphieu;
+                                cttk.Ngay_xuat_chung_tu = ngay_xuat;
+                                cttk.Dien_giai = "Mượn vật tư kho khác ";
+                                cttk.SL_Nhap = sl;
+
+                                cttk.ID_loai_phieu_nhap = 0;
+
+                                help.ent.Chi_tiet_the_kho.Add(cttk);
+                                help.ent.SaveChanges();
+                            }
+
+                            if (entryPoint == null)
+                            {
+                                return 0;
+                            }
+                            else
+                            {
+                                entryPoint.So_luong = entryPoint.So_luong - sl;
+                                help.ent.Ton_kho.Attach(entryPoint);
+                                help.ent.Entry(entryPoint).State = EntityState.Modified;
+                                help.ent.SaveChanges();
+                            }
+
+
+                            if (entryPointTK == null)
+                            {
+                                return 0;
+
+                            }
+
+                            Chi_tiet_the_kho ChitietTK = new Chi_tiet_the_kho();
+                            ChitietTK.ID_The_Kho = entryPointTK.ID_The_Kho;
+                            ChitietTK.Ma_phieu = maphieu;
+                            ChitietTK.Ngay_xuat_chung_tu = ngay_xuat;
+                            ChitietTK.Dien_giai = dien_giai;
+                            ChitietTK.SL_Xuat = sl;
+                            ChitietTK.ID_loai_phieu_nhap = 0;
+                            help.ent.Chi_tiet_the_kho.Add(ChitietTK);
+                            help.ent.SaveChanges();
                         }
-                        Chi_tiet_the_kho ChitietTK = new Chi_tiet_the_kho();
-                        ChitietTK.ID_The_Kho = entryPointTK.ID_The_Kho;
-                        ChitietTK.Ma_phieu = maphieu;
-                        ChitietTK.Ngay_xuat_chung_tu = ngay_xuat;
-                        ChitietTK.Dien_giai = dien_giai;
-                        ChitietTK.SL_Xuat = sl;
-                        ChitietTK.ID_loai_phieu_nhap = 0;
-                        help.ent.Chi_tiet_the_kho.Add(ChitietTK);
-                        help.ent.SaveChanges();
                     }
                     pxk.Da_duyet = true;
 
@@ -402,7 +418,7 @@ namespace Inventory.XuatTamVatTu.DuyetPhieu
 
                                           where d.ID_kho == pxk.ID_kho && d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
                                           select d).FirstOrDefault();
-
+                       
                         if (entryPoint == null)
                         {
                             return 0;

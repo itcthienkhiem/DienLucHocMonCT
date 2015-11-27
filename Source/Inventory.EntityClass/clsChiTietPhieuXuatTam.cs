@@ -300,6 +300,7 @@ namespace Inventory.EntityClass
                                       ctpxt.Da_duyet_giu_lai,
                                       ctpxt.Id_chat_luong,
                                       cl.Loai_chat_luong
+                                     
                                   }).ToList();
 
                 //Chat_luong.Loai_chat_luong FROM Chi_tiet_Phieu_Xuat_Tam ";

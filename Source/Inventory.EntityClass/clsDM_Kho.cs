@@ -195,12 +195,12 @@ namespace Inventory.EntityClass
                               d.isKhoNgoai,
                           }).FirstOrDefault();
                 dbcxtransaction.Commit();
-                if (dm ==null || dm.isKhoNgoai == null)
+                if (dm ==null || dm.isKhoNgoai == null )
                     return false;
                 return (bool)dm.isKhoNgoai;
             }
         }
-
+      
         public bool CheckTonTaiSoDK()
         {
             DatabaseHelper help = new DatabaseHelper();

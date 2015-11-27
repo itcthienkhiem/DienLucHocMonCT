@@ -481,7 +481,7 @@ namespace Inventory.XuatTamVatTu
                             phieuxuat.Dia_chi = txtDiaChi.Text.Trim();
                             phieuxuat.Da_duyet = bDaDuyetPhieuXuat();
                             phieuxuat.Insert(help);
-
+                          
                           //  clsChiTietPhieuXuatTam ChiTietPhieuXuat = new clsChiTietPhieuXuatTam();
                             for (int i = 0; i < dataTableChiTietPhieuXuatTam.Rows.Count; i++)
                             {
@@ -957,7 +957,18 @@ namespace Inventory.XuatTamVatTu
                     return;
                 }
             }
-
+            clsDM_Kho kho = new clsDM_Kho();
+            bool isKhoNgoai = kho.GetDataARow(int.Parse( cbKhoXuat.SelectedValue.ToString() ));
+            if (isKhoNgoai == true)
+            {
+                int id = cbMuonVTTaiKho.SelectedValue == null ? 0 : int.Parse(cbMuonVTTaiKho.SelectedValue.ToString());
+                bool isKhoMuon = kho.GetDataARow(id);
+                if (isKhoMuon == true)
+                {
+                    MessageBox.Show("Không thể mượn kho khác khi đang chọn kho ngoài để xuất");
+                    return;
+                }
+            }
             //Kiem tra row trùng lập, chưa giải quyết phần thiếu vật tư, xin thêm
             //---------- TEST
             //DataRow dr = dataTableChiTietPhieuXuatTam.NewRow();

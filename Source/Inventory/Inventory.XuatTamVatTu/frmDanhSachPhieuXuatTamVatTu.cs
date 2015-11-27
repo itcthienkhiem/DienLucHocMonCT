@@ -349,6 +349,7 @@ namespace Inventory.XuatTamVatTu
               Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
                 DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
                 int  ID_phieu_xuat_tam =int.Parse( SelectedRow.Cells["ID_phieu_xuat_tam"].Value.ToString());
+                
                 if (duyetphieu.Insert(ID_phieu_xuat_tam) == 1)
                 {
                     MessageBox.Show("Duyệt thành công!");

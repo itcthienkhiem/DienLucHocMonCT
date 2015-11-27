@@ -361,6 +361,7 @@ namespace Inventory.EntityClass
                               d.Dia_chi,
                               d.Da_duyet,
                               d.ID_phieu_xuat_tam,
+                              d.isHoanNhap ,
                           }).ToList();
                 dbcxtransaction.Commit();
 
