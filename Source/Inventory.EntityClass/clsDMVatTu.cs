@@ -350,7 +350,7 @@ namespace Inventory.EntityClass
             string name = "";
             temp.ToList().ForEach((n) =>
             {
-                name = n.Ma_vat_tu;
+                name = n.Ten_vat_tu;
 
             });
             return name;
