@@ -369,5 +369,19 @@ namespace Inventory.XuatTamVatTu
         {
 
         }
+
+        private void btnTraNo_Click(object sender, EventArgs e)
+        {
+            clsDuyetPhieu duyetphieu = new clsDuyetPhieu();
+            Int32 selectedRowCount = gridDanhSachPhieuXuatTam.CurrentCell.RowIndex;
+            DataGridViewRow SelectedRow = gridDanhSachPhieuXuatTam.Rows[selectedRowCount];
+            int ID_phieu_xuat_tam = int.Parse(SelectedRow.Cells["ID_phieu_xuat_tam"].Value.ToString());
+            if (duyetphieu.TraNo(ID_phieu_xuat_tam) == 1)
+            { 
+                MessageBox.Show ("Đã thực hiện trả nợ với phiếu này thành công");
+
+            }
+            LoadData();
+        }
     }
 }

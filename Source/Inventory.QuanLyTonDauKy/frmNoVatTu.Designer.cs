@@ -259,7 +259,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmNoVatTu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tồn Đầu Kỳ";
+            this.Text = "Trả nợ vật tư";
             this.Load += new System.EventHandler(this.frmTheGoiDau_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridKhoMuonVT)).EndInit();
             this.pnlMenu.ResumeLayout(false);

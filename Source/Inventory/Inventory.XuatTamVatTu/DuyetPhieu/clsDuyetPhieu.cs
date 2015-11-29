@@ -15,7 +15,90 @@ namespace Inventory.XuatTamVatTu.DuyetPhieu
     public class clsDuyetPhieu
     {
 
+        public int TraNo(int id_phieu_xuat)
+        {
+            try
+            {
+                DatabaseHelper help = new DatabaseHelper();
+                help.ConnectDatabase();
+                using (var dbcxtransaction = help.ent.Database.BeginTransaction())
+                {
+                    var pxk = (from d in help.ent.Phieu_Xuat_Tam_Vat_Tu
+                               where d.ID_phieu_xuat_tam == id_phieu_xuat
+                               select d).FirstOrDefault();
+                    if (pxk == null)
+                        return 0;
 
+                    var entryPointCTPN = (from d in help.ent.Chi_Tiet_Phieu_Xuat_Tam
+                                          where d.Ma_phieu_xuat_tam == pxk.Ma_phieu_xuat_tam
+                                          select d).ToList();
+
+                    if (entryPointCTPN.Count == 0)
+                        return 1;
+                     var DMK = (from d in help.ent.DM_Kho
+                                        where d.ID_kho == pxk.ID_kho
+                                        select d).FirstOrDefault();
+
+                     for (int i = 0; i < entryPointCTPN.Count; i++)
+                     {
+                         string mavattu = entryPointCTPN[i].Ma_vat_tu;
+                         int idcl = (int)entryPointCTPN[i].Id_chat_luong;
+                         string maphieu = entryPointCTPN[i].Ma_phieu_xuat_tam;
+                         decimal sl = (decimal)entryPointCTPN[i].So_luong_giu_lai;
+                         DateTime ngay_xuat = (DateTime)pxk.Ngay_xuat;
+                        
+                         string dien_giai = pxk.Ly_do;
+                         if (sl > 0)
+                         {
+                             var entryPoint = (from d in help.ent.Ton_kho
+
+                                               where d.ID_kho == pxk.ID_kho && d.Ma_vat_tu == mavattu && d.Id_chat_luong == idcl
+                                               select d).FirstOrDefault();
+                             if (entryPoint == null)
+                                 return 0;
+                             entryPoint.So_luong = entryPoint.So_luong + sl;
+                             help.ent.Ton_kho.Attach(entryPoint);
+                             help.ent.Entry(entryPoint).State = EntityState.Modified;
+                             help.ent.SaveChanges();
+                             if (DMK.isKhoNgoai == false|| DMK.isKhoNgoai ==null)
+                             {
+
+
+
+
+                                 Chi_tiet_the_kho ChitietTK = new Chi_tiet_the_kho();
+                                 ChitietTK.ID_The_Kho = pxk.ID_kho;
+                                 ChitietTK.Ma_phieu = maphieu;
+                                 ChitietTK.Ngay_xuat_chung_tu = ngay_xuat;
+                                 ChitietTK.Dien_giai = dien_giai;
+                                 ChitietTK.SL_Nhap = sl;
+                                 ChitietTK.Ghi_chu = "Nhân viên trả nợ vật tư";
+                                 ChitietTK.ID_loai_phieu_nhap = 0;
+                                 help.ent.Chi_tiet_the_kho.Add(ChitietTK);
+                                 help.ent.SaveChanges();
+
+                             }
+                             entryPointCTPN[i].So_luong_giu_lai = 0;
+                             help.ent.Chi_Tiet_Phieu_Xuat_Tam.Attach(entryPointCTPN[i]);
+                             help.ent.Entry(entryPointCTPN[i]).State = EntityState.Modified;
+                             help.ent.SaveChanges();
+                         } 
+
+                         pxk.isGiuLai = false;
+                         help.ent.Phieu_Xuat_Tam_Vat_Tu.Attach(pxk);
+                         help.ent.Entry(pxk).State = EntityState.Modified;
+                         help.ent.SaveChanges();
+                         dbcxtransaction.Commit();
+                         return 1;
+
+                     }
+                }
+            }
+            catch (Exception ex) {
+                return 0;
+            }
+            return 0;
+        }
         public int BoDuyet(int id_phieu_xuat)
         {
             //khoi tao lai so luong trong kho 
